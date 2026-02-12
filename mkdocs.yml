@@ -1,0 +1,6 @@
+site_name: liutianba7
+theme:
+  name: material
+
+plugins:
+  - search:
