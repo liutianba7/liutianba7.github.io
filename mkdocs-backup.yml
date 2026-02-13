@@ -1,0 +1,12 @@
+site_name: LiuTianBa7 's Blog # 网站名称
+theme:
+  name: material
+  icon:
+    logo: material/cat # 网站图标
+  language: zh # 语言
+
+
+copyright: © 2026 LiuTianBa7
+
+plugins:
+  - search:

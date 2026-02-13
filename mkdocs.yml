@@ -1,6 +1,63 @@
-site_name: liutianba7
+site_name: LiuTianBa7 's Blog
+site_url: https://liutianba7.github.io # 建议加上你的域名
+repo_url: https://github.com/liutianba7/liutianba7.github.io
+repo_name: blog
+edit_uri: edit/main/docs/  # 允许直接从网页跳转到 GitHub 编辑源码
+
+
+
+nav:
+  - Welcome: index.md
+  - Java:
+    - Java基础: java/test.md
+
+
+
+
+
 theme:
   name: material
+  language: zh
+  # 1. 调色盘：支持深浅模式自动切换
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white    # 极简白背景 网站头部颜色
+      accent: indigo    # 链接和交互色
+      toggle:
+        icon: material/brightness-7
+        name: 切换至深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black    # 深色模式
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切换至浅色模式
 
-plugins:
-  - search:
+  # 2. 界面细节优化
+  features:
+    - navigation.tabs              # 顶部横向菜单栏（适合分类多时）
+    - navigation.tracking          # 滚动时自动定位侧边栏
+    - navigation.top               # 返回顶部按钮
+    - search.suggest               # 搜索输入补全
+    - search.highlight             # 搜索结果高亮
+    - content.code.copy            # 代码块一键复制按钮
+
+  icon:
+    logo: material/cat
+    repo: fontawesome/brands/github  # 这一行是关键，强制指定右上角为小猫
+    favicon: material/cat          # 浏览器标签页的小图标
+
+copyright: |
+  Copyright &copy; 2026 LiuTianBa7 
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
