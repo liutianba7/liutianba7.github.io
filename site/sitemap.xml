@@ -2,14 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://liutianba7.github.io/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
-         <loc>https://liutianba7.github.io/java/test/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <loc>https://liutianba7.github.io/java/SpringBoot%20%2B%20git%20%2B%20Linux%20%2B%20Redis%20%2B%20Docker%20%2B%20RMQ/</loc>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
-         <loc>https://liutianba7.github.io/java/test2/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <loc>https://liutianba7.github.io/java/ssm/</loc>
+         <lastmod>2026-02-14</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/middleware/minio/</loc>
+         <lastmod>2026-02-14</lastmod>
     </url>
 </urlset>

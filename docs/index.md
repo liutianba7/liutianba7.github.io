@@ -10,7 +10,7 @@
     <div style="line-height: 2.2; color: var(--md-typeset-color); font-size: 0.95em;">
         <div>🎓 <b>学校/专业</b>：<b>东南大学</b> · 计算机科学与技术 · <b>研 0</b></div>
         <div>🎯 <b>关注领域</b>：深度学习、后端开发</div>
-        
+
         <div style="margin-top: 10px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
             <b>☕ Java 生态</b>：
             <img src="https://img.shields.io/badge/-Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white" style="vertical-align: middle; height: 20px;">
@@ -18,14 +18,14 @@
             <img src="https://img.shields.io/badge/-SpringBoot-6DB33F?style=flat-square&logo=springboot&logoColor=white" style="vertical-align: middle; height: 20px;">
             <img src="https://img.shields.io/badge/-SpringCloud-6DB33F?style=flat-square&logo=spring&logoColor=white" style="vertical-align: middle; height: 20px;">
         </div>
-
+    
         <div style="margin-top: 6px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
             <b>🐍 Python & AI</b>：
             <img src="https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white" style="vertical-align: middle; height: 20px;">
             <img src="https://img.shields.io/badge/-FastAPI-005571?style=flat-square&logo=fastapi&logoColor=white" style="vertical-align: middle; height: 20px;">
             <img src="https://img.shields.io/badge/-PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" style="vertical-align: middle; height: 20px;">
         </div>
-
+    
         <div style="margin-top: 6px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
             <b>💾 基础 & 中进件</b>：
             <img src="https://img.shields.io/badge/-MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white" style="vertical-align: middle; height: 20px;">
@@ -33,14 +33,14 @@
             <img src="https://img.shields.io/badge/-RabbitMQ-FF6600?style=flat-square&logo=rabbitmq&logoColor=white" style="vertical-align: middle; height: 20px;">
             <img src="https://img.shields.io/badge/-Git-F05032?style=flat-square&logo=git&logoColor=white" style="vertical-align: middle; height: 20px;">
         </div>
-
+    
         <div style="margin-top: 6px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
             <b>🌐 前端技术</b>：
             <img src="https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" style="vertical-align: middle; height: 20px;">
             <img src="https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" style="vertical-align: middle; height: 20px;">
             <img src="https://img.shields.io/badge/-Vue.js-4FC08D?style=flat-square&logo=vue.js&logoColor=white" style="vertical-align: middle; height: 20px;">
         </div>
-
+    
         <div style="margin-top: 15px; padding-top: 10px; border-top: 1px dashed rgba(0,0,0,0.1); display: flex; align-items: center;">
             <span style="margin-right: 8px;">🚀</span> <b>目标</b>：<span style="color: #d9534f; font-weight: bold; margin-left: 4px;">大厂! 大厂! 还是大厂!</span>
         </div>

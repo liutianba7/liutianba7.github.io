@@ -9,10 +9,21 @@ edit_uri: edit/main/docs/  # 允许直接从网页跳转到 GitHub 编辑源码
 nav:
   - Welcome: index.md
   - Java:
-    - Java基础: java/test.md
+    - ssm: ./java/ssm.md
+    - springboot: ./java/springboot.md
+  - Tools:
+      - git: ./tools/git.md
+      - docker: ./tools/docker.md
+  - Middleware:
+    - redis: ./middleware/redis.md
+    - minio: ./middleware/minio.md
+  - Linux:
+      - basic: ./linux/basic.md
 
+use_directory_urls: false
 
-
+plugins:
+  - search
 
 
 theme:
