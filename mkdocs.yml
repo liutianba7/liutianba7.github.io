@@ -11,6 +11,9 @@ nav:
   - Java:
     - ssm: ./java/ssm.md
     - springboot: ./java/springboot.md
+  - Bagu:
+      - ssm: ./interview/points/ssm.md
+      - spring[boot|cloud]: ./interview/points/springboot+Cloud.md
   - Tools:
       - git: ./tools/git.md
       - docker: ./tools/docker.md

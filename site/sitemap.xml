@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://liutianba7.github.io/</loc>
+         <loc>https://liutianba7.github.io/index.html</loc>
          <lastmod>2026-02-14</lastmod>
     </url>
     <url>
-         <loc>https://liutianba7.github.io/java/SpringBoot%20%2B%20git%20%2B%20Linux%20%2B%20Redis%20%2B%20Docker%20%2B%20RMQ/</loc>
+         <loc>https://liutianba7.github.io/java/springboot.html</loc>
          <lastmod>2026-02-14</lastmod>
     </url>
     <url>
-         <loc>https://liutianba7.github.io/java/ssm/</loc>
+         <loc>https://liutianba7.github.io/java/ssm.html</loc>
          <lastmod>2026-02-14</lastmod>
     </url>
     <url>
-         <loc>https://liutianba7.github.io/middleware/minio/</loc>
+         <loc>https://liutianba7.github.io/linux/basic.html</loc>
+         <lastmod>2026-02-14</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/middleware/minio.html</loc>
+         <lastmod>2026-02-14</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/middleware/redis.html</loc>
+         <lastmod>2026-02-14</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/tools/docker.html</loc>
+         <lastmod>2026-02-14</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/tools/git.html</loc>
          <lastmod>2026-02-14</lastmod>
     </url>
 </urlset>
