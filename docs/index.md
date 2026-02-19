@@ -1,6 +1,6 @@
 
 
-# 👋 Welcome to LiuTianBa7 's Blog
+# **👋 Welcome to My Blog**
 
 <img src="assets/banner.jpg" style="border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); width: 100%; max-height: 400px; object-fit: cover; margin-bottom: 20px;">
 
@@ -71,7 +71,7 @@
 
 ### 📬 联系我 (Connect With Me)
 
-如果你有任何问题或想交个朋友，欢迎通过以下方式联系：
+欢迎通过以下方式联系我哦！！！
 
 <img src="https://simpleicons.org/icons/gmail.svg" width="18" style="vertical-align: middle;"> [liutianba7@163.com](mailto:liutianba7@163.com) | [liutianba92@gmail.com](mailto:liutianba92@gmail.com)
 <br>

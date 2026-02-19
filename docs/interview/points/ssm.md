@@ -1,4 +1,4 @@
-# Spring
+## Spring
 
 ### **Spring 中常用注解总结**
 
@@ -1080,13 +1080,17 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 
 
 Spring 将观察者模式抽象成了三个标准角色：
+
 1. **事件 (Event)**：角色的载体。继承自 `ApplicationEvent`。
+
 2. **事件发布者 (Publisher)**：负责把事件“广播”出去。由 `ApplicationEventPublisher` 负责。
+
 3. **事件监听器 (Listener)**：负责“接收”并处理事件。实现 `ApplicationListener` 接口或使用 `@EventListener` 注解。
 
 假设一个场景：用户注册成功后，我们需要发送邮件通知，还要发放积分。
 
-1. 定义一个事件
+1、定义一个事件
+
 ``` java
 public class UserRegisteredEvent extends ApplicationEvent {
     private String username;
@@ -1097,7 +1101,8 @@ public class UserRegisteredEvent extends ApplicationEvent {
     public String getUsername() { return username; }
 }
 ```
-2. 发布事件
+2、发布事件
+
 ``` java
 @Service
 public class UserService {
@@ -1112,7 +1117,8 @@ public class UserService {
 }
 ```
 
-3. 编写监听器（观察者）
+3、编写监听器（观察者）
+
 ``` java
 @Component
 public class EmailListener {
@@ -1133,7 +1139,7 @@ public class ScoreListener {
 
 如果多个监听者都听同一个事件，**谁先执行？** 默认情况下是无序的。但如果你想让“积分服务”在“邮件服务”之前执行，可以在监听器上加 **`@Order`** 注解。
 
-# MyBatis
+## MyBatis
 ### MyBatis 基础
 
 #### 什么是 MyBatis⭐️⭐️

@@ -14,10 +14,14 @@ nav:
   - Bagu:
       - ssm: ./interview/points/ssm.md
       - spring[boot|cloud]: ./interview/points/springboot+Cloud.md
+  - Journal:
+      - 202602: ./journal/2026-02.md
   - Tools:
       - git: ./tools/git.md
       - docker: ./tools/docker.md
   - Middleware:
+    - mysql 基础: ./middleware/mysql基础.md
+    - mysql 高级: ./middleware/mysql高级.md
     - redis: ./middleware/redis.md
     - minio: ./middleware/minio.md
   - Linux:
