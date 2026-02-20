@@ -1,0 +1,4644 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://liutianba7.github.io/java/ssm.html">
+      
+      
+        <link rel="prev" href="../index.html">
+      
+      
+        <link rel="next" href="springboot.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>ssm - LiuTianBa7 's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#container" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../index.html" title="LiuTianBa7 &#39;s Blog" class="md-header__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LiuTianBa7 's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ssm
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="ssm.html" class="md-tabs__link">
+          
+  
+  
+  Java
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../interview/points/ssm.html" class="md-tabs__link">
+          
+  
+  
+  Bagu
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../journal/2026-02.html" class="md-tabs__link">
+          
+  
+  
+  Journal
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tools/git.html" class="md-tabs__link">
+          
+  
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
+          
+  
+  
+  Middleware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../linux/basic.html" class="md-tabs__link">
+          
+  
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="LiuTianBa7 &#39;s Blog" class="md-nav__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    LiuTianBa7 's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ssm.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、Container
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、Container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 组件和容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ioc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. IOC 控制反转
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-di" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. DI 依赖注入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 注册组件的不同方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 注册组件的不同方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 @Bean
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 @Bean">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 主要作用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 获得组件的方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-conguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 @Conguration注解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 MVC分层注解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 MVC分层注解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. @Controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. @Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. @Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 注册第三方组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 @Scope
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 @Scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见取值
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-lazy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 @Lazy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-factorybean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 FactoryBean接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-conditional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 @Conditional 条件注册
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.8 @Conditional 条件注册">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 核心机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 衍生注解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 注入组件的各种方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 注入组件的各种方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-autowired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. @Autowired
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. @Resource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 构造器注入（无注解）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-setter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Setter 方法注入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-awarexxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. AwareXXX 感知接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. @Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-propertysource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. @PropertySource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. @Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 组件生命周期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-beanpostprocessor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. BeanPostProcessor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、AOP ⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、AOP ⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. AOP 编码实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AOP 切入点表示式写法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. AOP 切入点表示式写法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-excution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. excution(方法签名)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. args
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. @args
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 获取 AOP 的连接点的信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 多切面执行执行顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-around" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 环绕通知 @Around 重点！！！
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 环绕通知 @Around 重点！！！">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 固定写法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. AOP 的应用场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、事务⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、事务⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、Spring 连接数据库的方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2、开启事务管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3、事务管理的原理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3、事务管理的原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 动态代理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 关键组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 执行流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4、@Transactional
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4、@Transactional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 该注解的属性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 隔离级别 isolation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-propagation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 传播行为 propagation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#springmvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、SpringMvc⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、SpringMvc⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-requestmapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. RequestMapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. RequestMapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        请求限定：
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-springmvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SpringMvc 中的请求处理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. SpringMvc 中的请求处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1keyvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、接收普通请求参数（?key=value）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2restful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2、接受路径变量（RESTful 风格）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3jsonxml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3、接收请求体（JSON/XML）数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4、接收文件上传
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5、自动绑定对象（表单或 JSON）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6、接收请求头（Header）信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-cookies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 接收 Cookies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8、获取整个http请求
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-springmvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. SpringMvc 中的响应处理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. SpringMvc 中的响应处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 返回json
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 文件下载（返回的数据是让浏览器下载的）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、Spring Mvc 的最佳实践！！！⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、Spring Mvc 的最佳实践！！！⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-restful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. RESTful风格⭐⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 拦截器⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 拦截器⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 执行时机（与请求生命周期的关系）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 三个核心方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 实现方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-interceptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Interceptor 的执行顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-interceptor-fliter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Interceptor 与 Fliter 的区别
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 异常处理⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 异常处理⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 实现方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 实现方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exceptionhandler-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式一：@ExceptionHandler —— 处理单个 Controller 的异常
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlleradvice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式二：@ControllerAdvice —— 全局异常处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 项目中最佳实践
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 项目中最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实现方式:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 数据校验⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 数据校验⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-bindresult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. BindResult
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 全局异常处理校验失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 自定义校验器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 错误信息提示（国际化，其实没啥用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-o" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 各种o的分层模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 日期处理⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 日期处理⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-jsonformat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. @JsonFormat 的作用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 基本用法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 全局配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 接口文档
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="springboot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    springboot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bagu
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bagu
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/points/ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/points/springboot%2BCloud.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    spring[boot|cloud]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Journal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Journal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../journal/2026-02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    202602
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/git.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tools/docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Middleware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Middleware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/mysql%E9%AB%98%E7%BA%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 高级
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/minio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    minio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/basic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、Container
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、Container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 组件和容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-ioc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. IOC 控制反转
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-di" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. DI 依赖注入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 注册组件的不同方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 注册组件的不同方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 @Bean
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1 @Bean">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 主要作用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 获得组件的方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-conguration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 @Conguration注解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 MVC分层注解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 MVC分层注解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. @Controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. @Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. @Repository
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 注册第三方组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 @Scope
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.5 @Scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见取值
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-lazy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 @Lazy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47-factorybean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 FactoryBean接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-conditional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 @Conditional 条件注册
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.8 @Conditional 条件注册">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 核心机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 衍生注解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 注入组件的各种方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 注入组件的各种方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-autowired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. @Autowired
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. @Resource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 构造器注入（无注解）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-setter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Setter 方法注入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-awarexxx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. AwareXXX 感知接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. @Value
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-propertysource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. @PropertySource
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-profile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. @Profile
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 组件生命周期
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-beanpostprocessor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. BeanPostProcessor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、AOP ⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、AOP ⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. AOP 编码实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AOP 切入点表示式写法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. AOP 切入点表示式写法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-excution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. excution(方法签名)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. args
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-args" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. @args
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 获取 AOP 的连接点的信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 多切面执行执行顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-around" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 环绕通知 @Around 重点！！！
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 环绕通知 @Around 重点！！！">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 固定写法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. AOP 的应用场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、事务⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、事务⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、Spring 连接数据库的方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2、开启事务管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3、事务管理的原理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3、事务管理的原理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 动态代理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 关键组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 执行流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4、@Transactional
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4、@Transactional">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 该注解的属性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 隔离级别 isolation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-propagation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 传播行为 propagation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#springmvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、SpringMvc⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、SpringMvc⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-requestmapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. RequestMapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. RequestMapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        请求限定：
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-springmvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SpringMvc 中的请求处理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. SpringMvc 中的请求处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1keyvalue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、接收普通请求参数（?key=value）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2restful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2、接受路径变量（RESTful 风格）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3jsonxml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3、接收请求体（JSON/XML）数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4、接收文件上传
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5、自动绑定对象（表单或 JSON）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6、接收请求头（Header）信息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-cookies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 接收 Cookies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8、获取整个http请求
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-springmvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. SpringMvc 中的响应处理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. SpringMvc 中的响应处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 返回json
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 文件下载（返回的数据是让浏览器下载的）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、Spring Mvc 的最佳实践！！！⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、Spring Mvc 的最佳实践！！！⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-restful" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. RESTful风格⭐⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 拦截器⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 拦截器⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 执行时机（与请求生命周期的关系）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 三个核心方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 实现方式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-interceptor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Interceptor 的执行顺序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-interceptor-fliter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Interceptor 与 Fliter 的区别
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 异常处理⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 异常处理⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 实现方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 实现方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exceptionhandler-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式一：@ExceptionHandler —— 处理单个 Controller 的异常
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controlleradvice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式二：@ControllerAdvice —— 全局异常处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 项目中最佳实践
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 项目中最佳实践">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实现方式:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 数据校验⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 数据校验⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-bindresult" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. BindResult
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 全局异常处理校验失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 自定义校验器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 错误信息提示（国际化，其实没啥用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-o" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 各种o的分层模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 日期处理⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 日期处理⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-jsonformat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. @JsonFormat 的作用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 基本用法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 全局配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 接口文档
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>ssm</h1>
+
+<p>Spring ：企业级一站式框架</p>
+<p><img alt="" src="../assets/imgs/spring/spring1.png" /></p>
+<h2 id="container">一、Container</h2>
+<h3 id="1">1. 组件和容器</h3>
+<p>​   组件：具有一定功能的对象，组件的三大特性：(名字、类型)、对象、作用域，组件的名字是全局唯一的。在Spring中，组件的创建时机是容器启动过程中，单实例特性：每次获取直接拿就完事了。</p>
+<p>​   容器：管理组件（创建、获取、保存、销毁）</p>
+<h3 id="2-ioc">2. IOC 控制反转</h3>
+<p>​   IOC 是一种<strong>设计思想</strong>，不是具体的技术。它的核心理念是：<strong>将对象的创建和依赖管理交给外部容器控制，而不是由对象自己控制</strong>。</p>
+<p>传统方式下，一个对象主动去创建它所依赖的对象； <strong>而在 IOC 模式下，对象被动地接收依赖对象</strong>（<strong>由容器提供</strong>）。</p>
+<p>​   “控制” 指的是对象依赖的创建与管理。“反转”指的是这种控制权从程序员手中<strong>反转</strong>给了外部容器（如 Spring 容器）。</p>
+<h3 id="3-di">3. DI 依赖注入</h3>
+<p>​   DI 是实现 IOC 的<strong>具体手段</strong>。 即：容器在运行时将对象所依赖的实例“注入”进去。</p>
+<h3 id="4">4. 注册组件的不同方法</h3>
+<h4 id="41-bean">4.1 @Bean</h4>
+<h5 id="1_1">1. 概念</h5>
+<p>​   <code>@Bean</code> 是 Spring 中的一种 <strong>显式注册 Bean</strong> 的方式，用于告诉 IOC 容器：“我要手动定义并注册一个组件（Bean）到容器中进行管理。”  换句话说，使用 <strong><code>@Bean</code> 标注的方法</strong>会由 <strong>Spring 调用</strong>，<strong>其返回对象会被加入到 IOC 容器中</strong>，并由容器统一管理生命周期和依赖关系。</p>
+<h5 id="2">2. 主要作用</h5>
+<p>​   1）<strong>注册 Bean 到容器</strong>：通过 <code>@Bean</code> 标注的方法返回的对象，会自动成为 Spring 管理的 Bean。</p>
+<p>​   2）<strong>代替 XML 配置</strong>：在注解驱动的配置类中，用 <code>@Bean</code> 方法代替 <code>&lt;bean&gt;</code> 标签进行配置。</p>
+<p>​   3）<strong>自定义第三方类的注入</strong>：当某个类不是由我们自己编写（例如外部库中的工具类），无法直接加上 <code>@Component</code> 注解时，就可以通过 <code>@Bean</code> 手动注册。</p>
+<h5 id="3">3. 获得组件的方法</h5>
+<p><img src="./../assets/imgs/spring/spring2.png" style="display: block; margin: 0 auto; zoom: 80%;" alt="spring3.png"></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 按照组件名称获取组件对象</span>
+<span class="n">Student</span><span class="w"> </span><span class="n">ltb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">Student</span><span class="p">)</span><span class="w"> </span><span class="n">ioc</span><span class="p">.</span><span class="na">getBean</span><span class="p">(</span><span class="s">&quot;LiuTianBa&quot;</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;ltb  &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ltb</span><span class="p">);</span>
+
+<span class="c1">// 按照组件类型获取组件对象</span>
+<span class="n">Dog</span><span class="w"> </span><span class="n">dog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ioc</span><span class="p">.</span><span class="na">getBean</span><span class="p">(</span><span class="n">Dog</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;bean = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dog</span><span class="p">);</span>
+
+<span class="c1">// 按照名字加类型，就不需要强转了</span>
+</code></pre></div>
+<h4 id="42-conguration">4.2 @Conguration注解</h4>
+<p>​   <code>@Configuration</code> 是 Spring 中的一个注解，用于标记一个类为<strong>配置类</strong>。它告诉 Spring 容器：这个类包含一个或多个 <code>@Bean</code> 注解的方法，这些方法将返回需要被 Spring 容器管理的对象（即 Bean）。Spring 会处理<strong>这个类</strong>，执行其 <strong><code>@Bean</code> 方法</strong>，并将返回的对象注册到 IoC 容器中，<strong>以便后续依赖注入和使用</strong>。</p>
+<p>​   相当于传统的 XML 配置文件（如 <code>applicationContext.xml</code>），只不过现在用 Java 类来编写配置，类型安全、易于调试和重构。</p>
+<h4 id="43-mvc">4.3 MVC分层注解</h4>
+<p>​   用 @Bean 手动注册组件太麻烦，所以 Spring 提供了一些特殊类的快速注册。注：分层注解能起作用的前提是：这些类必须在主程序所在的包及其子包的程序下。如果非要放到外部包，在主程序上加个<strong>ComponentScan</strong>实现批量扫描。（但最好还是老老实实的在主程序所在包下面玩）    </p>
+<h5 id="1-controller">1. @Controller</h5>
+<p>​   用于标记<strong>控制层（Controller）</strong>的类，表示该类是 Spring MVC 中的控制器组件，负责处理 HTTP 请求。被此注解标记的类会被 Spring 容器自动扫描并注册为 Bean。</p>
+<h5 id="2-service">2. @Service</h5>
+<p>​   用于标记<strong>业务逻辑层（Service）</strong>的类，表示该类是服务组件，通常包含核心业务逻辑。它是一种特殊的 @Component，语义更明确，便于分层管理。</p>
+<h5 id="3-repository">3. @Repository</h5>
+<p>​   用于标记<strong>数据访问层（DAO/Repository）</strong>的类，表示该类负责与数据库进行交互。该注解还具有自动翻译数据库异常的能力（如将 SQLException 转为 Spring 的数据访问异常），使数据层异常处理更统一。</p>
+<h4 id="44">4.4  注册第三方组件</h4>
+<p>​   有两个方法，一是直接用@Bean注解去手动的new一个对象并返回，二是@Import注解去注册第三方类对象。</p>
+<h4 id="45-scope">4.5 @Scope</h4>
+<p>​   <code>@Scope</code> 是 Spring 中的一个注解，用于指定由 <code>@Component</code> 或 <code>@Bean</code> 等注解创建的 <strong>Bean 实例</strong>在 Spring 容器中的<strong>作用域</strong>（即生命周期和可见范围）。具体而言，它是用来控制一个 Bean 是单例的、每次请求都新建的，还是与 Web 中的请求、会话等绑定的。</p>
+<h5 id="_1">常见取值</h5>
+<ul>
+<li><strong>singleton</strong>（默认）：在整个 Spring 容器中，该 Bean 只有一个共享的实例。</li>
+<li><strong>prototype</strong>：每次请求该 Bean 时（如注入或调用 <code>getBean()</code>），都会创建一个新的实例。</li>
+<li><strong>request</strong>：每个 HTTP 请求创建一个实例，仅适用于 Web 应用。</li>
+<li><strong>session</strong>：每个 HTTP Session 创建一个实例，仅适用于 Web 应用。</li>
+<li><strong>application</strong>：每个 ServletContext 生命周期内创建一个实例，仅适用于 Web 应用。</li>
+</ul>
+<h4 id="46-lazy">4.6 @Lazy</h4>
+<p>​   它指示 Spring 容器在启动时<strong>不立即创建</strong>被标记的 <strong>Bean</strong>，而是等到该 Bean 第一次被实际使用（如注入、调用 <code>getBean()</code>）时才进行初始化。</p>
+<p>​    默认情况下，Spring 容器在启动时会预初始化所有 singleton 作用域的 Bean。<code>@Lazy</code> 可用于类上（配合 <code>@Component</code> 等）或方法上（配合 <code>@Bean</code>）。</p>
+<p>​   prototype作用域的 Bean 本身就是懒加载的，每次使用都会新建。懒加载的 Bean 在第一次使用时会有初始化开销，可能影响响应时间。 </p>
+<h4 id="47-factorybean">4.7 FactoryBean接口</h4>
+<p>​   <code>FactoryBean</code> 是 Spring 提供的一个接口，用于<strong>自定义复杂对象的创建过程</strong>。</p>
+<p>​   当某个 Bean 的实例化过程比较复杂（例如需要动态代理、组合多个对象、读取配置生成等），无法通过简单的构造函数或工厂方法完成时，可以通过实现 <code>FactoryBean</code> 接口来精确控制 Bean 的创建逻辑。</p>
+<div class="highlight"><pre><span></span><code>- 实现 `FactoryBean` 的类本身也是一个 Bean，会被 Spring 容器管理。
+- 从容器中获取该 Bean 时，默认返回的是 `getObject()` 方法的返回值，而不是 `FactoryBean` 实例本身。
+- 若想获取 `FactoryBean` 本身，需在 Bean 名称前加 `&amp;`，如 `context.getBean(&quot;&amp;myFactoryBean&quot;)`。
+</code></pre></div>
+<h4 id="48-conditional">4.8 @Conditional 条件注册</h4>
+<p>​   <code>@Conditional</code> 是 Spring 中的一个注解，用于实现<strong>条件化注册 Bean</strong>。它可以根据指定的条件来决定是否将某个 Bean 注册到 Spring 容器中。只有当条件满足时，对应的组件（<strong>类或方法</strong>）才会被加载和实例化。</p>
+<h5 id="1_2">1. 核心机制</h5>
+<ul>
+<li><code>@Conditional</code> 接收一个或多个 <strong><code>Condition</code> 接口的实现类</strong>。</li>
+<li>Spring 在解析配置时会先检查这些条件的 <code>matches()</code> 方法返回值。</li>
+<li>如果返回 <code>true</code>，则注册 Bean；否则跳过。</li>
+</ul>
+<h5 id="2_1">2. 衍生注解</h5>
+<ul>
+<li><code>@ConditionalOnClass</code>：当类路径中存在指定类时才注册。</li>
+<li><code>@ConditionalOnMissingBean</code>：当容器中不存在指定类型的 Bean 时才注册。</li>
+<li><code>@ConditionalOnProperty</code>：当配置文件中存在特定属性且值符合条件时注册。</li>
+<li><code>@ConditionalOnWebApplication</code>：当应用是 Web 环境时注册。</li>
+<li><code>@ConditionalOnExpression</code>：根据 SpEL 表达式结果决定是否注册。</li>
+</ul>
+<h3 id="5">5. 注入组件的各种方式</h3>
+<h4 id="1-autowired">1.  @Autowired</h4>
+<p>​   <code>@Autowired</code> 是 Spring 提供的注解，用于自动装配 Bean。它可以标记在字段、构造函数、Setter 方法或普通方法上，Spring 容器会自动从 IoC 容器中查找匹配的 Bean 并注入。</p>
+<p>​   <strong>装配流程：</strong></p>
+<p>​   1）先按类型找，找到了就注入</p>
+<p>​   2）若按类型没找到或者找到了多个，就按组件的名字来找（就是把当前的对象名看作是组件名，然后去ioc容器找）</p>
+<p>​   3）若未找到匹配的 Bean，默认会抛出异常</p>
+<div class="highlight"><pre><span></span><code>匹配规则
+- 默认按**类型**（byType）进行匹配。
+- 如果同一类型存在多个 Bean，则结合 `@Qualifier` 注解按名称（byName）区分。
+- 若未找到匹配的 Bean，默认会抛出异常；可设置 `required = false` 允许为 null。
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">可以自动装配很多</span>
+<span class="nd">@ToString</span>
+<span class="nd">@Controller</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserController</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// 自动注入演示</span>
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="n">UserService</span><span class="w"> </span><span class="n">userService</span><span class="p">;</span>
+
+
+<span class="w">    </span><span class="nd">@Autowired</span><span class="p">(</span><span class="n">required</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+<span class="w">    </span><span class="n">Person</span><span class="w"> </span><span class="n">bill</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">arr</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="n">ConfigurableApplicationContext</span><span class="w"> </span><span class="n">ioc</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>​   小拓展：@Qualifier("beanname") 可以指定要注入的组件名称（新版本直接用变量名就可以了） @Primary 就是把某个 @Bean 标记的方法返回的组件标为一个特殊的Bean（默认组件），以后主动注入时如果有多个该类型的组件，就用这个特殊的来注入。</p>
+<p>​   特别的，当我们开启了默认组件后，在想用其他的，就得靠@Qualifier了，此时该属性名不能实现组件的切换了。</p>
+<h4 id="2-resource">2. @Resource</h4>
+<p>​   <code>@Resource</code> 是 JSR-250 规范提供的注解，用于实现依赖注入。它并非 Spring 特有，但被 Spring 容器支持。</p>
+<p>​   <strong>装配流程：</strong></p>
+<p>​   1）默认按<strong>名称</strong>（byName）进行匹配。即使用字段名或方法名作为 Bean 的名称去查找。</p>
+<p>​   2）如果找不到对应名称的 Bean，则退回到按<strong>类型</strong>（byType）匹配。</p>
+<p>​   3）可通过 <code>name</code> 属性显式指定要注入的 Bean 名称：<code>@Resource(name = "userService")</code>。</p>
+<p>​   <strong>与 @Autowired 的区别</strong></p>
+<p>​   1）<code>@Resource</code> 是 Java 标准注解，<code>@Autowired</code> 是 Spring 特有。</p>
+<p>​   2）<code>@Resource</code> 优先按名称注入，<code>@Autowired</code> 默认按类型注入。</p>
+<p>​   3）<code>@Resource</code> 不支持 <code>required = false</code> 语法。</p>
+<h4 id="3_1">3. 构造器注入（无注解）</h4>
+<p>​   <strong>概念：</strong>在 Spring 配置类或组件中，通过构造函数的参数来接收依赖对象的注入方式。当类中只有一个构造函数时，Spring 会自动将其参数作为依赖进行注入，无需添加 <code>@Autowired</code> 注解。</p>
+<p>​   <strong>作用</strong>：实现依赖的强制注入，确保对象创建时所需的所有依赖都已提供，从而保证对象的完整性与不可变性。</p>
+<p>​   <strong>特点：</strong></p>
+<p>​   1）<strong>无需注解</strong>：Spring 4.3+ 版本开始，若类中只有一个构造函数，可省略 <code>@Autowired</code>。</p>
+<p>​   2）<strong>推荐使用</strong>：构造器注入是 Spring 官方推荐的依赖注入方式，有利于实现不可变对象，便于单元测试。</p>
+<p>​   3）<strong>依赖明确</strong>：所有必需的依赖都在构造函数中声明，代码可读性强。</p>
+<h4 id="4-setter">4. Setter 方法注入</h4>
+<p>​   通过类的 <code>setter</code> 方法将依赖对象注入到 Bean 中。通常配合 <code>@Autowired</code> 注解使用，Spring 容器在实例化对象后，会自动调用对应的 setter 方法完成依赖注入。</p>
+<h4 id="5-awarexxx">5. AwareXXX 感知接口</h4>
+<p>​   Aware 接口是 Spring 提供的一系列以 <code>Aware</code> 结尾的接口，用于让 Bean <strong>感知</strong>并获取 <strong>Spring 容器或其内部组件的底层资源</strong>。</p>
+<p>​   作用：当一个 Bean 实现了某个 <code>Aware</code> 接口后，Spring 容器会在初始化该 Bean 时，自动调用其提供的回调方法，将对应的运行时<strong>对象注入进去</strong>，从而让 Bean 能够访问<strong>容器的内部服务</strong>。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 常见 Aware 接口</span>
+<span class="o">-</span><span class="w"> </span><span class="err">`</span><span class="n">ApplicationContextAware</span><span class="err">`：</span><span class="n">获取</span><span class="w"> </span><span class="err">`</span><span class="n">ApplicationContext</span><span class="err">`</span><span class="w"> </span><span class="n">容器本身</span><span class="err">。</span>
+<span class="o">-</span><span class="w"> </span><span class="err">`</span><span class="n">BeanFactoryAware</span><span class="err">`：</span><span class="n">获取</span><span class="w"> </span><span class="err">`</span><span class="n">BeanFactory</span><span class="err">`</span><span class="w"> </span><span class="n">工厂实例</span><span class="err">。</span>
+<span class="o">-</span><span class="w"> </span><span class="err">`</span><span class="n">BeanNameAware</span><span class="err">`：</span><span class="n">获取当前</span><span class="w"> </span><span class="n">Bean</span><span class="w"> </span><span class="n">在容器中的名称</span><span class="err">。</span>
+<span class="o">-</span><span class="w"> </span><span class="err">`</span><span class="n">EnvironmentAware</span><span class="err">`：</span><span class="n">获取</span><span class="w"> </span><span class="err">`</span><span class="n">Environment</span><span class="err">`</span><span class="w"> </span><span class="n">对象</span><span class="err">，</span><span class="n">用于读取配置环境</span><span class="err">（</span><span class="n">如</span><span class="w"> </span><span class="n">profile</span><span class="err">、</span><span class="n">properties</span><span class="err">）。</span>
+<span class="o">-</span><span class="w"> </span><span class="err">`</span><span class="n">ResourceLoaderAware</span><span class="err">`：</span><span class="n">获取</span><span class="w"> </span><span class="err">`</span><span class="n">ResourceLoader</span><span class="err">`，</span><span class="n">用于加载资源文件</span><span class="err">。</span>
+<span class="o">-</span><span class="w"> </span><span class="err">`</span><span class="n">ApplicationEventPublisherAware</span><span class="err">`：</span><span class="n">获取事件发布器</span><span class="err">，</span><span class="n">用于发布自定义事件</span><span class="err">。</span>
+</code></pre></div>
+<h4 id="6-value">6. @Value</h4>
+<p>​   <code>@Value</code> 是 Spring 提供的一个注解，用于将<strong>外部值</strong>注入到 Bean 的字段(非组件的字段，组件可以通过Autowired自动注入)或方法参数中。</p>
+<p>​   作用：实现配置属性、字面量、SpEL 表达式的注入，使代码可以动态获取配置信息，而不必硬编码。     </p>
+<p>​   注入方式：</p>
+<p>​   1）直接@Value(字面量)</p>
+<p>​   2）从配置文件中获取数据：@Value("${key}")</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;${app.name}&quot;</span><span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">appName</span><span class="p">;</span>
+</code></pre></div>
+<p>​   3）<strong>SpEL（Spring Expression Language）表达式</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;#{systemProperties[&#39;user.home&#39;]}&quot;</span><span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">userHome</span><span class="p">;</span>
+
+<span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;#{T(java.lang.Math).random() * 100}&quot;</span><span class="p">)</span>
+<span class="kd">private</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">randomValue</span><span class="p">;</span>
+</code></pre></div>
+<p>​   综合演示：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Cat</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;Tom&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;12&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Integer</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;${cat.color}&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">color</span><span class="p">;</span>
+<span class="w">    </span><span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;#{T(java.util.UUID).randomUUID().toString()}&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="7-propertysource">7. @PropertySource</h4>
+<p>​   <code>@PropertySource</code> 是 Spring 提供的一个注解，用于将外部的 <strong>properties 配置文件</strong>加载到 Spring 的 <code>Environment</code> 抽象中。</p>
+<div class="highlight"><pre><span></span><code>@PropertySource(&quot;classpath:app.properties&quot;)
+</code></pre></div>
+<p>​   补充知识：类路径找资源方式</p>
+<p>​   classpath: 代表自己当前项目的类路径（java以及resources)</p>
+<p>​   classpath*: 从所有包的类路径下面找</p>
+<p>​   在Spring中，提供了资源获取工具类：ResouceUtils 来获取文</p>
+<h4 id="8-profile">8. @Profile</h4>
+<p>​   实际也是 @Conditional 的一种，场景：当我们有多个数据源，也就是开发、测试、生成这三套，如果我们用 @Primary 或者@Qualifier，则需要修改代码，但用 @Profile 可以输入一个环境表示，从而根据不同的环境表示来注册组件。</p>
+<p>​   具体使用：</p>
+<p>​   1）先定义环境表示，默认是 ”default“ ：自定义方法就是去资源文件下面定义。 spring.profiles.active=生产环境</p>
+<p>​   2）使用 @Profile 来实现条件注册 </p>
+<h3 id="6">6. 组件生命周期</h3>
+<p>​   Spring 容器中每个 Bean 都有其完整的生命周期，从创建、初始化、使用到销毁。Spring 提供了多种机制让开发者可以在特定生命周期阶段插入自定义逻辑。</p>
+<p>​   第一种：通过 @Bean 注解去指定 init 以及 destory。</p>
+<p>​   第二种：去实现 InitializingBean  以及 DisposableBean </p>
+<p><img alt="" src="../assets/imgs/spring/spring3.png" /></p>
+<p>​   具体生命周期如下：</p>
+<p>​   1、<strong>实例化（Instantiation）</strong> ：Spring 容器根据配置或注解创建 Bean 的实例（通过构造函数或工厂方法）。</p>
+<p>​   2、<strong>属性赋值（Populate Properties）</strong>：容器将配置中定义的<strong>属性值或依赖对象</strong>注入到 Bean 中（如通过 <code>@Autowired</code>、<code>@Value</code> 等）。</p>
+<p>​   3、<strong>初始化（Initialization）</strong></p>
+<div class="highlight"><pre><span></span><code>   - 补充: 调用后置处理器的前置操作
+   - 调用 `@PostConstruct` 注解的方法。
+   - 调用 `InitializingBean` 的 `afterPropertiesSet()` 方法。
+   - 调用自定义的初始化方法（通过 `@Bean(initMethod = &quot;init&quot;)` 指定）。
+   - 应用 BeanPostProcessor 的 `postProcessBeforeInitialization` 和 `postProcessAfterInitialization`。
+</code></pre></div>
+<p>​   4、<strong>使用（In Use）</strong>：Bean 已准备好，可以被其他组件使用或对外提供服务。</p>
+<p>​   5、<strong>销毁（Destruction）</strong>：</p>
+<div class="highlight"><pre><span></span><code>   - 调用 `@PreDestroy` 注解的方法。
+   - 调用 `DisposableBean` 的 `destroy()` 方法。
+   - 调用自定义的销毁方法（通过 `@Bean(destroyMethod = &quot;cleanup&quot;)` 指定）。
+   - 仅适用于 singleton 作用域的 Bean，在容器关闭时执行。
+</code></pre></div>
+<p align="center">   <img src="../assets/imgs/spring/spring4.png" style="zoom: 50%;"> </p>
+
+<h3 id="7-beanpostprocessor">7. BeanPostProcessor</h3>
+<p>​   之前 Bean 的生命周期其实只是在人家初始化完，或者销毁前让你做点其他的，而不能影响这个过程。</p>
+<p>​   而 BeanPostProcessor 能够在生命周期过程中正在的修改这个 Bean。</p>
+<h2 id="aop">二、AOP ⭐</h2>
+<p>​   概念：<strong>Aspect Oriented Programming（AOP）</strong>是 Spring 框架的重要特性之一，它允许开发者将<strong>横切关注点</strong>（如日志、事务、安全、缓存等）与<strong>核心业务逻辑</strong>分离。</p>
+<p>​   本质：AOP 的底层实现原理确实是<strong>代理模式</strong>。Spring 在运行时为目标对象创建一个代理对象，当调用目标方法时，实际执行的是代理对象的方法。代理对象可以在目标方法执行的<strong>前后</strong>，甚至<strong>环绕</strong>执行自定义逻辑，从而实现功能增强。</p>
+<p><img src="../assets/imgs/spring/spring5.png" style="zoom: 33%;" /></p>
+<h4 id="1-aop">1. AOP 编码实现</h4>
+<p>​   1）导入 AOP 依赖 </p>
+<div class="highlight"><pre><span></span><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-aop&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre></div>
+<p>​   2）编写切面 Aspect 注：记得用 @Aspect 来标注切面类 </p>
+<p>​   3）编写通知方式</p>
+<p>​   4）指明这些通知方法何时何地运行（切入点表达式） 注：可以将这些表达式抽离出来</p>
+<div class="highlight"><pre><span></span><code>    // 切入点表达式抽离
+    @Pointcut(&quot;execution(* person.liutianba.spring02Aop.calculator.MathCal.*(..))&quot;)
+    void pointCut(){}
+
+    @Before(&quot;pointCut()&quot;)
+    public void logStart(JoinPoint joinPoint){
+        System.out.println(&quot;【切面 - 日志】开始... 方法名:&quot; + joinPoint.getSignature().getName() + &quot;参数为：&quot; + Arrays.asList(joinPoint.getArgs()).toString());
+    }
+</code></pre></div>
+<p>​   5）测试AOP动态织入</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Aspect</span><span class="w">  </span><span class="c1">// 切面类</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LogAspect</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * 告诉 Spring，以下通知方法何时何地运行</span>
+<span class="cm">     * 何时：</span>
+<span class="cm">     * @Before,</span>
+<span class="cm">     * @After(不管正常异常，都运行),</span>
+<span class="cm">     * @AfterReturning(正常返回结果),</span>
+<span class="cm">     * @AfterThrowing(出现异常),</span>
+<span class="cm">     * @Around</span>
+<span class="cm">     *</span>
+<span class="cm">     * 何地：切入点表达式</span>
+<span class="cm">     *   execution(方法的全签名)</span>
+<span class="cm">     *      全写法 ：public int 全类名.方法名(参数列表) throws 异常</span>
+<span class="cm">     *      省略写法：int 方法名(参数列表) int *(int, int)</span>
+<span class="cm">     *      * 表示任意长度字符串</span>
+<span class="cm">     *</span>
+<span class="cm">     */</span>
+
+<span class="w">    </span><span class="nd">@Before</span><span class="p">(</span><span class="s">&quot;execution(int *(int,int))&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">logStart</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;【切面 - 日志】开始...&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nd">@After</span><span class="p">(</span><span class="s">&quot;execution(int *(int,int))&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">logEnd</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;【切面 - 日志】结束...&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@AfterThrowing</span><span class="p">(</span><span class="s">&quot;execution(int*(int, int))&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">logException</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;【切面 - 日志】异常...&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+
+<span class="w">    </span><span class="nd">@AfterReturning</span><span class="p">(</span><span class="n">pointcut</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;execution(int *(int, int))&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">returning</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;result&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">logReturn</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">result</span><span class="p">){</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;【切面 - 日志】结果：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="2-aop">2. AOP 切入点表示式写法</h4>
+<p>​   切入点（Pointcut）用于定义 <strong>哪些方法需要被 AOP 增强</strong>。它是通过一个表达式来匹配类和方法的，只有匹配成功的方法才会执行通知（Advice）。</p>
+<p><img src="../assets/imgs/spring/spring6.png"  style="zoom:50%;" /></p>
+<h5 id="1-excution">1. excution(方法签名)</h5>
+<p>​   切入某个接口下的所有方法：execution(<strong><em>*</em> person.liutianba.spring02Aop.calculator.MathCal</strong>. ***(..))</p>
+<p>​   注：只要有了切面类再切入，那么这个类的实例在容器中就不再是原本的类型了，而是CGLIB产生的一个代理对象。   </p>
+<div class="highlight"><pre><span></span><code> /**
+     * 告诉 Spring，以下通知方法何时何地运行
+     * 何时：
+     * @Before,
+     * @After(不管正常异常，都运行),
+     * @AfterReturning(正常返回结果),
+     * @AfterThrowing(出现异常),
+     * @Around
+     *
+     * 何地：切入点表达式
+     *   execution(方法的全签名)
+     *      全写法 ：public int 全类名.方法名(参数列表) throws 异常
+     *      省略写法：int 方法名(参数列表) int *(int, int)
+     *      *：表示任意长度字符串
+     *      ..：
+     *       1）参数位置：表示多个参数，任意类型
+     *       2）类型位置：表示多个层级  
+
+     *   @annotation(com.spzx.common.security.annotation.RequiresLogin) || &quot;  
+        + &quot;@annotation(com.spzx.common.security.annotation.RequiresPermissions)
+     *  
+     *  
+     *  
+*/  
+</code></pre></div>
+<h5 id="2-args">2. args</h5>
+<p>​   匹配那些参数列表一直的所有方法</p>
+<h5 id="3-args">3. @args</h5>
+<p>​   匹配参数列表有特定注解的方法</p>
+<h4 id="3-aop">3. 获取 AOP 的连接点的信息</h4>
+<p>​   直接传一个连接点，然后通过它获得信息。</p>
+<p>​   一般就是通过getSignature（）获得方法签名，然后通过方法签名就可以获得该方法的详细信息。</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Before</span><span class="p">(</span><span class="s">&quot;execution(* person.liutianba.spring02Aop.calculator.MathCal.*(..))&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">logStart</span><span class="p">(</span><span class="n">JoinPoint</span><span class="w"> </span><span class="n">joinPoint</span><span class="p">){</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;【切面 - 日志】开始... 方法名:&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">joinPoint</span><span class="p">.</span><span class="na">getSignature</span><span class="p">().</span><span class="na">getName</span><span class="p">());</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="4_1">4. 多切面执行执行顺序</h4>
+<p>​   我的理解：单个切面实际就是把目标方法做了个代理，当有其他切面时，它会把代理后的方法看成是一个要代理的目标方法，然后去代理，所以，多个切面的执行顺序是由谁先代理，谁后代理决定的。</p>
+<p>​   注：默认代理顺序是按类名自然排序的，但也可以通过 @Order 注解手动指定。<code>@Order</code> 值越小，优先级越高，在代理链中位于外层。</p>
+<p>​   <img src="../assets/imgs/spring/spring7.png" alt="image-20251024100006963" style="zoom:50%;" /></p>
+<h4 id="5-around">5. 环绕通知 @Around 重点！！！</h4>
+<p>​   <code>@Before</code>、<code>@After</code> 等通知属于“感知型”增强，只能在方法执行前后执行额外逻辑，<strong>无法控制目标方法的执行流程</strong>（如跳过方法、修改参数、改变返回值）。而 <code>@Around</code> 是最强大的通知类型，它<strong>完全包裹目标方法</strong>，可以：</p>
+<ul>
+<li>控制是否执行目标方法</li>
+<li>修改方法参数</li>
+<li>修改返回值</li>
+<li>捕获并处理异常 (这里建议抛出异常，如果不抛出的话，出了异常别人都感知不到)</li>
+<li>短路返回（不调用目标方法）</li>
+</ul>
+<h5 id="51">5.1 固定写法</h5>
+<div class="highlight"><pre><span></span><code><span class="nd">@Aspect</span>
+<span class="nd">@Component</span>
+<span class="n">public</span> <span class="k">class</span><span class="w"> </span><span class="nc">LogAspect</span> <span class="p">{</span>
+
+    <span class="nd">@Around</span><span class="p">(</span><span class="s2">&quot;execution(* com.example.service.*.*(..))&quot;</span><span class="p">)</span>
+    <span class="n">public</span> <span class="n">Object</span> <span class="n">around</span><span class="p">(</span><span class="n">ProceedingJoinPoint</span> <span class="n">joinPoint</span><span class="p">)</span> <span class="n">throws</span> <span class="n">Throwable</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">获取方法签名</span>
+        <span class="n">Signature</span> <span class="n">signature</span> <span class="o">=</span> <span class="n">joinPoint</span><span class="o">.</span><span class="n">getSignature</span><span class="p">();</span>
+        <span class="n">String</span> <span class="n">methodName</span> <span class="o">=</span> <span class="n">signature</span><span class="o">.</span><span class="n">getName</span><span class="p">();</span>
+
+        <span class="o">//</span> <span class="n">获取方法参数</span>
+        <span class="n">Object</span><span class="p">[]</span> <span class="n">args</span> <span class="o">=</span> <span class="n">joinPoint</span><span class="o">.</span><span class="n">getArgs</span><span class="p">();</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;【环绕前置】方法 &quot;</span> <span class="o">+</span> <span class="n">methodName</span> <span class="o">+</span> <span class="s2">&quot; 开始执行，参数：&quot;</span> <span class="o">+</span> <span class="n">Arrays</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="n">args</span><span class="p">));</span>
+
+        <span class="n">Object</span> <span class="n">result</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="o">//</span> <span class="o">-----------------------------</span>
+            <span class="o">//</span> <span class="n">核心</span><span class="err">：</span><span class="n">决定是否继续执行目标方法</span>
+            <span class="o">//</span> <span class="n">可在此处修改参数</span>
+            <span class="o">//</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;modifiedArg&quot;</span><span class="p">;</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">joinPoint</span><span class="o">.</span><span class="n">proceed</span><span class="p">(</span><span class="n">args</span><span class="p">);</span> <span class="o">//</span> <span class="n">执行目标方法</span><span class="err">（</span><span class="n">可传入修改后的参数</span><span class="err">）</span>
+            <span class="o">//</span> <span class="o">-----------------------------</span>
+
+            <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;【环绕返回】方法 &quot;</span> <span class="o">+</span> <span class="n">methodName</span> <span class="o">+</span> <span class="s2">&quot; 执行成功，返回值：&quot;</span> <span class="o">+</span> <span class="n">result</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">;</span> <span class="o">//</span> <span class="n">可在此处修改返回值</span>
+        <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="ne">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;【环绕异常】方法 &quot;</span> <span class="o">+</span> <span class="n">methodName</span> <span class="o">+</span> <span class="s2">&quot; 执行出错：&quot;</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="n">getMessage</span><span class="p">());</span>
+            <span class="n">throw</span> <span class="n">e</span><span class="p">;</span> <span class="o">//</span> <span class="n">可以处理或包装异常</span>
+        <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;【环绕后置】方法 &quot;</span> <span class="o">+</span> <span class="n">methodName</span> <span class="o">+</span> <span class="s2">&quot; 执行结束&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="6-aop">6. AOP 的应用场景</h4>
+<p>pass(懒得写了)</p>
+<h2 id="_2">三、事务⭐</h2>
+<p>​   Spring 中的事务是对<strong>数据库事务</strong>的抽象和管理机制，其核心目标是：<strong>让开发者无需手动管理 commit 和 rollback，就能确保一组数据库操作具备 ACID 特性</strong>。</p>
+<h4 id="1spring">1、Spring 连接数据库的方法</h4>
+<p>​   1）导入依赖：数据库驱动、spring-boot-starter- data-jdbc</p>
+<p>​   2）配置数据库连接信息：在 xxx.properties 中的 spring.datasource</p>
+<p>​   3）可以直接使用 DataSource、 JDBCTemplate</p>
+<h4 id="2_2">2、开启事务管理</h4>
+<p>​   1）在启动类上加一个注解：@EnableTransactionManagement 指明开启事务管理</p>
+<p>​   2）之后在需要事务管理的方法上添加一个 @Transactional 即可进行事务管理</p>
+<h4 id="3_2">3、事务管理的原理</h4>
+<p>​   Spring 的事务管理是基于 <strong>AOP（面向切面编程） + 拦截器模式</strong> 实现的，其核心原理是通过代理机制，在目标方法执行前后自动控制数据库事务的开启、提交或回滚。</p>
+<h5 id="31">3.1 动态代理</h5>
+<p>当一个方法被 <code>@Transactional</code> 注解标记时：</p>
+<ul>
+<li>Spring 容器会为该 Bean 创建一个<strong>代理对象</strong>（Proxy）。</li>
+<li>原始对象的方法调用会被代理拦截。</li>
+<li><strong>代理在方法执行前开启事务</strong>，执行后根据结果决定<strong>提交或回滚</strong>。</li>
+</ul>
+<h5 id="32">3.2 关键组件</h5>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PlatformTransactionManager</code></td>
+<td>事务管理器接口，负责实际的事务操作（如 <code>DataSourceTransactionManager</code>）。</td>
+</tr>
+<tr>
+<td><code>@Transactional</code></td>
+<td>声明式事务注解，定义<strong>事务属性</strong>（传播行为、隔离级别等）。</td>
+</tr>
+<tr>
+<td><code>TransactionInterceptor</code></td>
+<td>事务拦截器，AOP 的通知逻辑，真正执行“开启 → 执行 → 提交/回滚”的流程。</td>
+</tr>
+<tr>
+<td><code>TransactionSynchronizationManager</code></td>
+<td>绑定当前线程与事务资源（如 Connection），保证同一个事务中使用同一个数据库连接。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="33">3.3 执行流程</h5>
+<div class="highlight"><pre><span></span><code>1. 调用 @Transactional 方法
+        ↓
+2. 代理拦截（TransactionInterceptor）
+        ↓
+3. 获取事务管理器（PlatformTransactionManager）
+        ↓
+4. 开启事务（doBegin） → 获取 Connection 并绑定到当前线程
+        ↓
+5. 执行业务方法（所有 DAO 操作共享同一 Connection）
+        ↓
+6. 方法正常结束 → 提交事务
+        ↓
+7. 异常抛出 → 回滚事务（默认 RuntimeException 和 Error）
+        ↓
+8. 清理资源（解绑 Connection）
+</code></pre></div>
+<h4 id="4transactional">4、@Transactional</h4>
+<p>​   <code>@Transactional</code> 是 Spring 框架提供的<strong>声明式事务管理注解</strong>，开发者只需在方法或类上添加该注解，即可自动获得事务支持，无需手动编写 <code>commit</code> 和 <code>rollback</code> 代码。</p>
+<h5 id="41">4.1 该注解的属性</h5>
+<p>​   timeout：当事务超过这个事件后，就会回滚。</p>
+<p>​   readOnly：只读优化（优化操作，就不需要开启一堆事务管理相关的东西了）</p>
+<p>​   rollbackFor：Defines zero (0) or more exception types, which must be subclasses of Throwable, indicating which exception types must cause a transaction rollback.</p>
+<p>​   注：运行时异常都回滚，而编译时异常不回滚。而rollbackFor就是用来指定那些异常需要回滚</p>
+<p>​   下面，重点属性单独介绍</p>
+<h5 id="42-isolation">4.2 隔离级别 isolation</h5>
+<p>​   <strong>隔离性（Isolation）</strong> 是事务 ACID 特性中的 "I"，它控制的是：<strong>多个事务并发执行时，彼此之间的可见性和影响程度</strong>。如果完全不隔离 → 数据混乱。如果完全隔离 → 性能极差，几乎串行执行。所以，数据库提供了 <strong>不同的隔离级别</strong>，在<strong>数据一致性</strong>和<strong>并发性能</strong>之间做权衡。</p>
+<p>​   <strong>一些并发问题介绍：</strong></p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>定义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>脏读（Dirty Read）</strong></td>
+<td>一个事务读取了另一个事务<strong>尚未提交</strong>的数据。</td>
+<td>事务 A 修改了数据但未提交，事务 B 读到了这个修改；如果 A 回滚，B 读到的就是“脏”数据。</td>
+</tr>
+<tr>
+<td><strong>不可重复读（Non-repeatable Read）</strong></td>
+<td><strong>在同一个事务中</strong>，<strong>两次读取同一行数据，结果不同</strong>。</td>
+<td>事务 A 第一次读 id=1 的记录为 name='张三'；事务 B 将其改为 '李四' 并提交；A 再次读取，变成了 '李四'。</td>
+</tr>
+<tr>
+<td><strong>幻读（Phantom Read）</strong></td>
+<td><strong>在同一个事务中</strong>，<strong>两次执行相同查询，返回的行数不同</strong>（出现了“幻影”行）。</td>
+<td>事务 A 查询 <code>age &gt; 18</code> 有 3 条记录；事务 B 插入一条 <code>age=20</code> 的记录并提交；A 再次查询，变成 4 条。</td>
+</tr>
+</tbody>
+</table>
+<p>​   <strong>隔离级别：</strong></p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>READ UNCOMMITTED</strong>（读未提交）</td>
+<td>✅ 允许</td>
+<td>✅ 允许</td>
+<td>✅ 允许</td>
+<td>最低级别，性能最好，但数据最不安全。</td>
+</tr>
+<tr>
+<td><strong>READ COMMITTED</strong>（读已提交）</td>
+<td>❌ 禁止</td>
+<td>✅ 允许</td>
+<td>✅ 允许</td>
+<td>大多数数据库默认级别（如 Oracle、SQL Server）。只能读已提交的数据。</td>
+</tr>
+<tr>
+<td><strong>REPEATABLE READ</strong>（可重复读）</td>
+<td>❌ 禁止</td>
+<td>❌ 禁止</td>
+<td>✅ 允许（部分数据库不允许）</td>
+<td><strong>MySQL 默认级别</strong>。保证事务内多次读取同一数据结果一致。</td>
+</tr>
+<tr>
+<td><strong>SERIALIZABLE</strong>（串行化）</td>
+<td>❌ 禁止</td>
+<td>❌ 禁止</td>
+<td>❌ 禁止</td>
+<td>最高级别，事务串行执行，避免所有并发问题，但性能最差。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h5 id="43-propagation">4.3 传播行为 propagation</h5>
+<p>​   <strong>传播行为（Propagation Behavior）</strong> 是指：当一个事务方法被另一个事务方法调用时，<strong>事务该如何进行传播或处理</strong>。换句话说：  "我已经在一个事务里了，现在又调用了另一个标有 <code>@Transactional</code> 的方法，那这个新方法是加入当前事务？新建一个事务？还是不使用事务？”</p>
+<p>​   这就是 <strong>事务的传播行为</strong> 要解决的问题。</p>
+<div class="highlight"><pre><span></span><code>类比理解
+
+想象你正在做一顿饭（外层事务），过程中需要洗菜、切菜、炒菜。
+
+- 如果“洗菜”也是一个独立的任务（内层方法），但它必须和做饭在同一个流程中完成 → 那它就**加入当前事务**。
+- 如果“接个电话”是一个操作，它不影响做饭 → 它可以**不参与事务**。
+- 如果“尝一口咸淡”失败了，你想回滚整个做饭过程 → 那它就和外层事务**绑定在一起**。
+- 如果“烧一壶水”是另一个独立任务，即使它失败也不影响做饭 → 它应该**开启一个新事务**。
+
+这就是不同传播行为的现实映射。
+
+
+Spring 中的 7 种传播行为
+
+| 传播行为 | 含义 |
+|--------|------|
+| `REQUIRED`（默认） | 如果当前有事务，就加入；没有就新建一个。 |
+| `REQUIRES_NEW` | 无论当前是否有事务，都**挂起当前事务，新建一个新事务**。 |
+| `SUPPORTS` | 支持当前事务，但如果当前没有事务，也不创建新事务（以非事务方式运行）。 |
+| `NOT_SUPPORTED` | 不支持事务，**以非事务方式执行**，如果当前有事务则将其挂起。 |
+| `MANDATORY` | 必须在事务中运行，如果当前没有事务，则抛出异常。 |
+| `NEVER` | 不能在事务中运行，如果当前有事务，则抛出异常。 |
+| `NESTED` | 如果当前有事务，则在嵌套事务中执行；否则新建一个事务。（类似 `REQUIRED`，但可独立回滚） 
+</code></pre></div>
+<h2 id="springmvc">四、SpringMvc⭐⭐</h2>
+<h3 id="1-requestmapping">1. RequestMapping</h3>
+<p>​   路径映射：负责映射方法与请求路径。</p>
+<p>​   路径位置通配符：*匹配任意多字符  ** 匹配任意多层路径  ？匹配单个字符  如果有多个方法都能匹配上请求路径，则按着精确度来处理，也就是越精确，越优先。</p>
+<h5 id="_3">请求限定：</h5>
+<p>​   1）method</p>
+<p>​   2）params</p>
+<p>​   3）headers</p>
+<p>​   4）consumes</p>
+<p>​   5）produces</p>
+<h3 id="2-springmvc">2. SpringMvc 中的请求处理</h3>
+<h4 id="1keyvalue">1、接收普通请求参数（<code>?key=value</code>）</h4>
+<p>​   适用于 GET 请求的查询参数 或 POST 请求的表单数据。直接绑定或者用 @RequestParam 注解</p>
+<h4 id="2restful">2、接受路径变量（RESTful 风格）</h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/user/{id}&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getUserById</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;用户ID：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;user&quot;</span><span class="p">;</span>
+<span class="p">}</span><span class="w">               </span>
+</code></pre></div>
+<h4 id="3jsonxml">3、接收请求体（JSON/XML）数据</h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/user&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">createUser</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;创建用户：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;created&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>客户端设置 <code>Content-Type: application/json</code></li>
+<li>后端有 Jackson/Gson 等 JSON 转换器（Spring Boot 默认集成）</li>
+</ul>
+<h4 id="4_2">4、接收文件上传</h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/upload&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">uploadFile</span><span class="p">(</span><span class="nd">@RequestPart</span><span class="p">(</span><span class="s">&quot;file&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">MultipartFile</span><span class="w"> </span><span class="n">file</span><span class="p">,</span>
+<span class="w">                         </span><span class="nd">@RequestParam</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">description</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;文件名：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">getOriginalFilename</span><span class="p">());</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;描述：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">description</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;uploaded&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="5-json">5、自动绑定对象（表单或 JSON）</h4>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">User</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// getter/setter</span>
+<span class="p">}</span>
+
+<span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/user/form&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">createUserForm</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;用户：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;success&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>表单提交 → 使用 <code>User user</code></li>
+<li>JSON 提交 → 必须加 <code>@RequestBody</code></li>
+</ul>
+<h4 id="6header">6、接收请求头（Header）信息</h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/info&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getInfo</span><span class="p">(</span><span class="nd">@RequestHeader</span><span class="p">(</span><span class="s">&quot;User-Agent&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">userAgent</span><span class="p">,</span>
+<span class="w">                      </span><span class="nd">@RequestHeader</span><span class="p">(</span><span class="s">&quot;Authorization&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">token</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;浏览器：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userAgent</span><span class="p">);</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Token：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">token</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;info&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="7-cookies">7. 接收 Cookies</h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/cookie&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getCookie</span><span class="p">(</span><span class="nd">@CookieValue</span><span class="p">(</span><span class="s">&quot;JSESSIONID&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">sessionId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Session ID：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">sessionId</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;cookie&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="8http">8、获取整个http请求</h4>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param httpEntity 它的泛型就是要把 http 请求体转为这个泛型</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nd">@PostMapping</span><span class="p">(</span><span class="s">&quot;/test03&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">test03</span><span class="p">(</span><span class="n">HttpEntity</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">httpEntity</span><span class="p">){</span>
+<span class="w">        </span><span class="c1">// 获得请求头</span>
+<span class="w">        </span><span class="n">httpEntity</span><span class="p">.</span><span class="na">getHeaders</span><span class="p">().</span><span class="na">forEach</span><span class="p">((</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v</span><span class="p">));</span>
+<span class="w">        </span><span class="c1">// 获得请求参数</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;user = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w">  </span><span class="n">httpEntity</span><span class="p">.</span><span class="na">getBody</span><span class="p">());</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;ok_test03&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="3-springmvc">3. SpringMvc 中的响应处理</h3>
+<h5 id="1-json">1. 返回json</h5>
+<p>​   注解 @ResponseBody 能够将方法的返回值自动的封装为json，现在都用组合注解 @RestController</p>
+<h5 id="2_3">2. 文件下载（返回的数据是让浏览器下载的）</h5>
+<p align="center">
+  <img src="./../assets/imgs/spring/spring8.png" alt="spring8.png" style="zoom:60%;" />
+</p>
+
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/test03&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="kt">byte</span><span class="o">[]&gt;</span><span class="w"> </span><span class="nf">download</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="p">{</span>
+<span class="w">        </span><span class="n">FileInputStream</span><span class="w"> </span><span class="n">fileInputStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;E:\\school_work\\glories\\头像\\2.jpg&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="n">alls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fileInputStream</span><span class="p">.</span><span class="na">readAllBytes</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">().</span><span class="na">contentType</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_OCTET_STREAM</span><span class="p">).</span><span class="na">contentLength</span><span class="p">(</span><span class="n">alls</span><span class="p">.</span><span class="na">length</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="s">&quot;Content-Disposition&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;attachment;filename=2.jpg&quot;</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">body</span><span class="p">(</span><span class="n">alls</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<p>问题1：文件名如果是中文会乱码</p>
+<p>问题2：文件太大会出现oom</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/test03&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">InputStreamResource</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">download</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="p">{</span>
+
+<span class="w">        </span><span class="n">FileInputStream</span><span class="w"> </span><span class="n">fileInputStream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FileInputStream</span><span class="p">(</span><span class="s">&quot;E:\\school_work\\glories\\头像\\2.jpg&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 一口气读会异常</span>
+<span class="c1">//        byte[] alls = fileInputStream.readAllBytes();</span>
+<span class="w">        </span><span class="n">InputStreamResource</span><span class="w"> </span><span class="n">resource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">InputStreamResource</span><span class="p">(</span><span class="n">fileInputStream</span><span class="p">)</span>
+<span class="w">        </span><span class="c1">// 解决中文乱码：把中文转码成utf-8</span>
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">URLEncoder</span><span class="p">.</span><span class="na">encode</span><span class="p">(</span><span class="s">&quot;哈哈.jpg&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;utf-8&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">().</span><span class="na">contentType</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_OCTET_STREAM</span><span class="p">).</span><span class="na">contentLength</span><span class="p">(</span><span class="n">fileInputStream</span><span class="p">.</span><span class="na">available</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="s">&quot;Content-Disposition&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;attachment;filename=&quot;</span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">body</span><span class="p">(</span><span class="n">resource</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h2 id="spring-mvc">五、Spring Mvc 的最佳实践！！！⭐⭐⭐</h2>
+<h3 id="1-restful">1. RESTful风格⭐⭐⭐</h3>
+<p>​   REST 就是把任何web请求看作是对资源的操作，对同一资源的不同操作，他们的请求路径是一样的，具体是通过不同的动作来区分不同处理方法的。</p>
+<h3 id="2_4">2. 拦截器⭐⭐</h3>
+<h5 id="1_3">1. 概念</h5>
+<p>​   <strong>拦截器（Interceptor）</strong> 是 Spring MVC 提供的一种机制，用于在 <strong>请求处理的前后</strong> 对请求进行<strong>预处理或后处理</strong>，而无需修改每个控制器的代码。它类似于 Servlet 中的 <strong>Filter（过滤器）</strong>，但更贴近 Spring MVC 的执行流程，主要用于：</p>
+<ul>
+<li>权限校验（如登录检查）</li>
+<li>日志记录</li>
+<li>性能监控（统计请求耗时）</li>
+<li>请求参数预处理</li>
+<li>防止重复提交</li>
+<li>编码设置等</li>
+</ul>
+<h5 id="2_5">2. 执行时机（与请求生命周期的关系）</h5>
+<p>​   请求 → preHandle() → (目标方法 execute) → postHandle() → (视图渲染) → afterCompletion()</p>
+<h5 id="3_3">3. 三个核心方法</h5>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>触发时机</th>
+<th>返回值含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>boolean preHandle(HttpServletRequest, HttpServletResponse, Object handler)</code></td>
+<td><strong>控制器方法执行前</strong></td>
+<td><code>true</code>：放行，继续执行；<code>false</code>：中断，不再执行后续操作</td>
+</tr>
+<tr>
+<td><code>void postHandle(HttpServletRequest, HttpServletResponse, Object handler, ModelAndView modelAndView)</code></td>
+<td><strong>控制器方法执行后，视图渲染前</strong></td>
+<td>通常用于修改 Model 或 View</td>
+</tr>
+<tr>
+<td><code>void afterCompletion(HttpServletRequest, HttpServletResponse, Object handler, Exception ex)</code></td>
+<td><strong>整个请求完成之后</strong>（视图渲染完毕）</td>
+<td>用于资源清理、异常处理等</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ 注意：
+- <code>postHandle</code> 和 <code>afterCompletion</code> 只有在 <code>preHandle</code> 返回 <code>true</code> 时才会执行。
+- 如果 <code>preHandle</code> 返回 <code>false</code>，则后续都不会执行。</p>
+</blockquote>
+<hr />
+<h5 id="4_3">4. 实现方式</h5>
+<p>​   Spring MVC 中实现拦截器有两种主要方式：第二种过时了，就不记录了。</p>
+<p>✅ 方式一：实现 <code>HandlerInterceptor</code> 接口（推荐），</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">org.springframework.web.servlet.HandlerInterceptor</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.HttpServletRequest</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.HttpServletResponse</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LoginInterceptor</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">HandlerInterceptor</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">preHandle</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">handler</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 模拟登录检查</span>
+<span class="w">        </span><span class="n">Object</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">request</span><span class="p">.</span><span class="na">getSession</span><span class="p">().</span><span class="na">getAttribute</span><span class="p">(</span><span class="s">&quot;user&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">user</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">response</span><span class="p">.</span><span class="na">sendRedirect</span><span class="p">(</span><span class="s">&quot;/login&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 未登录，跳转到登录页</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// 中断请求</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="c1">// 放行</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">postHandle</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">handler</span><span class="p">,</span><span class="w"> </span><span class="n">ModelAndView</span><span class="w"> </span><span class="n">modelAndView</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 可以修改 modelAndView，比如添加公共数据</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;postHandle: 控制器执行完毕&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">afterCompletion</span><span class="p">(</span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">response</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="n">handler</span><span class="p">,</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Exception</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 请求结束，可用于清理资源</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;afterCompletion: 请求已完成&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>​   当写完自定义的拦截器后，要把它注册到 Spring MVC 的拦截器链中。（通过 <strong>WebMvcConfigurer</strong>）</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebConfig</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">WebMvcConfigurer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addInterceptors</span><span class="p">(</span><span class="n">InterceptorRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">registry</span><span class="p">.</span><span class="na">addInterceptor</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">LoginInterceptor</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">addPathPatterns</span><span class="p">(</span><span class="s">&quot;/admin/**&quot;</span><span class="p">)</span><span class="w">        </span><span class="c1">// 拦截哪些路径</span>
+<span class="w">                </span><span class="p">.</span><span class="na">excludePathPatterns</span><span class="p">(</span><span class="s">&quot;/login&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/css/**&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/js/**&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 放行哪些路径</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span><span class="w">   </span>
+</code></pre></div>
+<h5 id="5-interceptor">5. Interceptor 的执行顺序</h5>
+<p>​   preHandle顺序执行，postHandle, afterCompletation 倒序执行，有一个拦截器不放行，所有 postHandle 都不能执行， 那些放行的拦截器的 afterCompletation 可以执行。</p>
+<h5 id="6-interceptor-fliter">6. Interceptor 与 Fliter 的区别</h5>
+<p>​    <code>Interceptor</code>（拦截器）和 <code>Filter</code>（过滤器）都用于对请求进行预处理，但 <code>Filter</code> 是 Servlet 规范的一部分，作用于整个 Web 请求生命周期，能拦截所有请求（包括静态资源），且不依赖 Spring 容器；而 <code>Interceptor</code> 是 Spring MVC 提供的机制，只拦截控制器（Controller）相关的请求，可以方便地注入 Spring Bean，执行时机更精细（如 preHandle、postHandle），更适合在业务逻辑层进行权限校验、日志记录等操作</p>
+<h3 id="3_4">3. 异常处理⭐⭐⭐</h3>
+<p>​   异常处理分为两类：<strong>编程式</strong>（如 <code>try-catch</code>）和 <strong>声明式</strong>。在 Spring 中，推荐使用 <strong>声明式异常处理</strong>，因为它更简洁、可维护性强，能实现全局统一处理。</p>
+<p align='center'>
+    <img src="../assets/imgs/spring/spring9.png" style="zoom:50%;" />
+</p>
+
+<h4 id="1_4">1. 实现方式</h4>
+<p>Spring MVC 提供了两个核心注解来实现声明式异常处理：</p>
+<h5 id="exceptionhandler-controller">方式一：<code>@ExceptionHandler</code> —— 处理单个 Controller 的异常</h5>
+<p>适用于某个控制器内部的异常处理。</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@RestController</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserController</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/user/{id}&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getUser</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UserNotFoundException</span><span class="p">(</span><span class="s">&quot;用户不存在&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">userService</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 使用 @ExceptionHandler 处理该 Controller 内部抛出的异常</span>
+<span class="w">    </span><span class="nd">@ExceptionHandler</span><span class="p">(</span><span class="n">UserNotFoundException</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">handleUserNotFound</span><span class="p">(</span><span class="n">UserNotFoundException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">NOT_FOUND</span><span class="p">).</span><span class="na">body</span><span class="p">(</span><span class="s">&quot;用户未找到：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>只作用于当前 Controller</li>
+<li>可以处理特定类型的异常</li>
+<li>不影响其他 Controller</li>
+</ul>
+<h5 id="controlleradvice">方式二：<code>@ControllerAdvice</code> —— 全局异常处理</h5>
+<p>用于集中处理 <strong>所有 Controller</strong> 的异常，是实现“全局统一异常处理”的最佳方式。</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@ControllerAdvice</span>
+<span class="nd">@ResponseBody</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GlobalExceptionHandler</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@ExceptionHandler</span><span class="p">(</span><span class="n">UserNotFoundException</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">handleUserNotFound</span><span class="p">(</span><span class="n">UserNotFoundException</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">NOT_FOUND</span><span class="p">).</span><span class="na">body</span><span class="p">(</span><span class="s">&quot;用户未找到：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@ExceptionHandler</span><span class="p">(</span><span class="n">Exception</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">handleGenericException</span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">INTERNAL_SERVER_ERROR</span><span class="p">).</span><span class="na">body</span><span class="p">(</span><span class="s">&quot;服务器内部错误：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ex</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>使用 <code>@ControllerAdvice</code> 注解标记类</li>
+<li>所有 Controller 都会自动应用该异常处理器</li>
+<li>可以处理任意类型异常（如 <code>Exception.class</code>）</li>
+<li>支持返回 JSON、视图页面等</li>
+</ul>
+<h4 id="2_6">2. 项目中最佳实践</h4>
+<p>​   在实际项目开发中，异常种类繁多，无法穷尽所有情况。因此，后端应聚焦于<strong>核心业务逻辑的正确实现</strong>，当遇到非法状态、数据校验失败、资源不存在等异常情况时，<strong>无需手动处理每一个异常</strong>，而是通过<strong>主动抛出有意义的异常</strong>，提前终止当前业务流程。</p>
+<p>​   这些异常由全局异常处理器（如 <code>@ControllerAdvice</code> + <code>@ExceptionHandler</code>）统一捕获，转换为标准的错误响应格式（如 JSON 错误码、消息提示），返回给前端。这样既保证了代码的简洁性和可维护性，又能让前端清晰感知到异常类型和原因，进而做出相应的用户提示或重试操作。</p>
+<p>​   </p>
+<h5 id="_4">实现方式:</h5>
+<p>​   1）先自定义一个<strong>业务异常类</strong>，属性有code，mes</p>
+<p>​   2）再去用枚举类列出系统中所有可能的业务错误</p>
+<p>​   3）当出现业务错误时，直接抛出业务异常即可</p>
+<p>​   4）之后就可以交给全局异常处理器或者是本类下的异常处理器处理了</p>
+<h3 id="4_4">4. 数据校验⭐⭐⭐</h3>
+<p align='center'>
+    <img src="../assets/imgs/spring/spring10.png" style="zoom:40%;" /> 
+</p>
+
+<p align='center'>
+    <img src="../assets/imgs/spring/spring11.png" style="zoom:50%;" />
+</p>
+
+<p>​   1) 导入场景启动器</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="p">.</span><span class="na">springframework</span><span class="p">.</span><span class="na">boot</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">boot</span><span class="o">-</span><span class="n">starter</span><span class="o">-</span><span class="n">validation</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>​    2）编写校验注解 @NotNull, @Max, @Min, @Email ...</p>
+<p>​    3）告诉 spring MVC 开启校验 @valid </p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="nd">@Valid</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="n">employee</span><span class="p">,</span><span class="w"> </span><span class="n">BindingResult</span><span class="w"> </span><span class="n">bindingResult</span><span class="p">)</span>
+</code></pre></div>
+<p>​    4）获得校验结果：BindResult</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="nd">@Valid</span><span class="w"> </span><span class="n">Employee</span><span class="w"> </span><span class="n">employee</span><span class="p">,</span><span class="w"> </span><span class="n">BindingResult</span><span class="w"> </span><span class="n">bindingResult</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">bindingResult</span><span class="p">.</span><span class="na">hasErrors</span><span class="p">()){</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">success</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">errorMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">        </span><span class="n">bindingResult</span><span class="p">.</span><span class="na">getFieldErrors</span><span class="p">().</span><span class="na">forEach</span><span class="p">(</span><span class="n">fieldError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">errorMap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">fieldError</span><span class="p">.</span><span class="na">getField</span><span class="p">(),</span><span class="w"> </span><span class="n">fieldError</span><span class="p">.</span><span class="na">getDefaultMessage</span><span class="p">());</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;校验失败&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">errorMap</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h5 id="1-bindresult">1. BindResult</h5>
+<p>​   它是用来去获得校验结果的。可以获得校验的字段以及校验的结果。</p>
+<h5 id="2_7">2. 全局异常处理校验失败</h5>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="c1">// 处理校验异常</span>
+<span class="w">    </span><span class="nd">@ExceptionHandler</span><span class="p">(</span><span class="n">MethodArgumentNotValidException</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="nf">handleMethodArgumentNotValidException</span><span class="p">(</span><span class="n">MethodArgumentNotValidException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 获得校验结果</span>
+<span class="w">        </span><span class="n">BindingResult</span><span class="w"> </span><span class="n">bindingResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getBindingResult</span><span class="p">();</span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">FieldError</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fieldErrors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bindingResult</span><span class="p">.</span><span class="na">getFieldErrors</span><span class="p">();</span>
+<span class="w">        </span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<span class="w">        </span><span class="n">fieldErrors</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">fieldError</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">data</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">fieldError</span><span class="p">.</span><span class="na">getField</span><span class="p">(),</span><span class="w"> </span><span class="n">fieldError</span><span class="p">.</span><span class="na">getDefaultMessage</span><span class="p">());</span>
+<span class="w">        </span><span class="p">});</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">R</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;校验失败&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<h5 id="3_5">3. 自定义校验器</h5>
+<p>​   1）正则表达式</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Pattern</span><span class="p">(</span><span class="n">regexp</span><span class="o">=</span><span class="s">&quot;^男|女&amp;&quot;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;性别只能是男或女&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>​   2）自定义注解（写一个自定义注解，然后绑定一个自定义校验器）</p>
+<div class="highlight"><pre><span></span><code><span class="o">==========================================================================================</span>
+<span class="mi">1</span><span class="err">：</span><span class="n">自定义校验注解</span><span class="err">（</span><span class="n">抄源码即可</span><span class="err">）</span>
+<span class="nd">@Documented</span>
+<span class="nd">@Constraint</span><span class="p">(</span>
+<span class="w">        </span><span class="n">validatedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">GenderValidator</span><span class="p">.</span><span class="na">class</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="nd">@Target</span><span class="p">({</span><span class="n">ElementType</span><span class="p">.</span><span class="na">FIELD</span><span class="p">})</span>
+<span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">RUNTIME</span><span class="p">)</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="nd">@interface</span><span class="w"> </span><span class="n">Gender</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">message</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="s">&quot;{jakarta.validation.constraints.Email.message}&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Class</span><span class="o">&lt;?&gt;[]</span><span class="w"> </span><span class="nf">groups</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="n">Class</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Payload</span><span class="o">&gt;[]</span><span class="w"> </span><span class="nf">payload</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{};</span>
+
+
+<span class="p">}</span>
+<span class="o">===================================================================================</span>
+<span class="mi">2</span><span class="err">：</span><span class="n">自定义校验器</span><span class="err">（</span><span class="n">实现ConstraintValidator接口</span><span class="err">）</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">GenderValidator</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ConstraintValidator</span><span class="o">&lt;</span><span class="n">Gender</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     *</span>
+<span class="cm">     * @param s 前端传来的属性</span>
+<span class="cm">     * @param constraintValidatorContext 校验上下文</span>
+<span class="cm">     * @return</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isValid</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">ConstraintValidatorContext</span><span class="w"> </span><span class="n">constraintValidatorContext</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;男&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;女&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="o">===================================================================================</span>
+<span class="mi">3</span><span class="err">：</span><span class="n">应用自己的校验器</span>
+<span class="nd">@Constraint</span><span class="p">(</span>
+<span class="w">        </span><span class="n">validatedBy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">GenderValidator</span><span class="p">.</span><span class="na">class</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+<h5 id="4_5">4 错误信息提示（国际化，其实没啥用）</h5>
+<p>​   国际化是通过配置文件来完成的</p>
+<p>​   1）配置提示信息的编码方式以及位置（默认是messages）</p>
+<div class="highlight"><pre><span></span><code><span class="na">spring.messages.encoding</span><span class="o">=</span><span class="s">UTF-8</span>
+<span class="na">spring.messages.basename</span><span class="o">=</span><span class="s">i18n/messages_en_US</span>
+</code></pre></div>
+<p>​   2）直接在不同国家的配置文件下写就完事了</p>
+<div class="highlight"><pre><span></span><code># messages_en_US.properties下
+gender.message=gender is allowed only for male or female
+# messages_zh_CH.properties下
+gender.message=性别只能为男或女
+# messages
+默认环境
+</code></pre></div>
+<h3 id="5-o">5. 各种o的分层模型</h3>
+<p>​   在传统的 Java Web 开发中，很多开发者习惯于使用同一个 POJO 类（如 <code>User</code>）既作为数据库实体，又作为接口返回给前端的数据对象。这种做法虽然简单，但存在严重的安全隐患和设计缺陷。例如，数据库实体中通常包含敏感字段，如用户密码、手机号、身份证号等，如果直接将这个对象序列化为 JSON 返回给前端，就可能导致敏感信息泄露。即使你在字段上加了 <code>@JsonIgnore</code>，这种方式也属于“打补丁式”编程，难以维护，且容易遗漏。</p>
+<p>​   更合理的设计是采用分层模型，将不同的职责分离。具体来说，应该为不同场景定义不同的 Java Bean：使用 <code>Entity</code> 类与数据库表映射，用于持久层操作；使用 <code>DTO</code>（Data Transfer Object）类专门用于向前端返回数据；使用 <code>VO</code> 或 <code>Form</code> 类接收前端传来的请求参数。这样，每个类只承担单一职责，系统更加清晰、安全、可维护。</p>
+<p>​   特别是在数据脱敏场景下，这种分层设计的优势尤为明显。比如，用户手机号 <code>13812345678</code> 在返回前端时应显示为 <code>138****5678</code>，身份证号也应部分隐藏。如果使用统一的 POJO，你需要在每个 Controller 中手动处理脱敏逻辑，代码重复且容易出错。而通过 <code>DTO</code> 类，你可以在其静态方法或构造函数中统一完成脱敏转换，例如提供一个 <code>fromEntity()</code> 方法，将 <code>UserEntity</code> 转换为已脱敏的 <code>UserDTO</code>，从而确保所有接口返回的数据都经过统一处理。</p>
+<p>​   此外，使用 DTO 还能有效解耦数据库结构与接口协议。当数据库表结构发生变化时（如字段重命名、拆分），只需调整 Entity 到 DTO 的映射逻辑，而无需修改对外接口，避免影响前端代码。同样，前端需求变化时，也可以灵活调整 DTO 字段，而不必改动数据库设计。这种松耦合结构大大提升了系统的可扩展性和团队协作效率。</p>
+<p>​   为了进一步简化 DTO 与 Entity 之间的转换，可以引入 MapStruct 等映射框架。它通过注解在编译期生成高效的映射代码，避免了手动编写大量 setter 和 getter 的繁琐工作，同时保持高性能。相比反射工具（如 BeanUtils），MapStruct 更安全、更快速。</p>
+<p>​   总之，避免将数据库实体类直接暴露给前端，是构建安全、健壮 Web 应用的基本原则。通过引入 DTO 模式，不仅能实现敏感数据的自动脱敏，还能提升代码的可读性、可维护性和可扩展性。这是一种从“能用”到“好用”的工程思维升级，也是企业级开发中的最佳实践。</p>
+<h3 id="6_1">6. 日期处理⭐</h3>
+<h5 id="1-jsonformat">1. <code>@JsonFormat</code> 的作用</h5>
+<p>​   当我们把 Java 对象转换成 JSON 字符串（比如接口返回给前端）时，日期字段默认可能以时间戳（如 <code>1672531200000</code>）的形式输出，或者格式不统一（如 <code>"2023-01-01T00:00:00"</code>），前端难以直接展示。同样，前端传来的日期字符串也可能因为格式不匹配导致解析失败。</p>
+<p>​   <code>@JsonFormat</code> 就是用来<strong>指定某个字段在转成 JSON 或从 JSON 解析时所使用的日期格式</strong>，确保前后端对日期的理解一致。</p>
+<h5 id="2_8">2. 基本用法</h5>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">com.fasterxml.jackson.annotation.JsonFormat</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.Date</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">User</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@JsonFormat</span><span class="p">(</span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;yyyy-MM-dd HH:mm:ss&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">timezone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GMT+8&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">createTime</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// getter 和 setter</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="3_6">3. 全局配置</h5>
+<p>​   如果不使用全局配置，那么每一个日期字段都需要去写 @JsonFormat，太麻烦了，尤其是采用 JavaBean 分层架构。此时，就可以用配置文件来实现全局配置。</p>
+<div class="highlight"><pre><span></span><code># 日期处理配置
+spring.jackson.date-format=yyyy-MM-dd HH:mm:ss
+spring.jackson.time-zone=GMT+8
+</code></pre></div>
+<h3 id="7">7. 接口文档</h3>
+<p align='center'>
+    <img src="../assets/imgs/spring/spring12.png" style="zoom:50%;" />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 LiuTianBa7 
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

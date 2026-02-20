@@ -1,0 +1,4735 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://liutianba7.github.io/interview/points/ssm.html">
+      
+      
+        <link rel="prev" href="../../java/springboot.html">
+      
+      
+        <link rel="next" href="springboot%2BCloud.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>ssm - LiuTianBa7 's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#spring" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-header__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LiuTianBa7 's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ssm
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../java/ssm.html" class="md-tabs__link">
+          
+  
+  
+  Java
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="ssm.html" class="md-tabs__link">
+          
+  
+  
+  Bagu
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/2026-02.html" class="md-tabs__link">
+          
+  
+  
+  Journal
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tools/git.html" class="md-tabs__link">
+          
+  
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
+          
+  
+  
+  Middleware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../linux/basic.html" class="md-tabs__link">
+          
+  
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-nav__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    LiuTianBa7 's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/springboot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    springboot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bagu
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bagu
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ssm.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spring_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 中常用注解总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring 中常用注解总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        依赖注入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-mvc-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring MVC 与 Web 开发
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置与扫描 (Configuration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aop-aop-transaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOP 与 事务管理 (AOP &amp; Transaction)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Boot 特有注解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 基础
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring 基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-spring-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是 Spring | 谈谈你对 Spring 的理解！⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 的核心设计思想
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Spring 包含哪些模块
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Spring 包含哪些模块">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Container
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-access-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据访问与集成 (Data Access / Integration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web 模块
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring-test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-springspring-mvcspring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Spring,Spring MVC,Spring Boot 之间什么关系?⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Spring 框架中用到了哪些设计模式呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-ioc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Ioc
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring Ioc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-spring-ioc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.⭐️什么是 Spring Ioc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 为什么叫控制反转
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ioc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ioc解决了什么问题⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-spring-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 什么是 Spring Bean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 将一个类声明为 Bean 的注解有哪些？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 为什么要分这么多注解？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-component-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. @Component 和 @Bean 的区别是什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 注入 Bean 的注解有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-autowired-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. @Autowired 和 @Resource 的区别是什么？⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-autowired-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 当使用 @AutoWired注入时候有多个匹配的 Bean，如何解决⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-di" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 什么是依赖注入（DI）⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 注入 Bean 的方式有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 构造函数注入有什么好处？⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-autowired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. @Autowired 的问题 ⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Bean 的作用域有哪些？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Bean 是线程安全的吗？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Bean 的生命周期了解吗⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. 为什么在销毁阶段提供了三个拓展点呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Aop
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring Aop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是 Aop，你对他的理解？⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AOP 的核心概念⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-spring-aop-aspectj-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Spring AOP 和 AspectJ AOP 有什么区别⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. AOP 常见的通知类型有哪些？⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 多个切面的执行顺序如何控制⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Mvc
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring Mvc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0-servlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 什么是 Servlet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 说说自己对于 Spring MVC 了解?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Spring MVC 的核心组件有哪些？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-springmvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ⭐️SpringMVC 工作原理了解吗?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-handleradapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 为什么找到了合适的处理器，还需要通过 HandlerAdapter 执行这些处理器呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 统一异常处理怎么做⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-spring-404" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Spring 内部异常(处理 404)如何处理？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-springmvcjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 简述SpringMVC中如何返回JSON数据⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 自定义转换器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 自定义转换器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        处理 Json 传参
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        处理 URL 传参
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 循环依赖
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring 循环依赖">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Spring 循环依赖了解吗，怎么解决？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 三级缓存机制⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 为什么需要三级，两级不行吗？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-lazy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. @Lazy 能解决构造器注入循环依赖问题吗？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-springboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. SpringBoot 允许循环依赖发生么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 为什么三级缓存没法解决构造器注入的循环依赖问题？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 事务
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring 事务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是事务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 事务的四大特性⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Spring 管理事务的方式？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-spring_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Spring 事务管理接口介绍⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Spring 事务管理接口介绍⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-platformtransactionmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 PlatformTransactionManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-transactiondefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 TransactionDefinition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-transactionstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 TransactionStatus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 事务属性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 事务属性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 传播行为
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 隔离级别
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 脏读、幻读、不可重复读
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 事务回滚机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. @Transactional 注解使用详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. @Transactional 注解使用详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 @Transactional 的常用配置参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 作用范围
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 @Transactional 原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 事件驱动模型⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mybatis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MyBatis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis 基础
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MyBatis 基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 MyBatis⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis 的工作原理（执行流程）⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        #{} 和 ${} 的区别⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        当实体类字段名和数据库列名不一致时怎么办？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见的动态 sql 标签有哪些？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis 如何获得自动生成的键？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis 一级缓存和二级缓存
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二级缓存存在的问题⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么 Mapper 接口没有实现类却能运行？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis 插件的实现原理？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mybatis-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mybatis 如何完成MySQL的批量操作 ⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extends
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extends">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 当面临分页 + 对多关联时候会出现什么问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 如何解决上面的问题?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="springboot%2BCloud.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    spring[boot|cloud]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Journal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Journal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/2026-02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    202602
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/git.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Middleware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Middleware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E9%AB%98%E7%BA%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 高级
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/minio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    minio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/basic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spring_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 中常用注解总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring 中常用注解总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        依赖注入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-mvc-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring MVC 与 Web 开发
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置与扫描 (Configuration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aop-aop-transaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOP 与 事务管理 (AOP &amp; Transaction)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Boot 特有注解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 基础
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring 基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-spring-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是 Spring | 谈谈你对 Spring 的理解！⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 的核心设计思想
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Spring 包含哪些模块
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Spring 包含哪些模块">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core Container
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-access-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据访问与集成 (Data Access / Integration)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web 模块
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#messaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Messaging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring-test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-springspring-mvcspring-boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Spring,Spring MVC,Spring Boot 之间什么关系?⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Spring 框架中用到了哪些设计模式呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-ioc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Ioc
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring Ioc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-spring-ioc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.⭐️什么是 Spring Ioc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 为什么叫控制反转
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-ioc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ioc解决了什么问题⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-spring-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 什么是 Spring Bean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 将一个类声明为 Bean 的注解有哪些？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 为什么要分这么多注解？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-component-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. @Component 和 @Bean 的区别是什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 注入 Bean 的注解有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-autowired-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. @Autowired 和 @Resource 的区别是什么？⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-autowired-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 当使用 @AutoWired注入时候有多个匹配的 Bean，如何解决⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-di" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 什么是依赖注入（DI）⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 注入 Bean 的方式有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 构造函数注入有什么好处？⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-autowired" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. @Autowired 的问题 ⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Bean 的作用域有哪些？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Bean 是线程安全的吗？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-bean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17. Bean 的生命周期了解吗⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18. 为什么在销毁阶段提供了三个拓展点呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Aop
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring Aop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是 Aop，你对他的理解？⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. AOP 的核心概念⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-spring-aop-aspectj-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Spring AOP 和 AspectJ AOP 有什么区别⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-aop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. AOP 常见的通知类型有哪些？⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 多个切面的执行顺序如何控制⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring Mvc
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring Mvc">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0-servlet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 什么是 Servlet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 说说自己对于 Spring MVC 了解?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Spring MVC 的核心组件有哪些？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-springmvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ⭐️SpringMVC 工作原理了解吗?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-handleradapter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 为什么找到了合适的处理器，还需要通过 HandlerAdapter 执行这些处理器呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 统一异常处理怎么做⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-spring-404" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Spring 内部异常(处理 404)如何处理？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-springmvcjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 简述SpringMVC中如何返回JSON数据⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 自定义转换器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 自定义转换器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        处理 Json 传参
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        处理 URL 传参
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 循环依赖
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring 循环依赖">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Spring 循环依赖了解吗，怎么解决？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 三级缓存机制⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 为什么需要三级，两级不行吗？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-lazy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. @Lazy 能解决构造器注入循环依赖问题吗？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-springboot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. SpringBoot 允许循环依赖发生么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 为什么三级缓存没法解决构造器注入的循环依赖问题？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 事务
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring 事务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是事务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 事务的四大特性⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-spring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Spring 管理事务的方式？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-spring_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Spring 事务管理接口介绍⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Spring 事务管理接口介绍⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-platformtransactionmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 PlatformTransactionManager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-transactiondefinition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 TransactionDefinition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-transactionstatus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 TransactionStatus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 事务属性
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 事务属性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 传播行为
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 隔离级别
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 脏读、幻读、不可重复读
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 事务回滚机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. @Transactional 注解使用详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. @Transactional 注解使用详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 @Transactional 的常用配置参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 作用范围
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-transactional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 @Transactional 原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spring_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spring 事件驱动模型⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mybatis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MyBatis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis 基础
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MyBatis 基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 MyBatis⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis 的工作原理（执行流程）⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        #{} 和 ${} 的区别⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        当实体类字段名和数据库列名不一致时怎么办？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见的动态 sql 标签有哪些？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis 如何获得自动生成的键？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis 一级缓存和二级缓存
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二级缓存存在的问题⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么 Mapper 接口没有实现类却能运行？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mybatis_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MyBatis 插件的实现原理？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mybatis-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mybatis 如何完成MySQL的批量操作 ⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extends" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extends
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extends">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 当面临分页 + 对多关联时候会出现什么问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 如何解决上面的问题?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>ssm</h1>
+
+<h2 id="spring">Spring</h2>
+<h3 id="spring_1"><strong>Spring 中常用注解总结</strong></h3>
+<h4 id="_1">依赖注入</h4>
+<p><strong><code>Component</code></strong>：通用的组件定义注解。</p>
+<p><strong><code>@Autowired</code></strong>：<strong>核心！</strong> 自动按**类型（Type）注入依赖。</p>
+<p><strong><code>@Qualifier</code></strong>：当同一个接口有多个实现类时，配合 <code>@Autowired</code> 使用，按<strong>名称（Name）</strong>指定具体注入哪个。</p>
+<p><strong><code>@Resource</code></strong>（来自 JSR-250）：默认按<strong>名称</strong>注入，名称找不到再按类型。</p>
+<p><strong><code>Value</code></strong>：用于注入配置文件（<code>application.properties</code>）中的值。支持 SpEL 表达式，如 <code>@Value("${user.name}")</code>。</p>
+<p><strong><code>@Scope</code></strong>：设置 Bean 的作用域（<code>singleton</code> 单例、<code>prototype</code> 多例）。</p>
+<h4 id="spring-mvc-web">Spring MVC 与 Web <strong>开发</strong></h4>
+<p><strong><code>@RequestMapping</code></strong>：映射 URL 到控制器类或方法。<strong>快捷方式</strong>：<code>@GetMapping</code>、<code>@PostMapping</code>、<code>@PutMapping</code>、<code>@DeleteMapping</code>。</p>
+<p><strong><code>@RestController</code></strong>：<code>@Controller</code> + <code>@ResponseBody</code> 的组合。表示返回的是 JSON/XML 数据而非页面。</p>
+<p><strong><code>@RequestBody</code></strong>：获取请求体中的内容（通常是 JSON），并将其转为 Java 对象。</p>
+<p><strong><code>@RequestParam</code></strong>：获取 URL 查询参数（如 <code>?id=1</code>）。</p>
+<p><strong><code>@PathVariable</code></strong>：获取 URL 路径中的变量（如 <code>/user/{id}</code>）。</p>
+<p><strong><code>@ResponseBody</code></strong>：将方法的返回结果直接写入 HTTP 响应体中。</p>
+<h4 id="configuration">配置与扫描 (Configuration)</h4>
+<p><strong><code>@Configuration</code></strong>：声明当前类是一个配置类（相当于一个 XML 文件）。</p>
+<p><strong><code>@Bean</code></strong>：在配置类的方法上使用，将方法的返回值交给 Spring 容器管理。</p>
+<p><strong><code>@ComponentScan</code></strong>：<code>@ComponentScan</code> 的作用是告诉 Spring：“去哪些包下寻找标注了 <code>@Component</code>（及其派生注解如 <code>@Service</code>, <code>@Controller</code> 等）的类，并把它们注册为 Bean。”在普通的 Spring 项目中，你需要手动指定 <code>basePackages</code>。但在 Spring Boot 中，你通常看不到这个注解，因为它被封装在了 <code>@SpringBootApplication</code> 里面。如果你不指定路径，Spring Boot 会默认扫描<strong>启动类（Main Class）所在的包及其子包</strong>。</p>
+<p><strong><code>@Import</code></strong>：快速导入其他的配置类。</p>
+<h4 id="aop-aop-transaction">AOP 与 事务管理 (AOP &amp; Transaction)</h4>
+<p><strong><code>@Aspect</code></strong>：声明该类是一个切面类。</p>
+<p><strong><code>@Before</code> / <code>@After</code> / <code>@Around</code></strong>：定义通知（Advice），在目标方法执行前、后或环绕执行。</p>
+<p><strong><code>@Pointcut</code></strong>：定义切入点表达式。</p>
+<p><strong><code>@Transactional</code></strong>：<strong>最常用！</strong> 声明式事务管理。可以标注在类或方法上，保证操作的原子性。</p>
+<h4 id="spring-boot">Spring Boot 特有注解</h4>
+<p><strong><code>@SpringBootApplication</code></strong>：复合注解，包含 <code>@SpringBootConfiguration</code>、<code>@EnableAutoConfiguration</code> 和 <code>@ComponentScan</code>。</p>
+<p><strong><code>@EnableAutoConfiguration</code></strong>：开启 Spring Boot 的自动配置机制。</p>
+<p><strong><code>@Conditional</code> 系列</strong>：条件装配。</p>
+<ul>
+<li><code>@ConditionalOnProperty</code>：当配置文件中存在某属性时才加载。</li>
+<li><code>@ConditionalOnClass</code>：当类路径存在某类时才加载。</li>
+<li><code>@ConditionalOnMissingBean</code>：当容器中没有某 Bean 时才加载（常用于默认配置）。</li>
+</ul>
+<p><code>@ConfigurationProperties</code> (属性映射)：将配置文件中以某个“前缀”开头的属性，自动映射绑定到 Java Bean 的字段上。</p>
+<p><strong><code>@EnableConfigurationProperties</code></strong>：告诉 Spring 容器，“去把指定的 <code>@ConfigurationProperties</code> 类注册成 Bean 并执行绑定”。</p>
+<h3 id="spring_2"><strong>Spring 基础</strong></h3>
+<h4 id="1-spring-spring">1. 什么是 Spring | 谈谈你对 Spring 的理解！⭐️</h4>
+<p>Spring 是一个以 IoC 和 AOP 为核心的轻量级框架,它通过 IoC 实现了对象的解耦，通过 AOP 实现了业务逻辑与系统服务的解耦。</p>
+<p>它最大的魅力在于‘不重复造轮子’，它提供了一个强大的容器，能无缝集成各类主流中间件，通过声明式开发极大提高了我们的开发效率。一句话总结：Spring 让复杂的 Java 开发变得优雅且简单。</p>
+<h4 id="spring_3">Spring 的核心设计思想</h4>
+<ul>
+<li><strong>非侵入式设计</strong>：业务代码不需要继承 Spring 的类或接口，代码可以脱离框架运行，极大降低了系统对框架的耦合度。</li>
+<li><strong>声明式编程</strong>：例如使用 <code>@Transactional</code> 就能管理事务，而不需要手写繁琐的开启、提交、回滚逻辑。</li>
+<li><strong>POJO 驱动</strong>：倡导使用普通的 Java 对象来构建应用，而不是复杂重量级的组件（如当年的 EJB）。这点 fastapi 真得学, 一会 sqlalchemy,  一会 pydantic, 烦人啊 ! </li>
+<li><strong>一致性编程模型</strong>：无论你是操作 JDBC、Redis 还是发送 MQ，Spring 都提供了高度统一的模板（如 <code>JdbcTemplate</code>, <code>RedisTemplate</code>）。</li>
+</ul>
+<h4 id="2-spring">2. Spring 包含哪些模块</h4>
+<p>“Spring 框架通过模块化设计实现了对开发全生命周期的覆盖。核心层（Core）利用 IoC 和 DI 负责 Bean 的创建与生命周期管理；<strong>AOP 模块</strong>通过面向切面编程实现了通用逻辑（如日志、权限）的解耦抽取；<strong>Web 模块</strong>提供了成熟的 MVC 架构来高效处理 HTTP 请求；而 <strong>Data 模块</strong>则极大简化了数据库交互并提供了强大的声明式事务支持。”</p>
+<p align='center'>
+    <img src="../../assets/imgs/interview/ssm/ssm1.png" alt="ssm1" style="zoom:67%;" />
+</p>
+
+<h5 id="core-container">Core Container</h5>
+<p>Spring 框架的核心模块，也可以说是基础模块，主要提供 IoC 、依赖注入功能的支持。Spring 其他所有的功能基本都需要依赖于该模块</p>
+<ul>
+<li>spring-core：Spring 框架基本的核心工具类。</li>
+<li>spring-beans：提供对 bean 的创建、配置和管理等功能的支持。</li>
+<li>spring-context：提供对象生命周期管理、国际化、事件传播、资源加载等功能的支持。</li>
+<li>spring-expression：提供对表达式语言（Spring Expression Language） SpEL 的支持，只依赖于 core 模块，不依赖于其他模块，可以单独使用。</li>
+</ul>
+<h5 id="aop">AOP</h5>
+<ul>
+<li><strong>spring-aspects</strong>：该模块为与 AspectJ 的集成提供支持。</li>
+<li><strong>spring-aop</strong>：提供了面向切面的编程实现。</li>
+<li><strong>spring-instrument</strong>：提供了为 JVM 添加代理（agent）的功能。 具体来讲，它为 Tomcat 提供了一个织入代理，能够为 Tomcat 传递类文 件，就像这些文件是被类加载器加载的一样。没有理解也没关系，这个模块的使用场景非常有限。</li>
+</ul>
+<h5 id="data-access-integration">数据访问与集成 (Data Access / Integration)</h5>
+<ul>
+<li><strong>spring-jdbc</strong>：封装了枯燥的 JDBC 操作，自动处理资源释放。</li>
+<li><strong>spring-tx</strong>：<strong>声明式事务管理</strong>的核心，支持编程式和声明式事务。</li>
+<li><strong>spring-orm</strong>：集成 ORM 框架（如 Hibernate, JPA, MyBatis）。</li>
+<li><strong>spring-oxm</strong>：支持对象与 XML 的映射。</li>
+</ul>
+<h5 id="web">Web 模块</h5>
+<ul>
+<li><strong>spring-web</strong>：提供基础的 Web 功能，如文件上传、HTTP 客户端等。</li>
+<li><strong>spring-webmvc (Spring MVC)</strong>：包含 Spring 的 Model-View-Controller 实现，用于构建 Web 应用程序或 REST 服务。</li>
+<li><strong>spring-websocket</strong>：提供了对 <a href="https://www.cnblogs.com/chyingp/p/websocket-deep-in.html">webSecket</a> 的支持，WebSocket 可以让客户端和服务端进行双向通信。</li>
+</ul>
+<h5 id="messaging">Messaging</h5>
+<p><strong>spring-messaging</strong> 是从 Spring4.0 开始新加入的一个模块，主要职责是为 Spring 框架集成一些基础的报文传送应用。</p>
+<h5 id="spring-test">Spring-test</h5>
+<p>Spring 团队提倡测试驱动开发（TDD）。有了控制反转 (IoC)的帮助，单元测试和集成测试变得更简单。</p>
+<h4 id="3-springspring-mvcspring-boot">3. Spring,Spring MVC,Spring Boot 之间什么关系?⭐️</h4>
+<p>1、spring 是一个企业级的 java 开发框架，有很多模块构成。Spring-Mvc 就是它的一个模块。
+2、Spring-Mvc 是 Spring 中一个很重要的框架，主要赋予 Spring 快速构建 MVC 架构的 Web 程序的能力。
+3、使用 Spring 进行开发各种配置过于麻烦比如开启某些 Spring 特性时，需要用 XML 或 Java 进行显式配置。于是，Spring Boot 诞生了！它通过“约定优于配置”的理念，解决了 Spring 配置过于麻烦的痛点，实现了<strong>自动配置</strong>和<strong>开箱即用</strong>。</p>
+<h4 id="4-spring">4. Spring 框架中用到了哪些设计模式呢？⭐️</h4>
+<ul>
+<li>工厂设计模式 ：<code>Spring</code> 使用工厂模式通过 <code>BeanFactory</code>、<code>ApplicationContext</code> 创建 <code>bean</code> 对象。</li>
+<li>代理设计模式：<code>Spring AOP</code> 功能的实现。</li>
+<li>单例设计模式：<code>Spring</code> 中的 Bean 默认都是单例的。</li>
+<li>模板方法模式 : <code>Spring</code> 中 <code>jdbcTemplate</code>、<code>hibernateTemplate</code> 等以 Template 结尾的对数据库操作的类，它们就使用到了模板模式。<strong>模板方法模式（Template Method Pattern）</strong> 就是在一个方法中定义一个算法的<strong>骨架</strong>，而将一些步骤的<strong>具体实现</strong>延迟到子类中。</li>
+<li>适配器模式：<code>HandlerAdapter</code> 帮助 <code>DispathcerServlet</code> 适配不同类型的 <code>handler</code></li>
+<li>观察者模式：<code>Spring</code> 事件驱动模型就是观察者模式很经典的一个应用。</li>
+<li>策略模式：<code>Spring</code> 在很多地方都提供了多种算法实现，让用户根据配置选择。例如 <code>Resource</code> 接口就是一个典型的抽象策略类，Spring 提供了 <code>FileSystemResource</code>、<code>UrlResource</code>、<code>ClassPathResource</code> 等多种实现策略。</li>
+<li>责任链模式：<strong>拦截器 (Interceptor)</strong> 和 <strong>过滤器 (Filter)</strong>。</li>
+</ul>
+<h3 id="spring-ioc"><strong>Spring Ioc</strong></h3>
+<h4 id="1-spring-ioc"><strong>1.⭐️什么是 Spri</strong>ng Ioc</h4>
+<p><code>Ioc</code> 即控制反转/反转控制。它是一种思想不是一个技术实现。描述的是：Java 开发领域对象的创建以及管理的问题。例如：现有类 A 依赖于 类 B</p>
+<p><strong>传统的开发方式</strong> ：往往是在类 A 中手动通过 new 关键字来 new 一个 B 的对象出来</p>
+<p><strong>使用 IoC 思想的开发方式</strong> ：不通过 new 关键字来创建对象，而是通过 IoC 容器(Spring 框架) 来帮助我们实例化对象。我们需要哪个对象，直接从 IoC 容器里面去取即可。
+因此，我们失去了对对象操作的一些权力（创建、管理对象），但是也得到了很多的好处（不需要考虑对象的创建、管理等一系列事情）</p>
+<h4 id="2">2. 为什么叫控制反转</h4>
+<ul>
+<li><strong>控制</strong> ：指的是对象创建（实例化、管理）的权力</li>
+<li><strong>反转</strong> ：控制权交给外部环境（IoC 容器）</li>
+</ul>
+<h4 id="3-ioc">3.  <code>Ioc</code>解决了什么问题⭐️</h4>
+<ul>
+<li>解决对象间高度耦合的问题（核心）</li>
+<li>解决资源零散、难以复用的问题</li>
+<li>解决生命周期管理复杂的难题</li>
+</ul>
+<h4 id="4-spring-bean">4. 什么是 <code>Spring Bean</code></h4>
+<p>简单来说，Bean 代指的就是那些被 IoC 容器所管理的对象。我们需要告诉 IoC 容器帮助我们管理哪些对象，这个是通过配置元数据来定义的。配置元数据可以是 XML 文件、注解或者 Java 配置类。</p>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- Constructor-arg with &#39;value&#39; attribute --&gt;</span>
+<span class="nt">&lt;bean</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;...&quot;</span><span class="w"> </span><span class="na">class=</span><span class="s">&quot;...&quot;</span><span class="nt">&gt;</span>
+<span class="w">   </span><span class="nt">&lt;constructor-arg</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;...&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div>
+<h4 id="5-bean">5. 将一个类声明为 <code>Bean</code> 的注解有哪些？⭐️</h4>
+<ul>
+<li><code>@Component</code>：通用的注解，可标注任意类为 <code>Spring</code> 组件。如果一个 Bean 不知道属于哪个层，可以使用<code>@Component</code> 注解标注。</li>
+<li><code>@Repository</code> : 对应持久层即 Dao 层，主要用于数据库相关操作。</li>
+<li><code>@Mapper</code>：<code>@Mapper</code> 注解就是告诉 MyBatis：“这个接口你需要帮我生成代理实现类”。</li>
+<li><code>@Service</code> : 对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao 层。</li>
+<li><code>@Controller</code> : 对应 Spring MVC 控制层，主要用于接受用户请求并调用 <code>Service</code> 层返回数据给前端页面。</li>
+<li><code>@Configuration</code>：配置类，主要用来做一些配置。</li>
+</ul>
+<h4 id="6">6. 为什么要分这么多注解？</h4>
+<ul>
+<li><strong>代码可读性</strong>：看到注解，一眼就能看出这个类是干什么的（是调数据库的还是处理请求的）。</li>
+<li><strong>功能增强</strong>：比如 <code>@Repository</code> 会开启异常转换，<code>@Controller</code> 会被 Spring MVC 的扫描器特殊对待。</li>
+</ul>
+<h4 id="7-component-bean">7. <code>@Component</code> 和 <code>@Bean</code> 的区别是什么</h4>
+<ul>
+<li><code>@Component</code> 注解作用于类，而<code>@Bean</code>注解作用于方法。</li>
+<li><code>@Component</code> 自动扫描。只要类上带了它，Spring 扫描到路径就会自动实例化。而<code>@Bean</code> 方法必须手动 <code>new</code> 出对象并返回。该注解的作用可以理解为通知 <code>Ioc</code>容器，我手动创建了某个对象（哪怕是别人的代码），请把它收进容器。”</li>
+<li><code>@Bean</code> 注解比 <code>@Component</code> 注解的自定义性更强，而且很多地方我们只能通过 <code>@Bean</code> 注解来注册 bean。比如当我们引用第三方库中的类需要装配到 <code>Spring</code>容器时，则只能通过 <code>@Bean</code>来实现。</li>
+</ul>
+<h4 id="8-bean">8. 注入 Bean 的注解有哪些？</h4>
+<p>Spring 内置的 <code>@Autowired</code> 以及 JDK 内置的 <code>@Resource</code> 和 <code>@Inject</code> 都可以用于注入 Bean。</p>
+<h4 id="9-autowired-resource">9. @Autowired 和 @Resource 的区别是什么？⭐️⭐️</h4>
+<p><code>@Autowired</code> 是 Spring 内置的注解，默认注入逻辑为<strong>先按类型（byType）匹配，若存在多个同类型 Bean，则再尝试按名称（byName）筛选</strong>。</p>
+<p>当一个接口存在多个实现类时：</p>
+<ul>
+<li>若属性名与某个 Bean 的名称一致，则注入该 Bean；</li>
+<li>若属性名与所有 Bean 名称都不匹配，会抛出 <code>NoUniqueBeanDefinitionException</code>，此时需要通过 <code>@Qualifier</code> 显式指定要注入的 Bean 名称。</li>
+</ul>
+<p><code>@Resource</code> 源自 <strong>JSR-250</strong> 规范（标准 Java 规范），在 JDK 6 到 JDK 10 中，它确实存在于 JDK 提供的包中。不过，从 JDK 11 开始，它不再默认存在于 JDK 内部，你需要引入额外的依赖 <code>javax.annotation-api</code>才能使用。Spring 对 <code>@Resource</code> 的处理逻辑如下：</p>
+<ol>
+<li>先按照名称匹配（默认名称是要注入的变量的名称，也可以指定名称）</li>
+<li>
+<p>如果没找到，则再去按照类型匹配</p>
+<ol>
+<li>找到一个 Bean：注入成功</li>
+<li>找到 0 个：抛出异常 (<code>NoSuchBeanDefinitionException</code>)。</li>
+<li>找到 &gt; 1 <code>Bean</code>：抛出异常 (<code>NoUniqueBeanDefinitionException</code>)。</li>
+</ol>
+</li>
+<li>
+<p><code>@Autowired</code> 是 Spring 提供的注解，<code>@Resource</code> 是 JDK 提供的注解。</p>
+</li>
+<li><code>Autowired</code> 默认的注入方式为<code>byType</code>（根据类型进行匹配），<code>@Resource</code>默认注入方式为 <code>byName</code>（根据名称进行匹配）。</li>
+<li>当一个接口存在多个实现类的情况下，<code>@Autowired</code> 和<code>@Resource</code>都需要通过名称才能正确匹配到对应的 Bean。<code>Autowired</code> 可以通过 <code>@Qualifier</code> 注解来显式指定名称，<code>@Resource</code>可以通过 <code>name</code> 属性来显式指定名称。</li>
+<li><code>@Autowired</code> 支持在构造函数、方法、字段和参数上使用。<code>@Resource</code> 主要用于字段和方法上的注入，不支持在构造函数或参数上使用。</li>
+</ol>
+<h4 id="10-autowired-bean">10. 当使用 @AutoWired注入时候有多个匹配的 Bean，如何解决⭐️⭐️</h4>
+<p>在 Spring 的底层逻辑中，<strong>“包扫描到的 <code>@Component</code>” 和 “配置类里的 <code>@Bean</code>” 如果重名，不属于“冲突（Overriding）”，而属于“细化（Refining）”</strong>。</p>
+<p>使用 @Qualifier 明确指定注入的依赖的名称</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Autowired</span>
+<span class="nd">@Qualifier</span><span class="p">(</span><span class="s">&quot;userServiceImpl1&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 明确指定注入名为 userServiceImpl1 的 Bean</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">UserService</span><span class="w"> </span><span class="n">userService</span><span class="p">;</span>
+</code></pre></div>
+<p>使用 @primary : 当通过 byType 在容器中找到多个 Bean，之后，会优先通过 byName 进行匹配，如果没找到，那么此时优先注入那个被 @primary 标注的 Bean。</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="nd">@Primary</span><span class="w">  </span><span class="c1">// 设置为默认最高优先级</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserServiceImpl1</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">UserService</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>使用 @Resource 注解来注入, 本质还是明确的指定了要注入依赖的名称</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 想要根据 Bean 的 ID 直接“点名”获取。</span>
+<span class="nd">@Resource</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;userServiceImpl2&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 直接通过名字定位 private UserService userService;</span>
+</code></pre></div>
+<h4 id="11-di">11. 什么是依赖注入（DI）⭐️</h4>
+<p>依赖注入<strong>是实现</strong>控制反转（IoC）的一种具体手段。</p>
+<p>“依赖注入就是把 IOC 容器里的 Bean，注入到<strong>需要使用它的那个类（组件）的成员变量中</strong>。”</p>
+<p>“依赖注入是将对象之间的依赖关系，交给容器在运行期自动维护。也就是把 Bean 注入到<strong>依赖它的目标对象中</strong>。”</p>
+<h4 id="12-bean">12. 注入 Bean 的方式有哪些？</h4>
+<ul>
+<li>构造函数注入：通过类的构造函数来注入依赖项。</li>
+<li>Setter 注入：通过类的 Setter 方法来注入依赖项。</li>
+<li>Field（字段） 注入：直接在类的字段上使用注解（如 <code>@Autowired</code> 或 <code>@Resource</code>）来注入依赖项。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="n">userRepository</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserService</span><span class="p">(</span><span class="n">UserRepository</span><span class="w"> </span><span class="n">userRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">userRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">//...</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="n">userRepository</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 在 Spring 4.3 及以后的版本，特定情况下 @Autowired 可以省略不写</span>
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setUserRepository</span><span class="p">(</span><span class="n">UserRepository</span><span class="w"> </span><span class="n">userRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">userRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">//...</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="n">userRepository</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//...</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="13">13. 构造函数注入有什么好处？⭐️⭐️</h4>
+<p>官方推荐构造函数注入，因为这种注入方式优点很多：
+1. 依赖完整性：确保所有必需依赖在对象创建时就被注入，避免了空指针异常的风险。
+2. 不可变性：可以使用 <code>final</code> 关键字，确保依赖在对象生命周期内不被篡改。
+3. 完全脱离 IOC 容器测试：在编写单元测试时，可以直接 <code>new</code> 出来并传入 Mock 对象，不需要启动 Spring 容器。</p>
+<h4 id="14-autowired">14. @Autowired 的问题 ⭐️</h4>
+<ol>
+<li><strong>隐藏依赖</strong>：看构造函数看不出这个类到底依赖了谁。</li>
+<li><strong>违背单一职责</strong>：因为字段注入太方便了，会导致一个类里注入几十个对象而不自知。</li>
+<li>不反射很难手动注入依赖。</li>
+</ol>
+<h4 id="15-bean">15. Bean 的作用域有哪些？⭐️</h4>
+<ul>
+<li><strong>singleton</strong> : IoC 容器中只有唯一的 bean 实例。Spring 中的 bean 默认都是单例的，是对单例设计模式的应用。</li>
+<li><strong>prototype</strong> : 每次获取都会创建一个新的 bean 实例。也就是说，连续 <code>getBean()</code> 两次，得到的是不同的 Bean 实例。</li>
+<li><strong>request</strong> （仅 Web 应用可用）: 每一次 HTTP 请求都会产生一个新的 bean（请求 bean），该 bean 仅在当前 HTTP request 内有效。</li>
+<li><strong>session</strong> （仅 Web 应用可用） : 每一次来自新 session 的 HTTP 请求都会产生一个新的 bean（会话 bean），该 bean 仅在当前 HTTP session 内有效。</li>
+<li><strong>websocket</strong> （仅 Web 应用可用）：每一次 WebSocket 会话产生一个新的 bean。</li>
+</ul>
+<p>配置 <code>Bean</code> 的作用域
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">bean</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;...&quot;</span><span class="w"> </span><span class="kd">class</span><span class="err">=&quot;...&quot;</span> <span class="nc">scope</span><span class="o">=</span><span class="s">&quot;singleton&quot;</span><span class="o">&gt;&lt;/</span><span class="n">bean</span><span class="o">&gt;</span>
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Bean</span>
+<span class="nd">@Scope</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConfigurableBeanFactory</span><span class="p">.</span><span class="na">SCOPE_PROTOTYPE</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="n">Person</span><span class="w"> </span><span class="nf">personPrototype</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="16-bean">16. Bean 是线程安全的吗？⭐️</h4>
+<p>Spring 框架中的 Bean 是否线程安全，取决于其作用域和状态。</p>
+<p>prototype 作用域下，每次获取都会创建一个新的 bean 实例，不存在资源竞争问题，所以不存在线程安全问题。singleton 作用域下，IoC 容器中只有唯一的 bean 实例，可能会存在资源竞争问题（取决于 Bean 是否有状态）。如果这个 bean 是有状态的话，那就存在线程安全问题（有状态 Bean 是指包含可变的成员变量的对象）。</p>
+<h4 id="17-bean">17. Bean 的生命周期了解吗⭐️⭐️⭐️</h4>
+<p>Spring Bean的生命周期可以概括为<strong>四大阶段</strong>：<strong>实例化 → 属性赋值 → 初始化 → 销毁</strong>。但细节远不止这些，我们通过代码一步步拆解：</p>
+<p>1、在实例化阶段，Ioc 容器会根据当前 Bean 的 BeanDefination，从而通过 java 反射 API 来创建 Bean 的实例。</p>
+<p>2、Bean 属性赋值与依赖注入：为当前 Bean 的属性和相关依赖进行赋值，例如通过 @Autowired、@Resource 等注解注入依赖， @Value 注入值。</p>
+<p>3、Bean 的初始化：这一步是Bean的“成人礼”，Spring提供了多种扩展点，具体如下：</p>
+<p>（1）各种 Aware 接口回调：Spring 会检查 Bean 是否实现了一系列以 <code>Aware</code> 结尾的接口，并注入容器资源:</p>
+<ul>
+<li><strong>BeanNameAware</strong>: 传入 Bean 的 ID。</li>
+<li><strong>BeanFactoryAware</strong>: 传入当前的 Bean 工厂。</li>
+<li><strong>ApplicationContextAware</strong>: 传入 Spring 上下文（最常用，让你能在代码里手动获取其他 Bean）。</li>
+</ul>
+<p>（2）BeanPostProcessor 前置处理 (<code>postProcessBeforeInitialization</code>)：</p>
+<p>（3）执行 <code>@PostConstruct</code> 注解标注的初始化方法</p>
+<p>（4）如果 Bean 实现了<code>InitializingBean</code>接口，执行<code>afterPropertiesSet()</code>方法。</p>
+<p>（5）如果 Bean 在定义中包含 <code>init-method</code> 属性，执行指定的方法。</p>
+<p>（6）BeanPostProcessor 后置处理（<code>postProcessAfterInitialization</code>）:这是初始化最后一步。<strong>Spring AOP（动态代理）通常就是在这里发生的</strong>。Spring 会判断这个 Bean 是否需要切面增强，如果需要，就返回一个代理对象（Proxy）来替换原始对象。</p>
+<p>和销毁阶段一样，排除后置处理器的前置与后置方法，还是按照注解 &gt; 接口 &gt; 配置的优先级来执行的</p>
+<p align='center'>
+    <img src="../../assets/imgs/interview/ssm/ssm2.png" alt="ssm2" style="zoom:150%;" />
+</p>
+
+<p>4、Bean 的销毁阶段：销毁并不是说要立马把 Bean 给销毁掉，而是把 Bean 的销毁方法先记录下来，将来需要销毁 Bean 或者销毁容器的时候，就调用这些方法去释放 Bean 所持有的资源。</p>
+<p>先执行 <code>@PreDestory</code> 标注的方法，之后再去执行接口：<code>DisposableBean</code> 提供的 <code>destory</code> 方法，最后执行 <code>@Bean</code> 指定的 <code>destroyMethod</code>.</p>
+<h4 id="18">18. 为什么在销毁阶段提供了三个拓展点呢？</h4>
+<p><strong><code>DisposableBean</code></strong>：Spring 早期提供的机制。现在不推荐使用，因为你的代码会和 Spring 框架的 API 强耦合。</p>
+<p><strong><code>@PreDestroy</code></strong>：最推荐。它是 Java 标准（Jakarta EE），代码侵入性小，不依赖 Spring 的接口。</p>
+<p><strong><code>destroy-method</code></strong>：适合<strong>第三方库的类</strong>。当你无法修改别人源码（无法加注解或实现接口）时，可以在配置类里通过这种方式指定销毁逻辑。</p>
+<h3 id="spring-aop"><strong>Spring Aop</strong></h3>
+<h4 id="1-aop">1. 什么是 <code>Aop</code>，你对他的理解？⭐</h4>
+<p><code>AOP</code> 实际上就是一种<code>横向抽取</code>机制，把散落在各个业务方法中的非业务代码（日志、事务、限流）给拎出来，放到一个地方统一管理。这样就实现了业务与非业务代码的解耦，同时非业务代码能够轻易的复用到其他地方，如果非业务代码的逻辑需要修改，也只需要修改一个地方。</p>
+<p>Spring AOP 就是基于动态代理的，如果要代理的对象，实现了某个接口，那么 Spring AOP 会使用 <strong>JDK Proxy</strong>，去创建代理对象，而对于没有实现接口的对象，就无法使用 JDK Proxy 去进行代理了，这时候 Spring AOP 会使用 <strong>Cglib</strong> 生成一个被代理对象的子类来作为代理</p>
+<h4 id="2-aop">2. <code>AOP</code> 的核心概念⭐️</h4>
+<table>
+<thead>
+<tr>
+<th><strong>术语</strong></th>
+<th><strong>重新定义的含义</strong></th>
+<th><strong>避坑提醒</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>目标对象 (Target)</strong></td>
+<td>被通知 | 被代理原始对象</td>
+<td>它是“毛坯房”，没有任何增强逻辑。</td>
+</tr>
+<tr>
+<td><strong>代理对象 (Proxy)</strong></td>
+<td>Spring 织入通知后生成的“代理”</td>
+<td>调用者拿到的是它。如果是 JDK 代理，它只拥有接口方法。</td>
+</tr>
+<tr>
+<td><strong>连接点 (JoinPoint)</strong></td>
+<td>目标对象的所属类中，定义的所有方法均为连接点</td>
+<td><strong>重点：</strong> 虽然定义上说“所有方法”，但实际上 <code>private</code>、<code>static</code>、<code>final</code> 方法是无法被代理拦截的。</td>
+</tr>
+<tr>
+<td><strong>切入点 (Pointcut)</strong></td>
+<td><strong>被选中的连接点</strong>。即你通过表达式（如 <code>execution</code>）明确指定要增强的方法。</td>
+<td>连接点是“候选人”，切入点是“当选者”。</td>
+</tr>
+<tr>
+<td><strong>通知 (Advice)</strong></td>
+<td><strong>要在切入点执行的增强逻辑</strong>（前置、后置、环绕等）。</td>
+<td>解决“做什么”和“什么时候做”的问题。</td>
+</tr>
+<tr>
+<td><strong>切面 (Aspect)</strong></td>
+<td><strong>切入点 (Pointcut) + 通知 (Advice)</strong> 的结合体。</td>
+<td>它是一个模块化的横切关注点（比如日志切面、事务切面）。</td>
+</tr>
+<tr>
+<td><strong>织入 (Weaving)</strong></td>
+<td>将切面应用到目标对象并创建代理对象的过程。</td>
+<td>Spring AOP 在<strong>运行时</strong>通过动态代理完成织入。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>织入的动作就是：</strong> Spring 容器启动时，发现某个类下边的某些方法符合切入点条件，于是它利用<strong>动态代理技术</strong>（JDK 或 CGLIB），把切面的逻辑“插”到业务代码的指定位置，并且产生一个<strong>代理对象（Proxy）</strong>。</p>
+<h4 id="3-spring-aop-aspectj-aop">3. Spring AOP 和 AspectJ AOP 有什么区别⭐️</h4>
+<table>
+<thead>
+<tr>
+<th><strong>维度</strong></th>
+<th><strong>Spring AOP</strong></th>
+<th><strong>AspectJ AOP</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>实现机制</strong></td>
+<td><strong>动态代理</strong>：基于 JDK Proxy 或 CGLIB</td>
+<td><strong>静态织入</strong>：通过修改字节码实现</td>
+</tr>
+<tr>
+<td><strong>织入时机</strong></td>
+<td><strong>运行时 (Runtime)</strong></td>
+<td><strong>编译期、编译后或类加载期</strong></td>
+</tr>
+<tr>
+<td><strong>功能强度</strong></td>
+<td><strong>较弱</strong>：仅支持方法级别的拦截</td>
+<td><strong>强大</strong>：支持字段、构造函数、私有方法等</td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td><strong>稍逊</strong>：每次调用需经过代理和拦截器链</td>
+<td><strong>极高</strong>：增强代码直接“缝”入字节码，无代理开销</td>
+</tr>
+<tr>
+<td><strong>易用性</strong></td>
+<td><strong>简单</strong>：与 Spring 容器无缝集成，开箱即用</td>
+<td><strong>复杂</strong>：需要专门的编译器（ajc）或 Agent 代理</td>
+</tr>
+</tbody>
+</table>
+<p>在大多数 Spring 业务开发中，我们使用的是 <strong>“基于 AspectJ 注解风格的 Spring AOP”</strong>。也就是说，我们用了 AspectJ 的 <code>@Aspect</code>、<code>@Before</code> 等注解来方便定义切面，但底层运行时的实现仍然是 Spring AOP 的<strong>动态代理</strong>。</p>
+<h4 id="4-aop">4. AOP 常见的通知类型有哪些？⭐</h4>
+<p align='center'>
+    <img src="../../assets/imgs/interview/ssm/ssm3.png" alt="ssm3" style="zoom: 67%;" />
+</p>
+
+<p>总结：<code>Before</code>、<code>After</code>、<code>AfterReturing</code>、<code>AfterThrowing</code> 这四种通知类型都是感知通知，也就是在特定时机，比如目标方法即将要被代理对象调用了，Spring 会通知一下，然后触发 <code>@Before</code> 通知，但它无法影响本次方法的执行。但 <code>Around</code> 能够拿到本次方法的控制权，它可以修改目标方法的入参，返回值等等。</p>
+<h4 id="5">5. 多个切面的执行顺序如何控制⭐⭐</h4>
+<p>使用 <code>@Order</code> 注解或实现 <code>Ordered</code> 接口。<strong>数值越小，优先级越高，逻辑越靠外层。</strong></p>
+<p>1、通常使用<code>@Order</code> 注解直接定义切面顺序</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 值越小优先级越高</span>
+<span class="nd">@Order</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="nd">@Component</span>
+<span class="nd">@Aspect</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LoggingAspect</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Ordered</span>
+
+<span class="w">       </span><span class="err">┌──────────────────────────────────────────┐</span>
+<span class="w">       </span><span class="err">│</span><span class="w">  </span><span class="o">[</span><span class="n">Order</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">]</span><span class="w"> </span><span class="n">日志切面</span><span class="w"> </span><span class="p">(</span><span class="n">最外层</span><span class="p">)</span><span class="w">               </span><span class="err">│</span>
+<span class="w">       </span><span class="err">│</span><span class="w">  </span><span class="err">┌────────────────────────────────────┐</span><span class="w">  </span><span class="err">│</span>
+<span class="w">       </span><span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="o">[</span><span class="n">Order</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">]</span><span class="w"> </span><span class="n">缓存切面</span><span class="w">                </span><span class="err">│</span><span class="w">  </span><span class="err">│</span>
+<span class="w">       </span><span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="err">┌──────────────────────────────┐</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="err">│</span>
+<span class="w">       </span><span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w">      </span><span class="n">真正的业务方法</span><span class="w"> </span><span class="p">(</span><span class="n">Target</span><span class="p">)</span><span class="w">    </span><span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="err">│</span>
+<span class="w">       </span><span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="err">└──────────────────────────────┘</span><span class="w">  </span><span class="err">│</span><span class="w">  </span><span class="err">│</span>
+<span class="w">       </span><span class="err">│</span><span class="w">  </span><span class="err">│</span><span class="w">         </span><span class="n">缓存切面逻辑结束</span><span class="w">            </span><span class="err">│</span><span class="w">  </span><span class="err">│</span>
+<span class="w">       </span><span class="err">│</span><span class="w">  </span><span class="err">└────────────────────────────────────┘</span><span class="w">  </span><span class="err">│</span>
+<span class="w">       </span><span class="err">│</span><span class="w">          </span><span class="n">日志切面逻辑结束</span><span class="w">                  </span><span class="err">│</span>
+<span class="w">       </span><span class="err">└──────────────────────────────────────────┘</span>
+</code></pre></div>
+<p><strong>2、实现<code>Ordered</code> 接口重写 <code>getOrder</code> 方法。</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="nd">@Aspect</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LoggingAspect</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Ordered</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// ....</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getOrder</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 返回值越小优先级越高</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="spring-mvc"><strong>Spring Mvc</strong></h3>
+<h4 id="0-servlet">0. 什么是 <code>Servlet</code></h4>
+<p><strong>Servlet</strong>（Server Applet）是 Java 提供的一种<strong>标准和接口</strong>，专门用于处理来自客户端的 HTTP 请求并生成响应。</p>
+<h4 id="1-spring-mvc">1. 说说自己对于 Spring MVC 了解?</h4>
+<p>MVC 是一种设计模式，Spring MVC 是一款很优秀的 MVC 框架。Spring MVC 可以帮助我们进行更简洁的 Web 层的开发，并且它天生与 Spring 框架集成。Spring MVC 下我们一般把后端项目分为 Service 层（处理业务）、Dao 层（数据库操作）、Entity 层（实体类）、Controller 层(控制层，返回数据给前台页面)。</p>
+<p>Spring MVC 实际上是对 <strong>Servlet</strong> 的一种封装。它通过一个 <strong>DispatcherServlet</strong> 统一处理所有请求，避免了传统 Servlet 开发中需要写大量重复 <code>doGet/doPost</code> 的麻烦，让开发者能专注于业务逻辑的编写。</p>
+<h4 id="2-spring-mvc">2. Spring MVC 的核心组件有哪些？⭐️</h4>
+<ul>
+<li><strong><code>DispatcherServlet</code></strong>：<strong>核心的中央处理器</strong>，负责接受、分发请求，并给予客户端响应。</li>
+<li><strong><code>HandlerMapping</code></strong>：<strong>处理器映射器</strong>，根据 URL 去匹配查找能处理的 <code>Handler</code> ，并会将请求涉及到的拦截器和 <code>Handler</code> 一起封装。</li>
+<li><strong><code>HandlerAdapter</code></strong>：<strong>处理器适配器</strong>，根据 <code>HandlerMapping</code> 找到的 <code>Handler</code> ，适配执行对应的 <code>Handler</code>；</li>
+<li><strong><code>Handler</code></strong>：<strong>请求处理器</strong>，处理实际请求的处理器。</li>
+<li><strong><code>ViewResolver</code></strong>：<strong>视图解析器</strong>，根据 <code>Handler</code> 返回的逻辑视图 / 视图，解析并渲染真正的视图，并传递给 <code>DispatcherServlet</code> 响应客户端</li>
+</ul>
+<h4 id="3-springmvc">3. ⭐️SpringMVC 工作原理了解吗?</h4>
+<p align='center'>
+  <img src="../../assets/imgs/interview/ssm/ssm4.png" alt="ssm4" style="zoom:80%;" />  
+</p>
+
+<ol>
+<li>客户端（浏览器）发送请求 <code>DispatcherServlet</code>拦截请求. </li>
+<li><code>DispatcherServlet</code> 根据请求消息调用 <code>HandlerMapping</code>  会根据本次请求的 <code>url</code> 找到对应的 <code>handler</code>，并会将请求涉及到的拦截器和 <code>Handler</code> 一起封装返回。</li>
+<li><code>DispatcherServlet</code> 调用 <code>HandlerAdapter</code>适配器执行 <code>Handler</code> 。</li>
+<li><code>Handler</code> 完成对用户请求的处理后，会返回一个 <code>ModelAndView</code> 对象给<code>DispatcherServlet</code>，<code>ModelAndView</code> 顾名思义，包含了数据模型以及相应的视图的信息。<code>Model</code> 是返回的数据对象，<code>View</code> 是个逻辑上的 <code>View</code></li>
+<li><code>DispatcherServlet</code>将<code>ModelAndView</code>传给<code>ViewReslover</code>视图解析器</li>
+<li><code>ViewReslover</code>解析后返回具体<code>View</code></li>
+<li><code>DispaterServlet</code> 把返回的 <code>Model</code> 传给 <code>View</code>（视图渲染）</li>
+<li><code>DispaterServlet</code> 会将视图响应给客户端</li>
+</ol>
+<p>Spring MVC 还有一个重要的隐形组件叫 <strong>异常解析器</strong>。当 Controller 报错时，它会拦截异常，并决定是跳转到一个错误页面，还是返回一个包含错误信息的 JSON 格式。</p>
+<p>但这一流程是传统开发模式（JSP，Thymeleaf 等）的工作原理。然而现在主流的开发方式是前后端分离，这种情况下 Spring MVC 的 <code>View</code> 概念发生了一些变化，由于 <code>View</code> 通常由前端框架（Vue, React 等）来处理，后端不再负责渲染页面，而是只负责提供数据。</p>
+<h4 id="4-handleradapter">4. 为什么找到了合适的处理器，还需要通过 HandlerAdapter 执行这些处理器呢？</h4>
+<p>Spring MVC 是一个极其灵活且高扩展性的框架，它支持多种完全不同风格的“处理器（Handler）”写法。</p>
+<ul>
+<li><strong>注解式处理器</strong>：也就是我们最常用的 <code>@Controller</code> 加 <code>@RequestMapping</code></li>
+<li><strong>实现接口式处理器</strong>：实现 <code>org.springframework.web.servlet.mvc.Controller</code> 接口的类。</li>
+<li><strong>实现 Servlet 接口的类</strong>：你甚至可以直接把一个标准的 <code>Servlet</code> 丢给 Spring MVC 当处理器。</li>
+<li><strong>HttpRequestHandler</strong>：用于处理静态资源或特定的 HTTP 请求。</li>
+</ul>
+<p>如果 <code>DispatcherServlet</code> 直接调用处理器，它就必须写一堆 <code>if-else</code> 来判断当前 Handler 是哪种类型，为了优化<code>DispatcherServlet</code>代码，Spring 引入了 <strong>适配器模式（Adapter Pattern）</strong>。</p>
+<h4 id="5_1">5. 统一异常处理怎么做⭐️</h4>
+<p>推荐使用注解的方式统一异常处理，具体会使用到 <code>@ControllerAdvice</code> + <code>@ExceptionHandler</code> 这两个注解 。</p>
+<p><strong><code>@ControllerAdvice</code></strong>：这是一个增强型的 <code>@Component</code>。它的作用是给所有的 <code>Controller</code> 织入异常处理的横切逻辑（类似于 AOP 的切面）。</p>
+<p><strong><code>@ExceptionHandler</code></strong>：标注在方法上，用于声明该方法负责处理哪种类型的异常。</p>
+<h4 id="6-spring-404">6. Spring 内部异常(处理 404)如何处理？</h4>
+<p>首先， <code>@ControllerAdvice</code> + <code>@ExceptionHandler</code> 实现的全局异常处理只能捕获由 <code>controller</code> 抛出的异常，但是，存在一种情况，也就是还没进入 <code>controller</code>，就抛了异常，这样的异常是全局异常处理默认无法捕捉到的，那如何处理像这样的 Spring 内部错误呢？</p>
+<p>在 Spring Boot 配置文件中开启如下配置，让 Spring 在找不到 Handler 时抛出异常，这样就能被全局处理器捕获了：</p>
+<div class="highlight"><pre><span></span><code># 1. 告诉 DispatcherServlet：找不到映射时，请直接抛出 NoHandlerFoundException 异常
+spring.mvc.throw-exception-if-no-handler-found=true
+
+# 2. 必须关闭静态资源默认映射，否则所有的 URL 都会被静态资源处理器“拦截”尝试去查找文件 # 这样即便 URL 错了，它也只会认为“没找到文件”，而不会触发“找不到 Handler”的逻辑
+spring.web.resources.add-mappings=false
+</code></pre></div>
+<h4 id="7-springmvcjson">7. 简述SpringMVC中如何返回JSON数据⭐️</h4>
+<p>在 Spring MVC 中，返回 JSON 数据主要依赖于 <strong>消息转换器（Message Converter）</strong> 机制。目前最主流的方式是使用 Jackson 库。</p>
+<p>（1）核心就是我们标注了：<code>@ResponseBody</code> 或 <code>@RestController</code>
+（2）之后，当 Spring 看到 <code>@ResponseBody</code> 时，它会调用 <strong><code>MappingJackson2HttpMessageConverter</code></strong>（如果类路径下存在 Jackson 依赖）。该转换器会自动调用 Jackson 的 <code>ObjectMapper</code>，将 Java 对象（POJO、Map、List等）序列化为 JSON 字符串。</p>
+<p>如果你想控制 JSON 的输出（比如日期格式、忽略某些字段），可以使用 Jackson 提供的注解：</p>
+<ul>
+<li><strong><code>@JsonFormat(pattern = "yyyy-MM-dd")</code></strong>：格式化日期字段。</li>
+<li><strong><code>@JsonIgnore</code></strong>：排除不需要返回给前端的字段（如密码）。</li>
+<li><strong><code>@JsonProperty("user_name")</code></strong>：修改返回给前端的键名。</li>
+</ul>
+<h4 id="8">8. 自定义转换器</h4>
+<h5 id="json">处理 Json 传参</h5>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">Gender</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MALE</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;男&quot;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">FEMALE</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;女&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="nd">@JsonValue</span><span class="w"> </span><span class="c1">// 序列化：将对象转 JSON 时，只输出这个 code 字段</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">code</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">desc</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Gender</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">desc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">code</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">desc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">desc</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@JsonCreator</span><span class="w"> </span><span class="c1">// 反序列化：Jackson 收到 0 时，调用此静态方法寻找匹配的枚举</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Gender</span><span class="w"> </span><span class="nf">fromCode</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">code</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Gender</span><span class="w"> </span><span class="n">gender</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Gender</span><span class="p">.</span><span class="na">values</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gender</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">code</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="n">gender</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="url">处理 URL 传参</h5>
+<p>如果你的 <code>0</code> 是通过 <strong>URL 参数</strong>（Query String）传过来的（例如 <code>?gender=0</code>），Jackson 注解是不起作用的，因为这是 Spring MVC 的参数绑定流程。这时候需要自定义 <code>Converter</code>。</p>
+<ol>
+<li>
+<p>编写转换器
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CodeToGenderConverter</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Converter</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Gender</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Gender</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">source</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Gender</span><span class="p">.</span><span class="na">fromCode</span><span class="p">(</span><span class="n">Integer</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">source</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>注册转换器
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebConfig</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">WebMvcConfigurer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addFormatters</span><span class="p">(</span><span class="n">FormatterRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 将自定义转换器注册到 Spring MVC 中</span>
+<span class="w">        </span><span class="n">registry</span><span class="p">.</span><span class="na">addConverter</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">CodeToGenderConverter</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+</ol>
+<p>转换器工厂实现通用逻辑！
+1. 第一步：定义一个通用枚举接口
+<div class="highlight"><pre><span></span><code>public interface BaseEnum {
+    int getCode(); // 定义统一的获取 code 的方法
+}
+</code></pre></div></p>
+<ol>
+<li>
+<p>编写枚举类并实现接口
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">Gender</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">BaseEnum</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MALE</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;男&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">FEMALE</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;女&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">code</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">desc</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Gender</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">desc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">code</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getCode</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">code</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>实现通用的 ConverterFactory
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">IntegerToEnumConverterFactory</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ConverterFactory</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">BaseEnum</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BaseEnum</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Converter</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getConverter</span><span class="p">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">targetType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IntegerToEnumConverter</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">targetType</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">class</span> <span class="nc">IntegerToEnumConverter</span><span class="o">&lt;</span><span class="n">T</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BaseEnum</span><span class="o">&gt;</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Converter</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">enumType</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="nf">IntegerToEnumConverter</span><span class="p">(</span><span class="n">Class</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">enumType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">this</span><span class="p">.</span><span class="na">enumType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">enumType</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="nd">@Override</span>
+<span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">convert</span><span class="p">(</span><span class="n">Integer</span><span class="w"> </span><span class="n">source</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// 遍历该枚举类型的所有常量，匹配 code</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">constant</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">enumType</span><span class="p">.</span><span class="na">getEnumConstants</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">constant</span><span class="p">.</span><span class="na">getCode</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">source</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="n">constant</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+<li>
+<p>注册到 SpringMvc 中
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WebConfig</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">WebMvcConfigurer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addFormatters</span><span class="p">(</span><span class="n">FormatterRegistry</span><span class="w"> </span><span class="n">registry</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 注册工厂</span>
+<span class="w">        </span><span class="n">registry</span><span class="p">.</span><span class="na">addConverterFactory</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">IntegerToEnumConverterFactory</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+</li>
+</ol>
+<h3 id="spring_4"><strong>Spring 循环依赖</strong></h3>
+<h4 id="1-spring">1. Spring 循环依赖了解吗，怎么解决？⭐️</h4>
+<p>循环依赖指的是一组 Bean 对象之间的依赖关系形成了一个环，最简单的循环依赖：<code>A</code> 依赖 <code>B</code>，<code>B</code> 依赖 <code>A</code>。</p>
+<p>而 <code>Spring</code> 提供的解决循环依赖的方法是三级缓存！</p>
+<p>假设 A 依赖 B，B 依赖 A。</p>
+<ol>
+<li>
+<p><strong>A 挂号（实例化）</strong>：Spring 先创建 A 的实例（反射调用构造函数）。此时 A 还是个“空壳子”，Spring 把 A 包装成一个工厂放入<strong>三级缓存</strong>。</p>
+</li>
+<li>
+<p><strong>A 装装修（填充属性）</strong>：A 发现需要 B，于是去容器找 B。</p>
+</li>
+<li>
+<p><strong>B 挂号（实例化）</strong>：发现没有 B，Spring 开始创建 B。同样，把 B 放入<strong>三级缓存</strong>。</p>
+</li>
+<li>
+<p><strong>B 装修（填充属性）</strong>：B 发现需要 A。它去一级、二级缓存找，没找到；去<strong>三级缓存</strong>找到了 A 的工厂。</p>
+</li>
+<li>
+<p><strong>A 升级（移入二级缓存）</strong>：B 调用 A 的工厂，拿到了 A 的引用（如果是 AOP 则是代理对象），把 A 放入<strong>二级缓存</strong>。此时 B 成功拿到了 A 的引用，完成了属性注入。</p>
+</li>
+<li>
+<p><strong>B 完工（移入一级缓存）</strong>：B 装修完成，从二级、三级缓存移除，存入<strong>一级缓存</strong>。</p>
+</li>
+<li>
+<p><strong>A 完工（移入一级缓存）</strong>：回到 A 的装修流程，由于 B 已经在一级缓存了，A 顺利拿到 B。A 装修完成，存入<strong>一级缓存</strong>。</p>
+</li>
+</ol>
+<h4 id="2_1">2. 三级缓存机制⭐️</h4>
+<p><strong>一级缓存（singletonObjects）</strong>：存放最终形态的 Bean（已经实例化、属性填充、初始化），单例池，为“Spring 的单例属性”⽽⽣。一般情况我们获取 Bean 都是从这里获取的，但是并不是所有的 Bean 都在单例池里面，例如原型 Bean 就不在里面。</p>
+<p><strong>二级缓存（earlySingletonObjects）</strong>：存放过渡 Bean（半成品，尚未属性填充），也就是三级缓存中<code>ObjectFactory</code>产生的对象，与三级缓存配合使用的，可以防止 AOP 的情况下，每次调用<code>ObjectFactory#getObject()</code>都是会产生新的代理对象的。</p>
+<p><strong>三级缓存（singletonFactories）</strong>：存放<code>ObjectFactory</code>，<code>ObjectFactory</code>的<code>getObject()</code>方法（最终调用的是<code>getEarlyBeanReference()</code>方法）可以生成原始 Bean 对象或者代理对象（如果 Bean 被 AOP 切面代理）。三级缓存只会对单例 Bean 生效。</p>
+<h4 id="3">3. 为什么需要三级，两级不行吗？⭐️</h4>
+<p>二级缓存确实能解决循环依赖问题：
+1）A 实例化后存到二级缓存，然后给属性赋值，发现依赖 B
+2）B 实例化后存到二级缓存，然后给属性赋值，发现依赖 A，去缓存查，发现能查到，直接注入，之后完成初始化，然后进行缓存转移。
+3）回到 A 的属性赋值，发现一级缓存已经有了 B，直接赋值，之后进行初始化，最后做一个缓存转移即可。</p>
+<p>但是，当 A 对象需要被代理时，此时如果只有二级缓存，那么在 B 注入 A 的时候拿到的是 A 的原始对象，但 A 经过初始化后得到的是一个代理对象，我们发现：A 对象与 B 对象里依赖的 A 对象不是一个对象。</p>
+<h4 id="4-lazy">4. @Lazy 能解决构造器注入循环依赖问题吗？⭐️</h4>
+<p><code>@Lazy</code> 用来标识类是否需要懒加载/延迟加载，可以作用在类上、方法上、构造器上、方法参数上、成员变量中。</p>
+<p>如果一个 Bean 没有被标记为懒加载，那么它会在 Spring IoC 容器启动的过程中被创建和初始化。如果一个 Bean 被标记为懒加载，那么它不会在 Spring IoC 容器启动时立即实例化，而是在第一次被请求时才创建。这可以帮助减少应用启动时的初始化时间，也可以用来解决循环依赖问题。</p>
+<ul>
+<li>首先 Spring 会去创建 A 的 Bean，创建时需要注入 B 的属性；</li>
+<li>由于在 A 上标注了 <code>@Lazy</code> 注解，因此 Spring 会去创建一个 B 的代理对象，将这个代理对象注入到 A 中的 B 属性；</li>
+<li>之后开始执行 B 的实例化、初始化，在注入 B 中的 A 属性时，此时 A 已经创建完毕了，就可以将 A 给注入进去。</li>
+</ul>
+<h4 id="5-springboot">5. SpringBoot 允许循环依赖发生么？</h4>
+<p>在 2.6.x 之前默认默许，但在 2.6.x 之后就不再允许了。</p>
+<h4 id="6_1">6. 为什么三级缓存没法解决构造器注入的循环依赖问题？⭐️</h4>
+<p><strong>三级缓存的工作时机</strong>是在第 1 步<strong>完成之后</strong>、第 2 步<strong>开始之前</strong>。它将一个“半成品”对象（还没注入属性的对象）提前暴露出去。</p>
+<p><strong>构造器注入的问题在于：</strong> 当类 A 通过构造器注入类 B 时，意味着 A 在执行第 1 步（实例化）时，就必须拿到 B。</p>
+<h3 id="spring_5">Spring 事务</h3>
+<h4 id="1">1. 什么是事务</h4>
+<p>事务就是一组操作，这组操作要么全部执行成功，要么都不执行。</p>
+<h4 id="2_2">2. 事务的四大特性⭐️</h4>
+<ul>
+<li><strong>原子性</strong>（<code>Atomicity</code>）：事务是最小的执行单位，不允许分割。事务的原子性确保动作要么全部完成，要么完全不起作用；</li>
+<li><strong>一致性</strong>（<code>Consistency</code>）：执行事务前后，数据保持一致，例如转账业务中，无论事务是否成功，转账者和收款人的总额应该是不变的；</li>
+<li><strong>隔离性</strong>（<code>Isolation</code>）：并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库是独立的；</li>
+<li><strong>持久性</strong>（<code>Durability</code>）：一个事务被提交之后。它对数据库中数据的改变是持久的，即使数据库发生故障也不应该对其有任何影响。</li>
+</ul>
+<h4 id="3-spring">3. Spring 管理事务的方式？⭐️</h4>
+<p>Spring 支持两种两种方式的事务管理，分别是编程式和声明式</p>
+<p>通过 <code>TransactionTemplate</code>或者<code>TransactionManager</code>手动管理事务，实际应用中很少使用，但是对于你理解 Spring 事务管理原理有帮助。</p>
+<p><strong>编程式事务管理</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Autowired</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">TransactionTemplate</span><span class="w"> </span><span class="n">transactionTemplate</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1. 注入模板</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testTransaction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 2. 执行 execute 方法：它内部会自动帮你开启事务</span>
+<span class="w">    </span><span class="n">transactionTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">TransactionCallbackWithoutResult</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nd">@Override</span>
+<span class="w">        </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">doInTransactionWithoutResult</span><span class="p">(</span><span class="n">TransactionStatus</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// 3. 业务代码：只需要关注这里</span>
+<span class="w">                </span><span class="c1">// SQL 1...</span>
+<span class="w">                </span><span class="c1">// SQL 2...</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// 4. 标记回滚：如果出错，告诉 status “这个事务完蛋了，等下记得回滚”</span>
+<span class="w">                </span><span class="n">status</span><span class="p">.</span><span class="na">setRollbackOnly</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="c1">// 5. 自动收尾：execute 方法结束时，如果没有 rollback 标记，会自动 commit</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>使用 <code>TransactionManager</code> 进行编程式事务管理的示例代码如下：
+<div class="highlight"><pre><span></span><code><span class="nd">@Autowired</span>
+<span class="kd">private</span><span class="w"> </span><span class="n">PlatformTransactionManager</span><span class="w"> </span><span class="n">transactionManager</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1. 注入事务管理器（操作员）</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testTransaction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 2. 开启事务：告诉管理器我要开启一个默认属性的事务，它会返回一个 status（相当于这个事务的凭证）</span>
+<span class="w">    </span><span class="n">TransactionStatus</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transactionManager</span><span class="p">.</span><span class="na">getTransaction</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">DefaultTransactionDefinition</span><span class="p">());</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 3. 业务逻辑：比如扣款、增加库存</span>
+<span class="w">        </span><span class="c1">// -------------------------------</span>
+<span class="w">        </span><span class="c1">// 执行 SQL...</span>
+<span class="w">        </span><span class="c1">// -------------------------------</span>
+
+<span class="w">        </span><span class="c1">// 4. 提交：如果没有报错，手动调用 commit</span>
+<span class="w">        </span><span class="n">transactionManager</span><span class="p">.</span><span class="na">commit</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 5. 回滚：如果 catch 到了异常，手动调用 rollback</span>
+<span class="w">        </span><span class="n">transactionManager</span><span class="p">.</span><span class="na">rollback</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>声明式事务管理</strong>
+底层就是 AOP + TransactionTemplate 来完成事务管理的</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="n">propagation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRED</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">aMethod</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">//do something</span>
+<span class="w">  </span><span class="n">B</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">B</span><span class="p">();</span>
+<span class="w">  </span><span class="n">C</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">C</span><span class="p">();</span>
+<span class="w">  </span><span class="n">b</span><span class="p">.</span><span class="na">bMethod</span><span class="p">();</span>
+<span class="w">  </span><span class="n">c</span><span class="p">.</span><span class="na">cMethod</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="4-spring_1">4. Spring 事务管理接口介绍⭐️</h4>
+<p>Spring 框架中，事务管理最重要的 3 个接口如下：</p>
+<ul>
+<li><strong><code>PlatformTransactionManager</code></strong>：（平台）事务管理器，Spring 事务策略的核心。</li>
+<li><strong><code>TransactionDefinition</code></strong>：事务定义信息(事务隔离级别、传播行为、超时、只读、回滚规则)。</li>
+<li><strong><code>TransactionStatus</code></strong>：事务运行状态。</li>
+</ul>
+<p><strong><code>PlatformTransactionManager</code></strong> 会根据 <strong><code>TransactionDefinition</code></strong> 的定义比如事务超时时间、隔离级别、传播行为等来进行事务管理 ，而 <strong><code>TransactionStatus</code></strong> 接口则提供了一些方法来获取事务相应的状态比如是否新事务、是否可以回滚等等。</p>
+<h5 id="41-platformtransactionmanager">4.1 PlatformTransactionManager</h5>
+<p><code>Spring</code> 并不直接管理事务，而是提供了一个管理事务的抽象策略者：<code>PlatformTransactionManager</code>，它定义了一个事务管理者所具备什么功能，而具体实现是第三方去实现的，比如 JDBC 的实现类 <code>DataSourceTransactionManager</code>。</p>
+<table>
+<thead>
+<tr>
+<th><strong>持久化技术</strong></th>
+<th><strong>对应的实现类</strong></th>
+<th><strong>适用场景</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>JDBC / MyBatis</strong></td>
+<td><strong><code>DataSourceTransactionManager</code></strong></td>
+<td>最常用。通过 <code>Connection</code> 来管理事务。</td>
+</tr>
+<tr>
+<td><strong>JPA</strong></td>
+<td><strong><code>JpaTransactionManager</code></strong></td>
+<td>用于 Spring Data JPA。</td>
+</tr>
+<tr>
+<td><strong>Hibernate</strong></td>
+<td><strong><code>HibernateTransactionManager</code></strong></td>
+<td>用于老牌的 Hibernate 框架。</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">PlatformTransactionManager</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//获得事务</span>
+<span class="w">    </span><span class="n">TransactionStatus</span><span class="w"> </span><span class="nf">getTransaction</span><span class="p">(</span><span class="nd">@Nullable</span><span class="w"> </span><span class="n">TransactionDefinition</span><span class="w"> </span><span class="n">var1</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">TransactionException</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//提交事务</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">commit</span><span class="p">(</span><span class="n">TransactionStatus</span><span class="w"> </span><span class="n">var1</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">TransactionException</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//回滚事务</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">rollback</span><span class="p">(</span><span class="n">TransactionStatus</span><span class="w"> </span><span class="n">var1</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">TransactionException</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="42-transactiondefinition">4.2 TransactionDefinition</h5>
+<p><code>TransactionDefiniton</code>是用来描述事务属性的，事务属性包含了 5 个方面，分别是（1）隔离级别（2）传播行为（3）回滚规则（4）是否只读（5）事务超时</p>
+<p><code>TransactionDefinition</code> 接口中定义了 5 个方法以及一些表示事务属性的常量比如隔离级别、传播行为等等。
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">TransactionDefinition</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">PROPAGATION_REQUIRED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">PROPAGATION_SUPPORTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">PROPAGATION_MANDATORY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">PROPAGATION_REQUIRES_NEW</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">PROPAGATION_NOT_SUPPORTED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">PROPAGATION_NEVER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">PROPAGATION_NESTED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ISOLATION_DEFAULT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ISOLATION_READ_UNCOMMITTED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ISOLATION_READ_COMMITTED</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ISOLATION_REPEATABLE_READ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ISOLATION_SERIALIZABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">TIMEOUT_DEFAULT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 返回事务的传播行为，默认值为 REQUIRED。</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">getPropagationBehavior</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">//返回事务的隔离级别，默认值是 DEFAULT</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">getIsolationLevel</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// 返回事务的超时时间，默认值为-1。如果超过该时间限制但事务还没有完成，则自动回滚事务。</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">getTimeout</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// 返回是否为只读事务，默认值为 false</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isReadOnly</span><span class="p">();</span>
+
+<span class="w">    </span><span class="nd">@Nullable</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">getName</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h5 id="43-transactionstatus">4.3 TransactionStatus</h5>
+<p><code>TransactionStatus</code>接口用来记录事务的状态 该接口定义了一组方法,用来获取或判断事务的相应状态信息。</p>
+<p><code>PlatformTransactionManager.getTransaction(…)</code>方法返回一个 <code>TransactionStatus</code> 对象。</p>
+<div class="highlight"><pre><span></span><code>public interface TransactionStatus{
+    boolean isNewTransaction(); // 是否是新的事务
+    boolean hasSavepoint(); // 是否有恢复点
+    void setRollbackOnly();  // 设置为只回滚
+    boolean isRollbackOnly(); // 是否为只回滚
+    boolean isCompleted; // 是否已完成
+}
+</code></pre></div>
+<h4 id="5_2">5. 事务属性</h4>
+<h5 id="51">5.1 传播行为</h5>
+<p>简单来说，事务传播行为要解决的问题是：<strong>当一个业务方法被另一个业务方法调用时，这个事务该如何运行？</strong>（是加入老事务，还是自己开个新事务？）</p>
+<p><em>第一类为支持当前事务，也是最常用的。</em></p>
+<p>1.<code>PROPAGATION_REQUIRED</code></p>
+<p>如果当前存在事务，则加入该事务；如果当前没有事务，则创建一个新的事务。</p>
+<p>2.<code>PROPAGATION_SUPPORTS</code></p>
+<p>如果当前有事务，就加入；如果没有，就以非事务方式执行。</p>
+<p>3.<code>PROPAGATION_MANATORY</code></p>
+<p>必须在事务中运行，如果没有事务就报错。</p>
+<p><em>第二类为不支持当前事物的</em></p>
+<p>4.<code>REQUIRES_NEW</code></p>
+<p>无论有没有老事务，都新建一个事务。如果老事务存在，先把它挂起。</p>
+<p>5.<code>NOT_SUPPORTED</code></p>
+<p>以非事务方式执行。如果老事务存在，先挂起。</p>
+<p>6.<code>NEVER</code></p>
+<p>以非事务方式执行，如果有事务就报错。</p>
+<p><em>嵌套事务</em></p>
+<p>7.<code>NESTED</code></p>
+<p>如果当前有事务，则在嵌套事务内执行（类似于“子事务”）。如果子事务 NESTED 失败回滚，它不会导致外部主事务回滚。但如果主事务回滚，子事务一定跟着回滚。</p>
+<p>“<code>REQUIRED</code> 是默认的一条船；<code>REQUIRES_NEW</code> 是另起炉灶开新船；<code>NESTED</code> 是大船底下拴个小救生艇。”</p>
+<h5 id="52">5.2 隔离级别</h5>
+<ul>
+<li><strong><code>TransactionDefinition.ISOLATION_DEFAULT</code></strong> :使用后端数据库默认的隔离级别，MySQL 默认采用的 <code>REPEATABLE_READ</code> 隔离级别 Oracle 默认采用的 <code>READ_COMMITTED</code> 隔离级别.</li>
+<li><strong><code>TransactionDefinition.ISOLATION_READ_UNCOMMITTED</code></strong> :最低的隔离级别，使用这个隔离级别很少，因为它允许读取尚未提交的数据变更，<strong>可能会导致脏读、幻读或不可重复读</strong></li>
+<li><strong><code>TransactionDefinition.ISOLATION_READ_COMMITTED</code></strong> : 允许读取并发事务已经提交的数据，<strong>可以阻止脏读，但是幻读或不可重复读仍有可能发生</strong></li>
+<li><strong><code>TransactionDefinition.ISOLATION_REPEATABLE_READ</code></strong> : 一次事务内的多次读取结果都是一致的，除非数据是被本身事务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生。</li>
+<li><strong><code>TransactionDefinition.ISOLATION_SERIALIZABLE</code></strong> : 最高的隔离级别，完全服从 ACID 的隔离级别。所有的事务依次逐个执行，这样事务之间就完全不可能产生干扰，也就是说，<strong>该级别可以防止脏读、不可重复读以及幻读</strong>。但是这将严重影响程序的性能。通常情况下也不会用到该级别。</li>
+</ul>
+<h4 id="6_2">6. 脏读、幻读、不可重复读</h4>
+<p>脏读：读到了其他事务修改但回滚的数据
+幻读：同一个事务中，读取同一个范围（Range）的数据，发现多了或者少了几行。
+不可重复读：同一个事务中，多次读取同一行记录，结果不一样。</p>
+<h4 id="7">7. 事务回滚机制</h4>
+<p>这些规则定义了哪些异常会导致事务回滚而哪些不会。默认情况下，事务只有遇到运行期异常（<code>RuntimeException</code> 的子类）时才会回滚，<code>Error</code> 也会导致事务回滚，但是，在遇到检查型（Checked）异常时不会回滚。</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Transactional</span><span class="p">(</span><span class="n">rollbackFor</span><span class="o">=</span><span class="w"> </span><span class="n">MyException</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="8-transactional">8. @Transactional 注解使用详解</h4>
+<h5 id="81-transactional">8.1  @Transactional 的常用配置参数</h5>
+<p>可以通过<code>@Transactional</code>注解来配置事务的基本属性，入传播方式，隔离级别，回滚机制，是否只读，超时时间。
+<div class="highlight"><pre><span></span><code><span class="nd">@Target</span><span class="p">({</span><span class="n">ElementType</span><span class="p">.</span><span class="na">TYPE</span><span class="p">,</span><span class="w"> </span><span class="n">ElementType</span><span class="p">.</span><span class="na">METHOD</span><span class="p">})</span>
+<span class="nd">@Retention</span><span class="p">(</span><span class="n">RetentionPolicy</span><span class="p">.</span><span class="na">RUNTIME</span><span class="p">)</span>
+<span class="nd">@Inherited</span>
+<span class="nd">@Documented</span>
+<span class="kd">public</span><span class="w"> </span><span class="nd">@interface</span><span class="w"> </span><span class="n">Transactional</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="nd">@AliasFor</span><span class="p">(</span><span class="s">&quot;transactionManager&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="nf">value</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nd">@AliasFor</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="nf">transactionManager</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">Propagation</span><span class="w"> </span><span class="nf">propagation</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">Propagation</span><span class="p">.</span><span class="na">REQUIRED</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">Isolation</span><span class="w"> </span><span class="nf">isolation</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">Isolation</span><span class="p">.</span><span class="na">DEFAULT</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="nf">timeout</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">TransactionDefinition</span><span class="p">.</span><span class="na">TIMEOUT_DEFAULT</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">readOnly</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">Class</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Throwable</span><span class="o">&gt;[]</span><span class="w"> </span><span class="nf">rollbackFor</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="w">  </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="nf">rollbackForClassName</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="w">  </span><span class="n">Class</span><span class="o">&lt;?</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Throwable</span><span class="o">&gt;[]</span><span class="w"> </span><span class="nf">noRollbackFor</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="w">  </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="nf">noRollbackForClassName</span><span class="p">()</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{};</span>
+
+<span class="p">}</span>
+</code></pre></div></p>
+<h5 id="82">8.2 作用范围</h5>
+<ol>
+<li><strong>方法</strong>：推荐将注解使用于方法上，不过需要注意的是：<strong>该注解只能应用到 public 方法上，否则不生效。</strong></li>
+<li><strong>类</strong>：如果这个注解使用在类上的话，表明该注解对该类中所有的 public 方法都生效。</li>
+<li><strong>接口</strong>：不推荐在接口上使用。</li>
+</ol>
+<h5 id="83-transactional">8.3 @Transactional 原理</h5>
+<p>当给一个方法加上 <code>@Transactional</code> 时，Spring 在启动时不会直接返回该方法所在的原始类对象，而是会给当前类生成一个<strong>代理对象（Proxy）</strong>。</p>
+<p>当外部调用该方法时，代理对象先拦截到请求，通过 <code>PlatformTransactionManager</code>（事务管理器）开启事务，并关闭数据库连接的“自动提交”。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DefaultAopProxyFactory</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">AopProxyFactory</span><span class="p">,</span><span class="w"> </span><span class="n">Serializable</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="nd">@Override</span>
+<span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">AopProxy</span><span class="w"> </span><span class="nf">createAopProxy</span><span class="p">(</span><span class="n">AdvisedSupport</span><span class="w"> </span><span class="n">config</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">AopConfigException</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="na">isOptimize</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="na">isProxyTargetClass</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">hasNoUserSuppliedProxyInterfaces</span><span class="p">(</span><span class="n">config</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">Class</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">targetClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="na">getTargetClass</span><span class="p">();</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">targetClass</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AopConfigException</span><span class="p">(</span><span class="s">&quot;TargetSource cannot determine target class: &quot;</span><span class="w"> </span><span class="o">+</span>
+<span class="w">            </span><span class="s">&quot;Either an interface or a target is required for proxy creation.&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">targetClass</span><span class="p">.</span><span class="na">isInterface</span><span class="p">()</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">Proxy</span><span class="p">.</span><span class="na">isProxyClass</span><span class="p">(</span><span class="n">targetClass</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JdkDynamicAopProxy</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ObjenesisCglibAopProxy</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">JdkDynamicAopProxy</span><span class="p">(</span><span class="n">config</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="p">.......</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="spring_6">Spring 事件驱动模型⭐️</h3>
+<p>观察者模式，在 Spring 中，它被具象化为 <strong>“事件驱动模型”（Event-Driven Model）</strong>。</p>
+<p>观察者模式就像是 <strong>“订阅报纸”</strong>：报社（主题）发新报纸了，所有订报的人（观察者）都会自动收到，而报社并不需要知道订报的人具体是谁、在做什么。</p>
+<p>Spring 将观察者模式抽象成了三个标准角色：</p>
+<ol>
+<li>
+<p><strong>事件 (Event)</strong>：角色的载体。继承自 <code>ApplicationEvent</code>。</p>
+</li>
+<li>
+<p><strong>事件发布者 (Publisher)</strong>：负责把事件“广播”出去。由 <code>ApplicationEventPublisher</code> 负责。</p>
+</li>
+<li>
+<p><strong>事件监听器 (Listener)</strong>：负责“接收”并处理事件。实现 <code>ApplicationListener</code> 接口或使用 <code>@EventListener</code> 注解。</p>
+</li>
+</ol>
+<p>假设一个场景：用户注册成功后，我们需要发送邮件通知，还要发放积分。</p>
+<p>1、定义一个事件</p>
+<p><div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserRegisteredEvent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ApplicationEvent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserRegisteredEvent</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">username</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">super</span><span class="p">(</span><span class="n">source</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">username</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getUsername</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">username</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+2、发布事件</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Service</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Autowired</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">ApplicationEventPublisher</span><span class="w"> </span><span class="n">publisher</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;用户 &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; 注册成功！&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 发布事件，UserService 不需要管后续谁处理</span>
+<span class="w">        </span><span class="n">publisher</span><span class="p">.</span><span class="na">publishEvent</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">UserRegisteredEvent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>3、编写监听器（观察者）</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">EmailListener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@EventListener</span><span class="w"> </span><span class="c1">// 使用注解方式极其简单</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sendEmail</span><span class="p">(</span><span class="n">UserRegisteredEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;【邮件服务】给 &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getUsername</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; 发送欢迎邮件&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ScoreListener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@EventListener</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">addScore</span><span class="p">(</span><span class="n">UserRegisteredEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;【积分服务】给 &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getUsername</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; 赠送 100 积分&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>如果多个监听者都听同一个事件，<strong>谁先执行？</strong> 默认情况下是无序的。但如果你想让“积分服务”在“邮件服务”之前执行，可以在监听器上加 <strong><code>@Order</code></strong> 注解。</p>
+<h2 id="mybatis">MyBatis</h2>
+<h3 id="mybatis_1">MyBatis 基础</h3>
+<h4 id="mybatis_2">什么是 MyBatis⭐️⭐️</h4>
+<p>MyBatis 是一个<strong>半自动</strong>的 <strong>ORM（对象关系映射）</strong> 框架。</p>
+<ul>
+<li>它内部封装了 JDBC，开发时只需要专注 SQL 本身。</li>
+<li><strong>半自动</strong>：与全自动的 Hibernate 不同，MyBatis 不会自动生成 SQL，需要手动在 XML 或注解中编写。</li>
+</ul>
+<h4 id="mybatis_3">MyBatis 的工作原理（执行流程）⭐️⭐️</h4>
+<ul>
+<li>
+<p><strong>读取配置文件</strong>：读取 <code>mybatis-config.xml</code> 和<code>Mapper.xml</code>。</p>
+</li>
+<li>
+<p><strong>构建会话工厂</strong>：使用 <code>SqlSessionFactoryBuilder</code> 去创建工厂。工厂模式。它是单例的，专门用来生产 <code>SqlSession</code>。</p>
+</li>
+<li>
+<p><strong>创建会话</strong>：由工厂生产 <code>SqlSession</code>,它代表了和数据库的一次连接，是非线程安全的，用完必须关掉。</p>
+</li>
+<li>
+<p><strong>执行器 (Executor)</strong>：<code>SqlSession</code> 内部通过 <code>Executor</code> 接口操作数据库、它负责 <strong>维护一级/二级缓存</strong>、生成具体的 <strong>Statement</strong>（JDBC 的语句对象），并与数据库交互。</p>
+</li>
+<li>
+<p><strong>结果映射</strong>（MappedStatement）：将 Java 对象（Param）转换成 SQL 参数，将 JDBC 返回的 <code>ResultSet</code> 转换成对应的 POJO。</p>
+</li>
+</ul>
+<h4 id="_2">#{} 和 ${} 的区别⭐️⭐️⭐️</h4>
+<p><code>#{}</code> 是预编译处理，MyBatis 会将 SQL 中的 <code>#{}</code> 替换为 <code>?</code>，并调用 <code>PreparedStatement</code> 设置值。可以<strong>防止 SQL 注入</strong>。</p>
+<p><strong>${}</strong>：是<strong>字符串替换</strong>。直接将变量值拼接到 SQL 中。存在安全风险，通常仅用于传入数据库表名或排序字段（<code>ORDER BY ${column}</code>）。</p>
+<h4 id="_3">当实体类字段名和数据库列名不一致时怎么办？⭐️</h4>
+<ol>
+<li><strong>写别名</strong>：在 SQL 中使用 <code>AS</code>（如 <code>SELECT user_name AS userName</code>）。</li>
+<li><strong>使用 ResultMap</strong>：在 XML 中定义 <code>&lt;resultMap&gt;</code> 手动映射。</li>
+<li><strong>开启驼峰转换</strong>：在配置文件中开启 <code>mapUnderscoreToCamelCase</code>。</li>
+</ol>
+<h4 id="sql">常见的动态 sql 标签有哪些？⭐️</h4>
+<p>MyBatis 的强大之处在于动态 SQL，常用标签包括：</p>
+<ul>
+<li><code>&lt;if test&gt;</code>：判断逻辑。</li>
+<li><code>&lt;where&gt;</code>：智能处理 <code>AND</code> 和 <code>OR</code>，自动剔除多余关键字。</li>
+<li><code>&lt;choose&gt; &lt;when&gt; &lt;otherwise&gt;</code>：类似 Java 的 <code>switch-case</code>。</li>
+<li><code>&lt;foreach&gt;</code>：用于循环遍历（如 <code>IN</code> 查询）。</li>
+<li><code>&lt;set&gt;</code>：用于更新语句，自动处理逗号。</li>
+</ul>
+<h4 id="mybatis_4">MyBatis 如何获得自动生成的键？</h4>
+<p>1）使用 <code>useGeneratedKeys</code> (推荐用于 MySQL, SQL Server)
+<div class="highlight"><pre><span></span><code>&lt;insert id=&quot;insertUser&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;
+  insert into users (username, password) values (#{username}, #{password})
+&lt;/insert&gt;
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Insert</span><span class="p">(</span><span class="s">&quot;insert into users (username) values (#{username})&quot;</span><span class="p">)</span>
+<span class="nd">@Options</span><span class="p">(</span><span class="n">useGeneratedKeys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="n">keyProperty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;id&quot;</span><span class="p">)</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">insertUser</span><span class="p">(</span><span class="n">User</span><span class="w"> </span><span class="n">user</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="mybatis_5">MyBatis 一级缓存和二级缓存</h4>
+<p>一级缓存是SqlSession级别的缓存，默认开启。在同一个会话中执行相同 SQL 且参数相同，直接读缓存。</p>
+<p>失效时机：如果执行了增删改（commit）或会话关闭。</p>
+<p>二级缓存是NameSpace级别(Mapper)的缓存，多个SqlSession可以共享，使用时需要进行配置开启。</p>
+<p>只要是属于同一个 <code>namespace</code>（即同一个 Mapper 文件）下的 SQL 执行结果，都会存放在同一个缓存空间里。</p>
+<p>一旦触发更新，整个 Namespace 的缓存全部失效。</p>
+<ul>
+<li>如果你在 <code>UserMapper</code> 中执行了任何一个 <code>&lt;update&gt;</code>、<code>&lt;insert&gt;</code> 或 <code>&lt;delete&gt;</code> 操作。</li>
+<li>MyBatis 会认为这个命名空间下的数据已经不再可靠。</li>
+<li><strong>结果</strong>：该 <code>UserMapper</code> 对应的二级缓存会被<strong>全部清空</strong>，无论缓存的是用户 A 还是用户 B。</li>
+</ul>
+<h4 id="_4">二级缓存存在的问题⭐️</h4>
+<p>假设你在 <code>UserMapper</code> 里写了一个关联查询，关联了 <code>Order</code> 表。 如果你在 <code>OrderMapper</code> 里更新了订单数据，<code>OrderMapper</code> 的缓存会刷新，但 <strong><code>UserMapper</code> 的缓存并不知道 <code>Order</code> 表变了！</strong></p>
+<p>你通过 <code>UserMapper</code> 查出来的关联数据依然是旧的（脏数据）。</p>
+<h4 id="mapper">为什么 Mapper 接口没有实现类却能运行？⭐️</h4>
+<p>这是使用了 <strong>JDK 动态代理</strong>。 当程序调用 Mapper 接口方法时，MyBatis 会通过 <code>MapperProxy</code> 产生一个代理对象，该对象拦截方法调用，根据“接口全限定名 + 方法名”去 XML 中寻找对应的 SQL 并执行。</p>
+<h4 id="mybatis_6">MyBatis 插件的实现原理？</h4>
+<p>插件的本质，就是MyBatis 允许对以下四个核心组件进行拦截（产生动态代理，然后在方法执行前插入自定义的逻辑）（拦截器模式）：</p>
+<ol>
+<li><code>Executor</code> (执行器)：负责SQL语句的执行和事务管理。</li>
+<li><code>ParameterHandler</code> (参数处理器)：参数处理器，负责将用户传递的参数转换成JDBC可识别的参数。</li>
+<li><code>ResultSetHandler</code> (结果集处理器)：负责将JDBC返回的结果集转换成用户所需的对象或集合。</li>
+<li><code>StatementHandler</code> (SQL 语句处理器) ：语句处理器，处理具体的SQL语句，包括预编译和参数设置等。
+MyBatis插件的实现原理基于Java的动态代理机制。当MyBatis框架在初始化时检测到有插件配置，它会为目标对象（如Executor、StatementHandler等）创建一个代理对象。这个代理对象会包装原始对象，并在方法调用时执行自定义的拦截逻辑。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th><strong>核心对象</strong></th>
+<th><strong>拦截点（拦截什么？）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>Executor</code></strong></td>
+<td>拦截增删改查方法、事务提交、回滚、缓存维护。</td>
+</tr>
+<tr>
+<td><strong><code>StatementHandler</code></strong></td>
+<td>拦截 SQL 语句的预编译、参数设置、执行。<strong>（分页插件常用）</strong></td>
+</tr>
+<tr>
+<td><strong><code>ParameterHandler</code></strong></td>
+<td>拦截参数填充的过程。</td>
+</tr>
+<tr>
+<td><strong><code>ResultSetHandler</code></strong></td>
+<td>拦截结果集的封装处理。</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="nd">@Intercepts</span><span class="p">({</span>
+<span class="w">    </span><span class="nd">@Signature</span><span class="p">(</span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StatementHandler</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;prepare&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">Connection</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="p">.</span><span class="na">class</span><span class="p">})</span>
+<span class="p">})</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyPlugin</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Interceptor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="nf">intercept</span><span class="p">(</span><span class="n">Invocation</span><span class="w"> </span><span class="n">invocation</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">Throwable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 1. 这里做你的增强处理（比如改写 SQL 加上 limit 分页）</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;拦截成功！准备处理 SQL...&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// 2. 继续执行原有流程</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">invocation</span><span class="p">.</span><span class="na">proceed</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="mybatis-mysql">Mybatis 如何完成MySQL的批量操作 ⭐</h4>
+<p>1、XML 中的 <code>&lt;foreach&gt;</code> 拼接（最推荐）</p>
+<p>这是开发中最常用的方式。它的原理是将多条数据拼接成一条长 SQL，利用 MySQL 支持的 <code>INSERT INTO table (...) VALUES (...), (...), (...)</code> 语法。</p>
+<div class="highlight"><pre><span></span><code>&lt;insert id=&quot;insertBatch&quot;&gt;
+    INSERT INTO t_user (username, password, age)
+    VALUES
+    &lt;foreach collection=&quot;userList&quot; item=&quot;user&quot; separator=&quot;,&quot;&gt;
+        (#{user.username}, #{user.password}, #{user.age})
+    &lt;/foreach&gt;
+&lt;/insert&gt;
+</code></pre></div>
+<p><strong>SQL 长度限制</strong>：如果 <code>userList</code> 特别大（如上万条），生成的 SQL 字符串会极长。MySQL 服务器默认 <code>max_allowed_packet</code> 是 4MB，超过会报错。</p>
+<p>像是 update 这样原生不支持批量操作的语句，我们可以直接通过 foreach 拼接多条 sql 语句。但是要记得在数据库连接后加上参数：<code>&amp;allowMultiQueries=true</code>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">update</span><span class="w"> </span><span class="n">id</span><span class="o">=</span><span class="s">&quot;updateBatch&quot;</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">foreach</span><span class="w"> </span><span class="n">collection</span><span class="o">=</span><span class="s">&quot;list&quot;</span><span class="w"> </span><span class="n">item</span><span class="o">=</span><span class="s">&quot;item&quot;</span><span class="w"> </span><span class="n">separator</span><span class="o">=</span><span class="s">&quot;;&quot;</span><span class="o">&gt;</span>
+<span class="w">        </span><span class="n">UPDATE</span><span class="w"> </span><span class="n">t_user</span><span class="w"> </span><span class="n">SET</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">#</span><span class="p">{</span><span class="n">item</span><span class="p">.</span><span class="na">age</span><span class="p">}</span><span class="w"> </span><span class="n">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">#</span><span class="p">{</span><span class="n">item</span><span class="p">.</span><span class="na">id</span><span class="p">}</span>
+<span class="w">    </span><span class="o">&lt;/</span><span class="n">foreach</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">update</span><span class="o">&gt;</span>
+</code></pre></div></p>
+<p>2、方式二：使用 <code>ExecutorType.BATCH</code>（性能怪兽）</p>
+<p>它的原理不是拼接 SQL，而是利用 JDBC 的 <code>addBatch()</code> 和 <code>executeBatch()</code>，将 SQL 预编译一次，然后发送多组参数。
+<div class="highlight"><pre><span></span><code><span class="c1">// 必须手动开启 BATCH 模式的 SqlSession</span>
+<span class="k">try</span><span class="w"> </span><span class="p">(</span><span class="n">SqlSession</span><span class="w"> </span><span class="n">sqlSession</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlSessionFactory</span><span class="p">.</span><span class="na">openSession</span><span class="p">(</span><span class="n">ExecutorType</span><span class="p">.</span><span class="na">BATCH</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">UserMapper</span><span class="w"> </span><span class="n">mapper</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlSession</span><span class="p">.</span><span class="na">getMapper</span><span class="p">(</span><span class="n">UserMapper</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">userList</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">mapper</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">userList</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="w">        </span><span class="c1">// 每 1000 条提交一次，防止内存溢出</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">userList</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">sqlSession</span><span class="p">.</span><span class="na">commit</span><span class="p">();</span>
+<span class="w">            </span><span class="n">sqlSession</span><span class="p">.</span><span class="na">clearCache</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="extends">Extends</h3>
+<h4 id="1_1">1. 当面临分页 + 对多关联时候会出现什么问题</h4>
+<p>当进行关联后，行数会变幻，比如班级学生表，如果班级表关联了学生表，就会可能又一个班级对应10条记录，而 mp 就是在这个关联的结果后进行分页的，这就会导致我们原本想分页查询10个班级以及所包含学生的信息，但现在只查出了一个班级。</p>
+<h4 id="2_3">2. 如何解决上面的问题?</h4>
+<p>1、 直接在业务层解决，也就是我们先只查班级，这样分页就没有问题，然后根据查出
+来的班级再去学生表中查询学生。
+这种方法实现简单，但存在多次与数据库建立连接，效率较低</p>
+<p>2、嵌套查询：在 <code>resultMap</code> 的 <code>collection</code> 标签中设置 <code>select</code> 属性。</p>
+<ul>
+<li>
+<p><strong>原理</strong>：你只需要写一个查询班级的简单 SQL。MyBatis 会自动帮你处理分页，查出结果后，它会根据配置自动去查学生表。</p>
+</li>
+<li>
+<p><strong>优点</strong>：代码最整洁，开发者不需要手算 <code>offset</code>，能直接完美对接 MyBatis-Plus 的 <code>Page</code> 对象。</p>
+</li>
+<li>
+<p><strong>缺点</strong>：会产生 $1+N$ 次查询（$N$ 为每页条数），如果 $N$ 很大（如每页 1000 条），会有性能压力。</p>
+</li>
+</ul>
+<p>3、子查询内部分页 (SQL 手写模式)
+该种实现方式不在走 mp 的分页了，而是我们自己手动分页，然后结果也不在是 mp 的Page了。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 LiuTianBa7 
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -12,8 +12,11 @@ nav:
     - ssm: ./java/ssm.md
     - springboot: ./java/springboot.md
   - Bagu:
+      - 八股复习路线: ./interview/index.md
       - ssm: ./interview/points/ssm.md
       - spring[boot|cloud]: ./interview/points/springboot+Cloud.md
+      - mysql: ./interview/points/mysql.md
+      - redis: ./interview/points/redis.md
   - Journal:
       - 202602: ./journal/2026-02.md
   - Tools:
