@@ -1,0 +1,4676 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://liutianba7.github.io/interview/points/redis.html">
+      
+      
+        <link rel="prev" href="mysql.html">
+      
+      
+        <link rel="next" href="../../journal/2026-02.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>redis - LiuTianBa7 's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#redis" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-header__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LiuTianBa7 's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              redis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../java/ssm.html" class="md-tabs__link">
+          
+  
+  
+  Java
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../index.html" class="md-tabs__link">
+          
+  
+  
+  Bagu
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/2026-02.html" class="md-tabs__link">
+          
+  
+  
+  Journal
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tools/git.html" class="md-tabs__link">
+          
+  
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
+          
+  
+  
+  Middleware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../linux/basic.html" class="md-tabs__link">
+          
+  
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-nav__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    LiuTianBa7 's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/springboot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    springboot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bagu
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bagu
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    八股复习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="springboot%2BCloud.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    spring[boot|cloud]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mysql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="redis.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#redis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 基础
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是Redis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 为什么这么快？⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        除了Redis，你还知道哪些分布式缓存方案？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-memcached" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 和 Memcached 的区别合共同点？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是惰性删除、什么是定期删除⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="什么是惰性删除、什么是定期删除⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        惰性删除
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定期删除
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么要用 Redis⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么用 Redis 而不用本地缓存呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 的 module 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么 Redis 操作是原子的？⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多个命令在并发中也是原子性的吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 哈希槽的概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 集群方案应该怎么做 都有哪些方案 ？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 集群方案应该怎么做 都有哪些方案 ？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主从复制（Replication）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentinel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        哨兵模式（Sentinel）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis Cluster（官方推荐分布式方案）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 应用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 应用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-redis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Redis 除了做缓存，还能做什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-redis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 如何基于 Redis 实现分布式锁⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么释放锁的时候要用 lua 脚本⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 可以做消息队列吗？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何基于 Redis 实现延时任务？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 数据类型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 的数据类型有哪些？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String 的应用场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String 还是 Hash 存储对象更好？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String 底层实现是什么?⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List 的底层结构⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zset 的底层结构？⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zset 的底层结构？⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listpack-ziplist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一阶段：紧凑型存储 —— Listpack (或 Ziplist)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dict-skiplist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二阶段：高性能结构 —— Dict + Skiplist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-hash_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        购物车信息是用 String 还是 Hash 呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set 的底层结构 ⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用Redis实现一个排行榜怎么做呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 的有序集合底层为什么要用跳表，而不用平衡树、红黑树或者 B+ 树？⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 的有序集合底层为什么要用跳表，而不用平衡树、红黑树或者 B+ 树？⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跳表的范围查询更简单！
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跳表的常数小，结构简单
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set 的应用场景是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bitmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 Bitmap 统计活跃用户怎么做⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hyperloglog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HyperLogLog 适用场景？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果我想判断一个元素是否不在海量元素集合中，用什么数据类型？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 持久化机制⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 持久化机制⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBD 持久化⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RBD 持久化⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 RDB 持久化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBD 创建快照时会阻塞主线程吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOF 持久化⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AOF 持久化⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aof_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 AOF 持久化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aof_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOF 工作基本流程是怎么样的？⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AOF 工作基本流程是怎么样的？⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aof_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOF 的持久化方式有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aof_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOF 重写了解吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aof_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOF 重写会阻塞吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rdb-aof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDB 和 AOF 的区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 线程模型⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 线程模型⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis-40" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 4.0 引入了什么后台线程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 6.0 之后为什么引入了多线程？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-40_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 后台线程？4.0 增强
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 内存管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 内存管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 给缓存设置过期时间有什么用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 如何判断数据是否过期呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 过期 Key 的删除策略⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 内存淘汰策略⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 事务
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 事务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 Redis 事务？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何使用 Redis 事务？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么 Redis 事务不支持回滚
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何解决 Redis 事务的缺陷？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="如何解决 Redis 事务的缺陷？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lua_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何处理 Lua 中的“回滚”？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 性能优化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 性能优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可以使用批量操作减少网络传输⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        大量 Key 集中过期问题⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="大量 Key 集中过期问题⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解决方案⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-bigkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis BigKey⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis BigKey⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bigkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bigkey 如何产生的
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigkey_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bigkey 会带来什么问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigkey_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何发现bigkey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigkey_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何处理 BigKey
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-hotkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis HotKey
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis HotKey">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hotkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 hotkey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hotkey_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hotkey 的危害
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hotkey_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何发现 hotkey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hotkey_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何解决 hotkey
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        慢查询命令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="慢查询命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么会有慢查询命令？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何找到慢查询命令？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        哪些情况可能导致 Redis 阻塞？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 生产问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 生产问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是缓存穿透⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 什么是缓存击穿⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 什么是缓存雪崩⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 分布式锁的实现方式⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 缓存预热如何实现？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 如何保证缓存和数据库的数据一致性？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Journal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Journal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/2026-02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    202602
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/git.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Middleware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Middleware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E9%AB%98%E7%BA%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 高级
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/minio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    minio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/basic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#redis_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 基础
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是Redis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 为什么这么快？⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        除了Redis，你还知道哪些分布式缓存方案？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-memcached" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 和 Memcached 的区别合共同点？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是惰性删除、什么是定期删除⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="什么是惰性删除、什么是定期删除⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        惰性删除
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定期删除
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么要用 Redis⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么用 Redis 而不用本地缓存呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 的 module 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么 Redis 操作是原子的？⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多个命令在并发中也是原子性的吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 哈希槽的概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 集群方案应该怎么做 都有哪些方案 ？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 集群方案应该怎么做 都有哪些方案 ？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#replication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        主从复制（Replication）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sentinel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        哨兵模式（Sentinel）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis Cluster（官方推荐分布式方案）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 应用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 应用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-redis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Redis 除了做缓存，还能做什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-redis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 如何基于 Redis 实现分布式锁⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么释放锁的时候要用 lua 脚本⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 可以做消息队列吗？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何基于 Redis 实现延时任务？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 数据类型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 的数据类型有哪些？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String 的应用场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String 还是 Hash 存储对象更好？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        String 底层实现是什么?⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        List 的底层结构⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zset 的底层结构？⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zset 的底层结构？⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listpack-ziplist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一阶段：紧凑型存储 —— Listpack (或 Ziplist)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dict-skiplist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二阶段：高性能结构 —— Dict + Skiplist
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-hash_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        购物车信息是用 String 还是 Hash 呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set 的底层结构 ⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用Redis实现一个排行榜怎么做呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 的有序集合底层为什么要用跳表，而不用平衡树、红黑树或者 B+ 树？⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 的有序集合底层为什么要用跳表，而不用平衡树、红黑树或者 B+ 树？⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跳表的范围查询更简单！
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        跳表的常数小，结构简单
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Set 的应用场景是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bitmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 Bitmap 统计活跃用户怎么做⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hyperloglog" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HyperLogLog 适用场景？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如果我想判断一个元素是否不在海量元素集合中，用什么数据类型？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 持久化机制⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 持久化机制⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rbd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBD 持久化⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RBD 持久化⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 RDB 持久化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RBD 创建快照时会阻塞主线程吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOF 持久化⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AOF 持久化⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aof_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 AOF 持久化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aof_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOF 工作基本流程是怎么样的？⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AOF 工作基本流程是怎么样的？⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aof_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOF 的持久化方式有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aof_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOF 重写了解吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aof_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AOF 重写会阻塞吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rdb-aof" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RDB 和 AOF 的区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 线程模型⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 线程模型⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis-40" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 4.0 引入了什么后台线程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-60" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 6.0 之后为什么引入了多线程？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-40_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 后台线程？4.0 增强
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 内存管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 内存管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 给缓存设置过期时间有什么用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 如何判断数据是否过期呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 过期 Key 的删除策略⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 内存淘汰策略⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 事务
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 事务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 Redis 事务？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何使用 Redis 事务？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么 Redis 事务不支持回滚
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何解决 Redis 事务的缺陷？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="如何解决 Redis 事务的缺陷？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lua_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何处理 Lua 中的“回滚”？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 性能优化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 性能优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可以使用批量操作减少网络传输⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        大量 Key 集中过期问题⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="大量 Key 集中过期问题⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解决方案⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-bigkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis BigKey⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis BigKey⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bigkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bigkey 如何产生的
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigkey_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bigkey 会带来什么问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigkey_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何发现bigkey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bigkey_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何处理 BigKey
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-hotkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis HotKey
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis HotKey">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hotkey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 hotkey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hotkey_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        hotkey 的危害
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hotkey_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何发现 hotkey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hotkey_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何解决 hotkey
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        慢查询命令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="慢查询命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么会有慢查询命令？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何找到慢查询命令？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        哪些情况可能导致 Redis 阻塞？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redis 生产问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redis 生产问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是缓存穿透⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 什么是缓存击穿⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 什么是缓存雪崩⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 分布式锁的实现方式⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 缓存预热如何实现？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 如何保证缓存和数据库的数据一致性？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="redis">Redis</h1>
+<h2 id="redis_1">Redis 基础</h2>
+<h4 id="redis_2">什么是Redis</h4>
+<p><a href="https://redis.io/">Redis</a> （<strong>RE</strong>mote <strong>DI</strong>ctionary <strong>S</strong>erver）是一个基于 C 语言开发的开源 NoSQL 数据库（BSD 许可）。与传统数据库不同的是，Redis 的数据是保存在内存中的（内存数据库，支持持久化），因此读写速度非常快，被广泛应用于分布式缓存方向。并且，Redis 存储的是 KV 键值对数据。</p>
+<h4 id="redis_3"><a href="https://javaguide.cn/database/redis/redis-questions-01.html#%E2%AD%90%EF%B8%8Fredis-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E5%BF%AB">Redis 为什么这么快？</a>⭐️⭐️</h4>
+<p>Redis 快的本质原始是因为它的操作都是在内存中进行的，靠<strong>单线程和 IO 多路复用</strong>解决了并发性能瓶颈，再配合<strong>深度优化的底层数据结构</strong>和<strong>简洁的通信协议</strong>，把性能压榨到了极致。”</p>
+<h4 id="redis_4">除了Redis，你还知道哪些分布式缓存方案？</h4>
+<p>分布式缓存的话，比较老牌同时也是使用的比较多的还是 <strong>Memcached</strong> 和 <strong>Redis</strong>。不过，现在基本没有看过还有项目使用 <strong>Memcached</strong> 来做缓存，都是直接用 <strong>Redis</strong>。</p>
+<h4 id="redis-memcached">Redis 和 Memcached 的区别合共同点？</h4>
+<p><em>区别</em></p>
+<ol>
+<li>Memcached 只支持最基本的 KV 键值对，而 Redis 支持的数据类型很丰富。</li>
+<li>Redis 支持将数据持久化到磁盘，但Memcached 不支持。</li>
+<li>Memcached 是多线程、非阻塞 IO 复用的网络模型；而 Redis 使用单线程的多路 IO 复用模型（Redis 6.0 针对网络数据的读写引入了多线程）。</li>
+<li>Memcached 没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据；而 Redis 自 3.0 版本起是原生支持集群模式的。</li>
+</ol>
+<p><em>共同点</em></p>
+<ol>
+<li>都是基于内存的数据库，一般都用来当做缓存使用。</li>
+<li>都有过期策略。</li>
+<li>两者的性能都非常高。</li>
+</ol>
+<h4 id="_1">什么是惰性删除、什么是定期删除⭐️</h4>
+<p>简单来说，当一个 Key 设置了过期时间（TTL），到期后 Redis 并不是立刻把它从内存里删掉（因为那样太消耗 CPU 了），而是通过 <strong>“懒汉式”</strong> 和 <strong>“体检式”</strong> 两种手段结合来清理。</p>
+<h5 id="_2">惰性删除</h5>
+<p>当 Key 过期后，Redis 并不管它。只有当客户端<strong>尝试访问</strong>这个 Key 时，Redis 才会先检查它是否过期。如果过期了，就当场删除并返回空；没过期就正常返回。</p>
+<p>优点：对 cpu 极度友好。只有在用到的时候才会处理，不会浪费额外的 CPU 时间去主动扫描。
+缺点：对内存不友好。如果大量 Key 过期后从未被再次访问，它们就会一直赖在内存里，造成内存泄漏。</p>
+<h5 id="_3">定期删除</h5>
+<p>redis 内部有一个定时任务（默认每秒 10 次），每隔一段时间<strong>随机抽取</strong>一部分设置了过期时间的 Key，检查它们是否过期，并删除已过期的部分。</p>
+<p>优点：能有效减少过期 Key 对内存的无谓占用。
+缺点：会占用一部分 CPU 时间，且由于是抽样，依然可能存在没被抽到的“漏网之鱼”。</p>
+<h4 id="redis_5">为什么要用 Redis⭐️</h4>
+<p>首先，1）redis 的访问速度快 2）Redis 的并发能力更强，可以达到 10w qps，集群性能会更高 3）功能全面：Redis 除了可以用作缓存之外，还可以用于分布式锁、限流、消息队列、延时队列等场景，功能强大！</p>
+<h4 id="redis_6">为什么用 Redis 而不用本地缓存呢？</h4>
+<p><em>数据一致性问题</em></p>
+<p>在分布式架构下，应用通常部署在多个服务器节点上。如果采用本地缓存，会存在数据不一致的问题，我们需要复杂的同步机制才能解决，但是如果采用 Redis， 那么所有节点共用用一个 Redis 集群，天然保证了数据的一致性</p>
+<p>本地缓存会占用 JVM 的内存</p>
+<p>本地缓存：占用的是 JVM 的堆内存。缓存开得越大，留给业务逻辑的内存就越少，且由于缓存过多，GC（垃圾回收）的压力会剧增，导致系统卡顿（Stop The World）。 Redis：是独立的进程，拥有自己的内存空间。你可以给 Redis 配置几十 GB 甚至上百 GB 的内存，而不会影响 Java 应用的运行。如果不够用了，还可以通过 Redis Cluster轻松横向扩展</p>
+<p><em>本地缓存会随着应用重启而丢失，但 Redis 是独立进程，不易丢失</em></p>
+<h4 id="redis-module">Redis 的 module 是什么？</h4>
+<p><strong>Redis Module（Redis 模块）</strong> 是 Redis 4.0 版本引入的一中“拓展 | 插件”机制。它允许开发者使用 C、C++ 或 Rust 等语言编写自定义插件，直接集成到 Redis 核心中。</p>
+<p>RedisSearch（全文搜索）
+RedisJSON（原生 JSON 支持）
+RedisTimeSeries（时序数据库）
+....</p>
+<h4 id="redis_7">为什么 Redis 操作是原子的？⭐️⭐️⭐️</h4>
+<p>核心原因：单线程模型 + 队列化执行。</p>
+<p>“Redis 的原子性主要依赖其<strong>单线程执行模型</strong>，保证了单条命令在执行时不被干扰。</p>
+<p>但在实际开发中，复合操作（多条命令）的原子性必须由开发者维护。我们通常会优先选择 <strong>Lua 脚本</strong>，因为它不仅能保证多条指令执行的原子性，还能减少网络往返次数（RTT），性能比原生的 <code>MULTI/EXEC</code> 事务更好。”</p>
+<p>当一个命令在执行时，其他所有到达的命令都会被放在一个队列里等待。因此，对于单个命令（如 <code>SET</code>、<code>GET</code>、<code>INCR</code>）来说，它在执行过程中绝不会有其他命令来“插队”修改数据。</p>
+<p>Redis 所有的内置 API（如 <code>LPUSH</code>、<code>HSET</code>、<code>INCR</code>）在底层 C 语言实现时，都是通过单线程串行执行的。</p>
+<p>当你需要一次性执行多个命令，并保证它们不被其他客户端的命令“插队”时，可以使用 Redis 事务。或者用 Lua 脚本来实现！</p>
+<h4 id="_4">多个命令在并发中也是原子性的吗？</h4>
+<p>绝对不是。每个命令单独看是原子的，但组合在一起就不是了。</p>
+<p align='center'>
+    <img src="../../assets/imgs/interview/redis/redis01.png" alt="redis01" style="zoom:100%;" />
+</p>
+
+<p>1、使用 Redis 原子指令 <code>DECR</code>。</p>
+<p>2、使用 Lua 脚本，将“判断+扣减”逻辑打包。</p>
+<p>3、使用分布式锁。</p>
+<h4 id="redis_8">Redis 哈希槽的概念</h4>
+<p>为了实现数据的分布式存储，Redis 集群没有使用传统的“一致性哈希”，而是引入了<strong>哈希槽</strong>的概念。</p>
+<p>Redis 集群预置了 <strong>16384</strong> ($2^{14}$) 个哈希槽。</p>
+<p>映射机制：当你要存储一个 Key 时，Redis 会对 Key 进行 CRC16 校验，然后对 16384 取模：</p>
+<p>$$Slot = CRC16(key) \pmod{16384}$$
+集群中的每个 Master 节点负责维护一部分槽位。</p>
+<h4 id="redis_9">Redis 集群方案应该怎么做 都有哪些方案 ？</h4>
+<h5 id="replication">主从复制（Replication）</h5>
+<p><strong>做法</strong>：一个 Master，多个 Slave。数据从 Master 同步到 Slave。</p>
+<p><strong>优点</strong>：读写分离，分担读压力。</p>
+<p><strong>缺点</strong>：<strong>不具备自动故障转移</strong>。Master 挂了，系统就瘫痪了，需要人工干预。</p>
+<h5 id="sentinel">哨兵模式（Sentinel）</h5>
+<p>做法：在主从基础上引入“哨兵”进程。哨兵时刻盯着 Master，发现它挂了就自动从 Slave 中选出一个新 Master。
+<strong>优点</strong>：实现了<strong>高可用（HA）</strong>。
+<strong>缺点</strong>：<strong>无法横向扩容</strong>。所有写操作依然在 Master 上，受限于单机内存容量。</p>
+<h5 id="redis-cluster">Redis Cluster（官方推荐分布式方案）</h5>
+<p>多主多从，利用上述的“哈希槽”将数据分布在不同节点。
+缺点：批量操作（如 MSET）受限，必须保证 Key 在同一个槽（可以通过 Hash Tag 解决）。</p>
+<h2 id="redis_10">Redis 应用</h2>
+<h4 id="1-redis">1. Redis 除了做缓存，还能做什么？</h4>
+<p>分布式锁：在多机部署的环境下，Java 原生的 <code>synchronized</code> 或 <code>ReentrantLock</code> 只能锁住当前服务器。</p>
+<p>排行榜与计数器 (Leaderboards &amp; Counters)：
+ - <strong>排行榜</strong>：利用 <strong>Zset（有序集合）</strong>。它天然支持按分数排序，并且支持 $O(\log N)$ 级别的增删改。
+ - 利用 <code>INCR</code> 系列原子命令。</p>
+<p>消息队列 (Message Queue)：虽然 Redis 不是专业的 MQ（如 Kafka、RabbitMQ），但在中轻量级场景下非常好用。</p>
+<ul>
+<li><strong>List</strong>：利用 <code>LPUSH</code> + <code>BRPOP</code>，实现简单的异步消息处理。</li>
+<li><strong>Pub/Sub</strong>：发布订阅模式，类似于广播。</li>
+<li><strong>Stream</strong>：Redis 5.0 引入，支持消费者组、消息持久化和确认机制（ACK），功能直追专业 MQ。</li>
+</ul>
+<p>限流：为了保护系统不被大流量冲垮，需要控制接口的访问频率。</p>
+<p><strong>复杂业务场景</strong>：通过 Redis 以及 Redis 扩展（比如 Redisson）提供的数据结构，我们可以很方便地完成很多复杂的业务场景，比如通过 Bitmap 统计活跃用户、通过 Sorted Set 维护排行榜、通过 HyperLogLog 统计网站 UV 和 PV。</p>
+<h4 id="2-redis">2. 如何基于 Redis 实现分布式锁⭐️</h4>
+<p>SETNX + EXPIRE(存在原子性问题)</p>
+<div class="highlight"><pre><span></span><code><span class="n">setnx</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="n">value</span>
+</code></pre></div>
+<p>原子 SET 命令 (主流手写方式)
+从 Redis 2.6.12 开始，<code>SET</code> 命令支持多个参数组合，可以一次性完成“判断、加锁、设过期时间”：</p>
+<div class="highlight"><pre><span></span><code><span class="n">SET</span><span class="w"> </span><span class="n">lock_key</span><span class="w"> </span><span class="n">unique_value</span><span class="w"> </span><span class="n">NX</span><span class="w"> </span><span class="n">PX</span><span class="w"> </span><span class="mi">30000</span>
+</code></pre></div>
+<p>Redisson (工业级标准)</p>
+<p>① 看门狗机制 (Watch Dog) —— 解决“业务没执行完，锁过期了”
+② 可重入性
+③ 红锁算法 (Redlock) —— 解决“Redis 集群宕机”</p>
+<h4 id="lua">为什么释放锁的时候要用 lua 脚本⭐️</h4>
+<p>因为释放锁需要“先查询、再比较、再删除”三个动作是非原子的。为了保证这三步在 Redis 里是原子的（防止误删其他人的锁），必须封装在 Lua 脚本中执行。</p>
+<p>1）<strong>GET</strong>：获取锁的持有者标识（UUID）。</p>
+<p>2）<strong>比较</strong>：判断是不是我持有的锁。</p>
+<p>3）<strong>DEL</strong>：如果是，则删除。</p>
+<h4 id="redis_11">Redis 可以做消息队列吗？⭐️</h4>
+<p>当然可以，并且有多种实现方式</p>
+<p>1、<strong>Redis 2.0 之前，如果想要使用 Redis 来做消息队列的话，只能通过 List 来实现。</strong>
+通过 <code>RPUSH/BLPOP</code> 或者 <code>LPUSH/BRPOP</code> 即可实现简易版消息队列,但这种实现方式无法完成广播
+<div class="highlight"><pre><span></span><code><span class="c1"># 生产者生产消息</span>
+RPUSH<span class="w"> </span>myList<span class="w"> </span>msg1<span class="w"> </span>msg2
+<span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">2</span>
+RPUSH<span class="w"> </span>myList<span class="w"> </span>msg3
+<span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">3</span>
+<span class="c1"># 消费者消费消息</span>
+LPOP<span class="w"> </span>myList
+<span class="s2">&quot;msg1&quot;</span>
+</code></pre></div></p>
+<p>不过，通过 <code>RPUSH/LPOP</code> 或者 <code>LPUSH/RPOP</code> 这样的方式存在性能问题，我们需要不断轮询去调用 <code>RPOP</code> 或 <code>LPOP</code> 来消费消息。当 List 为空时，大部分的轮询的请求都是无效请求，这种方式大量浪费了系统资源。
+Redis 还提供了 <code>BLPOP</code>、<code>BRPOP</code> 这种阻塞式读取的命令如果 List 为空，Redis 服务端不会立刻返回结果，它会等待 List 中有新数据后再返回或者是等待最多一个超时时间后返回空。如果将超时时间设置为 0 时，即可无限等待，直到弹出消息</p>
+<p>2、基于 Pub/Sub 的消息队列（广播）</p>
+<p align='center'>
+    <img src="../../assets/imgs/interview/redis/redis02.png" alt="redis02" style="zoom:80%;" />
+</p>
+
+<p>pub/sub 涉及发布者（Publisher）和订阅者（Subscriber，也叫消费者）两个角色：</p>
+<ul>
+<li>发布者通过 <code>PUBLISH</code> 投递消息给指定 channel。</li>
+<li>订阅者通过<code>SUBSCRIBE</code>订阅它关心的 channel。并且，订阅者可以订阅一个或者多个 channel。
+<div class="highlight"><pre><span></span><code><span class="c1">// 发布信息</span>
+<span class="n">publish</span><span class="w"> </span><span class="n">channel1</span><span class="w"> </span><span class="n">msg1</span>
+<span class="c1">// 订阅频道</span>
+<span class="n">subscribe</span><span class="w"> </span><span class="n">channel1</span>
+</code></pre></div></li>
+</ul>
+<p>pub/sub 既能单播又能广播，还支持 channel 的简单正则匹配。不过，消息丢失（客户端断开连接或者 Redis 宕机都会导致消息丢失）、消息堆积（发布者发布消息的时候不会管消费者的具体消费能力如何）等问题依然没有一个比较好的解决办法。</p>
+<p>3.为此，Redis 5.0 新增加的一个数据结构 <code>Stream</code> 来做消息队列。<code>Stream</code> 支持：</p>
+<ul>
+<li>发布 / 订阅模式；</li>
+<li>按照消费者组进行消费（借鉴了 Kafka 消费者组的概念）；</li>
+<li>消息持久化（ RDB 和 AOF）；</li>
+<li>ACK 机制（通过确认机制来告知已经成功处理了消息）；</li>
+<li>阻塞式获取消息。</li>
+</ul>
+<p align='center'>
+    <img src="../../assets/imgs/interview/redis/redis03.png" alt="redis03" style="zoom:80%;" />
+</p>
+
+<p>这是一个有序的消息链表，每个消息都有一个唯一的 ID 和对应的内容。ID 是一个时间戳和序列号的组合，用来保证消息的唯一性和递增性。内容是一个或多个键值对（类似 Hash 基本数据类型），用来存储消息的数据。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 生产者</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sendStreamMessage</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// XADD 命令，* 表示自动生成消息 ID</span>
+<span class="w">    </span><span class="n">StreamEntryID</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jedis</span><span class="p">.</span><span class="na">xadd</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">StreamEntryID</span><span class="p">.</span><span class="na">NEW_ENTRY</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">);</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;发送成功，消息ID: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="c1">// 消费者</span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">consumeStream</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">consumerName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. 创建消费者组 (如果不存在)</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">jedis</span><span class="p">.</span><span class="na">xgroupCreate</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">StreamEntryID</span><span class="p">.</span><span class="na">LAST_ENTRY</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 2. 从组里读取消息</span>
+<span class="w">        </span><span class="c1">// XREADGROUP GROUP groupName consumerName COUNT 1 STREAMS streamKey &gt;</span>
+<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">StreamEntry</span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">            </span><span class="n">jedis</span><span class="p">.</span><span class="na">xreadGroup</span><span class="p">(</span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">consumerName</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span>
+<span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleEntry</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">StreamEntryID</span><span class="p">.</span><span class="na">UNRECEIVED_ENTRY</span><span class="p">));</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">StreamEntry</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">results</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">StreamEntry</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span><span class="na">getValue</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;处理消息内容: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="na">getFields</span><span class="p">());</span>
+
+<span class="w">                </span><span class="c1">// 3. 核心：处理完必须确认 (ACK)</span>
+<span class="w">                </span><span class="c1">// 只有 ACK 后，这条消息才会从 Pending 列表移除</span>
+<span class="w">                </span><span class="n">jedis</span><span class="p">.</span><span class="na">xack</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="na">getID</span><span class="p">());</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="redis_12">如何基于 Redis 实现延时任务？⭐️</h4>
+<p>如果面试官问“Redis 怎么做延时任务”，你先答 <strong>Zset</strong> 的实现原理，再提 <strong>Redisson</strong> 的成熟方案。最后如果他问“过期监听行不行”，你一定要指出其<strong>消息丢失</strong>和<strong>延迟不准</strong>的致命缺点，这样能体现你是有实战经验的。</p>
+<p>1、基于 Zset（最推荐，最通用）⭐</p>
+<p>原理：利用 Zset 的 <code>score</code> 属性。我们将任务的<strong>执行时间戳</strong>作为 <code>score</code>。</p>
+<ul>
+<li><strong>生产者</strong>：使用 <code>ZADD</code> 将任务加入 Zset，<code>score</code> 设为 <code>当前时间 + 延迟时间</code>。</li>
+<li><strong>消费者</strong>：轮询 Zset，使用 <code>ZRANGEBYSCORE</code> 获取 <code>score</code> 小于等于 <code>当前时间</code> 的任务。</li>
+<li><strong>核心操作</strong>：拿到任务后，必须用 <code>ZREM</code> 尝试删除任务。如果删除成功，说明抢到了任务，开始执行。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">produce</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">delaySeconds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">executeTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">delaySeconds</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="n">jedis</span><span class="p">.</span><span class="na">zadd</span><span class="p">(</span><span class="s">&quot;delayed_tasks&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">executeTime</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">consume</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// 获取 score 在 0 到 当前时间戳 之间的第一条任务</span>
+<span class="w">        </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jedis</span><span class="p">.</span><span class="na">zrangeByScore</span><span class="p">(</span><span class="s">&quot;delayed_tasks&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">now</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tasks</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"> </span><span class="c1">// 没任务，歇半秒</span>
+<span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tasks</span><span class="p">.</span><span class="na">iterator</span><span class="p">().</span><span class="na">next</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// 关键：利用 ZREM 的原子性判断谁抢到了任务，防止集群模式下重复消费</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">jedis</span><span class="p">.</span><span class="na">zrem</span><span class="p">(</span><span class="s">&quot;delayed_tasks&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;开始执行延时任务: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>2、使用 Redisson 延时队列（最简单，生产环境首选）⭐</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 1. 获取延时队列</span>
+<span class="n">RBlockingQueue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">blockingQueue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisson</span><span class="p">.</span><span class="na">getBlockingQueue</span><span class="p">(</span><span class="s">&quot;my_queue&quot;</span><span class="p">);</span>
+<span class="n">RDelayedQueue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">delayedQueue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisson</span><span class="p">.</span><span class="na">getDelayedQueue</span><span class="p">(</span><span class="n">blockingQueue</span><span class="p">);</span>
+
+<span class="c1">// 2. 发送延时任务（10秒后执行）</span>
+<span class="n">delayedQueue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">&quot;task_data&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">SECONDS</span><span class="p">);</span>
+
+<span class="c1">// 3. 消费者另起一个线程消费（类似监听器）</span>
+<span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// take() 是阻塞的，有任务才会醒来，不费 CPU</span>
+<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockingQueue</span><span class="p">.</span><span class="na">take</span><span class="p">();</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;执行任务: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">task</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}).</span><span class="na">start</span><span class="p">();</span>
+</code></pre></div>
+<p>3、Redis 过期监听（最不推荐，有坑）❌
+开启 Redis 的 <code>Keyspace Notifications</code>，当某个 Key 过期时，Redis 会发布一个事件，应用监听这个事件。</p>
+<ul>
+<li><strong>不及时</strong>：Redis 的过期删除是“惰性+定期”，如果 Key 很多，过期事件可能会推迟很久才发出来。</li>
+<li><strong>不可靠</strong>：该模式是“发后即忘”，如果你的应用在那一秒重启了，这个过期事件就<strong>永远丢失了</strong>。</li>
+<li><strong>压力大</strong>：开启监听会增加 Redis 额外负担。</li>
+</ul>
+<h2 id="redis_13">Redis 数据类型</h2>
+<h4 id="redis_14">Redis 的数据类型有哪些？⭐️</h4>
+<p>Redis 的数据类型可以分为 <strong>5 种基本类型</strong>和 <strong>4 种特殊类型</strong></p>
+<p>基本类型有：<code>String</code>,<code>Hash</code>,<code>List</code>,<code>Set</code>,<code>Zset</code></p>
+<p>高级类型有：<code>Bitmaps</code>,<code>Hyperlogs</code>,<code>Geospatial</code>,`Streams</p>
+<h4 id="string">String 的应用场景</h4>
+<p>String 是 Redis 最基础的类型，它是<strong>二进制安全</strong>的，意味着它不仅能存文本，还能存任何二进制数据（如图片、序列化后的对象等）。</p>
+<ul>
+<li>做缓存：将 JSON 存入String</li>
+<li>分布式锁 (Distributed Lock)</li>
+<li>计数器：利用 <code>INCR</code>、<code>DECR</code> 等原子操作。</li>
+<li>分布式 Session：将用户的登录信息序列化后存入 Redis，并设置过期时间。</li>
+<li>限流：以用户 IP 为 Key，结合 <code>INCR</code> 和 <code>EXPIRE</code>。</li>
+</ul>
+<h4 id="string-hash">String 还是 Hash 存储对象更好？</h4>
+<pre><code>这个看情况，但还是得先说明白它两有什么区别？
+首先，String 存储对象是将整个对象看成一个 Json，优点就是读取快，一次get请求就能拿走对象的全部数据。但缺点就是对对象的属性操作不方便。如果你只想修改 age，必须把整个字符串拿出来，反序列化，改完再序列化塞回去。在高并发下容易覆盖别人的修改。
+
+而Hash则将对象的字段分开存储，优点就是灵活性高，我们可以轻松的操作对象的任意属性，其次 Hash 类型在数据较少时使用 ziplist（压缩列表） 编码，因此占用内存更小！但缺点就是结构相对 String 来说比较复杂。
+</code></pre>
+<ul>
+<li>如果对象不涉及频繁的局部属性操作，那么我们选择String即可。</li>
+<li>如果需要频繁操作对象的部分字段或节省内存，<strong>Hash</strong> 可能是更好的选择。</li>
+</ul>
+<h4 id="string_1">String 底层实现是什么?⭐️</h4>
+<p>Redis 的 String 类型底层并不是简单的 C 语言字符串（以 <code>\0</code> 结尾的字符数组），而是专门设计了一种名为 <strong>SDS（Simple Dynamic String，简单动态字符串）</strong> 的结构。本质就是 C 语言的结构体！</p>
+<ul>
+<li><strong>len（长度）</strong>：已使用的字节数。获取字符串长度的时间复杂度为 $O(1)$。</li>
+<li><strong>alloc（分配总量）</strong>：总共分配了多少空间。</li>
+<li><strong>flags（标志）</strong>：标记 SDS 的类型（Redis 会根据内容长度选择不同的 header 以节省空间）。</li>
+<li><strong>buf[]（字节数组）</strong>：实际存储数据的区域，最后依然保留了 <code>\0</code> 以兼容 C 语言部分库函数。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="cm">/* Note: sdshdr5 is never used, we just access the flags byte directly.</span>
+<span class="cm"> * However is here to document the layout of type 5 SDS strings. */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr5</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, and 5 msb of string length */</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
+<span class="p">};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr8</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
+<span class="p">};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr16</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
+<span class="p">};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr32</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
+<span class="p">};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr64</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>1、<strong>可以避免缓冲区溢出</strong>：C 字符串在执行拼接操作（如 <code>strcat</code>）时，如果没分配够空间就会溢出。SDS 在修改前会检查 <code>len</code> 和 <code>alloc</code>，如果空间不够，会自动扩容。</p>
+<p>2、常数时间获取长度：C 字符串需要遍历整个数组直到遇到 <code>\0</code> 才能知道长度（$O(N)$），而 SDS 直接读取 <code>len</code> 字段（$O(1)$）。</p>
+<p>3、减少内存重分配次数（核心优化）：</p>
+<ul>
+<li><strong>空间预分配</strong>：扩容时，Redis 会多申请一些闲置空间。下次追加内容时，可能就不需要再次申请内存了。</li>
+<li><strong>惰性空间释放</strong>：缩短字符串时，Redis 不会立刻回收内存，而是增加闲置空间。如果后续又要增长，可以直接复用。</li>
+</ul>
+<p>4、二进制安全
+C 字符串通过 <code>\0</code> 判断结束，因此不能存储包含 <code>\0</code> 的图片或视频数据。SDS 根据 <code>len</code> 字段判断结束，<strong>不限制内容格式</strong>，支持存储任何二进制数据。</p>
+<h4 id="list">List 的底层结构⭐️</h4>
+<p>压缩列表（zipList）</p>
+<p align='center'>
+    <img src="../../assets/imgs/interview/redis/redis04.png" alt="redis04" style="zoom:80%;" />
+</p>
+
+<p>快速列表（quickList）：以一个一个的<code>quicklistNode</code>为节点构成的双向链表
+<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">quicklistNode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">quicklistNode</span><span class="w"> </span><span class="o">*</span><span class="n">prev</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">quicklistNode</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">zl</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sz</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span><span class="w">     </span><span class="cm">/* count of items in ziplist */</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">encoding</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">  </span><span class="cm">/* RAW==1 or LZF==2 */</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">container</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="cm">/* NONE==1 or ZIPLIST==2 */</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">recompress</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="cm">/* was this node previous compressed? */</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">attempted_compress</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="cm">/* node can&#39;t condense; too small */</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="cm">/* more bits to steal for future usage */</span>
+<span class="p">}</span><span class="w"> </span><span class="n">quicklistNode</span><span class="p">;</span>
+</code></pre></div>
+- <strong><code>*prev</code> / <code>*next</code></strong>：指向前一个和后一个节点的指针，构成<strong>双向链表</strong>。
+- <strong><code>*zl</code></strong>：指向实际存储数据的指针。在旧版本中指向 <code>ziplist</code>，新版本（Redis 7.0+）通常指向 <code>listpack</code>。
+- <strong><code>sz</code></strong>：表示 <code>zl</code> 指向的整个压缩列表占用的总字节数。
+- <strong><code>count : 16</code></strong>：位域（Bit-field）设计，占用 16 位，表示该节点内包含的元素个数。
+- <strong><code>encoding</code></strong>：表示节点是否被压缩。<code>1</code> 表示原生数据（RAW），<code>2</code> 表示使用 LZF 算法压缩后的数据。
+- <strong><code>container</code></strong>：预留字段，目前固定为 <code>2</code>（表示底层使用压缩列表容器）。
+- <strong><code>recompress</code></strong>：标记该节点之前是否处于压缩状态（在访问被压缩节点时会临时解压）。</p>
+<p align='center'>
+    <img src="../../assets/imgs/interview/redis/redis05.png" alt="redis05" style="zoom:80%;" />
+</p>
+
+<p>List 的底层结构是 Quicklist（快速列表），它是由双向链表和紧凑的 Listpack（或 Ziplist）组合而成的混合结构。这样设计是综合考虑内存与性能的最佳选择。</p>
+<p>1）如果我们只用双向链表，那么每个数据都会对应一个结点，也就是会有8字节 | 16的指针，当我们的数据是小数据时，会导致指针的大小都比本次存储的数据大，有效载荷极低。因此，我们将多个数据打包存放到了一个 listPack 中，这样能大大减少指针的数量，还能享受到ListPack带来的优势</p>
+<p>2）如果只用<code>ListPack</code>或者<code>ZipList</code>时：当元素过多时，可能会导致频繁的内存重分配与拷贝，但如果结合双向链表，我们就可以保证每一个 ListPack 的大小都不会太大。</p>
+<p>3）Listpack 作为一段连续的内存，在被 CPU 读取时具有更好的空间局部性。相比于散落在内存各处的链表节点，CPU 缓存能够一次性加载更多的实际数据，从而提高遍历和读取速度。</p>
+<p>4）Quicklist 还支持对非头尾节点进行 <strong>压缩</strong>（LZF算法），在保证两端 $O(1)$ 性能的同时，极致压榨长列表的存储空间。</p>
+<h4 id="zset">Zset 的底层结构？⭐️</h4>
+<p>跳表（skipList）：在链表的基础上建立了“多级索引”。通过索引跳着找，查询复杂度直接降到 <strong>$O(\log N)$</strong>，性能堪比红黑树，但实现起来比红黑树简单得多。</p>
+<p align='center'>
+    <img src="../../assets/imgs/interview/redis/redis06.png" alt="redis06" style="zoom:80%;" />
+</p>
+
+<p>Zset（有序集合）的设计目标是：既要能像 Hash 一样 <strong>$O(1)$ 查询成员分数</strong>，又要能像 Tree 一样 <strong>$O(\log N)$ 按分数排序或范围取值</strong>。</p>
+<p>Zset 根据数据规模在两种底层结构之间切换。</p>
+<h5 id="listpack-ziplist">第一阶段：紧凑型存储 —— Listpack (或 Ziplist)</h5>
+<p>当 Zset 保存的元素较少（默认 &lt; 128 个）且每个元素较短（默认 &lt; 64 字节）时，它使用 <strong>Listpack</strong> 存储。</p>
+<ul>
+<li><strong>存储方式</strong>：在连续的内存空间里，将 <code>成员 (member)</code> 和 <code>分数 (score)</code> 紧挨着存放。</li>
+<li><strong>排列顺序</strong>：按照分数 <strong>从小到大</strong> 存储。</li>
+<li>
+<p><strong>为什么这么做？</strong></p>
+<ul>
+<li><strong>极致省内存</strong>：正如你所理解的，这时候没有指针，只有紧凑的数据。</li>
+<li><strong>性能尚可</strong>：因为数据量很小，即便在连续内存里进行 $O(N)$ 的遍历，也能直接装载进 CPU Cache，速度极快。</li>
+</ul>
+</li>
+</ul>
+<h5 id="dict-skiplist">第二阶段：高性能结构 —— Dict + Skiplist</h5>
+<p>Dict：它存储了 <code>member -&gt; score</code> 的映射。当你执行 <code>ZSCORE</code> 查询某个人的步数时，Redis 直接去 Dict 里找，时间复杂度是 <strong>$O(1)$</strong>。</p>
+<p>SkipList：它将所有的 <code>member</code> 按照 <code>score</code> 大小组织起来。当你执行 <code>ZRANGE</code>（取前十名）或 <code>ZREVRANK</code>（查排名）时，跳表能提供 <strong>$O(\log N)$</strong> 的效率。</p>
+<h4 id="string-hash_1">购物车信息是用 String 还是 Hash 呢？⭐️</h4>
+<p>由于购物车中的商品频繁修改和变动，购物车信息建议使用 Hash 存储。</p>
+<p>最简单的情景：在 Redis 中，我们通常以 <strong>用户 ID</strong> 作为 Redis 的 <code>key</code>，以 <strong>商品 ID</strong> 作为 Hash 里的 <code>field</code>，以 <strong>商品数量</strong> 作为 <code>value</code>。</p>
+<ul>
+<li>用户添加商品就是往 Hash 里面增加新的 field 与 value；</li>
+<li>查询购物车信息就是遍历对应的 Hash；</li>
+<li>更改商品数量直接修改对应的 value 值（直接 set 或者做运算皆可）；</li>
+<li>删除商品就是删除 Hash 中对应的 field；</li>
+<li>清空购物车直接删除对应的 key 即可。</li>
+</ul>
+<p>你会发现，上面的 Hash 只存了数量。那商品的标题、图片等详情存哪？这里有两种主流做法：</p>
+<p>1、二次查询 - 推荐
+2、序列化存入 Hash（适合小规模）</p>
+<h4 id="set">Set 的底层结构 ⭐️</h4>
+<p>Set 的设计同样遵循 Redis “看人下菜碟”的原则：</p>
+<ol>
+<li>
+<p><strong>整数集合 (Intset)</strong>：如果集合里存的全是整数，且数量较少，Redis 会使用一块<strong>连续的内存</strong>来存储，极其节省空间。</p>
+</li>
+<li>
+<p><strong>哈希表 (Dict/Hashtable)</strong>：一旦存入了字符串，或者元素数量变多，Redis 就会将其转为 <strong>Dict</strong>。在 Dict 中，<code>member</code> 存为 Key，而 Value 统一指向 <code>NULL</code>（就像 Java 里的 <code>HashSet</code> 底层是 <code>HashMap</code> 一样）。</p>
+</li>
+</ol>
+<h4 id="redis_15">使用Redis实现一个排行榜怎么做呢？⭐️</h4>
+<p>实现排行榜是 Redis 非常擅长的，这主要归功于它提供的一种特殊数据结构：<strong>Zset（Sorted Set，有序集合）</strong>。在有序集合中，每个 Member 都会关联一个 Score，Redis 会自动的按照 Score 对 Member 进行排序</p>
+<p>eg：实现“当天步数排行榜”，核心思路是利用 Redis 的 <strong>Zset（有序集合）</strong>。每一天使用一个独立的 Key，将用户 ID 作为 <code>member</code>，步数作为 <code>score</code>。
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 用户 001 走了 5000 步</span>
+ZINCRBY<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">5000</span><span class="w"> </span><span class="s2">&quot;user:001&quot;</span>
+
+<span class="c1"># 2. 用户 002 走了 8000 步</span>
+ZINCRBY<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">8000</span><span class="w"> </span><span class="s2">&quot;user:002&quot;</span>
+
+<span class="c1"># 3. 用户 001 后来又走了 4000 步</span>
+ZINCRBY<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">4000</span><span class="w"> </span><span class="s2">&quot;user:001&quot;</span>
+
+<span class="c1"># 4. 查看排行榜前三名（带分数）</span>
+ZREVRANGE<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>WITHSCORES
+<span class="c1"># 结果显示：</span>
+<span class="c1"># 1) &quot;user:001&quot;</span>
+<span class="c1"># 2) &quot;9000&quot;</span>
+<span class="c1"># 3) &quot;user:002&quot;</span>
+<span class="c1"># 4) &quot;8000&quot;</span>
+
+<span class="c1"># 5. 查看用户 002 的排名（返回 1 表示排在第 2 位）</span>
+ZREVRANK<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="s2">&quot;user:002&quot;</span>
+</code></pre></div></p>
+<p><code>ZREVRANK</code> 的作用是：<strong>获取某个成员在有序集合（Zset）中“从高到低”的排名。</strong>
+<code>ZSCORE</code> ：查询某个成员的分数</p>
+<h4 id="redis-b">Redis 的有序集合底层为什么要用跳表，而不用平衡树、红黑树或者 B+ 树？⭐️</h4>
+<p>Redis 选择跳表是因为它在保证 $O(\log N)$ 查询性能的同时，通过双向链表实现了极致的范围查询效率，且比红黑树更容易实现和维护。</p>
+<h5 id="_5">跳表的范围查询更简单！</h5>
+<p>Zset 经常需要执行 <code>ZRANGE</code> 或 <code>ZREVRANGE</code> 这种范围查询。</p>
+<ul>
+<li><strong>跳表</strong>：在跳表中进行范围查询非常简单。只需要 $O(\log N)$ 时间找到区间的起点，然后顺着底层的<strong>双向链表</strong>向后遍历即可。</li>
+<li><strong>平衡树/红黑树</strong>：虽然这些树也能做范围查询，但操作逻辑复杂得多。在找到起点后，需要通过中序遍历（In-order Traversal）来寻找后续节点，这涉及复杂的父子节点切换逻辑，效率不如跳表的链表遍历。</li>
+<li><strong>B+ 树</strong>：B+ 树确实也很擅长范围查询，但它主要是为了<strong>磁盘 IO</strong> 优化的。B+ 树的一个节点（页）通常很大（如 16KB），这在内存数据库 Redis 中会造成严重的内存碎片和浪费。</li>
+</ul>
+<h5 id="_6">跳表的常数小，结构简单</h5>
+<ul>
+<li><strong>跳表</strong>：逻辑非常直观。插入、删除只需要修改相邻节点的指针。</li>
+<li><strong>平衡树/红黑树</strong>：代码实现极其复杂。为了维持平衡，在插入或删除后需要进行复杂的<strong>旋转（Rotation）</strong>或<strong>变色</strong>操作。</li>
+<li><strong>Antirez 的观点</strong>：跳表的实现比红黑树更难写错，调试也更简单。对于高性能中间件来说，代码的可维护性和稳定性至关重要。</li>
+</ul>
+<h4 id="set_1">Set 的应用场景是什么？</h4>
+<table>
+<thead>
+<tr>
+<th><strong>功能</strong></th>
+<th><strong>命令</strong></th>
+<th><strong>复杂度</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>添加元素</strong></td>
+<td><code>SADD key member</code></td>
+<td>$O(1)$</td>
+<td>自动去重</td>
+</tr>
+<tr>
+<td><strong>判断是否存在</strong></td>
+<td><code>SISMEMBER key member</code></td>
+<td>$O(1)$</td>
+<td>极快地判断用户是否在黑名单中</td>
+</tr>
+<tr>
+<td><strong>求交集</strong></td>
+<td><code>SINTER key1 key2</code></td>
+<td>$O(N \times M)$</td>
+<td>找共同点</td>
+</tr>
+<tr>
+<td><strong>求差集</strong></td>
+<td><code>SDIFF key1 key2</code></td>
+<td>$O(N)$</td>
+<td>找不同点</td>
+</tr>
+<tr>
+<td><strong>随机获取</strong></td>
+<td><code>SPOP key</code></td>
+<td>$O(1)$</td>
+<td>适用于不放回抽奖</td>
+</tr>
+</tbody>
+</table>
+<p>首先，Redis 的 Set 支持自动去重，并且支持强大的集合间操作（交集、并集、差集）。</p>
+<p>1）利用 Set 的自动去重
+- <strong>点赞 / 收藏</strong>：记录某个帖子被哪些用户点赞 | 收藏。由于一个用户只能点赞一次，使用 <code>SADD</code> 既能记录数据，又能自动防止重复点赞。  <br />
+- <strong>独立 IP 统计 (UV)</strong>：统计网站每天有多少个不重复的访客 IP（注：对于海量 UV，更推荐使用 HyperLogLog 以节省空间，但对于精确去重，Set 是首选）。</p>
+<p>2）利用 Set 提供的集合操作获取多个数据源的交集、并集、差集
+- <strong>关注列表 / 粉丝列表</strong>：记录某个用户关注的人。
+- <strong>共同关注</strong>：通过 <code>SINTER</code>（交集）命令，轻松找出 A 和 B 共同关注的人。
+- <strong>可能认识的人</strong>：通过 <code>SDIFF</code>（差集）命令，找出 A 关注了但 B 没关注的人，作为推荐。</p>
+<p>3）抽奖系统
+Set 提供了随机获取元素的命令，非常适合公平抽奖。
+<strong>随机中奖</strong>：<code>SRANDMEMBER</code>（随机返回但不删除）或 <code>SPOP</code>（随机返回并从集合中弹出）。</p>
+<h4 id="bitmap">使用 Bitmap 统计活跃用户怎么做⭐️</h4>
+<p>将用户 ID 映射为 Bitmap 中的偏移量（offset），用 0 和 1 表示用户是否活跃。</p>
+<ul>
+<li><strong>Key 设计</strong>：通常按时间维度设计 Key，例如 <code>active:users:20260111</code>（统计某一天）或 <code>active:users:202601</code>（统计某个月）。</li>
+<li><strong>Offset 映射</strong>：直接使用用户自增的整数 ID 作为偏移量。如果用户 ID 是 <code>10086</code>，就操作第 <code>10086</code> 位。</li>
+<li><strong>Value 含义</strong>：<code>1</code> 表示活跃，<code>0</code> 表示非活跃。</li>
+</ul>
+<p>（1）标记当前用户为活跃用户</p>
+<div class="highlight"><pre><span></span><code>SETBIT active:users:20260111 101 1
+</code></pre></div>
+<p>（2）查询某个用户当天是否活跃
+<div class="highlight"><pre><span></span><code>GETBIT active:users:20260111 101
+# 返回 1 表示活跃，0 表示不活跃
+</code></pre></div></p>
+<p>（3）统计当天的总活跃人数 (DAU)</p>
+<div class="highlight"><pre><span></span><code># 使用 BITCOUNT 命令可以快速统计位图中 `1` 的个数：
+BITCOUNT active:users:20260111
+</code></pre></div>
+<p>（4）统计多日连续活跃（留存/交集）</p>
+<div class="highlight"><pre><span></span><code># 将 10号和 11号的结果做 AND 运算，存入 result:and
+BITOP AND result:and active:users:20260110 active:users:20260111
+# 统计结果
+BITCOUNT result:and
+</code></pre></div>
+<p>（5）统计多日累计活跃
+<div class="highlight"><pre><span></span><code>BITOP OR result:or active:users:20260101 active:users:20260102 ... BITCOUNT result:or
+</code></pre></div></p>
+<p>极度省空间：1 个位代表 1 个用户，1 亿个用户只需要 1 亿个位。$100,000,000 \text{ bits} \div 8 \div 1024 \div 1024 \approx 12 \text{ MB}$。</p>
+<p>运算速度快：<code>BITCOUNT</code> 和 <code>BITOP</code> 都是位运算，直接由 CPU 指令支持，处理千万级数据通常在毫秒级。</p>
+<h4 id="hyperloglog">HyperLogLog 适用场景？</h4>
+<p>pass</p>
+<h4 id="_7">如果我想判断一个元素是否不在海量元素集合中，用什么数据类型？</h4>
+<p>bitmap 或者 bloomFilter 都可以实现</p>
+<h2 id="redis_16">Redis 持久化机制⭐️</h2>
+<p>大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了做数据同步（比如 Redis 集群的主从节点通过 RDB 文件同步数据）。</p>
+<ul>
+<li>快照（snapshotting，RDB）</li>
+<li>只追加文件（append-only file, AOF）</li>
+<li>RDB 和 AOF 的混合持久化(Redis 4.0 新增)</li>
+</ul>
+<h4 id="rbd">RBD 持久化⭐️</h4>
+<h5 id="rdb">什么是 RDB 持久化</h5>
+<p>RDB 是在指定的时间间隔内，将内存中的全量数据生成一个<strong>二进制快照</strong>（Snapshot）保存到磁盘。恢复速度快，但会丢失最后一次快照后的数据。</p>
+<h4 id="rbd_1">RBD 创建快照时会阻塞主线程吗？</h4>
+<p>那要看是同步创建还是异步创建了，Redis 提供了两个命令来生成 RDB 快照文件：</p>
+<ul>
+<li><code>save</code> : 同步保存操作，会阻塞 Redis 主线程；</li>
+<li><code>bgsave</code> : fork 出一个子进程，子进程执行，不会阻塞 Redis 主线程，默认选项。</li>
+</ul>
+<h4 id="aof">AOF 持久化⭐️</h4>
+<h5 id="aof_1">什么是 AOF 持久化</h5>
+<p>AOF 是以<strong>日志</strong>的形式记录 Redis 执行过的每一条<strong>写命令</strong>，重启时通过重新执行这些命令来恢复数据。</p>
+<p>可以通过 appendonly 参数来开启 AOF 持久化！</p>
+<h4 id="aof_2">AOF 工作基本流程是怎么样的？⭐️</h4>
+<p>1、<strong>命令追加 (Append)</strong>：写命令先存入 Redis 的 <strong>AOF 缓冲区</strong>，避免直接 I/O 阻塞主线程。
+2、<strong>文件写入 (Write)</strong>：将缓冲区数据调用系统 <code>write</code> 函数写入<strong>系统内核缓冲区</strong>，此时数据尚未落盘。
+3、<strong>文件同步 (Fsync)</strong>：核心步骤。根据配置策略（如每秒一次）调用 <code>fsync</code>，将内核缓冲区数据<strong>强制同步到硬盘</strong>。
+4、<strong>文件重写（rewrite）</strong>：随着 AOF 文件越来越大，需要定期对 AOF 文件进行重写，达到压缩的目的。
+5、<strong>重启加载 (Load)</strong>：Redis 重启时通过执行 AOF 里的命令来<strong>恢复数据</strong>。</p>
+<h5 id="aof_3">AOF 的持久化方式有哪些？</h5>
+<p>在 Redis 的配置文件中存在三种不同的 AOF 持久化方式（ <code>fsync</code>策略），它们分别是：
+<code>appendfsync always</code>:   主线程调用 <code>write</code> 执行写操作后，会立刻调用 <code>fsync</code> 函数同步 AOF 文件（刷盘）。主线程会阻塞，直到 <code>fsync</code> 将数据完全刷到磁盘后才会返回。这种方式数据最安全，理论上不会有任何数据丢失。但因为每个写操作都会同步阻塞主线程，所以性能极差。</p>
+<p><code>appendfsync everysec</code>：每个写命令执行完，先写到 AOF 缓冲区；由后台线程<strong>每隔一秒</strong>调用一次 <code>fsync</code> 同步到磁盘。</p>
+<p><code>appendfsync no</code>：主线程调用 <code>write</code> 执行写操作后立即返回，让操作系统决定何时进行同步，Linux 下一般为 30 秒一次（<code>write</code>但不<code>fsync</code>，<code>fsync</code> 的时机由操作系统决定）。 这种方式性能最好，因为避免了 <code>fsync</code> 的阻塞。但数据安全性最差，宕机时丢失的数据量不可控，取决于操作系统上一次同步的时间点。</p>
+<ul>
+<li>
+<p><strong><code>write</code></strong>：只是把数据从应用内存“交”给了操作系统（进了内核缓冲区就返回了），此时如果 <strong>Redis 挂了</strong> 数据还在，但如果 <strong>电脑断电了</strong> 数据就丢了。</p>
+</li>
+<li>
+<p><strong><code>fsync</code></strong>：才是真正的“落盘”指令，它会阻塞直到硬盘告诉你“我存好了”。</p>
+</li>
+</ul>
+<h4 id="aof_4">AOF 重写了解吗？</h4>
+<p><strong>AOF 重写（Rewrite）</strong> 是 Redis 为了解决 AOF 文件“体积无限膨胀”问题而设计的瘦身机制。</p>
+<p>随着运行时间增长，AOF 文件会记录大量冗余命令（例如：对同一个 Key 执行了 100 次 <code>INCR</code>，AOF 会记录 100 条指令）。重写机制会根据 <strong>Redis 内存中的当前数据</strong>，直接生成一份最小化的写命令集。</p>
+<p>为了不阻塞主线程，Redis 采用 <strong>后台子进程</strong> 方式进行：
+1. <strong>创建子进程 (Fork)</strong>：主进程 fork 出一个 <code>bgrewriteaof</code> 子进程。
+2. <strong>内存拷贝 (Copy-on-Write)</strong>：子进程共享主进程的物理内存数据。由于使用了 <strong>写时复制（COW）</strong> 技术，主进程在重写期间依然可以处理读写。
+3. <strong>两份缓冲区</strong>：
+    - <strong>AOF 缓冲区</strong>：新进来的写命令继续写入旧的 AOF 文件，保证数据不丢。
+    - <strong>AOF 重写缓冲区</strong>：重写期间新产生的写命令也会同步存入这个新增的缓冲区。  <br />
+4. <strong>合并与替换</strong>：子进程扫描完内存生成新 AOF 后，主进程将“重写缓冲区”的内容追加到新 AOF，最后替换掉旧的大文件。</p>
+<p>开启 AOF 重写功能，可以调用 <code>BGREWRITEAOF</code> 命令手动执行，也可以设置下面两个配置项，让程序自动决定触发时机：</p>
+<ul>
+<li><code>auto-aof-rewrite-min-size</code>：如果 AOF 文件大小小于该值，则不会触发 AOF 重写。默认值为 64 MB;</li>
+<li><code>auto-aof-rewrite-percentage</code>：执行 AOF 重写时，当前 AOF 大小（aof_current_size）和上一次重写时 AOF 大小（aof_base_size）的比值。如果当前 AOF 文件大小增加了这个百分比值，将触发 AOF 重写。将此值设置为 0 将禁用自动 AOF 重写。默认值为 100。</li>
+</ul>
+<h4 id="aof_5">AOF 重写会阻塞吗？</h4>
+<ul>
+<li><strong>Fork 瞬间会阻塞</strong>：在 fork 子进程的一刹那，主进程会由于拷贝页表而产生微小阻塞。</li>
+<li><strong>数据同步会阻塞</strong>：在重写最后阶段，主进程将“重写缓冲区”数据写往新 AOF 时会有短暂阻塞。</li>
+</ul>
+<h4 id="rdb-aof">RDB 和 AOF 的区别？</h4>
+<ul>
+<li><strong>RDB (Redis DataBase)</strong>：是<strong>内存快照</strong>，存的是某一时刻的<strong>最终数据</strong>二进制序列。</li>
+<li><strong>AOF (Append Only File)</strong>：是<strong>命令日志</strong>，存的是每一条执行过的<strong>写操作命令</strong>。</li>
+</ul>
+<p>RDB 比起 AOF，产生的文件更小，恢复速度更快，但是，RDB 可能丢失在最后一次备份之后的全部数据，相比来说，AOF 更加安全，理论上，如果采用 appendfsync-alaways，可以做到不丢失任何一条命令。但是 AOF 产生的文件比较大，实现高安全性带来的频繁的fsync 比较消耗性能。</p>
+<p>因此，最好的做法实际上是：<strong>混合持久化</strong>。 它的做法是：在 AOF 重写时，先将当前内存数据以 <strong>RDB 格式</strong> 写入文件开头，再将重写期间的增量命令以 <strong>AOF 格式</strong> 追加。</p>
+<h2 id="redis_17">Redis 线程模型⭐️</h2>
+<p>对于读写命令来说，Redis 一直是单线程模型。不过，在 Redis 4.0 版本之后引入了多线程来执行一些大键值对的异步删除操作，Redis 6.0 版本之后引入了多线程来处理网络请求（提高网络 IO 读写性能）。</p>
+<p align='center'>
+    <img src="../../assets/imgs/interview/redis/redis07.png" alt="redis07" style="zoom:80%;" />
+</p>
+
+<p>文件事件处理器（file event handler）主要是包含 4 个部分：
+- 多个 socket（客户端连接）
+- IO 多路复用程序（支持多个客户端连接的关键）
+- 文件事件分派器（将 socket 关联到相应的事件处理器）
+- 事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）</p>
+<h4 id="redis-40">Redis 4.0  引入了什么后台线程</h4>
+<p>Redis 4.0 增加的多线程主要是针对一些大键值对的删除操作的命令，使用这些命令就会使用主线程之外的其他线程来“异步处理”，从而减少对主线程的影响</p>
+<ul>
+<li><code>UNLINK</code>：可以看作是 <code>DEL</code> 命令的异步版本。</li>
+<li><code>FLUSHALL ASYNC</code>：用于清空所有数据库的所有键，不限于当前 <code>SELECT</code> 的数据库。</li>
+<li><code>FLUSHDB ASYNC</code>：用于清空当前 <code>SELECT</code> 数据库中的所有键。</li>
+</ul>
+<h4 id="redis-60">Redis 6.0 之后为什么引入了多线程？</h4>
+<p>随着互联网数据的爆发，Redis 的瓶颈通常不在 CPU（因为它是纯内存操作），也不在内存（可以通过集群扩展），而是在 <strong>网络 I/O</strong>。</p>
+<ul>
+<li>
+<p><strong>读写开销</strong>：当请求量达到数十万 QPS 时，从网卡读取数据到内存，以及将回复数据写回网卡的这个过程，会消耗大量的 CPU 时间。</p>
+</li>
+<li>
+<p><strong>主线程受累</strong>：在单线程模型下，主线程不仅要执行逻辑，还要负责这些繁琐的数据拷贝工作。这意味着大厨（主线程）除了炒菜，还得亲自去大门口搬菜、洗菜，导致炒菜速度变慢。</p>
+</li>
+</ul>
+<p>为了解决上述问题，Redis 6.0 引入了多线程来专门处理 <strong>网络数据的读写</strong>，而 <strong>执行命令</strong> 依然保留在主线程中。</p>
+<p>Redis6.0 的多线程默认是禁用的，只使用主线程。如需开启需要设置 IO 线程数 &gt; 1，需要修改 redis 配置文件 <code>redis.conf</code>：</p>
+<div class="highlight"><pre><span></span><code>io-threads 4 #设置1的话只会开启主线程，官网建议4核的机器建议设置为2或3个线程，8核的建议设置为6个线程
+</code></pre></div>
+<p>开启多线程后，默认只会使用多线程进行 IO 写入 writes，即发送数据给客户端，如果需要开启多线程 IO 读取 reads，同样需要修改 redis 配置文件 <code>redis.conf</code>：</p>
+<p><div class="highlight"><pre><span></span><code>io-threads-do-reads yes
+</code></pre></div>
+但是官网描述开启多线程读并不能有太大提升，因此一般情况下并不建议开启。</p>
+<h4 id="redis-40_1">Redis 后台线程？4.0 增强</h4>
+<ul>
+<li>通过 <code>bio_close_file</code> 后台线程来释放 AOF / RDB 等过程中产生的临时文件资源。</li>
+<li>通过 <code>bio_aof_fsync</code> 后台线程调用 <code>fsync</code> 函数将系统内核缓冲区还未同步到到磁盘的数据强制刷到磁盘（AOF 文件）。</li>
+<li>通过 <code>bio_lazy_free</code> 后台线程释放大对象（已删除）占用的内存空间.</li>
+</ul>
+<h2 id="redis_18">Redis 内存管理</h2>
+<h4 id="redis_19">Redis 给缓存设置过期时间有什么用？</h4>
+<p>可以总结为：节约内存空间 ，或者满足业务场景（验证码到时过期，登录状态最多维持时间...）</p>
+<div class="highlight"><pre><span></span><code><span class="m">127</span>.0.0.1:6379&gt;<span class="w"> </span>expire<span class="w"> </span>key<span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="c1"># 数据在 60s 后过期</span>
+<span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">1</span>
+<span class="m">127</span>.0.0.1:6379&gt;<span class="w"> </span>setex<span class="w"> </span>key<span class="w"> </span><span class="m">60</span><span class="w"> </span>value<span class="w"> </span><span class="c1"># 数据在 60s 后过期 (setex:[set] + [ex]pire)</span>
+OK
+<span class="m">127</span>.0.0.1:6379&gt;<span class="w"> </span>ttl<span class="w"> </span>key<span class="w"> </span><span class="c1"># 查看数据还有多久过期</span>
+<span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">56</span>
+</code></pre></div>
+<p>注意 ⚠️：Redis 中除了字符串类型有自己独有设置过期时间的命令 <code>setex</code> 外，其他方法都需要依靠 <code>expire</code> 命令来设置过期时间 。另外，<code>persist</code> 命令可以移除一个键的过期时间。</p>
+<h4 id="redis_20">Redis 如何判断数据是否过期呢？⭐️</h4>
+<p>Redis 通过一个叫做过期字典（可以看作是 hash 表）来保存数据过期的时间。过期字典的键指向 Redis 数据库中的某个 key（键），过期字典的值是一个 long long 类型的整数，这个整数保存了 key 所指向的数据库键的过期时间（毫秒精度的 UNIX 时间戳）。</p>
+<p>在查询一个 key 的时候，Redis 首先检查该 key 是否存在于过期字典中（时间复杂度为 O(1)），如果不在就直接返回，在的话需要判断一下这个 key 是否过期，过期直接删除 key 然后返回 null。</p>
+<h4 id="redis-key">Redis 过期 Key 的删除策略⭐️</h4>
+<p>Redis 采用的是惰性删除 + 定期删除</p>
+<h4 id="redis_21">Redis 内存淘汰策略⭐️</h4>
+<p>Redis 的内存淘汰策略只有在运行内存达到了配置的最大内存阈值时才会触发，这个阈值是通过 <code>redis.conf</code> 的 <code>maxmemory</code> 参数来定义的。64 位操作系统下，<code>maxmemory</code> 默认为 0，表示不限制内存大小。32 位操作系统下，默认的最大内存值是 3GB。</p>
+<ul>
+<li><strong>volatile-lru（least recently used）</strong>：从已设置过期时间的数据集（<code>server.db[i].expires</code>）中挑选最近最少使用的数据淘汰。</li>
+<li><strong>volatile-ttl</strong>：从已设置过期时间的数据集（<code>server.db[i].expires</code>）中挑选将要过期的数据淘汰。</li>
+<li><strong>volatile-random</strong>：从已设置过期时间的数据集（<code>server.db[i].expires</code>）中任意选择数据淘汰。</li>
+<li><strong>allkeys-lru（least recently used）</strong>：从数据集（<code>server.db[i].dict</code>）中移除最近最少使用的数据淘汰。</li>
+<li><strong>allkeys-random</strong>：从数据集（<code>server.db[i].dict</code>）中任意选择数据淘汰。</li>
+<li><strong>no-eviction</strong>（默认内存淘汰策略）：禁止驱逐数据，当内存不足以容纳新写入数据时，新写入操作会报错。</li>
+</ul>
+<p>4.0 版本后增加以下两种：</p>
+<ul>
+<li><strong>volatile-lfu（least frequently used）</strong>：从已设置过期时间的数据集（<code>server.db[i].expires</code>）中挑选最不经常使用的数据淘汰。</li>
+<li><strong>allkeys-lfu（least frequently used）</strong>：从数据集（<code>server.db[i].dict</code>）中移除最不经常使用的数据淘汰。</li>
+</ul>
+<h2 id="redis_22">Redis 事务</h2>
+<p>Redis 可以通过 <strong><code>MULTI</code>、<code>EXEC</code>、<code>DISCARD</code> 和 <code>WATCH</code></strong> 等命令来实现事务（Transaction）功能。</p>
+<h4 id="redis_23">什么是 Redis 事务？⭐️</h4>
+<p><strong>Redis 事务提供了一种将多个命令请求打包的功能。然后，再按顺序执行打包的所有命令，并且不会被中途打断。</strong></p>
+<h4 id="redis_24">如何使用 Redis 事务？</h4>
+<p>1、标准流程</p>
+<ul>
+<li><strong>开启事务 (<code>MULTI</code>)</strong>：告诉 Redis，后面的命令先别执行，先存到队列里。</li>
+<li><strong>命令入队</strong>：你输入的后续命令会返回 <code>QUEUED</code>。</li>
+<li><strong>执行事务 (<code>EXEC</code>)</strong>：让 Redis 一口气执行队列里的所有命令。</li>
+</ul>
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>MULTI<span class="w">                </span><span class="c1"># 1. 开启事务</span>
+OK
+&gt;<span class="w"> </span>SET<span class="w"> </span>user:name<span class="w"> </span><span class="s2">&quot;Jack&quot;</span><span class="w"> </span><span class="c1"># 2. 命令入队</span>
+QUEUED
+&gt;<span class="w"> </span>INCR<span class="w"> </span>user:score<span class="w">      </span><span class="c1"># 3. 命令入队</span>
+QUEUED
+&gt;<span class="w"> </span>EXEC<span class="w">                 </span><span class="c1"># 4. 真正执行</span>
+<span class="m">1</span><span class="o">)</span><span class="w"> </span>OK<span class="w">                  </span><span class="c1"># 返回 SET 的结果</span>
+<span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">1</span><span class="w">         </span><span class="c1"># 返回 INCR 的结果</span>
+</code></pre></div>
+<p>2、DisCard </p>
+<p>如果你在输入了一堆命令后突然反悔了，可以使用 <code>DISCARD</code>。它会清空命令队列并退出事务状态。
+<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>MULTI
+OK
+&gt;<span class="w"> </span>SET<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="s2">&quot;value&quot;</span>
+QUEUED
+&gt;<span class="w"> </span>DISCARD<span class="w">             </span><span class="c1"># 放弃，之前队列里的 SET 不会执行</span>
+OK
+</code></pre></div></p>
+<p>3、乐观锁机制 (<code>WATCH</code>)</p>
+<p>这是 Redis 事务最强大的地方。<code>WATCH</code> 可以监视一个或多个 Key，如果在你执行 <code>EXEC</code> 之前，这些 Key 被<strong>其他客户端</strong>修改了，那么整个事务会自动失败。</p>
+<p>4、错误情况</p>
+<p>情况一：入队时的语法错误（类似“编译报错”）</p>
+<p>情况二：执行时的逻辑错误（你说的“运行时错误”）
+ - 报错的那个命令会显示错误信息。
+ - <strong>队列中其他的命令会继续执行，不受任何影响。</strong><br />
+ - <strong>已经执行成功的命令不会撤销（不回滚）。</strong></p>
+<h4 id="redis_25">为什么 Redis 事务不支持回滚</h4>
+<ul>
+<li>
+<p><strong>性能至上</strong>：支持回滚需要记录命令执行前后的状态（Undo Log），这会极大地增加内存开销和处理延迟。</p>
+</li>
+<li>
+<p><strong>程序员的锅</strong>：Redis 认为，运行时的错误通常是由于<strong>编程错误</strong>产生的（例如数据类型搞错了）。这种错误在生产环境中应该在开发和测试阶段就被规避，而不应该由数据库层面的回滚来补偿。</p>
+</li>
+<li>
+<p><strong>保持简单</strong>：不回滚让 Redis 的内部实现非常轻量、高效。</p>
+</li>
+</ul>
+<h4 id="redis_26">如何解决 Redis 事务的缺陷？</h4>
+<p>既然你已经看出了 Redis 事务在“回滚”和“逻辑判断”上的局限性，那么解决这些缺陷的最佳实践就是使用 <strong>Lua 脚本</strong>。</p>
+<ul>
+<li><strong>真正的原子性</strong>：Redis 保证整个 Lua 脚本在执行期间，不会被其他任何命令插入。它就像一个超长的原子指令。</li>
+<li><strong>支持复杂的逻辑判断</strong>：事务中你不能写 <code>if (a &gt; b) then ...</code>，但在 Lua 里你可以随意编写业务逻辑。</li>
+<li><strong>减少网络开销</strong>：事务需要多次请求（MULTI、命令1、命令2、EXEC），而 Lua 脚本是一次性发送，由 Redis 本地执行。</li>
+</ul>
+<h5 id="lua_1">如何处理 Lua 中的“回滚”？</h5>
+<p>虽然 Lua 脚本能解决逻辑问题，但你必须注意：<strong>如果 Lua 脚本运行到一半由于某种原因（比如语法错或显式报错）中断，已经执行完的命令同样不会撤销。</strong></p>
+<ul>
+<li><strong>先检查，后写入</strong>：在脚本的开头做完所有的校验（如余额是否足够、Key 是否存在）。</li>
+<li><strong>保证脚本不报错</strong>：确保脚本内部逻辑严谨，不要出现除以 0、操作错误类型等运行时错误。</li>
+<li><strong>脚本的原子性保证</strong>：因为 Redis 会阻塞所有其他命令直到脚本运行完，只要你的校验逻辑在写操作之前，就能保证“要么逻辑通过全部修改，要么逻辑不通过不修改”。</li>
+</ul>
+<h2 id="redis_27">Redis 性能优化</h2>
+<h4 id="_8">可以使用批量操作减少网络传输⭐️</h4>
+<p>在 Redis 的实际应用中，<strong>网络往返时间（RTT, Round Trip Time）</strong> 往往比命令本身的执行时间要长得多。如果每次传出只传一条命令的话，就显得有些低效了，所以我们可以采用批量操作，从而实现一次传输传递多条命令。</p>
+<p>1、原生批量命令 (M-commands)
+<strong>常用命令</strong>：<code>MSET</code>、<code>MGET</code>、<code>HMSET</code>、<code>HMGET</code>、<code>SADD</code>（支持多个 member）等。</p>
+<ul>
+<li><strong>原子性</strong>：这些操作在 Redis 内部是原子的，要么全成功，要么全失败。</li>
+<li><strong>极高性能</strong>：因为是单条指令处理，效率最高。</li>
+<li><strong>局限性</strong>：只能操作同一种数据结构（比如 <code>MSET</code> 只能存 String）。</li>
+</ul>
+<div class="highlight"><pre><span></span><code>mset k1 v1 k2 v2 k3 v3
+</code></pre></div>
+<p>2、Pileline </p>
+<p>Pipeline 是一种“异步”的打包方式，允许客户端一次性发送多条<strong>不同类型</strong>的命令，这些不同的命令不需要等待其他命令的回复。它也只跑了 <strong>1 次网络往返</strong>，但它里面装的是<strong>不同种类</strong>的活。</p>
+<p>3、Lua 脚本</p>
+<ul>
+<li><strong>严格原子性</strong>：整个脚本执行期间，Redis 不会处理其他任何请求。</li>
+<li><strong>减少带宽</strong>：复杂的业务逻辑在 Redis 内部完成，不需要在客户端和服务器之间反复传输中间数据。</li>
+</ul>
+<h4 id="key">大量 Key 集中过期问题⭐️</h4>
+<p>Redis 默认每秒进行 10 次采样检测，随机抽取一些 Key 检查是否过期。</p>
+<p>如果在一次循环中，发现已过期 Key 的比例超过 <strong>25%</strong>，Redis 会认为当前过期键很多，为了尽快释放内存，它会<strong>继续触发</strong>采样和删除，直到比例降下来。</p>
+<p>这个循环过程是阻塞主线程的。如果 Key 太多，主线程会一直忙于清理过期数据，导致无法处理正常的读写请求。</p>
+<h6 id="_9">解决方案⭐️</h6>
+<ol>
+<li>给 key 设置随机过期时间。</li>
+<li>开启 lazy-free（惰性删除/延迟释放）。lazy-free 特性是 Redis 4.0 开始引入的，指的是让 Redis 采用异步方式延迟释放 key 使用的内存，将该操作交给单独的子线程处理，避免阻塞主线程。（lazyfree-lazy-expire yes）</li>
+</ol>
+<h4 id="redis-bigkey">Redis BigKey⭐️</h4>
+<p>所谓 BigKey，并不是指 Key 本身很大，而是指 <strong>Value 占用的空间过大</strong> 或者 <strong>集合中的元素过多</strong>。</p>
+<ul>
+<li>String 类型的 value 超过 1MB</li>
+<li>复合类型（List、Hash、Set、Sorted Set 等）的 value 包含的元素超过 5000 个或者整个集合的内存占用超过 <strong>10 MB</strong>。</li>
+</ul>
+<h5 id="bigkey">bigkey 如何产生的</h5>
+<ul>
+<li>程序设计不当，比如直接使用 String 类型存储较大的文件对应的二进制数据。</li>
+<li>对于业务的数据规模考虑不周到，比如使用集合类型的时候没有考虑到数据量的快速增长。</li>
+<li>未及时清理垃圾数据，比如哈希中冗余了大量的无用键值对。</li>
+</ul>
+<h5 id="bigkey_1">bigkey 会带来什么问题</h5>
+<p><strong>主线程阻塞</strong>：Redis 是单线程执行命令的。删除一个 100MB 的 BigKey 或对一个百万级元素的 List 执行 <code>HGETALL</code>，会耗时几秒钟。这期间，所有其他客户端的请求都会排队超时。</p>
+<p><strong>网络拥塞</strong>：每次获取大 key 产生的网络流量较大，如果一个 key 的大小是 1 MB，每秒访问量为 1000，那么每秒会产生 1000MB 的流量，这对于普通千兆网卡的服务器来说是灾难性的。</p>
+<p><strong>超时引发切换</strong>：由于主线程被 BigKey 阻塞，Redis 可能无法响应心跳检测，导致哨兵（Sentinel）误以为节点宕机，触发不必要的<strong>主从切换</strong>。</p>
+<h5 id="bigkey_2">如何发现bigkey</h5>
+<p>1、执行 <code>redis-cli --bigkeys</code>。</p>
+<p>2、<strong>使用 <code>SCAN</code> 命令</strong>：配合 len + card 系列指令，可以获得 String 类型的字节数或者集合类型的元素个数，有时候，成员数量多并不代表内存占用大（比如存的都是短字符串），反之亦然。 Redis 4.0+ 提供的 <code>MEMORY USAGE</code> 命令可以计算一个 Key 在内存中<strong>实际占用的字节数</strong>。</p>
+<table>
+<thead>
+<tr>
+<th><strong>类型</strong></th>
+<th><strong>查询命令</strong></th>
+<th><strong>含义</strong></th>
+<th><strong>风险阈值建议</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>String</strong></td>
+<td><code>STRLEN key</code></td>
+<td>字节数</td>
+<td>$&gt; 10$ KB</td>
+</tr>
+<tr>
+<td><strong>Hash</strong></td>
+<td><code>HLEN key</code></td>
+<td>字段(field)数量</td>
+<td>$&gt; 5000$</td>
+</tr>
+<tr>
+<td><strong>List</strong></td>
+<td><code>LLEN key</code></td>
+<td>元素数量</td>
+<td>$&gt; 5000$</td>
+</tr>
+<tr>
+<td><strong>Set</strong></td>
+<td><code>SCARD key</code></td>
+<td>成员数量</td>
+<td>$&gt; 5000$</td>
+</tr>
+<tr>
+<td><strong>Zset</strong></td>
+<td><code>ZCARD key</code></td>
+<td>成员数量</td>
+<td>$&gt; 5000$</td>
+</tr>
+<tr>
+<td>- <strong><code>SCAN</code></strong> 获取一批 Key。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- 使用 <strong><code>TYPE</code></strong> 判断 Key 类型（可选，如果你已经知道业务前缀）。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- 使用 <strong><code>HLEN/LLEN...</code></strong> 快速判断“成员数”。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>- <strong>【关键】</strong>：只有当“成员数”超过一定阈值（比如 1000）时，才调用 <strong><code>MEMORY USAGE</code></strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>3、<strong>RDB 离线分析（推荐）</strong>：使用工具如 <code>redis-rdb-tools</code> 离线分析 RDB 快照文件，完全不影响线上业务。</p>
+<h5 id="bigkey_3">如何处理 BigKey</h5>
+<ol>
+<li>异步删除：使用 <strong><code>UNLINK</code></strong> 命令替代 <code>DEL</code>。<code>UNLINK</code> 会将 Key 从全局哈希表中立即摘除（逻辑删除），然后将具体的内存回收任务交给<strong>后台线程</strong>（BIO 线程）慢慢处理。</li>
+<li><strong>分割 bigkey</strong>：将一个大的 Hash 拆分成多个小的 Hash。</li>
+<li><strong>开启 lazy-free（惰性删除/延迟释放）</strong>: lazy-free 特性是 Redis 4.0 开始引入的，指的是让 Redis 采用异步方式延迟释放 key 使用的内存，将该操作交给单独的子线程处理，避免阻塞主线程。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th><strong>配置项</strong></th>
+<th><strong>触发场景</strong></th>
+<th><strong>开启后的效果</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>lazyfree-lazy-expire</code></strong></td>
+<td><strong>过期 Key 清理</strong></td>
+<td>Key 过期时，如果是大 Key，自动异步释放内存。</td>
+</tr>
+<tr>
+<td><strong><code>lazyfree-lazy-eviction</code></strong></td>
+<td><strong>内存淘汰（Maxmemory）</strong></td>
+<td>内存满了要踢人时，如果是大 Key，自动异步释放。</td>
+</tr>
+<tr>
+<td><strong><code>lazyfree-lazy-server-del</code></strong></td>
+<td><strong>隐式删除</strong></td>
+<td>比如执行 <code>SET</code> 覆盖一个已存在的旧大 Key 时，异步删除旧值。</td>
+</tr>
+<tr>
+<td><strong><code>replica-lazy-flush</code></strong></td>
+<td><strong>主从全量同步</strong></td>
+<td>从库在加载新 RDB 前要清空旧数据，异步清空不阻塞。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="redis-hotkey">Redis HotKey</h4>
+<p>在 Redis 的生产环境中，<strong>HotKey（热 Key）</strong> 甚至比 BigKey 更危险。BigKey 顶多是让你的 Redis 卡顿，而 HotKey 往往是直接把你的 Redis 甚至数据库“打满、打挂”。</p>
+<h5 id="hotkey">什么是 hotkey</h5>
+<p>所谓的 HotKey，是指在某个极短的时间内，<strong>访问量极其集中</strong>的某个或某几个 Key。如果 Redis 集群的总 QPS 是 10 万，其中 8 万都在请求同一个 <code>activity:sale:1001</code> 的 Key，那这个 Key 就是热 Key。</p>
+<h5 id="hotkey_1">hotkey 的危害</h5>
+<p>1、<strong>流量倾斜，单点打挂</strong>：在 Redis 集群（Cluster）中，一个 Key 只会落在一个结点机上。由于热 Key 流量太大，会导致该机器的 CPU 或网卡直接被打满，而其他机器却在“摸鱼”。</p>
+<p>2、<strong>缓存击穿</strong>：如果热 Key 因为达到流量极限或过期，大量请求会瞬间穿透 Redis 涌入数据库，导致数据库由于压力过大而崩溃。</p>
+<h5 id="hotkey_2">如何发现 hotkey</h5>
+<p>发现 HotKey 难在它的<strong>时效性</strong>（往往等你知道的时候，机器已经挂了）。</p>
+<p>1、<code>redis-cli --hotkeys</code>。</p>
+<p>使用该方案的前提条件是 Redis Server 的 <code>maxmemory-policy</code> 参数设置为 LFU 算法，不然就会出现如下所示的错误。
+<div class="highlight"><pre><span></span><code><span class="c1"># redis-cli -p 6379 --hotkeys</span>
+
+<span class="c1"># Scanning the entire keyspace to find hot keys as well as</span>
+<span class="c1"># average sizes per key type.  You can use -i 0.1 to sleep 0.1 sec</span>
+<span class="c1"># per 100 SCAN commands (not usually needed).</span>
+
+Error:<span class="w"> </span>ERR<span class="w"> </span>An<span class="w"> </span>LFU<span class="w"> </span>maxmemory<span class="w"> </span>policy<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>selected,<span class="w"> </span>access<span class="w"> </span>frequency<span class="w"> </span>not<span class="w"> </span>tracked.<span class="w"> </span>Please<span class="w"> </span>note<span class="w"> </span>that<span class="w"> </span>when<span class="w"> </span>switching<span class="w"> </span>between<span class="w"> </span>policies<span class="w"> </span>at<span class="w"> </span>runtime<span class="w"> </span>LRU<span class="w"> </span>and<span class="w"> </span>LFU<span class="w"> </span>data<span class="w"> </span>will<span class="w"> </span>take<span class="w"> </span>some<span class="w"> </span><span class="nb">time</span><span class="w"> </span>to<span class="w"> </span>adjust.
+</code></pre></div></p>
+<p>2、借助开源项目：京东零售的 <a href="https://gitee.com/jd-platform-opensource/hotkey">hotkey</a> 这个项目不光支持 hotkey 的发现，还支持 hotkey 的处理。</p>
+<p>3、<strong>客户端监控</strong>：在代码层（如 Jedis、Lettuce）进行埋点统计，将每秒访问前 10 的 Key 定期上报。</p>
+<h5 id="hotkey_3">如何解决 hotkey</h5>
+<p>1、利用二级缓存（本地缓存）</p>
+<pre><code>这是最有效的方案。在业务应用服务器（JVM 内存）中，使用 Caffeine 或 Guava Cache 缓存一份热点数据。需要注意 Redis 和二级缓存的数据一致性
+</code></pre>
+<p>2、读写分离 / 全量副本</p>
+<pre><code>如果热 Key 主要是读操作，可以增加 Slave（从节点）来负担高并发的读操作
+</code></pre>
+<p>3、Key 分散（加随机后缀）</p>
+<pre><code>将一个热 Key 拆分为多个物理 Key 存储。每次访问热点key 的时候都是随机挑一个去访问的。
+</code></pre>
+<h4 id="_10">慢查询命令</h4>
+<p>Redis 慢查询统计的是命令执行这一步骤的耗时，慢查询命令也就是那些命令执行时间较长的命令。</p>
+<h5 id="_11">为什么会有慢查询命令？</h5>
+<h5 id="_12">如何找到慢查询命令？</h5>
+<p>Redis 提供了内置的 <strong>Slow Log（慢查询日志）</strong> 功能，它就像是一个“黑匣子”，专门记录那些运行超过预设阈值的命令。</p>
+<p>在 <code>redis.conf</code> 文件中，我们可以使用 <code>slowlog-log-slower-than</code> 参数设置耗时命令的阈值，并使用 <code>slowlog-max-len</code> 参数设置耗时命令的最大记录条数。</p>
+<div class="highlight"><pre><span></span><code># The following time is expressed in microseconds, so 1000000 is equivalent
+# to one second. Note that a negative number disables the slow log, while
+# a value of zero forces the logging of every command.
+slowlog-log-slower-than 10000
+
+# There is no limit to this length. Just be aware that it will consume memory.
+# You can reclaim memory used by the slow log with SLOWLOG RESET.
+slowlog-max-len 128
+</code></pre></div>
+<p>或者通过 config set 直接设置
+<div class="highlight"><pre><span></span><code># 命令执行耗时超过 10000 微妙（即10毫秒）就会被记录
+CONFIG SET slowlog-log-slower-than 10000
+# 只保留最近 128 条耗时命令
+CONFIG SET slowlog-max-len 128
+</code></pre></div></p>
+<p>获取慢查询日志的内容很简单，直接使用 <code>SLOWLOG GET</code> 命令即可。<code>SLOWLOG GET</code> 命令默认返回最近 10 条的慢查询命令，你也自己可以指定返回的慢查询命令的数量 <code>SLOWLOG GET N</code>。
+<div class="highlight"><pre><span></span><code>127.0.0.1:6379&gt; SLOWLOG GET #慢日志查询
+ 1) 1) (integer) 5
+   2) (integer) 1684326682
+   3) (integer) 12000
+   4) 1) &quot;KEYS&quot;
+      2) &quot;*&quot;
+   5) &quot;172.17.0.1:61152&quot;
+   6) &quot;&quot;
+  // ...
+</code></pre></div></p>
+<h4 id="redis_28">哪些情况可能导致 Redis 阻塞？</h4>
+<ul>
+<li><code>O(n)</code> 复杂度命令执行（如 <code>KEYS *</code>、<code>HGETALL</code>、<code>LRANGE</code>、<code>SMEMBERS</code> 等），随着数据量增大导致执行时间过长。</li>
+<li>执行 <code>SAVE</code> 命令生成 RDB 快照时同步阻塞主线程，而 <code>BGSAVE</code> 通过 <code>fork</code> 子进程避免阻塞。</li>
+<li>AOF 记录日志在主线程中进行，可能因命令执行后写日志而阻塞后续命令。</li>
+<li>AOF 刷盘（fsync）时后台线程同步到磁盘，磁盘压力大导致 <code>fsync</code> 阻塞，进而阻塞主线程 <code>write</code> 操作，尤其在 <code>appendfsync always</code> 或 <code>everysec</code> 配置下明显。</li>
+<li>AOF 重写过程中将重写缓冲区内容追加到新 AOF 文件时产生阻塞。</li>
+<li>操作大 key（string &gt; 1MB 或复合类型元素 &gt; 5000）导致客户端超时、网络阻塞和工作线程阻塞。</li>
+<li>使用 <code>flushdb</code> 或 <code>flushall</code> 清空数据库时涉及大量键值对删除和内存释放，造成主线程阻塞。</li>
+<li>集群扩容缩容时数据迁移为同步操作，大 key 迁移导致两端节点长时间阻塞，可能触发故障转移</li>
+<li>内存不足触发 Swap，操作系统将 Redis 内存换出到硬盘，读写性能急剧下降。</li>
+<li>其他进程过度占用 CPU 导致 Redis 吞吐量下降。</li>
+<li>网络问题如连接拒绝、延迟高、网卡软中断等导致 Redis 阻塞。</li>
+</ul>
+<h2 id="redis_29">Redis 生产问题</h2>
+<h4 id="1">1. 什么是缓存穿透⭐️</h4>
+<pre><code>是指查询一个不存在的数据，由于缓存无法命中，将去查询数据库，但是数据库也无此记录，并且出于容错考虑，我们没有将这次查询的null写入缓存，这将导致这个不存在的数据每次请求都要到存储层去查询，失去了缓存的意义。在流量大时，可能DB就挂掉了，要是有人利用不存在的key频繁攻击我们的应用，这就是漏洞。
+</code></pre>
+<ul>
+<li>解决1 ：空结果也进行缓存，但它的过期时间会很短，最长不超过五分钟，但是不能防止随机穿透。</li>
+<li>解决2 ：使用布隆过滤器或者Redis的Bitmap来解决随机穿透问题</li>
+</ul>
+<h4 id="2">2. 什么是缓存击穿⭐️</h4>
+<pre><code>是指对于一些设置了过期时间的key，如果这些key可能会在某些时间点被超高并发地访问，是一种非常“热点”的数据。这个时候，需要考虑一个问题：如果这个key在大量请求同时进 来之前正好失效，那么所有对这个key的数据查询都落到db，我们称为缓存击穿。
+</code></pre>
+<p>解决方式：分布式锁</p>
+<h4 id="3">3. 什么是缓存雪崩⭐️</h4>
+<pre><code>是指在我们设置缓存时采用了相同的过期时间，导致缓存在某一时刻同时失效，请求全部转发到DB，DB瞬时压力过重雪崩。
+</code></pre>
+<ul>
+<li>解决1：原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件。</li>
+<li>解决2：如果单节点宕机，可以采用集群部署方式防止雪崩</li>
+</ul>
+<h4 id="4">4. 分布式锁的实现方式⭐️</h4>
+<ol>
+<li>基于数据库实现分布式锁</li>
+<li>基于缓存</li>
+<li>基于 zookeeper</li>
+</ol>
+<h4 id="5">5. 缓存预热如何实现？</h4>
+<p><strong>缓存预热（Cache Pre-warming）</strong> 是指在系统上线或高流量到来之前，提前将可能被
+频繁访问的热点数据加载到 Redis 缓存中。</p>
+<ul>
+<li>使用定时任务，比如 xxl-job，来定时触发缓存预热的逻辑，将数据库中的热点数据查询出来并存入缓存中。</li>
+<li>使用消息队列，比如 Kafka，来异步地进行缓存预热，将数据库中的热点数据的主键或者 ID 发送到消息队列中，然后由缓存服务消费消息队列中的数据，根据主键或者 ID 查询数据库并更新缓存。</li>
+</ul>
+<h4 id="6">6. 如何保证缓存和数据库的数据一致性？⭐️</h4>
+<ol>
+<li>先更新数据库，再更新缓存 (不推荐)</li>
+<li>先删除缓存，再更新数据库 (不推荐)</li>
+<li>延迟双删</li>
+<li>监听 bin log，canal，每次监听到，就手动删除缓存</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 LiuTianBa7 
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
