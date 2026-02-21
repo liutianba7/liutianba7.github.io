@@ -17,6 +17,7 @@ nav:
       - spring[boot|cloud]: ./interview/points/springboot+Cloud.md
       - mysql: ./interview/points/mysql.md
       - redis: ./interview/points/redis.md
+      - elasticsearch: ./interview/points/es.md
   - Journal:
       - 202602: ./journal/2026-02.md
   - Tools:
