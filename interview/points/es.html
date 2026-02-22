@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://liutianba7.github.io/interview/points/springboot%2BCloud.html">
+        <link rel="canonical" href="https://liutianba7.github.io/interview/points/es.html">
       
       
-        <link rel="prev" href="ssm.html">
+        <link rel="prev" href="redis.html">
       
       
-        <link rel="next" href="mysql.html">
+        <link rel="next" href="rmq.html">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>spring[boot|cloud] - LiuTianBa7 's Blog</title>
+        <title>elasticsearch - LiuTianBa7 's Blog</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#springboot-springcloud" class="md-skip">
+        <a href="#elasticsearch" class="md-skip">
           跳转至
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              spring[boot|cloud]
+              elasticsearch
             
           </span>
         </div>
@@ -658,37 +658,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    spring[boot|cloud]
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="springboot%2BCloud.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="springboot%2BCloud.html" class="md-nav__link">
         
   
   
@@ -704,224 +677,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#springboot" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        什么是SpringBoot，介绍一下！⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springboot_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SpringBoot 常用注解以及含义？
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springboot_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SpringBoot 的自动装配是什么呢？⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springboot_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SpringBoot 的自动配置原理⭐️⭐️⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#autoconfigurationimportselector" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        AutoConfigurationImportSelector
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#starter" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        如何自定义一个 Starter⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springboot_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SpringBoot 应用启动流程精简版
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spi" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SPI 机制⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spring-factories" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Spring Factories⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spring-factories_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        spring Factories 的流程
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springboot_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SpringBoot 的配置文件有哪些？⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springboot_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SpringBoot 如何实现多环境配置？⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springboot_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SpringBoot 的配置优先级⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springcloud" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        什么是SpringCloud
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        什么是微服务架构 ⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        微服务架构带来的问题
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spring-task" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Spring Task 是什么？
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#spring-cache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Spring Cache 是什么？
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -987,10 +742,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="es.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    elasticsearch
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="es.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1006,6 +788,347 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#es" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是 ES
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么要使用 ES⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ES 基础操作有哪些呢?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ES 基础操作有哪些呢?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esdsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ES的DSL是什么?举个例子?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#match-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        match 和 term 的区别?⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#match-prefix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        match 和 prefix 的区别⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter-must" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        filter 和 must 区别?⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        简单介绍介绍多条件查询 bool ⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es-doc-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是列式存储 (ES Doc Values)⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么 ES 做聚合统计比较快?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ES 怎么解决中文分词⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ES 有什么缺点呢？⭐️ ⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是倒排索引⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ES 是如何实现分布式存储的呢？⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ES 是如何实现分布式存储的呢？⭐️⭐️⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分片（Shard）：解决“存不下”的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        副本（Replica）：解决“怕丢失”的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ES 的写入流程⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ES 的写入流程⭐️⭐️⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        集群层：确定位置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分片层：底层存储（近实时的奥秘）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ES 的查询流程⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ES 的查询流程⭐️⭐️⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query 阶段：找出“哪些数据”符合条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fetch 阶段：拿出“真正的数据”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么搜索是两阶段，写入不是？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deep-paging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        深分页（Deep Paging）问题出在哪一阶段？⭐️⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        什么是深分页？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        那怎么解决深度分页问题呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search_after-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        “为什么 search_after 排序字段必须包含一个唯一字段（比如 ID）？”
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1525,10 +1648,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#springboot" class="md-nav__link">
+  <a href="#es" class="md-nav__link">
     <span class="md-ellipsis">
       
-        什么是SpringBoot，介绍一下！⭐️
+        什么是 ES
       
     </span>
   </a>
@@ -1536,10 +1659,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#springboot_1" class="md-nav__link">
+  <a href="#es_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SpringBoot 常用注解以及含义？
+        为什么要使用 ES⭐️
       
     </span>
   </a>
@@ -1547,10 +1670,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#springboot_2" class="md-nav__link">
+  <a href="#es_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SpringBoot 的自动装配是什么呢？⭐️
+        ES 基础操作有哪些呢?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ES 基础操作有哪些呢?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esdsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ES的DSL是什么?举个例子?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#match-term" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        match 和 term 的区别?⭐️
       
     </span>
   </a>
@@ -1558,10 +1709,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#springboot_3" class="md-nav__link">
+  <a href="#match-prefix" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SpringBoot 的自动配置原理⭐️⭐️⭐️
+        match 和 prefix 的区别⭐️
       
     </span>
   </a>
@@ -1569,10 +1720,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#autoconfigurationimportselector" class="md-nav__link">
+  <a href="#filter-must" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AutoConfigurationImportSelector
+        filter 和 must 区别?⭐️
       
     </span>
   </a>
@@ -1580,10 +1731,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#starter" class="md-nav__link">
+  <a href="#bool" class="md-nav__link">
     <span class="md-ellipsis">
       
-        如何自定义一个 Starter⭐️
+        简单介绍介绍多条件查询 bool ⭐️⭐️⭐️
       
     </span>
   </a>
@@ -1591,10 +1742,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#springboot_4" class="md-nav__link">
+  <a href="#es-doc-values" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SpringBoot 应用启动流程精简版
+        什么是列式存储 (ES Doc Values)⭐️
       
     </span>
   </a>
@@ -1602,10 +1753,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#spi" class="md-nav__link">
+  <a href="#es_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        SPI 机制⭐️
+        为什么 ES 做聚合统计比较快?
       
     </span>
   </a>
@@ -1613,10 +1764,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#spring-factories" class="md-nav__link">
+  <a href="#es_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Spring Factories⭐️
+        ES 怎么解决中文分词⭐️
       
     </span>
   </a>
@@ -1624,54 +1775,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#spring-factories_1" class="md-nav__link">
+  <a href="#es_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        spring Factories 的流程
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springboot_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SpringBoot 的配置文件有哪些？⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springboot_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SpringBoot 如何实现多环境配置？⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springboot_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        SpringBoot 的配置优先级⭐️
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#springcloud" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        什么是SpringCloud
+        ES 有什么缺点呢？⭐️ ⭐️
       
     </span>
   </a>
@@ -1682,7 +1789,7 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        什么是微服务架构 ⭐️
+        什么是倒排索引⭐️
       
     </span>
   </a>
@@ -1690,10 +1797,127 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#es_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ES 是如何实现分布式存储的呢？⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ES 是如何实现分布式存储的呢？⭐️⭐️⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分片（Shard）：解决“存不下”的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        副本（Replica）：解决“怕丢失”的问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ES 的写入流程⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ES 的写入流程⭐️⭐️⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        微服务架构带来的问题
+        集群层：确定位置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分片层：底层存储（近实时的奥秘）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#es_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ES 的查询流程⭐️⭐️⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ES 的查询流程⭐️⭐️⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query 阶段：找出“哪些数据”符合条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fetch 阶段：拿出“真正的数据”
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        为什么搜索是两阶段，写入不是？
       
     </span>
   </a>
@@ -1701,10 +1925,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#spring-task" class="md-nav__link">
+  <a href="#deep-paging" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Spring Task 是什么？
+        深分页（Deep Paging）问题出在哪一阶段？⭐️⭐️
       
     </span>
   </a>
@@ -1712,10 +1936,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#spring-cache" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Spring Cache 是什么？
+        什么是深分页？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        那怎么解决深度分页问题呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search_after-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        “为什么 search_after 排序字段必须包含一个唯一字段（比如 ID）？”
       
     </span>
   </a>
@@ -1742,206 +1988,292 @@
   
 
 
-<h1 id="springboot-springcloud">SpringBoot | SpringCloud</h1>
-<h4 id="springboot">什么是SpringBoot，介绍一下！⭐️</h4>
-<p>Spring Boot 是 Spring 家族中的一个子项目，它极大地简化了 Spring 应用的开发和部署过程。</p>
-<p>以前我们用 Spring 开发项目的时候，需要配置一大堆 XML 文件，包括 Bean 的定义、数据源配置、事务配置等等，非常繁琐。而且还要手动管理各种 jar 包的依赖关系，很容易出现版本冲突的问题。部署的时候还要单独搭建 Tomcat 服务器，整个过程很复杂。Spring Boot 就是为了解决这些痛点而生的。</p>
-<p>“约定大于配置”是 Spring Boot 最核心的理念。它预设了很多默认配置，比如默认使用内嵌的 Tomcat 服务器，默认的日志框架是 Logback，默认的http消息转换器底层现实是 jackson...。</p>
-<p>其次，自动配置也是 SpringBoot 的核心功能，SpringBoot 会根据所有注册的自动配置类去注册一系列 Bean。</p>
-<p>Spring Boot 还提供了很多开箱即用的功能，比如 Actuator 监控、DevTools 开发工具、Spring Boot Starter 等等。Actuator 可以让我们轻松监控应用的健康状态、性能指标等；DevTools 可以加快开发效率，比如自动重启、热部署等；Spring Boot Starter 则是一些预配置好的依赖集合，让我们可以快速引入某些常用的功能。</p>
-<p>devTools：简单来说，<strong>Spring Boot DevTools</strong> 是一组专门为开发者提供的本地开发辅助工具。它的核心目标只有两个字：<strong>效率</strong>。</p>
-<h4 id="springboot_1">SpringBoot 常用注解以及含义？</h4>
-<p><strong><code>@SpringBootApplication</code></strong>：它实际上是一个复合注解，包含了：<code>@SpringBootConfiguration</code>、<code>@EnableAutoConfiguration</code>、<code>@ComponentScan</code>。其中，它标志着一个 Spring Boot 应用的入口。</p>
-<p><code>@SpringBootTest</code>：用于测试 Spring Boot 应用的注解，它会加载整个 Spring 上下文，适合集成测试。</p>
-<p><strong><code>@Conditional</code> 系列</strong>：该系列注解能够实现只有在满足某些条件下，才去将当前类注册到 ioc 容器中。</p>
-<p><code>@ConfigurationProperties</code>：将配置文件（yml/properties）中的属性批量绑定到 Java Bean 的属性上。</p>
-<h4 id="springboot_2">SpringBoot 的自动装配是什么呢？⭐️</h4>
-<p>在我看来，“SpringBoot 的自动装配（Auto-Configuration）就是一种‘按需自动注 Bean’的机制。</p>
-<p>自动配置允许 Spring 根据我们项目中引入的 <strong>依赖（Starter）</strong> 以及 <strong>配置文件</strong> 的内容，自动将原本需要手动配置的 Bean（比如数据源、事务管理器、第三方库的客户端等）注册到 IoC 容器中。</p>
-<p>当我们在项目中引入了 <code>spring-boot-starter-jdbc</code> 时，SpringBoot 就会触发与其关联的自动配置类。它会自动帮我们注册好 <code>DataSource</code>、<code>JdbcTemplate</code> 以及事务管理器等核心组件，而不需要我们再像以前那样手写繁琐的 XML 或者 Java 配置类。</p>
-<h4 id="springboot_3">SpringBoot 的自动配置原理⭐️⭐️⭐️</h4>
-<p>自动装配的开关藏在启动类的 <code>@SpringBootApplication</code> 注解中。它其实是一个复合注解，其核心是 <strong><code>@EnableAutoConfiguration</code></strong>。这个注解才是开启自动装配的“总闸”。</p>
+<h1 id="elasticsearch">Elasticsearch</h1>
+<h3 id="es">什么是 ES</h3>
+<p>Elasticsearch是一个基于Lucene的搜索引擎。它是一个天然分布式，多租户能力的全文搜索引擎。Elasticsearch是用Java开发的，根据Apache许 可条款作为开源发布。</p>
+<h3 id="es_1">为什么要使用 ES⭐️</h3>
+<p>“之所以引入 ES，主要是为了解决<strong>关系型数据库在海量数据下的搜索性能瓶颈</strong></p>
+<p>“MySQL 在做模糊查询或者查询后得到的结果数据量太大时（如 <code>LIKE %keyword%</code>）会全表扫描，索引直接失效。而 ES 使用<strong>倒排索引</strong>，无论数据量是千万级还是亿级，都能在毫秒级锁定关键词，并且 ES 能够根据词频（TF/IDF 或 BM25 算法）给搜索结果打分，让最匹配的结果排在前面，而数据库只能简单地判断“有没有”。</p>
+<p>其次，“MySQL 的分库分表非常复杂。而 ES 天生分布式，支持<strong>分片和副本</strong>机制。增加机器就能自动负载均衡，且即便某个节点挂了，副本分片也能自动升为主分片，高靠性很高。”</p>
+<p>“在亿级数据下做 <code>GROUP BY</code> 或 <code>SUM</code> 统计，MySQL 基本就卡死了。ES 采用<strong>列式存储（Doc Values）</strong>，非常适合做多维度的实时报表分析。”</p>
+<h3 id="es_2">ES 基础操作有哪些呢?</h3>
+<p>ES 是 RESTful 风格的，它的操作本质就是对 <strong>Index（索引）</strong> 和 <strong>Document（文档）</strong> 进行 HTTP 动作。</p>
+<table>
+<thead>
+<tr>
+<th><strong>动作</strong></th>
+<th><strong>HTTP 方法</strong></th>
+<th><strong>ES 对象</strong></th>
+<th><strong>对应 SQL</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>创建/全量替换</strong></td>
+<td><code>PUT</code></td>
+<td><code>/index/_doc/id</code></td>
+<td><code>INSERT / UPDATE</code></td>
+</tr>
+<tr>
+<td><strong>创建（自动 ID）</strong></td>
+<td><code>POST</code></td>
+<td><code>/index/_doc</code></td>
+<td><code>INSERT</code></td>
+</tr>
+<tr>
+<td><strong>查询</strong></td>
+<td><code>GET</code></td>
+<td><code>/index/_doc/id</code></td>
+<td><code>SELECT</code></td>
+</tr>
+<tr>
+<td><strong>局部更新</strong></td>
+<td><code>POST</code></td>
+<td><code>/index/_update/id</code></td>
+<td><code>UPDATE ... SET</code></td>
+</tr>
+<tr>
+<td><strong>删除</strong></td>
+<td><code>DELETE</code></td>
+<td><code>/index/_doc/id</code></td>
+<td><code>DELETE</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>PUT</code> 与 <code>POST</code> 的区别</strong>：<code>PUT</code> 通常用于指定 ID 的创建，且具有<strong>幂等性</strong>（多次执行结果一样）；<code>POST</code> 通常用于不指定 ID 的创建或局部更新。</p>
 <ul>
-<li><strong><code>AutoConfigurationImportSelector</code></strong>：这是 Spring Boot 自动装配的“搬运工”。它实现了 <code>ImportSelector</code> 接口，负责去寻找需要加载的类。    </li>
-<li>
-<p><strong><code>org.springframework.boot.autoconfigure.AutoConfiguration.imports</code></strong>：这是自动装配的“名单表”（Spring Boot 2.7+ 之后取代了老的 <code>spring.factories</code>）。</p>
-</li>
-<li>
-<p>SpringBoot 通过 @EnableAutoConfuguration 开启了自动配置的功能</p>
-</li>
-<li><code>@EnableAutoConfuguration</code> 本质上就是一个简单的配置类，它的作用就是通过 <code>@Import</code> 导入了一个 <code>ImportSelector</code> 接口的实现类：<code>AutoConfigurationImportSelector</code> ，从而来完自动配置的。</li>
-<li>而 <code>AutoConfigurationImportSelector</code> 才是自动配置的核心，它通过调用 selectImports 方法，去获取当前符合条件的所有自动配置类的全限定名，然后通过反射实例化出来交给 IOC 去管理。</li>
+<li>可以更新整个资源。</li>
+<li>客户端需要发送完整的资源内容。</li>
+<li>如果服务器上不存在该资源，则会创建一个新的资源。</li>
+<li>PUT 请求具有幂等性，即执行多次 PUT 请求的结果应该相同。</li>
 </ul>
-<h4 id="autoconfigurationimportselector">AutoConfigurationImportSelector</h4>
+<h4 id="esdsl">ES的DSL是什么?举个例子?</h4>
+<p><strong>DSL (Domain Specific Language)</strong> 是 ES 特有的“领域特定语言”。</p>
+<p>简单说：<strong>它就是一套基于 JSON 格式的查询语法。</strong> 因为 ES 功能太强（全文检索、聚合计算、地理位置查询），简单的 URL 参数根本塞不下这么多逻辑，所以得用 JSON 这种结构化的方式告诉 ES 你想要什么。</p>
 <p align='center'>
-    <img src="../../assets/imgs/interview/springboot/springboot1.png" alt="springboot1" style="zoom:100%;" />
+    <img src="../../assets/imgs/interview/es/es01.png" alt="es01" style="zoom:80%;" />
 </p>
 
-<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">AutoConfigurationImportSelector</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">DeferredImportSelector</span><span class="p">,</span><span class="w"> </span><span class="n">BeanClassLoaderAware</span><span class="p">,</span><span class="w"> </span><span class="n">ResourceLoaderAware</span><span class="p">,</span><span class="w"> </span><span class="n">BeanFactoryAware</span><span class="p">,</span><span class="w"> </span><span class="n">EnvironmentAware</span><span class="p">,</span><span class="w"> </span><span class="n">Ordered</span><span class="w"> </span><span class="p">{</span>
-
-<span class="p">}</span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">DeferredImportSelector</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ImportSelector</span><span class="w"> </span><span class="p">{</span>
-
-<span class="p">}</span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">ImportSelector</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="nf">selectImports</span><span class="p">(</span><span class="n">AnnotationMetadata</span><span class="w"> </span><span class="n">var1</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span><code>GET /orders/_search
+{
+  &quot;query&quot;: {               // 1. 查询根节点
+    &quot;bool&quot;: {              // 2. 布尔组合查询
+      &quot;must&quot;: [            // 3. 必须满足（计算相关性得分）
+        { &quot;match&quot;: { &quot;product_name&quot;: &quot;手机&quot; } }
+      ],
+      &quot;filter&quot;: [          // 4. 过滤器（不计算得分，有缓存，性能高）
+        { &quot;range&quot;: { &quot;price&quot;: { &quot;gt&quot;: 5000 } } }
+      ]
+    }
+  },
+  &quot;sort&quot;: [                // 5. 排序
+    { &quot;price&quot;: { &quot;order&quot;: &quot;desc&quot; } }
+  ],
+  &quot;from&quot;: 0,               // 6. 分页偏移量
+  &quot;size&quot;: 10               // 7. 每页数量
+}
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">NO_IMPORTS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">String</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
-
-<span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="nf">selectImports</span><span class="p">(</span><span class="n">AnnotationMetadata</span><span class="w"> </span><span class="n">annotationMetadata</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// &lt;1&gt;.判断自动装配开关是否打开</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="na">isEnabled</span><span class="p">(</span><span class="n">annotationMetadata</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">NO_IMPORTS</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="c1">//&lt;2&gt;.获取所有需要装配的bean</span>
-<span class="w">            </span><span class="n">AutoConfigurationMetadata</span><span class="w"> </span><span class="n">autoConfigurationMetadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AutoConfigurationMetadataLoader</span><span class="p">.</span><span class="na">loadMetadata</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">beanClassLoader</span><span class="p">);</span>
-<span class="w">            </span><span class="n">AutoConfigurationImportSelector</span><span class="p">.</span><span class="na">AutoConfigurationEntry</span><span class="w"> </span><span class="n">autoConfigurationEntry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">getAutoConfigurationEntry</span><span class="p">(</span><span class="n">autoConfigurationMetadata</span><span class="p">,</span><span class="w"> </span><span class="n">annotationMetadata</span><span class="p">);</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">StringUtils</span><span class="p">.</span><span class="na">toStringArray</span><span class="p">(</span><span class="n">autoConfigurationEntry</span><span class="p">.</span><span class="na">getConfigurations</span><span class="p">());</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-</code></pre></div>
-<h4 id="starter">如何自定义一个 Starter⭐️</h4>
-<p>创建一个 MAVEN 项目：新建一个项目，通常命名规范为 <code>xxx-spring-boot-starter</code>。引入 Spring Boot 自动配置的核心依赖：</p>
-<div class="highlight"><pre><span></span><code>&lt;dependency&gt;  
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;  
-    &lt;artifactId&gt;spring-boot-autoconfigure&lt;/artifactId&gt;  
-&lt;/dependency&gt;
-</code></pre></div>
-<p>编写配置类</p>
-<div class="highlight"><pre><span></span><code><span class="cm">/*  </span>
-<span class="cm"> * @author liutianba7  </span>
-<span class="cm"> * @create 2026/1/19 10:07  </span>
-<span class="cm">*/</span>
-
-<span class="nd">@Configuration</span><span class="w">  </span>
-<span class="nd">@EnableConfigurationProperties</span><span class="p">(</span><span class="n">HelloProperties</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w">  </span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">HelloConfiguration</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
-
-<span class="w">    </span><span class="nd">@Bean</span><span class="w">  </span>
-<span class="w">    </span><span class="nd">@ConditionalOnMissingBean</span><span class="p">(</span><span class="n">HelloService</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w">  </span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">HelloService</span><span class="w"> </span><span class="nf">helloService</span><span class="p">(</span><span class="n">HelloProperties</span><span class="w"> </span><span class="n">helloProperties</span><span class="p">){</span><span class="w">  </span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HelloService</span><span class="p">(</span><span class="n">helloProperties</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span><span class="w">  </span>
-<span class="w">    </span><span class="p">}</span><span class="w">  </span>
-<span class="p">}</span>
-</code></pre></div>
-<p>去将配置类写到：META-INF/spring 下面的：org.springframework.boot.autoconfigure.AutoConfiguration.imports</p>
-<p>之后，其他 maven 项目就可以导入改场景启动器，然后基于自动配置机制自动将 imports 文件下写的配置类注册到 ioc 容器中</p>
-<h4 id="springboot_4">SpringBoot 应用启动流程精简版</h4>
-<ol>
-<li>创建 IOC 容器</li>
-<li>加载源配置类（主类）</li>
-<li>加载并处理所有被 @Component 及其派生注解标注的类</li>
-<li>实例化所有的单例 Bean 对象 </li>
-<li>如果是 web 应该，还有启动一个 web 服务器</li>
-</ol>
-<p align='center'>
-    <img src="../../assets/imgs/interview/springboot/springboot2.png" alt="springboot2" style="zoom:80%;" />
-</p>
-
-<h4 id="spi">SPI 机制⭐️</h4>
-<p align='center'>
-    <img src="../../assets/imgs/interview/springboot/springboot3.png" alt="springboot3" style="zoom:80%;" />
-</p>
-
-<p><strong>SPI（Service Provider Interface）</strong> 本质上是一种<strong>服务发现机制</strong>。它的核心逻辑是：<strong>“只定义接口，不硬编码实现类，具体实现类由外部配置文件指定。”</strong></p>
-<h4 id="spring-factories">Spring Factories⭐️</h4>
-<p><strong>“Spring 版的 SPI 机制”</strong>。Spring 借鉴了 Java 原生 SPI 的思想，设计了 <code>SpringFactoriesLoader</code>。它允许第三方组件（比如 Redis、MyBatis 的 Starter）在不修改 Spring 源码的情况下，把自己注册进 Spring 容器。</p>
-<p>在 Spring Boot 2.7 以前，这是最关键的文件。它位于 Jar 包的 <strong><code>META-INF/</code> 目录下</strong>，文件名叫做 <strong><code>spring.factories</code></strong>。</p>
-<p>从 Spring Boot 2.7 开始，官方<strong>不再推荐</strong>将自动配置类写在 <code>spring.factories</code> 里，而是引入了新的文件：<code>META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports</code>。</p>
-<h4 id="spring-factories_1">spring Factories 的流程</h4>
-<p><strong>扫描</strong>：当 Spring 容器启动时，会调用 <code>SpringFactoriesLoader.loadFactoryNames()</code> 方法。</p>
-<p><strong>定位</strong>：它会遍历类路径下所有 Jar 包，寻找 <code>META-INF/spring.factories</code> 文件。</p>
-<p><strong>读取</strong>：将文件中定义的实现类全路径读取出来。</p>
-<p><strong>实例化</strong>：通过反射机制，将这些类实例化并交给 Spring 管理。</p>
-<h4 id="springboot_5">SpringBoot 的配置文件有哪些？⭐️</h4>
-<p>配置文件有 <code>properties</code>， <code>yaml</code> / <code>yml</code>。如果同一个目录下同时存在 <code>application.properties</code> 和 <code>application.yml</code>，<strong>properties 的优先级更高</strong>，它会覆盖 yml 中的同名配置。</p>
-<p>在 Spring Boot 中，<code>application</code> 是应用级别的主配置，负责绝大多数业务设置。由 <code>Application Context</code> 加载，是 Spring Boot 应用的主配置入口。</p>
-<p>而 <code>bootstrap</code> 则是一个特殊的引导配置，主要出现在 Spring Cloud 微服务架构中。它是由 <code>Parent Context</code>（父上下文）加载的，早于 <code>application</code> 配置。核心作用是让应用在启动初期去连接配置中心。</p>
-<p><strong>不过需要注意的是</strong>，Spring Boot 自 2.4 版本后重构了配置加载机制，现在官方更倾向于在 <code>application</code> 中使用 <code>spring.config.import</code> 来替代传统的 <code>bootstrap</code> 模式。如果要在新版继续使用 <code>bootstrap</code>，需要额外引入 <code>spring-cloud-starter-bootstrap</code> 依赖。”</p>
-<h4 id="springboot_6">SpringBoot 如何实现多环境配置？⭐️</h4>
-<p>Spring Boot 主要是通过 <strong>Profile（环境切面）</strong> 来实现的。</p>
-<p>在 <code>src/main/resources</code> 下创建多个配置文件，命名规则为 <code>application-{profile}.yml</code>：
-- <strong><code>application-dev.yml</code></strong>：开发环境（连接本地数据库，开启 Debug 日志）。
-- <strong><code>application-test.yml</code></strong>：测试环境（连接 H2 数据库或测试服务器）。
-- <strong><code>application-prod.yml</code></strong>：生产环境（连接生产库，开启安全校验）。
-- <strong><code>application.yml</code></strong>：主配置文件（存放通用的、不随环境变化的配置）。</p>
-<p>之后，我们只需要激活指定的环境即可！</p>
-<p>1）在 <code>application.yml</code> 中设置 <code>spring.profiles.active=dev</code>。
-2）启动 Jar 包时手动指定：<code>java -jar app.jar --spring.profiles.active=prod</code>。
-3）JVM参数：<code>java -Dspring.profiles.active=prod -jar app.jar</code>。
-4）设置系统变量 <code>SPRING_PROFILES_ACTIVE=prod</code>。</p>
-<h4 id="springboot_7">SpringBoot 的配置优先级⭐️</h4>
-<p><strong>规律一：特定环境 &gt; 通用环境</strong> <code>application-dev.yml</code> 的优先级永远高于 <code>application.yml</code>。
-<strong>规律二：外部文件 &gt; 内部文件</strong> 运维在 Jar 包外临时放的配置，会覆盖开发在 <code>src/main/resources</code> 里写的配置。
-<strong>规律三：配置互补</strong> 优先级高低并不代表“只加载一个”。Spring Boot 会加载所有位置的配置并进行<strong>合并</strong>。只有当 Key 冲突时，高优先级的才会覆盖低优先级的。</p>
-<h4 id="springcloud">什么是SpringCloud</h4>
-<p>“Spring Cloud 是基于 Spring Boot 实现的一套<strong>微服务架构的一站式解决方案</strong>。它并不是重新发明轮子，而是通过封装一系列成熟的开源中间件，实现了分布式系统开发中的<strong>服务注册于发现、配置管理、远程调用与负载均衡、熔断、降级与限流</strong> 等一系列功能</p>
+<h3 id="match-term">match 和 term 的区别?⭐️</h3>
 <ul>
-<li><strong>服务注册与发现</strong>：早期的 <strong>Eureka</strong>，现在的 <strong>Nacos</strong> 或 <strong>Consul</strong>。解决“怎么找到服务”的问题。</li>
-<li><strong>服务网关（Gateway）</strong>：<strong>Spring Cloud Gateway</strong> 或 <strong>Zuul</strong>。解决“统一入口、权限校验”的问题。</li>
-<li><strong>配置中心</strong>：<strong>Nacos Config</strong>、<strong>Apollo</strong> 或 <strong>Spring Cloud Config</strong>。解决“配置动态刷新、统一管理”的问题。    </li>
-<li><strong>远程调用与负载均衡</strong>：<strong>OpenFeign</strong> 和 <strong>LoadBalancer</strong>。解决“像调本地方法一样调远程服务”的问题。</li>
-<li><strong>熔断、降级与限流</strong>：<strong>Sentinel</strong>（推荐）或 <strong>Hystrix</strong>。解决“防止系统雪崩、高可用保障”的问题。</li>
+<li><strong><code>match</code></strong>：模糊匹配。它会先对搜索词进行<strong>分词</strong>（比如把“小米手机”拆成“小米”和“手机”），然后再去匹配。</li>
+<li><strong><code>term</code></strong>：精确匹配。它不会分词，直接去倒排索引里找完全一样的词，通常用于查 ID、状态、分类等。</li>
+<li><code>terms</code>：也是精确匹配, 但它就像是 mysql 中的 in, 会精确匹配多个词!</li>
 </ul>
-<h4 id="_1">什么是微服务架构 ⭐️</h4>
-<p>微服务就是把一个大的、复杂的单体应用，按照业务拆成一个个功能独立的小服务，每个服务维护自己的数据和逻辑，服务之间通过轻量级的通信机制（比如 gRPC）来协作。</p>
-<p><strong>单体架构</strong>：像是一个“全能巨人”。所有功能（订单、用户、库存）都在一个代码库里，共享一个数据库。代码量巨大后，编译、启动慢；一个小 Bug 崩了，全站瘫痪。</p>
-<p><strong>微服务架构</strong>：每个服务有自己的数据库（Data Sovereignty），比如订单服务用 MySQL，推荐服务用 MongoDB。并且每个微服务可以选择不同的技术栈：有的服务用 Java 稳健，有的用 Python 处理算法。</p>
-<h4 id="_2">微服务架构带来的问题</h4>
-<p>分布式数据一致性：以前单体应用一个 <code>@Transactional</code> 搞定，现在订单和库存是两个服务，数据一致性怎么保？（引出 Seata、TCC 等方案）。</p>
-<p><strong>提升了运维复杂度</strong>：几十个服务，怎么部署？怎么监控？（引出 K8s、Docker、Prometheus）。</p>
-<p>网络开销：服务之间通过网络调用，会有延迟、超时和重试的问题。</p>
-<h4 id="spring-task">Spring Task 是什么？</h4>
-<p>Spring Task 是 Spring 自带的轻量级任务调度工具，它可以让你在指定的时间点或者按照特定的周期执行一段代码（比如每天凌晨 3 点备份数据库、每隔 10 分钟清理一次临时文件）。</p>
+<h3 id="match-prefix">match 和 prefix 的区别⭐️</h3>
+<p><code>match</code>：全文检索（最常用）<code>match</code> 是 ES 中处理文本的核心武器。它的关键动作是分词</p>
 <ul>
-<li><strong>开启功能</strong>：在配置类或启动类上加上 <code>@EnableScheduling</code>。</li>
-<li><strong>编写任务</strong>：在方法上加上 <code>@Scheduled</code> 注解。</li>
+<li><strong>工作逻辑</strong>：当你搜索“华为手机”时，ES 会先用分词器把它拆成“华为”和“手机”，然后在倒排索引中去匹配这两个词。    </li>
+<li><strong>相关性算分</strong>：它会计算文档的相关性得分（<code>_score</code>），比如包含两个词的文档比只包含一个词的得分高。</li>
+<li><strong>使用场景</strong>：搜索文章内容、商品名称等需要理解用户意图的场景。</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyTask</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 每隔 5 秒执行一次</span>
-<span class="w">    </span><span class="nd">@Scheduled</span><span class="p">(</span><span class="n">fixedRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5000</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">runTask</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;执行任务...&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 使用 Cron 表达式：每天凌晨 1 点执行</span>
-<span class="w">    </span><span class="nd">@Scheduled</span><span class="p">(</span><span class="n">cron</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;0 0 1 * * ?&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">cronTask</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
-<span class="p">}</span>
+<p><code>prefix</code> 比较死板，它不分词，主要看<strong>开头</strong>。</p>
+<ul>
+<li><strong>工作逻辑</strong>：它是直接去倒排索引中查找以指定字符<strong>开头</strong>的词条（Term）。比如你搜 <code>pre: "apple"</code>，它能匹配到 "apple"、"applegate"、"applesauce"。</li>
+<li><strong>性能开销</strong>：由于 ES 需要扫描大量以该字符开头的词条，如果前缀很短（比如只搜一个字母 <code>a</code>），性能会非常差。</li>
+<li><strong>使用场景</strong>：<strong>搜索框自动补全（Autocomplete）</strong>、搜索型号编码（如 <code>SN-2026...</code>）。</li>
+</ul>
+<h3 id="filter-must">filter 和 must 区别?⭐️</h3>
+<p><strong>must</strong> 是“全文检索”逻辑，不仅要匹配还要计算相关性得分来<strong>决定排名</strong>，性能消耗大；而 <strong>filter</strong> 是“硬性过滤”逻辑，只判断是/否而不计算分数，且自带<strong>缓存</strong>机制，性能极快。</p>
+<p>在实际业务中，我们通常把<strong>用户输入的关键词</strong>放进 <code>must</code>，把<strong>业务逻辑的硬性限制</strong>放进 <code>filter</code>。</p>
+<div class="highlight"><pre><span></span><code>{
+  &quot;query&quot;: {
+    &quot;bool&quot;: {
+      &quot;must&quot;: [
+        { &quot;match&quot;: { &quot;title&quot;: &quot;手机&quot; } } // 关键词匹配，决定了哪个手机最“手机”，排在前面
+      ],
+      &quot;filter&quot;: [
+        { &quot;range&quot;: { &quot;price&quot;: { &quot;gte&quot;: 2000, &quot;lte&quot;: 5000 } } }, // 价格区间，硬指标，不影响排序
+        { &quot;term&quot;: { &quot;stock&quot;: &quot;in_stock&quot; } } // 是否有货，硬指标，不影响排序
+      ]
+    }
+  }
+}
 </code></pre></div>
+<h3 id="bool">简单介绍介绍多条件查询 bool ⭐️⭐️⭐️</h3>
+<p>在 Elasticsearch 的 DSL 查询中，<code>bool</code> 查询是构建复杂逻辑的核心节点。它类似于 SQL 中的 <code>AND</code>、<code>OR</code> 和 <code>NOT</code> 的组合。</p>
+<p><code>bool</code> 查询就是把各种<strong>单条件查询</strong>（如 <code>match</code>, <code>term</code>, <code>range</code>）按照逻辑关系拼装起来的“框架”。 它定义了搜索的精准度（<code>must</code>）和性能优化的空间（<code>filter</code>）。</p>
 <ul>
 <li>
-<p><strong>单线程陷阱</strong>：Spring Task 默认是<strong>单线程</strong>执行的。如果多个任务同时到点，它们会排队。在高并发场景下，需要配置 <code>TaskScheduler</code> 线程池。</p>
+<p><strong><code>must</code> (相当于 AND)</strong></p>
+<ul>
+<li><strong>要求</strong>：文档必须匹配其中的所有条件。</li>
+<li><strong>算分</strong>：会计算相关性得分（<code>_score</code>），匹配程度越高，分数越高，排名越靠前。</li>
+</ul>
 </li>
 <li>
-<p><strong>不支持分布式</strong>：Spring Task 的任务是跑在 JVM 进程里的。如果你的服务部署了 3 台机器，任务会在 3 台机器上<strong>重复执行</strong>。</p>
+<p><strong><code>should</code> (相当于 OR)</strong></p>
+<ul>
+<li><strong>要求</strong>：文档可以匹配其中的条件。如果 <code>bool</code> 查询中没有 <code>must</code> 或 <code>filter</code>，则至少要匹配一个 <code>should</code> 条件。</li>
+<li><strong>算分</strong>：会计算得分，匹配的条件越多，得分越高。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>filter</code> (必须匹配，但不算分)</strong></p>
+<ul>
+<li><strong>要求</strong>：文档必须匹配。</li>
+<li><strong>算分</strong>：<strong>不计算得分</strong>。</li>
+<li><strong>性能</strong>：ES 会对 <code>filter</code> 的结果进行<strong>缓存</strong>，因此执行速度极快。通常用于价格范围、日期范围、状态码等“是/否”类的硬性过滤。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>must_not</code> (相当于 NOT)</strong></p>
+<ul>
+<li><strong>要求</strong>：文档必须不满足其中的所有条件。</li>
+<li><strong>算分</strong>：不计算得分。</li>
+</ul>
 </li>
 </ul>
-<h4 id="spring-cache">Spring Cache 是什么？</h4>
-<p>好吧, 通常也不用它, 因为它自动生成的 key 不行, 我们还是自己写缓存机制, 也就是 AOP + @Redis(注解)</p>
-<p><strong>1. 定义</strong>：
-Spring Cache 是 Spring 提供的缓存抽象，支持多种缓存实现（Redis, Caffeine, Ehcache）。</p>
-<p><strong>2. 核心原理</strong>：
-基于 <strong>AOP</strong> 动态代理。通过拦截方法调用，实现缓存逻辑与业务逻辑的分离。</p>
-<p><strong>3. 常用注解</strong>：</p>
-<ul>
-<li><code>@Cacheable</code>：查询时使用，实现“能用缓存就用缓存”。</li>
-<li><code>@CacheEvict</code>：删除时使用，保证数据一致性（删完数据删缓存）。</li>
-</ul>
-<p><strong>4. 指定缓存实现</strong>：</p>
-<div class="highlight"><pre><span></span><code>spring:
-  cache:
-    type: redis  # 可选：redis, caffeine, ehcache, hazelcast, generic, none
+<div class="highlight"><pre><span></span><code>{
+  &quot;query&quot;: {
+    &quot;bool&quot;: {
+      &quot;must&quot;: [
+        { &quot;match&quot;: { &quot;title&quot;: &quot;Java&quot; } }
+      ],
+      &quot;filter&quot;: [
+        { &quot;term&quot;: { &quot;status&quot;: &quot;published&quot; } },
+        { &quot;range&quot;: { &quot;price&quot;: { &quot;lte&quot;: 100 } } }
+      ],
+      &quot;must_not&quot;: [
+        { &quot;term&quot;: { &quot;category&quot;: &quot;trash&quot; } }
+      ],
+      &quot;should&quot;: [
+        { &quot;match&quot;: { &quot;description&quot;: &quot;Spring Boot&quot; } }
+      ],
+      &quot;minimum_should_match&quot;: 1
+    }
+  }
+}
 </code></pre></div>
-<p>Spring Boot 遵循 <strong>“约定大于配置”</strong>。它会按照以下顺序探测并激活缓存实现：</p>
-<p><strong>Generic</strong>：如果你手动定义了 <code>Cache</code> 类型的 Bean。</p>
-<p><strong>Redis</strong>：如果你的 <code>pom.xml</code> 里有 <code>spring-boot-starter-data-redis</code>。</p>
-<p><strong>Caffeine</strong>：如果有 <code>com.github.ben-manes.caffeine</code>。</p>
-<p><strong>Simple</strong>：如果什么都没有，默认用内存里的 <code>ConcurrentHashMap</code>。</p>
+<h3 id="es-doc-values">什么是列式存储 (ES Doc Values)⭐️</h3>
+<p>数据在磁盘上是按列排布的：
+- 时间列：[2023-01-01, 2023-01-01, ...]
+- 城市列：[北京, 上海, ...]
+- <strong>金额列：[100, 200, ...]</strong></p>
+<p>“<strong>行式存储</strong>（如 MySQL）是按行存放数据的。在做 <code>SUM</code> 或 <code>GROUP BY</code> 时，即使只用到一个字段，也要读取整行数据，导致大量无效的 IO 消耗。</p>
+<p>而 ES 的 <strong>Doc Values（列式存储）</strong> 将同一字段的数据连续存放在一起。在统计时，ES 能够实现<strong>按需读取</strong>，只加载参与计算的列，极大减少了磁盘 IO。</p>
+<p>此外，列式存储天然适合<strong>压缩</strong>，并且利用 <strong>OS Cache</strong> 实现了近乎内存级别的计算速度。这就是为什么 ES 在处理亿级数据的实时报表分析时，性能远超传统数据库的原因。”</p>
+<h3 id="es_3">为什么 ES 做聚合统计比较快?</h3>
+<p><strong>*极高的 IO 效率</strong>：只读需要的字段。如果你在亿级数据里只统计“金额”，ES 只需要读取那几亿个数字，而不用加载几亿个完整的文档对象。</p>
+<p><strong>更好的压缩率</strong>：同一列的数据类型通常是一样的（比如全是数字）。相同类型的数据放在一起，压缩效果极好，大大节省了磁盘空间。  </p>
+<p><strong>直接映射内存</strong>：ES 的 <code>Doc Values</code> 实际上是保存在磁盘上的，但它利用操作系统的 <strong>文件系统缓存（OS Cache）</strong> 映射到内存中。这使得聚合计算几乎就像在内存中操作一样快。</p>
+<h3 id="es_4">ES 怎么解决中文分词⭐️</h3>
+<p>Elasticsearch（ES）自带的默认分词器（Standard Analyzer）在处理中文时非常“笨”：它会把中文<strong>拆分成单个汉字</strong>。</p>
+<p>IK 分词器是目前社区最流行的开源 ES 中文分词插件。它提供了两种最常用的分词模式：
+<strong><code>ik_smart</code>（最少切分）</strong>：逻辑最智能，切分得比较粗，占用空间小。</p>
+<p><strong><code>ik_max_word</code>（最细切分）</strong>：把文本穷尽各种组合进行拆解，覆盖面广，增加搜索命中率。</p>
+<h3 id="es_5">ES 有什么缺点呢？⭐️ ⭐️</h3>
+<p><strong>非强一致性</strong>：它是<strong>近实时（NRT）</strong>的，数据写入后默认有 1 秒延迟才能搜到。</p>
+<p><strong>维护成本</strong>：引入了数据同步逻辑，需要处理 MySQL 和 ES 之间的<strong>数据一致性</strong>问题。”</p>
+<h3 id="_1">什么是倒排索引⭐️</h3>
+<p>倒排索引是 ES 的核心，也是 ES 搜索快的根本原因。<strong>正排索引</strong>：文档 ID $\rightarrow$ 内容（类似书的目录）。而倒排索引就是由内容索引到包含该内容的文档 ID 列表</p>
+<table>
+<thead>
+<tr>
+<th><strong>关键词 (Term)</strong></th>
+<th><strong>倒排列表 (Posting List)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Java</strong></td>
+<td 1_="1," 3_="3," _10_="[10]" docId:="docId:" freq:="freq:" pos:="pos:">{docId: 1, freq: 2, pos: [0, 5]},</td>
+</tr>
+<tr>
+<td><strong>Python</strong></td>
+<td 1_="1," 3_="3," _12_="[12]" docId:="docId:" freq:="freq:" pos:="pos:">{docId: 2, freq: 1, pos: [3]},</td>
+</tr>
+<tr>
+<td><strong>AI</strong></td>
+<td 2_="2," 5_="5]" _1_="[1," docId:="docId:" freq:="freq:" pos:="pos:">{docId: 1, freq: 1, pos: [8]},</td>
+</tr>
+</tbody>
+</table>
+<p align='center'>
+    <img src="../../assets/imgs/interview/es/es02.png" alt="es02" style="zoom:80%;" />
+</p>
+
+<h3 id="es_6">ES 是如何实现分布式存储的呢？⭐️⭐️⭐️</h3>
+<p>“ES 实现分布式存储主要靠 <strong>分片和副本</strong> 机制。
+<strong>分片（Shard）</strong> 是为了解决单机瓶颈，它把一个大索引拆成多个小部分分布在不同机器上，实现水平扩容。主分片数在创建时确定，不可更改。</p>
+<p><strong>副本（Replica）</strong> 是主分片的备份。它有两个作用：一是<strong>高可用</strong>，主分片挂了副本顶上；二是<strong>负载均衡</strong>，副本可以分担读请求。</p>
+<h5 id="shard">分片（Shard）：解决“存不下”的问题</h5>
+<p>分片是 ES 存储数据的最小单元。一个索引（Index）会被水平拆分成多个分片。例如：当前有10万个文档，如果只有一个分片，那么这10万个文档都会在这台服务器中，单台服务器的磁盘和内存就爆了。但是我们可以拆为5个分片，分别存在5台机器上。</p>
+<p><strong>主分片（Primary Shard）</strong>的数量在创建索引时就得定好，<strong>后期不能改</strong>。因为数据的路由规则是 $hash(id) \pmod{主分片数}$，改了分片数，以前存的数据就找不到了。</p>
+<h5 id="replica">副本（Replica）：解决“怕丢失”的问题</h5>
+<p>副本就是主分片的“克隆体”。目的是为了提高 ES 的可靠性以及读性能
+1）主分片挂了，ES 会立即把一个副本分片提升为新的主分片，系统照样跑。
+2）查询请求可以在主分片查，也可以在副本分片查。副本越多，并发查询的能力越强。</p>
+<p>副本数是可以<strong>随时动态修改</strong>的。
+<strong>同一份数据的主分片和副本分片绝对不会放在同一台机器上</strong>（否则物理机一炸，主副全丢，备份就没意义了）。</p>
+<h3 id="es_7">ES 的写入流程⭐️⭐️⭐️</h3>
+<p>ES 的写入可以分为 <strong>“集群层路由”</strong> 和 <strong>“分片层持久化”</strong>。</p>
+<h5 id="_2">集群层：确定位置</h5>
+<ul>
+<li><strong>客户端</strong>向集群中的某个<strong>协调节点（Coordinating Node）</strong>发送写入请求。</li>
+<li><strong>路由</strong>：协调节点根据文档 ID 计算它属于哪个主分片：<code>shard = hash(id) % number_of_primary_shards</code>。</li>
+<li><strong>转发</strong>：协调节点将请求转发到该<strong>主分片（Primary Shard）</strong>所在的节点。</li>
+<li><strong>同步</strong>：主分片写入成功后，将请求并行转发给所有<strong>副本分片（Replica Shard）</strong>。</li>
+<li><strong>响应</strong>：当副本分片全部写入成功后，主分片向协调节点反馈，协调节点返回“成功”给客户端。</li>
+</ul>
+<h5 id="_3">分片层：底层存储（近实时的奥秘）</h5>
+<p>数据进入分片后，经历三个阶段：</p>
+<ul>
+<li><strong>Write Buffer</strong>：数据先写进内存缓存区（Index Buffer），同时记入事务日志（Translog）防止宕机。</li>
+<li><strong>Refresh（默认 1 秒）</strong>：缓冲区的数据每秒生成一个新的 <strong>Segment（段）</strong> 并写入操作系统缓存。此时<strong>数据即可被搜索到</strong>（这就是近实时的原因）。</li>
+<li><strong>Flush（默认 30 分钟）</strong>：将内存中的所有 Segment 真正落盘，并清空 Translog。</li>
+</ul>
+<h3 id="es_8">ES 的查询流程⭐️⭐️⭐️</h3>
+<p>ES 的查询分为两个阶段：<strong>Query（查询阶段）</strong> 和 <strong>Fetch（取回阶段）</strong>。</p>
+<h5 id="query">Query 阶段：找出“哪些数据”符合条件</h5>
+<ul>
+<li>协调节点接收到搜索请求，将请求广播到索引的<strong>每一个分片</strong>（主分片或副本选其一）。</li>
+<li>每个分片在本地执行查询，根据相关性算分，排好序。</li>
+<li>每个分片只返回一个<strong>轻量级的列表</strong>（包含文档 ID 和分数）给协调节点。</li>
+</ul>
+<h5 id="fetch">Fetch 阶段：拿出“真正的数据”</h5>
+<ul>
+<li><strong>全局排序</strong>：协调节点收集所有分片返回的结果，进行全局排序，取出前 N 条（比如 <code>from=0, size=10</code>）。</li>
+<li><strong>拉取详情</strong>：协调节点根据这 10 个 ID，去对应分片请求<strong>完整的文档内容（_source 字段）</strong>。</li>
+<li><strong>最终返回</strong>：协调节点将数据组装好，返回给客户端。</li>
+</ul>
+<h3 id="_4">为什么搜索是两阶段，写入不是？</h3>
+<p>写入时 ID 已知，可以精准定位分片；搜索时不知道哪些文档符合条件，必须“撒网式”去所有分片问一遍，然后再汇总。</p>
+<h3 id="deep-paging">深分页（Deep Paging）问题出在哪一阶段？⭐️⭐️</h3>
+<p>出在 <strong>Query 阶段</strong>。如果你查第 10000 页的 10 条数据，协调节点需要从每个分片各拿 10010 条 ID 过来，在内存里进行几十万条数据的全局排序。分片越多，内存压力越大，极易 OOM。</p>
+<h3 id="_5">什么是深分页？</h3>
+<p>在 ES 中，<strong>深分页</strong>指的是请求 <strong>“页码非常靠后”</strong> 的查询操作。 比如一个索引有 1 亿条数据，你查询 <code>from=100000, size=10</code>（即跳过前 10 万条，取第 100001 到 100010 条）。最终只要 10 条数据，但为了保证这 10 条是全局范围内最匹配的，ES 的底层逻辑会变得非常沉重。</p>
+<h3 id="_6">那怎么解决深度分页问题呢？⭐️</h3>
+<p>1、<code>search_after</code>（官方推荐：C端分页首选）</p>
+<p>不使用 <code>from</code> 参数，而是通过上一页最后一条数据的<strong>唯一排序值（Sort Values）</strong>来定位下一页的起点。</p>
+<p><strong>发送请求</strong>： 你告诉协调节点：“我要查 10 条数据，但是<strong>请从坐标 <code>[1642934400, "order_888"]</code> 之后开始找</strong>。”</p>
+<p><strong>分片本地自查（重点改变在这里！）</strong>：</p>
+<ul>
+<li><strong>分片 A</strong> 收到指令，它不再去数“前 1010 条”。它直接利用索引定位到 <code>timestamp = 1642934400</code> 的位置。</li>
+<li>它只拿在这个坐标之后的<strong>前 10 条</strong>。</li>
+<li><strong>分片 B</strong>、<strong>分片 C</strong> 同理，每个分片都只找坐标后的 <strong>10 条</strong>。</li>
+</ul>
+<h3 id="search_after-id">“为什么 <code>search_after</code> 排序字段必须包含一个唯一字段（比如 ID）？”</h3>
+<p>“因为如果排序字段（比如时间戳）不唯一，有很多条数据的时间戳都是一样的，那么这个‘坐标’就会变得模糊。ES 就不知道该从哪条数据后面开始取，可能会导致<strong>分页数据丢失或重复</strong>。加上 <code>_id</code> 这种唯一字段，就能保证坐标是全集群唯一的，定位才精准。”</p>
 
 
 
