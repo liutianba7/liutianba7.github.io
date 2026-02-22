@@ -18,6 +18,7 @@ nav:
       - mysql: ./interview/points/mysql.md
       - redis: ./interview/points/redis.md
       - elasticsearch: ./interview/points/es.md
+      - rmq: ./interview/points/rmq.md
   - Journal:
       - 202602: ./journal/2026-02.md
   - Tools:
