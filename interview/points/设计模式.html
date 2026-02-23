@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://liutianba7.github.io/interview/points/rmq.html">
+        <link rel="canonical" href="https://liutianba7.github.io/interview/points/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html">
       
       
-        <link rel="prev" href="es.html">
+        <link rel="prev" href="seata.html">
       
       
-        <link rel="next" href="seata.html">
+        <link rel="next" href="../../journal/2026-02.html">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>rmq - LiuTianBa7 's Blog</title>
+        <title>设计模式 - LiuTianBa7 's Blog</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rabbit-mq" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              rmq
+              设计模式
             
           </span>
         </div>
@@ -770,37 +770,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    rmq
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="rmq.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="rmq.html" class="md-nav__link">
         
   
   
@@ -816,347 +789,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        基础知识
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="基础知识">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-rmq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. rmq的工作模式⭐⭐
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. rmq的工作模式⭐⭐">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 简单模式：
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-work" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. work 模式
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 发布订阅（广播）模式
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 路由模式
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5-topic" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. topic 模式
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-rmq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. rmq的作用与使用方法 ⭐⭐⭐
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 交换机的类型⭐
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 什么是幂等性⭐⭐⭐
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. 如何保证幂等性
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-rmq-java" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. RMQ 在java中如何使用？
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        进阶知识
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="进阶知识">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 为什么消息投递可能不成功？⭐️
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. 如何保证消息投递的可靠性呢？
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 延迟消息如何实现
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 什么是死信队列
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. 消息怎么才会成为死信
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. 在生产者发送数据时，如果是自定义的对象，记得要实现序列化接口
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-rmq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. 什么场景下 RMQ 消息会乱序呢？
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-rmq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. RMQ 如何保证消息的顺序性呢？⭐️
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="8. RMQ 如何保证消息的顺序性呢？⭐️">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#a" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        方案 A：单队列 + 单消费者（单线程）（最简单，但性能差）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#b-hash" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        方案 B：拆分多个队列 + 一致性 Hash（最主流）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#9-rabbitmq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        9. 如何使用RabbitMQ解决分布式事务⭐️
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#10" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        10. 如何解决消息队列的延时以及过期失效问题呢？⭐️
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        11. 消息队列满了之后改如何处理呢？
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        12. 有几百万条的消息持续积压，分析该如何解决？⭐️
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1194,10 +826,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计模式
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1213,6 +872,375 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 你知道那些设计模式呢?⭐
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 简单介绍一下单例模式, 以及它的优缺点⭐
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-dcl-volatile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 为什么 DCL 需要用 volatile 关键字呢? ⭐
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 单例模式的实现方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 单例模式的实现方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        饿汉式（简单，但费内存）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        懒汉式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dcl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DCL⭐⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        静态内部类方法⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        枚举⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 枚举以外的其他方式如何避免序列化破坏单例模式呢?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 工厂设计模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 工厂设计模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 简单工厂模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 工厂方法模式⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-abstract-factory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 抽象工厂模式 (Abstract Factory)⭐产品族
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 哪些场景用到了工厂设计模式呢? 你能说一些吗?⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 代理模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 代理模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 代理模式的分类
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 代理模式的应用场景（面试必背）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 为什么需要代理模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 策略模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 策略模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 定义⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 核心角色⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 应用场景⭐⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 策略模式的优势
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-if-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 你是如何实现“零 if-else”动态获取策略的？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 适配器模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 适配器模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#java-arraysaslist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经典例子：Java 集合框架中的 Arrays.asList()。
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1704,67 +1732,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        基础知识
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="基础知识">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-rmq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. rmq的工作模式⭐⭐
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1. rmq的工作模式⭐⭐">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1. 简单模式：
+        1. 你知道那些设计模式呢?⭐
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2-work" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2. work 模式
+        2. 简单介绍一下单例模式, 以及它的优缺点⭐
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#3-dcl-volatile" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 发布订阅（广播）模式
+        3. 为什么 DCL 需要用 volatile 关键字呢? ⭐
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 路由模式
+        4. 单例模式的实现方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 单例模式的实现方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        饿汉式（简单，但费内存）
       
     </span>
   </a>
@@ -1772,26 +1788,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5-topic" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. topic 模式
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-rmq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. rmq的作用与使用方法 ⭐⭐⭐
+        懒汉式
       
     </span>
   </a>
@@ -1799,10 +1799,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#3_1" class="md-nav__link">
+  <a href="#dcl" class="md-nav__link">
     <span class="md-ellipsis">
       
-        3. 交换机的类型⭐
+        DCL⭐⭐⭐
       
     </span>
   </a>
@@ -1810,10 +1810,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#4_1" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. 什么是幂等性⭐⭐⭐
+        静态内部类方法⭐⭐
       
     </span>
   </a>
@@ -1821,21 +1821,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. 如何保证幂等性
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#6-rmq-java" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6. RMQ 在java中如何使用？
+        枚举⭐⭐
       
     </span>
   </a>
@@ -1848,111 +1837,33 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        进阶知识
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="进阶知识">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. 为什么消息投递可能不成功？⭐️
+        5. 枚举以外的其他方式如何避免序列化破坏单例模式呢?
       
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
       
-        2. 如何保证消息投递的可靠性呢？
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 延迟消息如何实现
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. 什么是死信队列
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#5_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5. 消息怎么才会成为死信
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
+        <li class="md-nav__item">
   <a href="#6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. 在生产者发送数据时，如果是自定义的对象，记得要实现序列化接口
+        6. 工厂设计模式
       
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#7-rmq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        7. 什么场景下 RMQ 消息会乱序呢？
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#8-rmq" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8. RMQ 如何保证消息的顺序性呢？⭐️
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="8. RMQ 如何保证消息的顺序性呢？⭐️">
+    <nav class="md-nav" aria-label="6. 工厂设计模式">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#a" class="md-nav__link">
+  <a href="#61" class="md-nav__link">
     <span class="md-ellipsis">
       
-        方案 A：单队列 + 单消费者（单线程）（最简单，但性能差）
+        6.1 简单工厂模式
       
     </span>
   </a>
@@ -1960,10 +1871,43 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#b-hash" class="md-nav__link">
+  <a href="#62" class="md-nav__link">
     <span class="md-ellipsis">
       
-        方案 B：拆分多个队列 + 一致性 Hash（最主流）
+        6.2 工厂方法模式⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-abstract-factory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 抽象工厂模式 (Abstract Factory)⭐产品族
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 哪些场景用到了工厂设计模式呢? 你能说一些吗?⭐
       
     </span>
   </a>
@@ -1974,12 +1918,24 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#9-rabbitmq" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
     <span class="md-ellipsis">
       
-        9. 如何使用RabbitMQ解决分布式事务⭐️
+        7. 代理模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 代理模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 定义
       
     </span>
   </a>
@@ -1987,10 +1943,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#10" class="md-nav__link">
+  <a href="#72" class="md-nav__link">
     <span class="md-ellipsis">
       
-        10. 如何解决消息队列的延时以及过期失效问题呢？⭐️
+        7.2 代理模式的分类
       
     </span>
   </a>
@@ -1998,10 +1954,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
+  <a href="#73" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11. 消息队列满了之后改如何处理呢？
+        7.3 代理模式的应用场景（面试必背）
       
     </span>
   </a>
@@ -2009,10 +1965,110 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
+  <a href="#74" class="md-nav__link">
     <span class="md-ellipsis">
       
-        12. 有几百万条的消息持续积压，分析该如何解决？⭐️
+        7.4 为什么需要代理模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 策略模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 策略模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 定义⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 核心角色⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 应用场景⭐⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 策略模式的优势
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-if-else" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 你是如何实现“零 if-else”动态获取策略的？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 适配器模式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 适配器模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#java-arraysaslist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        经典例子：Java 集合框架中的 Arrays.asList()。
       
     </span>
   </a>
@@ -2044,271 +2100,288 @@
   
 
 
-<h1 id="rabbit-mq">Rabbit mq</h1>
-<h3 id="_1">基础知识</h3>
-<h4 id="1-rmq">1. rmq的工作模式⭐⭐</h4>
-<p>RabbitMQ提供了<strong>多种工作模式</strong>：简单模式，work模式 ，Publish/Subscribe发布与订阅模式，Routing路由模式，Topics主题模式等</p>
-<p align='center'>
-    <img src="../../assets/imgs/interview/rmq/rmq01.png" alt="rmq01" style="zoom:80%;" />
-</p>
+<h1 id="_1">设计模式</h1>
+<h3 id="1">1. 你知道那些设计模式呢?⭐</h3>
+<p>总体来说设计模式分为三大类 : 
+- <strong>创造型模式</strong> : 解决“对象的创建”问题。常用的有单例模式、工厂方法模式、抽象工厂模式、建造者模式（Builder）。
+- <strong>结构型模型</strong> : 解决"类或对象的组合”问题。适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模s式、享元模式。
+- <strong>行为型模式</strong> : 解决“对象之间的通信”问题。它定义了对象在运行时如何交互，使复杂的逻辑流程变得清晰、可维护。策略模式（消除 if-else）、观察者模式、模板方法模式。</p>
+<h3 id="2">2. 简单介绍一下单例模式, 以及它的优缺点⭐</h3>
+<p><strong>单例模式</strong>是创建型模式中最简单也最常用的一种。它的核心目标是：<strong>保证一个类在整个系统中只有一个实例，并提供一个全局访问点。</strong></p>
+<p><strong>优点</strong></p>
+<ul>
+<li>
+<p><strong>资源节约</strong>：由于整个系统只存在一个实例，减少了频繁创建和销毁对象带来的内存消耗和 CPU 开销。</p>
+</li>
+<li>
+<p><strong>全局访问</strong>：提供了一个统一的访问入口，方便对全局状态或配置进行管理（如数据库连接池、读取配置文件）。</p>
+</li>
+<li><strong>避免冲突</strong>：对于某些必须具有唯一性的资源（如打印机句柄、序列号生成器），可以有效防止多个实例导致的资源争用。</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li><strong>扩展困难</strong>：单例模式通常没有接口，且构造方法私有化，这导致它很难通过继承来扩展。</li>
+<li><strong>违背单一职责原则</strong>：单例类既要负责自己的业务逻辑，还要负责“实例的创建与自我管理”，职责较重。</li>
+<li><strong>对测试不友好</strong>：在单元测试中，由于单例是全局的，很难模拟出一个“干净”的初始状态，可能会导致测试用例之间产生相互影响。</li>
+<li><strong>垃圾回收风险</strong>：如果单例持有长生命周期的对象（如 Context），容易造成内存泄漏；同时，如果长时间不使用，某些框架可能会将其回收，导致状态丢失。</li>
+</ul>
+<h3 id="3-dcl-volatile">3. 为什么 DCL 需要用 volatile 关键字呢? ⭐</h3>
+<p>“因为 <code>instance = new Singleton();</code> 并不是一个原子操作，它分为：分配空间、初始化对象、引用指向空间这三步。如果不加 <code>volatile</code>，由于 JVM 的<strong>指令重排</strong>，可能会先执行引用指向空间。此时另一个线程进来执行第一重 <code>null</code> 检查，发现引用不为空，直接拿走了一个<strong>还没初始化完成</strong>的半成品对象，从而导致程序崩溃。”</p>
+<h3 id="4">4. 单例模式的实现方式</h3>
+<h5 id="_2">饿汉式（简单，但费内存）</h5>
+<p>类加载时就创建实例。虽然浪费点内存，但没有锁，执行最快，天生线程安全。
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Singleton</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 类加载时就初始化，由于是 static，JVM 保证线程安全</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="n">INSTANCE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Singleton</span><span class="p">();</span>
 
-<h5 id="1">1. 简单模式：</h5>
-<p>使用默认的 direct exchange（空字符串 ""），消息直接通过 <code>routingKey = queueName</code> 投递到指定队列。</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Autowired</span><span class="w">  </span>
-<span class="kd">private</span><span class="w"> </span><span class="n">RabbitTemplate</span><span class="w"> </span><span class="n">rabbitTemplate</span><span class="p">;</span><span class="w">  </span>
-<span class="c1">// 生产者 </span>
-<span class="nd">@Test</span><span class="w">  </span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testSend</span><span class="p">(){</span><span class="w">  </span>
-<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="s">&quot;queue_simple&quot;</span><span class="p">,</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span><span class="w">  </span>
-<span class="p">}</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">Singleton</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 
-<span class="c1">// 消费者</span>
-<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;queue_simple&quot;</span><span class="p">})</span><span class="w">  </span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testSimpleConsumer</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span><span class="w">  </span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;消费者收到消息：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="nf">getInstance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">INSTANCE</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
-<h5 id="2-work">2. work 模式</h5>
-<p>工作（work）模式：一个生产者，一个队列，多个消费者，一个消息只能被一个消费者消费，消费者存在竞争关系，</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 生产者</span>
-<span class="nd">@Test</span><span class="w">  </span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testWorkerSend</span><span class="p">(){</span><span class="w">  </span>
-<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="s">&quot;queue_worker1&quot;</span><span class="p">,</span><span class="s">&quot;hello world1&quot;</span><span class="p">);</span><span class="w">  </span>
-<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="s">&quot;queue_worker1&quot;</span><span class="p">,</span><span class="s">&quot;hello world2&quot;</span><span class="p">);</span><span class="w">  </span>
-<span class="p">}</span>
-<span class="c1">// 消费者1</span>
-<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;queue_worker1&quot;</span><span class="p">})</span><span class="w">  </span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testWorkerConsumer1</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span><span class="w">  </span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;消费者1收到消息：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">  </span>
-<span class="p">}</span><span class="w">  </span>
-<span class="c1">// 消费者2</span>
-<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;queue_worker1&quot;</span><span class="p">})</span><span class="w">  </span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testWorkerConsumer2</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span><span class="w">  </span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;消费者2收到消息：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">  </span>
-<span class="p">}</span>
-</code></pre></div>
-<h5 id="3">3. 发布订阅（广播）模式</h5>
-<p>一个生产者，多个消费者，并且有多个队列，路由器会把消息发送给所有队列。也就是一个生产者生产的数据供所有消费者使用</p>
-<p>注：记得传构建一个广播路由以及两个队列，然后把该路由和这两个队列绑定起来，路由键设置为 "" 即可。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// p</span>
-<span class="nd">@Test</span><span class="w">  </span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testPublishAndSubscribeSend</span><span class="p">(){</span><span class="w">  </span>
-<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">&quot;exchange_ps&quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span><span class="w">  </span>
-<span class="p">}</span>
-<span class="c1">// c1</span>
-<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;queue_ps1&quot;</span><span class="p">})</span><span class="w">  </span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testPsConsumer1</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span><span class="w">  </span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;消费者1收到消息：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">  </span>
-<span class="p">}</span><span class="w">  </span>
-<span class="c1">// c2</span>
-<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;queue_ps2&quot;</span><span class="p">})</span><span class="w">  </span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testPsConsumer2</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span><span class="w">  </span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;消费者2收到消息：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">  </span>
-<span class="p">}</span>
-</code></pre></div>
-<h5 id="4">4. 路由模式</h5>
-<p align='center'>
-    <img src="../../assets/imgs/interview/rmq/rmq02.png" alt="rmq02" style="zoom:80%;" />
-</p>
+</code></pre></div></p>
+<h5 id="_3">懒汉式</h5>
+<p><strong>“临阵磨枪”</strong>。只有调用时才创建。为了安全在方法上加了 <code>synchronized</code> 大锁，导致并发性能极差，不推荐。
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Singleton</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span>
 
-<p>使用 direct 交换机，根据精确匹配的 routing key 进行路由。</p>
-<p>实际上就是不同消息队列订阅的路由键不同，因此根据生产者投递时传入的路由键不同，投递到的消息队列也就不同。</p>
-<h5 id="5-topic">5. topic 模式</h5>
-<p>使用 <strong>topic 交换机</strong>，支持 <strong>通配符匹配 routing key</strong>。
-- <code>*</code>：匹配一个单词（如 <code>user.*</code> 匹配 <code>user.login</code>，但不匹配 <code>user.auth.login</code>）
-  - <code>#</code>：匹配零个或多个单词（如 <code>log.#</code> 匹配 <code>log.info</code>、<code>log.error.db</code>）</p>
-<h4 id="2-rmq">2. <code>rmq</code>的作用与使用方法 ⭐⭐⭐</h4>
-<p>1）服务解耦：还是用户注册场景下，没有 RMQ 的时候，注册成功后还需再注册代码调用短信和邮件通知服务，而有了 RMQ，只需要发送消息到 RMQ 即可，不需要调用其他服务。</p>
-<p>2）异步调用：用户注册下，当用户注册成功，我们要发送邮件和短信通知，如果没有 rmq，用户注册成功后，还得等待系统完成邮件和短信服务才能看到响应，当但有了 RMQ 以后，就可以实现一旦注册成功，只需要将消息发送给消息队列，然后直接就可以响应用户，而邮件和短信通知都是异步进行的，这极大提高了响应速度。</p>
-<p>3）流量削峰：秒杀活动下，数据库每秒只能处理 2000 个请求，但秒杀瞬间可能有 10 万个请求涌入。直接压到数据库，系统直接崩掉。</p>
-<p>4）消息通信：利用 MQ 的发布/订阅模式（Pub/Sub）实现点对点或广播式通信。</p>
-<div class="highlight"><pre><span></span><code><span class="nl">spring</span><span class="p">:</span>
-<span class="w">  </span><span class="n">rabbitmq</span><span class="p">:</span>
-<span class="w">    </span><span class="p">...</span>
-<span class="w">    </span><span class="n">virtual</span><span class="o">-</span><span class="n">host</span><span class="p">:</span><span class="w"> </span><span class="o">/</span>
-<span class="w">    </span><span class="n">listener</span><span class="p">:</span>
-<span class="w">      </span><span class="n">simple</span><span class="p">:</span>
-<span class="w">        </span><span class="n">acknowledge</span><span class="o">-</span><span class="n">mode</span><span class="p">:</span><span class="w"> </span><span class="n">manual</span>
-<span class="w">        </span><span class="n">prefetch</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">设置每次最多从消息队列服务器取回多少消息</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">Singleton</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">    </span><span class="c1">// 给整个方法加锁，性能太低，不推荐</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="nf">getInstance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">instance</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Singleton</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h5 id="dcl">DCL⭐⭐⭐</h5>
+<p><strong>“按需取货+精准锁”</strong>。利用 <code>volatile</code> 和双重判断，既实现了延迟加载，又保证了高并发下的高性能，是面试<strong>最标准</strong>的写法。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Singleton</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1. volatile 关键字：禁止指令重排，确保多线程下变量的可见性</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">volatile</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// 2. 私有构造方法：防止外部通过 new 创建实例</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">Singleton</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="nf">getInstance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 3. 第一重检查：提高效率，如果已经创建了就不用再进入同步块</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">instance</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="n">Singleton</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// 4. 第二重检查：防止多个线程同时通过了第一重检查后重复创建</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">instance</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Singleton</span><span class="p">();</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>rmq的用法：</p>
-<ol>
-<li>导入依赖</li>
-<li>可选：去设置 rabbitmqTemplate 的回退与确认回调，实现重发等等</li>
-<li>去通过 rabbitmqTemplate 发送消息</li>
-<li>通过 @RabbitListener 去声明消费者</li>
-</ol>
-<h4 id="3_1">3. 交换机的类型⭐</h4>
+<h5 id="_4">静态内部类方法⭐⭐</h5>
+<p><strong>静态内部类</strong>：<strong>“优雅托付”</strong>。利用 JVM 加载机制，只有第一次调用方法时才会加载内部类并创建实例，代码最简洁，推荐在项目中使用。
+<div class="highlight"><pre><span></span><code>public class Singleton {
+    private Singleton() {}
+
+    // 静态内部类只有在被 getInstance() 调用时才会被加载
+    private static class Holder {
+        private static final Singleton INSTANCE = new Singleton();
+    }
+
+    public static Singleton getInstance() {
+        return Holder.INSTANCE;
+    }
+}
+</code></pre></div></p>
+<h5 id="_5">枚举⭐⭐</h5>
+<p>天生防反射、防序列化，是《Effective Java》作者最推崇的写法。
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">INSTANCE</span><span class="p">;</span><span class="w"> </span><span class="c1">// 本身就是单例</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">businessMethod</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;执行业务逻辑&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// 调用方式：Singleton.INSTANCE.businessMethod();</span>
+</code></pre></div></p>
+<h3 id="5">5. 枚举以外的其他方式如何避免序列化破坏单例模式呢?</h3>
+<p>你只需要在单例类里加一个<strong>魔术方法</strong>：<code>readResolve()</code>。
+<div class="highlight"><pre><span></span><code><span class="kd">private</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="nf">readResolve</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 反序列化时，JVM 会自动调用这个方法</span>
+<span class="w">    </span><span class="c1">// 直接返回我们现有的单例实例，而不让它创建新对象</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">instance</span><span class="p">;</span><span class="w"> </span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h3 id="6">6. 工厂设计模式</h3>
+<p>工厂模式的核心就是 : <strong>把“对象的创建”和“对象的使用”分离开</strong>。也就是达到了解耦的效果。</p>
+<h5 id="61">6.1 简单工厂模式</h5>
+<p>一个工厂类，根据你传的参数（如字符串 "A"），用 <code>if-else</code> 或 <code>switch</code> 返回对应的实例。它不属于 23 种设计模式，但最常用。缺点是增加新产品必须改工厂代码，不符合“开闭原则”。
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PayFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">PayStrategy</span><span class="w"> </span><span class="nf">getPay</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;WX&quot;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">type</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WxPay</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;ALI&quot;</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">type</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AliPay</span><span class="p">();</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;未知支付类型&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h5 id="62">6.2 工厂方法模式⭐</h5>
+<p>不直接创建产品，而是<strong>定义一个创建对象的接口</strong>，让子类决定实例化哪一个类。把实例化推迟到子类中进行。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 抽象工厂</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">PayFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">PayStrategy</span><span class="w"> </span><span class="nf">createPay</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="c1">// 具体工厂</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">WxPayFactory</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">PayFactory</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">PayStrategy</span><span class="w"> </span><span class="nf">createPay</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">WxPay</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>优缺点</strong>：增加新产品只需加个工厂类，不改老代码；但类会成倍增加，变复杂。</p>
+<h5 id="63-abstract-factory">6.3 抽象工厂模式 (Abstract Factory)⭐产品族</h5>
+<p><strong>介绍</strong>：如果说工厂方法是产一个零件，抽象工厂就是产一整套流水线。比如“苹果工厂”既产 iPhone 也产 iPad，“华为工厂”既产华为手机也产华为平板。</p>
+<div class="highlight"><pre><span></span><code><span class="n">public</span> <span class="n">interface</span> <span class="n">AbstractFactory</span> <span class="p">{</span>
+    <span class="n">PayStrategy</span> <span class="n">createPay</span><span class="p">();</span>     <span class="o">//</span> <span class="n">创建支付产品</span>
+    <span class="n">RefundStrategy</span> <span class="n">createRefund</span><span class="p">();</span> <span class="o">//</span> <span class="n">创建退款产品</span>
+<span class="p">}</span>
+</code></pre></div>
 <table>
 <thead>
 <tr>
-<th>类型</th>
-<th>特点</th>
-<th>匹配规则</th>
+<th><strong>模式</strong></th>
+<th><strong>核心关注点</strong></th>
+<th><strong>复杂度</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Direct</strong></td>
-<td>精确匹配</td>
-<td><code>routingKey == bindingKey</code></td>
+<td><strong>简单工厂</strong></td>
+<td>一个工厂管所有，简单但死板</td>
+<td>低</td>
 </tr>
 <tr>
-<td><strong>Fanout</strong></td>
-<td>广播</td>
-<td>忽略 routing key，发给所有绑定队列</td>
+<td><strong>工厂方法</strong></td>
+<td>每个产品配一个工厂，灵活好扩展</td>
+<td>中</td>
 </tr>
 <tr>
-<td><strong>Topic</strong></td>
-<td>模糊匹配</td>
-<td>支持 <code>*</code> 和 <code>#</code> 通配符</td>
-</tr>
-<tr>
-<td><strong>Headers</strong></td>
-<td>基于消息头（Header）匹配</td>
-<td>不常用，性能较差</td>
+<td><strong>抽象工厂</strong></td>
+<td>一个工厂管一整套产品线</td>
+<td>高</td>
 </tr>
 </tbody>
 </table>
-<h4 id="4_1">4. 什么是幂等性⭐⭐⭐</h4>
-<p>统一操作执行多次与一次的效果相同。在rmq中，消费者可能因网络、崩溃等原因<strong>重复收到并消费同一条消息</strong>。如果业务逻辑不具备幂等性，可能会导致：重复扣款，重复发券，数据重复插入等等。
-而消费多条消息与消费一条消息的效果相同就叫做幂等性。</p>
-<h4 id="5">5. 如何保证幂等性</h4>
-<p>数据库唯一索引
-redis：setnx</p>
-<h4 id="6-rmq-java">6. RMQ 在java中如何使用？</h4>
-<p>1、直接监听已存在的队列</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SimpleConsumer</span><span class="w"> </span><span class="p">{</span>
+<h5 id="64">6.4 总结</h5>
+<p>1、对于简单工厂和工厂方法来说，两者的使用方式实际上是一样的，如果对于产品的分类和名称是确定的，数量是相对固定的，推荐使用简单工厂模式；</p>
+<p>2、抽象工厂用来解决相对复杂的问题，适用于一系列、大批量的对象生产。</p>
+<h5 id="65">6.5 哪些场景用到了工厂设计模式呢? 你能说一些吗?⭐</h5>
+<p><strong>Spring 框架的 <code>BeanFactory</code> (最经典) ⭐️</strong></p>
+<p>这是典型的<strong>简单工厂</strong>。Spring 容器就是一个巨大的工厂，它负责生产、管理所有的 Bean。你不需要 <code>new</code>，只需要通过 <code>getBean()</code> 就能拿到对象。</p>
+<p><strong>JDBC 的 <code>DriverManager</code></strong></p>
+<p>根据你提供的数据库 URL（如 <code>jdbc:mysql://...</code>），工厂会自动判断并加载对应的驱动程序。</p>
+<p><strong>多渠道支付系统 ⭐️</strong></p>
+<p>系统支持微信、支付宝、银联、Paypal。 前端传一个 <code>payType</code>，后端通过 <code>PayFactory</code> 根据类型生成对应的 <code>PayService</code>。</p>
+<h3 id="7">7. 代理模式</h3>
+<p>代理模式是 Spring 框架的灵魂。简单来说，就是<strong>中介</strong>。 </p>
+<h5 id="71">7.1 定义</h5>
+<p>代理模式给某一个对象提供一个<strong>代理对象</strong>，并由代理对象控制对原对象的引用。</p>
+<h5 id="72">7.2 代理模式的分类</h5>
+<p><strong>静态代理</strong> : 手动编写代理类，和目标类实现同一个接口。每一个目标类都要配一个代理类，如果接口加了方法，代理和目标类都要改，非常麻烦，<strong>实际开发基本不用</strong>。</p>
+<p><strong>动态代理 (Dynamic Proxy)</strong> ⭐⭐⭐</p>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>JDK 动态代理</strong></th>
+<th><strong>CGLIB 代理</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>原理</strong></td>
+<td>利用<strong>反射</strong>机制生成一个实现接口的匿名类。</td>
+<td>利用 <strong>ASM 字节码技术</strong>生成目标类的子类。</td>
+</tr>
+<tr>
+<td><strong>限制</strong></td>
+<td>目标类<strong>必须实现接口</strong>。</td>
+<td>目标类<strong>不能是 final</strong>（因为要继承）。</td>
+</tr>
+<tr>
+<td><strong>性能</strong></td>
+<td>较轻量，创建对象快，执行效率略低。</td>
+<td>较重，创建对象慢，但执行效率高。</td>
+</tr>
+<tr>
+<td><strong>Spring 默认</strong></td>
+<td>如果目标实现了接口，用 JDK。</td>
+<td>如果没实现接口，强行用 CGLIB。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="73">7.3 代理模式的应用场景（面试必背）</h5>
+<ul>
+<li>
+<p><strong>Spring AOP</strong>：这是最典型的。你在方法上加个 <code>@Transactional</code>，Spring 就给你的类生成一个代理。执行前开启事务，执行后提交事务。</p>
+</li>
+<li>
+<p><strong>Seata 分布式事务</strong>：Seata 的 AT 模式会代理你的 <code>DataSource</code>（数据源）。当你的代码执行 SQL 时，代理对象会拦截它，自动生成 <code>undo_log</code> 回滚日志。</p>
+</li>
+<li>
+<p><strong>MyBatis</strong>：你只写了 <code>Mapper</code> 接口，没写实现类，为什么能直接调？因为 MyBatis 在运行时用动态代理帮你生成了实现类，并去执行 SQL。</p>
+</li>
+<li>
+<p><strong>远程调用 (RPC)</strong>：比如 Dubbo。你调用远程服务像调本地方法一样，其实是代理对象在底层帮你跑了网络请求。</p>
+</li>
+</ul>
+<h5 id="74">7.4 为什么需要代理模式</h5>
+<p>为了在不修改原始代码的前提下，做功能增强 / 增加额外逻辑，并实现对目标对象的访问控制。</p>
+<p>在软件设计中，我们追求“开闭原则”（对扩展开放，对修改关闭）。当你发现原有的类功能不够用，但你又不敢（或者没权限）去改它的源码时，代理模式就是你的“救命稻草”。</p>
+<p>总结一下, 其实就是四个核心原因:</p>
+<p>1) 功能增强（最核心理由：AOP 的基石）
+2) 控制访问（中介保护）: 代理类就像一个“挡箭牌”或者“中介”，它决定了调用者能不能访问目标对象，或者以什么方式访问。
+3) 延迟加载（虚假繁荣）: 如果一个对象非常庞大（比如加载一张超大高清图，或者初始化 一个复杂的数据库连接），初始化它需要消耗很多时间和内存。</p>
+<h3 id="8">8. 策略模式</h3>
+<h5 id="81">8.1 定义⭐</h5>
+<p><strong>策略模式</strong>定义了一系列算法，并将每一个算法封装起来，使它们可以<strong>相互替换</strong>。它让算法的变化独立于使用算法的客户。</p>
+<p><strong>通俗理解</strong>：你要从 A 地去 B 地，可以选择走路、骑车、开车。这三种方式就是三种“策略”。无论你
+选哪种，目的地不变，但你可以根据天气（运行时条件）随时切换。</p>
+<h5 id="82">8.2 核心角色⭐</h5>
+<p><strong>策略接口 (Strategy)</strong>：定义所有支持算法的公共接口。
+<strong>具体策略 (Concrete Strategy)</strong>：实现具体算法的类（如：微信支付、支付宝支付）。</p>
+<h5 id="83">8.3 应用场景⭐⭐⭐</h5>
+<p>我的项目: 在我们的音频平台中, 存在 3 种不同的商品, 分别是专辑, 音频, vip, 这三种商品的结算和发货逻辑是不一样的, 如果没有策略模式, 那么相对应的 service 的实现类代码会存在很多 if-else, 但是通过策略模式, 我可以将这个结算与发货提取出一个抽象策略类 | 接口 PaymentAndXXX, 之后, 不同商品只需要实现这个接口, 然后写自己的结算和发货逻辑, 在我们的 service 中, 我们可以结合工厂模式, 根据不同的上下文返回不同的具体策略实现类, 这样就极大的精简了代码, 在之后就算有新的结算和发货逻辑, 我们也不需要修改原有代码, 只需要写一个新的具体策略即可. </p>
+<h5 id="84">8.4 策略模式的优势</h5>
+<p>引入策略模式不仅仅是为了“消除 <code>if-else</code>”，它在系统架构层面带来了以下三个核心加分点：</p>
+<p>1) 彻底实现“开闭原则” (Open-Closed Principle) : 增加新商品（如“有声书”）必须修改 <code>OrderService</code> 的源码，这会带来巨大的回归测试压力，因为你可能在改动时无意间破坏了“VIP”或“专辑”的既有逻辑。
+2) 逻辑隔离与单一职责 (Single Responsibility Principle): <strong>传统方式</strong>：一个大 Service 承担了所有商品的结算和发货逻辑，职责太重，代码量可能达到几千行。<strong>策略模式</strong>：每种商品的业务逻辑都在各自的策略类里。</p>
+<h5 id="85-if-else">8.5 你是如何实现“零 if-else”动态获取策略的？</h5>
+<p>通过Spring 的自动注入来实现的:
+<div class="highlight"><pre><span></span><code>@Autowired 
+private Map&lt;String, ProductStrategy&gt; strategyMap;
+</code></pre></div></p>
+<h3 id="9">9. 适配器模式</h3>
+<p>适配器模式（Adapter Pattern）通过一个中间件（适配器）将一个类的接口转换成客户期望的另一个接口，使原本不能一起工作的类能够协同工作。   </p>
+<h4 id="java-arraysaslist"><strong>经典例子</strong>：<strong>Java 集合框架中的 <code>Arrays.asList()</code></strong>。</h4>
+<ul>
+<li><strong>你手里的“设备”（Adaptee）</strong>：一个普通的 Java <strong>数组</strong>（比如 <code>String[]</code>）。</li>
+<li><strong>你需要的“插座”（Target接口）</strong>：Java 的 <strong><code>List</code> 接口</strong>。</li>
+<li><strong>问题</strong>：数组虽然和 List 很像，但数组没有 <code>List</code> 接口定义的 <code>contains()</code>、<code>indexOf()</code> 等丰富的方法。你不能直接把 <code>String[]</code> 当作 <code>List</code> 传给一个只接收 <code>List</code> 参数的方法。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;Gemini&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ChatGPT&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Claude&quot;</span><span class="p">};</span><span class="w"> </span><span class="c1">// 这是一个数组</span>
 
-<span class="w">    </span><span class="c1">// queues 参数指定要监听的队列名</span>
-<span class="w">    </span><span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;existing.queue&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">receiveMessage</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;收到消息: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
+<span class="c1">// 使用适配器转换</span>
+<span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">names</span><span class="p">);</span><span class="w"> </span>
+
+<span class="c1">// 现在你可以像操作 List 一样操作它了</span>
+<span class="n">list</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="s">&quot;Gemini&quot;</span><span class="p">);</span>
 </code></pre></div>
-<p>2、通过注解动态创建（推荐）</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DynamicConsumer</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">bindings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@QueueBinding</span><span class="p">(</span>
-<span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@Queue</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;order.queue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">durable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1">// 创建持久化队列</span>
-<span class="w">            </span><span class="n">exchange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@Exchange</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;order.exchange&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;topic&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1">// 创建Topic交换机</span>
-<span class="w">            </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;order.#&quot;</span><span class="w"> </span><span class="c1">// 绑定路由键</span>
-<span class="w">    </span><span class="p">))</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">processOrder</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">orderData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;处理订单消息: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">orderData</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>3、手动创建队列 + 交换机 + 它们的绑定</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RabbitConfig</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">    </span><span class="c1">// 1. 定义队列</span>
-<span class="w">    </span><span class="nd">@Bean</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Queue</span><span class="w"> </span><span class="nf">myQueue</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Queue</span><span class="p">(</span><span class="s">&quot;manual.queue&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 2. 定义交换机</span>
-<span class="w">    </span><span class="nd">@Bean</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DirectExchange</span><span class="w"> </span><span class="nf">myExchange</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DirectExchange</span><span class="p">(</span><span class="s">&quot;manual.exchange&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="c1">// 3. 定义绑定关系</span>
-<span class="w">    </span><span class="nd">@Bean</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Binding</span><span class="w"> </span><span class="nf">binding</span><span class="p">(</span><span class="n">Queue</span><span class="w"> </span><span class="n">myQueue</span><span class="p">,</span><span class="w"> </span><span class="n">DirectExchange</span><span class="w"> </span><span class="n">myExchange</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">BindingBuilder</span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="n">myQueue</span><span class="p">).</span><span class="na">to</span><span class="p">(</span><span class="n">myExchange</span><span class="p">).</span><span class="na">with</span><span class="p">(</span><span class="s">&quot;manual.key&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="_2">进阶知识</h3>
-<h4 id="1_1">1. 为什么消息投递可能不成功？⭐️</h4>
-<p>首先，我们要从三个角度来分析为什么消息投递可能出现问题。</p>
-<p>首先是生产者在投递消息时可能无法传到路由器，或者传到了路由器，但是路由器无法将消息路由到消息队列中。</p>
-<p>其次就是消息中间件可能出现异常，导致消息丢失。</p>
-<p>最后，即使消息成功到了消息队列中，服务器也不会故障，但是还有可能因为消费者无法正常消费，然后消费者默认的确认模式还是自动确认，就也是一拿到消息就确认了，然后 rmq 就会把这条消息从消息队列删除，从而导致这次消息没有成功投递。</p>
-<h4 id="2">2. 如何保证消息投递的可靠性呢？</h4>
-<p>（1）在生产者端开启确认机制和回退机制，然后设置 rabbitmqTemplate 的确认和回调函数，具体思路就是将要投递的信息另存为相关数据，然后存到redis里面，之后如果出发了确认回调（ack为false)，或者回退回调，就拿到本次消息的相关数据的id，然后去redis里面取出来信息，然后再去重发。</p>
-<p>（2）在消息中间件开启持久化：rmq默认开启</p>
-<p>（3）消费者需要手动确认，而不是一拿到消息就确认，而是当业务正常完成才会去向中间件发送确认 ack，然后中间件才去删除这个消息。</p>
-<h4 id="3_2">3. 延迟消息如何实现</h4>
-<p>（1）设置队列的消息ttl + 死信队列
-（2）官方插件的延迟交换机（在特定 xxx 时间后才会将消息路由到消息队列中）</p>
-<h4 id="4_2">4. 什么是死信队列</h4>
-<p>用来存放死信消息的消息队列，和普通消息队列没什么区别。</p>
-<h4 id="5_1">5. 消息怎么才会成为死信</h4>
+<p>你会发现Arrays.asList()内部其实定义了一个<strong>适配器类</strong>（叫 <code>ArrayList</code>，注意这不是 <code>java.util.ArrayList</code>，而是 <code>Arrays</code> 类的一个内部私有类）：</p>
 <ul>
-<li>
-<p>拒绝：消费者拒接消息，basicNack()/basicReject()，并且不把消息重新放入原目标队列，requeue=false</p>
-</li>
-<li>
-<p>溢出：队列中消息数量到达限制。比如队列最大只能存储10条消息，且现在已经存储了10条，此时如果再发送一条消息进来，根据先进先出原则，队列中最早的消息会变成死信</p>
-</li>
-<li>
-<p>超时：消息到达超时时间未被消费</p>
-</li>
+<li><strong>这个内部类实现了 <code>List</code> 接口</strong>（满足了“插座”的要求）。</li>
+<li><strong>它内部持有那个原始数组的引用</strong>（连接了“吹风机”）。</li>
+<li><strong>当你调用 <code>list.get(0)</code> 时</strong>，适配器内部其实是在执行 <code>return array[0]</code>。</li>
 </ul>
-<h4 id="6">6. 在生产者发送数据时，如果是自定义的对象，记得要实现序列化接口</h4>
-<h4 id="7-rmq">7. 什么场景下 RMQ 消息会乱序呢？</h4>
-<p>RabbitMQ 能保证消息在单个 Queue 中是先进先出（FIFO）的。导致乱序的通常是以下两种情况：</p>
-<ul>
-<li><strong>多消费者并行</strong>：一个 Queue 绑定了多个 Consumer，Consumer A 处理消息 1 比较慢，Consumer B 处理消息 2 比较快，导致消息 2 先入库。</li>
-<li><strong>异常重试</strong>：消息 1 处理失败触发 <code>nack</code> 并重回队列（requeue），此时消息 2 已经处理完，消息 1 变成了在消息 2 之后执行。</li>
-</ul>
-<h4 id="8-rmq">8. RMQ 如何保证消息的顺序性呢？⭐️</h4>
-<h5 id="a"><strong>方案 A：单队列 + 单消费者（单线程）（最简单，但性能差）</strong></h5>
-<ul>
-<li><strong>做法</strong>：一个 Queue 只允许一个 Consumer 实例监听，且 Consumer 内部不开启多线程处理。  </li>
-<li><strong>适用</strong>：吞吐量要求不高，但顺序性极强的场景。</li>
-<li><strong>缺点</strong>：无法发挥分布式优势，消费速度受限于单台机器。
-单消费者但是多线程，还是会导致消息顺序错误！</li>
-</ul>
-<p align='center'>
-    <img src="../../assets/imgs/interview/rmq/rmq03.png" alt="rmq03" style="zoom:80%;" />
-</p>
-
-<h5 id="b-hash">方案 B：拆分多个队列 + 一致性 Hash（最主流）</h5>
-<p><strong>核心思想</strong>：将需要保证顺序的消息（比如同一个订单的创建、支付、发货），通过 <strong>Hash 路由</strong>发送到同一个队列中。</p>
-<ul>
-<li>创建多个 Queue（如 <code>queue_1</code>, <code>queue_2</code>, ...）。</li>
-<li>生产者发送消息时，根据 <code>business_id</code>（如订单 ID）进行取模或 Hash，确保<strong>同一业务 ID 的消息进入同一个 Queue</strong>。</li>
-<li>每个 Queue 只对应一个唯一的 Consumer 实例。</li>
-</ul>
-<h4 id="9-rabbitmq">9. 如何使用RabbitMQ解决分布式事务⭐️</h4>
-<p>在分布式系统中，保证两个服务（比如订单服务和库存服务）的数据一致性，最经典且最常用的方案就是 <strong>基于 MQ 的可靠消息最终一致性方案</strong>。</p>
-<p>在 RabbitMQ 中，我们通常通过 <strong>“本地事务表 + 确认机制”</strong> 来实现。</p>
-<ul>
-<li>
-<p><strong>在发送端</strong>：利用<strong>本地事务表</strong>。将业务操作和‘发消息’任务放在一个数据库事务里。通过后台任务配合 RabbitMQ 的 <strong>Confirm 机制</strong>，确保消息一定能到达交换机。</p>
-</li>
-<li>
-<p><strong>在消费端</strong>：开启<strong>手动确认（Manual ACK）</strong>。只有当下游业务处理成功后才告知 MQ 删除消息。同时，为了防止重复消费，必须配合<strong>幂等性检查</strong>（如数据库唯一索引或 Redis 状态位）。</p>
-</li>
-</ul>
-<h4 id="10">10. 如何解决消息队列的延时以及过期失效问题呢？⭐️</h4>
-<p>1）延时问题
-<strong>根因</strong>：通常是消费端出了问题（宕机、逻辑卡死、处理太慢）。</p>
-<p>2）过期失效问题
-RabbitMQ 可以设置消息的过期时间（TTL）。如果消息在队列里积压超过 TTL 还没被消费，会被 <strong>丢弃</strong>。</p>
-<p>解决方法：配置死信队列，然后将这些超过 TTL 的消息持久化到数据库，之后重新发送到 MQ</p>
-<h4 id="11">11. 消息队列满了之后改如何处理呢？</h4>
-<p>当队列达到 <code>max-length</code>（最大长度）且内存/磁盘水位过高时，MQ 会触发<strong>流量控制（Flow Control）</strong>，此时生产者会被挂起（卡住）。</p>
-<ul>
-<li>
-<p><strong>临时丢弃并记录</strong>：如果业务允许，可以临时开启消费端，直接读取消息但不做任何业务处理（直接 ACK），同时将消息内容记录到日志中，等高峰期过后通过日志进行人工补偿。</p>
-</li>
-<li>
-<p><strong>死信队列</strong>：确保配置了死信队列（DLX）。如果队列满了，让消息溢出到死信队列，防止主队列直接崩溃。</p>
-</li>
-</ul>
-<h4 id="12">12. 有几百万条的消息持续积压，分析该如何解决？⭐️</h4>
-<p>1）通常，消失挤压到这种程度往往说明消费者出现了问题，我们要先去找到消费者的问题并解决！</p>
-<p>2）临时紧急扩容（核心考点）：创建10个临时队列，然后写一个分流程序，它只负责从原有的积压队列里取消息，然后不做任何业务逻辑，<strong>直接转发</strong>到刚才建的那 10 个临时队列里。然后让10个消费者并行的去消费，这样就能保证原来10天才能消费完这些积压得消息，现在只需要1天即可。</p>
-<p>3）当积压消化完后，我们停止中转程序，然后把增加得服务器删除掉，恢复原来的消费模式即可。</p>
 
 
 

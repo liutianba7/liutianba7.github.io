@@ -2,82 +2,90 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://liutianba7.github.io/index.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/interview/index.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/interview/points/es.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/interview/points/mysql.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/interview/points/redis.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/interview/points/rmq.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/interview/points/seata.html</loc>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/interview/points/springboot%2BCloud.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/interview/points/ssm.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/interview/points/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html</loc>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/java/springboot.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/java/ssm.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/journal/2026-02.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/journal/scripts/2026-02.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/linux/basic.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/middleware/minio.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/middleware/mysql%E5%9F%BA%E7%A1%80.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/middleware/mysql%E9%AB%98%E7%BA%A7.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/middleware/redis.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/python/Web/fastapi.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/tools/docker.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
     <url>
          <loc>https://liutianba7.github.io/tools/git.html</loc>
-         <lastmod>2026-02-22</lastmod>
+         <lastmod>2026-02-23</lastmod>
     </url>
 </urlset>
