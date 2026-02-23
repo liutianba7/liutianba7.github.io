@@ -11,6 +11,13 @@ nav:
   - Java:
     - ssm: ./java/ssm.md
     - springboot: ./java/springboot.md
+  - Python:
+      - langchain: ./python/Ai/langchain.md
+      - pytorch: ./python/Ai/pytorch.md
+      - fastapi: ./python/Web/fastapi.md
+  - Frontend:
+      - js: ./frontend/js.md
+      - vue3: ./frontend/vue3.md
   - Bagu:
       - 八股复习路线: ./interview/index.md
       - ssm: ./interview/points/ssm.md
@@ -86,3 +93,10 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.arithmatex:   # 数学公式支持
+      generic: true
+
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js

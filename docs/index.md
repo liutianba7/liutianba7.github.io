@@ -6,10 +6,11 @@
 
 ### 👨‍💻 关于我 (Author Bio)
 
-<div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 12px; padding: 20px; box-shadow: 0 8px 16px rgba(0,0,0,0.04); margin: 20px 0; font-family: sans-serif;">
+<div style="background: rgba(255, 255, 255, 0.00); border: 1px solid rgba(0, 0, 0, 0.08); border-radius: 12px; padding: 20px; box-shadow: 0 8px 16px rgba(0,0,0,0.04); margin: 20px 0; font-family: sans-serif;">
     <div style="line-height: 2.2; color: var(--md-typeset-color); font-size: 0.95em;">
         <div>🎓 <b>学校/专业</b>：<b>东南大学</b> · 计算机科学与技术 · <b>研 0</b></div>
         <div>🎯 <b>关注领域</b>：深度学习、后端开发</div>
+
 
         <div style="margin-top: 10px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px;">
             <b>☕ Java 生态</b>：
