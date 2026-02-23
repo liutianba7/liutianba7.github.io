@@ -19,6 +19,8 @@ nav:
       - redis: ./interview/points/redis.md
       - elasticsearch: ./interview/points/es.md
       - rmq: ./interview/points/rmq.md
+      - seata: ./interview/points/seata.md
+      - 设计模式: ./interview/points/设计模式.md
   - Journal:
       - 202602: ./journal/2026-02.md
   - Tools:

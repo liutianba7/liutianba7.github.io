@@ -1,0 +1,2323 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://liutianba7.github.io/interview/points/rmq.html">
+      
+      
+        <link rel="prev" href="es.html">
+      
+      
+        <link rel="next" href="../../journal/2026-02.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>rmq - LiuTianBa7 's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rabbit-mq" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-header__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LiuTianBa7 's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              rmq
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../java/ssm.html" class="md-tabs__link">
+          
+  
+  
+  Java
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../index.html" class="md-tabs__link">
+          
+  
+  
+  Bagu
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/2026-02.html" class="md-tabs__link">
+          
+  
+  
+  Journal
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tools/git.html" class="md-tabs__link">
+          
+  
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
+          
+  
+  
+  Middleware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../linux/basic.html" class="md-tabs__link">
+          
+  
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-nav__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    LiuTianBa7 's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/springboot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    springboot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bagu
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bagu
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    八股复习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="springboot%2BCloud.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    spring[boot|cloud]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mysql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="es.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    elasticsearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    rmq
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="rmq.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    rmq
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基础知识
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基础知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. rmq的工作模式⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. rmq的工作模式⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 简单模式：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. work 模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 发布订阅（广播）模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 路由模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. topic 模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-rmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. rmq的作用与使用方法 ⭐⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 交换机的类型⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 什么是幂等性⭐⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 如何保证幂等性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-rmq-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. RMQ 在java中如何使用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进阶知识
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="进阶知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 为什么消息投递可能不成功？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 如何保证消息投递的可靠性呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 延迟消息如何实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 什么是死信队列
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 消息怎么才会成为死信
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 在生产者发送数据时，如果是自定义的对象，记得要实现序列化接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-rmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 什么场景下 RMQ 消息会乱序呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-rmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. RMQ 如何保证消息的顺序性呢？⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. RMQ 如何保证消息的顺序性呢？⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案 A：单队列 + 单消费者（单线程）（最简单，但性能差）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案 B：拆分多个队列 + 一致性 Hash（最主流）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-rabbitmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 如何使用RabbitMQ解决分布式事务⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 如何解决消息队列的延时以及过期失效问题呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 消息队列满了之后改如何处理呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 有几百万条的消息持续积压，分析该如何解决？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Journal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Journal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/2026-02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    202602
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/git.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Middleware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Middleware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E9%AB%98%E7%BA%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 高级
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/minio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    minio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/basic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基础知识
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基础知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. rmq的工作模式⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. rmq的工作模式⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 简单模式：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. work 模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 发布订阅（广播）模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 路由模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-topic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. topic 模式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-rmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. rmq的作用与使用方法 ⭐⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 交换机的类型⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 什么是幂等性⭐⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 如何保证幂等性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-rmq-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. RMQ 在java中如何使用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        进阶知识
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="进阶知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 为什么消息投递可能不成功？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 如何保证消息投递的可靠性呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 延迟消息如何实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 什么是死信队列
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 消息怎么才会成为死信
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 在生产者发送数据时，如果是自定义的对象，记得要实现序列化接口
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-rmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 什么场景下 RMQ 消息会乱序呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-rmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. RMQ 如何保证消息的顺序性呢？⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. RMQ 如何保证消息的顺序性呢？⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案 A：单队列 + 单消费者（单线程）（最简单，但性能差）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-hash" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方案 B：拆分多个队列 + 一致性 Hash（最主流）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-rabbitmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 如何使用RabbitMQ解决分布式事务⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 如何解决消息队列的延时以及过期失效问题呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 消息队列满了之后改如何处理呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 有几百万条的消息持续积压，分析该如何解决？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="rabbit-mq">Rabbit mq</h1>
+<h3 id="_1">基础知识</h3>
+<h4 id="1-rmq">1. rmq的工作模式⭐⭐</h4>
+<p>RabbitMQ提供了<strong>多种工作模式</strong>：简单模式，work模式 ，Publish/Subscribe发布与订阅模式，Routing路由模式，Topics主题模式等</p>
+<p align='center'>
+    <img src="../../assets/imgs/interview/rmq/rmq01.png" alt="rmq01" style="zoom:80%;" />
+</p>
+
+<h5 id="1">1. 简单模式：</h5>
+<p>使用默认的 direct exchange（空字符串 ""），消息直接通过 <code>routingKey = queueName</code> 投递到指定队列。</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Autowired</span><span class="w">  </span>
+<span class="kd">private</span><span class="w"> </span><span class="n">RabbitTemplate</span><span class="w"> </span><span class="n">rabbitTemplate</span><span class="p">;</span><span class="w">  </span>
+<span class="c1">// 生产者 </span>
+<span class="nd">@Test</span><span class="w">  </span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testSend</span><span class="p">(){</span><span class="w">  </span>
+<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="s">&quot;queue_simple&quot;</span><span class="p">,</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="p">}</span>
+
+<span class="c1">// 消费者</span>
+<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;queue_simple&quot;</span><span class="p">})</span><span class="w">  </span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testSimpleConsumer</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span><span class="w">  </span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;消费者收到消息：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">  </span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="2-work">2. work 模式</h5>
+<p>工作（work）模式：一个生产者，一个队列，多个消费者，一个消息只能被一个消费者消费，消费者存在竞争关系，</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 生产者</span>
+<span class="nd">@Test</span><span class="w">  </span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testWorkerSend</span><span class="p">(){</span><span class="w">  </span>
+<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="s">&quot;queue_worker1&quot;</span><span class="p">,</span><span class="s">&quot;hello world1&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="s">&quot;queue_worker1&quot;</span><span class="p">,</span><span class="s">&quot;hello world2&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="p">}</span>
+<span class="c1">// 消费者1</span>
+<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;queue_worker1&quot;</span><span class="p">})</span><span class="w">  </span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testWorkerConsumer1</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span><span class="w">  </span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;消费者1收到消息：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">  </span>
+<span class="p">}</span><span class="w">  </span>
+<span class="c1">// 消费者2</span>
+<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;queue_worker1&quot;</span><span class="p">})</span><span class="w">  </span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testWorkerConsumer2</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span><span class="w">  </span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;消费者2收到消息：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">  </span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="3">3. 发布订阅（广播）模式</h5>
+<p>一个生产者，多个消费者，并且有多个队列，路由器会把消息发送给所有队列。也就是一个生产者生产的数据供所有消费者使用</p>
+<p>注：记得传构建一个广播路由以及两个队列，然后把该路由和这两个队列绑定起来，路由键设置为 "" 即可。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// p</span>
+<span class="nd">@Test</span><span class="w">  </span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testPublishAndSubscribeSend</span><span class="p">(){</span><span class="w">  </span>
+<span class="w">    </span><span class="n">rabbitTemplate</span><span class="p">.</span><span class="na">convertAndSend</span><span class="p">(</span><span class="s">&quot;exchange_ps&quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="p">}</span>
+<span class="c1">// c1</span>
+<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;queue_ps1&quot;</span><span class="p">})</span><span class="w">  </span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testPsConsumer1</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span><span class="w">  </span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;消费者1收到消息：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">  </span>
+<span class="p">}</span><span class="w">  </span>
+<span class="c1">// c2</span>
+<span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;queue_ps2&quot;</span><span class="p">})</span><span class="w">  </span>
+<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">testPsConsumer2</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">msg</span><span class="p">){</span><span class="w">  </span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;消费者2收到消息：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span><span class="w">  </span>
+<span class="p">}</span>
+</code></pre></div>
+<h5 id="4">4. 路由模式</h5>
+<p align='center'>
+    <img src="../../assets/imgs/interview/rmq/rmq02.png" alt="rmq02" style="zoom:80%;" />
+</p>
+
+<p>使用 direct 交换机，根据精确匹配的 routing key 进行路由。</p>
+<p>实际上就是不同消息队列订阅的路由键不同，因此根据生产者投递时传入的路由键不同，投递到的消息队列也就不同。</p>
+<h5 id="5-topic">5. topic 模式</h5>
+<p>使用 <strong>topic 交换机</strong>，支持 <strong>通配符匹配 routing key</strong>。
+- <code>*</code>：匹配一个单词（如 <code>user.*</code> 匹配 <code>user.login</code>，但不匹配 <code>user.auth.login</code>）
+  - <code>#</code>：匹配零个或多个单词（如 <code>log.#</code> 匹配 <code>log.info</code>、<code>log.error.db</code>）</p>
+<h4 id="2-rmq">2. <code>rmq</code>的作用与使用方法 ⭐⭐⭐</h4>
+<p>1）服务解耦：还是用户注册场景下，没有 RMQ 的时候，注册成功后还需再注册代码调用短信和邮件通知服务，而有了 RMQ，只需要发送消息到 RMQ 即可，不需要调用其他服务。</p>
+<p>2）异步调用：用户注册下，当用户注册成功，我们要发送邮件和短信通知，如果没有 rmq，用户注册成功后，还得等待系统完成邮件和短信服务才能看到响应，当但有了 RMQ 以后，就可以实现一旦注册成功，只需要将消息发送给消息队列，然后直接就可以响应用户，而邮件和短信通知都是异步进行的，这极大提高了响应速度。</p>
+<p>3）流量削峰：秒杀活动下，数据库每秒只能处理 2000 个请求，但秒杀瞬间可能有 10 万个请求涌入。直接压到数据库，系统直接崩掉。</p>
+<p>4）消息通信：利用 MQ 的发布/订阅模式（Pub/Sub）实现点对点或广播式通信。</p>
+<div class="highlight"><pre><span></span><code><span class="nl">spring</span><span class="p">:</span>
+<span class="w">  </span><span class="n">rabbitmq</span><span class="p">:</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">virtual</span><span class="o">-</span><span class="n">host</span><span class="p">:</span><span class="w"> </span><span class="o">/</span>
+<span class="w">    </span><span class="n">listener</span><span class="p">:</span>
+<span class="w">      </span><span class="n">simple</span><span class="p">:</span>
+<span class="w">        </span><span class="n">acknowledge</span><span class="o">-</span><span class="n">mode</span><span class="p">:</span><span class="w"> </span><span class="n">manual</span>
+<span class="w">        </span><span class="n">prefetch</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">设置每次最多从消息队列服务器取回多少消息</span>
+</code></pre></div>
+<p>rmq的用法：</p>
+<ol>
+<li>导入依赖</li>
+<li>可选：去设置 rabbitmqTemplate 的回退与确认回调，实现重发等等</li>
+<li>去通过 rabbitmqTemplate 发送消息</li>
+<li>通过 @RabbitListener 去声明消费者</li>
+</ol>
+<h4 id="3_1">3. 交换机的类型⭐</h4>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特点</th>
+<th>匹配规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Direct</strong></td>
+<td>精确匹配</td>
+<td><code>routingKey == bindingKey</code></td>
+</tr>
+<tr>
+<td><strong>Fanout</strong></td>
+<td>广播</td>
+<td>忽略 routing key，发给所有绑定队列</td>
+</tr>
+<tr>
+<td><strong>Topic</strong></td>
+<td>模糊匹配</td>
+<td>支持 <code>*</code> 和 <code>#</code> 通配符</td>
+</tr>
+<tr>
+<td><strong>Headers</strong></td>
+<td>基于消息头（Header）匹配</td>
+<td>不常用，性能较差</td>
+</tr>
+</tbody>
+</table>
+<h4 id="4_1">4. 什么是幂等性⭐⭐⭐</h4>
+<p>统一操作执行多次与一次的效果相同。在rmq中，消费者可能因网络、崩溃等原因<strong>重复收到并消费同一条消息</strong>。如果业务逻辑不具备幂等性，可能会导致：重复扣款，重复发券，数据重复插入等等。
+而消费多条消息与消费一条消息的效果相同就叫做幂等性。</p>
+<h4 id="5">5. 如何保证幂等性</h4>
+<p>数据库唯一索引
+redis：setnx</p>
+<h4 id="6-rmq-java">6. RMQ 在java中如何使用？</h4>
+<p>1、直接监听已存在的队列</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SimpleConsumer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// queues 参数指定要监听的队列名</span>
+<span class="w">    </span><span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">queues</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;existing.queue&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">receiveMessage</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;收到消息: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>2、通过注解动态创建（推荐）</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Component</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DynamicConsumer</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="nd">@RabbitListener</span><span class="p">(</span><span class="n">bindings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@QueueBinding</span><span class="p">(</span>
+<span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@Queue</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;order.queue&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">durable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1">// 创建持久化队列</span>
+<span class="w">            </span><span class="n">exchange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@Exchange</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;order.exchange&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;topic&quot;</span><span class="p">),</span><span class="w"> </span><span class="c1">// 创建Topic交换机</span>
+<span class="w">            </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;order.#&quot;</span><span class="w"> </span><span class="c1">// 绑定路由键</span>
+<span class="w">    </span><span class="p">))</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">processOrder</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">orderData</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;处理订单消息: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">orderData</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>3、手动创建队列 + 交换机 + 它们的绑定</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Configuration</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RabbitConfig</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// 1. 定义队列</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Queue</span><span class="w"> </span><span class="nf">myQueue</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Queue</span><span class="p">(</span><span class="s">&quot;manual.queue&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 2. 定义交换机</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">DirectExchange</span><span class="w"> </span><span class="nf">myExchange</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DirectExchange</span><span class="p">(</span><span class="s">&quot;manual.exchange&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 3. 定义绑定关系</span>
+<span class="w">    </span><span class="nd">@Bean</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Binding</span><span class="w"> </span><span class="nf">binding</span><span class="p">(</span><span class="n">Queue</span><span class="w"> </span><span class="n">myQueue</span><span class="p">,</span><span class="w"> </span><span class="n">DirectExchange</span><span class="w"> </span><span class="n">myExchange</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">BindingBuilder</span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="n">myQueue</span><span class="p">).</span><span class="na">to</span><span class="p">(</span><span class="n">myExchange</span><span class="p">).</span><span class="na">with</span><span class="p">(</span><span class="s">&quot;manual.key&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_2">进阶知识</h3>
+<h4 id="1_1">1. 为什么消息投递可能不成功？⭐️</h4>
+<p>首先，我们要从三个角度来分析为什么消息投递可能出现问题。</p>
+<p>首先是生产者在投递消息时可能无法传到路由器，或者传到了路由器，但是路由器无法将消息路由到消息队列中。</p>
+<p>其次就是消息中间件可能出现异常，导致消息丢失。</p>
+<p>最后，即使消息成功到了消息队列中，服务器也不会故障，但是还有可能因为消费者无法正常消费，然后消费者默认的确认模式还是自动确认，就也是一拿到消息就确认了，然后 rmq 就会把这条消息从消息队列删除，从而导致这次消息没有成功投递。</p>
+<h4 id="2">2. 如何保证消息投递的可靠性呢？</h4>
+<p>（1）在生产者端开启确认机制和回退机制，然后设置 rabbitmqTemplate 的确认和回调函数，具体思路就是将要投递的信息另存为相关数据，然后存到redis里面，之后如果出发了确认回调（ack为false)，或者回退回调，就拿到本次消息的相关数据的id，然后去redis里面取出来信息，然后再去重发。</p>
+<p>（2）在消息中间件开启持久化：rmq默认开启</p>
+<p>（3）消费者需要手动确认，而不是一拿到消息就确认，而是当业务正常完成才会去向中间件发送确认 ack，然后中间件才去删除这个消息。</p>
+<h4 id="3_2">3. 延迟消息如何实现</h4>
+<p>（1）设置队列的消息ttl + 死信队列
+（2）官方插件的延迟交换机（在特定 xxx 时间后才会将消息路由到消息队列中）</p>
+<h4 id="4_2">4. 什么是死信队列</h4>
+<p>用来存放死信消息的消息队列，和普通消息队列没什么区别。</p>
+<h4 id="5_1">5. 消息怎么才会成为死信</h4>
+<ul>
+<li>
+<p>拒绝：消费者拒接消息，basicNack()/basicReject()，并且不把消息重新放入原目标队列，requeue=false</p>
+</li>
+<li>
+<p>溢出：队列中消息数量到达限制。比如队列最大只能存储10条消息，且现在已经存储了10条，此时如果再发送一条消息进来，根据先进先出原则，队列中最早的消息会变成死信</p>
+</li>
+<li>
+<p>超时：消息到达超时时间未被消费</p>
+</li>
+</ul>
+<h4 id="6">6. 在生产者发送数据时，如果是自定义的对象，记得要实现序列化接口</h4>
+<h4 id="7-rmq">7. 什么场景下 RMQ 消息会乱序呢？</h4>
+<p>RabbitMQ 能保证消息在单个 Queue 中是先进先出（FIFO）的。导致乱序的通常是以下两种情况：</p>
+<ul>
+<li><strong>多消费者并行</strong>：一个 Queue 绑定了多个 Consumer，Consumer A 处理消息 1 比较慢，Consumer B 处理消息 2 比较快，导致消息 2 先入库。</li>
+<li><strong>异常重试</strong>：消息 1 处理失败触发 <code>nack</code> 并重回队列（requeue），此时消息 2 已经处理完，消息 1 变成了在消息 2 之后执行。</li>
+</ul>
+<h4 id="8-rmq">8. RMQ 如何保证消息的顺序性呢？⭐️</h4>
+<h5 id="a"><strong>方案 A：单队列 + 单消费者（单线程）（最简单，但性能差）</strong></h5>
+<ul>
+<li><strong>做法</strong>：一个 Queue 只允许一个 Consumer 实例监听，且 Consumer 内部不开启多线程处理。  </li>
+<li><strong>适用</strong>：吞吐量要求不高，但顺序性极强的场景。</li>
+<li><strong>缺点</strong>：无法发挥分布式优势，消费速度受限于单台机器。
+单消费者但是多线程，还是会导致消息顺序错误！</li>
+</ul>
+<p align='center'>
+    <img src="../../assets/imgs/interview/rmq/rmq03.png" alt="rmq03" style="zoom:80%;" />
+</p>
+
+<h5 id="b-hash">方案 B：拆分多个队列 + 一致性 Hash（最主流）</h5>
+<p><strong>核心思想</strong>：将需要保证顺序的消息（比如同一个订单的创建、支付、发货），通过 <strong>Hash 路由</strong>发送到同一个队列中。</p>
+<ul>
+<li>创建多个 Queue（如 <code>queue_1</code>, <code>queue_2</code>, ...）。</li>
+<li>生产者发送消息时，根据 <code>business_id</code>（如订单 ID）进行取模或 Hash，确保<strong>同一业务 ID 的消息进入同一个 Queue</strong>。</li>
+<li>每个 Queue 只对应一个唯一的 Consumer 实例。</li>
+</ul>
+<h4 id="9-rabbitmq">9. 如何使用RabbitMQ解决分布式事务⭐️</h4>
+<p>在分布式系统中，保证两个服务（比如订单服务和库存服务）的数据一致性，最经典且最常用的方案就是 <strong>基于 MQ 的可靠消息最终一致性方案</strong>。</p>
+<p>在 RabbitMQ 中，我们通常通过 <strong>“本地事务表 + 确认机制”</strong> 来实现。</p>
+<ul>
+<li>
+<p><strong>在发送端</strong>：利用<strong>本地事务表</strong>。将业务操作和‘发消息’任务放在一个数据库事务里。通过后台任务配合 RabbitMQ 的 <strong>Confirm 机制</strong>，确保消息一定能到达交换机。</p>
+</li>
+<li>
+<p><strong>在消费端</strong>：开启<strong>手动确认（Manual ACK）</strong>。只有当下游业务处理成功后才告知 MQ 删除消息。同时，为了防止重复消费，必须配合<strong>幂等性检查</strong>（如数据库唯一索引或 Redis 状态位）。</p>
+</li>
+</ul>
+<h4 id="10">10. 如何解决消息队列的延时以及过期失效问题呢？⭐️</h4>
+<p>1）延时问题
+<strong>根因</strong>：通常是消费端出了问题（宕机、逻辑卡死、处理太慢）。</p>
+<p>2）过期失效问题
+RabbitMQ 可以设置消息的过期时间（TTL）。如果消息在队列里积压超过 TTL 还没被消费，会被 <strong>丢弃</strong>。</p>
+<p>解决方法：配置死信队列，然后将这些超过 TTL 的消息持久化到数据库，之后重新发送到 MQ</p>
+<h4 id="11">11. 消息队列满了之后改如何处理呢？</h4>
+<p>当队列达到 <code>max-length</code>（最大长度）且内存/磁盘水位过高时，MQ 会触发<strong>流量控制（Flow Control）</strong>，此时生产者会被挂起（卡住）。</p>
+<ul>
+<li>
+<p><strong>临时丢弃并记录</strong>：如果业务允许，可以临时开启消费端，直接读取消息但不做任何业务处理（直接 ACK），同时将消息内容记录到日志中，等高峰期过后通过日志进行人工补偿。</p>
+</li>
+<li>
+<p><strong>死信队列</strong>：确保配置了死信队列（DLX）。如果队列满了，让消息溢出到死信队列，防止主队列直接崩溃。</p>
+</li>
+</ul>
+<h4 id="12">12. 有几百万条的消息持续积压，分析该如何解决？⭐️</h4>
+<p>1）通常，消失挤压到这种程度往往说明消费者出现了问题，我们要先去找到消费者的问题并解决！</p>
+<p>2）临时紧急扩容（核心考点）：创建10个临时队列，然后写一个分流程序，它只负责从原有的积压队列里取消息，然后不做任何业务逻辑，<strong>直接转发</strong>到刚才建的那 10 个临时队列里。然后让10个消费者并行的去消费，这样就能保证原来10天才能消费完这些积压得消息，现在只需要1天即可。</p>
+<p>3）当积压消化完后，我们停止中转程序，然后把增加得服务器删除掉，恢复原来的消费模式即可。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 LiuTianBa7 
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
