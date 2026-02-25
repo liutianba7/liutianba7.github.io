@@ -1,0 +1,4787 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://liutianba7.github.io/python/Ai/langchain.html">
+      
+      
+        <link rel="prev" href="../../java/springboot.html">
+      
+      
+        <link rel="next" href="pytorch.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>langchain - LiuTianBa7 's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#01" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-header__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LiuTianBa7 's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              langchain
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../java/ssm.html" class="md-tabs__link">
+          
+  
+  
+  Java
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="langchain.html" class="md-tabs__link">
+          
+  
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../frontend/js.html" class="md-tabs__link">
+          
+  
+  
+  Frontend
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../interview/index.html" class="md-tabs__link">
+          
+  
+  
+  Bagu
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/2026-02.html" class="md-tabs__link">
+          
+  
+  
+  Journal
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tools/git.html" class="md-tabs__link">
+          
+  
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
+          
+  
+  
+  Middleware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../linux/basic.html" class="md-tabs__link">
+          
+  
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-nav__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    LiuTianBa7 's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/springboot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    springboot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    langchain
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="langchain.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    langchain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 前置准备
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="01 前置准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        远程调用 LLM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        环境变量的保护
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ollama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ollama
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02-openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 OpenAI 基础
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="02 OpenAI 基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openai-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI 调用 LLM 大模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI 流式输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI 历史消息
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 提示词工程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="03 提示词工程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用技巧
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero-shot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero-shot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#few-shot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Few-shot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prompt 设计：返回 Json
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#04-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 LangChain
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="04 LangChain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 调用大模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 返回结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 流式输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-chatmodels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain ChatModels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 消息的简写形式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 嵌入模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain prompt
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain prompt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prompttemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基础模板：PromptTemplate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatprompttemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        聊天模板：ChatPromptTemplate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#few-shot-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        少样本提示：Few-Shot Prompts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-invoke" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        format 和 invoke 的区别
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain chain ⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain chain ⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心语法：管道符 |
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        链的标准组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-runnable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain Runnable 接口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain Runnable 接口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、设计理念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2、四大核心调用方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3、输入与输出类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4、进阶辅助组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-outputparser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain OutputParser
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain OutputParser">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心作用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用解析器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-runnablelambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain RunnableLambda
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain RunnableLambda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基础用法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Chain 中的实战场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-mermory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain Mermory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain Mermory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#runnablewithmessagehistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RunnableWithMessageHistory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory 长期会话存储
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        存储介质的选择
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-loaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain loaders
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain loaders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见的 Loaders 分类
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-loader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV Loader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-loader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Json Loader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TextLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursivecharactertextsplitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RecursiveCharacterTextSplitter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pypdfloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyPDFLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-vector-stores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain Vector stores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-runnablepassthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain RunnablePassThrough
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#05-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 RAG
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="05 RAG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG 基础概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG 实战
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#06-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 Agent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="06 Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent 基础概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent 示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent 四大组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent 流式输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent React
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent Middleware
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pytorch.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pytorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Web/fastapi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fastapi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frontend/js.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frontend/vue3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vue3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bagu
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bagu
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    八股复习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/points/ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/points/springboot%2BCloud.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    spring[boot|cloud]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/points/mysql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/points/redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/points/es.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    elasticsearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/points/rmq.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    rmq
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/points/seata.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    seata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/points/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Journal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Journal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/2026-02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    202602
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/git.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Middleware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Middleware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E9%AB%98%E7%BA%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 高级
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/minio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    minio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/basic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 前置准备
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="01 前置准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        远程调用 LLM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        环境变量的保护
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ollama" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ollama
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02-openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 OpenAI 基础
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="02 OpenAI 基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openai-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI 调用 LLM 大模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI 流式输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenAI 历史消息
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 提示词工程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="03 提示词工程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用技巧
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zero-shot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zero-shot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#few-shot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Few-shot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prompt 设计：返回 Json
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#04-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 LangChain
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="04 LangChain">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 调用大模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 返回结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 流式输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-chatmodels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain ChatModels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 消息的简写形式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain 嵌入模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-prompt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain prompt
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain prompt">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prompttemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基础模板：PromptTemplate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chatprompttemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        聊天模板：ChatPromptTemplate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#few-shot-prompts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        少样本提示：Few-Shot Prompts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-invoke" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        format 和 invoke 的区别
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain chain ⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain chain ⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心语法：管道符 |
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        链的标准组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-runnable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain Runnable 接口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain Runnable 接口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1、设计理念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2、四大核心调用方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3、输入与输出类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4、进阶辅助组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-outputparser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain OutputParser
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain OutputParser">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        核心作用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用解析器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-runnablelambda" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain RunnableLambda
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain RunnableLambda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基础用法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 Chain 中的实战场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-mermory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain Mermory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain Mermory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#runnablewithmessagehistory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RunnableWithMessageHistory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Memory 长期会话存储
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        存储介质的选择
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-loaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain loaders
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain loaders">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Document 对象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loaders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见的 Loaders 分类
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-loader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV Loader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-loader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Json Loader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#textloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TextLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursivecharactertextsplitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RecursiveCharacterTextSplitter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pypdfloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyPDFLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-vector-stores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain Vector stores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-runnablepassthrough" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain RunnablePassThrough
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#05-rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 RAG
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="05 RAG">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG 基础概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG 实战
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#06-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 Agent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="06 Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent 基础概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent 示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent 四大组件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent 流式输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-react" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent React
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-middleware" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent Middleware
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>langchain</h1>
+
+<h2 id="01">01 前置准备</h2>
+<h3 id="llm">远程调用 LLM</h3>
+<p>大多数主流大模型（GPT, Claude, Gemini）通过 RESTful API 提供服务。目前行业基本统一使用 <strong>OpenAI SDK 标准</strong>。</p>
+<ul>
+<li><strong>Base URL</strong>: 接口地址（如 <code>https://api.openai.com/v1</code>）。</li>
+<li><strong>API Key</strong>: 你的身份凭证（绝对不能外泄）。</li>
+<li><strong>Model ID</strong>: 指定使用的模型版本（如 <code>gpt-4o</code>, <code>claude-3-5-sonnet</code>）。</li>
+</ul>
+<h3 id="_1">环境变量的保护</h3>
+<p>可以存到环境变量中，通过 <code>os.getenv()</code> 获取，或者存到配置文件，都可以！</p>
+<div class="highlight"><pre><span></span><code><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>  
+    <span class="c1"># 如果没有配置环境变量，请用阿里云百炼API Key替换：api_key=&quot;sk-xxx&quot;  </span>
+    <span class="n">api_key</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">),</span>  
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span><span class="p">,</span>  
+<span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">load_dotenv</span><span class="p">()</span>
+<span class="n">KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LLM_API_KEY&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="ollama">Ollama</h3>
+<p>Ollama 是目前最流行的<strong>本地</strong>大模型运行框架，适合数据敏感或无网环境。</p>
+<p>调用时换一下 <code>LLM</code> 的 <code>url</code> 即可，默认为<code>http://localhost:11434/v1</code></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="c1"># 灵活切换：远程 API 或 本地 Ollama</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LLM_API_KEY&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;ollama&quot;</span><span class="p">,</span>
+    <span class="n">base_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;LLM_BASE_URL&quot;</span><span class="p">)</span> <span class="c1"># 动态加载</span>
+<span class="p">)</span>
+</code></pre></div>
+<h2 id="02-openai">02 OpenAI 基础</h2>
+<p>这里给一些 openai 的介绍</p>
+<h3 id="openai-llm">OpenAI 调用 LLM 大模型</h3>
+<p><strong>1、获取客户端对象</strong></p>
+<p>在使用 SDK 之前，需确保已安装 <code>openai</code> 库并配置 <strong>API Key</strong>。推荐使用环境变量避开硬编码风险。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="c1"># 默认会读取环境变量 OPENAI_API_KEY</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;your-api-key-here&quot;</span><span class="p">,</span>  <span class="c1"># 也可手动传入</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://api.openai.com/v1&quot;</span> <span class="c1"># 代理或中转地址</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>2、调用模型</strong></p>
+<p>最核心的接口是 <code>chat.completions.create</code>。它采用对话式输入，通过 <code>messages</code> 数组定义上下文角色。</p>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;你是一个严谨的助手。&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;解释一下量子纠缠。&quot;</span><span class="p">}</span>
+    <span class="p">],</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span>
+<span class="p">)</span>
+</code></pre></div>
+<ul>
+<li><strong>model</strong>: 指定模型（如 <code>gpt-4o</code>, <code>gpt-3.5-turbo</code>）。</li>
+<li><strong>messages</strong>: 包含 <code>role</code> (system/user/assistant) 和 <code>content</code> 的列表。</li>
+<li><strong>temperature</strong>: 控制随机性（0 趋向稳定，1 趋向发散）。</li>
+</ul>
+<p><strong>System</strong> 消息处于最高层级，用于设定 AI 的<strong>身份、行为准则、知识边界</strong>以及输出格式。</p>
+<p><strong>Assistant</strong> 消息由模型生成，代表 AI 的回复。在多轮对话中，我们需要手动将之前的 Assistant 回复喂回给 API，以便模型“记住”它之前说过的话，从而维持对话的连贯性。</p>
+<p><strong>User</strong> 消息代表人类用户的输入。它是对话的驱动力，负责提出问题、下达任务或提供反馈。模型会将 User 的指令放在 System 设定的框架内进行处理。</p>
+<p><strong>3、处理结果</strong></p>
+<p>返回的 <code>response</code> 是一个结构化对象。通常我们关注的是首位候选回复的内容。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 获取回复文本</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+
+<span class="c1"># 获取消耗统计</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;本次花费了 </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">usage</span><span class="o">.</span><span class="n">total_tokens</span><span class="si">}</span><span class="s2"> 个 Token&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chatcmpl-123&quot;</span><span class="p">,</span><span class="w">          </span><span class="c1">// 请求唯一 ID</span>
+<span class="w">  </span><span class="nt">&quot;object&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chat.completion&quot;</span><span class="p">,</span><span class="w">   </span><span class="c1">// 对象类型</span>
+<span class="w">  </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1677652288</span><span class="p">,</span><span class="w">         </span><span class="c1">// Unix 时间戳</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt-4o-2024-05-13&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1">// 实际使用的模型版本</span>
+
+<span class="w">  </span><span class="nt">&quot;choices&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">                   </span><span class="c1">// 核心：模型生成的候选列表</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">               </span><span class="c1">// 消息体</span>
+<span class="w">        </span><span class="nt">&quot;role&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;assistant&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;你好！有什么我可以帮你的？&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;tool_calls&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">       </span><span class="c1">// 若触发函数调用则在此处</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;logprobs&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">          </span><span class="c1">// 词元概率信息（默认不开启）</span>
+<span class="w">      </span><span class="nt">&quot;finish_reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stop&quot;</span><span class="w">    </span><span class="c1">// 终止状态：stop, length, tool_calls</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+
+<span class="w">  </span><span class="nt">&quot;usage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">                     </span><span class="c1">// 计费：Token 统计</span>
+<span class="w">    </span><span class="nt">&quot;prompt_tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">          </span><span class="c1">// 用户输入消耗</span>
+<span class="w">    </span><span class="nt">&quot;completion_tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">     </span><span class="c1">// 模型输出消耗</span>
+<span class="w">    </span><span class="nt">&quot;total_tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="w">           </span><span class="c1">// 总计消耗</span>
+<span class="w">  </span><span class="p">},</span>
+
+<span class="w">  </span><span class="nt">&quot;system_fingerprint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fp_447092c6b1&quot;</span><span class="w"> </span><span class="c1">// 运行环境指纹（用于结果复现性排查）</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="openai">OpenAI 流式输出</h3>
+<p>流式传输时，每个数据块的结构比普通响应更精简。最关键的区别是 <code>message</code> 字段变成了 <code>delta</code> 字段。</p>
+<p>流式输出下返回的 <code>Json</code> 格式</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chatcmpl-123&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;object&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;chat.completion.chunk&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// 对象类型变为 chunk</span>
+<span class="w">  </span><span class="nt">&quot;created&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1694268190</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;model&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;system_fingerprint&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;fp_447092c6b1&quot;</span><span class="p">,</span>
+
+<span class="w">  </span><span class="nt">&quot;choices&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;delta&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">                </span><span class="c1">// 注意：这里是 delta 而非 message</span>
+<span class="w">        </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot; 核心&quot;</span><span class="w">      </span><span class="c1">// 本次分片产生的文本片段</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;logprobs&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;finish_reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">    </span><span class="c1">// 中间分片此处通常为 null</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>拼接输出</p>
+<div class="highlight"><pre><span></span><code><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;写一首短诗&quot;</span><span class="p">}],</span>
+    <span class="n">stream</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># 开启流式</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+    <span class="c1"># 提取 delta 中的 content</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">content</span>
+    <span class="k">if</span> <span class="n">content</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 实时打字机效果</span>
+</code></pre></div>
+<h3 id="openai_1">OpenAI 历史消息</h3>
+<p>实现“记忆”的方法非常直白：将之前的 <strong>User 提问</strong> 和 <strong>Assistant 回答</strong> 按顺序放入 <code>messages</code> 列表。</p>
+<div class="highlight"><pre><span></span><code><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>  
+    <span class="c1"># api_key = &quot;&quot;  </span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>  
+<span class="p">)</span>  
+
+<span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>  
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-plus&quot;</span><span class="p">,</span>  
+    <span class="n">messages</span><span class="o">=</span><span class="p">[</span>  
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;你是一个幽默的助教。其次，你一点废话都不会说！&quot;</span><span class="p">},</span>  
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;我叫小明。&quot;</span><span class="p">},</span>  
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;你好小明！记住了，我是你的助教。&quot;</span><span class="p">},</span>  
+        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;我叫什么名字？&quot;</span><span class="p">}</span>  <span class="c1"># 模型根据上下文回答“小明”  </span>
+    <span class="p">],</span>  
+    <span class="n">stream</span><span class="o">=</span><span class="kc">True</span>  
+<span class="p">)</span>  
+
+
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">resp</span><span class="p">:</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="03">03 提示词工程</h2>
+<h3 id="_2">概念</h3>
+<p>提示词工程是指通过精心设计、优化和精炼输入文本（Prompt），以引导大语言模型（LLM）生成准确、高质量且符合预期结果的过程。</p>
+<p>其底层逻辑是利用模型在预训练阶段习得的<strong>模式匹配</strong>能力。好的提示词本质上是在海量参数空间中，为模型勾勒出一条通往正确答案的“概率路径”。</p>
+<h3 id="_3">常用技巧</h3>
+<p>1、详细的描述</p>
+<p>2、将 LLM 设定为特定角色，如教师，面试官....</p>
+<p>3、使用分隔符表面输入的不同部分</p>
+<p>4、对任务指定步骤</p>
+<p>5、提供例子，本质上为：few-show learning</p>
+<p>6、基于文本文档，辅助大模型问答，降低模型“幻觉”</p>
+<h3 id="zero-shot">Zero-shot</h3>
+<p><strong>概念</strong>：直接向模型下达指令，不提供任何示例。模型仅依靠其预训练阶段习得的通用知识和指令遵循能力来完成任务。</p>
+<h3 id="few-shot">Few-shot</h3>
+<p>在正式指令之前，先给模型展示 1 到 5 个“输入-输出”对作为示范。这不仅定义了任务，更重要的是定义了<strong>输出的模式 (Pattern)</strong>。</p>
+<h3 id="prompt-json">Prompt 设计：返回 Json</h3>
+<div class="highlight"><pre><span></span><code><span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>  
+    <span class="c1"># api_key = &quot;&quot;  </span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>  
+<span class="p">)</span>  
+
+<span class="n">example_data</span> <span class="o">=</span> <span class="p">[</span>  
+    <span class="p">{</span>  
+        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;2025年第100期， 开好红球 22 21 06 01 03 11 篮球 07，一等奖中奖为2注&quot;</span><span class="p">,</span>  
+        <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;期数&quot;</span><span class="p">:</span> <span class="s2">&quot;2025100&quot;</span><span class="p">,</span> <span class="s2">&quot;中奖号码&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="s2">&quot;一等奖&quot;</span><span class="p">:</span> <span class="s2">&quot;2注&quot;</span><span class="p">}</span>  
+    <span class="p">},</span>  
+    <span class="p">{</span>  
+        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;2025101期，有3注1等奖，10注2等奖，开号篮球11，中奖红球3、5、7、11、12、16。&quot;</span><span class="p">,</span>  
+        <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;期数&quot;</span><span class="p">:</span> <span class="s2">&quot;2025101&quot;</span><span class="p">,</span> <span class="s2">&quot;中奖号码&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="s2">&quot;一等奖&quot;</span><span class="p">:</span> <span class="s2">&quot;3注&quot;</span><span class="p">}</span>  
+    <span class="p">}</span>  
+<span class="p">]</span>  
+
+<span class="n">message</span> <span class="o">=</span> <span class="p">[</span>  
+    <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;你一个彩票专家，需要按照下面的示例返回 json 字符串, 不需要其他废话！&quot;</span><span class="p">},</span>  
+<span class="p">]</span>  
+
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">example_data</span><span class="p">:</span>  
+    <span class="n">message</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="s2">&quot;input&quot;</span><span class="p">]})</span>  
+    <span class="n">message</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;assistant&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s2">&quot;output&quot;</span><span class="p">],</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)})</span>  
+
+<span class="n">q</span> <span class="o">=</span> <span class="s2">&quot;第2025102期开奖结果已出。其中二等奖高达50注，一等奖仅中出1注！本期开出的蓝球为09，红球序列则是：08、12、15、20、22、31。&quot;</span>  
+<span class="n">message</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;请按照示例返回 json: </span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">})</span>  
+
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">message</span><span class="p">:</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  
+
+<span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>  
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-plus&quot;</span><span class="p">,</span>  
+    <span class="n">messages</span><span class="o">=</span><span class="n">message</span><span class="p">,</span>  
+    <span class="n">stream</span><span class="o">=</span><span class="kc">True</span>  
+<span class="p">)</span>  
+
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">resp</span><span class="p">:</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="04-langchain">04 LangChain</h2>
+<p>LangChain 是一个开源框架，旨在让开发者能够轻松构建由大语言模型（LLM）驱动的应用程序。它的核心理念是将复杂的 LLM 操作抽象为一个个“链”（Chains），实现模块化的开发流程。</p>
+<p align='center'>
+    <img src="../../assets/imgs/python/langchian/langchain01.png" alt="langchain01" />
+</p>
+
+<h3 id="langchain">Langchain 安装</h3>
+<div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">langchain</span> <span class="n">langchain</span><span class="o">-</span><span class="n">community</span> <span class="n">langchain</span><span class="o">-</span><span class="n">ollama</span> <span class="n">dashscope</span> <span class="n">chromadb</span>
+</code></pre></div>
+<h3 id="langchain-models">Langchain Models</h3>
+<p alige='center'>
+    <img src="../../assets/imgs/python/langchian/langchain02.png" alt="langchain02" />
+</p>
+
+<p>在 LangChain 框架中，<strong>Models</strong> 是整个生态的核心驱动力。LangChain 并不直接拥有模型，而是提供了一套标准的接口，让你能够轻松地在不同的模型供应商（如 OpenAI, Anthropic, Google, Hugging Face）之间切换。</p>
+<p>LangChain 将模型主要划分为两大类：<strong>LLMs</strong> 和 <strong>Chat Models</strong>。</p>
+<p><strong>LLMs (大语言模型)</strong></p>
+<p>这类模型通常被称为“纯文本模型”。</p>
+<ul>
+<li><strong>输入/输出</strong>：接受一个 <strong>String</strong>（字符串），返回一个 <strong>String</strong>。</li>
+<li><strong>特点</strong>：它们本质上是文本补全器（Text Completion）。</li>
+<li><strong>适用场景</strong>：简单的文本生成、老版本的 GPT-3 模型。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo-instruct&quot;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;向我解释什么是量子力学&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Chat Models (聊天模型)</strong></p>
+<p>这是目前主流的模型类型（如 GPT-4, Claude 3）。</p>
+<ul>
+<li><strong>输入/输出</strong>：接受一个 <strong>Messages 列表</strong>，返回一个 <strong>BaseMessage</strong> 对象。</li>
+<li><strong>消息角色</strong>：<ul>
+<li><code>SystemMessage</code>：设置 AI 的行为（例如：“你是一个翻译助手”）。</li>
+<li><code>HumanMessage</code>：用户发送的内容。</li>
+<li><code>AIMessage</code>：模型返回的内容。</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">HumanMessage</span><span class="p">,</span> <span class="n">SystemMessage</span>
+
+<span class="n">chat</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">)</span>
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">SystemMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;你是一个幽默的导游&quot;</span><span class="p">),</span>
+    <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;故宫有什么好玩的？&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">chat</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="langchain_1">Langchain 调用大模型</h3>
+<p>llm model
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.llms.tongyi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tongyi</span>  
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">Tongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">)</span>  
+<span class="n">res</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s1">&#39;你是谁啊&#39;</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</code></pre></div></p>
+<p>chat model
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">HumanMessage</span><span class="p">,</span> <span class="n">SystemMessage</span>
+
+<span class="n">chat</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">)</span>
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">SystemMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;你是一个幽默的导游&quot;</span><span class="p">),</span>
+    <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;故宫有什么好玩的？&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">chat</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="langchain_2">Langchain 返回结构</h3>
+<p>在 LangChain 中，调用模型返回的对象通常是 <code>AIMessage</code> 类。它将原始 API 返回的 JSON 进行了标准化封装，使其在不同模型（OpenAI, Claude, Qwen 等）之间保持一致。</p>
+<div class="highlight"><pre><span></span><code><span class="err">AIMessage(</span>
+<span class="w">    </span><span class="err">co</span><span class="kc">ntent</span><span class="err">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w">                 </span><span class="err">#</span><span class="w"> </span><span class="err">字符串内容</span>
+<span class="w">    </span><span class="err">addi</span><span class="kc">t</span><span class="err">io</span><span class="kc">nal</span><span class="err">_kwargs=</span><span class="p">{},</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="err">预留给特定模型的特殊参数</span>
+<span class="w">    </span><span class="err">respo</span><span class="kc">nse</span><span class="err">_me</span><span class="kc">ta</span><span class="err">da</span><span class="kc">ta</span><span class="err">=</span><span class="p">{</span><span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="err">详细运行信息</span>
+<span class="w">        </span><span class="nt">&quot;model_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;qwen-max&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;finish_reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stop&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;token_usage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="err">...</span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="err">id=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w">                      </span><span class="err">#</span><span class="w"> </span><span class="err">追踪</span><span class="w"> </span><span class="err">ID</span>
+<span class="w">    </span><span class="kc">t</span><span class="err">ool_calls=</span><span class="p">[],</span><span class="w">                 </span><span class="err">#</span><span class="w"> </span><span class="err">工具调用列表</span>
+<span class="w">    </span><span class="err">usage_me</span><span class="kc">ta</span><span class="err">da</span><span class="kc">ta</span><span class="err">=</span><span class="p">{</span><span class="err">...</span><span class="p">}</span><span class="w">           </span><span class="err">#</span><span class="w"> </span><span class="err">(新版本)</span><span class="w"> </span><span class="err">规范化的</span><span class="w"> </span><span class="err">Toke</span><span class="kc">n</span><span class="w"> </span><span class="err">统计</span>
+<span class="err">)</span>
+
+<span class="err">#</span><span class="w"> </span><span class="err">提取数据示例</span>
+
+<span class="err">#</span><span class="w"> </span><span class="mf">1.</span><span class="w"> </span><span class="err">获取回复文本</span>
+<span class="err">msg_</span><span class="kc">te</span><span class="err">x</span><span class="kc">t</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">res.co</span><span class="kc">ntent</span>
+
+<span class="err">#</span><span class="w"> </span><span class="mf">2.</span><span class="w"> </span><span class="err">获取</span><span class="w"> </span><span class="err">Toke</span><span class="kc">n</span><span class="w"> </span><span class="err">消耗（推荐使用新版通用字段</span><span class="w"> </span><span class="err">usage_me</span><span class="kc">ta</span><span class="err">da</span><span class="kc">ta</span><span class="err">）</span>
+<span class="kc">t</span><span class="err">o</span><span class="kc">tal</span><span class="err">_</span><span class="kc">t</span><span class="err">oke</span><span class="kc">ns</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">res.usage_me</span><span class="kc">ta</span><span class="err">da</span><span class="kc">ta</span><span class="p">[</span><span class="err">&#39;</span><span class="kc">t</span><span class="err">o</span><span class="kc">tal</span><span class="err">_</span><span class="kc">t</span><span class="err">oke</span><span class="kc">ns</span><span class="err">&#39;</span><span class="p">]</span>
+
+<span class="err">#</span><span class="w"> </span><span class="mf">3.</span><span class="w"> </span><span class="err">判断是否为</span><span class="w"> </span><span class="err">AI</span><span class="w"> </span><span class="err">消息（在处理历史消息列表时很有用）</span>
+<span class="kc">fr</span><span class="err">om</span><span class="w"> </span><span class="err">la</span><span class="kc">n</span><span class="err">gchai</span><span class="kc">n</span><span class="err">_core.messages</span><span class="w"> </span><span class="err">impor</span><span class="kc">t</span><span class="w"> </span><span class="err">AIMessage</span>
+<span class="err">is_ai</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">isi</span><span class="kc">nstan</span><span class="err">ce(res</span><span class="p">,</span><span class="w"> </span><span class="err">AIMessage)</span>
+</code></pre></div>
+<h3 id="langchain_3">Langchain 流式输出</h3>
+<p>在 LangChain 中，<strong>流式输出（Streaming）</strong> 是提升用户体验的核心技术。它能让大模型像“打字机”一样实时弹出文字，而不是让用户面对加载图标苦等几十秒。</p>
+<p>LangChain 的 <strong>LCEL（LangChain Expression Language）</strong> 协议让流式输出变得非常标准化。</p>
+<p>1、基础流式输出：使用 <code>.stream()</code></p>
+<p>几乎所有的 LangChain 模型对象（LLMs 和 ChatModels）都实现了 <code>.stream()</code> 方法。它返回一个 <strong>迭代器（Iterator）</strong>，每次迭代产生一个内容片段（Chunk）。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_alibabacloud.chat_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatTongyi</span>
+
+<span class="n">chat</span> <span class="o">=</span> <span class="n">ChatTongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">)</span>
+
+<span class="c1"># 使用 .stream 方法</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chat</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="s2">&quot;请给我写一段关于春天优美的描述&quot;</span><span class="p">):</span>
+    <span class="c1"># 对于 ChatModel，片段是一个消息对象，内容在 .content 中</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>2、在链（Chain）中使用流式输出</p>
+<p>即使你把模型包装在 <code>PromptTemplate</code> 或 <code>OutputParser</code> 中，只要整个链是用 <code>|</code> 符号连接的，它依然支持流式传输。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.output_parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrOutputParser</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="s2">&quot;讲一个关于 </span><span class="si">{topic}</span><span class="s2"> 的冷笑话&quot;</span><span class="p">)</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">StrOutputParser</span><span class="p">()</span>
+
+<span class="c1"># 构建链</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">chat</span> <span class="o">|</span> <span class="n">parser</span>
+
+<span class="c1"># 链式调用同样支持 .stream</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chain</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;程序员&quot;</span><span class="p">}):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>3、异步流式输出：<code>astream</code></p>
+<p>在构建 Web 应用（如使用 FastAPI 或 Streamlit）时，异步编程是标配。可以使用 <code>astream</code> 来避免阻塞主线程。</p>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chat</span><span class="o">.</span><span class="n">astream</span><span class="p">(</span><span class="s2">&quot;如何评价 Python 的异步编程？&quot;</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</code></pre></div>
+<h3 id="langchain-chatmodels">Langchain ChatModels</h3>
+<p>在 LangChain 中，<strong>ChatModels</strong> 是 LLM 的进化版。与传统的 LLMs（纯文本进、纯文本出）不同，ChatModels 是为“对话”而生的。它们理解 <strong>消息（Messages）</strong> 的概念，并能够区分对话中不同的角色。</p>
+<p><strong>1、核心模型对象：消息类型</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>消息类名</strong></th>
+<th><strong>角色说明</strong></th>
+<th><strong>典型用途</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>SystemMessage</code></strong></td>
+<td>系统预设</td>
+<td>设定 AI 的人设、语气、遵守的规矩（例如：“你是一个毒舌的影评人”）。</td>
+</tr>
+<tr>
+<td><strong><code>HumanMessage</code></strong></td>
+<td>用户输入</td>
+<td>用户发出的提问或指令。</td>
+</tr>
+<tr>
+<td><strong><code>AIMessage</code></strong></td>
+<td>AI 回复</td>
+<td>模型生成的响应。在多轮对话中，需要把之前的 AIMessage 传回给模型作为记忆。</td>
+</tr>
+<tr>
+<td><strong><code>FunctionMessage</code> / <code>ToolMessage</code></strong></td>
+<td>插件/工具返回</td>
+<td>当模型调用外部工具（如搜索、计算器）后，将结果返回给模型时使用。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2、基本调用演示</strong></p>
+<p>使用 ChatModels 时，通常传入一个消息列表：
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.chat_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatTongyi</span>  
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">HumanMessage</span>  
+
+<span class="c1"># 创建模型实例  </span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatTongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">)</span>  
+
+<span class="c1"># 创建消息实例  </span>
+<span class="n">message</span> <span class="o">=</span> <span class="p">[</span>  
+    <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;请将下面这句话翻译成英文：中国是一个伟大的国家&quot;</span><span class="p">)</span>  
+<span class="p">]</span>  
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>  
+
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="langchain_4">Langchain 消息的简写形式</h3>
+<p>简写最大的好处就是支持变量注入！！</p>
+<p><strong>基础语法</strong>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="s2">&quot;system | ai | human&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">)</span>
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建模型实例  </span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatTongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">)</span>  
+
+<span class="c1"># 创建消息实例  </span>
+<span class="n">message</span> <span class="o">=</span> <span class="p">[</span>  
+    <span class="p">(</span><span class="s1">&#39;system&#39;</span><span class="p">,</span> <span class="s2">&quot;你是一个幽默的情感专家&quot;</span><span class="p">),</span>  
+    <span class="p">(</span><span class="s1">&#39;human&#39;</span><span class="p">,</span> <span class="s1">&#39;如果明知道一个女孩不喜欢我，我还天天想着她，你怎么评价&#39;</span><span class="p">)</span>  
+<span class="p">]</span>  
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>  
+
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    
+</code></pre></div>
+<h3 id="langchain_5">Langchain 嵌入模型</h3>
+<p>在 LangChain 中，<strong>嵌入模型（Embedding Models）</strong> 是连接“自然语言”与“机器计算”的桥梁。它们将文本转换为一串高维向量（通常是数百或上千维的浮点数数组）。</p>
+<p>LangChain 提供了 <code>Embeddings</code> 类作为统一接口。无论用 OpenAI 还是本地的 Hugging Face 模型，代码结构几乎一致：</p>
+<ul>
+<li><strong><code>embed_documents</code></strong>：用于向量化多条文本（通常是存入数据库前的原始文档）。</li>
+<li><strong><code>embed_query</code></strong>：用于向量化用户的问题（单条文本）</li>
+</ul>
+<p>A. OpenAI Embeddings (云端闭源)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
+
+<span class="n">embeddings_model</span> <span class="o">=</span> <span class="n">OpenAIEmbeddings</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;text-embedding-3-small&quot;</span><span class="p">)</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">embeddings_model</span><span class="o">.</span><span class="n">embed_query</span><span class="p">(</span><span class="s2">&quot;什么是人工智能？&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">))</span>  <span class="c1"># 输出维度大小，如 1536</span>
+</code></pre></div>
+<p>B. Hugging Face Embeddings (本地开源)</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_huggingface</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+
+<span class="c1"># 加载本地模型（首次运行会自动下载）</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;sentence-transformers/all-mpnet-base-v2&quot;</span>
+<span class="n">hf_embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="n">model_name</span><span class="p">)</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">hf_embeddings</span><span class="o">.</span><span class="n">embed_query</span><span class="p">(</span><span class="s2">&quot;LangChain 很强大&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>C. 阿里通义千问 Embeddings</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.embeddings</span><span class="w"> </span><span class="kn">import</span> <span class="n">DashScopeEmbeddings</span>
+
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">DashScopeEmbeddings</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;text-embedding-v1&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="langchain-prompt">Langchain prompt</h3>
+<p>在 LangChain 中，<strong>Prompt</strong>（提示词）不再仅仅是一段硬编码的字符串，而是被抽象为 <strong>Prompt Templates（提示词模板）</strong>。这种抽象让你可以像写代码函数一样，定义可重复使用的逻辑，并动态地注入变量。</p>
+<h4 id="prompttemplate">基础模板：<code>PromptTemplate</code></h4>
+<p>这是最通用的形式，适用于纯文本模型。它使用 Python 的 <code>str.format</code> 语法。
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">PromptTemplate</span>
+
+<span class="c1"># 定义模板</span>
+<span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;你是一个专业的</span><span class="si">{job_title}</span><span class="s2">，请为我解释什么是</span><span class="si">{concept}</span><span class="s2">。&quot;</span>
+
+<span class="c1"># 创建 PromptTemplate 对象</span>
+<span class="n">prompt_template</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+
+<span class="c1"># 填充变量</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">prompt_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">job_title</span><span class="o">=</span><span class="s2">&quot;物理学家&quot;</span><span class="p">,</span> <span class="n">concept</span><span class="o">=</span><span class="s2">&quot;黑洞&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> 
+<span class="c1"># 输出: 你是一个专业的物理学家，请为我解释什么是黑洞。</span>
+</code></pre></div></p>
+<h4 id="chatprompttemplate">聊天模板：<code>ChatPromptTemplate</code></h4>
+<p>针对 <strong>ChatModels</strong>，我们需要构造包含角色的消息列表。这是目前最常用的通用方式。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;你是一个翻译助手，负责将</span><span class="si">{input_language}</span><span class="s2">翻译成</span><span class="si">{output_language}</span><span class="s2">。&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{text}</span><span class="s2">&quot;</span><span class="p">),</span>
+<span class="p">])</span>
+
+<span class="c1"># 格式化</span>
+<span class="n">formatted_messages</span> <span class="o">=</span> <span class="n">prompt</span><span class="o">.</span><span class="n">format_messages</span><span class="p">(</span>
+    <span class="n">input_language</span><span class="o">=</span><span class="s2">&quot;中文&quot;</span><span class="p">,</span>
+    <span class="n">output_language</span><span class="o">=</span><span class="s2">&quot;法语&quot;</span><span class="p">,</span>
+    <span class="n">text</span><span class="o">=</span><span class="s2">&quot;我爱学习&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>在 LangChain 中，<code>MessagesPlaceholder</code> 是处理<strong>动态对话历史</strong>的核心组件。它就像是在提示词模板中挖了一个“插槽”，专门用来放置数量不确定的聊天记录。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span><span class="p">,</span> <span class="n">MessagesPlaceholder</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;你是一个得力的助手。&quot;</span><span class="p">),</span>
+    <span class="c1"># &quot;history&quot; 是占位符变量名，用于接收消息列表</span>
+    <span class="n">MessagesPlaceholder</span><span class="p">(</span><span class="n">variable_name</span><span class="o">=</span><span class="s2">&quot;history&quot;</span><span class="p">),</span> 
+    <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{input}</span><span class="s2">&quot;</span><span class="p">),</span>
+<span class="p">])</span>
+<span class="c1"># 模拟历史记录</span>
+<span class="n">history_msgs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;我叫小明&quot;</span><span class="p">),</span>
+    <span class="n">AIMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;你好小明！很高兴认识你。&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="c1"># 填充模板（不常用）</span>
+<span class="n">final_messages</span> <span class="o">=</span> <span class="n">prompt</span><span class="o">.</span><span class="n">format_messages</span><span class="p">(</span>
+    <span class="n">history</span><span class="o">=</span><span class="n">history_msgs</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="s2">&quot;我刚才说我叫什么？&quot;</span>
+<span class="p">)</span>
+<span class="c1"># 常用方式</span>
+<span class="n">final_messages</span> <span class="o">=</span> <span class="n">prompt</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;你叫什么名字？&quot;</span><span class="p">,</span> <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="n">history_msgs</span><span class="p">})</span>
+</code></pre></div>
+<h4 id="few-shot-prompts">少样本提示：Few-Shot Prompts</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">FewShotPromptTemplate</span>
+
+<span class="n">examples</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;开心&quot;</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="s2">&quot;高兴、愉悦、欣喜&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;难过&quot;</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="s2">&quot;悲伤、沮丧、消沉&quot;</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">example_prompt</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="s2">&quot;输入: </span><span class="si">{input}</span><span class="se">\n</span><span class="s2">输出: </span><span class="si">{output}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">few_shot_prompt</span> <span class="o">=</span> <span class="n">FewShotPromptTemplate</span><span class="p">(</span>
+    <span class="n">examples</span><span class="o">=</span><span class="n">examples</span><span class="p">,</span>
+    <span class="n">example_prompt</span><span class="o">=</span><span class="n">example_prompt</span><span class="p">,</span>
+    <span class="n">suffix</span><span class="o">=</span><span class="s2">&quot;输入: </span><span class="si">{word}</span><span class="se">\n</span><span class="s2">输出:&quot;</span><span class="p">,</span> <span class="c1"># 真正提问的部分</span>
+    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;word&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">few_shot_prompt</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;word&quot;</span><span class="p">:</span><span class="s2">&quot;平淡&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+</code></pre></div>
+<h4 id="format-invoke">format 和 invoke 的区别</h4>
+<p>简单来说，<code>format</code> 和 <code>invoke</code> 的区别在于<strong>返回值的类型</strong>以及它们在 <strong>LangChain 表达式语言 (LCEL)</strong> 中的角色。</p>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>.format()</strong></th>
+<th><strong>.invoke()</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>返回类型</strong></td>
+<td><strong>String</strong> (纯字符串)</td>
+<td><strong>PromptValue</strong> (LangChain 对象)</td>
+</tr>
+<tr>
+<td><strong>主要用途</strong></td>
+<td>快速查看填充后的文本，方便打印调试。</td>
+<td>作为 <strong>Runnable</strong> 接口的一部分，用于<strong>链式调用</strong>。</td>
+</tr>
+<tr>
+<td><strong>设计逻辑</strong></td>
+<td>传统的 Python 字符串格式化增强版。</td>
+<td>为了兼容各种模型（LLM/ChatModel）而设计的中间格式。</td>
+</tr>
+<tr>
+<td><strong>输出示例</strong></td>
+<td><code>"请解答问题..."</code></td>
+<td><code>StringPromptValue(text="...")</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>.format()</code>：回归原始字符串，当调用 <code>.format()</code> 时，LangChain 会直接完成变量替换，并返回一个标准的 Python 字符串。</p>
+<p><code>.invoke()</code>：LangChain <strong>Runnable</strong> 协议的标准方法。当写 <code>chain = prompt | llm</code> 时，背后调用的就是 <code>invoke</code>。如果下游是 <strong>LLM</strong>（通义千问 <code>Tongyi</code>），它会自动变身为 <strong>String</strong>。如果下游是 <strong>ChatModel</strong>（<code>ChatTongyi</code>），它会自动变身为 <strong>Message List</strong>（包含 System/Human 角色）。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 假设变量为 {&quot;input&quot;: &quot;男&quot;}</span>
+
+<span class="c1"># 1. 使用 format -&gt; 得到纯文本</span>
+<span class="n">raw_text</span> <span class="o">=</span> <span class="n">few_shot_prompt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;男&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">raw_text</span><span class="p">))</span> <span class="c1"># &lt;class &#39;str&#39;&gt;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_text</span><span class="p">)</span>       <span class="c1"># 请按照...input:男, output:</span>
+
+<span class="c1"># 2. 使用 invoke -&gt; 得到封装对象</span>
+<span class="n">prompt_value</span> <span class="o">=</span> <span class="n">few_shot_prompt</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;男&quot;</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">prompt_value</span><span class="p">))</span> <span class="c1"># &lt;class &#39;langchain_core.prompt_values.StringPromptValue&#39;&gt;</span>
+
+<span class="c1"># 如果你想看对象里的文本，得手动转：</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt_value</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</code></pre></div>
+<h3 id="langchain-chain">Langchain chain ⭐⭐⭐</h3>
+<p>在 LangChain 中，<strong>Chain（链）</strong> 是其最核心的设计模式。它通过 <strong>LCEL (LangChain Expression Language)</strong> 表达式，将独立的对象（如提示词、模型、输出解析器）像乐高积木一样串联起来。</p>
+<h4 id="_4">核心语法：管道符 <code>|</code></h4>
+<p>LangChain 借鉴了 Unix 的管道哲学。符号 <code>|</code> 的左侧输出会自动作为右侧的输入。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 最经典的链式结构 </span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">model</span> <span class="o">|</span> <span class="n">output_parser</span>
+
+<span class="c1"># eg:</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt_template</span> <span class="o">|</span> <span class="n">llm</span>  
+<span class="n">res</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="n">history</span><span class="p">})</span>
+</code></pre></div>
+<h4 id="_5">链的标准组件</h4>
+<table>
+<thead>
+<tr>
+<th><strong>组件</strong></th>
+<th><strong>作用</strong></th>
+<th><strong>输入 / 输出</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prompt</strong></td>
+<td>模板化用户输入</td>
+<td><code>dict</code> -&gt; <code>PromptValue</code></td>
+</tr>
+<tr>
+<td><strong>LLM (Model)</strong></td>
+<td>核心推理引擎</td>
+<td><code>PromptValue</code> -&gt; <code>AIMessage</code></td>
+</tr>
+<tr>
+<td><strong>Output Parser</strong></td>
+<td>格式化结果（如转为 JSON 或纯字符串）</td>
+<td><code>AIMessage</code> -&gt; <code>String/Object</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="langchain-runnable">Langchain Runnable 接口</h3>
+<p>在 LangChain 中，<strong>Runnable</strong> 接口是一套标准化的协议，它为所有的组件（模型、提示词、解析器、甚至是你自定义的函数）提供了统一的调用方式。</p>
+<h4 id="1">1、设计理念</h4>
+<p>无论底层逻辑多么复杂，所有的 Runnable 对象都必须实现几个核心方法。这种“接口一致性”是 LCEL 能实现 <code>|</code> 串联的基础：<strong>只要两个组件都实现了 Runnable 接口，且输入输出类型匹配，它们就能无缝对接。</strong></p>
+<h4 id="2">2、四大核心调用方法</h4>
+<table>
+<thead>
+<tr>
+<th><strong>方法名称</strong></th>
+<th><strong>执行模式</strong></th>
+<th><strong>适用场景</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>invoke()</code></strong></td>
+<td>同步执行</td>
+<td>单次请求，最基础的调用方式。</td>
+</tr>
+<tr>
+<td><strong><code>ainvoke()</code></strong></td>
+<td>异步执行</td>
+<td>高并发场景，通过 <code>await</code> 提高程序性能。</td>
+</tr>
+<tr>
+<td><strong><code>batch()</code></strong></td>
+<td>批量执行</td>
+<td>同时处理多个输入，内部自动实现并行加速。</td>
+</tr>
+<tr>
+<td><strong><code>stream()</code></strong></td>
+<td>流式执行</td>
+<td>实时返回数据片段，常用于构建“打字机”效果。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="3">3、输入与输出类型</h4>
+<p>1.<code>Prompt</code>: 接收 <code>dict</code> (变量)，输出 <code>PromptValue</code>。
+2.<code>ChatModel</code>: 接收 <code>PromptValue</code> (或消息列表)，输出 <code>AIMessage</code>。
+3.<code>OutputParser</code>: 接收 <code>AIMessage</code>，输出特定格式（字符串、JSON 等）。</p>
+<p>利用 <code>RunnableLambda</code>，你可以将任何普通的 Python 函数包装成 Runnable 接口，使其能够参与到管道符 <code>|</code> 的串联中。</p>
+<h4 id="4">4、进阶辅助组件</h4>
+<p>1.<strong><code>RunnablePassthrough</code></strong>：透传组件。用于将原始输入不做修改地传递给下一级，常用于在 RAG 中保留用户问题。</p>
+<p>2.<strong><code>RunnableParallel</code></strong>：并行组件。同时运行多个 Runnable，并将结果合并为一个字典输出</p>
+<p>3.<strong><code>RunnableConfig</code></strong>：配置对象。用于在运行期间动态传递参数（如 <code>callbacks</code>, <code>tags</code>, <code>configurable</code> 选项）。</p>
+<h3 id="langchain-outputparser">Langchain OutputParser</h3>
+<p>在 LangChain 中，<strong>OutputParser（输出解析器）</strong> 是整个链条的最后一环。它负责将模型输出的非结构化文本（<code>AIMessage</code>）转换为应用程序可以处理的结构化数据（如字符串、JSON 或 Python 对象）。</p>
+<h4 id="_6">核心作用</h4>
+<p>大模型的原始回复往往带有元数据、Token 消耗等信息，或者仅仅是一段松散的文本。解析器的作用是：</p>
+<ul>
+<li><strong>提取内容</strong>：从 <code>AIMessage</code> 中剥离出实际的文本。</li>
+<li><strong>转换格式</strong>：将文本解析为更易用的数据结构（如 JSON、列表、甚至是 Pydantic 模型）。</li>
+<li><strong>格式指引</strong>：许多解析器还能通过 <code>get_format_instructions()</code> 方法，自动生成一段 Prompt 告诉模型应该输出什么样格式的数据。</li>
+</ul>
+<h4 id="_7">常用解析器</h4>
+<table>
+<thead>
+<tr>
+<th><strong>解析器类型</strong></th>
+<th><strong>输出结果类型</strong></th>
+<th><strong>适用场景</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>StrOutputParser</code></strong></td>
+<td><code>str</code> (字符串)</td>
+<td>最常用。只需获取回复正文。</td>
+</tr>
+<tr>
+<td><strong><code>JsonOutputParser</code></strong></td>
+<td><code>dict</code> (字典)</td>
+<td>需要模型返回结构化参数或数据对象。</td>
+</tr>
+<tr>
+<td><strong><code>CommaSeparatedListOutputParser</code></strong></td>
+<td><code>list</code> (列表)</td>
+<td>将逗号分隔的文本转换为 Python 列表。</td>
+</tr>
+<tr>
+<td><strong><code>PydanticOutputParser</code></strong></td>
+<td><code>Pydantic Model</code></td>
+<td><strong>最强格式约束</strong>。确保输出完全符合定义的类结构。</td>
+</tr>
+<tr>
+<td>#### PydanticOutputParser 实战示例</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 定义期望的输出结构</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Joke</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">setup</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;笑话的铺垫&quot;</span><span class="p">)</span>
+    <span class="n">punchline</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;笑话的笑点&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. 初始化解析器</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">PydanticOutputParser</span><span class="p">(</span><span class="n">pydantic_object</span><span class="o">=</span><span class="n">Joke</span><span class="p">)</span>
+
+<span class="c1"># 3. 将解析器的指令注入 Prompt</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span>
+    <span class="s2">&quot;讲一个冷笑话。</span><span class="se">\n</span><span class="si">{format_instructions}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">partial_variables</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;format_instructions&quot;</span><span class="p">:</span> <span class="n">parser</span><span class="o">.</span><span class="n">get_format_instructions</span><span class="p">()}</span>
+<span class="p">)</span>
+
+<span class="c1"># 4. 构建链</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">model</span> <span class="o">|</span> <span class="n">parser</span>
+
+<span class="c1"># 5. 调用：直接得到 Joke 对象</span>
+<span class="n">joke</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">joke</span><span class="o">.</span><span class="n">setup</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="langchain-runnablelambda">Langchain RunnableLambda</h3>
+<p>在构建 Chain 的过程中，标准的组件（如 Prompt, LLM）处理的是标准的输入输出。但有时你需要在中间插入一些<strong>特定的业务逻辑</strong>（比如格式化字符串、查询本地数据库、调用第三方 API），而这些逻辑通常只是简单的 Python 函数。</p>
+<p><code>RunnableLambda</code> 的作用就是把这些普通的函数包装起来，让它们拥有 <code>invoke</code>、<code>batch</code>、<code>stream</code> 等标准接口。</p>
+<h4 id="_8">基础用法</h4>
+<p>可以显式地使用 <code>RunnableLambda</code>，或者在大多数情况下，LangChain 会在 <code>|</code> 运算中自动帮你完成转换。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.runnables</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunnableLambda</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add_five</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">5</span>
+
+<span class="c1"># 包装成 Runnable</span>
+<span class="n">runnable_add</span> <span class="o">=</span> <span class="n">RunnableLambda</span><span class="p">(</span><span class="n">add_five</span><span class="p">)</span>
+
+<span class="c1"># 现在它可以像模型一样被调用</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">runnable_add</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span> <span class="c1"># 输出 15</span>
+</code></pre></div>
+<h4 id="chain">在 Chain 中的实战场景</h4>
+<p>在 Prompt 和 LLM 之间，或者 LLM 和最终输出之间，对数据进行微调。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.runnables</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunnableLambda</span><span class="p">,</span> <span class="n">RunnablePassthrough</span>
+
+<span class="c1"># 1. 定义一个自定义处理函数</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">format_input</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="c1"># 假设我们需要将用户输入转为大写</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;question&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()}</span>
+
+<span class="c1"># 2. 构建链</span>
+<span class="n">chain</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">RunnableLambda</span><span class="p">(</span><span class="n">format_input</span><span class="p">)</span> 
+    <span class="o">|</span> <span class="n">prompt</span> 
+    <span class="o">|</span> <span class="n">model</span> 
+    <span class="o">|</span> <span class="n">StrOutputParser</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># 3. 执行</span>
+<span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="s2">&quot;hello world&quot;</span><span class="p">})</span>
+</code></pre></div>
+<h3 id="langchain-mermory">Langchain Mermory</h3>
+<p>在 LangChain 中，<strong>Memory（记忆）</strong> 模块负责在对话过程中存储和检索数据。由于大模型本身是“无状态”的（它不记得上一秒发生了什么），Memory 的存在让模型能够拥有连贯的上下文能力。</p>
+<h4 id="runnablewithmessagehistory"><code>RunnableWithMessageHistory</code></h4>
+<p>在早期的 LangChain 中，Memory 是直接集成在 <code>Chain</code> 对象里的。但在现代的 <strong>LCEL</strong> 语法中，官方更推荐使用 <code>RunnableWithMessageHistory</code> 来手动管理。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.runnables.history</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunnableWithMessageHistory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.chat_message_histories</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatMessageHistory</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_history</span><span class="p">(</span><span class="n">session_id</span><span class="p">):</span>  
+    <span class="k">if</span> <span class="n">session_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">store</span><span class="p">:</span>  
+        <span class="n">store</span><span class="p">[</span><span class="n">session_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">InMemoryChatMessageHistory</span><span class="p">()</span>  
+    <span class="k">return</span> <span class="n">store</span><span class="p">[</span><span class="n">session_id</span><span class="p">]</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">([</span>  
+    <span class="n">SystemMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;你是一个聊天大师，你需要帮助我与女孩子聊天(你的视角是我！！而不是你，懂吗），我会提供你之前的聊天记录，不需要废话，只需要给出回答即可&quot;</span><span class="p">),</span>  
+    <span class="n">MessagesPlaceholder</span><span class="p">(</span><span class="s2">&quot;history&quot;</span><span class="p">),</span>  
+    <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{input}</span><span class="s2">&quot;</span><span class="p">)</span>  
+<span class="p">])</span>  
+
+<span class="n">basic_chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">llm</span> <span class="o">|</span> <span class="n">str_parser</span>  
+
+<span class="n">chain</span> <span class="o">=</span> <span class="n">RunnableWithMessageHistory</span><span class="p">(</span>  
+    <span class="n">basic_chain</span><span class="p">,</span>        <span class="c1"># 基础链  </span>
+    <span class="n">get_session_history</span><span class="o">=</span><span class="n">get_history</span><span class="p">,</span>  
+    <span class="n">input_messages_key</span><span class="o">=</span><span class="s2">&quot;input&quot;</span><span class="p">,</span>  
+    <span class="n">history_messages_key</span><span class="o">=</span><span class="s2">&quot;history&quot;</span>  
+<span class="p">)</span>  
+
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>  
+    <span class="s2">&quot;configurable&quot;</span><span class="p">:{</span>  
+        <span class="s2">&quot;session_id&quot;</span><span class="p">:</span> <span class="s2">&quot;liutianba7&quot;</span>  
+    <span class="p">}</span>  
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="memory">Memory 长期会话存储</h4>
+<p>长期会话存储可以选择将历史消息存到文件中，不同的 session 对应不同的文件，我们需要继承BaseChatMessageHistory，然后按照下面的示例完成代码即可实现长期对话存储！</p>
+<p>其实无论选择文件，还是 mysql，或者 redis，逻辑都是一样的：继承 <code>BaseChatMessageHistory</code> 并实现 <code>messages</code> 属性和 <code>add_messages</code> 方法，可以将对话记录“落地”到磁盘。</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">FileMessageHistory</span><span class="p">(</span><span class="n">BaseChatMessageHistory</span><span class="p">):</span>  
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_id</span><span class="p">,</span> <span class="n">storage_path</span><span class="p">):</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">session_id</span> <span class="o">=</span> <span class="n">session_id</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage_path</span> <span class="o">=</span> <span class="n">storage_path</span>  
+
+        <span class="c1"># 创建存储目录  </span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_id</span><span class="p">)</span>  
+
+        <span class="c1"># 确保文件夹存在  </span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">storage_path</span><span class="p">),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  
+        <span class="n">old</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">messages</span><span class="p">)</span>  
+        <span class="n">old</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>  
+
+        <span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">([</span><span class="n">message_to_dict</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">old</span><span class="p">],</span> <span class="n">f</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  
+        <span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
+            <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">([],</span> <span class="n">f</span><span class="p">)</span>  
+
+
+
+    <span class="nd">@property</span> <span class="c1"># 将方法变成属性，方便后续直接 .messages 获取消息  </span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">messages</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">BaseMessage</span><span class="p">]:</span>  
+        <span class="k">try</span><span class="p">:</span>  
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span>  
+                    <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">,</span>  
+                    <span class="s2">&quot;r&quot;</span><span class="p">,</span>  
+                    <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span>  
+            <span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  
+                <span class="n">messages_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>  
+            <span class="k">return</span> <span class="n">messages_from_dict</span><span class="p">(</span><span class="n">messages_data</span><span class="p">)</span>  
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>  
+            <span class="k">return</span> <span class="p">[]</span>
+</code></pre></div>
+<h4 id="_9">存储介质的选择</h4>
+<p>Memory 不仅能存在内存里 ：<code>InMemoryChatMessageHistory</code> ，LangChain 支持多种持久化方式，确保服务重启后记忆不丢失：</p>
+<ul>
+<li><strong>Redis</strong>：高性能，适合高并发场景。</li>
+<li><strong>MongoDB / PostgreSQL</strong>：适合传统的数据库存储。</li>
+<li><strong>Local File</strong>：适合简单的本地测试</li>
+</ul>
+<h3 id="langchain-loaders">Langchain loaders</h3>
+<p>在 LangChain 的世界里，<strong>Document Loaders (文档加载器)</strong> 是数据处理的第一站。大模型（LLM）虽然聪明，但它默认是不认识你电脑里的 PDF、数据库里的表格或者某个网页的内容的。</p>
+<p>Loaders 的使命就是：<strong>把各种格式的非结构化数据，“翻译”成 LangChain 统一标准的 <code>Document</code> 对象。</strong></p>
+<h4 id="document">Document 对象</h4>
+<p>无论加载的是什么，Loaders 最终都会产出一个 <code>Document</code> 对象，它包含两个关键部分：</p>
+<ul>
+<li><strong><code>page_content</code></strong>: 文本内容（字符串）。</li>
+<li><strong><code>metadata</code></strong>: 元数据（字典，包含来源、页码、创建日期等）。</li>
+</ul>
+<h4 id="loaders">常见的 Loaders 分类</h4>
+<p>根据数据源的不同，LangChain 提供了几百种内置加载器。以下是开发中最常碰到的：</p>
+<p><strong>文件加载器</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>格式</strong></th>
+<th><strong>推荐加载器</strong></th>
+<th><strong>特点</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PDF</strong></td>
+<td><code>PyPDFLoader</code></td>
+<td>简单易用，支持按页拆分。</td>
+</tr>
+<tr>
+<td><strong>Markdown</strong></td>
+<td><code>UnstructuredMarkdownLoader</code></td>
+<td>能够识别标题、列表等结构。</td>
+</tr>
+<tr>
+<td><strong>CSV</strong></td>
+<td><code>CSVLoader</code></td>
+<td>将每一行转化为一个独立的 Document。</td>
+</tr>
+<tr>
+<td><strong>JSON</strong></td>
+<td><code>JSONLoader</code></td>
+<td>需要配合 jq 语法提取特定的字段。</td>
+</tr>
+</tbody>
+</table>
+<p>云端与网页：直接从互联网获取最新鲜的语料。</p>
+<ul>
+<li><strong><code>WebBaseLoader</code></strong>: 抓取基础网页 HTML。</li>
+<li><strong><code>UnstructuredURLLoader</code></strong>: 自动处理网页中的各种复杂布局。</li>
+<li><strong><code>DirectoryLoader</code></strong>: 非常强大，可以一次性扫描整个文件夹，并根据后缀名自动匹配加载器。</li>
+</ul>
+<h4 id="csv-loader">CSV Loader</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSVLoader</span>  
+
+<span class="n">loader</span> <span class="o">=</span> <span class="n">CSVLoader</span><span class="p">(</span>  
+    <span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;data_1/stu.csv&#39;</span><span class="p">,</span>  
+    <span class="n">csv_args</span><span class="o">=</span><span class="p">{</span>  
+        <span class="s1">&#39;delimiter&#39;</span><span class="p">:</span> <span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="c1"># 分隔符  </span>
+        <span class="s1">&#39;quotechar&#39;</span><span class="p">:</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="c1"># 告诉解析器识别双引号包围的内容为单个字段,  </span>
+        <span class="s1">&#39;fieldnames&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="c1"># 指定字段名，注意需要在没有字段名时才需要  </span>
+    <span class="p">},</span>  
+    <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span>
+    <span class="n">source_column</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="c1"># 指定元数据的来源 </span>
+<span class="p">)</span>  
+
+<span class="n">document</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">lazy_load</span><span class="p">()</span>  
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">document</span><span class="p">:</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">],</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="json-loader">Json Loader</h4>
+<p>在 LangChain 中，<code>JSONLoader</code> 是一个非常强大但初学者常感到头疼的工具。与处理纯文本的 <code>TextLoader</code> 不同，JSON 是结构化的，<code>JSONLoader</code> 的核心使命是：<strong>利用 <code>jq</code> 语法，从复杂的 JSON 树中精准切出你需要的文本块，并将其转化为 <code>Document</code> 对象。</strong></p>
+<p><strong>安装依赖</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">jq</span>
+</code></pre></div>
+<p><strong>jq 基础语法</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>表达式</strong></th>
+<th><strong>功能</strong></th>
+<th><strong>描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>.</code></strong></td>
+<td><strong>Identity</strong></td>
+<td>输出整个 JSON，不作任何修改。</td>
+</tr>
+<tr>
+<td><strong><code>.name</code></strong></td>
+<td><strong>Object Identifier</strong></td>
+<td>获取键为 <code>name</code> 的值。</td>
+</tr>
+<tr>
+<td><strong><code>.user.id</code></strong></td>
+<td><strong>Chained</strong></td>
+<td>嵌套获取。先找 <code>user</code>，再找 <code>id</code>。</td>
+</tr>
+<tr>
+<td><strong><code>.key?</code></strong></td>
+<td><strong>Optional</strong></td>
+<td>即使 <code>key</code> 不存在也不会报错（在 LangChain 批量处理时很有用）。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong><code>.[]</code> (迭代器)</strong>：将数组里的每一个元素单独输出。这是 <code>JSONLoader</code> 最常用的语法，因为它能把数组里的每个对象变成一个独立的 <code>Document</code>。</li>
+<li><strong><code>.[0]</code></strong>：获取数组的第一个元素。</li>
+<li><strong><code>.[1:3]</code></strong>：切片，获取索引 1 到 2 的元素。</li>
+</ul>
+<p>基础用法：提取所有文本</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">JSONLoader</span>
+
+<span class="c1"># 假设数据格式为：{&quot;text&quot;: &quot;这是内容&quot;}</span>
+<span class="n">loader</span> <span class="o">=</span> <span class="n">JSONLoader</span><span class="p">(</span>
+    <span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;./data.json&#39;</span><span class="p">,</span>
+    <span class="n">jq_schema</span><span class="o">=</span><span class="s1">&#39;.text&#39;</span><span class="p">,</span> <span class="c1"># 指向 JSON 中的键</span>
+    <span class="n">text_content</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="c1"># 抽取的是否是一个字符串，默认为true</span>
+    <span class="n">json_lines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">是否是</span> <span class="n">JsonLines</span> <span class="n">文件</span><span class="err">（</span><span class="n">每一行都是Json文件</span><span class="err">）</span>
+<span class="p">)</span>
+
+<span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>进阶用法：处理对象列表（最常用场景）</strong></p>
+<p>示例数据 <code>example.json</code>：
+<div class="highlight"><pre><span></span><code>[
+  {&quot;id&quot;: 1, &quot;content&quot;: &quot;第一条消息&quot;, &quot;sender&quot;: &quot;张三&quot;},
+  {&quot;id&quot;: 2, &quot;content&quot;: &quot;第二条消息&quot;, &quot;sender&quot;: &quot;李四&quot;}
+]
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span class="n">loader</span> <span class="o">=</span> <span class="n">JSONLoader</span><span class="p">(</span>
+    <span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;example.json&#39;</span><span class="p">,</span>
+    <span class="n">jq_schema</span><span class="o">=</span><span class="s1">&#39;.[]&#39;</span><span class="p">,</span>       <span class="c1"># 遍历数组中的每一个对象</span>
+    <span class="n">content_key</span><span class="o">=</span><span class="s1">&#39;content&#39;</span><span class="p">,</span> <span class="c1"># 指定哪个字段作为 Document 的 page_content</span>
+<span class="p">)</span>
+
+<span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="c1"># 结果：docs[0].page_content 将会是 &quot;第一条消息&quot;</span>
+</code></pre></div>
+<h4 id="textloader">TextLoader</h4>
+<p><strong>基础用法</strong></p>
+<p><strong>TextLoader</strong> 是 LangChain 最基础的文档加载器，用于将纯文本文件 (.txt) 加载为 <code>Document</code> 对象。</p>
+<p>LangChain 1.x 后 TextLoader 在 <code>langchain_community</code> 包中</p>
+<div class="highlight"><pre><span></span><code><span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="s2">&quot;file.txt&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+<span class="n">documents</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">documents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span> <span class="c1"># 文本内容 print(documents[0].metadata) # 元数据</span>
+</code></pre></div>
+<h4 id="recursivecharactertextsplitter"><strong>RecursiveCharacterTextSplitter</strong></h4>
+<p><strong>RecursiveCharacterTextSplitter</strong> 是 LangChain 最常用的文本分割器，按字符递归分割文本，保持段落/句子完整性。 </p>
+<div class="highlight"><pre><span></span><code>pip install langchain-text-splitters
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextLoader</span>  
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>  
+
+<span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="s1">&#39;data_1/stu_text.txt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>  
+
+<span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>  
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>  
+    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>      <span class="c1"># 每块最大字符数  </span>
+    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>    <span class="c1"># 块之间重叠字符数  </span>
+    <span class="n">separators</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">,</span> <span class="s2">&quot;？&quot;</span><span class="p">],</span>  <span class="c1"># 块分隔符  </span>
+    <span class="n">length_function</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span> <span class="c1"># 块长度函数  </span>
+<span class="p">)</span>  
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>  
+
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chunk_size</code></td>
+<td>每块最大字符数</td>
+<td>1000</td>
+</tr>
+<tr>
+<td><code>chunk_overlap</code></td>
+<td>块之间重叠字符数</td>
+<td>200</td>
+</tr>
+<tr>
+<td><code>separators</code></td>
+<td>分割符列表</td>
+<td><code>["\n\n", "\n", " ", ""]</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="pypdfloader">PyPDFLoader</h4>
+<p><strong>PyPDFLoader</strong> 是 LangChain 用于加载 PDF 文件的文档加载器，将 PDF 每一页加载为独立的 <code>Document</code> 对象。</p>
+<div class="highlight"><pre><span></span><code>pip install pypdf
+</code></pre></div>
+<p><strong>基础用法</strong>
+<div class="highlight"><pre><span></span><code><span class="n">loader</span> <span class="o">=</span> <span class="n">PyPDFLoader</span><span class="p">(</span>  
+    <span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;data_1/stu.pdf&#39;</span><span class="p">,</span>   <span class="c1"># 待处理的pdf文件路径  </span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;page&#39;</span><span class="p">,</span> <span class="c1"># 读取模式，可选page（按页读取）或者 single（直接加载为一个document）  </span>
+    <span class="c1"># password=&#39;password&#39;, # 密码  </span>
+<span class="p">)</span>
+</code></pre></div></p>
+<h3 id="langchain-vector-stores">Langchain Vector stores</h3>
+<p><strong>基本概念</strong></p>
+<p><strong>Vector Stores</strong> 是 LangChain 的向量存储模块，用于存储和检索文本的向量嵌入 (Embeddings)。</p>
+<p><strong>常见向量存储</strong></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>类型</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Chroma</code></td>
+<td>本地/内存</td>
+<td>轻量，适合开发测试</td>
+</tr>
+<tr>
+<td><code>FAISS</code></td>
+<td>本地</td>
+<td>Facebook 开源，速度快</td>
+</tr>
+<tr>
+<td><code>Pinecone</code></td>
+<td>云端</td>
+<td>托管服务，可扩展</td>
+</tr>
+<tr>
+<td><code>Milvus</code></td>
+<td>本地/云端</td>
+<td>开源，功能强大</td>
+</tr>
+<tr>
+<td><code>Qdrant</code></td>
+<td>本地/云端</td>
+<td>高性能，支持过滤</td>
+</tr>
+</tbody>
+</table>
+<p><strong>基本用法</strong></p>
+<p>安装</p>
+<div class="highlight"><pre><span></span><code>pip install chromadb 
+pip install langchain-community
+</code></pre></div>
+<p>创建向量存储</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.vectorstores</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>  
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.embeddings</span><span class="w"> </span><span class="kn">import</span> <span class="n">DashScopeEmbeddings</span>  
+
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">DashScopeEmbeddings</span><span class="p">()</span>  
+
+<span class="c1"># 从文档创建  </span>
+<span class="c1"># vectorstore = InMemoryVectorStore(embeddings)</span>
+<span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span>  
+    <span class="n">documents</span><span class="o">=</span><span class="n">texts</span><span class="p">,</span> <span class="c1"># 文档列表   </span>
+    <span class="n">embedding</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span> <span class="c1"># 嵌入模型  </span>
+    <span class="n">persist_directory</span><span class="o">=</span><span class="s2">&quot;./chroma_db&quot;</span>  <span class="c1"># 持久化路径  </span>
+<span class="p">)</span>
+</code></pre></div>
+<p>新增，删除，检索向量</p>
+<ul>
+<li>add_documents</li>
+<li>delete</li>
+<li>similarity_search</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1"># 新增，删除，检索向量  </span>
+<span class="n">vectorstore</span><span class="o">.</span><span class="n">add_documents</span><span class="p">(</span>  
+    <span class="n">documents</span><span class="o">=</span><span class="n">docs</span><span class="p">,</span>  
+    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>  
+<span class="p">)</span>  
+
+<span class="nb">print</span><span class="p">(</span><span class="n">vectorstore</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="s2">&quot;john&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># 检索返回的是一个 list[Document]  </span>
+<span class="n">vectorstore</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id1&quot;</span><span class="p">,</span> <span class="s2">&quot;id2&quot;</span><span class="p">])</span>
+</code></pre></div>
+<p><strong>使用外部向量数据库</strong>（以 Chroma 为例）</p>
+<p>其实只需要在创建向量库的时候创建 Chroma 库，方法还是不变的</p>
+<div class="highlight"><pre><span></span><code>pip install langchain-chroma chromadb  
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_chroma</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>
+
+<span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">(</span>  
+    <span class="n">embedding_function</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span>  
+    <span class="n">collection_name</span><span class="o">=</span><span class="s1">&#39;stu&#39;</span><span class="p">,</span>  
+    <span class="n">persist_directory</span><span class="o">=</span><span class="s1">&#39;data_1/chroma_db&#39;</span>  
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="langchain-runnablepassthrough">Langchain RunnablePassThrough</h3>
+<p><code>RunnablePassthrough</code> 是 LangChain 中一个非常实用的 <strong>“透传”组件</strong>，属于 <code>langchain_core.runnables</code> 模块。它的核心作用是：<strong>在不改变输入的情况下，将输入原样传递下去</strong>，常用于构建复杂链（Chain）时的 <strong>占位、调试、并行处理或中间变量捕获</strong>。</p>
+<p>下边这中写法也没问题，也就是：从向量数据库查询结果并增强提示词与我们的 chain 是分离的</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 提示词模板  </span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">([</span>  
+    <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;请根据参考资料:</span><span class="si">{content}</span><span class="s2">，回答问题&quot;</span><span class="p">),</span>  
+    <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{question}</span><span class="s2">&quot;</span><span class="p">)</span>  
+<span class="p">])</span>  
+<span class="c1"># 创建向量存储对象  </span>
+<span class="n">vector_store</span> <span class="o">=</span> <span class="n">InMemoryVectorStore</span><span class="p">(</span><span class="n">DashScopeEmbeddings</span><span class="p">())</span>  
+<span class="n">vector_store</span><span class="o">.</span><span class="n">add_texts</span><span class="p">(</span><span class="n">texts</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;减肥跑步最好&#39;</span><span class="p">,</span> <span class="s1">&#39;减肥你要尽量避免吃油炸食品&#39;</span><span class="p">,</span> <span class="s1">&#39;我爱你&#39;</span><span class="p">])</span>  
+
+<span class="c1"># 根据搜索结果生成提示词  </span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;怎么减肥&quot;</span>  
+<span class="n">res</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>  
+
+<span class="n">ref</span> <span class="o">=</span> <span class="s1">&#39;[&#39;</span>  
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>  
+    <span class="n">ref</span> <span class="o">+=</span> <span class="n">d</span><span class="o">.</span><span class="n">page_content</span>  
+<span class="n">ref</span> <span class="o">+=</span> <span class="s1">&#39;]&#39;</span>  
+
+<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span><span class="o">|</span> <span class="n">print_prompt</span> <span class="o">|</span> <span class="n">llm</span> <span class="o">|</span> <span class="n">StrOutputParser</span><span class="p">()</span>  
+
+<span class="nb">print</span><span class="p">(</span><span class="n">chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">res</span><span class="p">}))</span>
+</code></pre></div>
+<p>通过将 vector_store --&gt; retriver，可以将检索加入到链中，如下：
+但是这种方法存在一个问题，就是 vs 和 prompt 都需要用到 input，而它两有都不会返回 input，所以下面这个链就加了一个 to_prompt_dict 来保存这个用户的 input，但这种方法不太优雅！  </p>
+<div class="highlight"><pre><span></span><code><span class="c1"># vs: VectorStoreRetriever， 输入是str，输出是m list[document]  </span>
+<span class="n">vs</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwards</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>    
+
+<span class="n">chain</span> <span class="o">=</span> <span class="n">vs</span> <span class="o">|</span> <span class="n">to_prompt_dict</span> <span class="o">|</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">print_prompt</span> <span class="o">|</span> <span class="n">llm</span>  
+<span class="n">resp</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">qes</span><span class="p">)</span>  
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">resp</span><span class="p">:</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>通过 <code>RunnablePassThrough</code> ，我们可以将向量检索 + 增强这一过程加入到链中，可以这样理解，当链（chain）的开头是一个字典（如 <code>{"a": runnable1, "b": runnable2}</code>）时，LangChain 会将同一个输入 <code>input</code> 并行地分发给字典中的每一个值（即每个分支）。</p>
+<p>其中，<code>RunnablePassthrough()</code> 的作用是：<strong>在某个分支中“原样透传”这个输入</strong>，常用于保留原始问题、用户消息等。</p>
+<p>因此，<code>RunnablePassthrough()</code> 不仅仅是“占位符”，更是 <strong>“输入传递器”</strong> —— 它确保原始输入能进入最终的 prompt 或后续处理。  </p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 将检索入链  </span>
+<span class="n">vs</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(</span><span class="n">search_kwards</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;k&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>  
+
+<span class="n">chain</span> <span class="o">=</span> <span class="p">(</span>  
+    <span class="p">{</span><span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">RunnablePassthrough</span><span class="p">(),</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">vs</span> <span class="o">|</span> <span class="n">get_ref</span><span class="p">}</span>  
+    <span class="o">|</span> <span class="n">prompt</span>   
+    <span class="o">|</span> <span class="n">print_prompt</span>   
+    <span class="o">|</span> <span class="n">llm</span>   
+    <span class="o">|</span> <span class="n">StrOutputParser</span><span class="p">()</span>  
+<span class="p">)</span>
+
+<span class="n">resp</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">qes</span><span class="p">)</span>  
+
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">resp</span><span class="p">:</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="05-rag">05 RAG</h2>
+<h3 id="rag">RAG 基础概念</h3>
+<p><strong>RAG (Retrieval-Augmented Generation)</strong>，即检索增强生成。简单来说，就是给大模型配一个“实时更新的图书馆”，让它在回答问题前先翻书，以此解决模型知识过时和“胡说八道”（幻觉）的问题。</p>
+<p align='center'>
+    <img src="../../assets/imgs/python/langchian/langchain03.png" alt="langchain03" style="zoom:80%;" />
+</p>
+
+<h3 id="rag_1">RAG 实战</h3>
+<p>我只说：每次在链中如果发现不对了，写个函数，看看当前的输入是什么就行啊！！！</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">format_prompt</span><span class="p">(</span><span class="n">docs</span><span class="p">:</span><span class="nb">list</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">docs</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;无相关参考资料&quot;</span><span class="p">]</span>
+    <span class="n">ref</span> <span class="o">=</span> <span class="s2">&quot;[&quot;</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">:</span>
+        <span class="n">ref</span> <span class="o">+=</span> <span class="n">d</span><span class="o">.</span><span class="n">page_content</span>
+        <span class="n">ref</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span>
+    <span class="n">ref</span> <span class="o">+=</span> <span class="s2">&quot;]&quot;</span>
+    <span class="k">return</span> <span class="n">ref</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_chain</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">temp1</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">value</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">]</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">temp2</span><span class="p">(</span><span class="n">dic</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="n">dic</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">][</span><span class="s1">&#39;input&#39;</span><span class="p">],</span> <span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="n">dic</span><span class="p">[</span><span class="s1">&#39;input&#39;</span><span class="p">][</span><span class="s1">&#39;history&#39;</span><span class="p">],</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">dic</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]}</span>
+        <span class="c1"># 获取最终的执行链</span>
+        <span class="n">vs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vector_service</span><span class="o">.</span><span class="n">get_retriever</span><span class="p">()</span>
+        <span class="n">basic_chain</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;input&quot;</span><span class="p">:</span><span class="n">RunnablePassthrough</span><span class="p">(),</span>
+                <span class="s1">&#39;content&#39;</span><span class="p">:</span><span class="n">RunnableLambda</span><span class="p">(</span><span class="n">temp1</span><span class="p">)</span> <span class="o">|</span>  <span class="n">vs</span> <span class="o">|</span> <span class="n">format_prompt</span>
+            <span class="p">}</span>
+            <span class="o">|</span> <span class="n">RunnableLambda</span><span class="p">(</span><span class="n">temp2</span><span class="p">)</span>
+            <span class="o">|</span> <span class="bp">self</span><span class="o">.</span><span class="n">prompt</span>
+            <span class="o">|</span> <span class="n">print_prompt</span>
+            <span class="o">|</span> <span class="bp">self</span><span class="o">.</span><span class="n">llm</span>
+            <span class="o">|</span> <span class="n">StrOutputParser</span><span class="p">()</span>
+        <span class="p">)</span>
+
+        <span class="c1"># 附加历史会话</span>
+        <span class="n">extend_chain</span> <span class="o">=</span> <span class="n">RunnableWithMessageHistory</span><span class="p">(</span>
+            <span class="n">basic_chain</span><span class="p">,</span>
+            <span class="n">get_session_history</span><span class="o">=</span><span class="n">get_history</span><span class="p">,</span>
+            <span class="n">history_messages_key</span><span class="o">=</span><span class="s2">&quot;history&quot;</span><span class="p">,</span>
+            <span class="n">input_messages_key</span><span class="o">=</span><span class="s2">&quot;input&quot;</span><span class="p">,</span>
+
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">extend_chain</span>
+
+<span class="n">resp</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;好，我刚刚给了你体重，现在提供我的身高：173cm，什么尺码比较合适&quot;</span><span class="p">},</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="06-agent">06 Agent</h2>
+<h4 id="agent">Agent 基础概念</h4>
+<p><strong>Agent</strong> 的核心定义是：使用大语言模型（LLM）作为<strong>推理引擎</strong>，来决定执行哪些动作以及执行的顺序。</p>
+<ul>
+<li><strong>Chain</strong>：步骤是硬编码的（第一步 A，第二步 B）。</li>
+<li><strong>Agent</strong>：LLM 根据你的问题，自己判断：“我应该先查搜索引擎，还是先算数学题？”</li>
+</ul>
+<h4 id="agent_1">Agent 示例</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.chat_models.tongyi</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatTongyi</span>  
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.output_parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrOutputParser</span>  
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_agent</span>  <span class="c1"># create_agent在langchain.agents</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span>   <span class="c1"># 注意：tools 在langchain_core</span>
+
+<span class="nd">@tool</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;获取明天北京的天气信息&quot;</span><span class="p">)</span>  
+<span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">():</span>  
+    <span class="k">return</span> <span class="s2">&quot;明天北京的天气是晴天，温度是23度。&quot;</span>  
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">create_agent</span><span class="p">(</span>  
+    <span class="n">model</span><span class="o">=</span><span class="n">ChatTongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">),</span> <span class="c1"># 智能体的大脑  </span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">get_weather</span><span class="p">],</span>   <span class="c1"># 智能体的工具  </span>
+    <span class="n">system_prompt</span><span class="o">=</span><span class="s2">&quot;你是一个得力的助手，请精简的回答问题。&quot;</span>  
+<span class="p">)</span>  
+
+<span class="c1"># 智能体的调用：输入的是一个字典，字典必须包含一个key为messages的value  </span>
+<span class="n">res</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>  
+    <span class="p">{</span>  
+        <span class="s2">&quot;messages&quot;</span><span class="p">:[</span>  
+            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;明天北京的天气如何&quot;</span><span class="p">}</span>  
+        <span class="p">]</span>  
+    <span class="p">}</span>  
+<span class="p">)</span>  
+
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="agent_2">Agent 四大组件</h4>
+<table>
+<thead>
+<tr>
+<th><strong>组件</strong></th>
+<th><strong>角色</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LLM (大脑)</strong></td>
+<td>推理核心</td>
+<td>负责解析问题、制定规划、观察结果并决定下一步。</td>
+</tr>
+<tr>
+<td><strong>Tools (手脚)</strong></td>
+<td>能力边界</td>
+<td>Agent 可以调用的外部函数（如：Google 搜索、本地数据库查询、计算器）。</td>
+</tr>
+<tr>
+<td><strong>Planning (规划)</strong></td>
+<td>思考路径</td>
+<td>将复杂任务拆解为子任务（如：Chain of Thought 思考链）。</td>
+</tr>
+<tr>
+<td><strong>Memory (记忆)</strong></td>
+<td>上下文</td>
+<td>记录之前的对话历史和动作轨迹，防止“死循环”或“失忆”。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="agent_3">Agent 流式输出</h4>
+<p>在 LangChain 中，Agent 的流式输出（Streaming）比普通 Chain 要复杂一些。因为 Agent 不只是在“说话”，它还在“思考”和“行动”。</p>
+<p>流式输出主要解决一个痛点：<strong>Agent 思考过程可能很长，如果不流式显示，用户会以为程序卡死了。</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">agent</span> <span class="o">=</span> <span class="n">create_agent</span><span class="p">(</span>  
+    <span class="n">model</span> <span class="o">=</span> <span class="n">ChatTongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">),</span>  
+    <span class="n">tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_info</span><span class="p">,</span> <span class="n">get_price</span><span class="p">],</span>  
+    <span class="n">system_prompt</span><span class="o">=</span><span class="s2">&quot;你是一个股票助手，你需要根据用户的指令，获取股票的信息和价格。请告知我思考过程，让我知道你为什么调用工具&quot;</span>  
+<span class="p">)</span>  
+
+<span class="c1"># 每个 chunk 是一个字典，包含 role 和 contentfor chunk in agent.stream(  </span>
+        <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;传智教育的股价是多少，同时介绍一些这支股票&quot;</span><span class="p">}]},</span>  
+        <span class="n">stream_mode</span><span class="o">=</span><span class="s1">&#39;values&#39;</span>  
+<span class="p">):</span>  
+    <span class="n">m</span> <span class="o">=</span> <span class="n">chunk</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>  <span class="n">m</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>  
+
+    <span class="k">try</span><span class="p">:</span>  
+        <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">:</span>  
+           <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;调用了工具</span><span class="si">{</span><span class="p">[</span><span class="n">tc</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">tc</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">m</span><span class="o">.</span><span class="n">tool_calls</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  
+    <span class="k">except</span><span class="p">:</span>  
+        <span class="k">pass</span>
+</code></pre></div>
+<h4 id="agent-react">Agent React</h4>
+<p><strong>ReAct</strong> 是 Agent 领域最经典、最成熟的推理模式。它的名字由 <strong>Reason（推理）</strong> 和 <strong>Act（行动）</strong> 组合而成。</p>
+<p>ReAct 的精髓在于它强迫模型在执行动作之前先写出它的“内心独白”。这个循环通常包含以下四个步骤：
+<div class="highlight"><pre><span></span><code>Thought (思考) --&gt; Action (行动) --&gt; Action Input (行动输入) --&gt; Observation (观察)
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_react_agent</span><span class="p">,</span> <span class="n">AgentExecutor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain</span><span class="w"> </span><span class="kn">import</span> <span class="n">hub</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.chat_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatTongyi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tool</span>
+
+<span class="c1"># 1. 定义一个简单的工具</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_word_length</span><span class="p">(</span><span class="n">word</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Tool</span><span class="p">(</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;GetWordLength&quot;</span><span class="p">,</span>
+        <span class="n">func</span><span class="o">=</span><span class="n">get_word_length</span><span class="p">,</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;当你需要计算一个单词的长度时使用它&quot;</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+
+<span class="c1"># 2. 选择大脑</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatTongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3. 拉取经典的 ReAct Prompt 模板</span>
+<span class="c1"># 这个模板里定义了具体的格式：Thought, Action, Action Input, Observation...</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">hub</span><span class="o">.</span><span class="n">pull</span><span class="p">(</span><span class="s2">&quot;hwchase17/react&quot;</span><span class="p">)</span>
+
+<span class="c1"># 4. 构造 Agent</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">create_react_agent</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span>
+
+<span class="c1"># 5. 构造执行器（负责跑循环）</span>
+<span class="n">agent_executor</span> <span class="o">=</span> <span class="n">AgentExecutor</span><span class="p">(</span><span class="n">agent</span><span class="o">=</span><span class="n">agent</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 6. 运行</span>
+<span class="n">agent_executor</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;单词 &#39;supercalifragilisticexpialidocious&#39; 有多少个字母？&quot;</span><span class="p">})</span>
+</code></pre></div>
+<p>![[react提示词模板.png]]</p>
+<p>虽然 ReAct 很强，但它也有局限性：</p>
+<ul>
+<li><strong>Token 消耗</strong>：反复的“思考-行动-观察”会消耗大量的 Token。</li>
+<li><strong>死循环</strong>：如果工具返回的信息不够清晰，模型可能会陷入反复调用同一个工具的死循环。</li>
+<li><strong>规划能力有限</strong>：对于极其复杂的长程任务，ReAct 容易“走一步看一步”而迷失全局目标。</li>
+</ul>
+<h4 id="agent-middleware">Agent Middleware</h4>
+<p>在 LangChain 的语境下，<strong>Agent Middleware（智能体中间件）</strong> 并不是一个单一的官方类名，而是一种<strong>架构设计模式</strong>。</p>
+<p>它指的是在用户输入到达 Agent 之前，或者在 Agent 的决策发往 LLM/工具之前，插入的一层“拦截器”。</p>
+<p>可以理解为 aop，也就是将横切关注点抽取出来，统一管理，之后哪里用叉到哪里就可以。只不过这里只能插到 agent 执行流程中，而我们的 aop 则很无敌。</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@tool</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;获取某个地方的天气信息&quot;</span><span class="p">)</span>  
+<span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>  
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">city</span><span class="si">}</span><span class="s2">天气晴朗&quot;</span>  
+
+
+
+<span class="sd">&quot;&quot;&quot;  </span>
+<span class="sd">1. agent 执行前   @before_agent  </span>
+<span class="sd">2. agent 执行后   @after_agent  </span>
+<span class="sd">3. model 执行前   @before_model</span>
+<span class="sd">4. model 执行后   @after_model</span>
+<span class="sd">5. model 被调用   @wrap_model_call </span>
+<span class="sd">6. 工具被调用      @wrap_tool_call </span>
+<span class="sd">&quot;&quot;&quot;</span>  
+
+<span class="nd">@before_agent</span>  
+<span class="k">def</span><span class="w"> </span><span class="nf">log_before_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span><span class="n">Runtime</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  
+    <span class="c1"># agent 执行前会调用该函数并传入 state 和 runtime 两个对象  </span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[before agent], 附带</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="si">}</span><span class="s2">条消息&quot;</span><span class="p">)</span>  
+
+
+<span class="nd">@after_agent</span>  
+<span class="k">def</span><span class="w"> </span><span class="nf">log_after_agent</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">AgentState</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span><span class="n">Runtime</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  
+    <span class="c1"># agent 执行后会调用该函数并传入 state 和 runtime 两个对象  </span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[after agent], 附带</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="si">}</span><span class="s2">条消息&quot;</span><span class="p">)</span>  
+
+<span class="nd">@wrap_model_call</span>  
+<span class="k">def</span><span class="w"> </span><span class="nf">model_call_hook</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[model call]&quot;</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="n">handler</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>  
+
+<span class="nd">@wrap_tool_call</span>  
+<span class="k">def</span><span class="w"> </span><span class="nf">tool_call_hook</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">handler</span><span class="p">):</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[tool call]：</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">tool_call</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[tool call]：</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">tool_call</span><span class="p">[</span><span class="s1">&#39;args&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  
+    <span class="k">return</span> <span class="n">handler</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">create_agent</span><span class="p">(</span>
+    <span class="o">...</span>
+    <span class="o">...</span>
+    <span class="n">middleware</span><span class="o">=</span><span class="p">[</span><span class="n">log_before_agent</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="c1"># 这里传入中间件</span>
+<span class="p">)</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 LiuTianBa7 
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
