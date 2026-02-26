@@ -21,6 +21,7 @@ nav:
   - Bagu:
       - 八股复习路线: ./interview/index.md
       - java基础: ./interview/points/java基础.md
+      - java集合: ./interview/points/java集合.md
       - ssm: ./interview/points/ssm.md
       - spring[boot|cloud]: ./interview/points/springboot+Cloud.md
       - mysql: ./interview/points/mysql.md
