@@ -1,0 +1,5218 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://liutianba7.github.io/interview/points/juc.html">
+      
+      
+        <link rel="prev" href="java%E9%9B%86%E5%90%88.html">
+      
+      
+        <link rel="next" href="jvm.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>juc - LiuTianBa7 's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#juc" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-header__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LiuTianBa7 's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              juc
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../java/ssm.html" class="md-tabs__link">
+          
+  
+  
+  Java
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../python/Ai/langchain.html" class="md-tabs__link">
+          
+  
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../frontend/js.html" class="md-tabs__link">
+          
+  
+  
+  Frontend
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../index.html" class="md-tabs__link">
+          
+  
+  
+  Bagu
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../journal/2026-02.html" class="md-tabs__link">
+          
+  
+  
+  Journal
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tools/git.html" class="md-tabs__link">
+          
+  
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
+          
+  
+  
+  Middleware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../linux/basic.html" class="md-tabs__link">
+          
+  
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-nav__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    LiuTianBa7 's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/springboot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    springboot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/Ai/langchain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    langchain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/Ai/pytorch.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pytorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/Web/fastapi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fastapi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frontend/js.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frontend/vue3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vue3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bagu
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bagu
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    八股复习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="java%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    java基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="java%E9%9B%86%E5%90%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    java集合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    juc
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="juc.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    juc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基础知识
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基础知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. java 线程和操作系统线程有啥区别
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 请简要描述线程与进程的关系,区别及优缺点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 请简要描述线程与进程的关系,区别及优缺点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 为什么程序计数器要私有
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 堆和方法区为什么是共享的？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 堆区和方法区
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 什么是上下文切换？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-wait-thread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 为什么 wait() 方法不定义在 Thread 中？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-thread-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 可以直接调用 Thread 类的 run 方法吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        并发容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#juc_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JUC 辅助类
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JUC 辅助类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-countdownlatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. CountDownLatch 的计数器能重置吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 如果某个子线程执行过程中抛出异常，会导致主线程死等吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-countdownlatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. CountDownLatch 是基于什么实现的呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-countdownlatch-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. CountDownLatch 和 Join 的区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#callable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Callable 接口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Callable 接口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-futuretaskget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. futureTask.get() 放在哪执行？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-futuretask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 多个线程启动同一个 FutureTask 对象，任务会执行几次？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 如何实现异步不阻塞？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volatile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volatile 关键字⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Volatile 关键字⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-volatile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Volatile 如何实现变量的可见性？（原理）⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 线程本地内存的理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 如何禁止指令重排序⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 双重检验锁方式实现案例模式⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 为什么要进行两次双重检验呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-volatile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Volatile 可以实现原子性吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        悲观锁和乐观锁
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="悲观锁和乐观锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是悲观锁呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 什么是乐观锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 版本号机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. CAS 算法⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synchronized 关键字
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Synchronized 关键字">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Synchronized 是什么，有什么用⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 演化过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-java-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. java 如何优化 Synchronized 锁呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        补充：为什么偏向锁被舍弃了
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 如何使用 synchronized？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 构造方法可以用 synchronized 修饰吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. synchronized 的底层原理⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 什么是 monitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 那锁存在哪里呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-synchronized-volatile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. synchronized 和 volatile 有什么区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reentrantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ReentrantLock
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReentrantLock">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0-lock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. lock 的原理⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-reentantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ReentantLock 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-synchronized-reentrantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ⭐️synchronized 和 ReentrantLock 有什么区别？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ⭐️synchronized 和 ReentrantLock 有什么区别？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 核心区别对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-reentrantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 ReentrantLock 的三大高级功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 可中断锁和不可中断锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 如何查看死锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reentrantreadwritelock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ReentrantReadWriteLock
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReentrantReadWriteLock">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 为什么要有读写锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 什么是共享锁、什么是独占锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 读写锁的获取规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 锁降级机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 为什么读锁不能升级为写锁呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ThreadLocal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ThreadLocal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-threadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ThreadLocal 有什么用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-threadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ThreadLocal 原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        补充: key设置为弱引用, value呢?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-threadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ThreadLocal 内存泄漏问题怎么发生的？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 如何避免内存泄漏⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-threadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ⭐️如何跨线程传递 ThreadLocal 的值呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-inheritablethreadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. inheritableThreadLocal 的原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-transmittablethreadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. TransmittableThreadLocal 原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threadpool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ThreadPool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ThreadPool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是线程池
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ⭐️为什么使用线程池
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 如何创建线程池
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-executors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 为什么不推荐通过 executors 创建呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ⭐️线程池七大参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 线程池的核心线程会被回收吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 核心线程空闲时处于什么状态？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. ⭐️线程池的拒绝策略有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 线程池常用的阻塞队列
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. ⭐️线程池的处理流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. ⭐️线程池中线程异常后，销毁还是复用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. ⭐️如何给线程池的线程命名
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 如何定义线程池的大小
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. ⭐️如何动态修改线程池的参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. ⭐️如何设计一个能够根据任务的优先级来执行的线程池？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-future" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Future 类有什么用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2futuretask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.FutureTask 是什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-completablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. CompletableFuture 类有什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. ⭐️一个任务需要依赖另外两个任务执行完之后再执行，怎么设计？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-completablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ⭐️使用 CompletableFuture，有一个任务失败，如何处理异常？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-completablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. ⭐️在使用 CompletableFuture 的时候为什么要自定义线程池？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AQS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AQS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-aqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. AQS 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ⭐️AQS 的原理是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-aqs-clh-clh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. AQS 中的队列从 CLH 锁队列优化为 CLH 变体队列，有什么区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-semaphore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Semaphore 有什么用呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-semaphore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Semaphore 的原理是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-countdownlatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. CountDownLatch 有什么用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-countdownlatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. CountDownLatch 的原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-countdownlatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 用过 CountDownLatch 么？什么场景下用的
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-cyclicbarrier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. CyclicBarrier 有什么作用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-cyclicbarrier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. CyclicBarrier 的原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        虚拟线程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="虚拟线程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 虚拟线程是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 虚拟现场的优缺点？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 如何创建虚拟线程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="jvm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    jvm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="springboot%2BCloud.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    spring[boot|cloud]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mysql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="es.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    elasticsearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rmq.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    rmq
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seata.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    seata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Journal
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Journal
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../journal/2026-02.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    202602
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/git.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Middleware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Middleware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E9%AB%98%E7%BA%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 高级
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/minio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    minio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/basic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基础知识
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="基础知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. java 线程和操作系统线程有啥区别
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 请简要描述线程与进程的关系,区别及优缺点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 请简要描述线程与进程的关系,区别及优缺点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 为什么程序计数器要私有
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 堆和方法区为什么是共享的？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 堆区和方法区
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 什么是上下文切换？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-wait-thread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 为什么 wait() 方法不定义在 Thread 中？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-thread-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 可以直接调用 Thread 类的 run 方法吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        并发容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#juc_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JUC 辅助类
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="JUC 辅助类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-countdownlatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. CountDownLatch 的计数器能重置吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 如果某个子线程执行过程中抛出异常，会导致主线程死等吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-countdownlatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. CountDownLatch 是基于什么实现的呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-countdownlatch-join" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. CountDownLatch 和 Join 的区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#callable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Callable 接口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Callable 接口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-futuretaskget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. futureTask.get() 放在哪执行？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-futuretask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 多个线程启动同一个 FutureTask 对象，任务会执行几次？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 如何实现异步不阻塞？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volatile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Volatile 关键字⭐️
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Volatile 关键字⭐️">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-volatile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Volatile 如何实现变量的可见性？（原理）⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 线程本地内存的理解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 如何禁止指令重排序⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 双重检验锁方式实现案例模式⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 为什么要进行两次双重检验呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-volatile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Volatile 可以实现原子性吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        悲观锁和乐观锁
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="悲观锁和乐观锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是悲观锁呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 什么是乐观锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 版本号机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. CAS 算法⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Synchronized 关键字
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Synchronized 关键字">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Synchronized 是什么，有什么用⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 演化过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-java-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. java 如何优化 Synchronized 锁呢？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        补充：为什么偏向锁被舍弃了
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 如何使用 synchronized？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 构造方法可以用 synchronized 修饰吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-synchronized" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. synchronized 的底层原理⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-monitor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 什么是 monitor
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 那锁存在哪里呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-synchronized-volatile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. synchronized 和 volatile 有什么区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reentrantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ReentrantLock
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReentrantLock">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0-lock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. lock 的原理⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-reentantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ReentantLock 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-synchronized-reentrantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ⭐️synchronized 和 ReentrantLock 有什么区别？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. ⭐️synchronized 和 ReentrantLock 有什么区别？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 核心区别对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-reentrantlock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 ReentrantLock 的三大高级功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 可中断锁和不可中断锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 如何查看死锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reentrantreadwritelock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ReentrantReadWriteLock
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReentrantReadWriteLock">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 为什么要有读写锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 什么是共享锁、什么是独占锁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 读写锁的获取规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 锁降级机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 为什么读锁不能升级为写锁呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ThreadLocal
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ThreadLocal">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-threadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. ThreadLocal 有什么用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-threadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ThreadLocal 原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-value" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        补充: key设置为弱引用, value呢?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-threadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ThreadLocal 内存泄漏问题怎么发生的？⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 如何避免内存泄漏⭐️
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-threadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ⭐️如何跨线程传递 ThreadLocal 的值呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-inheritablethreadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. inheritableThreadLocal 的原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-transmittablethreadlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. TransmittableThreadLocal 原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#threadpool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ThreadPool
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ThreadPool">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是线程池
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ⭐️为什么使用线程池
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 如何创建线程池
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-executors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 为什么不推荐通过 executors 创建呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ⭐️线程池七大参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 线程池的核心线程会被回收吗？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 核心线程空闲时处于什么状态？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. ⭐️线程池的拒绝策略有哪些？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 线程池常用的阻塞队列
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. ⭐️线程池的处理流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. ⭐️线程池中线程异常后，销毁还是复用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. ⭐️如何给线程池的线程命名
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 如何定义线程池的大小
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. ⭐️如何动态修改线程池的参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. ⭐️如何设计一个能够根据任务的优先级来执行的线程池？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Future">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-future" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Future 类有什么用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2futuretask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.FutureTask 是什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-completablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. CompletableFuture 类有什么
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. ⭐️一个任务需要依赖另外两个任务执行完之后再执行，怎么设计？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-completablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. ⭐️使用 CompletableFuture，有一个任务失败，如何处理异常？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-completablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. ⭐️在使用 CompletableFuture 的时候为什么要自定义线程池？
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AQS
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AQS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-aqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. AQS 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-aqs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. ⭐️AQS 的原理是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-aqs-clh-clh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. AQS 中的队列从 CLH 锁队列优化为 CLH 变体队列，有什么区别？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-semaphore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Semaphore 有什么用呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-semaphore" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Semaphore 的原理是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-countdownlatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. CountDownLatch 有什么用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-countdownlatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. CountDownLatch 的原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-countdownlatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 用过 CountDownLatch 么？什么场景下用的
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-cyclicbarrier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. CyclicBarrier 有什么作用？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-cyclicbarrier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. CyclicBarrier 的原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        虚拟线程
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="虚拟线程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 虚拟线程是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 虚拟现场的优缺点？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 如何创建虚拟线程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="juc">JUC</h1>
+<h2 id="_1">基础知识</h2>
+<h4 id="1-java">1. java 线程和操作系统线程有啥区别</h4>
+<p>JDK 1.2 之前，Java 线程是基于绿色线程（Green Threads）实现的，这是一种用户级线程（用户线程），也就是说 JVM 自己模拟了多线程的运行，而不依赖于操作系统。绿色线程和原生线程比起来在使用时有一些限制（比如绿色线程不能直接使用操作系统提供的功能如异步 I/O、只能在一个内核线程上运行无法利用多核）</p>
+<ul>
+<li>优点：线程的切换不涉及用户态 -&gt; 内核态的切换，创建于切换成本低！</li>
+<li>不能利用多核，不能直接使用操作系统内核的一些功能：如异步 I/o</li>
+</ul>
+<p><strong>现在的 Java 线程（JDK 1.2 至今）本质上就是操作系统的原生线程（Native Threads）。</strong> Java 采用的是 <strong>1:1 线程模型</strong>，即：每一个 Java 线程（<code>Thread</code> 实例）都会对应一个操作系统的内核线程（Kernel Thread）。线程的创建、销毁、调度和切换全部交由操作系统内核负责。</p>
+<ul>
+<li><strong>优点</strong>：真正支持多核并行，I/O 阻塞不会拖累整个进程。</li>
+<li><strong>代价</strong>：上下文切换涉及到内核态与用户态的转换，开销较大。并且每个java线程都对因一个内核线程，比较重。</li>
+</ul>
+<p>顺便简单总结一下用户线程和内核线程的区别和特点：用户线程创建和切换成本低，但不可以利用多核。内核态线程，创建和切换成本高，可以利用多核。</p>
+<h4 id="2">2. 请简要描述线程与进程的关系,区别及优缺点</h4>
+<ul>
+<li><strong>进程</strong>：操作系统分配资源（内存、IO）的<strong>最小单位</strong>。进程间相互独立，但如果直接对进程进行上下文切换，则开销是比较大的，因此，为了提高操作系统的并发能力，又引入了线程！</li>
+<li><strong>线程</strong>：是操作系统调度和执行的<strong>最小单位</strong>。同一进程内的线程共享进程的一些资源（进程的堆区、方法区），执行开销小，但相互影响（一个线程崩溃可能导致进程挂掉）。</li>
+</ul>
+<h5 id="21">2.1 为什么程序计数器要私有</h5>
+<p>因为在多线程环境下，CPU 会不断切换线程。私有计数器是为了<strong>记录当前线程执行到哪一行了</strong>，确
+保线程被挂起又恢复执行时，能从上次中断的地方继续运行。</p>
+<h5 id="22">2.2 堆和方法区为什么是共享的？</h5>
+<ul>
+<li><strong>堆共享</strong>：是为了<strong>节省空间和数据传递</strong>。对象通常占用内存较大，共享堆区可以让多个线程访问同一个对象，减少内存开销。</li>
+<li><strong>方法区共享</strong>：是为了<strong>类信息复用</strong>。所有线程执行的都是同一套类逻辑，没必要在每个线程都存一份类结构、常量池和静态变量。</li>
+</ul>
+<h5 id="23">2.3 堆区和方法区</h5>
+<p>堆和方法区是所有线程共享的资源，其中堆是进程中最大的一块内存，主要用于存放新创建的对象 (几乎所有对象都在这里分配内存)，方法区主要用于存放已被加载的类信息、常量、静态变量、即时编译器编译后的代码等数据</p>
+<h4 id="2_1">2. 什么是上下文切换？</h4>
+<p>上下文切换是指 <strong>CPU 从一个线程切换到另一个线程执行的过程</strong>。</p>
+<p>而上下文就是一个线程运行的一些条件和状态，比如程序计数器，寄存器，栈信息等等。</p>
+<ul>
+<li><strong>程序计数器 (PC)</strong>：记录代码执行到哪一行了。</li>
+<li><strong>寄存器</strong>：存储 CPU 正在计算的中间值。</li>
+<li><strong>栈信息</strong>：方法的调用层次、局部变量等。</li>
+</ul>
+<p>在 cpu 时间片被用完 、调用一些方法主动让出 cpu（sleep(),wait())，被其他线程强制抢走 cpu，阻塞等待，线程执行完毕。</p>
+<h4 id="3-wait-thread">3. 为什么 wait() 方法不定义在 Thread 中？</h4>
+<p><code>wait()</code> 是让获得对象锁的线程实现等待，会自动释放当前线程占有的对象锁。每个对象（<code>Object</code>）都拥有对象锁，既然要释放当前线程占有的对象锁并让其进入 WAITING 状态，自然是要操作对应的对象（<code>Object</code>）而非当前的线程（<code>Thread</code>）。</p>
+<p>类似的问题：<strong>为什么 <code>sleep()</code> 方法定义在 <code>Thread</code> 中？</strong>
+因为 <code>sleep()</code> 是让当前线程暂停执行，不涉及到对象类，也不需要获得对象锁</p>
+<h4 id="3-thread-run">3. 可以直接调用 Thread 类的 run 方法吗？</h4>
+<p><strong>可以调用，但它不是多线程。</strong> 直接调用 <code>run()</code> 只是一个线程对象的一个<strong>普通方法调用</strong>，而调用 <code>start()</code> 才是真正的<strong>启动线  程</strong>。</p>
+<h3 id="_2">并发容器</h3>
+<p>CopyOnWriteArrayList、CopyOnWriteArraySet、ConcurrentHashMap</p>
+<ol>
+<li>CopyOnWriteArrayList、CopyOnWriteArraySet采用写时复制实现线程安全</li>
+<li>ConcurrentHashMap采用分段锁 | （CAS + Sychronized + Node)的方式实现线程安全</li>
+</ol>
+<h2 id="juc_1">JUC 辅助类</h2>
+<h4 id="1-countdownlatch">1. CountDownLatch 的计数器能重置吗？</h4>
+<p><strong>不能</strong>。一旦计数器减到 0，它就失效了。如果需要循环使用计数器，应该使用 <strong><code>CyclicBarrier</code></strong>。</p>
+<h4 id="2_2">2. 如果某个子线程执行过程中抛出异常，会导致主线程死等吗？</h4>
+<p>看情况。如果子线程报错没能调用 <code>countDown()</code>，计数器永远不会归零。所以主线程也永远不会被唤醒</p>
+<p>我们可以通过 try-catch-finally 或者在主线程使用 await() 阻塞自己时，设置一个最大超时时间来避免无限等待。</p>
+<h4 id="3-countdownlatch">3. CountDownLatch 是基于什么实现的呢？</h4>
+<p>它是基于 AQS 的 共享锁 实现的。初始化时的 count 值就是 AQS 内部的 <code>state</code>。<code>await</code> 时线程进入等待队列，<code>countDown</code> 时通过 CAS 减少 <code>state</code>，当 <code>state</code> 为 0 时唤醒队列中的所有线程。</p>
+<h4 id="4-countdownlatch-join">4. CountDownLatch 和 Join 的区别？</h4>
+<p><code>join</code> 是等“线程”，必须等线程运行结束、死掉了才算完；<code>CountDownLatch</code> 是等“计数器为0”，只要任务做完了（计数器归零），不管线程死没死，主线程都能接着干。</p>
+<p>“所以在实际开发中，<code>CountDownLatch</code> 配合<strong>线程池</strong>非常方便（因为线程池里的线程是不死的），而 <code>join</code> 很难跟线程池配合。”</p>
+<h2 id="callable">Callable 接口</h2>
+<h4 id="1-futuretaskget">1. <code>futureTask.get()</code> 放在哪执行？</h4>
+<p>通常放在最后。因为 <code>get()</code> 是<strong>阻塞</strong>的，如果计算没完成，主线程会卡在那里等。</p>
+<h4 id="2-futuretask">2. 多个线程启动同一个 <code>FutureTask</code> 对象，任务会执行几次？</h4>
+<p><strong>只会执行一次</strong>。<code>FutureTask</code> 内部有个状态位，一旦任务执行完成或正在执行，后续的调用会直接拿结果。</p>
+<p align='center'>
+    <img src="../../assets/imgs/interview/java/juc/juc01.png" alt="juc01" style="zoom:67%;" />
+</p>
+
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="n">V</span><span class="w"> </span><span class="nf">get</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="p">,</span><span class="w"> </span><span class="n">ExecutionException</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">;</span><span class="w">  </span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">COMPLETING</span><span class="p">)</span><span class="w">  </span>
+<span class="w">        </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">awaitDone</span><span class="p">(</span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="n">L</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">report</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w">  </span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="3">3. 如何实现异步不阻塞？</h4>
+<p>可以通过 <code>isDone()</code> 轮询检查，或者干脆直接学习 JDK 8 的 <strong><code>CompletableFuture</code></strong>。</p>
+<p>“实现异步不阻塞，关键在于把‘主动索取结果’改为‘被动接收回调’。<code>CompletableFuture</code> 通过异步编排，将多个任务串成流水线。主线程只负责开启这条流水线，任务执行完会自动触发后续操作，从而彻底解放主线程，避免了阻塞死等。”</p>
+<h2 id="volatile">Volatile 关键字⭐️</h2>
+<h4 id="1-volatile">1. Volatile 如何实现变量的可见性？（原理）⭐️</h4>
+<p>在 Java 中，如果我们将变量声明为 <strong><code>volatile</code></strong> ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主内存中进行读取。并且在线程的工作内存修改后，应该立即更新到主内存，而非写入缓存。</p>
+<h4 id="2_3">2. 线程本地内存的理解</h4>
+<p>其实就是 cache 或者寄存器。</p>
+<h4 id="3_1">3. 如何禁止指令重排序⭐️</h4>
+<p><strong>在 Java 中，<code>volatile</code> 关键字除了可以保证变量的可见性，还有一个重要的作用就是防止 JVM | os 的指令重排序。</strong> 如果我们将变量声明为 <strong><code>volatile</code></strong> ，在对这个变量进行读写操作的时候，会通过插入特定的 <strong>内存屏障</strong> 的方式来禁止指令重排序。</p>
+<h4 id="4">4. 双重检验锁方式实现案例模式⭐️</h4>
+<p>“<code>synchronized</code> 虽然保证了原子性，但无法禁止指令重排。在 DCL 中，<code>new</code> 对象并非原子操作，重排可能导致‘引用先指向地址，对象后初始化’。此时如果另一个线程在锁外进行 <code>null</code> 检查，会误判对象已就绪，从而拿到一个未初始化的半成品。加 <code>volatile</code> 就是为了通过内存屏s障禁止这种重排，确保安全。”</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Singleton</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">volatile</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="n">uniqueInstance</span><span class="p">;</span>
+<span class="n">s</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">Singleton</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Singleton</span><span class="w"> </span><span class="nf">getUniqueInstance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="c1">//先判断对象是否已经实例过，没有实例化过才进入加锁代码</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">uniqueInstance</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">//类对象加锁</span>
+<span class="w">            </span><span class="kd">synchronized</span><span class="w"> </span><span class="p">(</span><span class="n">Singleton</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">uniqueInstance</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">uniqueInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Singleton</span><span class="p">();</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">uniqueInstance</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="5">5. 为什么要进行两次双重检验呢？</h4>
+<p>第一层 <code>if</code>：避免对象创建后，每次获取实例都要进行昂贵的加锁操作。</p>
+<p>第二层 <code>if</code>：<strong>内层检查</strong>是为了<strong>原子性/安全</strong>。防止多个线程同时通过了外层检查，在排队等待锁的过程中产生重复创建对象的行为。</p>
+<h4 id="6-volatile">6. Volatile 可以实现原子性吗？</h4>
+<p>显然不能，Volatile 只是实现了共享变量的可见性，而无法保证原子性，想象：两个线程从主内存中同时拿到了副本，并且都要进行 ++ 操作，此时就会出现：这两个线程的写结果相互覆盖。</p>
+<h2 id="_3">悲观锁和乐观锁</h2>
+<h4 id="1">1. 什么是悲观锁呢？</h4>
+<p>悲观锁总是悲观的认为：多个线程同时访问共享资源就会出现一些并发问题，所以每次操作共享资源的时候都会上锁，这样其他线程想拿到这个资源就会阻塞直到锁被上一个持有者释放。</p>
+<p>像 Java 中<code>synchronized</code>和<code>ReentrantLock</code>等独占锁就是悲观锁思想的实现。</p>
+<h4 id="2_4">2. 什么是乐观锁</h4>
+<p>乐观锁总是假设最好的情况，认为共享资源每次被访问的时候不会出现问题，无需加锁也无需等待，只是在提交修改的时候去验证对应的资源（也就是数据）是否被其它线程修改了（具体方法可以使用版本号机制或 CAS 算法）。</p>
+<h4 id="3_2">3. 版本号机制</h4>
+<p>通过一个版本号字段来表示数据被修改的次数，因此，每次线程 A 操作共享数据时，就可以通过版本号来判断是否有其他线程修改了当前共享资源，比较典型的就是 java 集合中 modCount 字段。</p>
+<h4 id="4-cas">4. CAS 算法⭐️</h4>
+<p>CAS 的全称是 <strong>Compare And Swap（比较与交换）</strong> ，用于实现乐观锁，被广泛应用于各大框架中。CAS 的思想很简单，就是主内存中的值与旧值比较，如果相同，则没被其他线程修改，则可以把新值写入到主内存，否则自旋 + 重试。</p>
+<p>如果 <code>V == A</code>，说明没有其他线程改过这个值，就把 <code>V</code> 修改为 <code>B</code>；如果 <code>V != A</code>，说明被别人改过了，修改失败，通常会开启<strong>自旋</strong>（不断重试直到成功）。</p>
+<p>V：主内存值  A：预期原值 B：准备更新的新值</p>
+<p><strong>底层支撑</strong>：通过 <code>Unsafe</code> 类调用 CPU 底层的原子指令。
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getAndAddInt</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">o</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w">  </span>
+<span class="w">    </span><span class="k">do</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">        </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getIntVolatile</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">weakCompareAndSetInt</span><span class="p">(</span><span class="n">o</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">delta</span><span class="p">));</span><span class="w">  </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w">  </span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>CAS 存在的问题： 1）ABA 问题 2）当并发竞争比较大的时候，线程不断地自旋 + 重试，会占用 cpu 资源。3）只能保证一个共享变量的原子操作。</p>
+<h2 id="synchronized">Synchronized 关键字</h2>
+<h4 id="1-synchronized">1. Synchronized 是什么，有什么用⭐️</h4>
+<p><code>synchronized</code> 是 Java 中的一个关键字，翻译成中文是同步的意思，主要解决的是多个线程之间访问资源的同步性</p>
+<p>它的作用：被它修饰的方法或者代码块在任意时刻只能有一个线程执行。这就实现了原子性和可见性。</p>
+<h4 id="2_5">2. 演化过程</h4>
+<ul>
+<li><strong>早期（重量级）</strong>：依赖操作系统的 <code>Mutex Lock</code>。线程切换需要从 <strong>用户态</strong> 切换到 <strong>内核态</strong>，代价极高，效率低下。</li>
+<li><strong>优化（Java 6+）</strong>：引入了<strong>锁升级</strong>机制（偏向锁 <span class="arithmatex">\(\rightarrow\)</span> 轻量级锁 <span class="arithmatex">\(\rightarrow\)</span> 重量级锁），让锁能根据竞争情况自动“变身”，不再动不动就找操作系统。</li>
+</ul>
+<h4 id="3-java-synchronized">3. java 如何优化 Synchronized 锁呢？⭐️</h4>
+<ul>
+<li><strong>自旋锁</strong> | 适应性自旋锁：不挂起线程，让它循环（自旋）等一会儿。</li>
+<li>锁消除：编译器发现代码不可能存在竞争（比如局部变量），直接把锁去掉。</li>
+<li>锁粗化：如果一连串操作都在反复对同一个对象加锁解锁，编译器会把锁范围扩大到整个操作，减少开销。</li>
+<li>轻量级锁：通过 cas + 自旋锁机制。线程在自己的栈帧里开辟一块空间（Lock Record），然后用 <strong>CAS</strong> 尝试把对象头里的 Mark Word 替换成指向自己栈中所记录的指针。</li>
+<li>偏向锁：如果这把锁一直只有一个线程在用，那就干脆别加锁了，直接把锁‘送’给它。</li>
+</ul>
+<p>在 Java 6 之后， <code>synchronized</code> 引入了大量的优化如自旋锁、适应性自旋锁、锁消除、锁粗化、偏向锁、轻量级锁等技术来减少锁操作的开销，这些优化让 <code>synchronized</code> 锁的效率提升了很多（JDK18 中，偏向锁已经被彻底废弃，前面已经提到过了）。</p>
+<p>锁主要存在四种状态，依次是：无锁状态、偏向锁状态、轻量级锁状态、重量级锁状态，他们会随着竞争的激烈而逐渐升级。注意锁可以升级不可降级，这种策略是为了提高获得锁和释放锁的效率。</p>
+<h4 id="_4">补充：为什么偏向锁被舍弃了</h4>
+<p>偏向锁是为了优化单线程场景，但它撤销锁时需要‘停顿所有线程（STW）’，在现代高并发环境下，这种停顿带来的代价远超它节省的开销，所以被官方无情抛弃了。</p>
+<h4 id="4-synchronized">4. 如何使用 synchronized？</h4>
+<p>修饰实例方法：所当前对象实例</p>
+<div class="highlight"><pre><span></span><code><span class="kd">synchronized</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">method</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//业务代码</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>修饰静态方法：所当前类</p>
+<div class="highlight"><pre><span></span><code>synchronized static void method() { 
+    //业务代码 
+}
+</code></pre></div>
+<ol>
+<li>修饰代码块</li>
+<li><code>synchronized(object)</code> 表示进入同步代码块前要获得 <strong>给定对象的锁</strong>。</li>
+<li><code>synchronized(类.class)</code> 表示进入同步代码块前要获得 <strong>给定 Class 的锁</strong>
+<div class="highlight"><pre><span></span><code>synchronized(this) {
+    //业务代码
+}
+</code></pre></div></li>
+</ol>
+<h4 id="5-synchronized">5. 构造方法可以用 <code>synchronized</code> 修饰吗？</h4>
+<p><strong>不可以</strong>。语法上会报错。锁是为了保护“多个线程争抢同一个对象”，而构造方法是“一个线程在创建一个对象”，此时对象还没造好，别人抢不到，所以<strong>没必要锁</strong>。如果构造函数里要改<strong>全局变量</strong>（静态变量），此时需要同步，但建议在构造函数内部写 <code>synchronized(Lock.class)</code> 代码块，而不是锁构造函数本身。</p>
+<h4 id="6-synchronized">6. synchronized 的底层原理⭐️</h4>
+<p>“<code>synchronized</code> 底层是基于监视器锁（Monitor）实现的。代码块通过 <code>monitorenter/exit</code> 指令实现，方法通过 <code>ACC_SYNCHRONIZED</code> 标志实现。</p>
+<p>其本质是：线程尝试获取对象头所关联的 Monitor 对象的持有权。如果获取成功，Monitor 的 <code>_Count</code> 加 1；如果失败，线程就会进入阻塞状态，直到锁被释放。”</p>
+<p>所以，<code>wait()</code>、<code>notify()</code> 和 <code>notifyAll()</code> 这些方法，本质上是<strong>对 Monitor 内部队列的操作</strong>。因此，只有线程成为了当前 monitor 的主人，才能进行操作，而进入 <code>synchronized</code> 代码块就代表着当前线程成为了 monitor 对象的主人。</p>
+<h4 id="7-monitor">7. 什么是 monitor</h4>
+<p>每个 Java 对象出生时，都会带一个“隐形锁”，也就是 Monitor 对象（由 C++ 实现）。它内部的关键字段有：</p>
+<ul>
+<li><strong><code>_Owner</code></strong>：当前是谁占着这把锁（存的是线程 ID）。</li>
+<li><strong><code>_Count</code></strong>：锁被重入了多少次（为了支持<strong>可重入性</strong>）。</li>
+<li><strong><code>_WaitSet</code></strong>：那些调用了 <code>wait()</code> 的线程，在这儿休息。</li>
+<li><code>_EntryList</code>：等待获取锁而阻塞的线程队列。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">ObjectMonitor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_header</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_count</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">     </span><span class="c1">// 记录锁的重入次数</span>
+<span class="w">    </span><span class="n">_waiters</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">_recursions</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_object</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_owner</span><span class="w">        </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w">  </span><span class="c1">// 指向持有 ObjectMonitor 对象的线程</span>
+<span class="w">    </span><span class="n">_WaitSet</span><span class="w">      </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w">  </span><span class="c1">// 调用 wait() 后等待的线程队列</span>
+<span class="w">    </span><span class="n">_EntryList</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w">  </span><span class="c1">// 等待获取锁而阻塞的线程队列</span>
+<span class="p">}</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>_EntryList (阻塞队列)</strong></th>
+<th><strong>_WaitSet (等待队列)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>线程状态</strong></td>
+<td><strong>Blocked</strong> (被动阻塞)</td>
+<td><strong>Waiting / Timed_Waiting</strong> (主动等待)</td>
+</tr>
+<tr>
+<td><strong>触发动作</strong></td>
+<td>执行 <code>synchronized</code> 抢锁失败。</td>
+<td>在同步块内，手动调用了 <code>obj.wait()</code>。</td>
+</tr>
+<tr>
+<td><strong>如何离开</strong></td>
+<td>锁的持有者释放了锁（退出同步块）。</td>
+<td>另一个线程调用了 <code>obj.notify()</code> 或 <code>notifyAll()</code>。</td>
+</tr>
+<tr>
+<td><strong>离开后的去向</strong></td>
+<td>抢到锁则进入诊室，抢不到继续待着。</td>
+<td><strong>必须先回 <code>_EntryList</code></strong>，重新竞争锁。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="8">8. 那锁存在哪里呢？</h4>
+<p>在对象的 <strong>Mark Word</strong>（对象头的一部分）里。<strong>无锁/偏向锁/轻量级锁/重量级锁</strong> 的状态，都记录在这几位（bits）上。当锁升级到 <strong>重量级锁</strong> 时，Mark Word 就会指向这个 <strong>Monitor</strong> 对象的地址。</p>
+<h4 id="9-synchronized-volatile">9. synchronized 和 volatile 有什么区别？</h4>
+<p><code>synchronized</code> 关键字和 <code>volatile</code> 关键字是两个互补的存在，而不是对立的存在！</p>
+<ul>
+<li><code>volatile</code> 关键字是线程同步的轻量级实现，所以 <code>volatile</code>性能肯定比<code>synchronized</code>关键字要好 。但是 <code>volatile</code> 关键字只能用于变量而 <code>synchronized</code> 关键字可以修饰方法以及代码块 。</li>
+<li><code>volatile</code> 关键字能保证数据的可见性，但不能保证数据的原子性。<code>synchronized</code> 关键字两者都能保证。</li>
+<li><code>volatile</code>关键字主要用于解决变量在多个线程之间的可见性，而 <code>synchronized</code> 关键字解决的是多个线程之间访问资源的同步性。</li>
+</ul>
+<h2 id="reentrantlock">ReentrantLock</h2>
+<h4 id="0-lock">0. lock 的原理⭐️</h4>
+<ol>
+<li>Lock的存储结构：一个int类型状态值（用于锁的状态变更），一个双向链表（用于存储等待中的线程）</li>
+<li>Lock获取锁的过程：本质上是通过CAS来获取状态值修改，如果当场没获取到，会将该线程放在线程等待链表中。</li>
+<li>Lock释放锁的过程：修改状态值，调整等待链表。</li>
+<li>Lock大量使用CAS+自旋。因此根据CAS特性，lock建议使用在低锁冲突的情况下。</li>
+</ol>
+<h4 id="1-reentantlock">1. ReentantLock 是什么？</h4>
+<p><code>ReentrantLock</code> 实现了 <code>Lock</code> 接口，是一个可重入且独占式的锁，和 <code>synchronized</code> 关键字类似。不过，<code>ReentrantLock</code> 更灵活、更强大，增加了轮询、超时、中断、公平锁和非公平锁等高级功能</p>
+<h4 id="2-synchronized-reentrantlock">2.  ⭐️synchronized 和 ReentrantLock 有什么区别？</h4>
+<p><code>synchronized</code> 是托管给 JVM 执行的“自动挡”锁，简单省心；<code>ReentrantLock</code> 是基于 API 实现的“手动挡”锁，功能更强、控制更细。</p>
+<h5 id="21_1">2.1 核心区别对比</h5>
+<table>
+<thead>
+<tr>
+<th><strong>维度</strong></th>
+<th><strong>synchronized</strong></th>
+<th><strong>ReentrantLock</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>实现层面</strong></td>
+<td><strong>JVM 层面</strong>（关键字，由 C++ 实现）</td>
+<td><strong>JDK API 层面</strong>（JUC 包下的类）</td>
+</tr>
+<tr>
+<td><strong>锁的释放</strong></td>
+<td><strong>自动释放</strong>（代码执行完或异常后）</td>
+<td><strong>手动释放</strong>（必须在 <code>finally</code> 中手动 <code>unlock</code>）</td>
+</tr>
+<tr>
+<td><strong>灵活性</strong></td>
+<td>较低（不可中断，不支持超时）</td>
+<td><strong>高</strong>（可中断、支持超时、可尝试获取锁）</td>
+</tr>
+<tr>
+<td><strong>公平性</strong></td>
+<td><strong>仅支持非公平</strong></td>
+<td><strong>支持公平与非公平</strong>（默认非公平）</td>
+</tr>
+<tr>
+<td><strong>等待通知机制</strong></td>
+<td>配合 <code>wait/notify</code>，<strong>只有一个</strong>等待队列</td>
+<td>配合 <code>Condition</code>，<strong>支持多套</strong>等待队列（精准唤醒）</td>
+</tr>
+</tbody>
+</table>
+<h5 id="22-reentrantlock">2.2 ReentrantLock 的三大高级功能</h5>
+<p>1、等待可中断<code>lock.lockInterruptibly()</code>：如果一个线程等锁等得太久了，你可以给它发个“撤退”命令<code>t.interrupt()</code>，让它停止等锁去干别的。<code>synchronized</code> 只能死等。
+2、选择性通知 | 精准通知 | 分组通知：配合 Condition 可以实现远比 synchorinzed 灵活的通知。
+3、支持超时 <code>trylock</code> ：线程尝试获取锁，如果拿不到，等几秒钟就走，不会导致系统因为大面积线程阻塞而瘫痪。</p>
+<h4 id="3_3">3. 可中断锁和不可中断锁</h4>
+<ul>
+<li>
+<p><strong>可中断锁</strong>：获取锁的过程中可以被中断，不需要一直等到获取锁之后 才能进行其他逻辑处理。<code>ReentrantLock</code> 就属于是可中断锁。前提（通过 lockInterruptibly 方法获取锁)</p>
+</li>
+<li>
+<p><strong>不可中断锁</strong>：一旦线程申请了锁，就只能等到拿到锁以后才能进行其他的逻辑处理。 <code>synchronized</code> 就属于是不可中断锁。</p>
+</li>
+</ul>
+<h4 id="4_1">4. 如何查看死锁</h4>
+<ol>
+<li>找到 Java 进程 ID（PID）：执行 <code>jps -l</code>。</li>
+<li>打印线程栈：执行 <code>jstack -l &lt;PID&gt;</code>。</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.concurrent.locks.Lock</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.concurrent.locks.ReentrantLock</span><span class="p">;</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">DeadlockDemo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Lock</span><span class="w"> </span><span class="n">lock1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ReentrantLock</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Lock</span><span class="w"> </span><span class="n">lock2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ReentrantLock</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 线程 1：尝试获取 lock1 -&gt; 睡眠 -&gt; 尝试获取 lock2</span>
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">lock1</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;线程 1: 已获取 lock1，正在尝试获取 lock2...&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"> </span><span class="c1">// 确保线程 2 有时间获取 lock2</span>
+
+<span class="w">                </span><span class="n">lock2</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;线程 1: 成功获取 lock2！&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">lock1</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
+<span class="w">                </span><span class="n">lock2</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="s">&quot;Thread-A&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="c1">// 线程 2：尝试获取 lock2 -&gt; 睡眠 -&gt; 尝试获取 lock1</span>
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">lock2</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;线程 2: 已获取 lock2，正在尝试获取 lock1...&quot;</span><span class="p">);</span>
+<span class="w">                </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w"> </span><span class="c1">// 确保线程 1 有时间获取 lock1</span>
+
+<span class="w">                </span><span class="n">lock1</span><span class="p">.</span><span class="na">lock</span><span class="p">();</span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;线程 2: 成功获取 lock1！&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">lock2</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
+<span class="w">                </span><span class="n">lock1</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="s">&quot;Thread-B&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">t1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">        </span><span class="n">t2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>使用 <code>ReentrantLock</code> 其实可以很容易地<strong>破坏死锁</strong>。你可以使用 <code>tryLock()</code> 方法：</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 尝试获取锁，如果 1 秒内拿不到，就放弃，避免死等</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lock2</span><span class="p">.</span><span class="na">tryLock</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">SECONDS</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 执行业务</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">lock2</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;线程 1: 拿不到 lock2，为了避免死锁，我先撤了（释放 lock1）&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="reentrantreadwritelock">ReentrantReadWriteLock</h2>
+<p><code>ReentrantReadWriteLock</code> 实现了 <code>ReadWriteLock</code> ，是一个可重入的读写锁，既可以保证多个线程同时读的效率，同时又可以保证有写入操作时的线程安全。</p>
+<h4 id="1_1">1. 为什么要有读写锁</h4>
+<p>ReentrantLock 实现的互斥对于读多写少的场景太多严格了，因为他不允许读读并发。但读读并发并不回带来什么问题。因此，为了提高这种场景下的并发能力，ReentrantReadWriteLock 出现了。</p>
+<h4 id="2_6">2. 什么是共享锁、什么是独占锁</h4>
+<ul>
+<li>共享锁就是能被多个线程同时获取的锁，读写锁中的读锁就是共享锁</li>
+<li>独占锁只能被一个线程获取，Reentrantlock, sychronized 以及 读写锁中的写锁都是独占锁</li>
+</ul>
+<h4 id="3_4">3. 读写锁的获取规则</h4>
+<p>当线程持有读锁时，就无法获取写锁；当写锁没有被线程占有时，那么所有线程都可以拿到读锁；如果当前写锁被占了，那么之后的线程无论是读锁，还是写锁，都无法获取。</p>
+<h4 id="4_2">4. 锁降级机制</h4>
+<p>该机制的存在是为了解决：当写线程写完数据后想立马的去读数据，但是如果按常规的方法：释放写锁，然后去抢读锁，可能会导致：在被其他线程再次修改后才抢到了读锁，从而导致这次写操作丢失了。</p>
+<p>而锁降级就是在持有写锁得前提下，先拿到读锁，然后再去释放写锁，这就保证了能够在写操作后第一时间去读。</p>
+<h4 id="5_1">5. 为什么读锁不能升级为写锁呢？</h4>
+<p>这是因为读锁升级为写锁会引起线程的争夺，毕竟写锁属于是独占锁，这样的话，会影响性能。
+另外，还可能会有死锁问题发生。举个例子：假设两个线程的读锁都想升级写锁，则需要对方都释放自己锁，而双方都不释放，就会产生死锁。</p>
+<h2 id="threadlocal">ThreadLocal</h2>
+<p><code>ThreadLocal</code> 为每个线程提供了一个专属的本地变量，让每个线程只能操作自己的数据，从而在逻辑上<strong>绕开了</strong>并发竞争。</p>
+<h4 id="1-threadlocal">1. ThreadLocal 有什么用？</h4>
+<p>通常情况下，我们创建的变量可以被任何一个线程访问和修改。这在多线程环境中可能导致数据竞争和线程安全问题。那么，<strong>如果想让每个线程都有自己的专属本地变量，该如何实现呢？</strong></p>
+<p><strong><code>ThreadLocal</code> 类允许每个线程绑定自己的值</strong>，可以将其形象地比喻为一个“存放数据的盒子”。每个线程都有自己独立的盒子，用于存储私有数据，确保不同线程之间的数据互不干扰。</p>
+<p>所以，ThreadLocal 最大的用处就是：实现线程间的数据隔离，让每个线程都有自己的专属副本，避免了加锁带来的性能损耗。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ThreadLocalExample</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">threadLocal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ThreadLocal</span><span class="p">.</span><span class="na">withInitial</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Runnable</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">threadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+<span class="w">            </span><span class="n">value</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="n">threadLocal</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">value</span><span class="p">);</span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; Value: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">threadLocal</span><span class="p">.</span><span class="na">get</span><span class="p">());</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">thread1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">task</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Thread-1&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">thread2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">task</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Thread-2&quot;</span><span class="p">);</span>
+
+<span class="w">        </span><span class="n">thread1</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// 输出: Thread-1 Value: 1</span>
+<span class="w">        </span><span class="n">thread2</span><span class="p">.</span><span class="na">start</span><span class="p">();</span><span class="w"> </span><span class="c1">// 输出: Thread-2 Value: 1</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="2-threadlocal">2. ThreadLocal 原理</h4>
+<p>要理解 ThreadLocal，就要从 Thread 入手，在Thread类中，存在一个变量：threadLocals 以及 <code>inheritableThreadLocals</code>，他们都是 ThreadLocalMap 类型的变量。实际上，线程独享的数据就存在这个 Map 中，K 为这个线程的引用，而 V 是我们存入的值。
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Thread</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//......</span>
+<span class="w">    </span><span class="c1">//与此线程有关的ThreadLocal值。由ThreadLocal类维护</span>
+<span class="w">    </span><span class="n">ThreadLocal</span><span class="p">.</span><span class="na">ThreadLocalMap</span><span class="w"> </span><span class="n">threadLocals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">//与此线程有关的InheritableThreadLocal值。由InheritableThreadLocal类维护</span>
+<span class="w">    </span><span class="n">ThreadLocal</span><span class="p">.</span><span class="na">ThreadLocalMap</span><span class="w"> </span><span class="n">inheritableThreadLocals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//......</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p>ThreadLocal 类的 set 方法
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">set</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">//获取当前请求的线程</span>
+<span class="w">    </span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">//取出 Thread 类内部的 threadLocals 变量(哈希表结构)</span>
+<span class="w">    </span><span class="n">ThreadLocalMap</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getMap</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">map</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="w">        </span><span class="c1">// 将需要存储的值放入到这个哈希表中</span>
+<span class="w">        </span><span class="n">map</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span><span class="w"> </span><span class="c1">// k:当前threadLocal引用 v:我们存的值</span>
+<span class="w">    </span><span class="k">else</span>
+<span class="w">        </span><span class="n">createMap</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">ThreadLocalMap</span><span class="w"> </span><span class="nf">getMap</span><span class="p">(</span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="na">threadLocals</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<p><strong>每个<code>Thread</code>中都具备一个<code>ThreadLocalMap</code>，而<code>ThreadLocalMap</code>可以存储以<code>ThreadLocal</code>为 key ，Object 对象为 value 的键值对。</strong></p>
+<h4 id="key-value">补充: key设置为弱引用, value呢?</h4>
+<p>“绝对不行！如果 Value 也是弱引用，那可能我刚 <code>set</code> 进去，业务还没跑完，一次 GC 就把我的数据给回收了（因为我的 Value 对象除了在 ThreadLocalMap 里，往往没有其他强引用了）。所以 <strong>Value 必须是强引用</strong>，而为了解决这种设计带来的副作用，我们程序员<strong>必须手动 <code>remove()</code></strong>。”</p>
+<h4 id="3-threadlocal">3. ThreadLocal 内存泄漏问题怎么发生的？⭐️</h4>
+<p>因为 ThreadLocalMap 存的 Entry, K 是弱引用，而 V 是强引用。因此，当 ThreadLocal 外部的强引用失效后，key 被回收变为 null，但 value 仍然被线程强引用这。</p>
+<p>因此，在<strong>线程池</strong>环境下线程长久存活，这些 <code>null</code> 对应的 Value 无法被回收，也无法被访问，从而导致内存泄漏。</p>
+<p>当 <code>ThreadLocal</code> 实例失去强引用后，其对应的 value 仍然存在于 <code>ThreadLocalMap</code> 中，因为 <code>Entry</code> 对象强引用了它。如果线程持续存活（例如线程池中的线程），<code>ThreadLocalMap</code> 也会一直存在，导致 key 为 <code>null</code> 的 entry 无法被垃圾回收，即会造成内存泄漏。</p>
+<ol>
+<li><code>ThreadLocal</code> 实例不再被强引用；</li>
+<li>
+<p>线程持续存活，导致 <code>ThreadLocalMap</code> 长期存在。</p>
+</li>
+<li>
+<p><strong>线程（Thread）</strong>：公司的一名<strong>长期合同工</strong>。</p>
+</li>
+<li><strong>ThreadLocalMap</strong>：员工随身携带的<strong>私人储物柜</strong>。</li>
+<li><strong>ThreadLocal 实例</strong>：储物柜的<strong>钥匙</strong>。</li>
+<li>
+<p><strong>Value</strong>：放在柜子里的<strong>贵重物品</strong>（比如一袋金币）。</p>
+</li>
+<li>
+<p><strong>钥匙丢了（Key失效）</strong>： 你定义了一个 <code>ThreadLocal</code> 变量。当一个请求处理完了，这个变量的作用域结束了，或者你把它设为 <code>null</code> 了。</p>
+<blockquote>
+<p>此时，储物柜的<strong>“钥匙”</strong>没了（Key 被回收了）。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>柜子锁死（Value残留）</strong>： 虽然钥匙没了，但员工（线程）还在！员工随身带着那个储物柜（ThreadLocalMap）。 柜子里的某个抽屉，因为没有钥匙，你再也打不开了。但是，那袋<strong>金币（Value）</strong>依然实打实地占用着抽屉的空间。</p>
+</li>
+<li>
+<p><strong>循环往复（泄漏堆积）</strong>： 因为是线程池，这个员工执行完任务不回家，接着去处理下一个请求。 下一个请求又领了一把新钥匙，又往柜子里塞了一袋新金币…… <strong>久而久之，员工身上挂满了打不开的抽屉，每个抽屉里都塞满了“幽灵金币”，内存就这样被吃光了。</strong></p>
+</li>
+</ol>
+<h4 id="4_3">4. 如何避免内存泄漏⭐️</h4>
+<p>在使用完 <code>ThreadLocal</code> 后，务必调用 <code>remove()</code> 方法。 这是最安全和最推荐的做法。 <code>remove()</code> 方法会从 <code>ThreadLocalMap</code> 中显式地移除对应的 entry，彻底解决内存泄漏的风险。 即使将 <code>ThreadLocal</code> 定义为 <code>static final</code>，也强烈建议在每次使用后调用 <code>remove()</code>。</p>
+<h4 id="5-threadlocal">5. ⭐️如何跨线程传递 ThreadLocal 的值呢？</h4>
+<p>由于 <code>ThreadLocal</code> 的变量值存放在 <code>Thread</code> 里，而父子线程属于不同的 <code>Thread</code> 的。因此在异步场景下，父子线程的 <code>ThreadLocal</code> 值无法进行传递。</p>
+<p>如果想要在异步场景下传递 <code>ThreadLocal</code> 值，有两种解决方案：</p>
+<ul>
+<li><code>InheritableThreadLocal</code> ：<code>InheritableThreadLocal</code> 是 JDK1.2 提供的工具，继承自 <code>ThreadLocal</code> 。使用 <code>InheritableThreadLocal</code> 时，会在创建子线程时，令子线程继承父线程中的 <code>ThreadLocal</code> 值，但是无法支持线程池场景下的 <code>ThreadLocal</code> 值传递。</li>
+<li><code>TransmittableThreadLocal</code> ： <code>TransmittableThreadLocal</code> （简称 TTL） 是阿里巴巴开源的工具类，继承并加强了<code>InheritableThreadLocal</code>类，可以在线程池的场景下支持 <code>ThreadLocal</code> 值传递。项目地址：<a href="https://github.com/alibaba/transmittable-thread-local">https://github.com/alibaba/transmittable-thread-local</a>。</li>
+</ul>
+<h4 id="6-inheritablethreadlocal">6. inheritableThreadLocal 的原理</h4>
+<p>底层原理实际就是 Thread 类的类一个变量：inheritableThreadLocals，该变量也是一个 ThrealLocalMap 类型的 哈希表，专门用来存储需要跨线程传递的 ThreadLocal 值。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Thread 的构造方法会调用 init() 方法</span>
+<span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 1、获取父线程</span>
+<span class="w">    </span><span class="n">Thread</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentThread</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// 2、将父线程的 inheritableThreadLocals 赋值给子线程</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inheritThreadLocals</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">parent</span><span class="p">.</span><span class="na">inheritableThreadLocals</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">inheritableThreadLocals</span><span class="w"> </span><span class="o">=</span>
+<span class="w">            </span><span class="n">ThreadLocal</span><span class="p">.</span><span class="na">createInheritedMap</span><span class="p">(</span><span class="n">parent</span><span class="p">.</span><span class="na">inheritableThreadLocals</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>总结：专门有一个 ThreadLocalMap 来存需要跨线程传递的数据，之后创建子线程时，把父线程的 inheritthreadlocals 赋值给子线程即可。</p>
+<p><code>Thread</code> 类内部维护了两个 Map。普通版本的 <code>set</code> 进 A 桶，继承版本的 <code>set</code> 进 B 桶。创建子线程时，只有 B 桶的数据会被复制。它们可以共存，但只有 B 桶具备“跨线程传递”的超能力。</p>
+<h4 id="7-transmittablethreadlocal">7. TransmittableThreadLocal 原理</h4>
+<p>TTL 之所以能解决线程池的问题，是因为它把“值的拷贝”动作，从<strong>线程创建时</strong>推迟到了<strong>任务执行前</strong>。</p>
+<ul>
+<li>
+<p><strong>设计模式</strong>：采用装饰器模式。通过包装 <code>Runnable</code> 或 <code>ExecutorService</code>，在任务执行的前后插入逻辑。</p>
+</li>
+<li>
+<p><strong>执行时机</strong>：它不再依赖线程的 <code>init</code> 拷贝，而是在任务<strong>提交时捕捉</strong>环境，<strong>执行前注入</strong>环境。</p>
+</li>
+<li>
+<p><strong>核心动作</strong>：Capture（捕捉父线程快照）、Replay（在子线程回放）、Restore（执行完后还原，防止污染下次任务）。</p>
+</li>
+</ul>
+<h2 id="threadpool">ThreadPool</h2>
+<h4 id="1_2">1. 什么是线程池</h4>
+<p>顾名思义，线程池就是管理一系列线程的资源池。当有任务要处理时，直接从线程池中获取线程来处理，处理完之后线程并不会立即被销毁，而是等待下一个任务。</p>
+<h4 id="2_7">2. ⭐️为什么使用线程池</h4>
+<p>使用线程池的核心目的就是减少线程的创建于销毁的开销，从而节省资源，同时提高任务的响应速度。</p>
+<p>其次，线程池能够更好的帮助我们去管理一系列线程。</p>
+<h4 id="3_5">3.  如何创建线程池</h4>
+<p><strong>方式一：通过 <code>ThreadPoolExecutor</code> 构造函数直接创建 (推荐)</strong></p>
+<p>这是最推荐的方式，因为它允许开发者明确指定线程池的核心参数，对线程池的运行行为有更精细的控制，从而避免资源耗尽的风险。</p>
+<p><strong>方式二：通过 <code>Executors</code> 工具类创建 (不推荐用于生产环境)</strong></p>
+<p>SingleThreadExecutor | FixedThreadPoll 的阻塞队列是无界的，再高并发，任务无法即使完成的情况下，会堆积大量任务，从而导致 oom 问题。</p>
+<p>CachedThreadPool 会在高并发场景下创建大量线程，从而带来繁重的线程创建 + 销毁的开销，这违反了我们使用线程池的本意。</p>
+<h4 id="4-executors">4. 为什么不推荐通过 executors 创建呢？</h4>
+<p><code>ecutors</code> 返回线程池对象的弊端如下(后文会详细介绍到)：</p>
+<ul>
+<li><code>FixedThreadPool</code> 和 <code>SingleThreadExecutor</code>:使用的是阻塞队列 <code>LinkedBlockingQueue</code>，任务队列最大长度为 <code>Integer.MAX_VALUE</code>，可以看作是无界的，可能堆积大量的请求，从而导致 OOM。</li>
+<li><code>CachedThreadPool</code>:使用的是同步队列 <code>SynchronousQueue</code>, 允许创建的线程数量为 <code>Integer.MAX_VALUE</code> ，如果任务数量过多且执行速度较慢，可能会创建大量的线程，从而导致 OOM。</li>
+<li><code>ScheduledThreadPool</code> 和 <code>SingleThreadScheduledExecutor</code>:使用的无界的延迟阻塞队列<code>DelayedWorkQueue</code>，任务队列最大长度为 <code>Integer.MAX_VALUE</code>,可能堆积大量的请求，从而导致 OOM。</li>
+</ul>
+<h4 id="5_2">5. ⭐️线程池七大参数</h4>
+<p>[[#线程池#2. 七大参数]]
+<div class="highlight"><pre><span></span><code>public ThreadPoolExecutor(int corePoolSize,  
+                          int maximumPoolSize,  
+                          long keepAliveTime,  
+                          TimeUnit unit,  
+                          BlockingQueue&lt;Runnable&gt; workQueue,  
+                          ThreadFactory threadFactory,  
+                          RejectedExecutionHandler handler)
+</code></pre></div></p>
+<h4 id="6">6. 线程池的核心线程会被回收吗？</h4>
+<p><code>ThreadPoolExecutor</code> 默认不会回收核心线程，即使它们已经空闲了。这是为了减少创建线程的开销，因为核心线程通常是要长期保持活跃的。但是，如果线程池是被用于周期性使用的场景，且频率不高（周期之间有明显的空闲时间），可以考虑将 <code>allowCoreThreadTimeOut(boolean value)</code> 方法的参数设置为 <code>true</code>，这样就会回收空闲（时间间隔由 <code>keepAliveTime</code> 指定）的核心线程了。</p>
+<h4 id="7">7. 核心线程空闲时处于什么状态？</h4>
+<p>如果不允许被销毁，那么它一直处于 <code>WAITING</code> 态，如果允许被销毁，那么在指定时间还没得到任务，就会进入 <code>TERMINATED</code> 态。</p>
+<h4 id="8_1">8. ⭐️线程池的拒绝策略有哪些？</h4>
+<ul>
+<li><code>ThreadPoolExecutor.AbortPolicy</code>：抛出 <code>RejectedExecutionException</code>来拒绝新任务的处理。</li>
+<li><code>ThreadPoolExecutor.CallerRunsPolicy</code>：调用执行者自己的线程运行任务，也就是直接在调用<code>execute</code>方法的线程中运行(<code>run</code>)被拒绝的任务，如果执行程序已关闭，则会丢弃该任务。因此这种策略会降低对于新任务提交速度，影响程序的整体性能。如果你的应用程序可以承受此延迟并且你要求任何一个任务请求都要被执行的话，你可以选择这个策略。</li>
+<li><code>ThreadPoolExecutor.DiscardPolicy</code>：不处理新任务，直接丢弃掉。</li>
+<li><code>ThreadPoolExecutor.DiscardOldestPolicy</code>：此策略将丢弃最早的未处理的任务请求。</li>
+</ul>
+<h4 id="9">9. 线程池常用的阻塞队列</h4>
+<p>不同的线程池会选用不同的阻塞队列，我们可以结合内置线程池来分析。</p>
+<table>
+<thead>
+<tr>
+<th><strong>队列名称</strong></th>
+<th><strong>类型</strong></th>
+<th><strong>特点</strong></th>
+<th><strong>关联线程池</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LinkedBlockingQueue</strong></td>
+<td>无界阻塞队列</td>
+<td>默认容量为 <code>Integer.MAX_VALUE</code>，几乎永远不会被填满。</td>
+<td><code>FixedThreadPool</code> (固定大小)、<code>SingleThreadExecutor</code> (单线程)</td>
+</tr>
+<tr>
+<td><strong>SynchronousQueue</strong></td>
+<td>同步队列</td>
+<td><strong>没有容量</strong>，不存储元素。每个插入操作必须等待一个获取操作，反之亦然。</td>
+<td><code>CachedThreadPool</code> (可缓存线程池)</td>
+</tr>
+<tr>
+<td><strong>DelayedWorkQueue</strong></td>
+<td>延迟队列</td>
+<td>内部元素按延迟时间长短排序（堆结构），保证最先执行时间最靠前的任务。</td>
+<td><code>ScheduledThreadPool</code> (定时任务线程池)</td>
+</tr>
+<tr>
+<td><strong>ArrayBlockingQueue</strong></td>
+<td>有界阻塞队列</td>
+<td>底层由数组实现，容量在创建时固定，无法修改。</td>
+<td>通常用于需要限制资源消耗的自定义线程池。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="10">10. ⭐️线程池的处理流程</h4>
+<p align='center'>
+    <img src="../../assets/imgs/interview/java/juc/juc03.png" style="zoom:80%;" />
+</p>
+
+<p>当我们提交一个任务后 :</p>
+<p>1）会先看核心线程是否已满，没满，则创建一个核心线程并执行该任务。</p>
+<p>2）则看阻塞队列是否满了，如果没满，则将任务存放到阻塞队列中。</p>
+<p>3）则看线程池满没满，如果没满，创建临时线程并且执行该任务，否则走拒绝策略。</p>
+<h4 id="11">11. ⭐️线程池中线程异常后，销毁还是复用？</h4>
+<p>使用<code>execute()</code>时，未捕获异常导致线程终止，线程池创建新线程替代；使用<code>submit()</code>时，异常被封装在<code>Future</code>中，线程继续复用。</p>
+<h4 id="12">12. ⭐️如何给线程池的线程命名</h4>
+<p>给线程池里的线程命名通常有下面两种方式：</p>
+<p>1、<strong>利用 guava 的 <code>ThreadFactoryBuilder</code></strong>
+<div class="highlight"><pre><span></span><code><span class="n">ThreadFactory</span><span class="w"> </span><span class="n">threadFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadFactoryBuilder</span><span class="p">()</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">setNameFormat</span><span class="p">(</span><span class="n">threadNamePrefix</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;-%d&quot;</span><span class="p">)</span>
+<span class="w">                        </span><span class="p">.</span><span class="na">setDaemon</span><span class="p">(</span><span class="kc">true</span><span class="p">).</span><span class="na">build</span><span class="p">();</span>
+<span class="n">ExecutorService</span><span class="w"> </span><span class="n">threadPool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">corePoolSize</span><span class="p">,</span><span class="w"> </span><span class="n">maximumPoolSize</span><span class="p">,</span><span class="w"> </span><span class="n">keepAliveTime</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MINUTES</span><span class="p">,</span><span class="w"> </span><span class="n">workQueue</span><span class="p">,</span><span class="w"> </span><span class="n">threadFactory</span><span class="p">);</span>
+</code></pre></div></p>
+<p>2、自己实现 ThreadFactory</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">java.util.concurrent.ThreadFactory</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">java.util.concurrent.atomic.AtomicInteger</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * 线程工厂，它设置线程名称，有利于我们定位问题。</span>
+<span class="cm"> */</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span> <span class="nc">NamingThreadFactory</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ThreadFactory</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">AtomicInteger</span><span class="w"> </span><span class="n">threadNum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AtomicInteger</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * 创建一个带名字的线程池生产工厂</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">NamingThreadFactory</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Thread</span><span class="w"> </span><span class="nf">newThread</span><span class="p">(</span><span class="n">Runnable</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Thread</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+<span class="w">        </span><span class="n">t</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; [#&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">threadNum</span><span class="p">.</span><span class="na">incrementAndGet</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;]&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="13">13. 如何定义线程池的大小</h4>
+<ul>
+<li>
+<p><strong>CPU 密集型任务(N+1)：</strong> 这种任务消耗的主要是 CPU 资源，可以将线程数设置为 N（CPU 核心数）+1。比 CPU 核心数多出来的一个线程是为了防止线程偶发的缺页中断，或者其它原因导致的任务暂停而带来的影响。一旦任务暂停，CPU 就会处于空闲状态，而在这种情况下多出来的一个线程就可以充分利用 CPU 的空闲时间。</p>
+</li>
+<li>
+<p><strong>I/O 密集型任务(2N)：</strong> 这种任务应用起来，系统会用大部分的时间来处理 I/O 交互，而线程在处理 I/O 的时间段内不会占用 CPU 来处理，这时就可以将 CPU 交出给其它线程使用。因此在 I/O 密集型任务的应用中，我们可以多配置一些线程，具体的计算方法是 2N。</p>
+</li>
+</ul>
+<h4 id="14">14. ⭐️如何动态修改线程池的参数</h4>
+<p>主要通过 <code>ThreadPoolExecutor</code> 提供的几个 <code>set</code> 方法来实现。</p>
+<p>如果需要动态调整队列深度，通常需要<strong>自定义队列类</strong>（参考美团的 <code>ResizableCapacityLinkedBlockIngQueue</code>），将 <code>capacity</code> 字段的 <code>final</code> 修饰符去掉，并提供 <code>setCapacity</code> 方法。</p>
+<h4 id="15">15. ⭐️如何设计一个能够根据任务的优先级来执行的线程池？</h4>
+<p><code>PriorityBlockingQueue</code> 是一个支持优先级的无界阻塞队列，可以看作是线程安全的 <code>PriorityQueue</code>，两者底层都是使用小顶堆形式的二叉堆，即值最小的元素优先出队。不过，<code>PriorityQueue</code> 不支持阻塞操作。</p>
+<p>要想让 <code>PriorityBlockingQueue</code> 实现对任务的排序，传入其中的任务必须是具备排序能力的，方式有两种：</p>
+<ul>
+<li>提交到线程池的任务实现 <code>Comparable</code> 接口，并重写 <code>compareTo</code> 方法来指定任务之间的优先级比较规则。</li>
+<li>创建 <code>PriorityBlockingQueue</code> 时传入一个 <code>Comparator</code> 对象来指定任务之间的排序规则(推荐)。</li>
+</ul>
+<p>存在的风险：</p>
+<ul>
+<li><code>PriorityBlockingQueue</code> 是无界的，可能堆积大量的请求，从而导致 OOM。</li>
+<li>可能会导致饥饿问题，即低优先级的任务长时间得不到执行。</li>
+<li>由于需要对队列中的元素进行排序操作以及保证线程安全（并发控制采用的是可重入锁 <code>ReentrantLock</code>），因此会降低性能。</li>
+</ul>
+<p>解决方法：</p>
+<p>1、对于 OOM 这个问题的解决比较简单粗暴，就是继承<code>PriorityBlockingQueue</code> 并重写一下 <code>offer</code> 方法(入队)的逻辑，当插入的元素数量超过指定值就返回 false 。</p>
+<p>2、饥饿问题这个可以通过优化设计来解决（比较麻烦），比如等待时间过长的任务会被移除并重新添加到队列中，但是优先级会被提升。</p>
+<p>3、对于性能方面的影响，是没办法避免的，毕竟需要对任务进行排序操作。并且，对于大部分业务场景来说，这点性能影响是可以接受的。</p>
+<h2 id="future">Future</h2>
+<h4 id="1-future">1. Future 类有什么用</h4>
+<p>当我们执行某一耗时的任务时，可以将这个耗时任务交给一个子线程去异步执行，同时我们可以干点其他事情，不用傻傻等待耗时任务执行完成。等我们的事情干完后，我们再通过 <code>Future</code> 类获取到耗时任务的执行结果。这样一来，程序的执行效率就明显提高了。</p>
+<p>在 Java 中，<code>Future</code> 类只是一个泛型接口，位于 <code>java.util.concurrent</code> 包下，其中定义了 5 个方法，主要包括下面这 4 个功能：</p>
+<ul>
+<li>取消任务；</li>
+<li>判断任务是否被取消;</li>
+<li>判断任务是否已经执行完成;</li>
+<li>获取任务执行结果。
+<div class="highlight"><pre><span></span><code><span class="c1">// V 代表了Future执行的任务返回值的类型</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">Future</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 取消任务执行</span>
+<span class="w">    </span><span class="c1">// 成功取消返回 true，否则返回 false</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">cancel</span><span class="p">(</span><span class="kt">boolean</span><span class="w"> </span><span class="n">mayInterruptIfRunning</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// 判断任务是否被取消</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isCancelled</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// 判断任务是否已经执行完成</span>
+<span class="w">    </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isDone</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// 获取任务执行结果</span>
+<span class="w">    </span><span class="n">V</span><span class="w"> </span><span class="nf">get</span><span class="p">()</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="p">,</span><span class="w"> </span><span class="n">ExecutionException</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 指定时间内没有返回计算结果就抛出 TimeOutException 异常</span>
+<span class="w">    </span><span class="n">V</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">timeout</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="w"> </span><span class="n">unit</span><span class="p">)</span>
+
+<span class="w">        </span><span class="kd">throws</span><span class="w"> </span><span class="n">InterruptedException</span><span class="p">,</span><span class="w"> </span><span class="n">ExecutionException</span><span class="p">,</span><span class="w"> </span><span class="n">TimeoutExceptio</span>
+
+<span class="p">}</span>
+</code></pre></div></li>
+</ul>
+<h4 id="2futuretask">2.FutureTask 是什么</h4>
+<p><code>FutureTask</code> 提供了 <code>Future</code> 接口的基本实现，常用来封装 <code>Callable</code> 和 <code>Runnable</code>，具有取消任务、查看任务是否执行完成以及获取任务执行结果的方法。<code>ExecutorService.submit()</code> 方法返回的其实就是 <code>Future</code> 的实现类 <code>FutureTask</code> </p>
+<p><code>FutureTask</code> 不光实现了 <code>Future</code>接口，还实现了<code>Runnable</code> 接口，因此可以作为任务直接被线程执行。</p>
+<h4 id="3-completablefuture">3. CompletableFuture 类有什么</h4>
+<p><code>Future</code> 在实际使用过程中存在一些局限性，比如不支持异步任务的编排组合（b任务需要等待A任务的执行结果才执行，但future无法实现）、获取计算结果的 <code>get()</code> 方法为阻塞调用。</p>
+<p>Java 8 才被引入<code>CompletableFuture</code> 类可以解决<code>Future</code> 的这些缺陷。<code>CompletableFuture</code> 除了提供了更为好用和强大的 <code>Future</code> 特性之外，还提供了函数式编程、异步任务编排组合（可以将多个异步任务串联起来，组成一个完整的链式调用）等能力。</p>
+<p align='center'>
+    <img src="../../assets/imgs/interview/java/juc/juc02.png" alt="juc02" style="zoom:80%;" />
+</p>
+
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CompletableFuture</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">CompletionStage</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>CompletionStage</code> 接口描述了一个异步计算的阶段。很多计算可以分成多个阶段或步骤，此时可以通过它将所有步骤组合起来，形成异步计算的流水线。</p>
+<h4 id="4_4">4. ⭐️一个任务需要依赖另外两个任务执行完之后再执行，怎么设计？</h4>
+<p>这种任务编排场景非常适合通过<code>CompletableFuture</code>实现。这里假设要实现 T3 在 T2 和 T1 执行完后执行。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// T1</span>
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">futureT1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CompletableFuture</span><span class="p">.</span><span class="na">runAsync</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;T1 is executing. Current time：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DateUtil</span><span class="p">.</span><span class="na">now</span><span class="p">());</span>
+<span class="w">    </span><span class="c1">// 模拟耗时操作</span>
+<span class="w">    </span><span class="n">ThreadUtil</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="c1">// T2</span>
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">futureT2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CompletableFuture</span><span class="p">.</span><span class="na">runAsync</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;T2 is executing. Current time：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DateUtil</span><span class="p">.</span><span class="na">now</span><span class="p">());</span>
+<span class="w">    </span><span class="n">ThreadUtil</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// 使用allOf()方法合并T1和T2的CompletableFuture，等待它们都完成</span>
+<span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bothCompleted</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CompletableFuture</span><span class="p">.</span><span class="na">allOf</span><span class="p">(</span><span class="n">futureT1</span><span class="p">,</span><span class="w"> </span><span class="n">futureT2</span><span class="p">);</span>
+<span class="c1">// 当T1和T2都完成后，执行T3</span>
+<span class="n">bothCompleted</span><span class="p">.</span><span class="na">thenRunAsync</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;T3 is executing after T1 and T2 have completed.Current time：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">DateUtil</span><span class="p">.</span><span class="na">now</span><span class="p">()));</span>
+<span class="c1">// 等待所有任务完成，验证效果</span>
+<span class="n">ThreadUtil</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="5-completablefuture">5. ⭐️使用 CompletableFuture，有一个任务失败，如何处理异常？</h4>
+<ul>
+<li>使用 <code>whenComplete</code> 方法可以在任务完成时触发回调函数，并正确地处理异常，而不是让异常被吞噬或丢失。</li>
+<li>使用 <code>exceptionally</code> 方法可以处理异常并重新抛出，以便异常能够传播到后续阶段，而不是让异常被忽略或终止。</li>
+<li>使用 <code>handle</code> 方法可以处理正常的返回结果和异常，并返回一个新的结果，而不是让异常影响正常的业务逻辑。</li>
+<li>使用 <code>CompletableFuture.allOf</code> 方法可以组合多个 <code>CompletableFuture</code>，并统一处理所有任务的异常，而不是让异常处理过于冗长或重复。</li>
+</ul>
+<h4 id="6-completablefuture">6. ⭐️在使用 CompletableFuture 的时候为什么要自定义线程池？</h4>
+<p>自定义线程池是为了避免由于默认线程池（<code>commonPool</code>）核心线程数过少及全局共享导致的业务间资源竞争、任务排队甚至全系统瘫痪的风险。</p>
+<ul>
+<li>
+<p><strong>默认资源受限</strong>：<code>commonPool</code> 的线程数通常仅为 <strong>CPU 核心数 - 1</strong>，无法支撑高并发的 I/O 密集型业务。</p>
+</li>
+<li>
+<p><strong>全局共享风险</strong>：JVM 内所有未指定线程池的 <code>CompletableFuture</code> 和 <code>parallelStream</code> 均共享同一个池，任何一个业务阻塞都会导致全局异步失效。</p>
+</li>
+<li>
+<p><strong>隔离与监控</strong>：通过自定义线程池可以实现<strong>业务隔离</strong>，并能通过自定义线程名（<code>ThreadFactory</code>）在排查日志和堆栈时快速定位问题。</p>
+</li>
+</ul>
+<h2 id="aqs">AQS</h2>
+<h4 id="1-aqs">1. AQS 是什么？</h4>
+<p>AQS 是 JDK 1.5 引入的 <strong>Java 并发编程核心组件</strong>，它提供了一个用于构建锁和同步器的<strong>抽象框架（底座）</strong>，封装了如资源的获取和释放、线程状态的管理、阻塞和唤醒等复杂的逻辑。</p>
+<h4 id="2-aqs">2. ⭐️AQS 的原理是什么？</h4>
+<p>AQS（AbstractQueuedSynchronizer）的核心原理可以概括为：<strong>用一个变量同步状态，用一个队列管理等待线程。</strong></p>
+<p>AQS 内部维护了一个名为 <code>state</code> 的 <code>volatile int</code> 类型变量，代表<strong>同步状态</strong>（即资源是否被占用）。它可以是独占模式（ReentrantLock)：0代表空闲，1代表被占用，也可以是共享模式（Semaphore）,<code>state</code> 代表剩余可用的资源数量。对于 state 的修改，用的是 cas 这样的原子指令。</p>
+<p>当一个线程尝试获取资源失败时（例如锁已被占用），AQS 会将该线程封装成一个 <strong>Node 节点</strong>，并将其加入到一个虚拟的 <strong>CLH 双向同步队列</strong>中。头节点（Head）通常代表当前持有资源的线程，后续节点则是正在排队等待唤醒的线程。</p>
+<h4 id="3-aqs-clh-clh">3. AQS 中的队列从 CLH 锁队列优化为 CLH 变体队列，有什么区别？</h4>
+<p>AQS 的 CLH 变体队列是一个双向队列，会暂时获取不到锁的线程将被加入到该队列中，CLH 变体队列和原本的 CLH 锁队列的区别主要有两点：</p>
+<ul>
+<li>由 <strong>自旋</strong> 优化为 <strong>自旋 + 阻塞</strong> ：自旋操作的性能很高，但大量的自旋操作比较占用 CPU 资源，因此在 CLH 变体队列中会先通过自旋尝试获取锁，如果失败再进行阻塞等待。</li>
+<li>由 <strong>单向队列</strong> 优化为 <strong>双向队列</strong> ：在 CLH 变体队列中，会对等待的线程进行阻塞操作，当队列前边的线程释放锁之后，需要对后边的线程进行唤醒，因此增加了 <code>next</code> 指针，成为了双向队列。</li>
+</ul>
+<h4 id="4-semaphore">4. Semaphore 有什么用呢？</h4>
+<p><code>synchronized</code> 和 <code>ReentrantLock</code> 都是一次只允许一个线程访问某个资源，而<code>Semaphore</code>(信号量)可以用来控制同时访问特定资源的线程数量。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 初始共享资源数量</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">Semaphore</span><span class="w"> </span><span class="n">semaphore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Semaphore</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="c1">// 获取1个许可</span>
+<span class="n">semaphore</span><span class="p">.</span><span class="na">acquire</span><span class="p">();</span>
+<span class="c1">// 释放1个许可</span>
+<span class="n">semaphore</span><span class="p">.</span><span class="na">release</span><span class="p">();</span>
+</code></pre></div>
+<ul>
+<li><strong>公平模式：</strong> 调用 <code>acquire()</code> 方法的顺序就是获取许可证的顺序，遵循 FIFO；</li>
+<li><strong>非公平模式：</strong> 抢占式的。</li>
+</ul>
+<h4 id="5-semaphore">5. Semaphore 的原理是什么？</h4>
+<p><code>Semaphore</code> 是共享锁的一种实现，它默认构造 AQS 的 <code>state</code> 值为 <code>permits</code>，你可以将 <code>permits</code> 的值理解为许可证的数量，只有拿到许可证的线程才能执行。</p>
+<p>调用<code>semaphore.acquire()</code> ，线程尝试获取许可证，如果 <code>state &gt;= 0</code> 的话，则表示可以获取成功。如果获取成功的话，使用 CAS 操作去修改 <code>state</code> 的值 <code>state=state-1</code>。如果 <code>state&lt;0</code> 的话，则表示许可证数量不足。此时会创建一个 Node 节点加入阻塞队列，挂起当前线程。</p>
+<p>调用<code>semaphore.release();</code> ，线程尝试释放许可证，并使用 CAS 操作去修改 <code>state</code> 的值 <code>state=state+1</code>。释放许可证成功之后，同时会唤醒同步队列中的一个线程。被唤醒的线程会重新尝试去修改 <code>state</code> 的值 <code>state=state-1</code> ，如果 <code>state&gt;=0</code> 则获取令牌成功，否则重新进入阻塞队列，挂起线程。</p>
+<h4 id="6-countdownlatch">6. CountDownLatch 有什么用？</h4>
+<p>countDownLatch 是 juc 提供的一个同步辅助类，主要用来便捷地实现一个或一组线程等待其他一组线程执行完毕后，再去执行的同步操作。</p>
+<p>需要注意，CountDownLatch 是一次性的，计数器的值只能在构造方法中执行一次，之后就不能再去设置值了。</p>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="n">CountDownLatch</span><span class="w"> </span><span class="n">countDownLatch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CountDownLatch</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">            </span><span class="n">countDownLatch</span><span class="p">.</span><span class="na">await</span><span class="p">();</span><span class="w">  </span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">  </span>
+<span class="w">        </span><span class="p">}</span><span class="w">  </span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;关教室门&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">).</span><span class="na">start</span><span class="p">();</span><span class="w">  </span>
+
+<span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+
+<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">            </span><span class="n">countDownLatch</span><span class="p">.</span><span class="na">await</span><span class="p">();</span><span class="w">  </span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">  </span>
+<span class="w">        </span><span class="p">}</span><span class="w">  </span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;打扫教室&quot;</span><span class="p">);</span><span class="w">  </span>
+
+<span class="w">    </span><span class="p">},</span><span class="s">&quot;B&quot;</span><span class="p">).</span><span class="na">start</span><span class="p">();</span><span class="w">  </span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;离开教室&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="w">            </span><span class="n">countDownLatch</span><span class="p">.</span><span class="na">countDown</span><span class="p">();</span><span class="w">  </span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">).</span><span class="na">start</span><span class="p">();</span><span class="w">  </span>
+<span class="w">    </span><span class="p">}</span><span class="w">  </span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="7-countdownlatch">7. CountDownLatch 的原理</h4>
+<p><code>CountDownLatch</code> 是共享锁的一种实现,它默认构造 AQS 的 <code>state</code> 值为 <code>count</code>。当线程使用 <code>countDown()</code> 方法时,其实使用了<code>tryReleaseShared</code>方法以 CAS 的操作来减少 <code>state</code>,直至 <code>state</code> 为 0 。当调用 <code>await()</code> 方法的时候，如果 <code>state</code> 不为 0，那就证明任务还没有执行完毕，<code>await()</code> 方法就会一直阻塞，也就是说 <code>await()</code> 方法之后的语句不会被执行。直到<code>count</code> 个线程调用了<code>countDown()</code>使 state 值被减为 0，或者调用<code>await()</code>的线程被中断，该线程才会从阻塞中被唤醒，<code>await()</code> 方法之后的语句得到执行。</p>
+<h4 id="8-countdownlatch">8.  用过 CountDownLatch 么？什么场景下用的</h4>
+<p>首先，countDownLatch 本质就是用来实现一组或者一个线程等待另一组或者另一个线程执行完后，再去执行的同步关系的，而这样的同步关系在我们的实际业务场景中是很常见的。</p>
+<p>比如：
+1）多源数据汇总（最常见），在我之前项目：听书中，专辑详情信息的渲染需要调用其他多个微服务，比如用户微服务、声音微服务等等，那么此时主线程需要等待这些子线程执行完后才能封装最后的结果，然后返回，此时，就是一个经典的 countDownLatch 的应用场景，只不过 java 8 提供的 completableFuture 更加强大，因此一般能用 countDownLacth 实现的场景，我都会选择 CompletableFuture 。</p>
+<p>2）多文件处理，最后需要统一处理结果并返回。</p>
+<h4 id="9-cyclicbarrier">9. CyclicBarrier 有什么作用？</h4>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">    </span><span class="n">CyclicBarrier</span><span class="w"> </span><span class="n">cyclicBarrier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">CyclicBarrier</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;人到齐了&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="p">});</span><span class="w">  </span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getName</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;开始执行&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="w">                </span><span class="n">cyclicBarrier</span><span class="p">.</span><span class="na">await</span><span class="p">();</span><span class="w">  </span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">                </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w">  </span>
+<span class="w">            </span><span class="p">}</span><span class="w">  </span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">).</span><span class="na">start</span><span class="p">();</span><span class="w">  </span>
+<span class="w">    </span><span class="p">}</span><span class="w">  </span>
+<span class="p">}</span>
+</code></pre></div>
+<p>CyclicBarrier 主要用来实现一组线程相互等待的同步关系，也就是这一组线程会在某个点互相等待对方，直至最后一个线程来到这个点，然后再去共同执行。</p>
+<h4 id="10-cyclicbarrier">10. CyclicBarrier 的原理</h4>
+<p><code>CyclicBarrier</code> 内部通过一个 <code>count</code> 变量作为计数器，<code>count</code> 的初始值为 <code>parties</code> 属性的初始化值，每当一个线程到了栅栏这里了，那么就将计数器减 1。如果 count 值为 0 了，表示这是这一代最后一个线程到达栅栏，就尝试执行我们构造方法中输入的任务<code>barrierAction</code>。
+<div class="highlight"><pre><span></span><code><span class="c1">//每次拦截的线程数</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">parties</span><span class="p">;</span>
+<span class="c1">//计数器</span>
+<span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="p">;</span>
+</code></pre></div></p>
+<p>1、<code>CyclicBarrier</code> 默认的构造方法是 <code>CyclicBarrier(int parties)</code>，其参数表示屏障拦截的线程数量，每个线程调用 <code>await()</code> 方法告诉 <code>CyclicBarrier</code> 我已经到达了屏障，然后当前线程被阻塞。
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="nf">CyclicBarrier</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">parties</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">this</span><span class="p">(</span><span class="n">parties</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">public</span><span class="w"> </span><span class="nf">CyclicBarrier</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">parties</span><span class="p">,</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="n">barrierAction</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">parties</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IllegalArgumentException</span><span class="p">();</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">parties</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parties</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parties</span><span class="p">;</span>
+<span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">barrierCommand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">barrierAction</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h2 id="_5">虚拟线程</h2>
+<h4 id="1_3">1. 虚拟线程是什么？</h4>
+<p>虚拟线程（Virtual Thread）是 JDK 而不是 OS 实现的轻量级线程(Lightweight Process，LWP），由 JVM 调度。许多虚拟线程共享同一个操作系统线程，虚拟线程的数量可以远大于操作系统线程的数量。</p>
+<h4 id="2_8">2. 虚拟现场的优缺点？</h4>
+<p><strong>优点</strong>
+- <strong>非常轻量级</strong>：可以在单个线程中创建成百上千个虚拟线程而不会导致过多的线程创建和上下文切换。
+- <strong>简化异步编程</strong>： 虚拟线程可以简化异步编程，使代码更易于理解和维护。它可以将异步代码编写得更像同步代码，避免了回调地狱（Callback Hell）。
+- <strong>减少资源开销</strong>： 由于虚拟线程是由 JVM 实现的，它能够更高效地利用底层资源，例如 CPU 和内存。虚拟线程的上下文切换比平台线程更轻量，因此能够更好地支持高并发场景。</p>
+<p><strong>缺点</strong>
+- <strong>不适用于计算密集型任务</strong>： 虚拟线程适用于 I/O 密集型任务，但不适用于计算密集型任务，因为密集型计算始终需要 CPU 资源作为支持。
+- <strong>与某些第三方库不兼容</strong>： 虽然虚拟线程设计时考虑了与现有代码的兼容性，但某些依赖平台线程特性的第三方库可能不完全兼容虚拟线程。</p>
+<h4 id="3_6">3. 如何创建虚拟线程</h4>
+<ul>
+<li>使用 <code>Thread.startVirtualThread()</code> 创建</li>
+<li>使用 <code>Thread.ofVirtual()</code> 创建</li>
+<li>使用 <code>ThreadFactory</code> 创建</li>
+<li>使用 <code>Executors.newVirtualThreadPerTaskExecutor()</code>创建</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="c1">// 1. 通过 Thread.startVirtualThread() 创建虚拟线程  </span>
+<span class="n">Thread</span><span class="p">.</span><span class="na">startVirtualThread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;hello vitural thread&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="p">});</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">// 2. 通过静态方法ofVirtual创建虚拟线程  </span>
+<span class="n">Thread</span><span class="p">.</span><span class="na">ofVirtual</span><span class="p">().</span><span class="na">name</span><span class="p">(</span><span class="s">&quot;v1&quot;</span><span class="p">).</span><span class="na">start</span><span class="p">(</span><span class="w">  </span>
+<span class="w">        </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">)</span><span class="w">  </span>
+<span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">// 3. 通过线程工厂去创建</span>
+<span class="n">ThreadFactory</span><span class="w"> </span><span class="n">threadFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">ofVirtual</span><span class="p">().</span><span class="na">factory</span><span class="p">();</span><span class="w">  </span>
+<span class="n">threadFactory</span><span class="p">.</span><span class="na">newThread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="p">}).</span><span class="na">start</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1">// 4. 线程池  </span>
+<span class="n">ExecutorService</span><span class="w"> </span><span class="n">executorService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Executors</span><span class="p">.</span><span class="na">newVirtualThreadPerTaskExecutor</span><span class="p">();</span><span class="w">  </span>
+<span class="n">executorService</span><span class="p">.</span><span class="na">submit</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">);</span><span class="w">  </span>
+<span class="p">});</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 LiuTianBa7 
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

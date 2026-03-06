@@ -1243,11 +1243,11 @@ spring.jackson.time-zone=GMT+8
 
 <p align='center'>
     <img src="../assets/imgs/spring/spring12.png" style="zoom:50%;" />
-</p
+</p>
 
 ### 8. DispathcerServlet
 
-​	 **`DispatcherServlet`** 是 Spring MVC 框架的核心组件，可以把它理解为整个 Web 请求处理流程的“**总指挥”或“前端控制器**”。当你的浏览器发起一个 HTTP 请求（比如访问 `/user/list`），这个请求首先到达的就是 `DispatcherServlet`。
+**`DispatcherServlet`** 是 Spring MVC 框架的核心组件，可以把它理解为整个 Web 请求处理流程的“**总指挥”或“前端控制器**”。当你的浏览器发起一个 HTTP 请求（比如访问 `/user/list`），这个请求首先到达的就是 `DispatcherServlet`。
 
 ##### 1. 九大组件
 
@@ -1285,50 +1285,56 @@ spring.jackson.time-zone=GMT+8
 
 
 1.  客户端（浏览器）发送请求 `DispatcherServlet`拦截请求. 
+
 2.  `DispatcherServlet` 根据请求消息调用 `HandlerMapping`  会根据本次请求的 `url` 找到对应的 `handler`，并会将请求涉及到的拦截器和 `Handler` 一起封装返回。
+
 3.  `DispatcherServlet` 调用 `HandlerAdapter`适配器执行 `Handler` 。
+
 4.  `Handler` 完成对用户请求的处理后，会返回一个 `ModelAndView` 对象给`DispatcherServlet`，`ModelAndView` 顾名思义，包含了数据模型以及相应的视图的信息。`Model` 是返回的数据对象，`View` 是个逻辑上的 `View`
+
 5.  `DispatcherServlet`将`ModelAndView`传给`ViewReslover`视图解析器
+
 6.  `ViewReslover`解析后返回具体`View`
+
 7.  `DispaterServlet` 把返回的 `Model` 传给 `View`（视图渲染）
+
 8.  `DispaterServlet` 会将视图响应给客户端
 
 
 ## 六、Mybatis⭐
 
-​	**持久层框架** 是用于简化数据库操作、**管理数据持久化**的软件框架。它的核心作用是 **让 Java 对象与数据库中的记录之间进行方便、高效、安全的转换和操作**，而不需要开发者手动编写大量重复的 JDBC 代码。
+**持久层框架** 是用于简化数据库操作、**管理数据持久化**的软件框架。它的核心作用是 **让 Java 对象与数据库中的记录之间进行方便、高效、安全的转换和操作**，而不需要开发者手动编写大量重复的 JDBC 代码。
 
 #### 1. mybatis的使用方法
+1）导入mybatis依赖
 
-​	1）导入mybatis依赖
+2）配置数据源信息
 
-​	2）配置数据源信息
+3）写一个 javaBean，也就是 PO（ **Persist Object**）
 
-​	3）写一个 javaBean，也就是 PO（ **Persist Object**）
+4）写持久层接口，也就是Mapper层（注意标 @Mapper）
 
-​	4）写持久层接口，也就是Mapper层（注意标 @Mapper）
+5）去写 Mapper 层方法对应的 xml 配置文件，去映射这些接口怎么执行，执行那些sql。
 
-​	5）去写 Mapper 层方法对应的 xml 配置文件，去映射这些接口怎么执行，执行那些sql。
+6）注意数据库字段名下划线一般在 Po 种要写成驼峰式。
 
-​	6）注意数据库字段名下划线一般在 Po 种要写成驼峰式。
-
-​	7）最后，在配置文件中告诉 Mybatis xml 文件的位置。
+7）最后，在配置文件中告诉 Mybatis xml 文件的位置。
 
 #### 2. 参数处理
 
 ##### 1. #{} 与 ${} 的区别
 
-​	在 MyBatis 中，`#{} ` 和 `${}` 都可以用于传递参数，但它们的底层机制和使用场景有着本质区别。
+在 MyBatis 中，`#{} ` 和 `${}` 都可以用于传递参数，但它们的底层机制和使用场景有着本质区别。
 
-​	1）首先，`#{}` 是 MyBatis 中的**预编译占位符**，相当于 JDBC 中的 `?`。在执行 SQL 语句时，MyBatis 会先将 `#{}` 替换为一个问号占位符，然后通过 `PreparedStatement` 逐个设置参数值。这种方式能够有效防止 SQL 注入，因为参数值不会直接拼接到 SQL 字符串中，而是由数据库在执行阶段安全地绑定。此外，`#{}` 还能自动根据参数类型添加合适的引号，例如当传入字符串时会自动加上单引号，非常适合用于插入、更新或查询时的条件参数赋值。
+1）首先，`#{}` 是 MyBatis 中的**预编译占位符**，相当于 JDBC 中的 `?`。在执行 SQL 语句时，MyBatis 会先将 `#{}` 替换为一个问号占位符，然后通过 `PreparedStatement` 逐个设置参数值。这种方式能够有效防止 SQL 注入，因为参数值不会直接拼接到 SQL 字符串中，而是由数据库在执行阶段安全地绑定。此外，`#{}` 还能自动根据参数类型添加合适的引号，例如当传入字符串时会自动加上单引号，非常适合用于插入、更新或查询时的条件参数赋值。
 
-​	2）与之相对，`${}` 则是 MyBatis 的**字符串拼接方式**，它在 SQL 语句解析阶段就会被直接替换为实际的参数内容，相当于直接将变量值插入到 SQL 字符串中。这意味着如果参数值来自用户输入，可能会造成 **SQL 注入风险**。因此，`${}` 一般不用于值的传递，而是用于那些不能使用 `#{}` 的场景，比如动态指定表名、列名、排序字段或关键字等位置。需要注意的是，`${}` 不会自动加引号，若拼接的是字符串类型参数，必须手动添加单引号，否则会导致 SQL 语法错误。
+2）与之相对，`${}` 则是 MyBatis 的**字符串拼接方式**，它在 SQL 语句解析阶段就会被直接替换为实际的参数内容，相当于直接将变量值插入到 SQL 字符串中。这意味着如果参数值来自用户输入，可能会造成 **SQL 注入风险**。因此，`${}` 一般不用于值的传递，而是用于那些不能使用 `#{}` 的场景，比如动态指定表名、列名、排序字段或关键字等位置。需要注意的是，`${}` 不会自动加引号，若拼接的是字符串类型参数，必须手动添加单引号，否则会导致 SQL 语法错误。
 
-​	
+	
 
 ##### 2. 参数取值方法
 
-​	最佳实践：即使只有一个参数，也用 Param 直接参数名
+最佳实践：即使只有一个参数，也用 Param 直接参数名
 
 <p align='center'>
     <img src="../assets/imgs/spring/spring14.png" alt="spring14" style="zoom:60%;" />
@@ -1336,11 +1342,11 @@ spring.jackson.time-zone=GMT+8
 
 ##### 3. 返回值
 
-​	在 MyBatis 中，每一个 Mapper 接口的方法都需要在对应的 XML 映射文件中明确指定查询结果的封装类型，即通过 `resultType` 或 `resultMap` 属性来定义返回值类型。虽然 MyBatis 内置了一些常用类型的别名（如 `int`、`string`、`map`、`list` 等），但在实际开发中仍建议使用**完整限定类名**（即全类名），这样能避免命名冲突，也让 XML 文件更直观、可维护。
+在 MyBatis 中，每一个 Mapper 接口的方法都需要在对应的 XML 映射文件中明确指定查询结果的封装类型，即通过 `resultType` 或 `resultMap` 属性来定义返回值类型。虽然 MyBatis 内置了一些常用类型的别名（如 `int`、`string`、`map`、`list` 等），但在实际开发中仍建议使用**完整限定类名**（即全类名），这样能避免命名冲突，也让 XML 文件更直观、可维护。
 
 **1）指定返回类型**
 
-​	每一个 Mapper 层接口对应的 XML 语句块中，都必须指明查询结果要封装成的 Java 类型。通常使用 `resultType` 属性指定类型名称，例如：
+每一个 Mapper 层接口对应的 XML 语句块中，都必须指明查询结果要封装成的 Java 类型。通常使用 `resultType` 属性指定类型名称，例如：
 
 ```xml
 <select id="findUserById" resultType="com.example.pojo.User">
@@ -1350,7 +1356,7 @@ spring.jackson.time-zone=GMT+8
 
 2）**集合类型的返回值**
 
-​	当方法的返回值是集合类型（例如 `List` 或 `Set`或`Map`），在 MyBatis 的配置中只需指定集合中**元素的类型**即可。MyBatis 会自动将查询结果的多行记录封装为集合。例如：
+当方法的返回值是集合类型（例如 `List` 或 `Set`或`Map`），在 MyBatis 的配置中只需指定集合中**元素的类型**即可。MyBatis 会自动将查询结果的多行记录封装为集合。例如：
 
 ```xml
  // 将结果封装为 Map (集合，set,list同理)
@@ -1364,7 +1370,7 @@ spring.jackson.time-zone=GMT+8
 
 **3）复杂返回结果的映射**
 
-​	如果查询结果中字段名与实体类属性名不完全对应，或需要多表联合查询时，则可使用 `resultMap` 进行更灵活的映射配置，通过 `<result>` 和 `<association>` 等标签自定义字段与属性之间的对应关系。
+如果查询结果中字段名与实体类属性名不完全对应，或需要多表联合查询时，则可使用 `resultMap` 进行更灵活的映射配置，通过 `<result>` 和 `<association>` 等标签自定义字段与属性之间的对应关系。
 
 ```xml
 <resultMap id="rme" type="person.liutianba.mybatis.bean.Emp">
@@ -1381,13 +1387,13 @@ spring.jackson.time-zone=GMT+8
     </select>
 ```
 
-​	下面是多表查询的一些语法
+下面是多表查询的一些语法
 
 <p align='center'>
     <img src="../assets/imgs/spring/spring15.png" style="zoom:50%;" />
 </p>
 
-​	一对一关系封装：
+一对一关系封装：
 
 ```xml
 <resultMap id="orderWithCustomer" type="person.liutianba.mybatis.bean.Order">
@@ -1407,7 +1413,7 @@ spring.jackson.time-zone=GMT+8
     <img src="../assets/imgs/spring/spring16.png" alt="image-20251030110448677" style="zoom:60%;" />
 </p>
 
-​	一对多关系封装：（collection）
+一对多关系封装：（collection）
 
 ```xml
  <!--演示collection-->
@@ -1625,7 +1631,7 @@ mybatis.configuration.aggressive-lazy-loading=false
 
 ###### 3. foreach实现批量修改
 
-​	没有原生语法，所以需要在一个sql请求发送多个sql，注：需要在数据库连接时开始批处理。
+没有原生语法，所以需要在一个sql请求发送多个sql，注：需要在数据库连接时开始批处理。
 
 ```xml
 spring.datasource.url=jdbc:mysql://localhost:3306/mybatis-example?allowMultiQueries=true
@@ -1633,33 +1639,33 @@ spring.datasource.url=jdbc:mysql://localhost:3306/mybatis-example?allowMultiQuer
 
 ##### 6. sql 标签
 
-​	负责把常用的sql片段切出来，然后做一个复用。需要配合 include 标签来使用。
+负责把常用的sql片段切出来，然后做一个复用。需要配合 include 标签来使用。
 
 #### 5. 特殊字符的转义
 
 <p align='center'>
     <img src="../assets/imgs/spring/spring18.png" style="zoom:50%;" />
-</p
+</p>
 
 #### 6. Mybatis 的缓存机制
 
-​	MyBatis 提供了两级缓存机制：**一级缓存** 和 **二级缓存**，用于提升数据库查询性能，避免重复执行相同的 SQL。
+MyBatis 提供了两级缓存机制：**一级缓存** 和 **二级缓存**，用于提升数据库查询性能，避免重复执行相同的 SQL。
 
 ##### 1. 一级缓存机制 （同一事务共享）
 
-​	1）第一次执行 `select` 时，查询数据库，结果放入一级缓存
+1）第一次执行 `select` 时，查询数据库，结果放入一级缓存
 
-​	2）后续执行**相同 SQL 和参数**时，直接从缓存中取数据，不再查询数据库
+2）后续执行**相同 SQL 和参数**时，直接从缓存中取数据，不再查询数据库
 
-​	3）如果执行了 `insert`、`update`、`delete` 或 `sqlSession.clearCache()`，缓存会被清空
+3）如果执行了 `insert`、`update`、`delete` 或 `sqlSession.clearCache()`，缓存会被清空
 
 ##### 2. 二级缓存机制 （所有事务共享）
 
-​	1）**作用范围**：`Mapper` 级别（命名空间级别）
+1）**作用范围**：`Mapper` 级别（命名空间级别）
 
-​	2）**生命周期**：跨 `SqlSession`，甚至跨事务共享
+2）**生命周期**：跨 `SqlSession`，甚至跨事务共享
 
-​	3）**默认关闭**：必须手动配置才能启用
+3）**默认关闭**：必须手动配置才能启用
 
 1. 第一个 `SqlSession` 查询数据后，结果不仅存入一级缓存，还写入**二级缓存**
 2. 第二个 `SqlSession` 执行相同查询时，**先查二级缓存**，命中则直接返回
@@ -1693,7 +1699,7 @@ session2.close();
 
 使用步骤：
 
-​	1）引入依赖：PageHelper
+1）引入依赖：PageHelper
 
 ```java
 <dependency>
@@ -1703,7 +1709,7 @@ session2.close();
 </dependency>
 ```
 
-​	2）注册 PageHelper 插件，可以在注册过程中配置一些属性
+2）注册 PageHelper 插件，可以在注册过程中配置一些属性
 
 ```java
 @Configuration
@@ -1724,14 +1730,14 @@ public class PageHelperConfig {
 }
 ```
 
-​	3）在需要分页的方法之前开始分页
+3）在需要分页的方法之前开始分页
 
 ```java
 // 开启分页
 PageHelper.startPage(pageNum, pageSize);
 ```
 
-​	4）用 PageInfo 去包装分页查询结果，里面有前端要用到的很多数据，比如页面大小，是否是最后一页等等。
+4）用 PageInfo 去包装分页查询结果，里面有前端要用到的很多数据，比如页面大小，是否是最后一页等等。
 
 ```java
 // 包装结果
@@ -1740,7 +1746,7 @@ PageInfo<Emp> pageInfo = new PageInfo<>(list);
 
 ## 七、Mybatis plus⭐⭐
 
-​	[MyBatis-Plus](https://github.com/baomidou/mybatis-plus) 是一个 [MyBatis](https://www.mybatis.org/mybatis-3/) 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
+[MyBatis-Plus](https://github.com/baomidou/mybatis-plus) 是一个 [MyBatis](https://www.mybatis.org/mybatis-3/) 的增强工具，在 MyBatis 的基础上只做增强不做改变，为简化开发、提高效率而生。
 
 ##### 7.1 框架概述
 
