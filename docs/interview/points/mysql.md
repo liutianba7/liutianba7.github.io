@@ -86,12 +86,16 @@ DECIMAL 用于存储具有精度要求的小数，例如与货币相关的数据
 
 TEXT 类型类似于 CHAR（0-255 字节）和 VARCHAR（0-65,535 字节），但可以存储更长的字符串，即长文本数据，例如博客内容。
 
-![[image-1 2.png]]
+<p align='center'>
+    <img src="../../assets/imgs/interview/mysql/mysql04.png" style="zoom:80%;" />
+</p>
 
 ##### BLOG 是什么
 BLOB 类型主要用于存储二进制大对象，例如图片、音视频等文件。
 
-![[image-2 2.png]]
+<p align='center'>
+    <img src="../../assets/imgs/interview/mysql/mysql05.png" style="zoom:80%;" />
+</p>
 
 
 #### DATETIME 和 TIMESTAMP 的区别是什么？如何选择？⭐️

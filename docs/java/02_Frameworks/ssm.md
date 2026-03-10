@@ -1,6 +1,6 @@
 Spring ：企业级一站式框架
 
- ![](../assets/imgs/spring/spring1.png)
+ ![](../../assets/imgs/spring/spring1.png)
 
 
 ## 一、Container
@@ -41,7 +41,7 @@ Spring ：企业级一站式框架
 
 ##### 3. 获得组件的方法
 
-<img src="./../assets/imgs/spring/spring2.png" style="display: block; margin: 0 auto; zoom: 80%;" alt="spring3.png">
+<img src="../../assets/imgs/spring/spring2.png" style="display: block; margin: 0 auto; zoom: 80%;" alt="spring3.png">
 
 
 ```java
@@ -329,7 +329,7 @@ public class Cat {
 
 ​	第二种：去实现 InitializingBean  以及 DisposableBean 
 
-![](../assets/imgs/spring/spring3.png)
+![](../../assets/imgs/spring/spring3.png)
 
 ​	具体生命周期如下：
 
@@ -358,7 +358,7 @@ public class Cat {
    - 仅适用于 singleton 作用域的 Bean，在容器关闭时执行。
 ```
 
-<p align="center">   <img src="../assets/imgs/spring/spring4.png" style="zoom: 50%;"> </p>
+<p align="center">   <img src="../../assets/imgs/spring/spring4.png" style="zoom: 50%;"> </p>
 
 ### 7. BeanPostProcessor
 
@@ -372,7 +372,7 @@ public class Cat {
 
 ​	本质：AOP 的底层实现原理确实是**代理模式**。Spring 在运行时为目标对象创建一个代理对象，当调用目标方法时，实际执行的是代理对象的方法。代理对象可以在目标方法执行的**前后**，甚至**环绕**执行自定义逻辑，从而实现功能增强。
 
-<img src="../assets/imgs/spring/spring5.png" style="zoom: 33%;" />
+<img src="../../assets/imgs/spring/spring5.png" style="zoom: 33%;" />
 
 #### 1. AOP 编码实现
 
@@ -452,7 +452,7 @@ public class LogAspect {
 
 ​	切入点（Pointcut）用于定义 **哪些方法需要被 AOP 增强**。它是通过一个表达式来匹配类和方法的，只有匹配成功的方法才会执行通知（Advice）。
 
-<img src="../assets/imgs/spring/spring6.png"  style="zoom:50%;" />
+<img src="../../assets/imgs/spring/spring6.png"  style="zoom:50%;" />
 
 ##### 1. excution(方法签名)
 
@@ -828,7 +828,7 @@ public String getCookie(@CookieValue("JSESSIONID") String sessionId) {
 ##### 2. 文件下载（返回的数据是让浏览器下载的）
 
 <p align="center">
-  <img src="./../assets/imgs/spring/spring8.png" alt="spring8.png" style="zoom:60%;" />
+  <img src="../../assets/imgs/spring/spring8.png" alt="spring8.png" style="zoom:60%;" />
 </p>
 
 
@@ -970,7 +970,7 @@ public class WebConfig implements WebMvcConfigurer {
 ​	异常处理分为两类：**编程式**（如 `try-catch`）和 **声明式**。在 Spring 中，推荐使用 **声明式异常处理**，因为它更简洁、可维护性强，能实现全局统一处理。
 
 <p align='center'>
-    <img src="../assets/imgs/spring/spring9.png" style="zoom:50%;" />
+    <img src="../../assets/imgs/spring/spring9.png" style="zoom:50%;" />
 </p>
 
 #### 1. 实现方式
@@ -1056,11 +1056,11 @@ public class GlobalExceptionHandler {
 ### 4. 数据校验⭐⭐⭐
 
 <p align='center'>
-	<img src="../assets/imgs/spring/spring10.png" style="zoom:40%;" /> 
+	<img src="../../assets/imgs/spring/spring10.png" style="zoom:40%;" /> 
 </p>
 
 <p align='center'>
-    <img src="../assets/imgs/spring/spring11.png" style="zoom:50%;" />
+    <img src="../../assets/imgs/spring/spring11.png" style="zoom:50%;" />
 </p>
 
 
@@ -1242,7 +1242,7 @@ spring.jackson.time-zone=GMT+8
 ### 7. 接口文档
 
 <p align='center'>
-    <img src="../assets/imgs/spring/spring12.png" style="zoom:50%;" />
+    <img src="../../assets/imgs/spring/spring12.png" style="zoom:50%;" />
 </p>
 
 ### 8. DispathcerServlet
@@ -1279,7 +1279,7 @@ spring.jackson.time-zone=GMT+8
 ##### 2. 运行流程
 
 <p align='center'>
-    <img src="../assets/imgs/spring/spring13.png" style="zoom:67%;" />
+    <img src="../../assets/imgs/spring/spring13.png" style="zoom:67%;" />
 </p>
 
 
@@ -1330,14 +1330,14 @@ spring.jackson.time-zone=GMT+8
 
 2）与之相对，`${}` 则是 MyBatis 的**字符串拼接方式**，它在 SQL 语句解析阶段就会被直接替换为实际的参数内容，相当于直接将变量值插入到 SQL 字符串中。这意味着如果参数值来自用户输入，可能会造成 **SQL 注入风险**。因此，`${}` 一般不用于值的传递，而是用于那些不能使用 `#{}` 的场景，比如动态指定表名、列名、排序字段或关键字等位置。需要注意的是，`${}` 不会自动加引号，若拼接的是字符串类型参数，必须手动添加单引号，否则会导致 SQL 语法错误。
 
-	
+​	
 
 ##### 2. 参数取值方法
 
 最佳实践：即使只有一个参数，也用 Param 直接参数名
 
 <p align='center'>
-    <img src="../assets/imgs/spring/spring14.png" alt="spring14" style="zoom:60%;" />
+    <img src="../../assets/imgs/spring/spring14.png" alt="spring14" style="zoom:60%;" />
 </p>
 
 ##### 3. 返回值
@@ -1390,7 +1390,7 @@ spring.jackson.time-zone=GMT+8
 下面是多表查询的一些语法
 
 <p align='center'>
-    <img src="../assets/imgs/spring/spring15.png" style="zoom:50%;" />
+    <img src="../../assets/imgs/spring/spring15.png" style="zoom:50%;" />
 </p>
 
 一对一关系封装：
@@ -1410,7 +1410,7 @@ spring.jackson.time-zone=GMT+8
 ```
 
 <p align='center'>
-    <img src="../assets/imgs/spring/spring16.png" alt="image-20251030110448677" style="zoom:60%;" />
+    <img src="../../assets/imgs/spring/spring16.png" alt="image-20251030110448677" style="zoom:60%;" />
 </p>
 
 一对多关系封装：（collection）
@@ -1595,7 +1595,7 @@ mybatis.configuration.aggressive-lazy-loading=false
 ##### 5. foreach 标签
 
 <p align='center'>
-    <img src="../assets/imgs/spring/spring17.png" alt="image-20251031092737559" style="zoom:50%;" />
+    <img src="../../assets/imgs/spring/spring17.png" alt="image-20251031092737559" style="zoom:50%;" />
 </p>
 
 
@@ -1644,7 +1644,7 @@ spring.datasource.url=jdbc:mysql://localhost:3306/mybatis-example?allowMultiQuer
 #### 5. 特殊字符的转义
 
 <p align='center'>
-    <img src="../assets/imgs/spring/spring18.png" style="zoom:50%;" />
+    <img src="../../assets/imgs/spring/spring18.png" style="zoom:50%;" />
 </p>
 
 #### 6. Mybatis 的缓存机制
@@ -1687,14 +1687,14 @@ session2.close();
 
 #### 7. Mybatis的四大对象以及拦截器（先了解）
 
-<p align="center">   <img src="../assets/imgs/spring/spring19.png" style="zoom: 60%;" /> </p>
+<p align="center">   <img src="../../assets/imgs/spring/spring19.png" style="zoom: 60%;" /> </p>
 
 
 
 #### 8. 分页插件
 
 <p align='center'>
-    <img src="../assets/imgs/spring/spring20.png" alt="image-20251031100003920" style="zoom:60%;" />
+    <img src="../../assets/imgs/spring/spring20.png" alt="image-20251031100003920" style="zoom:60%;" />
 </p>
 
 使用步骤：

@@ -9,8 +9,9 @@ edit_uri: edit/main/docs/  # 允许直接从网页跳转到 GitHub 编辑源码
 nav:
   - Welcome: index.md
   - Java:
-    - ssm: ./java/ssm.md
-    - springboot: ./java/springboot.md
+    - ssm: ./java/02_Frameworks/ssm.md
+    - springboot: ./java/02_Frameworks/springboot.md
+    - maven: ./java/01_Java_Core/maven.md
   - Python:
       - langchain: ./python/Ai/langchain.md
       - pytorch: ./python/Ai/pytorch.md

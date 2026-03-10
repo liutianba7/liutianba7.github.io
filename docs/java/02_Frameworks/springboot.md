@@ -121,7 +121,7 @@ builder.sources(SpringbootDemoApplication.class)
 日志系统描述:
 
 <p align='center'>
-    <img src="../assets/imgs/springboot/springboot1.png" alt="springboot1" style="zoom:90%;" />
+    <img src="../../assets/imgs/springboot/springboot1.png" alt="springboot1" style="zoom:90%;" />
 </p>
 
 
@@ -197,7 +197,7 @@ logging.group.group1=全类名1,全类名2,...
 ##### 5.4 日志输出到文件
 
 <p align="center">
-    <img src="../assets/imgs/springboot/springboot2.png" alt="springboot2" />
+    <img src="../../assets/imgs/springboot/springboot2.png" alt="springboot2" />
 </p>
 
 ##### 5.5 日志归档与滚动切割
@@ -430,7 +430,7 @@ info:
 ### 4. 生命周期 -- 监听器感知生命周期
 
 <p align='center'>
-    <img src="../assets/imgs/springboot/springboot3.png" alt="springboot3" style='zoom: 80%' />
+    <img src="../../assets/imgs/springboot/springboot3.png" alt="springboot3" style='zoom: 80%' />
 </p>
 
 
@@ -485,7 +485,7 @@ Spring Boot 提供了完整的生命周期管理机制，通过监听器（Liste
 4) 如果想要用事件机制：ApplicationListener
 
 <p align='center'>
-    <img src="../assets/imgs/springboot/springboot4.png" alt="springboot4" style="zoom:80%;" />
+    <img src="../../assets/imgs/springboot/springboot4.png" alt="springboot4" style="zoom:80%;" />
 </p>
 
 
