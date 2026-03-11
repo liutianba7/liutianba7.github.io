@@ -12,12 +12,14 @@ nav:
     - ssm: ./java/02_Frameworks/ssm.md
     - springboot: ./java/02_Frameworks/springboot.md
     - maven: ./java/01_Java_Core/maven.md
+    - juc基础: ./java/01_Java_Core/juc.md
   - Python:
       - langchain: ./python/Ai/langchain.md
       - pytorch: ./python/Ai/pytorch.md
       - fastapi: ./python/Web/fastapi.md
   - Frontend:
       - js: ./frontend/js.md
+      - vue2: ./frontend/vue2.md
       - vue3: ./frontend/vue3.md
   - Bagu:
       - 八股复习路线: ./interview/index.md

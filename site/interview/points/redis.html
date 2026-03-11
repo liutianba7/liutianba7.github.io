@@ -244,7 +244,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../java/ssm.html" class="md-tabs__link">
+        <a href="../../java/02_Frameworks/ssm.html" class="md-tabs__link">
           
   
   
@@ -527,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/ssm.html" class="md-nav__link">
+      <a href="../../java/02_Frameworks/ssm.html" class="md-nav__link">
         
   
   
@@ -555,7 +555,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../java/springboot.html" class="md-nav__link">
+      <a href="../../java/02_Frameworks/springboot.html" class="md-nav__link">
         
   
   
@@ -563,6 +563,34 @@
     
   
     springboot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/01_Java_Core/maven.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    maven
   
 
     
@@ -1701,12 +1729,12 @@
   <a href="#redis_16" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Redis 持久化机制⭐️
+        Redis 持久化机制⭐️⭐️⭐️
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Redis 持久化机制⭐️">
+    <nav class="md-nav" aria-label="Redis 持久化机制⭐️⭐️⭐️">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1980,7 +2008,7 @@
   <a href="#redis_24" class="md-nav__link">
     <span class="md-ellipsis">
       
-        什么是 Redis 事务？⭐️
+        什么是 Redis 事务？⭐️⭐️⭐️
       
     </span>
   </a>
@@ -2274,12 +2302,12 @@
   <a href="#redis_30" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Redis 生产问题
+        Redis 生产问题⭐️⭐️⭐️
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Redis 生产问题">
+    <nav class="md-nav" aria-label="Redis 生产问题⭐️⭐️⭐️">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3478,12 +3506,12 @@
   <a href="#redis_16" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Redis 持久化机制⭐️
+        Redis 持久化机制⭐️⭐️⭐️
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Redis 持久化机制⭐️">
+    <nav class="md-nav" aria-label="Redis 持久化机制⭐️⭐️⭐️">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3757,7 +3785,7 @@
   <a href="#redis_24" class="md-nav__link">
     <span class="md-ellipsis">
       
-        什么是 Redis 事务？⭐️
+        什么是 Redis 事务？⭐️⭐️⭐️
       
     </span>
   </a>
@@ -4051,12 +4079,12 @@
   <a href="#redis_30" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Redis 生产问题
+        Redis 生产问题⭐️⭐️⭐️
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Redis 生产问题">
+    <nav class="md-nav" aria-label="Redis 生产问题⭐️⭐️⭐️">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4633,13 +4661,17 @@ ZREVRANK<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span
 </tbody>
 </table>
 <p>首先，Redis 的 Set 支持自动去重，并且支持强大的集合间操作（交集、并集、差集）。</p>
-<p>1）利用 Set 的自动去重
-- <strong>点赞 / 收藏</strong>：记录某个帖子被哪些用户点赞 | 收藏。由于一个用户只能点赞一次，使用 <code>SADD</code> 既能记录数据，又能自动防止重复点赞。  <br />
-- <strong>独立 IP 统计 (UV)</strong>：统计网站每天有多少个不重复的访客 IP（注：对于海量 UV，更推荐使用 HyperLogLog 以节省空间，但对于精确去重，Set 是首选）。</p>
-<p>2）利用 Set 提供的集合操作获取多个数据源的交集、并集、差集
-- <strong>关注列表 / 粉丝列表</strong>：记录某个用户关注的人。
-- <strong>共同关注</strong>：通过 <code>SINTER</code>（交集）命令，轻松找出 A 和 B 共同关注的人。
-- <strong>可能认识的人</strong>：通过 <code>SDIFF</code>（差集）命令，找出 A 关注了但 B 没关注的人，作为推荐。</p>
+<p>1）利用 Set 的自动去重</p>
+<ul>
+<li><strong>点赞 / 收藏</strong>：记录某个帖子被哪些用户点赞 | 收藏。由于一个用户只能点赞一次，使用 <code>SADD</code> 既能记录数据，又能自动防止重复点赞。    </li>
+<li><strong>独立 IP 统计 (UV)</strong>：统计网站每天有多少个不重复的访客 IP（注：对于海量 UV，更推荐使用 HyperLogLog 以节省空间，但对于精确去重，Set 是首选）。</li>
+</ul>
+<p>2）利用 Set 提供的集合操作获取多个数据源的交集、并集、差集</p>
+<ul>
+<li><strong>关注列表 / 粉丝列表</strong>：记录某个用户关注的人。</li>
+<li><strong>共同关注</strong>：通过 <code>SINTER</code>（交集）命令，轻松找出 A 和 B 共同关注的人。</li>
+<li><strong>可能认识的人</strong>：通过 <code>SDIFF</code>（差集）命令，找出 A 关注了但 B 没关注的人，作为推荐。</li>
+</ul>
 <p>3）抽奖系统
 Set 提供了随机获取元素的命令，非常适合公平抽奖。
 <strong>随机中奖</strong>：<code>SRANDMEMBER</code>（随机返回但不删除）或 <code>SPOP</code>（随机返回并从集合中弹出）。</p>
@@ -4676,7 +4708,7 @@ BITCOUNT result:and
 <p>pass</p>
 <h4 id="_7">如果我想判断一个元素是否不在海量元素集合中，用什么数据类型？</h4>
 <p>bitmap 或者 bloomFilter 都可以实现</p>
-<h2 id="redis_16">Redis 持久化机制⭐️</h2>
+<h2 id="redis_16">Redis 持久化机制⭐️⭐️⭐️</h2>
 <p>大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了做数据同步（比如 Redis 集群的主从节点通过 RDB 文件同步数据）。</p>
 <ul>
 <li>快照（snapshotting，RDB）</li>
@@ -4821,7 +4853,7 @@ OK
 </ul>
 <h2 id="redis_23">Redis 事务</h2>
 <p>Redis 可以通过 <strong><code>MULTI</code>、<code>EXEC</code>、<code>DISCARD</code> 和 <code>WATCH</code></strong> 等命令来实现事务（Transaction）功能。</p>
-<h4 id="redis_24">什么是 Redis 事务？⭐️</h4>
+<h4 id="redis_24">什么是 Redis 事务？⭐️⭐️⭐️</h4>
 <p><strong>Redis 事务提供了一种将多个命令请求打包的功能。然后，再按顺序执行打包的所有命令，并且不会被中途打断。</strong></p>
 <h4 id="redis_25">如何使用 Redis 事务？</h4>
 <p>1、标准流程</p>
@@ -5111,7 +5143,7 @@ CONFIG SET slowlog-max-len 128
 <li>其他进程过度占用 CPU 导致 Redis 吞吐量下降。</li>
 <li>网络问题如连接拒绝、延迟高、网卡软中断等导致 Redis 阻塞。</li>
 </ul>
-<h2 id="redis_30">Redis 生产问题</h2>
+<h2 id="redis_30">Redis 生产问题⭐️⭐️⭐️</h2>
 <h4 id="1">1. 什么是缓存穿透⭐️</h4>
 <pre><code>是指查询一个不存在的数据，由于缓存无法命中，将去查询数据库，但是数据库也无此记录，并且出于容错考虑，我们没有将这次查询的null写入缓存，这将导致这个不存在的数据每次请求都要到存储层去查询，失去了缓存的意义。在流量大时，可能DB就挂掉了，要是有人利用不存在的key频繁攻击我们的应用，这就是漏洞。
 </code></pre>
