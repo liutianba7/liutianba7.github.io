@@ -21,6 +21,16 @@ nav:
       - js: ./frontend/js.md
       - vue2: ./frontend/vue2.md
       - vue3: ./frontend/vue3.md
+
+#  - Code-Notes:
+#      - Java:
+#          - 并发编程: ./code-notes/java/concurrent.md
+#          - 设计模式: ./code-notes/java/design-patterns.md
+#      - Python:
+#          - ai: ./code-notes/python/ai.md
+#      - Algorithm:
+#          - 算法模板: ./code-notes/algorithm/template.md
+
   - Bagu:
       - 八股复习路线: ./interview/index.md
       - java基础: ./interview/points/java基础.md
