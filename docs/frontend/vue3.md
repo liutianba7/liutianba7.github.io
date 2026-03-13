@@ -14,6 +14,11 @@ Vue (读音 /vjuː/，类似于 **view**) 是一款用于构建用户界面的 *
 
 该种创建方式基于 Webpack，目前已处于维护模式，**不再推荐**用于新项目。
 
+```
+npm install vue/cli
+vue create xxx
+```
+
 ### 基于 vite 创建
 
 ```
@@ -847,8 +852,6 @@ let {userName, bigAge, age, password}=storeToRefs(userStore)
 
 **Actions**：千万**不要**用 `storeToRefs`，直接解构即可（函数不需要响应式）。
 
-
-
 ### $subscribe
 
 `$subscribe` 方法允许你监听 Store 中 **state** 的任何变化。只要 state 发生了改变（无论是通过 actions、直接修改还是 `$patch`），订阅回调都会被触发。
@@ -867,6 +870,10 @@ userStore.$subscribe((mutation, state) => {
 ```
 
 ## Vue3 组件通信
+
+<p align='center'>
+    <img src="../assets/imgs/frontend/vue3/vue3_01.png" style="zoom:80%;" />
+</p>
 
 ### props 
 
@@ -898,4 +905,360 @@ const props = defineProps<Props>()
 
 ### 自定义事件
 
- 
+  Vue3 的 `<script setup>` 中，自定义事件（子传父）的操作变得非常纯粹。我们不再使用 Vue2 中的 `this.$emit`，而是通过 **`defineEmits`** 宏命令来定义。
+
+**自定义事件**是子组件向父组件发送通知或传递数据的唯一标准方式。
+
+首先，子组件需要触发事件，在触发事件的时候传递参数！
+
+```js
+<script setup>
+// 1. 定义事件名称（数组形式）
+const emit = defineEmits(['update-count', 'close'])  // 自定以事件名最好用 kebab-case 格式命名
+
+const handleClick = () => {
+  // 2. 触发事件，参数1为事件名，参数2为传递的数据
+  emit('update-count', 100) // 等于 vue2 的 this.$emit()
+}
+</script>
+
+<template>
+  <button @click="handleClick">点击给父组件传 100</button>
+</template>
+```
+
+然后，就会执行父组件对当前的事件的回调
+
+```js
+<template>
+  <Child @update-count="handleChildUpdate" />
+</template>
+
+<script setup>
+import Child from './Child.vue'
+
+const handleChildUpdate = (val) => {
+  console.log('接收到子组件传来的值：', val) // 100
+}
+</script>
+```
+
+### mitt
+
+mitt | bus | pubsub 这些的实现思想都差不多，vue2 学习了 pubsub 和 $bus（谁想接收其他组件的数据，就绑定一个自定义事件到这个总线上，谁想发送数据，就在合适的时间触发事件）
+
+在 Vue3 中，由于实例上彻底删除了 `$on` 和 `$off` 等方法，官方不再推荐使用全局事件总线。但如果你在跨组件（甚至是跨层级非常深）通信时依然想用这种模式，**mitt** 就是目前社区公认的最佳替代品。
+
+**mitt** 是一个极其微小的 JavaScript 事件发射器（仅 200 字节），它的设计思想与 Vue2 的 `$bus` 完全一致：**发布/订阅模式**。真的和用全局总线没什么区别！
+
+安装mitt
+
+```
+npm i mitt
+```
+
+初始化
+
+```js
+// src/utils/bus.js
+import mitt from 'mitt'
+
+const bus = mitt()
+export default bus
+```
+
+接收数据 (订阅者)：谁要接收数据，就在 `onMounted` 里绑定监听，并在 `onUnmounted` 里解绑。
+
+```js
+<script setup>
+import bus from '@/utils/bus'
+import { onMounted, onUnmounted } from 'vue'
+
+onMounted(() => {
+  // 绑定事件：bus.on('事件名', 回调函数)
+  bus.on('send-msg', (data) => {
+    console.log('收到情报：', data)
+  })
+})
+
+onUnmounted(() => {
+  // 必须解绑，防止内存泄漏！
+  bus.off('send-msg')
+})
+</script>
+```
+
+发送者：
+
+```js
+<script setup>
+import bus from '@/utils/bus'
+
+const triggerEvent = () => {
+  // 触发事件：bus.emit('事件名', 数据)
+  bus.emit('send-msg', { text: '来自远方的问候', code: 200 })
+}
+</script>
+```
+
+| **方法**          | **作用**     | **写法示例**                  |
+| ----------------- | ------------ | ----------------------------- |
+| **`on`**          | 监听事件     | `bus.on('foo', handler)`      |
+| **`off`**         | 取消监听     | `bus.off('foo', handler)`     |
+| **`emit`**        | 触发事件     | `bus.emit('foo', { a: 'b' })` |
+| **`all.clear()`** | 清除所有监听 | `bus.all.clear()`             |
+
+
+
+### v-model
+
+对于普通的 html 标签，v-model 本身就可以理解为： v-bind:value=xxx + @input 事件
+
+```
+<input type="text" :value="username" @input="username=$event.target.value">
+```
+
+但是，对于一个组件，如果写了 v-model，本质上变成了 **`modelValue` 属性 + `update:modelValue` 事件**的缩写。（vue3里边是这样， vue2 还是value + @input）
+
+```
+<MyInput :modelValue="username" @update:modelvalue="username=$event">
+```
+
+所以，我们需要在这个自定义组件里处理：
+
+```
+// 原始写法
+<template>
+  <div>
+    <input type="text" :value="username" @input="emit('update:modelValue',$event.target.value)">
+  </div>
+</template>
+
+<script setup>
+  defineProps(['username'])
+  const emit = defineEmits(['update:modelValue'])
+</script>
+
+```
+
+Vue3 的杀手锏：绑定多个 v-model ⭐⭐⭐
+
+```
+<Child v-model:title="pageTitle" v-model:content="pageContent" />
+```
+
+```
+const props = defineProps(['title', 'content'])
+const emit = defineEmits(['update:title', 'update:content'])
+
+// 修改 title
+emit('update:title', '新标题')
+// 修改 content
+emit('update:content', '新内容')
+```
+
+进阶写法：使用 `defineModel` (Vue 3.4+ 推荐) ⭐⭐⭐
+
+```
+<script setup>
+// 这一行直接搞定 prop 接收和 emit 声明
+const model = defineModel() 
+
+// 修改时直接给 model 赋值，父组件同步更新
+const change = () => {
+  model.value = '大师级简化'
+}
+</script>
+
+<template>
+  <input v-model="model" />
+</template>
+```
+
+### \$attrs (透传属性)
+
+**`$attrs`** 包含了父组件传递给子组件、但**没有**被子组件的 `props` 或 `emits` 声明的所有属性和事件。
+
+子组件收到了父组件的参数，但是没通过 defineProps 接收，而是传递给了它的儿子组件！！！
+
+```
+<template>
+  <div class="btn-wrapper">
+    <GrandChild v-bind="$attrs">点击我</GrandChild> // 子又给它的儿子组件传了属性
+  </div>
+</template>
+
+<script setup>
+import { useAttrs } from 'vue'
+
+// 在模板里直接用 $attrs，在 JS 里用 useAttrs()
+const attrs = useAttrs()
+console.log(attrs) 
+</script>
+```
+
+### \$refs 和 \$parent
+
+\$ refs 是典型的父传子，而 \$parent 是子传父 
+
+在父组件通过 ref 属性拿到当前子组件示例后，默认是看不到子组件的数据的，必须在子组件中通过 defineExpose 说明那些属性能够被父组件看到
+
+```js
+// 关键：必须暴露，父组件才能看到
+defineExpose({
+  sayHi,
+  secret
+})
+```
+
+父组件可以分别创建响应式变量，let ref1 = xxx, let ref2 = xxx，但这样写比较麻烦，我们可以通过 \$refs 获取所有被注册的子组件的实例。
+
+```
+refs长这样：
+{
+	c1:{},
+	c2:{},
+	...
+}
+```
+
+在 Vue3 的模板中可以直接使用 `$parent`。在 JS 中，则可以通过 `getCurrentInstance` 或者是通过在父组件中使用 `provide` 这种更优雅的方式。注意，儿子想看到什么得在父组件通过 defineExpose({}) 去暴露
+
+```js
+<template>
+  <div>父组件的名字是：{{ $parent.name }}</div>
+</template>
+```
+
+### provide_inject
+
+实现祖孙之间直接通信，不再像 \$attrs 那样，还需要一个中间人去帮助！这不就是 sub/pub 机制吗，祖先把数据通过 provide 发送出去，所有的后代：谁想要谁 inject 就行。
+
+祖先组件 (Ancestor.vue)
+
+```js
+<script setup>
+import { ref, provide } from 'vue'
+import Child from './Child.vue'
+
+const themeColor = ref('skyblue')
+
+// provide('标识符', 响应式变量)
+provide('theme', themeColor)
+
+// 也可以提供修改数据的方法
+const changeTheme = (color) => {
+  themeColor.value = color
+}
+provide('updateTheme', changeTheme)
+</script>
+```
+
+后代组件 (Descendant.vue)
+
+```js
+<script setup>
+import { inject } from 'vue'
+
+// inject('标识符', 默认值)
+const theme = inject('theme', 'gray')
+const updateTheme = inject('updateTheme')
+</script>
+
+<template>
+  <h1 :style="{ color: theme }">我是后代组件</h1>
+  <button @click="updateTheme('pink')">一键换肤</button>
+</template>
+```
+
+### pinia
+
+任意组件之间直接传参！！
+
+
+
+## Vue3 插槽
+
+插槽其实就是：组件内部预留一个位置，父组件塞什么，子组件就显什么。
+
+### 默认插槽
+
+默认插槽就是子组件直接用slot占位，有且只能有一个默认插槽。
+
+```
+// 子组件
+<template>
+  <div class="box">
+    <h3>我是子组件标题</h3>
+    <slot>如果你不传内容，我就显示这段默认文字</slot> // 插槽占位符
+  </div>
+</template>
+
+// 父组件
+<Child>
+  <p>这是我塞进去的内容，我会替换掉上面的默认文字</p>
+</Child>
+```
+
+### 具名插槽
+
+子组件有多个坑位，父组件需要“对号入座”。
+
+```
+// 子组件
+<template>
+  <header><slot name="header"></slot></header>
+  <main><slot></slot></main> 
+  <footer><slot name="footer"></slot></footer>
+</template>
+
+
+// 父组件使用 v-slot:名字 指令，简写为 #名字。
+<Child>
+  <template v-slot:header><h1>我是头部</h1></template>
+  <p>我是中间内容</p>
+  <template #footer><p>我是底部</p></template>
+</Child>
+```
+
+### 作用域插槽⭐⭐⭐
+
+数据在子组件手里，但标签（长什么样）由父组件决定。
+
+父组件想在子组件的插槽里显示数据，但这个数据在子组件的 `setup` 里，父组件拿不到。这时候子组件就要通过插槽把数据“传回去”。
+
+```
+// 子组件：把数据绑定在 <slot> 标签上（像传 props 一样）。
+<script setup>
+const games = ['王者荣耀', '英雄联盟', '黑神话：悟空']
+</script>
+<template>
+  <ul>
+    <li v-for="item in games" :key="item">
+      <slot name="gameSlot" :game="item"></slot>
+    </li> 
+  </ul>
+</template>
+
+// 父组件：通过 #名字="接收变量名" 来拿数据。|| v-slot:名字='接收'
+<List>
+  <template #gameSlot="slotProps">
+    <span style="color: red;">🔥 {{ slotProps.game }}</span>
+  </template>
+</List>
+
+// 解构写法
+<template #gameSlot="{ game }">
+  <span>🔥 {{ game }}</span>
+</template>
+```
+
+总结：本质上就是子组件通过 props 方式向 slot 组件传递了一些参数，而 slot 会把这些数据打包成一个对象，然后传递给当前插槽的使用者！
+
+## Vue3 其他 Api
+
+[官方文档](https://cn.vuejs.org/api/reactivity-advanced.html#shallowref)
+
+#### shallowRef | shallowReactive
+
+减少大型不可变结构的响应性开销！

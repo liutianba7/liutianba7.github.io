@@ -479,6 +479,211 @@ async function f1(){
 f1()
 ```
 
+## Js 高级
+
+### 01 axios
+
+#### 简介
+
+Axios 是一个基于 Promise 的 HTTP 客户端，用于浏览器和 Node.js 环境。
+
+#### 安装
+
+```
+npm install axios
+# 或
+yarn add axios
+# 或
+pnpm add axios
+```
+
+#### 基本用法
+
+**get 请求**
+
+```js
+// 基本 GET 请求
+axios.get('/user?id=123')
+  .then(response => console.log(response.data))
+  .catch(error => console.error(error));
+
+// 带参数的 GET 请求
+axios.get('/user', {
+    params: {
+      id: 123,
+      name: 'John'
+    }
+  })
+  .then(response => console.log(response.data));
+
+// async/await 方式
+async function getUser() {
+  try {
+    const response = await axios.get('/user', { params: { id: 123 } });
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+```
+
+**post请求**
+
+```js
+// 基本 POST 请求
+axios.post('/user', {
+    firstName: 'John',
+    lastName: 'Doe'
+  })
+  .then(response => console.log(response.data));
+
+// 带配置对象的 POST
+axios.post('/user', {
+    firstName: 'John',
+    lastName: 'Doe'
+  }, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+```
+
+**其他请求**
+
+```js
+axios.put('/user', { id: 1, name: 'New Name' });
+axios.delete('/user', { params: { id: 123 } });
+axios.patch('/user', { name: 'Updated' });
+```
+
+#### 创建 axios 示例
+
+```js
+const instance = axios.create({
+  baseURL: 'https://api.example.com',
+  timeout: 5000,
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer token'
+  }
+});
+
+// 使用实例
+instance.get('/user');
+```
+
+#### 拦截器
+
+```js
+// 添加请求拦截器
+axios.interceptors.request.use(
+  config => {
+    // 在发送请求之前做些什么
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    // 请求错误时做些什么
+    return Promise.reject(error);
+  }
+);
+
+
+// 添加响应拦截器
+axios.interceptors.response.use(
+  response => {
+    // 对响应数据做点什么
+    return response.data;
+  },
+  error => {
+    // 对响应错误做点什么
+    if (error.response.status === 401) {
+      // 未授权，跳转登录
+    }
+    return Promise.reject(error);
+  }
+);
+
+// 移除拦截器
+const myInterceptor = axios.interceptors.request.use(/* ... */);
+axios.interceptors.request.eject(myInterceptor);
+```
+
+#### 解决跨域
+
+配置代理：方案一
+
+vue-cli 构建的项目：
+
+```js
+// vue.config.js
+module.exports = {
+  devServer: {
+    proxy: {
+      // 凡是 /api 开头的请求，都会被代理
+      '/api': {
+        target: 'http://api.target.com', // 目标服务器地址
+        changeOrigin: true, // 【核心】：是否改变请求来源，设为 true 才能绕过跨域
+        pathRewrite: {
+          '^/api': '' // 把路径中的 /api 去掉，比如 /api/user 变成 /user
+        }
+      }
+    }
+  }
+}
+```
+
+Vite 构建的项目
+
+```js
+// vite.config.js
+export default {
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://api.target.com', // 目标地址
+        changeOrigin: true, // 允许跨域
+        rewrite: (path) => path.replace(/^\/api/, '') // 路径重写
+      }
+    }
+  }
+}
+```
+
+#### 最佳实践
+
+```
+// src/utils/request.js
+import axios from 'axios';
+
+const request = axios.create({
+  baseURL: process.env.VUE_APP_BASE_API,
+  timeout: 5000
+});
+
+// 请求拦截器
+request.interceptors.request.use(config => {
+  // 添加 token
+  return config;
+}, error => {
+  return Promise.reject(error);
+});
+
+// 响应拦截器
+request.interceptors.response.use(response => {
+  return response.data;
+}, error => {
+  return Promise.reject(error);
+});
+
+export default request;
+```
+
+
+
 ## Ts 基础语法
 
 在 Vue 3 中，TS 主要用于约束 `props`、`ref`、`reactive` 以及函数的参数，确保代码在编写阶段就能发现错误。
