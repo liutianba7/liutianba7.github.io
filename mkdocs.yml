@@ -23,6 +23,7 @@ nav:
       - vue3: ./frontend/vue3.md
 
   - Code-Notes:
+      - 概览: ./code-notes/index.md
       - Java:
           - 并发编程: ./code-notes/java/concurrent.md
           - 设计模式: ./code-notes/java/design-patterns.md
