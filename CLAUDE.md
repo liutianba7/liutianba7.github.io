@@ -17,7 +17,7 @@ This is a **MkDocs-based personal technical blog** hosted on GitHub Pages. The b
 pip install mkdocs-material
 
 # Serve locally with hot reload for development
-mkdocs serve
+mkdocs serve --livereload
 
 # Build static site to 'site' directory
 mkdocs build

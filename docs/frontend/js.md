@@ -682,7 +682,266 @@ request.interceptors.response.use(response => {
 export default request;
 ```
 
+### 02 JS 模块化
 
+#### 为什么需要模块化？
+
+随着项目变大，所有代码写在一个文件里会很难维护。模块化就是把代码拆分成多个小文件（模块），每个文件负责一个功能，最后再组合起来。
+
+**核心好处**：
+
+- **命名空间隔离**：不同模块里的变量不会冲突
+
+- **代码复用**：写好的模块可以在多处使用
+
+- **可维护性**：修改一个模块不影响其他模块
+
+#### CommonJS (Node.js 模块规范)
+
+Node.js 采用 CommonJS 规范，使用 `require` 和 `module.exports`。
+
+```js
+// --- 导出模块 (module.js) ---
+const name = 'Alice';
+const age = 25;
+
+// 方式 1：导出单个值
+module.exports = name;
+
+// 方式 2：导出多个值（对象形式）
+module.exports = {
+    name,
+    age
+};
+
+// 方式 3：等价写法
+exports.name = name;
+exports.age = age;
+
+// --- 导入模块 (main.js) ---
+// 导入整个模块
+const mod = require('./module.js');
+console.log(mod.name); // Alice
+
+// 解构导入
+const { name, age } = require('./module.js');
+console.log(name); // Alice
+```
+
+#### ES Module (ES6 模块规范)
+
+浏览器和现代前端项目采用 ES6 模块规范，使用 `import` 和 `export`。
+
+```js
+// --- 导出模块 (module.js) ---
+
+// 方式 1：导出变量/函数
+export const name = 'Alice';
+export const age = 25;
+export function sayHi() {
+    console.log('Hi');
+}
+
+// 方式 2：默认导出（一个模块只能有一个 default）
+export default function() {
+    console.log('我是默认导出');
+}
+
+// 方式 3：统一导出
+const name = 'Alice';
+const age = 25;
+export { name, age };
+
+// --- 导入模块 (main.js) ---
+
+// 对应方式 1：按需导入
+import { name, sayHi } from './module.js';
+
+// 对应方式 2：导入默认导出（名字随便起）
+import anyName from './module.js';
+anyName(); // 我是默认导出
+
+// 导入整个模块
+import * as mod from './module.js';
+console.log(mod.name); // Alice
+
+// 只执行模块，不导入任何东西
+import './module.js';
+```
+
+#### CommonJS vs ES Module
+
+| 特性 | CommonJS | ES Module |
+|------|----------|-----------|
+| 语法 | `require` / `module.exports` | `import` / `export` |
+| 运行环境 | Node.js | 浏览器 / 现代前端 |
+| 执行时机 | 运行时加载 | 编译时静态分析 |
+| 导出方式 | 只能导出对象 | 可导出多个命名 export + 一个 default |
+| 循环依赖 | 支持（但可能拿到不完整值） | 不支持（会报错） |
+
+
+### 03 JS 原型链
+
+#### 构造函数与 `new`
+
+在 ES6 `class` 出现之前，JS 使用**构造函数**来创建对象。
+
+```js
+// 构造函数（首字母大写是约定）
+function Person(name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// 使用 new 关键字创建实例
+const p1 = new Person('Alice', 25);
+const p2 = new Person('Bob', 30);
+
+console.log(p1.name); // Alice
+console.log(p2.name); // Bob
+```
+
+`new` 做了什么：
+
+1. 创建一个空对象
+
+2. 将构造函数的 `this` 指向这个空对象
+
+3. 执行构造函数
+
+4. 返回这个对象
+
+#### `prototype` 和 `__proto__`
+
+```js
+function Person(name) {
+    this.name = name;
+}
+
+// prototype：构造函数的属性，是一个对象
+Person.prototype.sayHi = function() {
+    console.log('Hi, I am ' + this.name);
+};
+
+const p1 = new Person('Alice');
+
+// __proto__：实例对象的内部属性，指向构造函数的 prototype
+console.log(p1.__proto__ === Person.prototype); // true
+
+// 调用 sayHi 时，p1 自己没有这个方法，就会沿着 __proto__ 去找
+p1.sayHi(); // Hi, I am Alice
+```
+
+**核心关系图**：
+```
+p1 (实例)
+  ↓ __proto__
+Person.prototype
+  ↓ __proto__
+Object.prototype
+  ↓ __proto__
+null
+```
+
+#### 原型链继承
+
+JS 的对象查找机制：先在自身找，找不到就沿着 `__proto__` 往上找，这就是**原型链**。
+
+```js
+// 爷爷
+function Grand() {
+    this.lastName = '张';
+}
+Grand.prototype.grandMethod = function() {
+    console.log('爷爷的方法');
+};
+
+// 爸爸
+function Father() {
+    this.money = 100;
+}
+Father.prototype = new Grand(); // 爸爸的 prototype 指向爷爷的实例
+Father.prototype.fatherMethod = function() {
+    console.log('爸爸的方法');
+};
+
+// 儿子
+function Son() {
+    this.age = 10;
+}
+Son.prototype = new Father(); // 儿子的 prototype 指向爸爸的实例
+Son.prototype.sonMethod = function() {
+    console.log('儿子的方法');
+};
+
+const son = new Son();
+
+// 原型链查找
+son.sonMethod();    // 自己的方法
+son.fatherMethod(); // 爸爸的方法
+son.grandMethod();  // 爷爷的方法
+son.lastName;       // 张（从原型链继承的属性）
+```
+
+#### ES6 `class` 语法糖
+
+ES6 的 `class` 只是让写法更简洁，底层还是基于原型链。
+
+```js
+// --- 基本用法 ---
+class Person {
+    // 构造函数
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // 实例方法（自动添加到 prototype）
+    sayHi() {
+        console.log('Hi, I am ' + this.name);
+    }
+
+    // 静态方法（只能用类名调用）
+    static create(name) {
+        return new Person(name, 0);
+    }
+}
+
+const p = new Person('Alice', 25);
+p.sayHi(); // Hi, I am Alice
+Person.create('Bob'); // 创建新实例
+
+// --- 继承 (extends) ---
+class Student extends Person {
+    constructor(name, age, grade) {
+        super(name, age); // 调用父类构造函数
+        this.grade = grade;
+    }
+
+    // 重写父类方法
+    sayHi() {
+        super.sayHi(); // 调用父类方法
+        console.log('I am in grade ' + this.grade);
+    }
+}
+
+const s = new Student('Charlie', 15, 9);
+s.sayHi();
+// 输出:
+// Hi, I am Charlie
+// I am in grade 9
+```
+
+#### 总结对比
+
+| 概念 | 说明 |
+|------|------|
+| `prototype` | 构造函数的属性，用来存放共享方法 |
+| `__proto__` | 实例对象的内部链接，指向构造函数的 `prototype` |
+| 原型链 | 对象通过 `__proto__` 层层向上查找的链条 |
+| `class` | ES6 语法糖，让原型继承写法更清晰 |
+
+**一句话理解**：原型链就是"找不到就问爸爸，爸爸找不到就问爷爷"的继承机制。
 
 ## Ts 基础语法
 
