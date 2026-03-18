@@ -14,6 +14,7 @@ nav:
     - maven: ./java/01_Java_Core/maven.md
     - juc基础: ./java/01_Java_Core/juc.md
   - Python:
+      - python基础: ./python/Basic/python基础.md
       - langchain: ./python/Ai/langchain.md
       - pytorch: ./python/Ai/pytorch.md
       - fastapi: ./python/Web/fastapi.md

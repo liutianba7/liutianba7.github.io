@@ -182,14 +182,19 @@ Spring Boot 主要是通过 **Profile（环境切面）** 来实现的。
 之后，我们只需要激活指定的环境即可！
 
 1）在 `application.yml` 中设置 `spring.profiles.active=dev`。
+
 2）启动 Jar 包时手动指定：`java -jar app.jar --spring.profiles.active=prod`。
+
 3）JVM参数：`java -Dspring.profiles.active=prod -jar app.jar`。
+
 4）设置系统变量 `SPRING_PROFILES_ACTIVE=prod`。
 
 #### SpringBoot 的配置优先级⭐️
 
 **规律一：特定环境 > 通用环境** `application-dev.yml` 的优先级永远高于 `application.yml`。
+
 **规律二：外部文件 > 内部文件** 运维在 Jar 包外临时放的配置，会覆盖开发在 `src/main/resources` 里写的配置。
+
 **规律三：配置互补** 优先级高低并不代表“只加载一个”。Spring Boot 会加载所有位置的配置并进行**合并**。只有当 Key 冲突时，高优先级的才会覆盖低优先级的。
 
 
