@@ -1344,6 +1344,7 @@ import 'animate.css'
     leave-active-class="animate__backOutUp">
     <h1 v-show="isShow" key="1">你好，动画！</h1>
 </transition-group>
+
 ```
 
 ## vue 插槽
@@ -1366,7 +1367,7 @@ import 'animate.css'
 
 如果想在一个组件下有多个插槽，那么必须要给这个插槽一个名字，不然在放的时候都不知道往那个插槽放！通俗讲就是给组件挖坑的时候会有多个坑，每个坑有自己的名字，不然其他人放的时候没法放！
 
-在 vue 2.6，弃用了通过 slot = ‘xxx’ 去指定放在哪里，而是通过 v-slot: 插槽名 来指定。注意：这种语法只能写在 <template> 标签。
+在 vue 2.6，弃用了通过 slot = ‘xxx’ 去指定放在哪里，而是通过 v-slot: 插槽名 来指定。注意：这种语法只能写在 template 标签。
 
 ```
 <div class="layout">
@@ -1379,7 +1380,6 @@ import 'animate.css'
   <p>这是主体内容</p>
   <div slot="footer">这是底部</div>
 </Layout>
-
 ```
 
 ### 作用域插槽

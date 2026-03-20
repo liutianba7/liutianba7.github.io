@@ -1,3 +1,15 @@
+/* 修复目录独立滚动问题 */
+.md-sidebar--secondary .md-sidebar__scrollwrap {
+    overflow-y: auto;
+    max-height: calc(100vh - 2rem);
+}
+
+/* 确保目录容器正确定位 */
+.md-sidebar--secondary {
+    position: sticky;
+    top: 1rem;
+}
+
 /* 阅读时间 & 进度显示 */
 .reading-info {
     position: fixed;

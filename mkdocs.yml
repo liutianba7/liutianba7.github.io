@@ -104,6 +104,9 @@ copyright: |
   Copyright &copy; 2026 LiuTianBa7 
 
 markdown_extensions:
+#  - toc:
+#      toc_depth: 4              # 目录显示到四级标题
+#      permalink: true           # 标题旁显示永久链接图标
   - attr_list
   - md_in_html
   - admonition
