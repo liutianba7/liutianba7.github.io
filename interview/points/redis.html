@@ -266,7 +266,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../python/Ai/langchain.html" class="md-tabs__link">
+        <a href="../../python/Basic/python%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
           
   
   
@@ -690,6 +690,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/Basic/python%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -4533,16 +4561,30 @@
 <h4 id="redis-memcached">Redis 和 Memcached 的区别合共同点？</h4>
 <p><em>区别</em></p>
 <ol>
-<li>Memcached 只支持最基本的 KV 键值对，而 Redis 支持的数据类型很丰富。</li>
-<li>Redis 支持将数据持久化到磁盘，但Memcached 不支持。</li>
-<li>Memcached 是多线程、非阻塞 IO 复用的网络模型；而 Redis 使用单线程的多路 IO 复用模型（Redis 6.0 针对网络数据的读写引入了多线程）。</li>
-<li>Memcached 没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据；而 Redis 自 3.0 版本起是原生支持集群模式的。</li>
+<li>
+<p>Memcached 只支持最基本的 KV 键值对，而 Redis 支持的数据类型很丰富。</p>
+</li>
+<li>
+<p>Redis 支持将数据持久化到磁盘，但Memcached 不支持。</p>
+</li>
+<li>
+<p>Memcached 是多线程、非阻塞 IO 复用的网络模型；而 Redis 使用单线程的多路 IO 复用模型（Redis 6.0 针对网络数据的读写引入了多线程）。</p>
+</li>
+<li>
+<p>Memcached 没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据；而 Redis 自 3.0 版本起是原生支持集群模式的。</p>
+</li>
 </ol>
 <p><em>共同点</em></p>
 <ol>
-<li>都是基于内存的数据库，一般都用来当做缓存使用。</li>
-<li>都有过期策略。</li>
-<li>两者的性能都非常高。</li>
+<li>
+<p>都是基于内存的数据库，一般都用来当做缓存使用。</p>
+</li>
+<li>
+<p>都有过期策略。</p>
+</li>
+<li>
+<p>两者的性能都非常高。</p>
+</li>
 </ol>
 <h4 id="_1">什么是惰性删除、什么是定期删除⭐️</h4>
 <p>简单来说，当一个 Key 设置了过期时间（TTL），到期后 Redis 并不是立刻把它从内存里删掉（因为那样太消耗 CPU 了），而是通过 <strong>“懒汉式”</strong> 和 <strong>“体检式”</strong> 两种手段结合来清理。</p>
@@ -4588,20 +4630,20 @@ RedisTimeSeries（时序数据库）
 <p>为了实现数据的分布式存储，Redis 集群没有使用传统的“一致性哈希”，而是引入了<strong>哈希槽</strong>的概念。</p>
 <p>Redis 集群预置了 <strong>16384</strong> (<span class="arithmatex">\(2^{14}\)</span>) 个哈希槽。</p>
 <p>映射机制：当你要存储一个 Key 时，Redis 会对 Key 进行 CRC16 校验，然后对 16384 取模：</p>
-<p>$<span class="arithmatex">\(Slot = CRC16(key) \pmod{16384}\)</span>$
-集群中的每个 Master 节点负责维护一部分槽位。</p>
+<div class="arithmatex">\[Slot = CRC16(key) \pmod{16384}\]</div>
+<p>集群中的每个 Master 节点负责维护一部分槽位。</p>
 <h4 id="redis_9">Redis 集群方案应该怎么做 都有哪些方案 ？</h4>
 <h5 id="replication">主从复制（Replication）</h5>
 <p><strong>做法</strong>：一个 Master，多个 Slave。数据从 Master 同步到 Slave。</p>
 <p><strong>优点</strong>：读写分离，分担读压力。</p>
 <p><strong>缺点</strong>：<strong>不具备自动故障转移</strong>。Master 挂了，系统就瘫痪了，需要人工干预。</p>
 <h5 id="sentinel">哨兵模式（Sentinel）</h5>
-<p>做法：在主从基础上引入“哨兵”进程。哨兵时刻盯着 Master，发现它挂了就自动从 Slave 中选出一个新 Master。
-<strong>优点</strong>：实现了<strong>高可用（HA）</strong>。
-<strong>缺点</strong>：<strong>无法横向扩容</strong>。所有写操作依然在 Master 上，受限于单机内存容量。</p>
+<p>做法：在主从基础上引入“哨兵”进程。哨兵时刻盯着 Master，发现它挂了就自动从 Slave 中选出一个新 Master。</p>
+<p><strong>优点</strong>：实现了<strong>高可用（HA）</strong>。</p>
+<p><strong>缺点</strong>：<strong>无法横向扩容</strong>。所有写操作依然在 Master 上，受限于单机内存容量。</p>
 <h5 id="redis-cluster">Redis Cluster（官方推荐分布式方案）</h5>
-<p>多主多从，利用上述的“哈希槽”将数据分布在不同节点。
-缺点：批量操作（如 MSET）受限，必须保证 Key 在同一个槽（可以通过 Hash Tag 解决）。</p>
+<p>多主多从，利用上述的“哈希槽”将数据分布在不同节点。</p>
+<p>缺点：批量操作（如 MSET）受限，必须保证 Key 在同一个槽（可以通过 Hash Tag 解决）。</p>
 <h2 id="redis_10">Redis 应用</h2>
 <h4 id="1-redis">1. Redis 除了做缓存，还能做什么？</h4>
 <p>分布式锁：在多机部署的环境下，Java 原生的 <code>synchronized</code> 或 <code>ReentrantLock</code> 只能锁住当前服务器。</p>
@@ -4625,9 +4667,9 @@ RedisTimeSeries（时序数据库）
 <div class="highlight"><pre><span></span><code><span class="n">SET</span><span class="w"> </span><span class="n">lock_key</span><span class="w"> </span><span class="n">unique_value</span><span class="w"> </span><span class="n">NX</span><span class="w"> </span><span class="n">PX</span><span class="w"> </span><span class="mi">30000</span>
 </code></pre></div>
 <p>Redisson (工业级标准)</p>
-<p>① 看门狗机制 (Watch Dog) —— 解决“业务没执行完，锁过期了”
-② 可重入性
-③ 红锁算法 (Redlock) —— 解决“Redis 集群宕机”</p>
+<p>① 看门狗机制 (Watch Dog) —— 解决“业务没执行完，锁过期了”</p>
+<p>② 可重入性</p>
+<p>③ 红锁算法 (Redlock) —— 解决“Redis 集群宕机”</p>
 <h4 id="lua">为什么释放锁的时候要用 lua 脚本⭐️</h4>
 <p>因为释放锁需要“先查询、再比较、再删除”三个动作是非原子的。为了保证这三步在 Redis 里是原子的（防止误删其他人的锁），必须封装在 Lua 脚本中执行。</p>
 <p>1）<strong>GET</strong>：获取锁的持有者标识（UUID）。</p>
@@ -5055,9 +5097,15 @@ BITCOUNT result:and
 <h2 id="redis_16">Redis 持久化机制⭐️⭐️⭐️</h2>
 <p>大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了做数据同步（比如 Redis 集群的主从节点通过 RDB 文件同步数据）。</p>
 <ul>
-<li>快照（snapshotting，RDB）</li>
-<li>只追加文件（append-only file, AOF）</li>
-<li>RDB 和 AOF 的混合持久化(Redis 4.0 新增)</li>
+<li>
+<p>快照（snapshotting，RDB）</p>
+</li>
+<li>
+<p>只追加文件（append-only file, AOF）</p>
+</li>
+<li>
+<p>RDB 和 AOF 的混合持久化(Redis 4.0 新增)</p>
+</li>
 </ul>
 <h4 id="rbd">RBD 持久化⭐️</h4>
 <h5 id="rdb">什么是 RDB 持久化</h5>
@@ -5073,11 +5121,11 @@ BITCOUNT result:and
 <p>AOF 是以<strong>日志</strong>的形式记录 Redis 执行过的每一条<strong>写命令</strong>，重启时通过重新执行这些命令来恢复数据。</p>
 <p>可以通过 appendonly 参数来开启 AOF 持久化！</p>
 <h4 id="aof_2">AOF 工作基本流程是怎么样的？⭐️</h4>
-<p>1、<strong>命令追加 (Append)</strong>：写命令先存入 Redis 的 <strong>AOF 缓冲区</strong>，避免直接 I/O 阻塞主线程。
-2、<strong>文件写入 (Write)</strong>：将缓冲区数据调用系统 <code>write</code> 函数写入<strong>系统内核缓冲区</strong>，此时数据尚未落盘。
-3、<strong>文件同步 (Fsync)</strong>：核心步骤。根据配置策略（如每秒一次）调用 <code>fsync</code>，将内核缓冲区数据<strong>强制同步到硬盘</strong>。
-4、<strong>文件重写（rewrite）</strong>：随着 AOF 文件越来越大，需要定期对 AOF 文件进行重写，达到压缩的目的。
-5、<strong>重启加载 (Load)</strong>：Redis 重启时通过执行 AOF 里的命令来<strong>恢复数据</strong>。</p>
+<p>1、<strong>命令追加 (Append)</strong>：写命令先存入 Redis 的 <strong>AOF 缓冲区</strong>，避免直接 I/O 阻塞主线程。</p>
+<p>2、<strong>文件写入 (Write)</strong>：将缓冲区数据调用系统 <code>write</code> 函数写入<strong>系统内核缓冲区</strong>，此时数据尚未落盘。</p>
+<p>3、<strong>文件同步 (Fsync)</strong>：核心步骤。根据配置策略（如每秒一次）调用 <code>fsync</code>，将内核缓冲区数据<strong>强制同步到硬盘</strong>。</p>
+<p>4、<strong>文件重写（rewrite）</strong>：随着 AOF 文件越来越大，需要定期对 AOF 文件进行重写，达到压缩的目的。</p>
+<p>5、<strong>重启加载 (Load)</strong>：Redis 重启时通过执行 AOF 里的命令来<strong>恢复数据</strong>。</p>
 <h5 id="aof_3">AOF 的持久化方式有哪些？</h5>
 <p>在 Redis 的配置文件中存在三种不同的 AOF 持久化方式（ <code>fsync</code>策略），它们分别是：
 <code>appendfsync always</code>:   主线程调用 <code>write</code> 执行写操作后，会立刻调用 <code>fsync</code> 函数同步 AOF 文件（刷盘）。主线程会阻塞，直到 <code>fsync</code> 将数据完全刷到磁盘后才会返回。这种方式数据最安全，理论上不会有任何数据丢失。但因为每个写操作都会同步阻塞主线程，所以性能极差。</p>
@@ -5124,11 +5172,13 @@ BITCOUNT result:and
     <img src="../../assets/imgs/interview/redis/redis07.png" alt="redis07" style="zoom:80%;" />
 </p>
 
-<p>文件事件处理器（file event handler）主要是包含 4 个部分：
-- 多个 socket（客户端连接）
-- IO 多路复用程序（支持多个客户端连接的关键）
-- 文件事件分派器（将 socket 关联到相应的事件处理器）
-- 事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）</p>
+<p>文件事件处理器（file event handler）主要是包含 4 个部分：</p>
+<ul>
+<li>多个 socket（客户端连接）</li>
+<li>IO 多路复用程序（支持多个客户端连接的关键）</li>
+<li>文件事件分派器（将 socket 关联到相应的事件处理器）</li>
+<li>事件处理器（连接应答处理器、命令请求处理器、命令回复处理器）</li>
+</ul>
 <h4 id="redis_18">Redis 为什么是单线程的？</h4>
 <p>因为Redis是基于内存的操作，CPU不是Redis的瓶颈，Redis的瓶颈最有可能是机器内存的大小或者网络带宽。既然单线程容易实现，而且CPU不会成为瓶颈，那就顺理成章地采用单线程的方案了。Redis利用队列技术将并发访问变为串行访问</p>
 <p>1）绝大部分请求是纯粹的内存操作</p>

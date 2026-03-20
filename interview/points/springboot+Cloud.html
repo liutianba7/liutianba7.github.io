@@ -266,7 +266,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../python/Ai/langchain.html" class="md-tabs__link">
+        <a href="../../python/Basic/python%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
           
   
   
@@ -690,6 +690,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/Basic/python%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2703,14 +2731,14 @@
 - <strong><code>application-prod.yml</code></strong>：生产环境（连接生产库，开启安全校验）。
 - <strong><code>application.yml</code></strong>：主配置文件（存放通用的、不随环境变化的配置）。</p>
 <p>之后，我们只需要激活指定的环境即可！</p>
-<p>1）在 <code>application.yml</code> 中设置 <code>spring.profiles.active=dev</code>。
-2）启动 Jar 包时手动指定：<code>java -jar app.jar --spring.profiles.active=prod</code>。
-3）JVM参数：<code>java -Dspring.profiles.active=prod -jar app.jar</code>。
-4）设置系统变量 <code>SPRING_PROFILES_ACTIVE=prod</code>。</p>
+<p>1）在 <code>application.yml</code> 中设置 <code>spring.profiles.active=dev</code>。</p>
+<p>2）启动 Jar 包时手动指定：<code>java -jar app.jar --spring.profiles.active=prod</code>。</p>
+<p>3）JVM参数：<code>java -Dspring.profiles.active=prod -jar app.jar</code>。</p>
+<p>4）设置系统变量 <code>SPRING_PROFILES_ACTIVE=prod</code>。</p>
 <h4 id="springboot_7">SpringBoot 的配置优先级⭐️</h4>
-<p><strong>规律一：特定环境 &gt; 通用环境</strong> <code>application-dev.yml</code> 的优先级永远高于 <code>application.yml</code>。
-<strong>规律二：外部文件 &gt; 内部文件</strong> 运维在 Jar 包外临时放的配置，会覆盖开发在 <code>src/main/resources</code> 里写的配置。
-<strong>规律三：配置互补</strong> 优先级高低并不代表“只加载一个”。Spring Boot 会加载所有位置的配置并进行<strong>合并</strong>。只有当 Key 冲突时，高优先级的才会覆盖低优先级的。</p>
+<p><strong>规律一：特定环境 &gt; 通用环境</strong> <code>application-dev.yml</code> 的优先级永远高于 <code>application.yml</code>。</p>
+<p><strong>规律二：外部文件 &gt; 内部文件</strong> 运维在 Jar 包外临时放的配置，会覆盖开发在 <code>src/main/resources</code> 里写的配置。</p>
+<p><strong>规律三：配置互补</strong> 优先级高低并不代表“只加载一个”。Spring Boot 会加载所有位置的配置并进行<strong>合并</strong>。只有当 Key 冲突时，高优先级的才会覆盖低优先级的。</p>
 <h4 id="springcloud">什么是SpringCloud</h4>
 <p>“Spring Cloud 是基于 Spring Boot 实现的一套<strong>微服务架构的一站式解决方案</strong>。它并不是重新发明轮子，而是通过封装一系列成熟的开源中间件，实现了分布式系统开发中的<strong>服务注册于发现、配置管理、远程调用与负载均衡、熔断、降级与限流</strong> 等一系列功能</p>
 <ul>
