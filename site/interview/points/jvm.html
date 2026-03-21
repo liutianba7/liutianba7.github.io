@@ -266,7 +266,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../python/Ai/langchain.html" class="md-tabs__link">
+        <a href="../../python/Basic/python%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
           
   
   
@@ -690,6 +690,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/Basic/python%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -3410,7 +3438,7 @@
 <h4 id="3-jvm">3. JVM 的特性有哪些？</h4>
 <p>（1）JVM 可以自动管理内存，通过垃圾回收器回收不再使用的对象并释放内存空间。</p>
 <p>（2）JVM 包含一个即时编译器 JIT，它可以在运行时将热点代码缓存到 codeCache 中，下次执行的时候不用再一行一行的解释，而是直接执行缓存后的机器码，执行效率会大幅提高。</p>
-<p>（3）任何可以通过 Java 编译的语言，比如说 Groovy、Kotlin、Scala 等，都可以在 JVM 上运行。z</p>
+<p>（3）任何可以通过 Java 编译的语言，比如说 Groovy、Kotlin、Scala 等，都可以在 JVM 上运行。</p>
 <h4 id="4-jvm">4. 学习 JVM 的好处</h4>
 <ul>
 <li>
@@ -3548,11 +3576,11 @@
 <h4 id="_3">补充：什么时候会使用到加载器？</h4>
 <p>除非不得不加载，否则 JVM 绝不主动加载类。</p>
 <p>根据 Java 虚拟机规范，只有在对类进行<strong>主动引用</strong>时，才会触发类加载（包括加载、链接、初始化）。</p>
-<p>1）使用 <code>new</code> 关键字实例化对象时，第一步就是检查当前类有没有加载完成，没有则进行类加载过程。
- 2）访问类或接口的静态成员时，会触发类加载。
- 3）使用反射调用类时，当你执行 <code>Class.forName("com.test.User")</code> 或 <code>ClassLoader.loadClass(...)</code> 时，会显式触发加载。
- 4）Java 规定：初始化一个类时，如果其父类还没初始化，必须<strong>先触发父类的初始化</strong>。
- 5）JVM 启动时，必须先加载并初始化包含 <code>main()</code> 方法的那个主类。</p>
+<p>1）使用 <code>new</code> 关键字实例化对象时，第一步就是检查当前类有没有加载完成，没有则进行类加载过程。</p>
+<p>2）访问类或接口的静态成员时，会触发类加载。</p>
+<p>3）使用反射调用类时，当你执行 <code>Class.forName("com.test.User")</code> 或 <code>ClassLoader.loadClass(...)</code> 时，会显式触发加载。</p>
+<p>4）Java 规定：初始化一个类时，如果其父类还没初始化，必须<strong>先触发父类的初始化</strong>。</p>
+<p>5）JVM 启动时，必须先加载并初始化包含 <code>main()</code> 方法的那个主类。</p>
 <p><strong>什么是“被动引用”（不触发初始化）</strong></p>
 <ul>
 <li><strong>通过数组定义引用类</strong>： <code>User[] users = new User[10];</code> <em>这只会触发数组类（JVM 自动生成的类）的加载，并不会初始化 <code>User</code> 类。</em></li>
@@ -3653,21 +3681,21 @@
 <p>考虑到 JVM 的规范：对象首地址与 8 字节对齐，所以我们需要进行对其填充，当前是12字节，对齐填充到 16 字节。</p>
 <h4 id="20">20. 如何判断一个对象可以被回收了？⭐️</h4>
 <ul>
-<li>引用计数法（Reference Counting）</li>
-</ul>
-<p>：</p>
-<ul>
-<li><strong>原理</strong>：每个对象有一个计数器，被引用加 1，失效减 1。计数为 0 即可回收。</li>
+<li>
+<p>引用计数法（Reference Counting）：</p>
+</li>
+<li>
+<p><strong>原理</strong>：每个对象有一个计数器，被引用加 1，失效减 1。计数为 0 即可回收。</p>
+</li>
 <li>
 <p><strong>缺点</strong>：<strong>无法解决循环引用问题</strong>（A 引用 B，B 引用 A，但没别人用它们），Java <strong>不使用</strong>此方法。</p>
 </li>
 <li>
-<p>可达性分析算法（Reachability Analysis）</p>
+<p>可达性分析算法（Reachability Analysis）：</p>
 </li>
-</ul>
-<p>：</p>
-<ul>
-<li><strong>原理</strong>：从一系列称为 <strong>“GC Roots”</strong> 的根对象开始向下搜索，搜索过的路径称为引用链。如果一个对象到 GC Roots 没有任何引用链相连，则证明此对象不可用。</li>
+<li>
+<p><strong>原理</strong>：从一系列称为 <strong>“GC Roots”</strong> 的根对象开始向下搜索，搜索过的路径称为引用链。如果一个对象到 GC Roots 没有任何引用链相连，则证明此对象不可用。</p>
+</li>
 <li><strong>Java 使用此方法</strong>。</li>
 </ul>
 <p>在java中可以作为GC Roots的对象有以下几种：虚拟机栈中引用的对象、方法区类静态属性引用的对象、方法区常量池引用的对象、本地方法栈JNI引用的对象。</p>
@@ -3695,12 +3723,11 @@
 <p><strong>核心思想</strong>：这不是一种新算法，而是<strong>按对象生命周期分配算法</strong></p>
 </li>
 <li>
-<p>划分</p>
+<p>划分：</p>
 </li>
-</ul>
-<p>：</p>
-<ul>
-<li><strong>年轻代</strong>：对象死得快，用 <strong>标记-复制</strong> 算法。</li>
+<li>
+<p><strong>年轻代</strong>：对象死得快，用 <strong>标记-复制</strong> 算法。</p>
+</li>
 <li><strong>老年代</strong>：对象活得久，用 <strong>标记-清除</strong> 或 <strong>标记-整理</strong> 算法。</li>
 </ul>
 <h4 id="22-stackoverflowerror">22 什么情况下会产生 StackOverFlowError</h4>

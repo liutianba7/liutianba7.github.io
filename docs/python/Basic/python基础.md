@@ -2687,7 +2687,7 @@ Python 提供了多种并发编程方式：**多线程**、**多进程**和**异
 
 ### 11.2 GIL（全局解释器锁）
 
-**GIL**（Global Interpreter Lock）是 CPython 解释器的机制，确保同一时刻只有一个线程执行 Python 字节码。
+**GIL**（Global Interpreter Lock）是 CPython 解释器的机制，确保同一时刻一个进程下面只有一个线程执行 Python 字节码。如果没有全局解释器锁，就会出现内存泄漏的问题！ 
 
 ```python
 """
@@ -3751,5 +3751,678 @@ t2.join()
 print('main thread end')
 ```
 
-
 #### 3. 生产者消费者
+
+**生产者-消费者模式**是一种经典的并发设计模式，用于解决生产数据和消费数据速度不匹配的问题。
+
+**核心组件**：
+
+- **生产者**：负责生成数据，放入队列
+- **消费者**：负责从队列取出数据，进行处理
+- **缓冲区**：通常是队列，用于解耦生产者和消费者
+
+**为什么需要这个模式**：
+
+1. **解耦**：生产者不需要知道消费者是谁，反之亦然
+2. **削峰填谷**：消费者处理能力不足时，数据在队列中缓存
+3. **并发**：多个生产者和消费者可以并行工作
+
+**基础实现 - 使用 Queue**：内置同步，代码简洁，生产环境首选
+
+```python
+# 打印锁，防止输出混乱  
+print_lock = threading.Lock()  
+  
+# 创建有限容量的队列（缓冲区）  
+buffer = queue.Queue(maxsize=10)  
+  
+# 产品编号计数器（线程安全）  
+idx_counter = itertools.count()  
+  
+def safe_print(msg):  
+    """线程安全的打印函数"""  
+    with print_lock:  
+        print(msg)  
+  
+def producer(name):  
+    """生产者：不断生产数据"""  
+    for i in range(20):  
+        item = f"产品-{next(idx_counter)}"  
+        # put(block=True): 队列满时阻塞等待  
+        buffer.put(item)  
+        safe_print(f"[{name}] 生产了 {item}，队列大小: {buffer.qsize()}")  
+  
+        # 模拟生产时间  
+        time.sleep(random.uniform(0.1, 0.5))  
+  
+    safe_print(f"[{name}] 生产结束")  
+  
+def consumer(name):  
+    """消费者：不断消费数据"""  
+    while True:  
+        try:  
+            item = buffer.get(timeout=1)  
+            safe_print(f'[{name}] 消费了 {item}，队列大小: {buffer.qsize()}')  
+            time.sleep(random.uniform(0.1, 0.5))  
+            buffer.task_done()  
+        except queue.Empty:  
+            safe_print(f'[{name}] 队列为空，退出')  
+            break  
+  
+# 创建线程  
+producers = [threading.Thread(target=producer, args=(f"生产者-{i}",)) for i in range(2)]  
+consumers = [threading.Thread(target=consumer, args=(f"消费者-{i}",)) for i in range(3)]  
+  
+# 启动  
+for p in producers:  
+    p.start()  
+for c in consumers:  
+    c.start()  
+  
+# 等待所有生产者完成  
+for p in producers:  
+    p.join()  
+  
+safe_print("所有生产者已完成")  
+  
+# 等待队列中所有项目被处理  
+buffer.join()  
+safe_print("所有项目已处理完毕")
+```
+
+**使用 Condition 实现（更底层控制）**：更加像 java 版本，上边的写法有点恶心啊。
+
+```python
+import threading  
+from threading import Thread, Lock, Condition  
+  
+lock = Lock()  
+buffer = []  
+capacity = 5  
+not_full = Condition(lock)  
+not_empty = Condition(lock)  
+idx = 0  
+  
+def produce():  
+    for i in range(100):  
+        global idx  
+        with not_full:  
+            while len(buffer) == capacity:  
+                print("Buffer is full")  
+                not_full.wait()  
+  
+            buffer.append(idx)  
+            print(f'{threading.current_thread().name} 生产了产品 {idx}，当前缓冲区有 {len(buffer)}/{capacity} 个产品')  
+            idx += 1  
+            not_empty.notify()  
+  
+  
+def consume():  
+    while True:  
+        with not_empty:  
+            while len(buffer) == 0:  
+                print("Buffer is empty")  
+                not_empty.wait()  
+  
+            val = buffer.pop(0)  
+            print(f'{threading.current_thread().name} 消费了产品 {val}, 当前缓冲区有 {len(buffer)}/{capacity} 个产品')  
+            not_full.notify()  
+  
+  
+p1 = Thread(target=produce, name='p1')  
+c1 = Thread(target=consume, name='c1')  
+p1.start()  
+c1.start()
+```
+
+**使用 Semaphore 实现（控制并发数）**：
+
+```python
+import threading
+import time
+import random
+
+class SemaphoreBuffer:
+    """使用信号量实现的生产者-消费者"""
+
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.buffer = []
+        self.mutex = threading.Semaphore(1)       # 互斥锁
+        self.empty = threading.Semaphore(capacity)  # 空位数量
+        self.full = threading.Semaphore(0)          # 已占用数量
+
+    def put(self, item):
+        """放入数据"""
+        self.empty.acquire()   # 获取一个空位（没有就等待）
+        self.mutex.acquire()   # 进入临界区
+
+        self.buffer.append(item)
+        print(f"生产: {item}")
+
+        self.mutex.release()   # 离开临界区
+        self.full.release()    # 增加一个已占用位
+
+    def get(self):
+        """取出数据"""
+        self.full.acquire()    # 获取一个已占用位（没有就等待）
+        self.mutex.acquire()   # 进入临界区
+
+        item = self.buffer.pop(0)
+        print(f"消费: {item}")
+
+        self.mutex.release()   # 离开临界区
+        self.empty.release()   # 增加一个空位
+        return item
+
+# 使用与 Condition 版本相同
+```
+
+**最佳实践 - 使用 concurrent.futures**：
+
+```python
+from concurrent.futures import ThreadPoolExecutor
+import time
+
+def process_data(item):
+    """消费者逻辑"""
+    time.sleep(0.5)
+    return f"处理完成: {item}"
+
+def main():
+    items = [f"数据-{i}" for i in range(20)]
+
+    # ThreadPoolExecutor 内部已经实现了生产者-消费者模式
+    with ThreadPoolExecutor(max_workers=4) as executor:
+        # 提交任务（生产者行为）
+        futures = [executor.submit(process_data, item) for item in items]
+
+        # 获取结果（消费者行为）
+        results = [f.result() for f in futures]
+
+    return results
+
+if __name__ == "__main__":
+    results = main()
+    print(f"完成 {len(results)} 项处理")
+```
+
+## 十二、协程
+
+#### 协程是什么？
+
+**协程**（Coroutine）是一种**用户态的轻量级线程**，由程序员控制调度，而非操作系统内核。它允许函数在执行过程中**暂停**（挂起）并在稍后**恢复**，实现**协作式多任务**。
+
+本质上，协程就是一个可以被挂起，挂起后还可以恢复执行的函数。
+
+**与线程/进程的区别**：
+
+| 对比项      | 进程        | 线程          | 协程          |
+| -------- | --------- | ----------- | ----------- |
+| **调度者**  | 操作系统内核    | 操作系统内核      | 用户程序（事件循环）  |
+| **切换成本** | 高（需切换页表）  | 中（需切换栈）     | 极低（纯代码切换）   |
+| **内存占用** | 高（独立内存空间） | 中（共享内存）     | 极低（几 KB 栈）  |
+| **数据安全** | 进程间隔离     | 需加锁保护       | 单线程安全       |
+| **适用场景** | CPU 密集型   | I/O 密集型（少量） | I/O 密集型（大量） |
+
+#### 基础语法
+
+Python 使用 `async` 和 `await` 关键字定义和使用协程。`async` 修饰的函数叫做写成函数，调用协程函数，不会立即执行代码，而是会返回一个协程对象（coroutine）
+
+```python
+import asyncio
+
+# async def 定义协程函数
+async def say_hello():
+    print("Hello")
+    # await 暂停协程，等待异步操作完成
+    # await 后面必须是 Awaitable 对象（协程、任务、Future）
+    await asyncio.sleep(1)  # 模拟 I/O 操作
+    print("World")
+
+# 协程函数调用不会立即执行，而是返回协程对象
+coro = say_hello()
+print(type(coro))  # <class 'coroutine'> 
+
+# 运行协程
+asyncio.run(say_hello())  # Python 3.7+ 推荐方式
+```
+
+**asyncio.run() 执行流程**：
+
+```
+asyncio.run(main())
+    ↓
+创建事件循环（Event Loop）
+    ↓
+运行 main() 直到完成
+    ↓
+遇到 await → 挂起当前协程，执行其他就绪协程
+    ↓
+所有协程完成
+    ↓
+关闭事件循环
+```
+
+#### await 关键字
+
+`await` 是协程的核心关键字，用于**挂起当前协程**，等待异步操作完成。
+
+**执行机制**：
+
+| 阶段 | 行为 | 说明 |
+|------|------|------|
+| **挂起** | 暂停当前协程执行 | 保存当前执行状态（上下文） |
+| **等待** | 事件循环调度其他任务 | `await` 后的对象进入事件循环执行 |
+| **恢复** | 异步操作完成 | 事件循环恢复之前挂起的协程，从暂停处继续 |
+
+```python
+import asyncio
+
+async def task(name, delay):
+    print(f"[{name}] 步骤1: 开始")
+    await asyncio.sleep(delay)  # ← 挂起点
+    print(f"[{name}] 步骤2: 继续执行")  # ← 恢复后从这里继续
+    return f"{name} 完成"
+
+async def main():
+    # await 只能在 async def 函数内部使用
+    result = await task("A", 1)
+    print(result)
+
+asyncio.run(main())
+```
+
+**await 可以接的对象**（必须是 Awaitable）：协程对象 | Future 对象 | Task 对象
+
+```python
+import asyncio
+
+async def coroutine_func():
+    """协程函数"""
+    await asyncio.sleep(0.1)
+    return "协程结果"
+
+async def main():
+    # 1. 另一个协程
+    result = await coroutine_func()
+
+    # 2. Task 对象
+    task = asyncio.create_task(coroutine_func())
+    result = await task
+
+    # 3. Future 对象
+    future = asyncio.Future()
+    future.set_result("Future 结果")
+    result = await future
+
+    # ❌ 错误：await 后面不能是普通函数
+    # await time.sleep(1)  # TypeError!
+
+asyncio.run(main())
+```
+
+**事件循环调度原理**：
+
+```
+协程 A: await asyncio.sleep(2)          协程 B: await asyncio.sleep(1)
+    ↓                                        ↓
+挂起 A，注册定时器（2秒后唤醒）         挂起 B，注册定时器（1秒后唤醒）
+    ↓                                        ↓
+               ↓ 事件循环检查 ↓
+               ↓
+         1秒到了 → 唤醒 B 执行 → B 完成
+               ↓
+         2秒到了 → 唤醒 A 执行 → A 完成
+```
+
+**关键特性**：
+
+```python
+import asyncio
+
+async def main():
+    # 1. await 不会阻塞整个程序，只挂起当前协程
+    print("开始")
+    await asyncio.sleep(1)  # 这 1 秒内，其他协程可以运行
+    print("结束")
+
+    # 2. 多个 await 是顺序执行
+    await asyncio.sleep(1)  # 等待 1 秒
+    await asyncio.sleep(1)  # 再等待 1 秒（总共 2 秒）
+
+    # 3. 要并发执行，需要使用 gather 或 create_task
+    await asyncio.gather(
+        asyncio.sleep(1),
+        asyncio.sleep(1)
+    )  # 总共约 1 秒
+
+asyncio.run(main())
+```
+
+**常见错误**：
+
+```python
+import asyncio
+
+# ❌ 错误1：在普通函数中使用 await
+def normal_func():
+    await asyncio.sleep(1)  # SyntaxError!
+
+# ✅ 正确：只能在 async def 函数中使用
+async def async_func():
+    await asyncio.sleep(1)
+
+# ❌ 错误2：忘记 await
+coro = async_func()  # 这只是创建协程对象，不会执行！
+
+# ✅ 正确：必须 await
+coro = async_func()
+await coro
+# 或直接
+await async_func()
+
+# ❌ 错误3：await 非 Awaitable 对象
+await "hello"  # TypeError: object str can't be used in 'await' expression
+```
+
+#### 并发执行协程
+
+**asyncio.gather()** - 并发运行多个协程：
+
+```python
+import asyncio
+
+async def task(name, delay):
+    print(f"[{name}] 开始")
+    await asyncio.sleep(delay)  # 挂起，不阻塞其他协程
+    print(f"[{name}] 完成")
+    return f"{name} 的结果"
+
+async def main():
+    # 顺序执行（慢）
+    print("=== 顺序执行 ===")
+    await task("A", 1)
+    await task("B", 1)
+    await task("C", 1)  # 共 3 秒
+
+    # 并发执行（快）
+    print("\n=== 并发执行 ===")
+    # gather() 同时启动所有协程，等待全部完成
+    results = await asyncio.gather(
+        task("A", 1), 
+        task("B", 1),
+        task("C", 1)
+    )
+    print(f"结果: {results}")  # ['A 的结果', 'B 的结果', 'C 的结果']
+    # 总共约 1 秒
+
+asyncio.run(main())
+```
+
+**asyncio.create_task()** - 创建一个可以被事件循环调度的任务：
+
+```python
+import asyncio
+
+async def background_task(name):
+    for i in range(3):
+        await asyncio.sleep(1)
+        print(f"[{name}] 进度 {i+1}/3")
+    return f"{name} 完成"
+
+async def main():
+    # create_task() 立即在后台启动协程
+    task1 = asyncio.create_task(background_task("任务1"))
+    task2 = asyncio.create_task(background_task("任务2"))
+
+    print("任务已启动，继续执行其他代码...")
+    await asyncio.sleep(0.5)  # 模拟其他工作
+
+    # await 任务等待其完成
+    result1 = await task1
+    result2 = await task2
+    print(f"{result1}, {result2}")
+
+asyncio.run(main())
+```
+
+#### 等待多个协程的不同方式
+
+| 函数 | 作用 | 返回时机 |
+|------|------|---------|
+| `gather()` | 并发执行全部 | 全部完成 |
+| `wait()` | 等待满足条件 | 指定条件 |
+| `wait_for()` | 带超时等待 | 完成或超时 |
+| `as_completed()` | 谁完成先处理谁 | 逐个返回 |
+
+```python
+import asyncio
+
+async def task(name, delay):
+    await asyncio.sleep(delay)
+    return f"{name} 完成"
+
+async def main():
+    tasks = [
+        task("A", 3),
+        task("B", 1),
+        task("C", 2)
+    ]
+
+    # wait_for - 带超时
+    try:
+        result = await asyncio.wait_for(task("A", 5), timeout=2)
+    except asyncio.TimeoutError:
+        print("超时！")
+
+    # wait - 等待指定条件
+    done, pending = await asyncio.wait(
+        [asyncio.create_task(t) for t in tasks],
+        return_when=asyncio.FIRST_COMPLETED  # 任意一个完成
+    )
+    print(f"已完成: {[t.result() for t in done]}")
+
+    # as_completed - 按完成顺序处理
+    for coro in asyncio.as_completed(tasks):
+        result = await coro
+        print(f"先完成: {result}")
+
+asyncio.run(main())
+```
+
+#### 实际应用 - 并发 HTTP 请求
+
+如果想支持协程，不能用 `requests` 了，必须使用 `aiohttp`。
+
+```python
+import asyncio  
+import time  
+import os  
+  
+import aiohttp  
+import requests  
+  
+save_dir = './images'  
+  
+  
+def ensure_dir():  
+    """确保目录存在"""  
+    if not os.path.exists(save_dir):  
+        os.mkdir(save_dir)  
+  
+  
+# ============ 同步版本 ============
+def download_sync(urls):  
+    print("\n=== 同步下载 ===")  
+    ensure_dir()  
+    st = time.time()  
+    for i, url in enumerate(urls):  
+        print('Downloading:', url)  
+        resp = requests.get(url)  
+        with open(os.path.join(save_dir, f'img_sync_{i}.png'), 'wb') as f:  
+            f.write(resp.content)  
+  
+    return time.time() - st  
+  
+  
+# ============ 异步版本 ============
+async def download_async(url, cli, idx):  
+    print('Downloading:', url)  
+    async with cli.get(url) as res:  
+        data = await res.read()  
+    with open(os.path.join(save_dir, f'img_async_{idx}.png'), 'wb') as f:  
+        f.write(data)  
+  
+async def main_async(urls):  
+    print("\n=== 异步下载 ===")  
+    ensure_dir()  
+    st = time.time()  
+    async with aiohttp.ClientSession() as cli:  
+        await asyncio.gather(*[download_async(url, cli, i) for i, url in enumerate(urls)])  
+    return time.time() - st  
+  
+  
+async def main():  
+    urls = [  
+        'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000',  
+        'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=2000',  
+        'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000'  
+    ]  
+  
+    # 同步下载  
+    sync_time = download_sync(urls)  
+    print(f'同步总耗时：{sync_time:.2f}s')  
+  
+    # 异步下载  
+    async_time = await main_async(urls)  
+    print(f'异步总耗时：{async_time:.2f}s')  
+  
+    print(f'\n异步比同步快了：{(sync_time - async_time):.2f}s ({(sync_time/async_time-1)*100:.1f}%)')  
+  
+  
+if __name__ == '__main__':  
+    asyncio.run(main())
+```
+
+#### 协程与同步代码交互
+
+**run_in_executor()** - 在线程池中运行同步代码：
+
+```python
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+
+# 模拟阻塞的同步函数
+def blocking_io(filename):
+    """阻塞的 I/O 操作（如读取大文件）"""
+    with open(filename, 'r') as f:
+        return f.read()
+
+async def main():
+    loop = asyncio.get_event_loop()
+
+    # 在线程池中运行阻塞操作，不阻塞事件循环
+    with ThreadPoolExecutor() as executor:
+        content = await loop.run_in_executor(
+            executor,       # 线程池（None 表示默认）
+            blocking_io,    # 同步函数
+            'data.txt'      # 参数
+        )
+        print(f"文件内容: {content[:100]}...")
+
+asyncio.run(main())
+```
+
+#### 协程装饰器与上下文管理器
+
+协程装饰器就是用来装饰 async 函数的装饰器。
+
+@asynccontextmanager 装饰器：它能把一个简单的异步生成器（带有 yield 的函数）转换成一个上下文管理器。
+
+```python
+import asyncio
+from contextlib import asynccontextmanager
+
+# 异步装饰器
+from functools import wraps
+
+def async_timer(func):
+    """异步函数计时装饰器"""
+    @wraps(func)
+    async def wrapper(*args, **kwargs):
+        import time
+        start = time.time()
+        result = await func(*args, **kwargs)
+        elapsed = time.time() - start
+        print(f"{func.__name__} 耗时: {elapsed:.2f}s")
+        return result
+    return wrapper
+
+@async_timer
+async def slow_task():
+    await asyncio.sleep(1)
+    return "Done"
+
+# 异步上下文管理器
+@asynccontextmanager
+async def async_database():
+    """异步数据库连接上下文"""
+    print("连接数据库...")
+    await asyncio.sleep(0.1)  # 模拟连接
+    db = {"connected": True}
+    try:
+        yield db
+    finally:
+        print("关闭数据库...")
+        await asyncio.sleep(0.1)
+
+async def main():
+    async with async_database() as db:
+        print(f"使用数据库: {db}")
+
+asyncio.run(main())
+```
+
+#### 最佳实践
+
+```python
+import asyncio
+
+# 1. 始终使用 asyncio.run() 作为主入口
+async def main():
+    # 协程代码
+    pass
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+# 2. 批量创建任务限制并发数
+async def limited_tasks():
+    semaphore = asyncio.Semaphore(10)  # 最多10个并发
+
+    async def task(n):
+        async with semaphore:
+            await asyncio.sleep(1)
+            print(f"任务 {n} 完成")
+
+    await asyncio.gather(*[task(i) for i in range(100)])
+
+# 3. 正确处理异常
+async def safe_task():
+    try:
+        await asyncio.wait_for(risky_operation(), timeout=5)
+    except asyncio.TimeoutError:
+        print("超时")
+    except Exception as e:
+        print(f"错误: {e}")
+
+# 4. 取消长时间运行的任务
+task = asyncio.create_task(long_running())
+await asyncio.sleep(5)
+task.cancel()
+try:
+    await task
+except asyncio.CancelledError:
+    print("任务已取消")
+```
