@@ -133,19 +133,47 @@
          <lastmod>2026-03-21</lastmod>
     </url>
     <url>
-         <loc>https://liutianba7.github.io/python/Ai/langchain.html</loc>
+         <loc>https://liutianba7.github.io/python/01_env/conda.html</loc>
          <lastmod>2026-03-21</lastmod>
     </url>
     <url>
-         <loc>https://liutianba7.github.io/python/Ai/pytorch.html</loc>
+         <loc>https://liutianba7.github.io/python/01_env/jupyter.html</loc>
          <lastmod>2026-03-21</lastmod>
     </url>
     <url>
-         <loc>https://liutianba7.github.io/python/Basic/python%E5%9F%BA%E7%A1%80.html</loc>
+         <loc>https://liutianba7.github.io/python/01_env/uv.html</loc>
          <lastmod>2026-03-21</lastmod>
     </url>
     <url>
-         <loc>https://liutianba7.github.io/python/Web/fastapi.html</loc>
+         <loc>https://liutianba7.github.io/python/02_basic/python%E5%9F%BA%E7%A1%80.html</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/python/03_others/numpy.html</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/python/03_others/pandas.html</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/python/03_others/pytest.html</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/python/03_others/requests.html</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/python/04_web/fastapi.html</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/python/05_ai/langchain.html</loc>
+         <lastmod>2026-03-21</lastmod>
+    </url>
+    <url>
+         <loc>https://liutianba7.github.io/python/05_ai/pytorch.html</loc>
          <lastmod>2026-03-21</lastmod>
     </url>
     <url>
