@@ -14,10 +14,22 @@ nav:
     - maven: ./java/01_Java_Core/maven.md
     - juc: ./java/01_Java_Core/juc.md
   - Python:
-      - python_basic: ./python/Basic/python基础.md
-      - langchain: ./python/Ai/langchain.md
-      - pytorch: ./python/Ai/pytorch.md
-      - fastapi: ./python/Web/fastapi.md
+      - env:
+          - conda: ./python/01_env/conda.md
+          - uv: ./python/01_env/uv.md
+          - jupyter: ./python/01_env/jupyter.md
+      - basic:
+          - python_basic: ./python/02_basic/python基础.md
+      - others:
+          - requests: ./python/03_others/requests.md
+          - pandas: ./python/03_others/pandas.md
+          - numpy: ./python/03_others/numpy.md
+          - pytest: ./python/03_others/pytest.md
+      - Web:
+          - fastapi: ./python/04_web/fastapi.md
+      - AI:
+          - langchain: ./python/05_ai/langchain.md
+          - pytorch: ./python/05_ai/pytorch.md
   - Frontend:
       - js: ./frontend/js.md
       - vue2: ./frontend/vue2.md
