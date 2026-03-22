@@ -14,13 +14,13 @@ nav:
     - maven: ./java/01_Java_Core/maven.md
     - juc: ./java/01_Java_Core/juc.md
   - Python:
-      - env:
+      - Env:
           - conda: ./python/01_env/conda.md
           - uv: ./python/01_env/uv.md
           - jupyter: ./python/01_env/jupyter.md
-      - basic:
+      - Basic:
           - python_basic: ./python/02_basic/python基础.md
-      - others:
+      - Others:
           - requests: ./python/03_others/requests.md
           - pandas: ./python/03_others/pandas.md
           - numpy: ./python/03_others/numpy.md
@@ -46,19 +46,22 @@ nav:
           - 算法模板: ./code-notes/algorithm/template.md
 
   - Bagu:
-      - 八股复习路线: ./interview/index.md
-      - java基础: ./interview/points/java基础.md
-      - java集合: ./interview/points/java集合.md
-      - juc: ./interview/points/juc.md
-      - jvm: ./interview/points/jvm.md
-      - ssm: ./interview/points/ssm.md
-      - spring[boot|cloud]: ./interview/points/springboot+Cloud.md
-      - mysql: ./interview/points/mysql.md
-      - redis: ./interview/points/redis.md
-      - elasticsearch: ./interview/points/es.md
-      - rmq: ./interview/points/rmq.md
-      - seata: ./interview/points/seata.md
-      - 设计模式: ./interview/points/设计模式.md
+      - 复习路线: ./interview/index.md
+      - Java:
+          - java基础: ./interview/java/java基础.md
+          - java集合: ./interview/java/java集合.md
+          - juc: ./interview/java/juc.md
+          - jvm: ./interview/java/jvm.md
+          - ssm: ./interview/java/ssm.md
+          - springboot|cloud: ./interview/java/springboot+Cloud.md
+          - 设计模式: ./interview/java/设计模式.md
+      - Database:
+          - mysql: ./interview/database/mysql.md
+          - redis: ./interview/database/redis.md
+      - Middleware:
+          - elasticsearch: ./interview/middleware/es.md
+          - rabbitmq: ./interview/middleware/rmq.md
+          - seata: ./interview/middleware/seata.md
 #  - Journal:
 #      - 202602: ./journal/2026-02.md
   - Tools:

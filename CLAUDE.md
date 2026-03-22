@@ -35,14 +35,27 @@ myBlog/
 │   ├── index.md        # Homepage
 │   ├── assets/         # Images and static assets
 │   │   └── imgs/       # Organized by topic (spring/, frontend/, middleware/, etc.)
-│   ├── javascripts/    # Custom JS (MathJax config)
+│   ├── javascripts/    # Custom JS (MathJax config, reading-progress)
+│   ├── stylesheets/    # Custom CSS (extra.css)
 │   ├── java/           # Java notes
 │   │   ├── 01_Java_Core/    # Core Java (maven, juc)
 │   │   └── 02_Frameworks/   # Spring frameworks (ssm, springboot)
-│   ├── python/         # Python notes (Ai/, Web/)
+│   ├── python/         # Python notes
+│   │   ├── 01_env/          # Environment (conda, uv, jupyter)
+│   │   ├── 02_basic/        # Python basics
+│   │   ├── 03_others/       # Libraries (requests, pandas, numpy, pytest)
+│   │   ├── 04_web/          # Web frameworks (fastapi)
+│   │   └── 05_ai/           # AI/ML (langchain, pytorch)
 │   ├── frontend/       # Frontend notes (js, vue2, vue3)
-│   ├── interview/      # Interview materials
-│   │   └── points/     # Individual topic files
+│   ├── code-notes/     # Code snippets and examples
+│   │   ├── java/            # Java code (concurrent, design-patterns)
+│   │   ├── python/          # Python code (ai)
+│   │   └── algorithm/       # Algorithm templates
+│   ├── interview/      # Interview materials (八股文)
+│   │   ├── index.md         # 复习路线
+│   │   ├── java/            # Java 八股
+│   │   ├── database/        # 数据库八股 (mysql, redis)
+│   │   └── middleware/      # 中间件八股 (es, rmq, seata)
 │   ├── middleware/     # Middleware (mysql, redis, minio)
 │   ├── tools/          # Dev tools (git, docker)
 │   └── linux/          # Linux notes
@@ -52,9 +65,11 @@ myBlog/
 ## Key Configuration (mkdocs.yml)
 
 - **Theme**: Material with Chinese language support (`language: zh`)
-- **Features**: Navigation tabs, search with suggestions, code copy button, dark/light mode toggle
+- **Features**: Navigation tabs, search with suggestions and highlight, code copy button, dark/light mode toggle, back-to-top button
 - **Markdown Extensions**: attr_list, md_in_html, admonition, pymdownx.details, pymdownx.superfences, emoji, arithmatex (math formulas)
 - **Math Support**: MathJax configured via `docs/javascripts/mathjax.js`
+- **Custom Styling**: `docs/stylesheets/extra.css` for additional CSS
+- **Reading Progress**: `docs/javascripts/reading-progress.js` for progress bar
 
 ## Content Conventions
 
