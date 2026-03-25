@@ -209,3 +209,63 @@ target
 [core]
     excludesfile = **/xxx.ignore
 ```
+
+ #### 7. git 提交规范
+
+##### Commit Message 格式
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+##### Type 类型
+
+| 类型       | 说明                            |
+| ---------- | ------------------------------- |
+| `feat`     | 新功能                          |
+| `fix`      | 修复 bug                        |
+| `docs`     | 文档变更                        |
+| `style`    | 代码格式（不影响逻辑）          |
+| `refactor` | 重构（既非新功能也非 bug 修复） |
+| `perf`     | 性能优化                        |
+| `test`     | 增加测试                        |
+| `chore`    | 构建过程或辅助工具变动          |
+| `revert`   | 回滚提交                        |
+| `build`    | 构建系统或外部依赖变更          |
+| `ci`       | CI 配置文件和脚本变更           |
+
+##### Scope（可选）
+
+表示影响范围，如：`config`、`file`、`log` 等
+
+##### 示例
+
+```bash
+# 新功能
+feat(file): add PDF file loading support
+
+# bug 修复
+fix(prompt-loader): fix encoding error when loading txt files
+
+# 文档
+docs: update README with installation instructions
+
+# 重构
+refactor(config): simplify config loading logic
+
+# 简单提交（无 scope）
+fix: correct file extension check
+```
+
+##### 最佳实践
+
+1. **使用祈使句** - "add feature" 而非 "added feature"
+2. **首字母小写** - "fix bug" 而非 "Fix bug"
+3. **首行不超过 50 字符**
+4. **Body 解释 what 和 why，而非 how**
+5. **一个提交只做一件事**
+

@@ -1824,7 +1824,7 @@ function childrenIgnored (self, path) {
 //   If there is no more remaining, then stat(PREFIX) and
 //   add to matches if it succeeds.  END.
 //
-// If inGlobStar and PREFIX is symlink and middleware to dir
+// If inGlobStar and PREFIX is symlink and points to dir
 //   set ENTRIES = []
 // else readdir(PREFIX) as ENTRIES
 //   If fail, END
