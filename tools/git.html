@@ -2630,6 +2630,61 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#commit-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commit Message 格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type 类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope（可选）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最佳实践
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3057,6 +3112,61 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#commit-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Commit Message 格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Type 类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope（可选）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最佳实践
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3217,6 +3327,95 @@ git remote remove 别名 # 删除远程仓库
 <div class="highlight"><pre><span></span><code>[core]
     excludesfile = **/xxx.ignore
 </code></pre></div>
+<p>#### 7. git 提交规范</p>
+<h5 id="commit-message">Commit Message 格式</h5>
+<div class="highlight"><pre><span></span><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+
+&lt;body&gt;
+
+&lt;footer&gt;
+</code></pre></div>
+<h5 id="type">Type 类型</h5>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>feat</code></td>
+<td>新功能</td>
+</tr>
+<tr>
+<td><code>fix</code></td>
+<td>修复 bug</td>
+</tr>
+<tr>
+<td><code>docs</code></td>
+<td>文档变更</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>代码格式（不影响逻辑）</td>
+</tr>
+<tr>
+<td><code>refactor</code></td>
+<td>重构（既非新功能也非 bug 修复）</td>
+</tr>
+<tr>
+<td><code>perf</code></td>
+<td>性能优化</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>增加测试</td>
+</tr>
+<tr>
+<td><code>chore</code></td>
+<td>构建过程或辅助工具变动</td>
+</tr>
+<tr>
+<td><code>revert</code></td>
+<td>回滚提交</td>
+</tr>
+<tr>
+<td><code>build</code></td>
+<td>构建系统或外部依赖变更</td>
+</tr>
+<tr>
+<td><code>ci</code></td>
+<td>CI 配置文件和脚本变更</td>
+</tr>
+</tbody>
+</table>
+<h5 id="scope">Scope（可选）</h5>
+<p>表示影响范围，如：<code>config</code>、<code>file</code>、<code>log</code> 等</p>
+<h5 id="_1">示例</h5>
+<div class="highlight"><pre><span></span><code><span class="c1"># 新功能</span>
+feat<span class="o">(</span>file<span class="o">)</span>:<span class="w"> </span>add<span class="w"> </span>PDF<span class="w"> </span>file<span class="w"> </span>loading<span class="w"> </span>support
+
+<span class="c1"># bug 修复</span>
+fix<span class="o">(</span>prompt-loader<span class="o">)</span>:<span class="w"> </span>fix<span class="w"> </span>encoding<span class="w"> </span>error<span class="w"> </span>when<span class="w"> </span>loading<span class="w"> </span>txt<span class="w"> </span>files
+
+<span class="c1"># 文档</span>
+docs:<span class="w"> </span>update<span class="w"> </span>README<span class="w"> </span>with<span class="w"> </span>installation<span class="w"> </span>instructions
+
+<span class="c1"># 重构</span>
+refactor<span class="o">(</span>config<span class="o">)</span>:<span class="w"> </span>simplify<span class="w"> </span>config<span class="w"> </span>loading<span class="w"> </span>logic
+
+<span class="c1"># 简单提交（无 scope）</span>
+fix:<span class="w"> </span>correct<span class="w"> </span>file<span class="w"> </span>extension<span class="w"> </span>check
+</code></pre></div>
+<h5 id="_2">最佳实践</h5>
+<ol>
+<li><strong>使用祈使句</strong> - "add feature" 而非 "added feature"</li>
+<li><strong>首字母小写</strong> - "fix bug" 而非 "Fix bug"</li>
+<li><strong>首行不超过 50 字符</strong></li>
+<li><strong>Body 解释 what 和 why，而非 how</strong></li>
+<li><strong>一个提交只做一件事</strong></li>
+</ol>
 
 
 
