@@ -30,6 +30,7 @@ nav:
       - AI:
           - langchain: ./python/05_ai/langchain.md
           - pytorch: ./python/05_ai/pytorch.md
+          - ollama: ./python/05_ai/ollama.md
   - Frontend:
       - js: ./frontend/js.md
       - vue2: ./frontend/vue2.md
@@ -62,6 +63,8 @@ nav:
           - elasticsearch: ./interview/middleware/es.md
           - rabbitmq: ./interview/middleware/rmq.md
           - seata: ./interview/middleware/seata.md
+      - Python:
+          - python: ./interview/python/python.md
 #  - Journal:
 #      - 202602: ./journal/2026-02.md
   - Tools:
