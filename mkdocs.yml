@@ -69,7 +69,10 @@ nav:
 #      - 202602: ./journal/2026-02.md
   - Tools:
       - git: ./tools/git.md
-      - docker: ./tools/docker.md
+      - git-v2: ./tools/git-v2.md
+      - docker: ./tools/docker-v2.md
+      # - docker-v2: ./tools/docker-v2.md
+
   - Middleware:
     - mysql 基础: ./middleware/mysql基础.md
     - mysql 高级: ./middleware/mysql高级.md
