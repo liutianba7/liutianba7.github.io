@@ -1721,12 +1721,12 @@ Loaders 的使命就是：**把各种格式的非结构化数据，"翻译"成 L
 
 **文件加载器**
 
-| 格式         | 推荐加载器                   | 特点                              |
-| ------------ | ---------------------------- | --------------------------------- |
-| **PDF**      | `PyPDFLoader`                | 简单易用，支持按页拆分            |
-| **Markdown** | `UnstructuredMarkdownLoader` | 能够识别标题、列表等结构          |
-| **CSV**      | `CSVLoader`                  | 将每一行转化为一个独立的 Document |
-| **JSON**     | `JSONLoader`                 | 需要配合 jq 语法提取特定的字段    |
+| 格式 | 推荐加载器 | 特点 |
+|------|------------|------|
+| **PDF** | `PyPDFLoader` | 简单易用，支持按页拆分 |
+| **Markdown** | `UnstructuredMarkdownLoader` | 能够识别标题、列表等结构 |
+| **CSV** | `CSVLoader` | 将每一行转化为一个独立的 Document |
+| **JSON** | `JSONLoader` | 需要配合 jq 语法提取特定的字段 |
 
 **云端与网页**：直接从互联网获取最新鲜的语料。
 
@@ -1767,12 +1767,12 @@ pip install jq
 
 **jq 基础语法**
 
-| 表达式     | 功能              | 描述                                                         |
-| ---------- | ----------------- | ------------------------------------------------------------ |
-| `.`        | Identity          | 输出整个 JSON，不作任何修改                                  |
-| `.name`    | Object Identifier | 获取键为 `name` 的值                                         |
-| `.user.id` | Chained           | 嵌套获取。先找 `user`，再找 `id`                             |
-| `.key?`    | Optional          | 即使 `key` 不存在也不会报错（在 LangChain 批量处理时很有用） |
+| 表达式 | 功能 | 描述 |
+|--------|------|------|
+| `.` | Identity | 输出整个 JSON，不作任何修改 |
+| `.name` | Object Identifier | 获取键为 `name` 的值 |
+| `.user.id` | Chained | 嵌套获取。先找 `user`，再找 `id` |
+| `.key?` | Optional | 即使 `key` 不存在也不会报错（在 LangChain 批量处理时很有用） |
 
 - `.[]`（迭代器）：将数组里的每一个元素单独输出。这是 `JSONLoader` 最常用的语法，因为它能把数组里的每个对象变成一个独立的 `Document`
 - `.[0]`：获取数组的第一个元素
@@ -1803,6 +1803,9 @@ docs = loader.load()
   {"id": 1, "content": "第一条消息", "sender": "张三"},
   {"id": 2, "content": "第二条消息", "sender": "李四"}
 ]
+```
+
+```python
 loader = JSONLoader(
     file_path="example.json",
     jq_schema=".[]",        # 遍历数组中的每一个对象
@@ -1829,37 +1832,6 @@ print(documents[0].page_content)  # 文本内容
 print(documents[0].metadata)      # 元数据
 ```
 
-#### RecursiveCharacterTextSplitter
-
-**RecursiveCharacterTextSplitter** 是 LangChain 最常用的文本分割器，按字符递归分割文本，保持段落/句子完整性。
-
-```python
-pip install langchain-text-splitters
-from langchain_community.document_loaders import TextLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-
-loader = TextLoader("data_1/stu_text.txt", encoding="utf-8")
-
-docs = loader.load()
-
-splitter = RecursiveCharacterTextSplitter(
-    chunk_size=100,       # 每块最大字符数
-    chunk_overlap=50,     # 块之间重叠字符数
-    separators=["\n\n", "\n", " ", "", "!", "？"],  # 块分隔符
-    length_function=len,  # 块长度函数
-)
-
-res = splitter.split_documents(docs)
-
-print(res, len(res))
-```
-
-| 参数            | 说明             | 默认值                    |
-| --------------- | ---------------- | ------------------------- |
-| `chunk_size`    | 每块最大字符数   | 1000                      |
-| `chunk_overlap` | 块之间重叠字符数 | 200                       |
-| `separators`    | 分割符列表       | `["\n\n", "\n", " ", ""]` |
-
 #### PyPDFLoader
 
 **PyPDFLoader** 是 LangChain 用于加载 PDF 文件的文档加载器，将 PDF 每一页加载为独立的 `Document` 对象。
@@ -1880,79 +1852,220 @@ loader = PyPDFLoader(
 )
 ```
 
+
+### LangChain TextSplitter
+
+文本切分解决三个问题：**Embedding 长度限制**、**检索精准度**、**LLM 上下文窗口**。
+
+#### 切分器对比
+
+| 切分器                              | 切分依据    | 适用场景         | 特点            |
+| -------------------------------- | ------- | ------------ | ------------- |
+| `RecursiveCharacterTextSplitter` | 字符递归    | **通用文本（推荐）** | 按分隔符层级切分，保持语义 |
+| `CharacterTextSplitter`          | 单一分隔符   | 简单文本         | 简单粗暴，可能切断语义   |
+| `TokenTextSplitter`              | Token 数 | 需精确控制 token  | 匹配模型限制，更准确    |
+| `MarkdownHeaderTextSplitter`     | 标题层级    | Markdown 文档  | 按标题切分，保留结构    |
+| `PythonCodeTextSplitter`         | 类/函数    | Python 代码    | 保持代码完整性       |
+
+#### RecursiveCharacterTextSplitter
+
+最常用的切分器，**递归尝试分隔符**：先用大分隔符（段落），不行再用小的（句子），最后按字符。
+
+```
+分隔符优先级：
+"\n\n" (段落) → "\n" (句子) → " " (单词) → "" (字符)
+     ↓              ↓            ↓          ↓
+   优先尝试      段落太长      句子太长    最后手段
+```
+
+```python
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=500,       # 每块最大字符数
+    chunk_overlap=50,     # 重叠（保持上下文连贯）
+    separators=["\n\n", "\n", " ", ""],  # 分隔符优先级
+)
+
+# 切分文本
+chunks = splitter.split_text("长文本内容...")
+
+# 切分 Document 对象
+chunks = splitter.split_documents(docs)
+```
+
+| 参数 | 说明 | 推荐值 |
+|------|------|--------|
+| `chunk_size` | 每块最大字符数 | 500-1000（通用），200-400（精准检索） |
+| `chunk_overlap` | 块之间重叠 | `chunk_size` 的 10-20% |
+| `separators` | 分隔符优先级 | 默认值即可，中文可加 `["。", "！", "？"]` |
+
+#### Token 切分（精确控制）
+
+按 token 计数，匹配模型限制：
+
+```python
+from langchain_text_splitters import TokenTextSplitter
+
+splitter = TokenTextSplitter(
+    encoding_name="cl100k_base",  # GPT-4/3.5 的编码
+    chunk_size=100,               # 每 100 token 一块
+    chunk_overlap=0
+)
+```
+
+#### Markdown 切分（保留结构）
+
+按标题层级切分，metadata 保留标题信息：
+
+```python
+from langchain_text_splitters import MarkdownHeaderTextSplitter
+
+splitter = MarkdownHeaderTextSplitter(
+    headers_to_split_on=[("#", "h1"), ("##", "h2"), ("###", "h3")]
+)
+chunks = splitter.split_text(md_content)
+
+# 结果示例：
+# chunk.metadata = {"h1": "第一章", "h2": "简介"}
+```
+
+#### 最佳实践
+
+| 场景 | chunk_size | chunk_overlap | 切分器 |
+|------|-----------|---------------|--------|
+| 通用 RAG | 500-1000 | 50-100 | Recursive |
+| 精准问答 | 200-400 | 20-50 | Recursive |
+| 长文档摘要 | 1000-2000 | 100-200 | Recursive |
+| Markdown 文档 | 按标题 | 0 | MarkdownHeader |
+| 代码文件 | 按函数 | 0 | CodeSplitter |
+
+**调优建议**：
+
+- chunk 太大 → 检索噪声多，答案不精准
+- chunk 太小 → 上下文断裂，语义不完整
+- overlap 太小 → 边界信息丢失
+
+
 ### LangChain Vector Stores
 
 #### 基本概念
 
-**Vector Stores** 是 LangChain 的向量存储模块，用于存储和检索文本的向量嵌入（Embeddings）。
+**Vector Stores** 是 LangChain 的向量存储模块，用于存储和检索文本的向量嵌入。
+
+向量是一个有**大小和方向**的量。在计算机科学中，向量通常表示为一个**有序的数值数组**：
+
+```python
+# 一个 3 维向量
+vector = [0.2, -0.5, 0.8]
+
+# 一个 768 维向量（常见于 BERT 等模型）
+embedding = [0.1, -0.3, 0.05, ..., 0.2]  # 768 个浮点数
+```
+
+
+#### 统一接口
+
+在`Langchain`中， 为了规范不同第三方提供的向量存储服务，提供了一套统一的接口：
+
+- `add_documents` - Add documents to the store.
+- `delete` - Remove stored documents by ID.
+- `similarity_search` - Query for semantically similar documents.
+- `as_retriever`- For using in the chain
+
+其中，[`similarity_search`](https://docs.langchain.com/oss/python/integrations/vectorstores#similarity-search) 还可以设置更多过滤条件，比如：filter={"source": "tweets"}，
+
+``` python
+ def similarity_search(  
+        self, query: str, k: int = 4, **kwargs: Any  
+) -> list[Document]:
+	"""Return docs most similar to query.  
+  
+	Args:  
+	    query: Input text.    
+	    k: Number of `Document` objects to return.   
+	    **kwargs: Arguments to pass to the search method.  
+	     
+	Returns:  
+	    List of `Document` objects most similar to the query.
+    """
+```
 
 #### 常见向量存储
 
-| 名称       | 类型      | 特点                  |
-| ---------- | --------- | --------------------- |
-| `Chroma`   | 本地/内存 | 轻量，适合开发测试    |
-| `FAISS`    | 本地      | Facebook 开源，速度快 |
-| `Pinecone` | 云端      | 托管服务，可扩展      |
-| `Milvus`   | 本地/云端 | 开源，功能强大        |
-| `Qdrant`   | 本地/云端 | 高性能，支持过滤      |
+具体可参考官方文档：[vector stores](https://docs.langchain.com/oss/python/integrations/vectorstores)
 
-#### 基本用法
+| 名称            | 类型    | 特点              |
+| ------------- | ----- | --------------- |
+| `Chroma`      | 本地/内存 | 轻量，适合开发测试       |
+| `FAISS`       | 本地    | Facebook 开源，速度快 |
+| `Pinecone`    | 云端    | 托管服务，可扩展        |
+| `Milvus`      | 本地/云端 | 开源，功能强大         |
+| `Qdrant`      | 本地/云端 | 高性能，支持过滤        |
+| `Redis Stack` |       | 就爱 redis        |
 
-**安装**
+**InMemoryVectorStore**
 
-```python
-pip install chromadb
-pip install langchain-community
+``` python
+embed = DashScopeEmbeddings(  
+    model='text-embedding-v4',  
+    dashscope_api_key=os.getenv("dashscope_api_key"),  
+)  
+  
+vc = InMemoryVectorStore(  
+    embedding=embed,  
+)  
+  
+vc.add_texts(['狗', '猫', '猪', '苹果', '香蕉'])  
+resp = vc.similarity_search("小猫", k=3)  
+print(resp)
 ```
 
-**创建向量存储**
+**Chroma**
 
-```python
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import DashScopeEmbeddings
-
-embeddings = DashScopeEmbeddings()
-
-# 从文档创建
-# vectorstore = InMemoryVectorStore(embeddings)
-vectorstore = Chroma.from_documents(
-    documents=texts,  # 文档列表
-    embedding=embeddings,  # 嵌入模型
-    persist_directory="./chroma_db"  # 持久化路径
-)
+``` python
+from langchain_chroma import Chroma  
+from langchain_community.embeddings.dashscope import DashScopeEmbeddings  
+  
+embed = DashScopeEmbeddings(  
+    model='text-embedding-v4',  
+)  
+  
+vector_store = Chroma(  
+    collection_name="example_collection",  
+    embedding_function=embed,  
+    persist_directory="./chroma_langchain_db",  # Where to save data locally, remove if not necessary  
+)  
+vector_store.add_texts(["hello world", "bybye world"])  
+resp = vector_store.similarity_search("hello world", k=1)  
+print(resp)
 ```
 
-**新增、删除、检索向量**
+**Redis**：注意，必须是 redis stack ，因为涉及到了向量检索，原生 redis 无法满足！
 
-- `add_documents`
-- `delete`
-- `similarity_search`
-
-```python
-# 新增、删除、检索向量
-vectorstore.add_documents(
-    documents=docs,
-    ids=["id" + str(i) for i in range(1, len(docs) + 1)]
-)
-
-print(vectorstore.similarity_search("john", k=2))  # 检索返回的是一个 list[Document]
-vectorstore.delete(ids=["id1", "id2"])
+```
+Install ``redis``, ``redisvl``, and ``langchain-community`` and run Redis locally.
 ```
 
-**使用外部向量数据库**（以 Chroma 为例）
-
-其实只需要在创建向量库的时候创建 Chroma 库，方法还是不变的。
-
-```python
-pip install langchain-chroma chromadb
-from langchain_chroma import Chroma
-
-vectorstore = Chroma(
-    embedding_function=embeddings,
-    collection_name="stu",
-    persist_directory="data_1/chroma_db"
-)
+``` python
+embed = DashScopeEmbeddings(  
+    model='text-embedding-v4',  
+)  
+vc = Redis(  
+    redis_url='redis://115.190.231.171:6379',  
+    index_name='langchain:vc',  
+    embedding=embed  
+)  
+  
+texts = ["hello world", "bybye world"]  
+vc.add_documents([Document(page_content=text, metadata={'source':'lq'}) for text in texts])  
+  
+  
+resp = vc.similarity_search("hello", k=1)  
+  
+print(resp)
 ```
+
 
 ### LangChain RunnablePassthrough
 

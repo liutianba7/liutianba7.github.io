@@ -1,0 +1,6068 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://liutianba7.github.io/tools/docker-v2.html">
+      
+      
+        <link rel="prev" href="git-v2.html">
+      
+      
+        <link rel="next" href="../middleware/mysql%E5%9F%BA%E7%A1%80.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>docker - LiuTianBa7 's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#docker" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../index.html" title="LiuTianBa7 &#39;s Blog" class="md-header__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LiuTianBa7 's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              docker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../java/02_Frameworks/ssm.html" class="md-tabs__link">
+          
+  
+  
+  Java
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../python/01_env/conda.html" class="md-tabs__link">
+          
+  
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../frontend/js.html" class="md-tabs__link">
+          
+  
+  
+  Frontend
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../code-notes/index.html" class="md-tabs__link">
+          
+  
+  
+  Code-Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../interview/index.html" class="md-tabs__link">
+          
+  
+  
+  Bagu
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="git.html" class="md-tabs__link">
+          
+  
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
+          
+  
+  
+  Middleware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../linux/basic.html" class="md-tabs__link">
+          
+  
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="LiuTianBa7 &#39;s Blog" class="md-nav__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    LiuTianBa7 's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java/02_Frameworks/ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java/02_Frameworks/springboot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    springboot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java/01_Java_Core/maven.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../java/01_Java_Core/juc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    juc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Env
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Env
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/01_env/conda.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    conda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/01_env/uv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    uv
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/01_env/jupyter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    jupyter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/02_basic/python%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python_basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Others
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Others
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/03_others/requests.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/03_others/pandas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/03_others/numpy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    numpy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/03_others/pytest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pytest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/04_web/fastapi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fastapi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/05_ai/langchain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    langchain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/05_ai/pytorch.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pytorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/05_ai/ollama.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frontend/js.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frontend/vue2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vue2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../frontend/vue3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    vue3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code-Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code-Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code-notes/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code-notes/java/concurrent.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    并发编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code-notes/java/design-patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code-notes/python/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ai
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algorithm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code-notes/algorithm/template.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bagu
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bagu
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    复习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/java/java%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    java基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/java/java%E9%9B%86%E5%90%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    java集合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/java/juc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    juc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/java/jvm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    jvm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/java/ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/java/springboot%2BCloud.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    springboot|cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Database
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/database/mysql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/database/redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Middleware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Middleware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/middleware/es.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    elasticsearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/middleware/rmq.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    rabbitmq
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/middleware/seata.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    seata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interview/python/python.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="git.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="git-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    git-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    docker
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="docker-v2.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、Docker 概述与架构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、Docker 概述与架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 什么是 Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-docker-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Docker vs 传统虚拟机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Docker 架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、安装与配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、安装与配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-linux-centos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Linux 环境（CentOS）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Linux 环境（CentOS）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1 前置准备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2 配置镜像源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.3 安装 Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#214-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.4 卸载 Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#215" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.5 配置镜像加速
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#216" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.6 配置远程连接（可选）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Windows 环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、核心命令速查
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、核心命令速查">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 镜像命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 容器命令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 容器命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.1 创建容器参数说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2 容器生命周期命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.3 容器操作命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#324-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.4 交互式 vs 守护式容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 数据卷命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 网络命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 日志与排查命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、Docker 数据管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、Docker 数据管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 数据卷（Volume）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-bind-mount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 目录挂载（Bind Mount）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 数据卷 vs 目录挂载对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 容器数据备份与迁移
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、Docker 网络
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、Docker 网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 网络类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 创建自定义网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 网络模式对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、Dockerfile 与镜像构建
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六、Dockerfile 与镜像构建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Dockerfile 概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 常用指令详解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 关键指令对比
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3 关键指令对比">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy-vs-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COPY vs ADD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmd-vs-entrypoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMD vs ENTRYPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Dockerfile 最佳实践
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-jdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 构建 JDK 镜像示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、Docker Compose
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="七、Docker Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 常用命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 compose 文件结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 服务配置项说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、常用容器部署速查
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="八、常用容器部署速查">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 MySQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-redis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Redis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-rabbitmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 RabbitMQ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-nacos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Nacos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-minio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 MinIO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6 Nginx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87-elasticsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7 Elasticsearch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.8 MongoDB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#89-portainerdocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9 Portainer（Docker 管理界面）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#810-sentinel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10 Sentinel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#811-zipkin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.11 Zipkin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九、常见问题与排查
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="九、常见问题与排查">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 容器启动失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 镜像拉取失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 权限问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 容器时间与宿主机不一致
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 Docker 占用磁盘过大
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#96" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.6 进入容器执行命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面试高频考点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="面试高频考点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Docker 核心概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Dockerfile 指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 数据持久化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 镜像优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Middleware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Middleware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/mysql%E9%AB%98%E7%BA%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    mysql 高级
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../middleware/minio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    minio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/basic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、Docker 概述与架构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、Docker 概述与架构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 什么是 Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-docker-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Docker vs 传统虚拟机
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Docker 架构
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、安装与配置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、安装与配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-linux-centos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Linux 环境（CentOS）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Linux 环境（CentOS）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.1 前置准备
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.2 配置镜像源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.3 安装 Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#214-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.4 卸载 Docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#215" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.5 配置镜像加速
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#216" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1.6 配置远程连接（可选）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Windows 环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、核心命令速查
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、核心命令速查">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 镜像命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 容器命令
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 容器命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#321" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.1 创建容器参数说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#322" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.2 容器生命周期命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#323" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.3 容器操作命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#324-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2.4 交互式 vs 守护式容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 数据卷命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 网络命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 日志与排查命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、Docker 数据管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四、Docker 数据管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 数据卷（Volume）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-bind-mount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 目录挂载（Bind Mount）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 数据卷 vs 目录挂载对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 容器数据备份与迁移
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、Docker 网络
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、Docker 网络">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 网络类型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 创建自定义网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 网络模式对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、Dockerfile 与镜像构建
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="六、Dockerfile 与镜像构建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Dockerfile 概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 常用指令详解
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 关键指令对比
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.3 关键指令对比">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copy-vs-add" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        COPY vs ADD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cmd-vs-entrypoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CMD vs ENTRYPOINT
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Dockerfile 最佳实践
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65-jdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 构建 JDK 镜像示例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        七、Docker Compose
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="七、Docker Compose">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 常用命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 compose 文件结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 服务配置项说明
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        八、常用容器部署速查
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="八、常用容器部署速查">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 MySQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-redis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Redis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-rabbitmq" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 RabbitMQ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-nacos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Nacos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#85-minio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.5 MinIO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#86-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6 Nginx
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#87-elasticsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7 Elasticsearch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#88-mongodb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.8 MongoDB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#89-portainerdocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.9 Portainer（Docker 管理界面）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#810-sentinel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.10 Sentinel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#811-zipkin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.11 Zipkin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        九、常见问题与排查
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="九、常见问题与排查">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 容器启动失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 镜像拉取失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 权限问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 容器时间与宿主机不一致
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#95-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5 Docker 占用磁盘过大
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#96" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.6 进入容器执行命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面试高频考点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="面试高频考点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Docker 核心概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Dockerfile 指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 数据持久化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 镜像优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="docker">Docker 笔记</h1>
+<h2 id="_1">目录</h2>
+<ul>
+<li><a href="#一docker-概述与架构">一、Docker 概述与架构</a></li>
+<li><a href="#二安装与配置">二、安装与配置</a></li>
+<li><a href="#三核心命令速查">三、核心命令速查</a></li>
+<li><a href="#四docker-数据管理">四、Docker 数据管理</a></li>
+<li><a href="#五docker-网络">五、Docker 网络</a></li>
+<li><a href="#六dockerfile-与镜像构建">六、Dockerfile 与镜像构建</a></li>
+<li><a href="#七docker-compose">七、Docker Compose</a></li>
+<li><a href="#八常用容器部署速查">八、常用容器部署速查</a></li>
+<li><a href="#九常见问题与排查">九、常见问题与排查</a></li>
+</ul>
+<hr />
+<h2 id="docker_1">一、Docker 概述与架构</h2>
+<h3 id="11-docker">1.1 什么是 Docker</h3>
+<p>Docker 是一个开源的<strong>容器化平台</strong>，用于将应用及其依赖打包到轻量、可移植的容器中。</p>
+<p><strong>核心特点</strong>：</p>
+<ul>
+<li><strong>轻量级</strong>：容器共享宿主机内核，启动速度快、资源占用少</li>
+<li><strong>可移植</strong>：一次构建，随处运行（开发、测试、生产环境一致）</li>
+<li><strong>隔离性</strong>：每个容器独立运行，互不干扰</li>
+</ul>
+<h3 id="12-docker-vs">1.2 Docker vs 传统虚拟机</h3>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>Docker 容器</th>
+<th>传统虚拟机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>启动时间</td>
+<td>秒级</td>
+<td>分钟级</td>
+</tr>
+<tr>
+<td>资源占用</td>
+<td>MB 级</td>
+<td>GB 级</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>接近原生</td>
+<td>有损耗</td>
+</tr>
+<tr>
+<td>隔离级别</td>
+<td>进程级</td>
+<td>操作系统级</td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>共享宿主机内核</td>
+<td>独立内核</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-docker">1.3 Docker 架构</h3>
+<p align='center'>
+    <img src="../assets/imgs/tools/docker/docker1.png" alt="docker架构" />
+</p>
+
+<p><strong>核心组件</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>镜像（Image）</strong></td>
+<td>只读模板，包含运行应用所需的所有内容（代码、运行时、库、配置）</td>
+</tr>
+<tr>
+<td><strong>容器（Container）</strong></td>
+<td>镜像的运行实例，是一个隔离的进程</td>
+</tr>
+<tr>
+<td><strong>仓库（Registry）</strong></td>
+<td>存储和分发镜像的地方，如 Docker Hub、私有仓库</td>
+</tr>
+<tr>
+<td><strong>Docker Daemon</strong></td>
+<td>守护进程，负责构建、运行、分发容器</td>
+</tr>
+<tr>
+<td><strong>Docker Client</strong></td>
+<td>客户端，通过 CLI 或 API 与 Daemon 交互</td>
+</tr>
+</tbody>
+</table>
+<p><strong>镜像与容器的关系</strong>：类比面向对象编程，镜像 = 类，容器 = 对象实例。</p>
+<hr />
+<h2 id="_2">二、安装与配置</h2>
+<h3 id="21-linux-centos">2.1 Linux 环境（CentOS）</h3>
+<h4 id="211">2.1.1 前置准备</h4>
+<p>安装 GCC 环境：</p>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>install<span class="w"> </span>gcc
+yum<span class="w"> </span>install<span class="w"> </span>gcc-c++
+</code></pre></div>
+<p>安装 Docker 依赖：</p>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>yum-utils<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>device-mapper-persistent-data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>lvm2
+</code></pre></div>
+<h4 id="212">2.1.2 配置镜像源</h4>
+<p>官方源（可能有问题）：</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>yum-config-manager<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--add-repo<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>https://download.docker.com/linux/centos/docker-ce.repo
+</code></pre></div>
+<p>清华源（国内推荐）：</p>
+<div class="highlight"><pre><span></span><code>sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s+https://download.docker.com+https://mirrors.tuna.tsinghua.edu.cn/docker-ce+&#39;</span><span class="w"> </span>/etc/yum.repos.d/docker-ce.repo
+</code></pre></div>
+<h4 id="213-docker">2.1.3 安装 Docker</h4>
+<p>分步安装：</p>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>docker-ce<span class="w"> </span>docker-ce-cli<span class="w"> </span>containerd.io<span class="w"> </span>docker-buildx-plugin<span class="w"> </span>docker-compose-plugin
+</code></pre></div>
+<p>一键安装（阿里云镜像）：</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://github.com/tech-shrimp/docker_installer/releases/download/latest/linux.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash<span class="w"> </span>-s<span class="w"> </span>docker<span class="w"> </span>--mirror<span class="w"> </span>Aliyun
+</code></pre></div>
+<h4 id="214-docker">2.1.4 卸载 Docker</h4>
+<div class="highlight"><pre><span></span><code>yum<span class="w"> </span>remove<span class="w"> </span>docker<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>docker-client<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>docker-client-latest<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>docker-common<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>docker-latest<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>docker-latest-logrotate<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>docker-logrotate<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>docker-engine
+</code></pre></div>
+<h4 id="215">2.1.5 配置镜像加速</h4>
+<p>创建配置目录：</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/docker
+</code></pre></div>
+<p>编辑配置文件 <code>/etc/docker/daemon.json</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;registry-mirrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;https://docker.m.daocloud.io&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://docker.1panel.live&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://docker.xuanyuan.me&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://registry.dockermirror.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://hub-mirror.c.163.com&quot;</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>注意：JSON 配置最后不要有逗号！阿里云镜像仓库已不对外开放，仅阿里云服务器可用。</p>
+</blockquote>
+<p>腾讯云服务器额外配置：</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;registry-mirrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;https://docker.m.daocloud.io&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://docker.1panel.live&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://docker.xuanyuan.me&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://docker.mirrors.ustc.edu.cn&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://registry.dockermirror.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://hub-mirror.c.163.com&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;https://mirror.ccs.tencentyun.com&quot;</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>重载配置并重启：</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>docker
+</code></pre></div>
+<h4 id="216">2.1.6 配置远程连接（可选）</h4>
+<p>用于 IDEA/其他工具远程部署镜像到 Docker。</p>
+<p>修改 <code>/lib/systemd/system/docker.service</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 原配置</span>
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/dockerd<span class="w"> </span>-H<span class="w"> </span>fd://<span class="w"> </span>--containerd<span class="o">=</span>/run/containerd/containerd.sock
+
+<span class="c1"># 改为（添加 TCP 监听）</span>
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/dockerd<span class="w"> </span>-H<span class="w"> </span>tcp://0.0.0.0:2375<span class="w"> </span>-H<span class="w"> </span>fd://<span class="w"> </span>--containerd<span class="o">=</span>/run/containerd/containerd.sock
+</code></pre></div>
+<blockquote>
+<p>注意：生产环境建议限制 IP 或使用 TLS 加密，2375 端口无认证有安全风险。</p>
+</blockquote>
+<p>重启服务：</p>
+<div class="highlight"><pre><span></span><code>systemctl<span class="w"> </span>daemon-reload
+systemctl<span class="w"> </span>restart<span class="w"> </span>docker
+</code></pre></div>
+<h3 id="22-windows">2.2 Windows 环境</h3>
+<blockquote>
+<p>TODO：待补充 Windows Docker Desktop 安装与配置</p>
+</blockquote>
+<hr />
+<h2 id="_3">三、核心命令速查</h2>
+<p>镜像由多层组成，层是公用的，下载其他镜像时可复用已下载的层。</p>
+<h3 id="31">3.1 镜像命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker search</code></td>
+<td>搜索镜像</td>
+<td><code>docker search nginx</code></td>
+</tr>
+<tr>
+<td><code>docker pull</code></td>
+<td>拉取镜像</td>
+<td><code>docker pull nginx:1.24</code></td>
+</tr>
+<tr>
+<td><code>docker images</code></td>
+<td>查看本地镜像</td>
+<td><code>docker images -a</code></td>
+</tr>
+<tr>
+<td><code>docker rmi</code></td>
+<td>删除镜像</td>
+<td><code>docker rmi -f nginx:1.24</code></td>
+</tr>
+<tr>
+<td><code>docker tag</code></td>
+<td>重命名镜像</td>
+<td><code>docker tag nginx:1.24 mynginx:v1</code></td>
+</tr>
+<tr>
+<td><code>docker load</code></td>
+<td>从 tar 加载镜像</td>
+<td><code>docker load -i nginx.tar</code></td>
+</tr>
+<tr>
+<td><code>docker save</code></td>
+<td>导出镜像为 tar</td>
+<td><code>docker save -o nginx.tar nginx:1.24</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>常用组合命令</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 删除所有镜像</span>
+docker<span class="w"> </span>rmi<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>images<span class="w"> </span>-aq<span class="k">)</span>
+
+<span class="c1"># 查看镜像详细信息</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>nginx:1.24
+
+<span class="c1"># 查看镜像历史（各层信息）</span>
+docker<span class="w"> </span><span class="nb">history</span><span class="w"> </span>nginx:1.24
+</code></pre></div>
+<h3 id="32">3.2 容器命令</h3>
+<h4 id="321">3.2.1 创建容器参数说明</h4>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-i</code></td>
+<td>以交互模式运行，保持 STDIN 打开</td>
+</tr>
+<tr>
+<td><code>-t</code></td>
+<td>分配伪终端，通常与 <code>-i</code> 合用为 <code>-it</code></td>
+</tr>
+<tr>
+<td><code>-d</code></td>
+<td>后台运行（守护式容器）</td>
+</tr>
+<tr>
+<td><code>--name</code></td>
+<td>指定容器名称</td>
+</tr>
+<tr>
+<td><code>-p</code></td>
+<td>端口映射，格式：<code>宿主机端口:容器端口</code></td>
+</tr>
+<tr>
+<td><code>-P</code></td>
+<td>随机端口映射</td>
+</tr>
+<tr>
+<td><code>-v</code></td>
+<td>挂载目录，格式：<code>宿主机路径:容器路径</code></td>
+</tr>
+<tr>
+<td><code>-e</code></td>
+<td>设置环境变量</td>
+</tr>
+<tr>
+<td><code>--restart</code></td>
+<td>重启策略：<code>always</code>、<code>on-failure</code>、<code>no</code></td>
+</tr>
+<tr>
+<td><code>--network</code></td>
+<td>指定网络</td>
+</tr>
+<tr>
+<td><code>--privileged</code></td>
+<td>给容器扩展权限</td>
+</tr>
+</tbody>
+</table>
+<h4 id="322">3.2.2 容器生命周期命令</h4>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker run</code></td>
+<td>创建并启动容器</td>
+<td><code>docker run -d --name web nginx</code></td>
+</tr>
+<tr>
+<td><code>docker start</code></td>
+<td>启动已停止的容器</td>
+<td><code>docker start web</code></td>
+</tr>
+<tr>
+<td><code>docker stop</code></td>
+<td>停止容器</td>
+<td><code>docker stop web</code></td>
+</tr>
+<tr>
+<td><code>docker restart</code></td>
+<td>重启容器</td>
+<td><code>docker restart web</code></td>
+</tr>
+<tr>
+<td><code>docker kill</code></td>
+<td>强制停止容器</td>
+<td><code>docker kill web</code></td>
+</tr>
+<tr>
+<td><code>docker rm</code></td>
+<td>删除容器</td>
+<td><code>docker rm web</code></td>
+</tr>
+<tr>
+<td><code>docker pause</code></td>
+<td>暂停容器</td>
+<td><code>docker pause web</code></td>
+</tr>
+<tr>
+<td><code>docker unpause</code></td>
+<td>恢复容器</td>
+<td><code>docker unpause web</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="323">3.2.3 容器操作命令</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看运行中的容器</span>
+docker<span class="w"> </span>ps
+
+<span class="c1"># 查看所有容器（包括已停止）</span>
+docker<span class="w"> </span>ps<span class="w"> </span>-a
+
+<span class="c1"># 仅显示容器 ID</span>
+docker<span class="w"> </span>ps<span class="w"> </span>-aq
+
+<span class="c1"># 进入容器（推荐 exec，退出后容器不停止）</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>web<span class="w"> </span>/bin/bash
+
+<span class="c1"># 查看容器日志</span>
+docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>web<span class="w">     </span><span class="c1"># -f 实时跟踪</span>
+
+<span class="c1"># 查看容器详细信息</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>web
+
+<span class="c1"># 查看容器内进程</span>
+docker<span class="w"> </span>top<span class="w"> </span>web
+
+<span class="c1"># 查看容器资源占用</span>
+docker<span class="w"> </span>stats<span class="w"> </span>web
+
+<span class="c1"># 容器与宿主机文件互传</span>
+docker<span class="w"> </span>cp<span class="w"> </span>/host/path<span class="w"> </span>web:/container/path<span class="w">    </span><span class="c1"># 宿主机 → 容器</span>
+docker<span class="w"> </span>cp<span class="w"> </span>web:/container/path<span class="w"> </span>/host/path<span class="w">    </span><span class="c1"># 容器 → 宿主机</span>
+
+<span class="c1"># 修改容器配置</span>
+docker<span class="w"> </span>update<span class="w"> </span>web<span class="w"> </span>--restart<span class="w"> </span>always
+
+<span class="c1"># 导出容器为 tar（不含镜像信息）</span>
+docker<span class="w"> </span><span class="nb">export</span><span class="w"> </span>web<span class="w"> </span>&gt;<span class="w"> </span>web.tar
+
+<span class="c1"># 从 tar 导入为镜像</span>
+docker<span class="w"> </span>import<span class="w"> </span>web.tar<span class="w"> </span>myimage:v1
+</code></pre></div>
+<h4 id="324-vs">3.2.4 交互式 vs 守护式容器</h4>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>特点</th>
+<th>创建命令</th>
+<th>进入方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>交互式</strong></td>
+<td>有终端交互，exit 后容器停止</td>
+<td><code>docker run -it --name c1 centos /bin/bash</code></td>
+<td>直接进入</td>
+</tr>
+<tr>
+<td><strong>守护式</strong></td>
+<td>后台运行，exit 后容器继续运行</td>
+<td><code>docker run -d --name c2 nginx</code></td>
+<td><code>docker exec -it c2 /bin/bash</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="33">3.3 数据卷命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker volume create</code></td>
+<td>创建数据卷</td>
+<td><code>docker volume create mydata</code></td>
+</tr>
+<tr>
+<td><code>docker volume ls</code></td>
+<td>查看所有数据卷</td>
+<td><code>docker volume ls</code></td>
+</tr>
+<tr>
+<td><code>docker volume inspect</code></td>
+<td>查看数据卷详情</td>
+<td><code>docker volume inspect mydata</code></td>
+</tr>
+<tr>
+<td><code>docker volume rm</code></td>
+<td>删除数据卷</td>
+<td><code>docker volume rm mydata</code></td>
+</tr>
+<tr>
+<td><code>docker volume prune</code></td>
+<td>删除未使用的数据卷</td>
+<td><code>docker volume prune</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="34">3.4 网络命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker network create</code></td>
+<td>创建网络</td>
+<td><code>docker network create mynet</code></td>
+</tr>
+<tr>
+<td><code>docker network ls</code></td>
+<td>查看网络列表</td>
+<td><code>docker network ls</code></td>
+</tr>
+<tr>
+<td><code>docker network inspect</code></td>
+<td>查看网络详情</td>
+<td><code>docker network inspect mynet</code></td>
+</tr>
+<tr>
+<td><code>docker network rm</code></td>
+<td>删除网络</td>
+<td><code>docker network rm mynet</code></td>
+</tr>
+<tr>
+<td><code>docker network connect</code></td>
+<td>连接容器到网络</td>
+<td><code>docker network connect mynet web</code></td>
+</tr>
+<tr>
+<td><code>docker network disconnect</code></td>
+<td>断开容器网络</td>
+<td><code>docker network disconnect mynet web</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="35">3.5 日志与排查命令</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看容器日志</span>
+docker<span class="w"> </span>logs<span class="w"> </span>container_name
+
+<span class="c1"># 实时跟踪日志（类似 tail -f）</span>
+docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>container_name
+
+<span class="c1"># 查看最近 100 行日志</span>
+docker<span class="w"> </span>logs<span class="w"> </span>--tail<span class="w"> </span><span class="m">100</span><span class="w"> </span>container_name
+
+<span class="c1"># 查看容器内运行的进程</span>
+docker<span class="w"> </span>top<span class="w"> </span>container_name
+
+<span class="c1"># 实时查看容器资源占用</span>
+docker<span class="w"> </span>stats
+
+<span class="c1"># 查看容器详细信息（IP、挂载、配置等）</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>container_name
+
+<span class="c1"># 查看 Docker 系统信息</span>
+docker<span class="w"> </span>info
+
+<span class="c1"># 查看 Docker 版本</span>
+docker<span class="w"> </span>version
+</code></pre></div>
+<hr />
+<h2 id="docker_2">四、Docker 数据管理</h2>
+<h3 id="41-volume">4.1 数据卷（Volume）</h3>
+<p><strong>概念</strong>：Docker 管理的持久化存储，数据存于 <code>/var/lib/docker/volumes/</code>，与容器生命周期解耦。</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>Docker 自动管理，删除容器时数据卷不会自动删除</li>
+<li>多个容器可共享同一数据卷</li>
+<li>支持远程存储、云存储</li>
+</ul>
+<p><strong>挂载方式</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建并挂载数据卷</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>redis<span class="w"> </span>-v<span class="w"> </span>mydata:/data<span class="w"> </span>redis:7.0.15
+
+<span class="c1"># 注：卷名前不能有 /，否则会被当作目录挂载</span>
+</code></pre></div>
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li>数据卷未提前创建时，会自动创建</li>
+<li>数据卷不为空时，内容会覆盖容器目录</li>
+<li>数据卷为空时，容器目录内容会复制到数据卷</li>
+</ul>
+<h3 id="42-bind-mount">4.2 目录挂载（Bind Mount）</h3>
+<p><strong>概念</strong>：将宿主机特定目录直接挂载到容器，开发者可控路径。</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>redis<span class="w"> </span>-v<span class="w"> </span>/root/redis-data:/data<span class="w"> </span>redis:7.0.15
+</code></pre></div>
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li>宿主机目录前有 <code>/</code>（绝对路径）</li>
+<li>目录不存在会自动创建</li>
+<li><strong>宿主机目录为空时，会清空容器目录内容</strong>（危险！）</li>
+</ul>
+<p><strong>权限问题</strong>：</p>
+<p>如果出现 <code>Permission denied</code>，添加 <code>--privileged=true</code>：</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>-v<span class="w"> </span>/host/path:/container/path<span class="w"> </span>nginx
+</code></pre></div>
+<h3 id="43-vs">4.3 数据卷 vs 目录挂载对比</h3>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>数据卷（Volume）</th>
+<th>目录挂载（Bind Mount）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>存储位置</td>
+<td>Docker 管理 <code>/var/lib/docker/volumes/</code></td>
+<td>用户指定任意路径</td>
+</tr>
+<tr>
+<td>Docker 管理</td>
+<td>是</td>
+<td>否</td>
+</tr>
+<tr>
+<td>跨主机移植</td>
+<td>容易</td>
+<td>困难</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>好</td>
+<td>好</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>生产环境、持久化数据</td>
+<td>开发环境、配置文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44">4.4 容器数据备份与迁移</h3>
+<p align='center'>
+    <img src="../assets/imgs/tools/docker/docker2.png" alt="docker备份迁移" style="zoom:68%"/>
+</p>
+
+<p><strong>步骤</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 将容器提交为镜像</span>
+docker<span class="w"> </span>commit<span class="w"> </span>redis01<span class="w"> </span>myredis:v1
+
+<span class="c1"># 2. 导出镜像为 tar 包</span>
+docker<span class="w"> </span>save<span class="w"> </span>-o<span class="w"> </span>./myredis.tar<span class="w"> </span>myredis:v1
+
+<span class="c1"># 3. 在目标机器加载镜像</span>
+docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>./myredis.tar
+
+<span class="c1"># 4. 使用镜像启动新容器</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>redis02<span class="w"> </span>myredis:v1
+</code></pre></div>
+<hr />
+<h2 id="docker_3">五、Docker 网络</h2>
+<h3 id="51">5.1 网络类型</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>bridge</strong></td>
+<td>默认网络，容器间可通过 IP 互通</td>
+<td>单机多容器通信</td>
+</tr>
+<tr>
+<td><strong>host</strong></td>
+<td>容器直接使用宿主机网络，无隔离</td>
+<td>性能要求高、无需隔离</td>
+</tr>
+<tr>
+<td><strong>none</strong></td>
+<td>无网络，完全隔离</td>
+<td>安全要求高的容器</td>
+</tr>
+<tr>
+<td><strong>自定义网络</strong></td>
+<td>用户创建，容器可通过名称互访</td>
+<td>微服务架构、服务发现</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52">5.2 创建自定义网络</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建网络</span>
+docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>mynet
+
+<span class="c1"># 指定网络启动容器</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>web<span class="w"> </span>--network<span class="w"> </span>mynet<span class="w"> </span>nginx
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>api<span class="w"> </span>--network<span class="w"> </span>mynet<span class="w"> </span>python-app
+
+<span class="c1"># 同一网络内的容器可通过名称互访</span>
+<span class="c1"># 在 web 容器内可直接访问 http://api:8000</span>
+</code></pre></div>
+<h3 id="53">5.3 网络模式对比</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># bridge 模式（默认）</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>web<span class="w"> </span>nginx
+<span class="c1"># 容器有独立 IP，需通过 IP 或端口映射访问</span>
+
+<span class="c1"># host 模式</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>web<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>nginx
+<span class="c1"># 容器直接用宿主机端口，无需 -p 映射</span>
+
+<span class="c1"># none 模式</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>web<span class="w"> </span>--network<span class="w"> </span>none<span class="w"> </span>nginx
+<span class="c1"># 容器无网络</span>
+</code></pre></div>
+<hr />
+<h2 id="dockerfile">六、Dockerfile 与镜像构建</h2>
+<h3 id="61-dockerfile">6.1 Dockerfile 概念</h3>
+<p>Dockerfile 是一个文本文件，包含一系列指令，用于自动构建 Docker 镜像。</p>
+<p><strong>构建流程</strong>：Docker 按<strong>顺序执行</strong>每条指令，每条指令生成一个<strong>镜像层（Layer）</strong>。</p>
+<h3 id="62">6.2 常用指令详解</h3>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FROM</code></td>
+<td>指定基础镜像（必须为第一条）</td>
+<td><code>FROM centos:7</code></td>
+</tr>
+<tr>
+<td><code>LABEL</code></td>
+<td>添加元数据（如维护者）</td>
+<td><code>LABEL maintainer="admin@example.com"</code></td>
+</tr>
+<tr>
+<td><code>RUN</code></td>
+<td>构建时执行命令，生成新层</td>
+<td><code>RUN yum install -y vim</code></td>
+</tr>
+<tr>
+<td><code>COPY</code></td>
+<td>复制文件到镜像（不解压）</td>
+<td><code>COPY app.jar /app/</code></td>
+</tr>
+<tr>
+<td><code>ADD</code></td>
+<td>复制文件并自动解压 tar</td>
+<td><code>ADD jdk.tar.gz /usr/local/</code></td>
+</tr>
+<tr>
+<td><code>ENV</code></td>
+<td>设置环境变量</td>
+<td><code>ENV JAVA_HOME=/usr/local/jdk</code></td>
+</tr>
+<tr>
+<td><code>WORKDIR</code></td>
+<td>设置工作目录</td>
+<td><code>WORKDIR /app</code></td>
+</tr>
+<tr>
+<td><code>EXPOSE</code></td>
+<td>声明端口（仅文档作用）</td>
+<td><code>EXPOSE 8080</code></td>
+</tr>
+<tr>
+<td><code>CMD</code></td>
+<td>容器启动默认命令（可覆盖）</td>
+<td><code>CMD ["java", "-jar", "app.jar"]</code></td>
+</tr>
+<tr>
+<td><code>ENTRYPOINT</code></td>
+<td>容器主命令（不易覆盖）</td>
+<td><code>ENTRYPOINT ["java"]</code></td>
+</tr>
+<tr>
+<td><code>VOLUME</code></td>
+<td>声明数据卷挂载点</td>
+<td><code>VOLUME /data</code></td>
+</tr>
+<tr>
+<td><code>USER</code></td>
+<td>指定运行用户</td>
+<td><code>USER appuser</code></td>
+</tr>
+<tr>
+<td><code>ARG</code></td>
+<td>构建时变量（不持久化）</td>
+<td><code>ARG VERSION=1.0</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="63">6.3 关键指令对比</h3>
+<h4 id="copy-vs-add">COPY vs ADD</h4>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>COPY</th>
+<th>ADD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能</td>
+<td>仅复制文件</td>
+<td>复制 + 自动解压 tar + URL下载</td>
+</tr>
+<tr>
+<td>推荐</td>
+<td>✅ 推荐（语义明确）</td>
+<td>仅在需要解压时使用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="cmd-vs-entrypoint">CMD vs ENTRYPOINT</h4>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>CMD</th>
+<th>ENTRYPOINT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用途</td>
+<td>默认命令，可被 <code>docker run</code> 参数覆盖</td>
+<td>主命令，不易覆盖</td>
+</tr>
+<tr>
+<td>覆盖方式</td>
+<td><code>docker run image new_cmd</code> 整体替换</td>
+<td><code>docker run image args</code> 作为追加参数</td>
+</tr>
+<tr>
+<td>组合使用</td>
+<td>作为 ENTRYPOINT 的默认参数</td>
+<td>固定主命令</td>
+</tr>
+</tbody>
+</table>
+<p><strong>组合示例</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">ENTRYPOINT</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;java&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;-jar&quot;</span><span class="p">]</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;app.jar&quot;</span><span class="p">]</span>
+
+<span class="c"># 默认执行：java -jar app.jar</span>
+<span class="c"># docker run myimage other.jar → 执行：java -jar other.jar</span>
+</code></pre></div>
+<h3 id="64-dockerfile">6.4 Dockerfile 最佳实践</h3>
+<p><strong>1. 减少镜像层数</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="c"># 不推荐：多层</span>
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>net-tools
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>clean<span class="w"> </span>all
+
+<span class="c"># 推荐：合并为一层</span>
+<span class="k">RUN</span><span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vim<span class="w"> </span>net-tools<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>yum<span class="w"> </span>clean<span class="w"> </span>all
+</code></pre></div>
+<p><strong>2. 使用多阶段构建</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="c"># 第一阶段：编译</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">maven:3.8</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">builder</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<span class="k">COPY</span><span class="w"> </span>pom.xml<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>mvn<span class="w"> </span>dependency:go-offline
+<span class="k">COPY</span><span class="w"> </span>src<span class="w"> </span>./src
+<span class="k">RUN</span><span class="w"> </span>mvn<span class="w"> </span>package
+
+<span class="c"># 第二阶段：运行（仅包含编译产物）</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">tomcat:9</span>
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>builder<span class="w"> </span>/app/target/*.war<span class="w"> </span>/usr/local/tomcat/webapps/
+</code></pre></div>
+<p><strong>3. 合理利用缓存</strong>：</p>
+<ul>
+<li>把不常变化的指令放前面（如依赖安装）</li>
+<li>把常变化的指令放后面（如 COPY 源码）</li>
+</ul>
+<h3 id="65-jdk">6.5 构建 JDK 镜像示例</h3>
+<div class="highlight"><pre><span></span><code><span class="c"># 基础镜像</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">centos:7</span>
+
+<span class="c"># 维护者信息</span>
+<span class="k">LABEL</span><span class="w"> </span><span class="nv">maintainer</span><span class="o">=</span><span class="s2">&quot;admin@example.com&quot;</span>
+
+<span class="c"># 创建目录并添加 JDK（自动解压）</span>
+<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/usr/local/java
+<span class="k">ADD</span><span class="w"> </span>jdk-17_linux-x64_bin.tar.gz<span class="w"> </span>/usr/local/java/
+
+<span class="c"># 设置环境变量</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/java/jdk-17.0.7
+<span class="k">ENV</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$JAVA_HOME</span>/bin
+
+<span class="c"># 验证安装</span>
+<span class="k">RUN</span><span class="w"> </span>java<span class="w"> </span>-version
+</code></pre></div>
+<p><strong>构建命令</strong>：</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>centos7-jdk17<span class="w"> </span>.
+</code></pre></div>
+<p>参数说明：</p>
+<ul>
+<li><code>-t</code>：指定镜像名称和标签</li>
+<li><code>.</code>：构建上下文路径（Dockerfile 所在目录）</li>
+</ul>
+<hr />
+<h2 id="docker-compose">七、Docker Compose</h2>
+<h3 id="71">7.1 概念</h3>
+<p>Docker Compose 是 Docker 官方的容器编排工具，用于<strong>批量管理多个容器</strong>。</p>
+<p><strong>核心功能</strong>：
+- 通过 YAML 文件定义多容器应用
+- 一键启动/停止所有容器
+- 管理容器间的依赖、网络、数据卷</p>
+<h3 id="72">7.2 常用命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker compose up -d</code></td>
+<td>创建并启动所有容器</td>
+</tr>
+<tr>
+<td><code>docker compose down</code></td>
+<td>停止并删除所有容器、网络</td>
+</tr>
+<tr>
+<td><code>docker compose start</code></td>
+<td>启动已存在的容器</td>
+</tr>
+<tr>
+<td><code>docker compose stop</code></td>
+<td>停止容器</td>
+</tr>
+<tr>
+<td><code>docker compose restart</code></td>
+<td>重启容器</td>
+</tr>
+<tr>
+<td><code>docker compose ps</code></td>
+<td>查看容器状态</td>
+</tr>
+<tr>
+<td><code>docker compose logs</code></td>
+<td>查看日志</td>
+</tr>
+<tr>
+<td><code>docker compose config</code></td>
+<td>验证配置文件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>指定配置文件</strong>：</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.yml<span class="w"> </span>up<span class="w"> </span>-d
+</code></pre></div>
+<h3 id="73-compose">7.3 compose 文件结构</h3>
+<div class="highlight"><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">redis</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis:7.0.10</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis001</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;6399:6379&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis-data:/data</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mynet</span>
+
+<span class="w">  </span><span class="nt">mysql</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql001</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql:8.0.30</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;3399:3306&quot;</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_data:/var/lib/mysql</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql_conf:/etc/mysql</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1234</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mynet</span>
+
+<span class="w">  </span><span class="nt">app</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app001</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">myapp:v1.0</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8099:8080&quot;</span>
+<span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">        </span><span class="c1"># 依赖关系</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">redis</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mysql</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">mynet</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">redis-data</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">mysql_data</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+<span class="w">  </span><span class="nt">mysql_conf</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
+
+<span class="nt">networks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mynet</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bridge</span>
+</code></pre></div>
+<h3 id="74">7.4 服务配置项说明</h3>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>image</code></td>
+<td>使用已有镜像</td>
+</tr>
+<tr>
+<td><code>build</code></td>
+<td>从 Dockerfile 构建</td>
+</tr>
+<tr>
+<td><code>container_name</code></td>
+<td>容器名称</td>
+</tr>
+<tr>
+<td><code>ports</code></td>
+<td>端口映射</td>
+</tr>
+<tr>
+<td><code>volumes</code></td>
+<td>数据卷挂载</td>
+</tr>
+<tr>
+<td><code>environment</code></td>
+<td>环境变量</td>
+</tr>
+<tr>
+<td><code>restart</code></td>
+<td>重启策略：<code>always</code>、<code>on-failure</code>、<code>no</code></td>
+</tr>
+<tr>
+<td><code>depends_on</code></td>
+<td>依赖的服务（启动顺序）</td>
+</tr>
+<tr>
+<td><code>networks</code></td>
+<td>加入的网络</td>
+</tr>
+<tr>
+<td><code>command</code></td>
+<td>覆盖默认启动命令</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">八、常用容器部署速查</h2>
+<h3 id="81-mysql">8.1 MySQL</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>mysql<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">3306</span>:3306<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>mysql_data:/var/lib/mysql<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>mysql_conf:/etc/mysql<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>root123<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>mysql:8.0.30
+
+<span class="c1"># 进入容器（设置编码避免中文乱码）</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-e<span class="w"> </span><span class="nv">LANG</span><span class="o">=</span>C.UTF-8<span class="w"> </span>mysql<span class="w"> </span>bash
+</code></pre></div>
+<h3 id="82-redis">8.2 Redis</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建配置目录</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>/mydata/redis/conf/mydata/redis/data
+touch<span class="w"> </span>/mydata/redis/conf/redis.conf
+
+<span class="c1"># 启动 Redis</span>
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>redis<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">6379</span>:6379<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/mydata/redis/data:/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/mydata/redis/conf/redis.conf:/etc/redis/redis.conf<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>redis:7.0.15<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>redis-server<span class="w"> </span>/etc/redis/redis.conf
+
+<span class="c1"># 测试连接</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>redis<span class="w"> </span>redis-cli
+</code></pre></div>
+<h3 id="83-rabbitmq">8.3 RabbitMQ</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>rabbitmq<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">5672</span>:5672<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">15672</span>:15672<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>rabbitmq-plugin:/plugins<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">RABBITMQ_DEFAULT_USER</span><span class="o">=</span>root<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">RABBITMQ_DEFAULT_PASS</span><span class="o">=</span>root123<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>rabbitmq:3.12.0-management
+
+<span class="c1"># 启用延迟消息插件</span>
+rabbitmq-plugins<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>rabbitmq_delayed_message_exchange
+</code></pre></div>
+<blockquote>
+<p>端口说明：5672 为客户端连接端口，15672 为管理界面端口。</p>
+</blockquote>
+<h3 id="84-nacos">8.4 Nacos</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>nacos/nacos-server:v2.1.1
+
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>nacos<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">MODE</span><span class="o">=</span>standalone<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8848</span>:8848<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">9848</span>:9848<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>nacos/nacos-server:v2.1.1
+</code></pre></div>
+<blockquote>
+<p>Nacos 2.x 新增 gRPC 端口 9848，需同时映射。</p>
+</blockquote>
+<h3 id="85-minio">8.5 MinIO</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>minio<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">9000</span>:9000<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">9001</span>:9001<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="s2">&quot;MINIO_ROOT_USER=minioadmin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="s2">&quot;MINIO_ROOT_PASSWORD=minioadmin&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>minio-data:/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--restart<span class="o">=</span>always<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>minio/minio<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>server<span class="w"> </span>/data<span class="w"> </span>--console-address<span class="w"> </span><span class="s2">&quot;:9001&quot;</span>
+</code></pre></div>
+<blockquote>
+<p>端口说明：9000 为 API 端口，9001 为控制台端口。</p>
+</blockquote>
+<h3 id="86-nginx">8.6 Nginx</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>nginx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>nginx_conf:/etc/nginx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>nginx_html:/usr/share/nginx/html<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>nginx_logs:/var/log/nginx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>nginx
+</code></pre></div>
+<h3 id="87-elasticsearch">8.7 Elasticsearch</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建目录</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/elasticsearch/<span class="o">{</span>config,plugins,data<span class="o">}</span>
+chmod<span class="w"> </span>-R<span class="w"> </span><span class="m">777</span><span class="w"> </span>/opt/elasticsearch
+
+<span class="c1"># 创建配置文件</span>
+cat<span class="w"> </span><span class="s">&lt;&lt;EOF &gt; /opt/elasticsearch/config/elasticsearch.yml</span>
+<span class="s">xpack.security.enabled: true</span>
+<span class="s">xpack.license.self_generated.type: basic</span>
+<span class="s">xpack.security.transport.ssl.enabled: false</span>
+<span class="s">xpack.security.enrollment.enabled: true</span>
+<span class="s">http.host: 0.0.0.0</span>
+<span class="s">EOF</span>
+
+<span class="c1"># 启动</span>
+docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>elastic
+
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>elasticsearch<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">9200</span>:9200<span class="w"> </span>-p<span class="w"> </span><span class="m">9300</span>:9300<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--net<span class="w"> </span>elastic<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--restart<span class="o">=</span>always<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="s2">&quot;discovery.type=single-node&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-e<span class="w"> </span><span class="nv">ES_JAVA_OPTS</span><span class="o">=</span><span class="s2">&quot;-Xms512m -Xmx512m&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/opt/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/opt/elasticsearch/data:/usr/share/elasticsearch/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/opt/elasticsearch/plugins:/usr/share/elasticsearch/plugins<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>elasticsearch:8.5.0
+
+<span class="c1"># 重置密码（等待 ES 启动完成后执行）</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>elasticsearch<span class="w"> </span>bin/elasticsearch-reset-password<span class="w"> </span>-u<span class="w"> </span>elastic<span class="w"> </span>-i
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>elasticsearch<span class="w"> </span>bin/elasticsearch-reset-password<span class="w"> </span>-u<span class="w"> </span>kibana_system<span class="w"> </span>-i
+</code></pre></div>
+<h3 id="88-mongodb">8.8 MongoDB</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>mongo:7.0.0
+
+mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/mongo/data/db
+
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>mongo<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--restart<span class="o">=</span>always<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">27017</span>:27017<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/opt/mongo/data/db:/data/db<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>mongo:7.0.0
+
+<span class="c1"># 连接</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mongo<span class="w"> </span>mongosh
+</code></pre></div>
+<h3 id="89-portainerdocker">8.9 Portainer（Docker 管理界面）</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>portainer<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">19000</span>:9000<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/var/run/docker.sock:/var/run/docker.sock<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>/app/portainer_data:/data<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--restart<span class="w"> </span>always<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>portainer/portainer-ce:latest
+
+<span class="c1"># 访问 http://&lt;服务器IP&gt;:19000</span>
+</code></pre></div>
+<h3 id="810-sentinel">8.10 Sentinel</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>bladex/sentinel-dashboard:latest
+
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>sentinel-dashboard<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--restart<span class="o">=</span>always<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8858</span>:8858<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>bladex/sentinel-dashboard:latest
+</code></pre></div>
+<h3 id="811-zipkin">8.11 Zipkin</h3>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>openzipkin/zipkin
+
+docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>zipkin<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--restart<span class="o">=</span>always<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">9411</span>:9411<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>openzipkin/zipkin
+</code></pre></div>
+<hr />
+<h2 id="_5">九、常见问题与排查</h2>
+<h3 id="91">9.1 容器启动失败</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看容器状态</span>
+docker<span class="w"> </span>ps<span class="w"> </span>-a
+
+<span class="c1"># 查看容器日志</span>
+docker<span class="w"> </span>logs<span class="w"> </span>container_name
+
+<span class="c1"># 查看容器详细信息</span>
+docker<span class="w"> </span>inspect<span class="w"> </span>container_name
+</code></pre></div>
+<p><strong>常见原因</strong>：</p>
+<ul>
+<li>端口冲突：宿主机端口已被占用</li>
+<li>镜像不存在：检查镜像是否正确拉取</li>
+<li>资源不足：内存、磁盘空间不足</li>
+<li>配置错误：环境变量、挂载路径等配置问题</li>
+</ul>
+<h3 id="92">9.2 镜像拉取失败</h3>
+<p><strong>原因</strong>：国内访问 Docker Hub 速度慢或被限制</p>
+<p><strong>解决方案</strong>：</p>
+<ul>
+<li>配置国内镜像加速源</li>
+<li>使用代理或 VPN</li>
+<li>从本地 tar 文件加载：<code>docker load -i xxx.tar</code></li>
+</ul>
+<h3 id="93">9.3 权限问题</h3>
+<p><strong>现象</strong>：挂载目录后出现 <code>Permission denied</code></p>
+<p><strong>解决</strong>：
+<div class="highlight"><pre><span></span><code><span class="c1"># 方案一：添加特权模式</span>
+docker<span class="w"> </span>run<span class="w"> </span>--privileged<span class="o">=</span><span class="nb">true</span><span class="w"> </span>-v<span class="w"> </span>/host:/container<span class="w"> </span>image
+
+<span class="c1"># 方案二：在 Dockerfile 中设置用户</span>
+USER<span class="w"> </span>root
+</code></pre></div></p>
+<h3 id="94">9.4 容器时间与宿主机不一致</h3>
+<p><strong>原因</strong>：容器默认使用 UTC 时区</p>
+<p><strong>解决</strong>：
+<div class="highlight"><pre><span></span><code><span class="c1"># 挂载宿主机时区文件</span>
+docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>/etc/localtime:/etc/localtime:ro<span class="w"> </span>image
+
+<span class="c1"># 或设置环境变量</span>
+docker<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span><span class="nv">TZ</span><span class="o">=</span>Asia/Shanghai<span class="w"> </span>image
+</code></pre></div></p>
+<h3 id="95-docker">9.5 Docker 占用磁盘过大</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 查看 Docker 磁盘占用</span>
+docker<span class="w"> </span>system<span class="w"> </span>df
+
+<span class="c1"># 清理未使用的资源</span>
+docker<span class="w"> </span>system<span class="w"> </span>prune
+
+<span class="c1"># 仅清理镜像</span>
+docker<span class="w"> </span>image<span class="w"> </span>prune
+
+<span class="c1"># 仅清理容器</span>
+docker<span class="w"> </span>container<span class="w"> </span>prune
+
+<span class="c1"># 仅清理数据卷</span>
+docker<span class="w"> </span>volume<span class="w"> </span>prune
+</code></pre></div>
+<h3 id="96">9.6 进入容器执行命令</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># 常见容器 shell 路径</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>container<span class="w"> </span>/bin/bash<span class="w">    </span><span class="c1"># CentOS/Ubuntu</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>container<span class="w"> </span>/bin/sh<span class="w">      </span><span class="c1"># Alpine</span>
+docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>container<span class="w"> </span>sh<span class="w">           </span><span class="c1"># 精简镜像可能只有 sh</span>
+</code></pre></div>
+<hr />
+<h2 id="_6">面试高频考点</h2>
+<h3 id="1-docker">1. Docker 核心概念</h3>
+<p><strong>镜像 vs 容器</strong>：镜像是静态模板（类似类），容器是运行实例（类似对象）。</p>
+<p><strong>Docker vs 虚拟机</strong>：容器共享宿主机内核，启动快、资源占用少；虚拟机独立内核，隔离性强。</p>
+<h3 id="2-dockerfile">2. Dockerfile 指令</h3>
+<p><strong>CMD vs ENTRYPOINT</strong>：CMD 可被覆盖，ENTRYPOINT 作为主命令不易覆盖，常组合使用。</p>
+<p><strong>COPY vs ADD</strong>：COPY 仅复制，ADD 会自动解压 tar 包。</p>
+<h3 id="3">3. 数据持久化</h3>
+<p><strong>数据卷 vs 目录挂载</strong>：数据卷 Docker 管理、易于移植；目录挂载用户管理、适合开发环境。</p>
+<h3 id="4">4. 网络</h3>
+<p><strong>自定义网络优势</strong>：容器可通过名称互访，适合微服务架构。</p>
+<h3 id="5">5. 镜像优化</h3>
+<p><strong>减少层数</strong>：合并 RUN 命令，减少镜像层。</p>
+<p><strong>多阶段构建</strong>：编译与运行分离，减小最终镜像体积。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 LiuTianBa7 
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/reading-progress.js"></script>
+      
+    
+  </body>
+</html>

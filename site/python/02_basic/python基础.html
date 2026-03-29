@@ -3810,7 +3810,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../interview/python/python.md" class="md-nav__link">
+      <a href="../../interview/python/python.html" class="md-nav__link">
         
   
   
@@ -3931,7 +3931,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tools/docker.html" class="md-nav__link">
+      <a href="../../tools/git-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    git-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/docker-v2.html" class="md-nav__link">
         
   
   
@@ -6267,6 +6295,104 @@ def greet(): ...
 </tbody>
 </table>
 <p><strong>注意</strong>：类型注解是 Python 3.5+ 引入的特性，Python 3.9+ 可以直接用 <code>list[]</code>、<code>dict[]</code> 等内置泛型，Python 3.10+ 支持 <code>|</code> 联合语法。</p>
+<p><strong>TypedDict</strong>：<code>TypedDict</code> 用于为<strong>字典</strong>添加类型提示，指定每个键的名称和对应的类型。</p>
+<p>基本用法</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">email</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="c1"># 创建符合类型的字典</span>
+<span class="n">p</span><span class="p">:</span> <span class="n">Person</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;张三&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span> <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;zhangsan@example.com&quot;</span><span class="p">}</span>
+
+<span class="c1"># 错误：缺少必填字段或类型不符</span>
+<span class="c1"># p = {&quot;name&quot;: &quot;李四&quot;}           # ❌ 缺少 age 和 email</span>
+<span class="c1"># p = {&quot;name&quot;: &quot;王五&quot;, &quot;age&quot;: &quot;25&quot;}  # ❌ age 应为 int</span>
+</code></pre></div>
+<p>可选字段（total=False）</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Movie</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;所有字段都是可选的&quot;&quot;&quot;</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">year</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">rating</span><span class="p">:</span> <span class="nb">float</span>
+
+<span class="c1"># 可以只提供部分字段</span>
+<span class="n">m1</span><span class="p">:</span> <span class="n">Movie</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;肖申克的救赎&quot;</span><span class="p">}</span>
+<span class="n">m2</span><span class="p">:</span> <span class="n">Movie</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;阿甘正传&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">1994</span><span class="p">}</span>
+</code></pre></div>
+<p>混合使用：必填 + 可选</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Book</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">author</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># 必填</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BookOptional</span><span class="p">(</span><span class="n">Book</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">isbn</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">pages</span><span class="p">:</span> <span class="nb">int</span>   <span class="c1"># 可选</span>
+
+<span class="n">b</span><span class="p">:</span> <span class="n">BookOptional</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Python编程&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;张三&quot;</span><span class="p">}</span>
+<span class="n">b2</span><span class="p">:</span> <span class="n">BookOptional</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Python编程&quot;</span><span class="p">,</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;张三&quot;</span><span class="p">,</span> <span class="s2">&quot;isbn&quot;</span><span class="p">:</span> <span class="s2">&quot;978-7-xxx&quot;</span><span class="p">}</span>
+</code></pre></div>
+<hr />
+<p><strong>Annotated</strong>：<code>Annotated</code> 用于为<strong>类型添加元数据</strong>，格式为 <code>Annotated[类型, 元数据1, 元数据2, ...]</code>。</p>
+<p>基本语法</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
+
+<span class="c1"># Annotated[实际类型, 元数据...]</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;用户姓名&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;张三&quot;</span>
+<span class="n">age</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;年龄范围&quot;</span><span class="p">,</span> <span class="s2">&quot;0-150&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">25</span>
+</code></pre></div>
+<p>常见应用场景</p>
+<p><strong>1. Pydantic：字段验证和描述</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="c1"># Field(...) 提供验证规则和描述</span>
+    <span class="n">name</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Field</span><span class="p">(</span><span class="n">min_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;用户名&quot;</span><span class="p">)]</span>
+    <span class="n">age</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Field</span><span class="p">(</span><span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;年龄&quot;</span><span class="p">)]</span>
+    <span class="n">email</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Field</span><span class="p">(</span><span class="n">pattern</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;^\S+@\S+\.\S+$&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;邮箱&quot;</span><span class="p">)]</span>
+
+<span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;张三&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s2">&quot;zs@example.com&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>2. FastAPI：依赖注入和参数校验</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Query</span><span class="p">,</span> <span class="n">Path</span><span class="p">,</span> <span class="n">Depends</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/</span><span class="si">{item_id}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read_item</span><span class="p">(</span>
+    <span class="n">item_id</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Path</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;商品ID&quot;</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">1</span><span class="p">)],</span>
+    <span class="n">q</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">Query</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">)]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;路径参数 + 查询参数校验&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="n">item_id</span><span class="p">,</span> <span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="n">q</span><span class="p">}</span>
+
+<span class="c1"># 依赖注入</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">common_params</span><span class="p">(</span><span class="n">q</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;q&quot;</span><span class="p">:</span> <span class="n">q</span><span class="p">,</span> <span class="s2">&quot;skip&quot;</span><span class="p">:</span> <span class="n">skip</span><span class="p">,</span> <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="n">limit</span><span class="p">}</span>
+
+<span class="n">CommonsDep</span> <span class="o">=</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="n">Depends</span><span class="p">(</span><span class="n">common_params</span><span class="p">)]</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/users/&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">read_users</span><span class="p">(</span><span class="n">commons</span><span class="p">:</span> <span class="n">CommonsDep</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">commons</span>
+</code></pre></div>
+<p><strong>3. LangChain：提示词变量绑定</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span>
+
+<span class="c1"># 在 LangChain 中，Annotated 可用于标记变量用途</span>
+<span class="n">template</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;你是一个</span><span class="si">{role}</span><span class="s2">专家&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{question}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="c1"># 部分变量绑定</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">role</span><span class="o">=</span><span class="n">Annotated</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;助手角色&quot;</span><span class="p">])</span>
+</code></pre></div>
 <hr />
 <h2 id="_5">五、面向对象</h2>
 <h3 id="51">5.1 类的定义</h3>
