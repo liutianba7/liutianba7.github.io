@@ -1510,13 +1510,97 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="LangChain Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型的标准输入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型的输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型创建方式总览
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init_chat_model10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式一：init_chat_model（1.0+ 推荐）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式二：Provider 原生创建（精细控制）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式三：OpenAI 兼容方式（第三方通用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
   <a href="#langchain_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        LangChain 调用大模型
+        LangChain 模型调用的方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LangChain 模型调用的方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        调用方式概览
       
     </span>
   </a>
@@ -1524,10 +1608,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#langchain_2" class="md-nav__link">
+  <a href="#invoke" class="md-nav__link">
     <span class="md-ellipsis">
       
-        LangChain 返回结构
+        invoke() 单次调用（最常用）
       
     </span>
   </a>
@@ -1535,13 +1619,40 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#langchain_3" class="md-nav__link">
+  <a href="#stream" class="md-nav__link">
     <span class="md-ellipsis">
       
-        LangChain 流式输出
+        stream() 流式调用（打字机效果）
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        batch() 批量调用（提高效率）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异步调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1557,18 +1668,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#langchain_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LangChain 消息的简写形式
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#langchain_5" class="md-nav__link">
+  <a href="#langchain_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         LangChain 嵌入模型
@@ -1652,7 +1752,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         核心语法：管道符 |
@@ -1663,7 +1763,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         链的标准组件
@@ -1752,7 +1852,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         核心作用
@@ -1763,7 +1863,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         常用解析器
@@ -1802,7 +1902,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       
         基础用法
@@ -1863,7 +1963,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
         存储介质的选择
@@ -1985,7 +2085,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
         基本概念
@@ -1996,7 +2096,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       
         常见向量存储
@@ -2007,7 +2107,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
         基本用法
@@ -2195,6 +2295,34 @@
     
   
     pytorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ollama.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ollama
   
 
     
@@ -3323,6 +3451,92 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/python/python.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3925,13 +4139,97 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="LangChain Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型的标准输入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型的输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        模型创建方式总览
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init_chat_model10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式一：init_chat_model（1.0+ 推荐）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式二：Provider 原生创建（精细控制）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#openai_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方式三：OpenAI 兼容方式（第三方通用）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
   <a href="#langchain_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        LangChain 调用大模型
+        LangChain 模型调用的方式
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LangChain 模型调用的方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        调用方式概览
       
     </span>
   </a>
@@ -3939,10 +4237,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#langchain_2" class="md-nav__link">
+  <a href="#invoke" class="md-nav__link">
     <span class="md-ellipsis">
       
-        LangChain 返回结构
+        invoke() 单次调用（最常用）
       
     </span>
   </a>
@@ -3950,13 +4248,40 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#langchain_3" class="md-nav__link">
+  <a href="#stream" class="md-nav__link">
     <span class="md-ellipsis">
       
-        LangChain 流式输出
+        stream() 流式调用（打字机效果）
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        batch() 批量调用（提高效率）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        异步调用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -3972,18 +4297,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#langchain_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        LangChain 消息的简写形式
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#langchain_5" class="md-nav__link">
+  <a href="#langchain_2" class="md-nav__link">
     <span class="md-ellipsis">
       
         LangChain 嵌入模型
@@ -4067,7 +4381,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
         核心语法：管道符 |
@@ -4078,7 +4392,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
       
         链的标准组件
@@ -4167,7 +4481,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       
         核心作用
@@ -4178,7 +4492,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       
         常用解析器
@@ -4217,7 +4531,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
       
         基础用法
@@ -4278,7 +4592,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
       
         存储介质的选择
@@ -4400,7 +4714,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
       
         基本概念
@@ -4411,7 +4725,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       
         常见向量存储
@@ -4422,7 +4736,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
       
         基本用法
@@ -4932,7 +5246,9 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">delta</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 <h2 id="04-langchain">04 LangChain</h2>
-<p>LangChain 是一个开源框架，旨在让开发者能够轻松构建由大语言模型（LLM）驱动的应用程序。它的核心理念是将复杂的 LLM 操作抽象为一个个"链"（Chains），实现模块化的开发流程。</p>
+<p>LanLangChain 是一个开源框架，旨在让开发者能够轻松构建由大语言模型（LLM）驱动的应用程序。它的核心理念是将复杂的 LLM 操作抽象为一个个"链"（Chains），实现模块化的开发流程。它就是一套把大模型和外部世界连接起来的工具代码。</p>
+<p>LangChain 主要由六部分组成，分别为：model、Memory、Retrieval、Chains、Agents、CallBacks。</p>
+<p>LangChain 一定是未来的潮流！</p>
 <p align='center'>
     <img src="../../assets/imgs/python/langchian/langchain01.png" alt="langchain01" />
 </p>
@@ -4940,8 +5256,16 @@
 <h3 id="langchain">LangChain 安装</h3>
 <div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">langchain</span> <span class="n">langchain</span><span class="o">-</span><span class="n">community</span> <span class="n">langchain</span><span class="o">-</span><span class="n">ollama</span> <span class="n">dashscope</span> <span class="n">chromadb</span>
 </code></pre></div>
+<p><strong>打印 langchain 相关信息</strong>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">langchain</span>  
+<span class="kn">import</span><span class="w"> </span><span class="nn">langchain_community</span>  
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>  
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;langchainVersion:  &quot;</span><span class="o">+</span><span class="n">langchain</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;langchain_communityVersion:  &quot;</span><span class="o">+</span><span class="n">langchain_community</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;langchainfile:&quot;</span><span class="o">+</span><span class="n">langchain</span><span class="o">.</span><span class="vm">__file__</span><span class="p">)</span>
+</code></pre></div></p>
 <h3 id="langchain-models">LangChain Models</h3>
-<p>langchainmodels.png</p>
 <p>在 LangChain 框架中，<strong>Models</strong> 是整个生态的核心驱动力。LangChain 并不直接拥有模型，而是提供了一套标准的接口，让你能够轻松地在不同的模型供应商（如 OpenAI, Anthropic, Google, Hugging Face）之间切换。</p>
 <p>LangChain 将模型主要划分为两大类：<strong>LLMs</strong> 和 <strong>Chat Models</strong>。</p>
 <p><strong>LLMs（大语言模型）</strong></p>
@@ -4960,46 +5284,22 @@
 <p>这是目前主流的模型类型（如 GPT-4, Claude 3）。</p>
 <ul>
 <li><strong>输入/输出</strong>：接受一个 <strong>Messages 列表</strong>，返回一个 <strong>BaseMessage</strong> 对象</li>
-<li>
-<p>消息角色：</p>
-<ul>
+<li><strong>消息角色</strong>：<ul>
 <li><code>SystemMessage</code>：设置 AI 的行为（例如："你是一个翻译助手"）</li>
 <li><code>HumanMessage</code>：用户发送的内容</li>
 <li><code>AIMessage</code>：模型返回的内容</li>
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">HumanMessage</span><span class="p">,</span> <span class="n">SystemMessage</span>
+<hr />
+<h4 id="_4">模型的标准输入</h4>
+<p align='center'>
+    <img src="../../assets/imgs/python/langchian/langchain05.png" alt="langchain05" style="zoom:80%;" />
+</p>
 
-<span class="n">chat</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">)</span>
-<span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">SystemMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;你是一个幽默的导游&quot;</span><span class="p">),</span>
-    <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;故宫有什么好玩的？&quot;</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">chat</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="langchain_1">LangChain 调用大模型</h3>
-<p><strong>LLM Model：</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.llms.tongyi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tongyi</span>
-
-<span class="n">llm</span> <span class="o">=</span> <span class="n">Tongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">)</span>
-<span class="n">res</span> <span class="o">=</span> <span class="n">llm</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="s2">&quot;你是谁啊&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-</code></pre></div>
-<p><strong>Chat Model：</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">HumanMessage</span><span class="p">,</span> <span class="n">SystemMessage</span>
-
-<span class="n">chat</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">)</span>
-<span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">SystemMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;你是一个幽默的导游&quot;</span><span class="p">),</span>
-    <span class="n">HumanMessage</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="s2">&quot;故宫有什么好玩的？&quot;</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">chat</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
-</code></pre></div>
-<h3 id="langchain_2">LangChain 返回结构</h3>
-<p>在 LangChain 中，调用模型返回的对象通常是 <code>AIMessage</code> 类。它将原始 API 返回的 JSON 进行了标准化封装，使其在不同模型（OpenAI, Claude, Qwen 等）之间保持一致。</p>
+<p>以上的标准参数，也只是适用于部分的大语言模型，有些参数在特定模型中可能是无效的，这些标准化参数仅对 LangChain 官方提供集成包的模型（如 langchain-openai、langchain-anthropic）生效，在langchain-community包中的第三方模型，则不需要遵守这些标准化参数的规则。</p>
+<h4 id="_5">模型的输出</h4>
+<p>在 LangChain 中，调用 <code>chatModel</code> 返回的对象通常是 <code>AIMessage</code>或者 <code>AIMessageChunk</code> 类。它将原始 API 返回的 JSON 进行了标准化封装，使其在不同模型（OpenAI, Claude, Qwen 等）之间保持一致。</p>
 <div class="highlight"><pre><span></span><code><span class="err">AIMessage(</span>
 <span class="w">    </span><span class="err">co</span><span class="kc">ntent</span><span class="err">=</span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w">                 </span><span class="err">#</span><span class="w"> </span><span class="err">字符串内容</span>
 <span class="w">    </span><span class="err">addi</span><span class="kc">t</span><span class="err">io</span><span class="kc">nal</span><span class="err">_kwargs=</span><span class="p">{},</span><span class="w">          </span><span class="err">#</span><span class="w"> </span><span class="err">预留给特定模型的特殊参数</span>
@@ -5024,45 +5324,450 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.messages</span><span class="w"> </span><span class="kn">import</span> <span class="n">AIMessage</span>
 <span class="n">is_ai</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">AIMessage</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="langchain_3">LangChain 流式输出</h3>
-<p>在 LangChain 中，<strong>流式输出（Streaming）</strong> 是提升用户体验的核心技术。它能让大模型像"打字机"一样实时弹出文字，而不是让用户面对加载图标苦等几十秒。</p>
-<p>LangChain 的 <strong>LCEL（LangChain Expression Language）</strong> 协议让流式输出变得非常标准化。</p>
-<p><strong>1、基础流式输出：使用 <code>.stream()</code></strong></p>
-<p>几乎所有的 LangChain 模型对象（LLMs 和 ChatModels）都实现了 <code>.stream()</code> 方法。它返回一个 <strong>迭代器（Iterator）</strong>，每次迭代产生一个内容片段（Chunk）。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_alibabacloud.chat_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatTongyi</span>
+<h4 id="_6">模型创建方式总览</h4>
+<p>LangChain 提供了<strong>三种</strong>创建模型的方式，各有适用场景：</p>
+<table>
+<thead>
+<tr>
+<th>创建方式</th>
+<th>适用版本</th>
+<th>特点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>init_chat_model()</code></td>
+<td>1.0+</td>
+<td>统一接口，自动识别 provider</td>
+<td><strong>推荐</strong>。快速开发、频繁切换模型</td>
+</tr>
+<tr>
+<td>Provider 原生类</td>
+<td>全版本</td>
+<td>精细控制，访问专属参数</td>
+<td>生产环境、需要高级配置</td>
+</tr>
+<tr>
+<td>OpenAI 兼容方式</td>
+<td>全版本</td>
+<td>第三方模型通用，配置灵活</td>
+<td>使用非标准 provider 的模型</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="init_chat_model10">方式一：init_chat_model（1.0+ 推荐）</h4>
+<p>这是 LangChain 1.0 引入的<strong>统一创建接口</strong>，内置了常见 provider 的识别逻辑，大幅简化了多模型切换的代码。</p>
+<p><strong>智能推导（自动识别 provider）</strong></p>
+<p>当模型名称符合内置规则时，<code>model_provider</code> 可以省略：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chat_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">init_chat_model</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="n">chat</span> <span class="o">=</span> <span class="n">ChatTongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">)</span>
+<span class="c1"># deepseek-chat → 自动识别为 deepseek provider</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">init_chat_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;deepseek-chat&quot;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DEEPSEEK_API_KEY&quot;</span><span class="p">),</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://api.deepseek.com&quot;</span>
+<span class="p">)</span>
 
-<span class="c1"># 使用 .stream 方法</span>
-<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chat</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="s2">&quot;请给我写一段关于春天优美的描述&quot;</span><span class="p">):</span>
-    <span class="c1"># 对于 ChatModel，片段是一个消息对象，内容在 .content 中</span>
+<span class="c1"># gpt-4o → 自动识别为 openai provider</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">init_chat_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># claude-3-5-sonnet → 自动识别为 anthropic provider</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">init_chat_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;claude-3-5-sonnet-20241022&quot;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ANTHROPIC_API_KEY&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>显式指定 provider（通用模型或自定义）</strong></p>
+<p>当使用非标准模型名，或需要通过 OpenAI 兼容接口调用其他模型时，需手动指定 <code>model_provider</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain.chat_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">init_chat_model</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># 通过 OpenAI 接口调用阿里通义（百炼平台）</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">init_chat_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">,</span>           <span class="c1"># 模型名</span>
+    <span class="n">model_provider</span><span class="o">=</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span>    <span class="c1"># 使用 OpenAI SDK 调用</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DASHSCOPE_API_KEY&quot;</span><span class="p">),</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># 通过 OpenAI 接口调用本地 Ollama</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">init_chat_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;llama3.1&quot;</span><span class="p">,</span>
+    <span class="n">model_provider</span><span class="o">=</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;ollama&quot;</span><span class="p">,</span>  <span class="c1"># Ollama 不验证 key，随意填写</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;http://localhost:11434/v1&quot;</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>常用参数说明</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model</code></td>
+<td>str</td>
+<td>模型名称（如 "gpt-4o", "qwen-max"）</td>
+</tr>
+<tr>
+<td><code>model_provider</code></td>
+<td>str</td>
+<td>可选。provider 名称（如 "openai", "anthropic", "deepseek"）</td>
+</tr>
+<tr>
+<td><code>api_key</code></td>
+<td>str</td>
+<td>API 密钥</td>
+</tr>
+<tr>
+<td><code>base_url</code></td>
+<td>str</td>
+<td>可选。自定义 API 端点（代理或第三方平台）</td>
+</tr>
+<tr>
+<td><code>temperature</code></td>
+<td>float</td>
+<td>随机性（0-2，默认 0.7）</td>
+</tr>
+<tr>
+<td><code>max_tokens</code></td>
+<td>int</td>
+<td>最大生成 token 数</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="provider">方式二：Provider 原生创建（精细控制）</h4>
+<p>直接使用各 provider 提供的专用类，可以获得最完整的参数支持和类型提示。</p>
+<p><strong>OpenAI 官方</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">),</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+    <span class="n">max_tokens</span><span class="o">=</span><span class="mi">4096</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>阿里通义（原生方式）</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.chat_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatTongyi</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ChatTongyi</span><span class="p">(</span>  
+    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;glm-4.7&#39;</span><span class="p">,</span>  
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;dashscope_api_key&quot;</span><span class="p">),</span>  
+    <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span>  
+    <span class="p">)</span>
+</code></pre></div>
+<p><strong>Anthropic Claude</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_anthropic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatAnthropic</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ChatAnthropic</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;claude-3-5-sonnet-20241022&quot;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ANTHROPIC_API_KEY&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>DeepSeek</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_deepseek</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatDeepSeek</span>  
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>  
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>  
+<span class="n">load_dotenv</span><span class="p">()</span>  
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ChatDeepSeek</span><span class="p">(</span>  
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;deepseek-chat&quot;</span><span class="p">,</span>  
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DEEP_SEEK_API_KEY&quot;</span><span class="p">),</span>  
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>  
+    <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  
+<span class="p">)</span>  
+</code></pre></div>
+<p><strong>质谱</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">streaming_chat</span> <span class="o">=</span> <span class="n">ChatZhipuAI</span><span class="p">(</span>  
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;glm-4.7&quot;</span><span class="p">,</span>  
+    <span class="n">api_key</span><span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;zhipu_api_key&quot;</span><span class="p">),</span>  
+    <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Ollama</strong></p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_ollama</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOllama</span>  
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ChatOllama</span><span class="p">(</span>  
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen3.5:9b&quot;</span><span class="p">,</span>
+    <span class="n">base_uro</span><span class="o">=</span><span class="s2">&quot;http://ocalhost:11434&quot;</span>
+<span class="p">)</span>  
+
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="s2">&quot;你是谁&quot;</span><span class="p">):</span>  
     <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>2、在链（Chain）中使用流式输出</strong></p>
-<p>即使你把模型包装在 <code>PromptTemplate</code> 或 <code>OutputParser</code> 中，只要整个链是用 <code>|</code> 符号连接的，它依然支持流式传输。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.output_parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrOutputParser</span>
+<strong>特点对比</strong></p>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>init_chat_model</th>
+<th>Provider 原生</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码简洁度</td>
+<td>✅ 高</td>
+<td>中</td>
+</tr>
+<tr>
+<td>多模型切换</td>
+<td>✅ 方便</td>
+<td>需修改 import 和类名</td>
+</tr>
+<tr>
+<td>专属参数</td>
+<td>通用参数</td>
+<td>✅ 完整支持</td>
+</tr>
+<tr>
+<td>类型提示</td>
+<td>通用</td>
+<td>✅ 精确</td>
+</tr>
+<tr>
+<td>IDE 补全</td>
+<td>通用</td>
+<td>✅ 完整</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="openai_2">方式三：OpenAI 兼容方式（第三方通用）</h4>
+<p><strong>核心原理</strong>：OpenAI SDK 已成为行业标准，绝大多数第三方模型（DeepSeek、通义、智谱、本地 Ollama 等）都提供了兼容 OpenAI 的接口。</p>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>使用没有专用 LangChain 集成包的模型</li>
+<li>通过代理/中转平台调用模型</li>
+<li>本地部署的模型（Ollama、vLLM 等）</li>
+</ul>
+<p><strong>配置要点</strong>：</p>
+<ol>
+<li>使用 <code>ChatOpenAI</code> 类（或 <code>init_chat_model</code> + <code>model_provider="openai"</code>）</li>
+<li>设置 <code>base_url</code> 为第三方平台的 OpenAI 兼容端点</li>
+<li>设置 <code>api_key</code> 为第三方平台的密钥</li>
+</ol>
+<p><strong>示例：通过 OpenAI 兼容接口调用 DeepSeek</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_template</span><span class="p">(</span><span class="s2">&quot;讲一个关于 </span><span class="si">{topic}</span><span class="s2"> 的冷笑话&quot;</span><span class="p">)</span>
-<span class="n">parser</span> <span class="o">=</span> <span class="n">StrOutputParser</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;deepseek-chat&quot;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DEEPSEEK_API_KEY&quot;</span><span class="p">),</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://api.deepseek.com/v1&quot;</span>  <span class="c1"># OpenAI 兼容端点</span>
+<span class="p">)</span>
 
-<span class="c1"># 构建链</span>
-<span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">chat</span> <span class="o">|</span> <span class="n">parser</span>
-
-<span class="c1"># 链式调用同样支持 .stream</span>
-<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chain</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;程序员&quot;</span><span class="p">}):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># 使用方式完全相同</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;你好&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>3、异步流式输出：<code>astream</code></strong></p>
-<p>在构建 Web 应用（如使用 FastAPI 或 Streamlit）时，异步编程是标配。可以使用 <code>astream</code> 来避免阻塞主线程。</p>
+<p><strong>示例：通过 OpenAI 兼容接口调用通义（与原生方式对比）</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 方式 A：原生 Provider 方式</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.chat_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatTongyi</span>
+<span class="n">model_native</span> <span class="o">=</span> <span class="n">ChatTongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">)</span>
+
+<span class="c1"># 方式 B：OpenAI 兼容方式（更灵活，可自定义 base_url）</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="n">model_compatible</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DASHSCOPE_API_KEY&quot;</span><span class="p">),</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s2">&quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># 两者调用方式完全一致</span>
+</code></pre></div>
+<p><strong>主流平台 OpenAI 兼容端点</strong></p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>OpenAI 兼容端点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DeepSeek</td>
+<td><code>https://api.deepseek.com/v1</code></td>
+</tr>
+<tr>
+<td>阿里通义（百炼）</td>
+<td><code>https://dashscope.aliyuncs.com/compatible-mode/v1</code></td>
+</tr>
+<tr>
+<td>智谱 AI</td>
+<td><code>https://open.bigmodel.cn/api/paas/v4</code></td>
+</tr>
+<tr>
+<td>本地 Ollama</td>
+<td><code>http://localhost:11434/v1</code></td>
+</tr>
+<tr>
+<td>vLLM 部署</td>
+<td><code>http://localhost:8000/v1</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>最佳实践</strong>：项目初期使用 <code>init_chat_model</code> 快速迭代，生产环境根据需要逐步迁移到 Provider 原生方式以获得更好的类型安全。</p>
+<h3 id="langchain_1">LangChain 模型调用的方式</h3>
+<p>在 LangChain 中，调用模型非常简洁统一。无论底层是 OpenAI、通义还是其他模型，都使用相同的接口。</p>
+<h4 id="_7">调用方式概览</h4>
+<p>LangChain 为所有 Chat Model 提供了<strong>统一的调用接口</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>返回类型</th>
+<th>适用场景</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>invoke()</code></td>
+<td><code>AIMessage</code></td>
+<td>单次请求</td>
+<td>最常用，同步阻塞</td>
+</tr>
+<tr>
+<td><code>stream()</code></td>
+<td><code>Iterator[AIMessageChunk]</code></td>
+<td>实时输出</td>
+<td>打字机效果，逐字返回</td>
+</tr>
+<tr>
+<td><code>batch()</code></td>
+<td><code>List[AIMessage]</code></td>
+<td>批量处理</td>
+<td>内部并行，提高吞吐</td>
+</tr>
+<tr>
+<td><code>ainvoke()</code></td>
+<td><code>AIMessage</code></td>
+<td>异步单次</td>
+<td>非阻塞，需 await</td>
+</tr>
+<tr>
+<td><code>astream()</code></td>
+<td><code>AsyncIterator[AIMessageChunk]</code></td>
+<td>异步流式</td>
+<td>返回异步生成器，无需 await</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意点</strong> ⭐⭐⭐ </p>
+<p>ainvoke() - 返回协程对象，所以需要通过 await 来挂起当前协程并执行 ainvoke 返回的协程对象</p>
+<p>astream() - 返回异步迭代器，所以我们不需要在 astream() 前去写 await，对于异常生成器，我们的处理方式是 async for </p>
+<hr />
+<h4 id="invoke">invoke() 单次调用（最常用）</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># 元组形式：(role, content)</span>
+<span class="n">messages</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;你是一个幽默的助手&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;讲个程序员笑话&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">messages</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h4 id="stream">stream() 流式调用（打字机效果）</h4>
+<p>流式输出让大模型像打字机一样逐字显示，提升用户体验：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 流式输出</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="s2">&quot;请写一篇关于人工智能的短文&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># chunk 是 AIMessageChunk 对象，只包含增量内容</span>
+</code></pre></div>
+<p><strong>完整示例（带前缀显示）：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="s2">&quot;用Python写个快速排序&quot;</span><span class="p">):</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">chunk</span><span class="o">.</span><span class="n">content</span>
+    <span class="k">if</span> <span class="n">content</span><span class="p">:</span>
+        <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>  <span class="c1"># 模拟打字效果</span>
+
+<span class="c1"># 最终完整内容</span>
+<span class="n">full_response</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h4 id="batch">batch() 批量调用（提高效率）</h4>
+<p>批量处理多个输入，内部自动并行：</p>
+<div class="highlight"><pre><span></span><code><span class="n">questions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Python 的特点是什么？&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Java 和 Python 的区别？&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;什么是装饰器？&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># 批量调用，返回列表</span>
+<span class="n">responses</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">questions</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">resp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">responses</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;问题 </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">questions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;回答: </span><span class="si">{</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span><span class="si">}</span><span class="s2">...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>控制并发数：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># max_concurrency 控制最大并行数</span>
+<span class="n">responses</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span>
+    <span class="n">questions</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;max_concurrency&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="p">)</span>
+</code></pre></div>
+<hr />
+<h4 id="_8">异步调用</h4>
+<p>适用于 Web 服务、高并发应用：</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">)</span>
 
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-    <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">chat</span><span class="o">.</span><span class="n">astream</span><span class="p">(</span><span class="s2">&quot;如何评价 Python 的异步编程？&quot;</span><span class="p">):</span>
+    <span class="c1"># 异步单次调用</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">model</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="s2">&quot;你好&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span> 
+
+    <span class="c1"># 异步流式调用</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">流式输出：&quot;</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">astream</span><span class="p">(</span><span class="s2">&quot;讲个故事&quot;</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
+<span class="c1"># 运行</span>
 <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </code></pre></div>
+<p><strong>FastAPI 集成示例：</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/chat&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">chat</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">model</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;response&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">}</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/chat/stream&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">chat_stream</span><span class="p">(</span><span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">generate</span><span class="p">():</span>
+        <span class="k">async</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">astream</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">chunk</span><span class="o">.</span><span class="n">content</span>
+    <span class="k">return</span> <span class="n">generate</span><span class="p">()</span>
+</code></pre></div>
+<hr />
 <h3 id="langchain-chatmodels">LangChain ChatModels</h3>
 <p>在 LangChain 中，<strong>ChatModels</strong> 是 LLM 的进化版。与传统的 LLMs（纯文本进、纯文本出）不同，ChatModels 是为"对话"而生的。它们理解 <strong>消息（Messages）</strong> 的概念，并能够区分对话中不同的角色。</p>
 <p><strong>1、核心模型对象：消息类型</strong></p>
@@ -5115,11 +5820,10 @@
 <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="langchain_4">LangChain 消息的简写形式</h3>
-<p>简写最大的好处就是支持变量注入！</p>
-<p><strong>基础语法</strong>：</p>
+<p><strong>3、message 的简写形式</strong>（1.0+）</p>
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="s2">&quot;system | ai | human&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">)</span>
-<span class="c1"># 创建模型实例</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># 创建模型实例</span>
 <span class="n">llm</span> <span class="o">=</span> <span class="n">ChatTongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">)</span>
 
 <span class="c1"># 创建消息实例</span>
@@ -5133,21 +5837,21 @@
 <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="langchain_5">LangChain 嵌入模型</h3>
+<h3 id="langchain_2">LangChain 嵌入模型</h3>
 <p>在 LangChain 中，<strong>嵌入模型（Embedding Models）</strong> 是连接"自然语言"与"机器计算"的桥梁。它们将文本转换为一串高维向量（通常是数百或上千维的浮点数数组）。</p>
 <p>LangChain 提供了 <code>Embeddings</code> 类作为统一接口。无论用 OpenAI 还是本地的 Hugging Face 模型，代码结构几乎一致：</p>
 <ul>
 <li><code>embed_documents</code>：用于向量化多条文本（通常是存入数据库前的原始文档）</li>
 <li><code>embed_query</code>：用于向量化用户的问题（单条文本）</li>
 </ul>
-<p><strong>A. OpenAI Embeddings（云端闭源）</strong></p>
+<p><strong>A. OpenAI Embeddings</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAIEmbeddings</span>
 
 <span class="n">embeddings_model</span> <span class="o">=</span> <span class="n">OpenAIEmbeddings</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;text-embedding-3-small&quot;</span><span class="p">)</span>
 <span class="n">embeddings</span> <span class="o">=</span> <span class="n">embeddings_model</span><span class="o">.</span><span class="n">embed_query</span><span class="p">(</span><span class="s2">&quot;什么是人工智能？&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">))</span>  <span class="c1"># 输出维度大小，如 1536</span>
 </code></pre></div>
-<p><strong>B. Hugging Face Embeddings（本地开源）</strong></p>
+<p><strong>B. Hugging Face Embeddings</strong></p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_huggingface</span><span class="w"> </span><span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
 
 <span class="c1"># 加载本地模型（首次运行会自动下载）</span>
@@ -5290,7 +5994,7 @@
 </code></pre></div>
 <h3 id="langchain-chain">LangChain Chain</h3>
 <p>在 LangChain 中，<strong>Chain（链）</strong> 是其最核心的设计模式。它通过 <strong>LCEL（LangChain Expression Language）</strong> 表达式，将独立的对象（如提示词、模型、输出解析器）像乐高积木一样串联起来。</p>
-<h4 id="_4">核心语法：管道符 <code>|</code></h4>
+<h4 id="_9">核心语法：管道符 <code>|</code></h4>
 <p>LangChain 借鉴了 Unix 的管道哲学。符号 <code>|</code> 的左侧输出会自动作为右侧的输入。</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># 最经典的链式结构</span>
 <span class="n">chain</span> <span class="o">=</span> <span class="n">prompt</span> <span class="o">|</span> <span class="n">model</span> <span class="o">|</span> <span class="n">output_parser</span>
@@ -5299,7 +6003,7 @@
 <span class="n">chain</span> <span class="o">=</span> <span class="n">prompt_template</span> <span class="o">|</span> <span class="n">llm</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">chain</span><span class="o">.</span><span class="n">stream</span><span class="p">({</span><span class="s2">&quot;history&quot;</span><span class="p">:</span> <span class="n">history</span><span class="p">})</span>
 </code></pre></div>
-<h4 id="_5">链的标准组件</h4>
+<h4 id="_10">链的标准组件</h4>
 <table>
 <thead>
 <tr>
@@ -5389,14 +6093,14 @@
 </ol>
 <h3 id="langchain-outputparser">LangChain OutputParser</h3>
 <p>在 LangChain 中，<strong>OutputParser（输出解析器）</strong> 是整个链条的最后一环。它负责将模型输出的非结构化文本（<code>AIMessage</code>）转换为应用程序可以处理的结构化数据（如字符串、JSON 或 Python 对象）。</p>
-<h4 id="_6">核心作用</h4>
+<h4 id="_11">核心作用</h4>
 <p>大模型的原始回复往往带有元数据、Token 消耗等信息，或者仅仅是一段松散的文本。解析器的作用是：</p>
 <ul>
 <li><strong>提取内容</strong>：从 <code>AIMessage</code> 中剥离出实际的文本</li>
 <li><strong>转换格式</strong>：将文本解析为更易用的数据结构（如 JSON、列表、甚至是 Pydantic 模型）</li>
 <li><strong>格式指引</strong>：许多解析器还能通过 <code>get_format_instructions()</code> 方法，自动生成一段 Prompt 告诉模型应该输出什么样格式的数据</li>
 </ul>
-<h4 id="_7">常用解析器</h4>
+<h4 id="_12">常用解析器</h4>
 <table>
 <thead>
 <tr>
@@ -5457,7 +6161,7 @@
 <h3 id="langchain-runnablelambda">LangChain RunnableLambda</h3>
 <p>在构建 Chain 的过程中，标准的组件（如 Prompt, LLM）处理的是标准的输入输出。但有时你需要在中间插入一些<strong>特定的业务逻辑</strong>（比如格式化字符串、查询本地数据库、调用第三方 API），而这些逻辑通常只是简单的 Python 函数。</p>
 <p><code>RunnableLambda</code> 的作用就是把这些普通的函数包装起来，让它们拥有 <code>invoke</code>、<code>batch</code>、<code>stream</code> 等标准接口。</p>
-<h4 id="_8">基础用法</h4>
+<h4 id="_13">基础用法</h4>
 <p>可以显式地使用 <code>RunnableLambda</code>，或者在大多数情况下，LangChain 会在 <code>|</code> 运算中自动帮你完成转换。</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.runnables</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunnableLambda</span>
 
@@ -5571,7 +6275,7 @@
         <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>
 </code></pre></div>
-<h4 id="_9">存储介质的选择</h4>
+<h4 id="_14">存储介质的选择</h4>
 <p>Memory 不仅仅能存在内存里：<code>InMemoryChatMessageHistory</code>，LangChain 支持多种持久化后端，确保服务重启后记忆不丢失：</p>
 <ul>
 <li><strong>Redis</strong>：高性能，适合高并发场景</li>
@@ -5787,9 +6491,9 @@
 <span class="p">)</span>
 </code></pre></div>
 <h3 id="langchain-vector-stores">LangChain Vector Stores</h3>
-<h4 id="_10">基本概念</h4>
+<h4 id="_15">基本概念</h4>
 <p><strong>Vector Stores</strong> 是 LangChain 的向量存储模块，用于存储和检索文本的向量嵌入（Embeddings）。</p>
-<h4 id="_11">常见向量存储</h4>
+<h4 id="_16">常见向量存储</h4>
 <table>
 <thead>
 <tr>
@@ -5826,7 +6530,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="_12">基本用法</h4>
+<h4 id="_17">基本用法</h4>
 <p><strong>安装</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">chromadb</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="n">langchain</span><span class="o">-</span><span class="n">community</span>

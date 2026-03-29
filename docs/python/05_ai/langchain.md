@@ -888,26 +888,128 @@ embeddings = DashScopeEmbeddings(model="text-embedding-v1")
 
 #### 基础模板：`PromptTemplate`
 
-这是最通用的形式，适用于纯文本模型。它使用 Python 的 `str.format` 语法。
+`PromptTemplate` 是最通用的文本模板形式，适用于纯文本模型（LLM）。它的核心作用是：**定义带变量的模板字符串，并在运行时动态填充**。
+
+**两种创建方式对比**：
+
+| 方式                | 语法                                                  | 特点               |
+| ----------------- | --------------------------------------------------- | ---------------- |
+| `from_template()` | `PromptTemplate.from_template(template)`            | 自动提取 `{变量}`，简洁推荐 |
+| 构造函数              | `PromptTemplate(template=..., input_variables=...)` | 显式声明，可控性高        |
+
+**方式一：from_template()（推荐）**
 
 ```python
 from langchain_core.prompts import PromptTemplate
 
-# 定义模板
-template = "你是一个专业的{job_title}，请为我解释什么是{concept}。"
-
-# 创建 PromptTemplate 对象
-prompt_template = PromptTemplate.from_template(template)
+# 自动识别 {topic} 和 {level} 为变量
+pt = PromptTemplate.from_template(
+    "请用{level}的语言解释什么是{topic}"
+)
 
 # 填充变量
-prompt = prompt_template.format(job_title="物理学家", concept="黑洞")
-print(prompt)
-# 输出: 你是一个专业的物理学家，请为我解释什么是黑洞。
+result = pt.format(topic="量子计算", level="通俗")
+print(result)
+# 输出: 请用通俗的语言解释什么是量子计算
+```
+
+**方式二：构造函数**
+
+```python
+from langchain_core.prompts import PromptTemplate
+
+# 显式声明输入变量
+pt = PromptTemplate(
+    template="请用{level}的语言解释什么是{topic}",
+    input_variables=["topic", "level"]  # 必须列出所有变量
+)
+
+result = pt.format(topic="神经网络", level="专业")
+```
+
+---
+
+**`partial_variables`：预设固定变量**
+
+当某些变量在创建时就已确定，无需每次传入，可以使用 `partial_variables` 预设：
+
+```python
+import time
+from langchain_core.prompts import PromptTemplate
+
+# 创建模板时预设时间变量
+current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
+pt = PromptTemplate.from_template(
+    "当前时间：{time}\n你是{role}，请解释{concept}",
+    partial_variables={"time": current_time}  # 预设时间
+)
+
+# 调用时只需传入剩余变量
+result = pt.format(role="物理老师", concept="黑洞")
+```
+
+---
+
+**`partial()`：动态绑定变量**
+
+除了创建时预设，还可以使用 `.partial()` 方法在已有模板基础上**动态绑定**变量，生成新模板：
+
+```python
+from langchain_core.prompts import PromptTemplate
+
+# 基础模板
+base_template = PromptTemplate.from_template(
+    "你是{role}，请用{style}的风格解释{topic}"
+)
+
+# 动态绑定 role，生成新模板
+teacher_template = base_template.partial(role="高中老师")
+
+# 只需传入剩余变量
+result = teacher_template.format(style="生动有趣", topic="光合作用")
+# 输出: 你是高中老师，请用生动有趣的风格解释光合作用
+
+# 也可以链式绑定
+final_template = base_template.partial(role="教授").partial(style="严谨学术")
+result = final_template.format(topic="广义相对论")
+```
+
+---
+
+**格式化输出方法**：
+
+| 方法                 | 返回值                 | 用途            |
+| ------------------ | ------------------- | ------------- |
+| `.format()`        | `str`               | 获取纯字符串        |
+| `.format_prompt()` | `StringPromptValue` | 链式调用（LCEL）    |
+| `.invoke()`        | `StringPromptValue` | Runnable 接口标准 |
+
+```python
+from langchain_core.prompts import PromptTemplate
+
+pt = PromptTemplate.from_template("解释{concept}")
+
+# 获取字符串
+text = pt.format(concept="区块链")
+
+# 获取 PromptValue 对象（用于 chain）
+prompt_value = pt.invoke({"concept": "人工智能"})
+# prompt_value.to_string() 获取字符串
 ```
 
 #### 聊天模板：`ChatPromptTemplate`
 
-针对 **ChatModels**，我们需要构造包含角色的消息列表。这是目前最常用的通用方式。
+针对 **ChatModels**，我们需要构造包含角色的消息列表。这是目前最常用的通用方式。在构造提示词模板的时候，我们也可以通过两种方式来构造，同时，可以传入的构造参数主要有三种，如下：
+
+``` python
+# 1. 字典
+{"role":xxx, "content":xxx}
+# 2. 元组
+('ai', 'xxx')
+# 3. XXMessage
+AiMessage(content='xxx')
+```
 
 ```python
 from langchain_core.prompts import ChatPromptTemplate
@@ -980,12 +1082,12 @@ prompt = few_shot_prompt.invoke({"word": "平淡"}).to_string()
 
 简单来说，`format` 和 `invoke` 的区别在于**返回值的类型**以及它们在 **LangChain 表达式语言（LCEL）** 中的角色。
 
-| 特性         | .format()                          | .invoke()                                         |
-| ------------ | ---------------------------------- | ------------------------------------------------- |
-| **返回类型** | **String**（纯字符串）             | **PromptValue**（LangChain 对象）                 |
-| **主要用途** | 快速查看填充后的文本，方便打印调试 | 作为 **Runnable** 接口的一部分，用于**链式调用**  |
-| **设计逻辑** | 传统的 Python 字符串格式化增强版   | 为了兼容各种模型（LLM/ChatModel）而设计的中间格式 |
-| **输出示例** | `"请解答问题..."`                  | `StringPromptValue(text="...")`                   |
+| 特性       | .format()            | .invoke()                         |
+| -------- | -------------------- | --------------------------------- |
+| **返回类型** | **String**（纯字符串）     | **PromptValue**（LangChain 对象）     |
+| **主要用途** | 快速查看填充后的文本，方便打印调试    | 作为 **Runnable** 接口的一部分，用于**链式调用** |
+| **设计逻辑** | 传统的 Python 字符串格式化增强版 | 为了兼容各种模型（LLM/ChatModel）而设计的中间格式   |
+| **输出示例** | `"请解答问题..."`         | `StringPromptValue(text="...")`   |
 
 `.format()`：回归原始字符串，当调用 `.format()` 时，LangChain 会直接完成变量替换，并返回一个标准的 Python 字符串。
 
@@ -1007,65 +1109,42 @@ print(type(prompt_value))  # <class 'langchain_core.prompt_values.StringPromptVa
 print(prompt_value.to_string())
 ```
 
-### LangChain Chain
+#### 外部加载提示词
 
-在 LangChain 中，**Chain（链）** 是其最核心的设计模式。它通过 **LCEL（LangChain Expression Language）** 表达式，将独立的对象（如提示词、模型、输出解析器）像乐高积木一样串联起来。
+将提示词存储在外部文件，便于管理和复用。
 
-#### 核心语法：管道符 `|`
-
-LangChain 借鉴了 Unix 的管道哲学。符号 `|` 的左侧输出会自动作为右侧的输入。
+**从文件加载**
 
 ```python
-# 最经典的链式结构
-chain = prompt | model | output_parser
+from langchain_core.prompts import PromptTemplate
+from langchain_core.prompts import load_prompt
+# 从文本文件加载
+with open("prompts/explain.txt", "r", encoding="utf-8") as f:
+    prompt = PromptTemplate.from_template(f.read())
 
-# 示例：
-chain = prompt_template | llm
-res = chain.stream({"history": history})
+# yaml 或者 json
+prompt_template = load_prompt("./prompt.yaml", encoding="utf-8")
 ```
 
-#### 链的标准组件
+**从 LangChain Hub 加载**
 
-| 组件              | 作用                                 | 输入 / 输出                    |
-| ----------------- | ------------------------------------ | ------------------------------ |
-| **Prompt**        | 模板化用户输入                       | `dict` -> `PromptValue`        |
-| **LLM (Model)**   | 核心推理引擎                         | `PromptValue` -> `AIMessage`   |
-| **Output Parser** | 格式化结果（如转为 JSON 或纯字符串） | `AIMessage` -> `String/Object` |
+```python
+from langchain import hub
 
-### LangChain Runnable 接口
+# 拉取社区模板
+prompt = hub.pull("hwchase17/react")
+```
 
-在 LangChain 中，**Runnable** 接口是一套标准化的协议，它为所有的组件（模型、提示词、解析器、甚至是你自定义的函数）提供了统一的调用方式。
+**推荐目录结构**
 
-#### 1、设计理念
-
-无论底层逻辑多么复杂，所有的 Runnable 对象都必须实现几个核心方法。这种"接口一致性"是 LCEL 能实现 `|` 串联的基础：**只要两个组件都实现了 Runnable 接口，且输入输出类型匹配，它们就能无缝对接。**
-
-#### 2、四大核心调用方法
-
-| 方法名称    | 执行模式 | 适用场景                                 |
-| ----------- | -------- | ---------------------------------------- |
-| `invoke()`  | 同步执行 | 单次请求，最基础的调用方式               |
-| `ainvoke()` | 异步执行 | 高并发场景，通过 `await` 提高程序性能    |
-| `batch()`   | 批量执行 | 同时处理多个输入，内部自动实现并行加速   |
-| `stream()`  | 流式执行 | 实时返回数据片段，常用于构建"打字机"效果 |
-
-#### 3、输入与输出类型
-
-1. `Prompt`：接收 `dict`（变量），输出 `PromptValue`
-
-2. `ChatModel`：接收 `PromptValue`（或消息列表），输出 `AIMessage`
-
-3. `OutputParser`：接收 `AIMessage`，输出特定格式（字符串、JSON 等）
-
-利用 `RunnableLambda`，你可以将任何普通的 Python 函数包装成 Runnable 接口，使其能够参与到管道符 `|` 的串联中。
-
-#### 4、进阶辅助组件
-
-1. **`RunnablePassthrough`**：透传组件。用于将原始输入不做修改地传递给下一级，常用于在 RAG 中保留用户问题。
-
-2. **`RunnableParallel`**：并行组件。同时运行多个 Runnable，并将结果合并为一个字典输出。
-
-3. **`RunnableConfig`**：配置对象。用于在运行期间动态传递参数（如 `callbacks`, `tags`, `configurable` 选项）。
+```
+project/
+├── prompts/
+│   ├── explain.txt      # 纯文本提示词
+│   ├── translate.json   # JSON 格式
+│   └── chat.yaml        # YAML 格式
+└── main.py
+```
 
 ### LangChain OutputParser
 
@@ -1088,90 +1167,456 @@ res = chain.stream({"history": history})
 | `CommaSeparatedListOutputParser` | `list`（列表）   | 将逗号分隔的文本转换为 Python 列表             |
 | `PydanticOutputParser`           | `Pydantic Model` | **最强格式约束**。确保输出完全符合定义的类结构 |
 
-#### PydanticOutputParser 实战示例
+#### JsonOutputParser
+
+`PydanticOutputParser` 与这个类似，就是定义结构化输出的格式（pydantic对象），然后通过`get_format_instructions` 获得结构化输出的指令，动态注入到到提示词中即可。
 
 ```python
-from pydantic import BaseModel, Field
-from langchain_core.output_parsers import PydanticOutputParser
-from langchain_core.prompts import ChatPromptTemplate
-
-# 1. 定义期望的输出结构
-class Joke(BaseModel):
-    setup: str = Field(description="笑话的铺垫")
-    punchline: str = Field(description="笑话的笑点")
-
-# 2. 初始化解析器
-parser = PydanticOutputParser(pydantic_object=Joke)
-
-# 3. 将解析器的指令注入 Prompt
-prompt = ChatPromptTemplate.from_template(
-    "讲一个冷笑话。\n{format_instructions}",
-    partial_variables={"format_instructions": parser.get_format_instructions()}
-)
-
-# 4. 构建链
-chain = prompt | model | parser
-
-# 5. 调用：直接得到 Joke 对象
-joke = chain.invoke({})
-print(joke.setup)
+import os  
+from dotenv import load_dotenv  
+from langchain.chat_models import init_chat_model  
+from langchain_core.output_parsers import JsonOutputParser  
+from langchain_core.prompts import ChatPromptTemplate  
+from pydantic import BaseModel, Field  
+  
+load_dotenv(encoding="utf-8")  
+class Person(BaseModel):  
+    name: str=Field(..., description="姓名")  
+    age: int=Field(..., description="年龄")  
+    event: str=Field(..., description="事件")  
+  
+parser = JsonOutputParser(pydantic_object=Person)  
+  
+prompt_template = ChatPromptTemplate.from_messages([  
+    ('system','你是一个新闻助手，请按照指定格式返回一个人的介绍：{format_instructions}'),  
+    ('human', '请介绍{input}'),  
+])  
+  
+model = init_chat_model(  
+    model="glm-5",  
+    api_key=os.getenv("dashscope_api_key"),  
+    model_provider='openai',  
+    base_url=os.getenv("BASE_URL"),  
+    streaming=True  
+)  
+  
+chain = prompt_template | model | parser  
+  
+resp = chain.invoke(  
+    input={  
+        "input": "雷军",  
+        'format_instructions':parser.get_format_instructions()  
+    }  
+)  
+  
+print(resp)
 ```
 
-### LangChain RunnableLambda
+#### TypedDict
 
-在构建 Chain 的过程中，标准的组件（如 Prompt, LLM）处理的是标准的输入输出。但有时你需要在中间插入一些**特定的业务逻辑**（比如格式化字符串、查询本地数据库、调用第三方 API），而这些逻辑通常只是简单的 Python 函数。
+TypedDict 有点像是低级版的 pydantic，反正这种方式也能用吧。
 
-`RunnableLambda` 的作用就是把这些普通的函数包装起来，让它们拥有 `invoke`、`batch`、`stream` 等标准接口。
+```python
+from typing import TypedDict, Annotated  
+import os  
+from dotenv import load_dotenv  
+from langchain_core.prompts import ChatPromptTemplate  
+from langchain_community.chat_models.tongyi import ChatTongyi  
+  
+load_dotenv(encoding="utf-8")  
+  
+# 1. 定义 TypedDict 作为输出 schemaclass Person(TypedDict, total=False):  
+    name: Annotated[str, '名称']  
+    age: Annotated[int, '最大值不能超过18']  
+  
+# 2. 创建模型  
+model = ChatTongyi(  
+    model='glm-5',  
+    api_key=os.getenv("dashscope_api_key"),  
+)  
+  
+# 3. 绑定结构化输出 schema（传入类，不是实例！）  
+structured_model = model.with_structured_output(Person)  
+  
+# 4. 调用模型获取结构化输出  
+result = structured_model.invoke("请介绍一个叫张三的人，年龄25岁")  
+print(result)  
+# 输出: {'name': '张三', 'age': 25}  (类型为 Person)
+```
 
-#### 基础用法
+### LangChain Runnable 
 
-可以显式地使用 `RunnableLambda`，或者在大多数情况下，LangChain 会在 `|` 运算中自动帮你完成转换。
+官方文档原话：Runnable objects can be composed together to create chains in a declarative way.
+
+在 LangChain 中，**Runnable** 是一套标准化的协议（本质是一个抽象类），它为所有的组件（模型、提示词、解析器、甚至是你自定义的函数）提供了统一的调用方式。
+
+#### 1、设计理念
+
+无论底层逻辑多么复杂，所有的 Runnable 对象都必须实现几个核心方法。这种"接口一致性"是 LCEL 能实现 `|` 串联的基础：**只要两个组件都实现了 Runnable 接口，且输入输出类型匹配，它们就能无缝对接。**
+
+#### 2、四大核心调用方法
+
+| 方法名称 | 执行模式 | 适用场景 |
+|----------|----------|----------|
+| `invoke()` | 同步执行 | 单次请求，最基础的调用方式 |
+| `ainvoke()` | 异步执行 | 高并发场景，通过 `await` 提高程序性能 |
+| `batch()` | 批量执行 | 同时处理多个输入，内部自动实现并行加速 |
+| `stream()` | 流式执行 | 实时返回数据片段，常用于构建"打字机"效果 |
+
+#### 3、输入与输出类型
+
+1. `Prompt`：接收 `dict`（变量），输出 `PromptValue`
+
+2. `ChatModel`：接收 `PromptValue`（或消息列表），输出 `AIMessage`
+
+3. `OutputParser`：接收 `AIMessage`，输出特定格式（字符串、JSON 等）
+
+利用 `RunnableLambda`，你可以将任何普通的 Python 函数包装成 Runnable 接口，使其能够参与到管道符 `|` 的串联中。
+
+#### 4、进阶辅助组件
+
+1. **`RunnablePassthrough`**：透传组件。用于将原始输入不做修改地传递给下一级，常用于在 RAG 中保留用户问题。
+
+2. **`RunnableParallel`**：并行组件。同时运行多个 Runnable，并将结果合并为一个字典输出。
+
+3. **`RunnableConfig`**：配置对象。用于在运行期间动态传递参数（如 `callbacks`, `tags`, `configurable` 选项）。
+
+### Langchain Chain
+
+在 LangChain 中，**Chain（链）** 是其最核心的设计模式。它通过 **LCEL（LangChain Expression Language）** 表达式，将独立的对象（如提示词、模型、输出解析器）像乐高积木一样串联起来。
+
+官方文档原话：Any chain constructed this way will automatically have sync, async, batch, and streaming support.
+
+#### 管道符 `|`
+
+LangChain 借鉴了 Unix 的管道哲学。符号 `|` 的左侧输出会自动作为右侧的输入。
+
+```python
+# 最经典的链式结构
+chain = prompt | model | output_parser
+
+# 示例：
+chain = prompt_template | llm
+res = chain.stream({"history": history})
+```
+
+#### 顺序链
+
+最基础的链形式，使用 `|` 将多个组件顺序连接，前一个的输出作为后一个的输入。
+
+```python
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.output_parsers import StrOutputParser
+
+# 定义组件
+prompt = ChatPromptTemplate.from_template("告诉我关于{topic}的三个知识点")
+model = init_chat_model("openai:gpt-4o-mini")
+parser = StrOutputParser()
+
+# 顺序链：prompt → model → parser
+chain = prompt | model | parser
+
+result = chain.invoke({"topic": "Python"})
+```
+
+#### 分支链
+
+使用 `RunnableBranch` 根据条件选择不同的执行路径。下面这个例子不太好，但是意思一下就行了。
+
+```python
+model = init_chat_model(  
+    model='qwen3.5-flash',  
+    model_provider='openai',  
+    api_key=os.getenv("DASHSCOPE_API_KEY"),  
+    base_url=os.getenv('BASE_URL')  
+)  
+  
+prompt = ChatPromptTemplate.from_messages(  
+    [  
+        ("system", "你是一个专门将中文翻译为{language}的翻译大师,请简短回答用户问题"),  
+        ("human", "请回答：{input}")  
+    ]  
+)  
+chain = prompt | model | StrOutputParser()  
+branch = RunnableBranch(  
+    (lambda x: x["language"] == '英文', chain),  
+    (lambda x: x["language"] == '日文', chain),  
+    (lambda x: x["language"] == '德语', chain),  
+    chain  
+)  
+  
+async def call1():  
+    resp = await branch.ainvoke(input={"language": "英文", "input": "请翻译：你好"})  
+    print(resp)  
+  
+async def call2():  
+    resp = await branch.ainvoke(input={"language": "日文", "input": "请翻译：你好"})  
+    print(resp)  
+  
+async def call3():  
+    resp = await branch.ainvoke(input={"language": "德语", "input": "请翻译：你好"})  
+    print(resp)  
+async def main():  
+    await asyncio.gather(call1(), call2(), call3())  
+  
+if __name__ == '__main__':  
+    asyncio.run(main())
+```
+
+#### 串行链
+
+chain 与 chain 之间也可以通过 | 搭建到一块。
+
+```python
+model = init_chat_model(  
+    model='qwen3.5-flash',  
+    model_provider='openai',  
+    api_key=os.getenv("DASHSCOPE_API_KEY"),  
+    base_url=os.getenv('BASE_URL')  
+)  
+  
+prompt1 = ChatPromptTemplate.from_template("你是一个{role}，请简要回答：{input}")  
+prompt2 = ChatPromptTemplate.from_template("请翻译为英文：{input}")  
+  
+parse = StrOutputParser()  
+  
+chain1 = prompt1 | model | parse  
+chain2 = prompt2 | model | parse  
+  
+def format_input(input):  
+    return {'input': input}  
+  
+chain = chain1 | RunnableLambda(format_input) | chain2  
+  
+# 流式输出  
+for chunk in chain.stream(input={"role": "翻译", "input": "请翻译：你好"}):  
+    print(chunk, end="", flush=True)
+```
+
+**适用场景**：需要动态构建链时，`RunnableSequence` 更灵活。
+
+#### 并行链
+
+使用 `RunnableParallel` 同时执行多个分支，常用于 RAG 中同时获取问题和检索结果。
+
+```python
+prompt1 = ChatPromptTemplate.from_template("你是一个英语翻译专家，，请翻译：{input}")  
+prompt2 = ChatPromptTemplate.from_template("你是一个日语翻译专家，，请翻译：{input}")  
+prompt3 = ChatPromptTemplate.from_template("你是一个德语翻译专家，，请翻译：{input}")  
+  
+parser = StrOutputParser()  
+# 第一种写法：RunnableParallel 构造方式  
+chain = RunnableParallel(  
+    {  
+        "英文": prompt1 | model | parser,  
+        "日文": prompt2 | model | parser,  
+        "德语": prompt3 | model | parser,  
+    }  
+)  
+  
+# 第二种写法：直接写成字典  
+chain = {  
+    "英文": prompt1 | model | parser,  
+    "日文": prompt2 | model | parser,  
+    "德语": prompt3 | model | parser,  
+}  
+
+# 第三种写法：传关键字参数
+chain = RunnableParallel(  
+    en=prompt1 | model | parser,  
+    ja=prompt2 | model | parser,  
+    de=prompt3 | model | parser  
+)
+# 返回的是一个字典  
+resp = chain.invoke({"input": "请翻译：你好"})  
+  
+  
+for key, value in resp.items():  
+    print(key, value)
+```
+
+**RunnablePassthrough 详解**：
+
+| 用法 | 说明 |
+|------|------|
+| `RunnablePassthrough()` | 原样传递输入 |
+| `RunnablePassthrough.assign(a=lambda x: x["b"])` | 添加新字段并保留原字段 |
+
+```python
+# RunnablePassthrough.assign 示例
+chain = RunnablePassthrough.assign(
+    uppercase=lambda x: x["text"].upper(),
+    length=lambda x: len(x["text"])
+)
+chain.invoke({"text": "hello"})
+# 输出：{"text": "hello", "uppercase": "HELLO", "length": 5}
+```
+
+#### 函数链
+
+使用 `RunnableLambda` 将自定义函数嵌入链中，处理业务逻辑。
 
 ```python
 from langchain_core.runnables import RunnableLambda
 
-def add_five(x):
-    return x + 5
+# 定义自定义函数
+def parse_user_input(data: dict) -> dict:
+    """解析用户输入，添加时间戳"""
+    return {
+        "question": data["question"],
+        "timestamp": datetime.now().isoformat(),
+        "user_id": data.get("user_id", "anonymous")
+    }
 
-# 包装成 Runnable
-runnable_add = RunnableLambda(add_five)
+def format_output(response: str) -> dict:
+    """格式化输出"""
+    return {"answer": response, "formatted": True}
 
-# 现在它可以像模型一样被调用
-print(runnable_add.invoke(10))  # 输出 15
+# 自动转换：函数在 | 中自动转为 RunnableLambda
+chain = (
+    parse_user_input           # 自动包装
+    | prompt
+    | model
+    | StrOutputParser()
+    | format_output            # 自动包装
+)
+
+# 等价于显式写法
+chain = (
+    RunnableLambda(parse_user_input)
+    | prompt
+    | model
+    | StrOutputParser()
+    | RunnableLambda(format_output)
+)
 ```
 
-#### 在 Chain 中的实战场景
-
-在 Prompt 和 LLM 之间，或者 LLM 和最终输出之间，对数据进行微调。
+**常用自定义函数场景**：
 
 ```python
-from langchain_core.runnables import RunnableLambda, RunnablePassthrough
-from langchain_core.output_parsers import StrOutputParser
+# 场景1：数据预处理
+def preprocess(query: str) -> dict:
+    return {"question": query.strip().lower()}
 
-# 1. 定义一个自定义处理函数
-def format_input(data):
-    # 假设我们需要将用户输入转为大写
-    return {"question": data["question"].upper()}
+# 场景2：调用外部 API
+def fetch_weather(data: dict) -> dict:
+    city = data["city"]
+    weather = requests.get(f"/api/weather?city={city}").json()
+    return {**data, "weather": weather}
 
-# 2. 构建链
+# 场景3：数据库查询
+def query_database(data: dict) -> dict:
+    user = db.query(User).filter_by(id=data["user_id"]).first()
+    return {**data, "user_info": user}
+
+# 组合使用
 chain = (
-    RunnableLambda(format_input)
+    preprocess
+    | {"user_info": RunnableLambda(query_database)}
     | prompt
     | model
     | StrOutputParser()
 )
-
-# 3. 执行
-chain.invoke({"question": "hello world"})
 ```
+
+**链类型对比**：
+
+| 链类型 | 核心组件                      | 执行方式 | 典型场景                    |
+| --- | ------------------------- | ---- | ----------------------- |
+| 顺序链 | `\|` 连接                   | 串行   | prompt → model → parser |
+| 分支链 | `RunnableBranch`          | 条件路由 | 多专家系统、意图识别              |
+| 串行链 | `RunnableSequence`        | 串行   | 动态构建链                   |
+| 并行链 | `RunnableParallel` / `{}` | 并行   | RAG 检索 + 问题传递           |
+| 函数链 | `RunnableLambda`          | 串行   | 数据预处理、API 调用            |
+
 
 ### LangChain Memory
 
 在 LangChain 中，**Memory（记忆）** 模块负责在对话过程中存储和检索数据。由于大模型本身是"无状态"的（它不记得上一秒发生了什么），Memory 的存在让模型能够拥有连贯的上下文能力。
 
+#### `BaseChatMessageHistory`
+
+`BaseChatMessageHistory` 是存储历史消息的**抽象基类**，定义了消息存储的标准接口。它不直接实例化，而是通过子类实现具体的存储后端。
+
+##### 抽象接口
+
+```python
+from langchain_core.chat_history import BaseChatMessageHistory
+from langchain_core.messages import BaseMessage
+
+class BaseChatMessageHistory:
+    """消息历史存储的抽象接口"""
+
+    @property
+    def messages(self) -> list[BaseMessage]:
+        """获取所有消息"""
+        raise NotImplementedError
+
+    def add_message(self, message: BaseMessage) -> None:
+        """添加一条消息"""
+        raise NotImplementedError
+
+    def clear(self) -> None:
+        """清空历史"""
+        raise NotImplementedError
+```
+
+##### 常用子类
+
+具体可参考：[官方文档](https://reference.langchain.com/python/langchain-community/chat-history)
+
+| 子类                           | 存储位置       | 持久化      | 适用场景         |
+| ---------------------------- | ---------- | -------- | ------------ |
+| `InMemoryChatMessageHistory` | 内存         | ❌ 进程结束丢失 | 测试、Demo、单次会话 |
+| `FileChatMessageHistory`     | 本地 JSON 文件 | ✅        | 单机应用、开发调试    |
+| `RedisChatMessageHistory`    | Redis      | ✅        | 生产环境、多实例部署   |
+| `SQLChatMessageHistory`      | SQL 数据库    | ✅        | 企业级应用        |
+| `MongoDBChatMessageHistory`  | MongoDB    | ✅        | 文档型存储需求      |
+
+- `InMemoryChatMessageHistory`：内存存储，最简单但不持久化。适合测试和短期会话。
+- `FileChatMessageHistory`：持久化到本地 JSON 文件，适合单机应用。
+- `RedisChatMessageHistory`：生产级方案，支持分布式部署和多实例共享。
+
+`InMemoryChatMessageHistory` 示例
+
+``` python
+def get_history(session_id: str) -> BaseChatMessageHistory:  
+    if session_id not in store:  
+        store[session_id] = InMemoryChatMessageHistory()  
+    return store[session_id]  
+```
+
+`RedisChatMessageHistory` 示例
+
+``` python
+store = {}  
+def get_history(session_id: str) -> RedisChatMessageHistory:  
+    if session_id not in store:  
+        store[session_id] = RedisChatMessageHistory(  
+            session_id=session_id,  
+            url=os.getenv("REDIS_URL"),  
+            key_prefix="langchain:message:history",  
+            ttl=3600  
+        )  
+  
+    return store[session_id]
+```
+
+`FileChatMessageHistory` 示例
+``` python
+def get_history(session_id: str) -> RedisChatMessageHistory:
+    if session_id not in store:
+        os.makedirs("./history", exist_ok=True)
+        store[session_id] = FileChatMessageHistory(
+            file_path=f"./history/{session_id}.json",
+        )
+    return store[session_id]
+```
 #### `RunnableWithMessageHistory`
 
 在早期的 LangChain 中，Memory 是直接集成在 `Chain` 对象里的。但在现代的 **LCEL** 语法中，官方更推荐使用 `RunnableWithMessageHistory` 来手动管理。
+
+这 b 官方文档，还藏着，是吧，我找半天 ：[RunnableWithMessageHistory 示例](https://reference.langchain.com/python/langchain-core/runnables/history/RunnableWithMessageHistory)
 
 ```python
 from langchain_core.runnables.history import RunnableWithMessageHistory
@@ -1256,13 +1701,6 @@ class FileMessageHistory(BaseChatMessageHistory):
             return []
 ```
 
-#### 存储介质的选择
-
-Memory 不仅仅能存在内存里：`InMemoryChatMessageHistory`，LangChain 支持多种持久化后端，确保服务重启后记忆不丢失：
-
-- **Redis**：高性能，适合高并发场景
-- **MongoDB / PostgreSQL**：适合传统的数据库存储
-- **Local File**：适合简单的本地测试
 
 ### LangChain Loaders
 

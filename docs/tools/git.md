@@ -210,7 +210,7 @@ target
     excludesfile = **/xxx.ignore
 ```
 
- #### 7. git 提交规范
+#### 7. git 提交规范
 
 ##### Commit Message 格式
 
