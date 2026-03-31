@@ -2141,6 +2141,133 @@ for chunk in resp:
     print(chunk, end="", flush=True)
 ```
 
+### Langchain Mcp
+
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) is an open protocol that standardizes how applications provide tools and context to LLMs. LangChain agents can use tools defined on MCP servers using the [`langchain-mcp-adapters`](https://github.com/langchain-ai/langchain-mcp-adapters) library.
+#### Mcp 基础概念
+
+**MCP（Model Context Protocol）** 是由 Anthropic 推出的开放协议，用于标准化应用程序向 LLM 提供工具和上下文的方式。可以把 MCP 理解为"AI 应用的 USB 接口"——就像 USB 让各种设备能即插即用地连接电脑一样，MCP 让各种数据源和工具能统一地连接到 AI 应用。
+
+**核心概念**：
+
+| 概念             | 说明                                     |
+| -------------- | -------------------------------------- |
+| **MCP Server** | 提供工具、资源或提示词的服务端，如文件系统、数据库、API 等        |
+| **MCP Client** | 消费 MCP Server 提供能力的一方，通常是 AI 应用或 Agent |
+| **Tools**      | Server 暴露的可执行函数，LLM 可以调用               |
+| **Resources**  | Server 提供的只读数据，如文件内容、数据库记录             |
+| **Prompts**    | 预定义的提示模板，帮助用户快速使用常用功能                  |
+
+**为什么需要 MCP**：
+
+1. **统一标准**：不同的数据源和工具都遵循同一协议，避免重复开发适配器
+2. **解耦架构**：AI 应用与具体工具实现分离，便于维护和扩展
+3. **生态共享**：社区可以共享 MCP Server，一次开发多处使用
+
+
+#### Mcp 通信协议
+
+MCP 支持两种通信传输方式：**stdio** 和 **SSE**，分别适用于不同的场景。
+
+| 传输方式      | 全称                 | 适用场景    | 特点                  |
+| --------- | ------------------ | ------- | ------------------- |
+| **stdio** | Standard I/O       | 本地进程通信  | 简单高效，Server 作为子进程启动 |
+| **SSE**   | Server-Sent Events | 远程/网络通信 | 基于 HTTP，支持跨机器部署     |
+
+##### STDIO 传输
+
+stdio 是最简单的 MCP 通信方式，Client 通过启动 Server 进程并与其标准输入输出进行通信：
+
+```
+┌─────────────┐      stdin/stdout      ┌─────────────┐
+│  MCP Client │ ◄──────────────────► │  MCP Server │
+│  (AI 应用)   │                       │  (子进程)    │
+└─────────────┘                       └─────────────┘
+```
+
+##### SSE 传输
+
+SSE（Server-Sent Events）基于 HTTP 协议，支持远程部署和跨网络通信：
+
+```
+┌─────────────┐       HTTP/SSE        ┌─────────────┐
+│  MCP Client │ ◄──────────────────► │  MCP Server │
+│  (AI 应用)   │      网络请求         │  (HTTP服务)  │
+└─────────────┘                       └─────────────┘
+```
+
+
+#### [**Mcp LangChain 集成** ](https://docs.langchain.com/oss/python/langchain/mcp?search=MultiServerMCPClient#loading-prompts)
+
+LangChain Agent 可以通过 [`langchain-mcp-adapters`](https://github.com/langchain-ai/langchain-mcp-adapters) 库使用 MCP Server 提供的工具，实现与各种外部系统的无缝对接。
+##### Mcp Client
+
+通过  `MultiServerMCPClient` 可以快速的构建一个 `mcp` 客户端，之后通过 `client.get_tools()`、`client.get_resources()` 、`client.get_prompt()` 就能够获得 `mcp` 服务端提供的资源了。
+
+``` python
+import asyncio
+from langchain_mcp_adapters.client import MultiServerMCPClient  
+from langchain.agents import create_agent
+
+async def main():
+    client = MultiServerMCPClient(
+        {
+            "math": {
+                "transport": "stdio",  # Local subprocess communication
+                "command": "python",
+                # Absolute path to your math_server.py file
+                "args": ["/path/to/math_server.py"],
+            },
+            "weather": {
+                "transport": "http",  # HTTP-based remote server
+                # Ensure you start your weather server on port 8000
+                "url": "http://localhost:8000/mcp",
+            }
+        }
+    )
+
+    tools = await client.get_tools()
+    agent = create_agent(
+        "claude-sonnet-4-6",
+        tools  
+    )
+    math_response = await agent.ainvoke(
+        {"messages": [{"role": "user", "content": "what's (3 + 5) x 12?"}]}
+    )
+    weather_response = await agent.ainvoke(
+        {"messages": [{"role": "user", "content": "what is the weather in nyc?"}]}
+    )
+    print(math_response)
+    print(weather_response)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+##### Mcp Server
+
+To create a custom MCP server, use the [FastMCP](https://gofastmcp.com/getting-started/welcome) library:
+
+``` python
+from fastmcp import FastMCP
+
+mcp = FastMCP("Math")
+
+@mcp.tool()
+def add(a: int, b: int) -> int:
+    """Add two numbers"""
+    return a + b
+
+@mcp.tool()
+def multiply(a: int, b: int) -> int:
+    """Multiply two numbers"""
+    return a * b
+
+if __name__ == "__main__":
+    mcp.run(transport="stdio")
+```
+
+
 ## 05 RAG
 
 ### RAG 基础概念
@@ -2165,6 +2292,68 @@ for chunk in resp:
 | 减少幻觉     | 基于真实文档生成，有据可查       |
 | 可追溯性     | 可以展示答案来源，增加可信度     |
 | 成本效益     | 比微调模型成本低得多             |
+
+### RAG 知识串联
+
+LangChain 为 RAG 提供了完整的组件生态，各组件协作完成从文档到回答的全流程：
+
+#### RAG 组件流程图
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                        RAG 完整流程                                  │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  【索引阶段】                                                        │
+│                                                                     │
+│   原始文档 ──→ Document Loader ──→ Text Splitter ──→ Embeddings     │
+│    (PDF/HTML)      (统一加载)       (切分 chunks)    (文本→向量)     │
+│                                                          │          │
+│                                                          ↓          │
+│                                                   Vector Store      │
+│                                                   (存储向量)         │
+│                                                          │          │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  【检索+生成阶段】                                                   │
+│                                                                     │
+│   用户问题 ──→ Embeddings ──→ Vector Store ──→ Retriever            │
+│                (问题→向量)  (相似度搜索)    (LCEL 适配器)             │
+│                                           │                         │
+│                                           ↓                         │
+│                                      相关文档 chunks                  │
+│                                           │                         │
+│                                           ↓                         │
+│                      ┌────────────────────────────────────┐         │
+│                      │  Prompt + Context + Question       │         │
+│                      └────────────────────────────────────┘         │
+│                                           │                         │
+│                                           ↓                         │
+│                                        LLM ──→ 回答                  │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+#### RAG 链的标准模板
+
+```python
+from langchain_core.runnables import RunnablePassthrough
+
+# 标准 RAG 链结构
+rag_chain = (
+    {
+        "context": retriever,           # 检索相关文档
+        "question": RunnablePassthrough()  # 原样传递问题
+    }
+    | prompt                            # 组装 Prompt
+    | llm                               # 调用模型
+    | StrOutputParser()                 # 解析输出
+)
+
+# 执行
+answer = rag_chain.invoke("什么是 Python？")
+```
+
 
 ### RAG 实战
 
@@ -2235,10 +2424,103 @@ print(response)
 
 ### Agent 基础概念
 
-**Agent** 的核心定义是：使用大语言模型（LLM）作为**推理引擎**，来决定执行哪些动作以及执行的顺序。
+**Agent** 的核心定义是：将`LLM`、`Tools`、`Memory` 、`Planning` 、`Action`相结合的系统，能够**对任务进行推理、决定使用哪些工具，并迭代地朝着解决问题的方向努力**。
 
-- **Chain**：步骤是硬编码的（第一步 A，第二步 B）
-- **Agent**：LLM 根据你的问题，自己判断："我应该先查搜索引擎，还是先算数学题？"
+### Agent 的创建
+
+在 `Langchain` 中，得到的 Agent 自动遵循 React 模式运行，下面是 0.3 与 1.0 + 的不同写法。
+
+#### LangChain 0.3 核心写法 
+
+在 0.3 版本及更早的时期，创建 Agent 的核心是通过 `create_xxx_agent`（如 `create_tool_calling_agent`）将模型、工具和 Prompt 绑定为 Runnable，然后再交由 `AgentExecutor` 引擎来执行循环。
+
+**核心函数签名与参数说明**：
+
+``` python
+# 1. 创建 Agent 路由逻辑
+def create_tool_calling_agent(
+    llm: BaseLanguageModel,      # 语言模型实例
+    tools: Sequence[BaseTool],   # 允许 Agent 调用的工具列表
+    prompt: ChatPromptTemplate,  # 必须包含 agent_scratchpad 占位符的提示词模板
+) -> Runnable:
+
+
+# 2. Agent 执行器：负责协调 Agent 推理与工具执行的 ReAct 循环引擎。
+class AgentExecutor: 
+    def __init__(
+        self,
+        agent: Runnable,             # create_tool_calling_agent 返回的 Runnable 实例
+        tools: Sequence[BaseTool],   # 与传入 agent 相同的工具列表
+        verbose: bool = False,       # 是否在控制台打印详细的执行过程
+        max_iterations: int = 15,    # 最大迭代步数，防止无限循环
+        **kwargs
+    ):
+```
+
+**核心代码示例**：
+
+``` python
+from langchain_classic.agents import create_tool_calling_agent, AgentExecutor
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_openai import ChatOpenAI
+
+# 1. 定义 Prompt (0.3 版本必须显式管理 agent_scratchpad 暂存区)
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "你是一个有用的助手。"),
+    ("human", "{input}"),
+    ("placeholder", "{agent_scratchpad}"), # 用于存储工具调用的中间观察结果
+])
+
+llm = ChatOpenAI(model="gpt-4o")
+tools = [your_tools_here]
+
+# 2. 创建 Agent 实体 (仅包含推理路由)
+agent = create_tool_calling_agent(llm, tools, prompt)
+
+# 3. 包装为 AgentExecutor (真正的运行时引擎)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+
+# 4. 调用
+agent_executor.invoke({"input": "帮我搜索一下最新的无线耳机"})
+```
+
+#### LangChain 1.0+ 核心写法 
+
+在最新版本中，官方摒弃了沉重的 `AgentExecutor`，统一使用基于 LangGraph 构建的图（Graph）运行时。核心入口函数变为 [create_agent](https://reference.langchain.com/python/langchain/agents/factory/create_agent)。此版本自动处理循环，并对类型有了更严格的限制。
+
+``` python
+from typing import TypedDict, Annotated
+import operator
+from pydantic import BaseModel
+from langchain_openai import ChatOpenAI
+# 注意：此处的 create_agent 是文档中提及的基于 LangGraph 的新版工厂函数
+from langgraph.prebuilt import create_react_agent as create_agent 
+
+# 1. 1.0+ 强制规范：自定义状态必须使用 TypedDict 
+class CustomState(TypedDict):
+    messages: Annotated[list, operator.add]
+    user_preference: str
+
+# 2. 结构化输出 Schema
+class OutputSchema(BaseModel):
+    answer: str
+
+llm = ChatOpenAI(model="gpt-4o")
+tools = [your_tools_here]
+
+# 3. 创建基于图的 Agent 运行时
+agent = create_agent(
+    model=llm,
+    tools=tools,
+    name="research_assistant",        # 规范：使用 snake_case 命名 
+    state_schema=CustomState,         # 规范：传入 TypedDict 作为短时记忆
+    response_format=OutputSchema      # 规范：自动采用 ProviderStrategy 原生结构化输出 
+)
+
+# 4. 调用 (通过传递新消息触发状态更新) 
+agent.invoke({"messages": [("user", "帮我搜索一下最新的无线耳机")]})
+```
+
 
 ### Agent 和 LLM 的区别
 
@@ -2262,35 +2544,6 @@ print(response)
 - **LLM 是 Agent 的大脑** —— 提供推理和理解能力
 - **Agent 是 LLM 的进化形态** —— 让 LLM 从"会说话"变成"会做事"
 
-### Agent 示例
-
-```python
-from langchain_community.chat_models.tongyi import ChatTongyi
-from langchain_core.output_parsers import StrOutputParser
-from langchain.agents import create_agent
-from langchain_core.tools import tool
-
-@tool(description="获取明天北京的天气信息")
-def get_weather():
-    return "明天北京的天气是晴天，温度是23度。"
-
-agent = create_agent(
-    model=ChatTongyi(model="qwen-max"),  # 智能体的大脑
-    tools=[get_weather],                  # 智能体的工具
-    system_prompt="你是一个得力的助手，请精简的回答问题。"
-)
-
-# 智能体的调用：输入的是一个字典，字典必须包含一个 key 为 messages 的 value
-res: dict = agent.invoke(
-    {
-        "messages": [
-            {"role": "user", "content": "明天北京的天气如何"}
-        ]
-    }
-)
-
-print(res)
-```
 
 ### Agent 四大组件
 
@@ -2301,7 +2554,7 @@ print(res)
 | **Planning（规划）** | 思考路径 | 将复杂任务拆解为子任务（如：Chain of Thought 思考链）        |
 | **Memory（记忆）**   | 上下文   | 记录之前的对话历史和动作轨迹，防止"死循环"或"失忆"           |
 
-### Agent 流式输出
+### [Agent 流式输出](https://docs.langchain.com/oss/python/langchain/agents#streaming)
 
 在 LangChain 中，Agent 的流式输出（Streaming）比普通 Chain 要复杂一些。因为 Agent 不只是在"说话"，它还在"思考"和"行动"。
 
@@ -2331,55 +2584,73 @@ for chunk in agent.stream(
 
 ### Agent ReAct
 
-**ReAct** 是 Agent 领域最经典、最成熟的推理模式。它的名字由 **Reason（推理）** 和 **Act（行动）** 组合而成。在 langchain 中，agent 默认遵循的就是 ReAct 框架！
-
-ReAct 的精髓在于它强迫模型在执行动作之前先写出它的"内心独白"。这个循环通常包含以下四个步骤：
+**ReAct (Reasoning + Acting)** 是 Agent 最核心的执行模式。在 LangChain 中，Agent 默认遵循的就是 ReAct 框架，它强迫模型在执行动作之前先进行“内心独白”（推理），并在简短的推理步骤与目标工具调用之间交替进行，直到得出最终答案。
 
 ```
 Thought（思考） --> Action（行动） --> Observation（观察）--> 循环往复直到结束
-from langchain.agents import create_react_agent, AgentExecutor
-from langchain import hub
-from langchain_community.chat_models import ChatTongyi
-from langchain.tools import Tool
-
-# 1. 定义一个简单的工具
-def get_word_length(word: str) -> int:
-    return len(word)
-
-tools = [
-    Tool(
-        name="GetWordLength",
-        func=get_word_length,
-        description="当你需要计算一个单词的长度时使用它"
-    )
-]
-
-# 2. 选择大脑
-llm = ChatTongyi(model="qwen-max")
-
-# 3. 拉取经典的 ReAct Prompt 模板
-# 这个模板里定义了具体的格式：Thought, Action, Action Input, Observation...
-prompt = hub.pull("hwchase17/react")
-
-# 4. 构造 Agent
-agent = create_react_agent(llm, tools, prompt)
-
-# 5. 构造执行器（负责跑循环）
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-
-# 6. 运行
-agent_executor.invoke({"input": "单词 'supercalifragilisticexpialidocious' 有多少个字母？"})
 ```
 
-<p align='center'>
-  <img src="../../assets/imgs/python/langchian/langchain04.png" style="zoom:80%;" />  
-</p>
+```python
+model = init_chat_model(  
+    model = 'qwen3.5-plus',  
+    model_provider = 'openai',  
+    api_key = os.getenv("DASHSCOPE_API_KEY"),  
+    base_url = os.getenv("BASE_URL"),  
+    model_kwargs={"extra_body": {"enable_thinking": False}} 
+)  
+@tool(description="获取指定用户的身高(cm)")  
+def get_height(user: str) -> int:  
+    return random.randint(169, 190)  
+  
+@tool(description="获取指定用户的体重(kg)")  
+def get_weight(user: str) -> int:  
+    return random.randint(50, 80)  
+  
+class output(TypedDict):  
+    user: str  
+    height: int  
+    weight: int  
+    bmi: float  
+  
+agent = create_agent(  
+    model = model,  
+    system_prompt = """  
+    You are a helpful assistant.    你要严格遵循 React 模式  
+    """,  
+    tools = [get_height, get_weight],  
+    response_format=output  
+)  
+  
+async def main():  
+    resp = await agent.ainvoke({"messages" :[{"role":"user", "content":"请获取张三的BMI"}]})  
+    print(result["structured_response"])  
+  
+if __name__ == '__main__':  
+    asyncio.run(main())
+```
+
+![[react提示词模板.png]]
 
 虽然 ReAct 很强，但它也有局限性：
 
 - **Token 消耗**：反复的"思考-行动-观察"会消耗大量的 Token
 - **死循环**：如果工具返回的信息不够清晰，模型可能会陷入反复调用同一个工具的死循环
 - **规划能力有限**：对于极其复杂的长程任务，ReAct 容易"走一步看一步"而迷失全局目标
+
+### Agent A2A
+
+**A2A（Agent-to-Agent）架构**，即“智能体到智能体”架构，是指多个独立的 AI Agent 在一个系统中相互通信、协作或博弈，以共同完成复杂任务的一种系统设计模式。
+
+在 A2A 架构中，系统不再依赖单一的 Agent 独立完成所有工作，而是强调**分工与协作**，主要具备以下特征：
+
+1. **角色专业化**：不同的 Agent 往往被配置了不同的系统提示词、特定的工具集甚至是不同的底层模型，扮演专门的角色（例如：负责收集信息的研究员 Agent、负责编写代码的程序员 Agent、负责把关的审查员 Agent）。
+
+2. **灵活的通信机制**：Agent 之间可以通过互相传递消息、共享短时记忆（如共享 State）或通过图结构（Graph）进行互动和任务交接。
+
+3. **突破单体局限**：单一的 ReAct 模式在处理极其复杂的长程任务时，容易因为 Context（上下文）过载或规划能力不足而迷失目标。A2A 架构能将宏大任务拆解并分发给对应的专业 Agent 执行，有效降低了系统的 Token 消耗，并大幅提升了复杂任务的成功率。目前主流的 A2A 框架包括 AutoGen、CrewAI 等
+
+通过 `Langgraph` 可以优雅的实现 A2A 架构
+
 
 ### Agent Middleware
 

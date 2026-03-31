@@ -193,7 +193,30 @@ systemctl restart docker
 
 ### 2.2 Windows 环境
 
-> TODO：待补充 Windows Docker Desktop 安装与配置
+[参考官方文档](https://docs.docker.com/desktop/setup/install/windows-install/)
+
+```
+"C:\Docker Desktop Installer.exe" install `
+  --installation-dir="D:\02_DevStack\06_DevTools\Docker" `
+  --backend=hyper-v `
+  --hyper-v-default-data-root="E:\08_Docker_Data\hyper-v" `
+  --windows-containers-default-data-root="E:\08_Docker_Data\images"
+```
+
+多行命令无法正常执行，改成单行即可。	
+
+```
+"C:\Docker Desktop Installer.exe" install --installation-dir="D:\02_DevStack\06_DevTools\Docker" --backend=hyper-v --hyper-v-default-data-root="E:\08_Docker_Data\hyper-v" --windows-containers-default-data-root="E:\08_Docker_Data\images"
+```
+
+靠了，不让我安装到其他地方，真没招了，还是不用命令行了。把镜像位置改一下就行。
+
+| **参数名**                                   | **设定值**                          | **作用**                                        |
+| -------------------------------------------- | ----------------------------------- | ----------------------------------------------- |
+| **`--installation-dir`**                     | `D:\02_DevStack\06_DevTools\Docker` | 指定安装位置                                    |
+| **`--backend`**                              | `hyper-v`                           | 强制使用 Hyper-V 后端，跳过 WSL2。              |
+| **`--hyper-v-default-data-root`**            | `E:\08_Docker_Data\hyper-v`         | 存放 Docker 运行所需的虚拟机硬盘文件（.vhdx）。 |
+| **`--windows-containers-default-data-root`** | `E:\08_Docker_Data\images`          | 存放 Pull 下来的各种镜像数据。                  |
 
 ---
 
