@@ -9,33 +9,34 @@ edit_uri: edit/main/docs/  # 允许直接从网页跳转到 GitHub 编辑源码
 nav:
   - Welcome: index.md
   - Java:
-    - ssm: ./java/02_Frameworks/ssm.md
-    - springboot: ./java/02_Frameworks/springboot.md
-    - maven: ./java/01_Java_Core/maven.md
-    - juc: ./java/01_Java_Core/juc.md
+    - Ssm: ./java/02_Frameworks/ssm.md
+    - SpringBoot: ./java/02_Frameworks/springboot.md
+    - Maven: ./java/01_Java_Core/maven.md
+    - Juc: ./java/01_Java_Core/juc.md
   - Python:
       - Env:
-          - conda: ./python/01_env/conda.md
-          - uv: ./python/01_env/uv.md
-          - jupyter: ./python/01_env/jupyter.md
+          - Conda: ./python/01_env/conda.md
+          - Uv: ./python/01_env/uv.md
+          - Jupyter: ./python/01_env/jupyter.md
       - Basic:
-          - python_basic: ./python/02_basic/python基础.md
+          - PythonBasic: ./python/02_basic/python基础.md
       - Others:
-          - requests: ./python/03_others/requests.md
-          - pandas: ./python/03_others/pandas.md
-          - numpy: ./python/03_others/numpy.md
-          - pytest: ./python/03_others/pytest.md
+          - Requests: ./python/03_others/requests.md
+          - Pandas: ./python/03_others/pandas.md
+          - Numpy: ./python/03_others/numpy.md
+          - Pytest: ./python/03_others/pytest.md
       - Web:
-          - fastapi: ./python/04_web/fastapi.md
+          - Fastapi: ./python/04_web/fastapi.md
       - AI:
-          - langchain: ./python/05_ai/langchain.md
-          - pytorch: ./python/05_ai/pytorch.md
-          - ollama: ./python/05_ai/ollama.md
+          - LangChain: ./python/05_ai/LangChain.md
+          - LangGraph: ./python/05_ai/LangGraph.md
+          - PyTorch: ./python/05_ai/PyTorch.md
+          - Ollama: ./python/05_ai/Ollama.md
   - Frontend:
-      - js: ./frontend/js.md
-      - vue2: ./frontend/vue2.md
-      - vue3: ./frontend/vue3.md
-      - vue3-v2: ./frontend/vue3-v2.md
+      - Js: ./frontend/js.md
+      - Vue2: ./frontend/vue2.md
+      - Vue3: ./frontend/vue3.md
+      - Vue3-v2: ./frontend/vue3-v2.md
 
   - Code-Notes:
       - 概览: ./code-notes/index.md
@@ -50,39 +51,39 @@ nav:
   - Bagu:
       - 复习路线: ./interview/index.md
       - Java:
-          - java基础: ./interview/java/java基础.md
-          - java集合: ./interview/java/java集合.md
-          - juc: ./interview/java/juc.md
-          - jvm: ./interview/java/jvm.md
-          - ssm: ./interview/java/ssm.md
-          - springboot|cloud: ./interview/java/springboot+Cloud.md
+          - Java基础: ./interview/java/java基础.md
+          - Java集合: ./interview/java/java集合.md
+          - Juc: ./interview/java/juc.md
+          - Jvm: ./interview/java/jvm.md
+          - Ssm: ./interview/java/ssm.md
+          - SpringBoot|Cloud: ./interview/java/springboot+Cloud.md
           - 设计模式: ./interview/java/设计模式.md
       - Database:
-          - mysql: ./interview/database/mysql.md
-          - redis: ./interview/database/redis.md
+          - Mysql: ./interview/database/mysql.md
+          - Redis: ./interview/database/redis.md
       - Middleware:
-          - elasticsearch: ./interview/middleware/es.md
-          - rabbitmq: ./interview/middleware/rmq.md
-          - seata: ./interview/middleware/seata.md
+          - ElasticSearch: ./interview/middleware/es.md
+          - Rabbitmq: ./interview/middleware/rmq.md
+          - Seata: ./interview/middleware/seata.md
       - Python:
-          - python: ./interview/python/python.md
-          - llm_basic: ./interview/python/deepLearning.md
-          - langchain: ./interview/python/langchain.md
+          - Python: ./interview/python/python.md
+          - LLMBasic: ./interview/python/deepLearning.md
+          - LangChain: ./interview/python/langchain.md
 #  - Journal:
 #      - 202602: ./journal/2026-02.md
   - Tools:
-      - git: ./tools/git.md
-      - git-v2: ./tools/git-v2.md
-      - docker: ./tools/docker-v2.md
+      - Git: ./tools/git.md
+      - Git-v2: ./tools/git-v2.md
+      - Docker: ./tools/docker-v2.md
       # - docker-v2: ./tools/docker-v2.md
 
   - Middleware:
-    - mysql 基础: ./middleware/mysql基础.md
-    - mysql 高级: ./middleware/mysql高级.md
-    - redis: ./middleware/redis.md
-    - minio: ./middleware/minio.md
+    - Mysql 基础: ./middleware/mysql基础.md
+    - Mysql 高级: ./middleware/mysql高级.md
+    - Redis: ./middleware/redis.md
+    - Minio: ./middleware/minio.md
   - Linux:
-      - basic: ./linux/basic.md
+      - Basic: ./linux/basic.md
 
 use_directory_urls: false
 
