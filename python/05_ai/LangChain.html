@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://liutianba7.github.io/python/05_ai/langchain.html">
+        <link rel="canonical" href="https://liutianba7.github.io/python/05_ai/LangChain.html">
       
       
         <link rel="prev" href="../04_web/fastapi.html">
       
       
-        <link rel="next" href="pytorch.html">
+        <link rel="next" href="LangGraph.html">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>langchain - LiuTianBa7 's Blog</title>
+        <title>LangChain - LiuTianBa7 's Blog</title>
       
     
     
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              langchain
+              LangChain
             
           </span>
         </div>
@@ -548,7 +548,7 @@
   <span class="md-ellipsis">
     
   
-    ssm
+    Ssm
   
 
     
@@ -576,7 +576,7 @@
   <span class="md-ellipsis">
     
   
-    springboot
+    SpringBoot
   
 
     
@@ -604,7 +604,7 @@
   <span class="md-ellipsis">
     
   
-    maven
+    Maven
   
 
     
@@ -632,7 +632,7 @@
   <span class="md-ellipsis">
     
   
-    juc
+    Juc
   
 
     
@@ -772,7 +772,7 @@
   <span class="md-ellipsis">
     
   
-    conda
+    Conda
   
 
     
@@ -800,7 +800,7 @@
   <span class="md-ellipsis">
     
   
-    uv
+    Uv
   
 
     
@@ -828,7 +828,7 @@
   <span class="md-ellipsis">
     
   
-    jupyter
+    Jupyter
   
 
     
@@ -914,7 +914,7 @@
   <span class="md-ellipsis">
     
   
-    python_basic
+    PythonBasic
   
 
     
@@ -1000,7 +1000,7 @@
   <span class="md-ellipsis">
     
   
-    requests
+    Requests
   
 
     
@@ -1028,7 +1028,7 @@
   <span class="md-ellipsis">
     
   
-    pandas
+    Pandas
   
 
     
@@ -1056,7 +1056,7 @@
   <span class="md-ellipsis">
     
   
-    numpy
+    Numpy
   
 
     
@@ -1084,7 +1084,7 @@
   <span class="md-ellipsis">
     
   
-    pytest
+    Pytest
   
 
     
@@ -1170,7 +1170,7 @@
   <span class="md-ellipsis">
     
   
-    fastapi
+    Fastapi
   
 
     
@@ -1265,7 +1265,7 @@
   <span class="md-ellipsis">
     
   
-    langchain
+    LangChain
   
 
     
@@ -1276,14 +1276,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="langchain.html" class="md-nav__link md-nav__link--active">
+      <a href="LangChain.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    langchain
+    LangChain
   
 
     
@@ -2101,6 +2101,45 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pypdfloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyPDFLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-textsplitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LangChain TextSplitter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LangChain TextSplitter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        切分器对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#recursivecharactertextsplitter" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2112,10 +2151,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pypdfloader" class="md-nav__link">
+  <a href="#token" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PyPDFLoader
+        Token 切分（精确控制）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markdown 切分（保留结构）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最佳实践
       
     </span>
   </a>
@@ -2140,7 +2201,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
+  <a href="#_22" class="md-nav__link">
     <span class="md-ellipsis">
       
         基本概念
@@ -2151,10 +2212,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
+  <a href="#_23" class="md-nav__link">
     <span class="md-ellipsis">
       
-        常见向量存储
+        统一接口
       
     </span>
   </a>
@@ -2162,10 +2223,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
+  <a href="#_24" class="md-nav__link">
     <span class="md-ellipsis">
       
-        基本用法
+        常见向量存储
       
     </span>
   </a>
@@ -2185,6 +2246,112 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain Mcp
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain Mcp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mcp 基础概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mcp 通信协议
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mcp 通信协议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stdio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STDIO 传输
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSE 传输
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mcp LangChain 集成
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mcp LangChain 集成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcp-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mcp Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mcp Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2218,6 +2385,45 @@
         
           <li class="md-nav__item">
   <a href="#rag_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG 知识串联
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RAG 知识串联">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rag_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG 组件流程图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG 链的标准模板
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         RAG 实战
@@ -2256,10 +2462,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#agent-llm" class="md-nav__link">
+  <a href="#agent_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent 和 LLM 的区别
+        Agent 的创建
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent 的创建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#langchain-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LangChain 0.3 核心写法
       
     </span>
   </a>
@@ -2267,10 +2485,26 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#agent_1" class="md-nav__link">
+  <a href="#langchain-10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent 示例
+        LangChain 1.0+ 核心写法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent 和 LLM 的区别
       
     </span>
   </a>
@@ -2311,6 +2545,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#agent-a2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent A2A
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#agent-middleware" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2342,14 +2587,14 @@
   
   
     <li class="md-nav__item">
-      <a href="pytorch.html" class="md-nav__link">
+      <a href="LangGraph.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    pytorch
+    LangGraph
   
 
     
@@ -2370,14 +2615,42 @@
   
   
     <li class="md-nav__item">
-      <a href="ollama.html" class="md-nav__link">
+      <a href="PyTorch.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    ollama
+    PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Ollama.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
   
 
     
@@ -2470,7 +2743,7 @@
   <span class="md-ellipsis">
     
   
-    js
+    Js
   
 
     
@@ -2498,7 +2771,7 @@
   <span class="md-ellipsis">
     
   
-    vue2
+    Vue2
   
 
     
@@ -2526,7 +2799,35 @@
   <span class="md-ellipsis">
     
   
-    vue3
+    Vue3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frontend/vue3-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vue3-v2
   
 
     
@@ -3060,7 +3361,7 @@
   <span class="md-ellipsis">
     
   
-    java基础
+    Java基础
   
 
     
@@ -3088,7 +3389,7 @@
   <span class="md-ellipsis">
     
   
-    java集合
+    Java集合
   
 
     
@@ -3116,7 +3417,7 @@
   <span class="md-ellipsis">
     
   
-    juc
+    Juc
   
 
     
@@ -3144,7 +3445,7 @@
   <span class="md-ellipsis">
     
   
-    jvm
+    Jvm
   
 
     
@@ -3172,7 +3473,7 @@
   <span class="md-ellipsis">
     
   
-    ssm
+    Ssm
   
 
     
@@ -3200,7 +3501,7 @@
   <span class="md-ellipsis">
     
   
-    springboot|cloud
+    SpringBoot|Cloud
   
 
     
@@ -3314,7 +3615,7 @@
   <span class="md-ellipsis">
     
   
-    mysql
+    Mysql
   
 
     
@@ -3342,7 +3643,7 @@
   <span class="md-ellipsis">
     
   
-    redis
+    Redis
   
 
     
@@ -3428,7 +3729,7 @@
   <span class="md-ellipsis">
     
   
-    elasticsearch
+    ElasticSearch
   
 
     
@@ -3456,7 +3757,7 @@
   <span class="md-ellipsis">
     
   
-    rabbitmq
+    Rabbitmq
   
 
     
@@ -3484,7 +3785,7 @@
   <span class="md-ellipsis">
     
   
-    seata
+    Seata
   
 
     
@@ -3570,7 +3871,91 @@
   <span class="md-ellipsis">
     
   
-    python
+    Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/python/deepLearning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLMBasic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/python/langchain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/python/langgraph.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph
   
 
     
@@ -3663,7 +4048,7 @@
   <span class="md-ellipsis">
     
   
-    git
+    Git
   
 
     
@@ -3691,7 +4076,7 @@
   <span class="md-ellipsis">
     
   
-    git-v2
+    Git-v2
   
 
     
@@ -3719,7 +4104,7 @@
   <span class="md-ellipsis">
     
   
-    docker
+    Docker
   
 
     
@@ -3804,7 +4189,7 @@
   <span class="md-ellipsis">
     
   
-    mysql 基础
+    Mysql 基础
   
 
     
@@ -3832,7 +4217,7 @@
   <span class="md-ellipsis">
     
   
-    mysql 高级
+    Mysql 高级
   
 
     
@@ -3860,7 +4245,7 @@
   <span class="md-ellipsis">
     
   
-    redis
+    Redis
   
 
     
@@ -3888,7 +4273,7 @@
   <span class="md-ellipsis">
     
   
-    minio
+    Minio
   
 
     
@@ -3973,7 +4358,7 @@
   <span class="md-ellipsis">
     
   
-    basic
+    Basic
   
 
     
@@ -4813,6 +5198,45 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#pypdfloader" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PyPDFLoader
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-textsplitter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LangChain TextSplitter
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LangChain TextSplitter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        切分器对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#recursivecharactertextsplitter" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4824,10 +5248,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pypdfloader" class="md-nav__link">
+  <a href="#token" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PyPDFLoader
+        Token 切分（精确控制）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#markdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markdown 切分（保留结构）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最佳实践
       
     </span>
   </a>
@@ -4852,7 +5298,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
+  <a href="#_22" class="md-nav__link">
     <span class="md-ellipsis">
       
         基本概念
@@ -4863,10 +5309,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
+  <a href="#_23" class="md-nav__link">
     <span class="md-ellipsis">
       
-        常见向量存储
+        统一接口
       
     </span>
   </a>
@@ -4874,10 +5320,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
+  <a href="#_24" class="md-nav__link">
     <span class="md-ellipsis">
       
-        基本用法
+        常见向量存储
       
     </span>
   </a>
@@ -4897,6 +5343,112 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#langchain-mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Langchain Mcp
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Langchain Mcp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mcp 基础概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mcp 通信协议
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mcp 通信协议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stdio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        STDIO 传输
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSE 传输
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp-langchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mcp LangChain 集成
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mcp LangChain 集成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcp-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mcp Client
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mcp Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -4930,6 +5482,45 @@
         
           <li class="md-nav__item">
   <a href="#rag_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG 知识串联
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RAG 知识串联">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rag_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG 组件流程图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RAG 链的标准模板
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rag_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         RAG 实战
@@ -4968,10 +5559,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#agent-llm" class="md-nav__link">
+  <a href="#agent_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent 和 LLM 的区别
+        Agent 的创建
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Agent 的创建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#langchain-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LangChain 0.3 核心写法
       
     </span>
   </a>
@@ -4979,10 +5582,26 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#agent_1" class="md-nav__link">
+  <a href="#langchain-10" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Agent 示例
+        LangChain 1.0+ 核心写法
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent 和 LLM 的区别
       
     </span>
   </a>
@@ -5016,6 +5635,17 @@
     <span class="md-ellipsis">
       
         Agent ReAct
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-a2a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent A2A
       
     </span>
   </a>
@@ -5058,7 +5688,7 @@
   
 
 
-  <h1>langchain</h1>
+  <h1>LangChain</h1>
 
 <h2 id="01">01 前置准备</h2>
 <h3 id="llm">远程调用 LLM</h3>
@@ -7013,14 +7643,15 @@
 <span class="w">  </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;第一条消息&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;sender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;张三&quot;</span><span class="p">},</span>
 <span class="w">  </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;第二条消息&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;sender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;李四&quot;</span><span class="p">}</span>
 <span class="p">]</span>
-<span class="err">loader</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">JSONLoader(</span>
-<span class="w">    </span><span class="kc">f</span><span class="err">ile_pa</span><span class="kc">t</span><span class="err">h=</span><span class="s2">&quot;example.json&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="err">jq_schema=</span><span class="s2">&quot;.[]&quot;</span><span class="p">,</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="err">遍历数组中的每一个对象</span>
-<span class="w">    </span><span class="err">co</span><span class="kc">ntent</span><span class="err">_key=</span><span class="s2">&quot;content&quot;</span><span class="p">,</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="err">指定哪个字段作为</span><span class="w"> </span><span class="err">Docume</span><span class="kc">nt</span><span class="w"> </span><span class="err">的</span><span class="w"> </span><span class="err">page_co</span><span class="kc">ntent</span>
-<span class="err">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">loader</span> <span class="o">=</span> <span class="n">JSONLoader</span><span class="p">(</span>
+    <span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;example.json&quot;</span><span class="p">,</span>
+    <span class="n">jq_schema</span><span class="o">=</span><span class="s2">&quot;.[]&quot;</span><span class="p">,</span>        <span class="c1"># 遍历数组中的每一个对象</span>
+    <span class="n">content_key</span><span class="o">=</span><span class="s2">&quot;content&quot;</span><span class="p">,</span>  <span class="c1"># 指定哪个字段作为 Document 的 page_content</span>
+<span class="p">)</span>
 
-<span class="err">docs</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="err">loader.load()</span>
-<span class="err">#</span><span class="w"> </span><span class="err">结果：docs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="err">.page_co</span><span class="kc">ntent</span><span class="w"> </span><span class="err">将会是</span><span class="w"> </span><span class="s2">&quot;第一条消息&quot;</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="c1"># 结果：docs[0].page_content 将会是 &quot;第一条消息&quot;</span>
 </code></pre></div>
 <h4 id="textloader">TextLoader</h4>
 <p><strong>TextLoader</strong> 是 LangChain 最基础的文档加载器，用于将纯文本文件（.txt）加载为 <code>Document</code> 对象。</p>
@@ -7033,53 +7664,6 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">documents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">page_content</span><span class="p">)</span>  <span class="c1"># 文本内容</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">documents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>      <span class="c1"># 元数据</span>
 </code></pre></div>
-<h4 id="recursivecharactertextsplitter">RecursiveCharacterTextSplitter</h4>
-<p><strong>RecursiveCharacterTextSplitter</strong> 是 LangChain 最常用的文本分割器，按字符递归分割文本，保持段落/句子完整性。</p>
-<div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">langchain</span><span class="o">-</span><span class="n">text</span><span class="o">-</span><span class="n">splitters</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextLoader</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
-
-<span class="n">loader</span> <span class="o">=</span> <span class="n">TextLoader</span><span class="p">(</span><span class="s2">&quot;data_1/stu_text.txt&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-
-<span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-
-<span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
-    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>       <span class="c1"># 每块最大字符数</span>
-    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>     <span class="c1"># 块之间重叠字符数</span>
-    <span class="n">separators</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;!&quot;</span><span class="p">,</span> <span class="s2">&quot;？&quot;</span><span class="p">],</span>  <span class="c1"># 块分隔符</span>
-    <span class="n">length_function</span><span class="o">=</span><span class="nb">len</span><span class="p">,</span>  <span class="c1"># 块长度函数</span>
-<span class="p">)</span>
-
-<span class="n">res</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
-</code></pre></div>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-<th>默认值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>chunk_size</code></td>
-<td>每块最大字符数</td>
-<td>1000</td>
-</tr>
-<tr>
-<td><code>chunk_overlap</code></td>
-<td>块之间重叠字符数</td>
-<td>200</td>
-</tr>
-<tr>
-<td><code>separators</code></td>
-<td>分割符列表</td>
-<td><code>["\n\n", "\n", " ", ""]</code></td>
-</tr>
-</tbody>
-</table>
 <h4 id="pypdfloader">PyPDFLoader</h4>
 <p><strong>PyPDFLoader</strong> 是 LangChain 用于加载 PDF 文件的文档加载器，将 PDF 每一页加载为独立的 <code>Document</code> 对象。</p>
 <div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">pypdf</span>
@@ -7093,10 +7677,204 @@
     <span class="c1"># password=&quot;password&quot;,  # 密码</span>
 <span class="p">)</span>
 </code></pre></div>
+<h3 id="langchain-textsplitter">LangChain TextSplitter</h3>
+<p>文本切分解决三个问题：<strong>Embedding 长度限制</strong>、<strong>检索精准度</strong>、<strong>LLM 上下文窗口</strong>。</p>
+<h4 id="_20">切分器对比</h4>
+<table>
+<thead>
+<tr>
+<th>切分器</th>
+<th>切分依据</th>
+<th>适用场景</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RecursiveCharacterTextSplitter</code></td>
+<td>字符递归</td>
+<td><strong>通用文本（推荐）</strong></td>
+<td>按分隔符层级切分，保持语义</td>
+</tr>
+<tr>
+<td><code>CharacterTextSplitter</code></td>
+<td>单一分隔符</td>
+<td>简单文本</td>
+<td>简单粗暴，可能切断语义</td>
+</tr>
+<tr>
+<td><code>TokenTextSplitter</code></td>
+<td>Token 数</td>
+<td>需精确控制 token</td>
+<td>匹配模型限制，更准确</td>
+</tr>
+<tr>
+<td><code>MarkdownHeaderTextSplitter</code></td>
+<td>标题层级</td>
+<td>Markdown 文档</td>
+<td>按标题切分，保留结构</td>
+</tr>
+<tr>
+<td><code>PythonCodeTextSplitter</code></td>
+<td>类/函数</td>
+<td>Python 代码</td>
+<td>保持代码完整性</td>
+</tr>
+</tbody>
+</table>
+<h4 id="recursivecharactertextsplitter">RecursiveCharacterTextSplitter</h4>
+<p>最常用的切分器，<strong>递归尝试分隔符</strong>：先用大分隔符（段落），不行再用小的（句子），最后按字符。</p>
+<div class="highlight"><pre><span></span><code>分隔符优先级：
+&quot;\n\n&quot; (段落) → &quot;\n&quot; (句子) → &quot; &quot; (单词) → &quot;&quot; (字符)
+     ↓              ↓            ↓          ↓
+   优先尝试      段落太长      句子太长    最后手段
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>       <span class="c1"># 每块最大字符数</span>
+    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>     <span class="c1"># 重叠（保持上下文连贯）</span>
+    <span class="n">separators</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>  <span class="c1"># 分隔符优先级</span>
+<span class="p">)</span>
+
+<span class="c1"># 切分文本</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="s2">&quot;长文本内容...&quot;</span><span class="p">)</span>
+
+<span class="c1"># 切分 Document 对象</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>推荐值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>chunk_size</code></td>
+<td>每块最大字符数</td>
+<td>500-1000（通用），200-400（精准检索）</td>
+</tr>
+<tr>
+<td><code>chunk_overlap</code></td>
+<td>块之间重叠</td>
+<td><code>chunk_size</code> 的 10-20%</td>
+</tr>
+<tr>
+<td><code>separators</code></td>
+<td>分隔符优先级</td>
+<td>默认值即可，中文可加 <code>["。", "！", "？"]</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="token">Token 切分（精确控制）</h4>
+<p>按 token 计数，匹配模型限制：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">TokenTextSplitter</span>
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">TokenTextSplitter</span><span class="p">(</span>
+    <span class="n">encoding_name</span><span class="o">=</span><span class="s2">&quot;cl100k_base&quot;</span><span class="p">,</span>  <span class="c1"># GPT-4/3.5 的编码</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>               <span class="c1"># 每 100 token 一块</span>
+    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="markdown">Markdown 切分（保留结构）</h4>
+<p>按标题层级切分，metadata 保留标题信息：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_text_splitters</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarkdownHeaderTextSplitter</span>
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="n">MarkdownHeaderTextSplitter</span><span class="p">(</span>
+    <span class="n">headers_to_split_on</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="s2">&quot;h1&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;##&quot;</span><span class="p">,</span> <span class="s2">&quot;h2&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;###&quot;</span><span class="p">,</span> <span class="s2">&quot;h3&quot;</span><span class="p">)]</span>
+<span class="p">)</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split_text</span><span class="p">(</span><span class="n">md_content</span><span class="p">)</span>
+
+<span class="c1"># 结果示例：</span>
+<span class="c1"># chunk.metadata = {&quot;h1&quot;: &quot;第一章&quot;, &quot;h2&quot;: &quot;简介&quot;}</span>
+</code></pre></div>
+<h4 id="_21">最佳实践</h4>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>chunk_size</th>
+<th>chunk_overlap</th>
+<th>切分器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通用 RAG</td>
+<td>500-1000</td>
+<td>50-100</td>
+<td>Recursive</td>
+</tr>
+<tr>
+<td>精准问答</td>
+<td>200-400</td>
+<td>20-50</td>
+<td>Recursive</td>
+</tr>
+<tr>
+<td>长文档摘要</td>
+<td>1000-2000</td>
+<td>100-200</td>
+<td>Recursive</td>
+</tr>
+<tr>
+<td>Markdown 文档</td>
+<td>按标题</td>
+<td>0</td>
+<td>MarkdownHeader</td>
+</tr>
+<tr>
+<td>代码文件</td>
+<td>按函数</td>
+<td>0</td>
+<td>CodeSplitter</td>
+</tr>
+</tbody>
+</table>
+<p><strong>调优建议</strong>：</p>
+<ul>
+<li>chunk 太大 → 检索噪声多，答案不精准</li>
+<li>chunk 太小 → 上下文断裂，语义不完整</li>
+<li>overlap 太小 → 边界信息丢失</li>
+</ul>
 <h3 id="langchain-vector-stores">LangChain Vector Stores</h3>
-<h4 id="_20">基本概念</h4>
-<p><strong>Vector Stores</strong> 是 LangChain 的向量存储模块，用于存储和检索文本的向量嵌入（Embeddings）。</p>
-<h4 id="_21">常见向量存储</h4>
+<h4 id="_22">基本概念</h4>
+<p><strong>Vector Stores</strong> 是 LangChain 的向量存储模块，用于存储和检索文本的向量嵌入。</p>
+<p>向量是一个有<strong>大小和方向</strong>的量。在计算机科学中，向量通常表示为一个<strong>有序的数值数组</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 一个 3 维向量</span>
+<span class="n">vector</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]</span>
+
+<span class="c1"># 一个 768 维向量（常见于 BERT 等模型）</span>
+<span class="n">embedding</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>  <span class="c1"># 768 个浮点数</span>
+</code></pre></div>
+<h4 id="_23">统一接口</h4>
+<p>在<code>Langchain</code>中， 为了规范不同第三方提供的向量存储服务，提供了一套统一的接口：</p>
+<ul>
+<li><code>add_documents</code> - Add documents to the store.</li>
+<li><code>delete</code> - Remove stored documents by ID.</li>
+<li><code>similarity_search</code> - Query for semantically similar documents.</li>
+<li><code>as_retriever</code>- For using in the chain</li>
+</ul>
+<p>其中，<a href="https://docs.langchain.com/oss/python/integrations/vectorstores#similarity-search"><code>similarity_search</code></a> 还可以设置更多过滤条件，比如：filter={"source": "tweets"}，</p>
+<div class="highlight"><pre><span></span><code> <span class="k">def</span><span class="w"> </span><span class="nf">similarity_search</span><span class="p">(</span>  
+        <span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>  
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Document</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return docs most similar to query.  </span>
+
+<span class="sd">    Args:  </span>
+<span class="sd">        query: Input text.    </span>
+<span class="sd">        k: Number of `Document` objects to return.   </span>
+<span class="sd">        **kwargs: Arguments to pass to the search method.  </span>
+
+<span class="sd">    Returns:  </span>
+<span class="sd">        List of `Document` objects most similar to the query.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<h4 id="_24">常见向量存储</h4>
+<p>具体可参考官方文档：<a href="https://docs.langchain.com/oss/python/integrations/vectorstores">vector stores</a></p>
 <table>
 <thead>
 <tr>
@@ -7131,52 +7909,63 @@
 <td>本地/云端</td>
 <td>高性能，支持过滤</td>
 </tr>
+<tr>
+<td><code>Redis Stack</code></td>
+<td></td>
+<td>就爱 redis</td>
+</tr>
 </tbody>
 </table>
-<h4 id="_22">基本用法</h4>
-<p><strong>安装</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">chromadb</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="n">langchain</span><span class="o">-</span><span class="n">community</span>
+<p><strong>InMemoryVectorStore</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">embed</span> <span class="o">=</span> <span class="n">DashScopeEmbeddings</span><span class="p">(</span>  
+    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;text-embedding-v4&#39;</span><span class="p">,</span>  
+    <span class="n">dashscope_api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;dashscope_api_key&quot;</span><span class="p">),</span>  
+<span class="p">)</span>  
+
+<span class="n">vc</span> <span class="o">=</span> <span class="n">InMemoryVectorStore</span><span class="p">(</span>  
+    <span class="n">embedding</span><span class="o">=</span><span class="n">embed</span><span class="p">,</span>  
+<span class="p">)</span>  
+
+<span class="n">vc</span><span class="o">.</span><span class="n">add_texts</span><span class="p">([</span><span class="s1">&#39;狗&#39;</span><span class="p">,</span> <span class="s1">&#39;猫&#39;</span><span class="p">,</span> <span class="s1">&#39;猪&#39;</span><span class="p">,</span> <span class="s1">&#39;苹果&#39;</span><span class="p">,</span> <span class="s1">&#39;香蕉&#39;</span><span class="p">])</span>  
+<span class="n">resp</span> <span class="o">=</span> <span class="n">vc</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="s2">&quot;小猫&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>创建向量存储</strong></p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.vectorstores</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.embeddings</span><span class="w"> </span><span class="kn">import</span> <span class="n">DashScopeEmbeddings</span>
+<p><strong>Chroma</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_chroma</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>  
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.embeddings.dashscope</span><span class="w"> </span><span class="kn">import</span> <span class="n">DashScopeEmbeddings</span>  
 
-<span class="n">embeddings</span> <span class="o">=</span> <span class="n">DashScopeEmbeddings</span><span class="p">()</span>
+<span class="n">embed</span> <span class="o">=</span> <span class="n">DashScopeEmbeddings</span><span class="p">(</span>  
+    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;text-embedding-v4&#39;</span><span class="p">,</span>  
+<span class="p">)</span>  
 
-<span class="c1"># 从文档创建</span>
-<span class="c1"># vectorstore = InMemoryVectorStore(embeddings)</span>
-<span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span>
-    <span class="n">documents</span><span class="o">=</span><span class="n">texts</span><span class="p">,</span>  <span class="c1"># 文档列表</span>
-    <span class="n">embedding</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span>  <span class="c1"># 嵌入模型</span>
-    <span class="n">persist_directory</span><span class="o">=</span><span class="s2">&quot;./chroma_db&quot;</span>  <span class="c1"># 持久化路径</span>
-<span class="p">)</span>
+<span class="n">vector_store</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">(</span>  
+    <span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;example_collection&quot;</span><span class="p">,</span>  
+    <span class="n">embedding_function</span><span class="o">=</span><span class="n">embed</span><span class="p">,</span>  
+    <span class="n">persist_directory</span><span class="o">=</span><span class="s2">&quot;./chroma_langchain_db&quot;</span><span class="p">,</span>  <span class="c1"># Where to save data locally, remove if not necessary  </span>
+<span class="p">)</span>  
+<span class="n">vector_store</span><span class="o">.</span><span class="n">add_texts</span><span class="p">([</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="s2">&quot;bybye world&quot;</span><span class="p">])</span>  
+<span class="n">resp</span> <span class="o">=</span> <span class="n">vector_store</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  
+<span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
 </code></pre></div>
-<p><strong>新增、删除、检索向量</strong></p>
-<ul>
-<li><code>add_documents</code></li>
-<li><code>delete</code></li>
-<li><code>similarity_search</code></li>
-</ul>
-<div class="highlight"><pre><span></span><code><span class="c1"># 新增、删除、检索向量</span>
-<span class="n">vectorstore</span><span class="o">.</span><span class="n">add_documents</span><span class="p">(</span>
-    <span class="n">documents</span><span class="o">=</span><span class="n">docs</span><span class="p">,</span>
-    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">vectorstore</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="s2">&quot;john&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>  <span class="c1"># 检索返回的是一个 list[Document]</span>
-<span class="n">vectorstore</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;id1&quot;</span><span class="p">,</span> <span class="s2">&quot;id2&quot;</span><span class="p">])</span>
+<p><strong>Redis</strong>：注意，必须是 redis stack ，因为涉及到了向量检索，原生 redis 无法满足！</p>
+<div class="highlight"><pre><span></span><code>Install ``redis``, ``redisvl``, and ``langchain-community`` and run Redis locally.
 </code></pre></div>
-<p><strong>使用外部向量数据库</strong>（以 Chroma 为例）</p>
-<p>其实只需要在创建向量库的时候创建 Chroma 库，方法还是不变的。</p>
-<div class="highlight"><pre><span></span><code><span class="n">pip</span> <span class="n">install</span> <span class="n">langchain</span><span class="o">-</span><span class="n">chroma</span> <span class="n">chromadb</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_chroma</span><span class="w"> </span><span class="kn">import</span> <span class="n">Chroma</span>
+<div class="highlight"><pre><span></span><code><span class="n">embed</span> <span class="o">=</span> <span class="n">DashScopeEmbeddings</span><span class="p">(</span>  
+    <span class="n">model</span><span class="o">=</span><span class="s1">&#39;text-embedding-v4&#39;</span><span class="p">,</span>  
+<span class="p">)</span>  
+<span class="n">vc</span> <span class="o">=</span> <span class="n">Redis</span><span class="p">(</span>  
+    <span class="n">redis_url</span><span class="o">=</span><span class="s1">&#39;redis://115.190.231.171:6379&#39;</span><span class="p">,</span>  
+    <span class="n">index_name</span><span class="o">=</span><span class="s1">&#39;langchain:vc&#39;</span><span class="p">,</span>  
+    <span class="n">embedding</span><span class="o">=</span><span class="n">embed</span>  
+<span class="p">)</span>  
 
-<span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">(</span>
-    <span class="n">embedding_function</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span>
-    <span class="n">collection_name</span><span class="o">=</span><span class="s2">&quot;stu&quot;</span><span class="p">,</span>
-    <span class="n">persist_directory</span><span class="o">=</span><span class="s2">&quot;data_1/chroma_db&quot;</span>
-<span class="p">)</span>
+<span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="s2">&quot;bybye world&quot;</span><span class="p">]</span>  
+<span class="n">vc</span><span class="o">.</span><span class="n">add_documents</span><span class="p">([</span><span class="n">Document</span><span class="p">(</span><span class="n">page_content</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;source&#39;</span><span class="p">:</span><span class="s1">&#39;lq&#39;</span><span class="p">})</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">])</span>  
+
+
+<span class="n">resp</span> <span class="o">=</span> <span class="n">vc</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  
+
+<span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span>
 </code></pre></div>
 <h3 id="langchain-runnablepassthrough">LangChain RunnablePassthrough</h3>
 <p><code>RunnablePassthrough</code> 是 LangChain 中一个非常实用的<strong>"透传"组件</strong>，属于 <code>langchain_core.runnables</code> 模块。它的核心作用是：<strong>在不改变输入的情况下，将输入原样传递下去</strong>，常用于构建复杂链（Chain）时的<strong>占位、调试、并行处理或中间变量捕获</strong>。</p>
@@ -7238,6 +8027,148 @@
 <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">resp</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
+<h3 id="langchain-mcp">Langchain Mcp</h3>
+<p><a href="https://modelcontextprotocol.io/introduction">Model Context Protocol (MCP)</a> is an open protocol that standardizes how applications provide tools and context to LLMs. LangChain agents can use tools defined on MCP servers using the <a href="https://github.com/langchain-ai/langchain-mcp-adapters"><code>langchain-mcp-adapters</code></a> library.</p>
+<h4 id="mcp">Mcp 基础概念</h4>
+<p><strong>MCP（Model Context Protocol）</strong> 是由 Anthropic 推出的开放协议，用于标准化应用程序向 LLM 提供工具和上下文的方式。可以把 MCP 理解为"AI 应用的 USB 接口"——就像 USB 让各种设备能即插即用地连接电脑一样，MCP 让各种数据源和工具能统一地连接到 AI 应用。</p>
+<p><strong>核心概念</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MCP Server</strong></td>
+<td>提供工具、资源或提示词的服务端，如文件系统、数据库、API 等</td>
+</tr>
+<tr>
+<td><strong>MCP Client</strong></td>
+<td>消费 MCP Server 提供能力的一方，通常是 AI 应用或 Agent</td>
+</tr>
+<tr>
+<td><strong>Tools</strong></td>
+<td>Server 暴露的可执行函数，LLM 可以调用</td>
+</tr>
+<tr>
+<td><strong>Resources</strong></td>
+<td>Server 提供的只读数据，如文件内容、数据库记录</td>
+</tr>
+<tr>
+<td><strong>Prompts</strong></td>
+<td>预定义的提示模板，帮助用户快速使用常用功能</td>
+</tr>
+</tbody>
+</table>
+<p><strong>为什么需要 MCP</strong>：</p>
+<ol>
+<li><strong>统一标准</strong>：不同的数据源和工具都遵循同一协议，避免重复开发适配器</li>
+<li><strong>解耦架构</strong>：AI 应用与具体工具实现分离，便于维护和扩展</li>
+<li><strong>生态共享</strong>：社区可以共享 MCP Server，一次开发多处使用</li>
+</ol>
+<h4 id="mcp_1">Mcp 通信协议</h4>
+<p>MCP 支持两种通信传输方式：<strong>stdio</strong> 和 <strong>SSE</strong>，分别适用于不同的场景。</p>
+<table>
+<thead>
+<tr>
+<th>传输方式</th>
+<th>全称</th>
+<th>适用场景</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>stdio</strong></td>
+<td>Standard I/O</td>
+<td>本地进程通信</td>
+<td>简单高效，Server 作为子进程启动</td>
+</tr>
+<tr>
+<td><strong>SSE</strong></td>
+<td>Server-Sent Events</td>
+<td>远程/网络通信</td>
+<td>基于 HTTP，支持跨机器部署</td>
+</tr>
+</tbody>
+</table>
+<h5 id="stdio">STDIO 传输</h5>
+<p>stdio 是最简单的 MCP 通信方式，Client 通过启动 Server 进程并与其标准输入输出进行通信：</p>
+<div class="highlight"><pre><span></span><code>┌─────────────┐      stdin/stdout      ┌─────────────┐
+│  MCP Client │ ◄──────────────────► │  MCP Server │
+│  (AI 应用)   │                       │  (子进程)    │
+└─────────────┘                       └─────────────┘
+</code></pre></div>
+<h5 id="sse">SSE 传输</h5>
+<p>SSE（Server-Sent Events）基于 HTTP 协议，支持远程部署和跨网络通信：</p>
+<div class="highlight"><pre><span></span><code>┌─────────────┐       HTTP/SSE        ┌─────────────┐
+│  MCP Client │ ◄──────────────────► │  MCP Server │
+│  (AI 应用)   │      网络请求         │  (HTTP服务)  │
+└─────────────┘                       └─────────────┘
+</code></pre></div>
+<h4 id="mcp-langchain"><a href="https://docs.langchain.com/oss/python/langchain/mcp?search=MultiServerMCPClient#loading-prompts"><strong>Mcp LangChain 集成</strong> </a></h4>
+<p>LangChain Agent 可以通过 <a href="https://github.com/langchain-ai/langchain-mcp-adapters"><code>langchain-mcp-adapters</code></a> 库使用 MCP Server 提供的工具，实现与各种外部系统的无缝对接。</p>
+<h5 id="mcp-client">Mcp Client</h5>
+<p>通过  <code>MultiServerMCPClient</code> 可以快速的构建一个 <code>mcp</code> 客户端，之后通过 <code>client.get_tools()</code>、<code>client.get_resources()</code> 、<code>client.get_prompt()</code> 就能够获得 <code>mcp</code> 服务端提供的资源了。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_mcp_adapters.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">MultiServerMCPClient</span>  
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_agent</span>
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">MultiServerMCPClient</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;math&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;transport&quot;</span><span class="p">:</span> <span class="s2">&quot;stdio&quot;</span><span class="p">,</span>  <span class="c1"># Local subprocess communication</span>
+                <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span>
+                <span class="c1"># Absolute path to your math_server.py file</span>
+                <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;/path/to/math_server.py&quot;</span><span class="p">],</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;weather&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;transport&quot;</span><span class="p">:</span> <span class="s2">&quot;http&quot;</span><span class="p">,</span>  <span class="c1"># HTTP-based remote server</span>
+                <span class="c1"># Ensure you start your weather server on port 8000</span>
+                <span class="s2">&quot;url&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8000/mcp&quot;</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="n">tools</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_tools</span><span class="p">()</span>
+    <span class="n">agent</span> <span class="o">=</span> <span class="n">create_agent</span><span class="p">(</span>
+        <span class="s2">&quot;claude-sonnet-4-6&quot;</span><span class="p">,</span>
+        <span class="n">tools</span>  
+    <span class="p">)</span>
+    <span class="n">math_response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">agent</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span>
+        <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;what&#39;s (3 + 5) x 12?&quot;</span><span class="p">}]}</span>
+    <span class="p">)</span>
+    <span class="n">weather_response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">agent</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">(</span>
+        <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;what is the weather in nyc?&quot;</span><span class="p">}]}</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">math_response</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">weather_response</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</code></pre></div>
+<h5 id="mcp-server">Mcp Server</h5>
+<p>To create a custom MCP server, use the <a href="https://gofastmcp.com/getting-started/welcome">FastMCP</a> library:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">fastmcp</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastMCP</span>
+
+<span class="n">mcp</span> <span class="o">=</span> <span class="n">FastMCP</span><span class="p">(</span><span class="s2">&quot;Math&quot;</span><span class="p">)</span>
+
+<span class="nd">@mcp</span><span class="o">.</span><span class="n">tool</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Add two numbers&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+
+<span class="nd">@mcp</span><span class="o">.</span><span class="n">tool</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Multiply two numbers&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">mcp</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">transport</span><span class="o">=</span><span class="s2">&quot;stdio&quot;</span><span class="p">)</span>
+</code></pre></div>
 <h2 id="05-rag">05 RAG</h2>
 <h3 id="rag">RAG 基础概念</h3>
 <p><strong>RAG（Retrieval-Augmented Generation）</strong>，即检索增强生成。简单来说，就是给大模型配一个"实时更新的图书馆"，让它在回答问题前先翻书，以此解决模型知识过时和"胡说八道"（幻觉）的问题。</p>
@@ -7278,7 +8209,60 @@
 </tr>
 </tbody>
 </table>
-<h3 id="rag_1">RAG 实战</h3>
+<h3 id="rag_1">RAG 知识串联</h3>
+<p>LangChain 为 RAG 提供了完整的组件生态，各组件协作完成从文档到回答的全流程：</p>
+<h4 id="rag_2">RAG 组件流程图</h4>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────────────┐
+│                        RAG 完整流程                                  │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  【索引阶段】                                                        │
+│                                                                     │
+│   原始文档 ──→ Document Loader ──→ Text Splitter ──→ Embeddings     │
+│    (PDF/HTML)      (统一加载)       (切分 chunks)    (文本→向量)     │
+│                                                          │          │
+│                                                          ↓          │
+│                                                   Vector Store      │
+│                                                   (存储向量)         │
+│                                                          │          │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  【检索+生成阶段】                                                   │
+│                                                                     │
+│   用户问题 ──→ Embeddings ──→ Vector Store ──→ Retriever            │
+│                (问题→向量)  (相似度搜索)    (LCEL 适配器)             │
+│                                           │                         │
+│                                           ↓                         │
+│                                      相关文档 chunks                  │
+│                                           │                         │
+│                                           ↓                         │
+│                      ┌────────────────────────────────────┐         │
+│                      │  Prompt + Context + Question       │         │
+│                      └────────────────────────────────────┘         │
+│                                           │                         │
+│                                           ↓                         │
+│                                        LLM ──→ 回答                  │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+</code></pre></div>
+<h4 id="rag_3">RAG 链的标准模板</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.runnables</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunnablePassthrough</span>
+
+<span class="c1"># 标准 RAG 链结构</span>
+<span class="n">rag_chain</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;context&quot;</span><span class="p">:</span> <span class="n">retriever</span><span class="p">,</span>           <span class="c1"># 检索相关文档</span>
+        <span class="s2">&quot;question&quot;</span><span class="p">:</span> <span class="n">RunnablePassthrough</span><span class="p">()</span>  <span class="c1"># 原样传递问题</span>
+    <span class="p">}</span>
+    <span class="o">|</span> <span class="n">prompt</span>                            <span class="c1"># 组装 Prompt</span>
+    <span class="o">|</span> <span class="n">llm</span>                               <span class="c1"># 调用模型</span>
+    <span class="o">|</span> <span class="n">StrOutputParser</span><span class="p">()</span>                 <span class="c1"># 解析输出</span>
+<span class="p">)</span>
+
+<span class="c1"># 执行</span>
+<span class="n">answer</span> <span class="o">=</span> <span class="n">rag_chain</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="s2">&quot;什么是 Python？&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="rag_4">RAG 实战</h3>
 <p>在构建 RAG 链时，建议采用<strong>调试驱动开发</strong>：每次在链中如果发现不对了，写个函数，打印当前的输入输出，快速定位问题。</p>
 <p><strong>完整 RAG 示例</strong>：</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.document_loaders</span><span class="w"> </span><span class="kn">import</span> <span class="n">TextLoader</span>
@@ -7340,11 +8324,88 @@
 </code></pre></div>
 <h2 id="06-agent">06 Agent</h2>
 <h3 id="agent">Agent 基础概念</h3>
-<p><strong>Agent</strong> 的核心定义是：使用大语言模型（LLM）作为<strong>推理引擎</strong>，来决定执行哪些动作以及执行的顺序。</p>
-<ul>
-<li><strong>Chain</strong>：步骤是硬编码的（第一步 A，第二步 B）</li>
-<li><strong>Agent</strong>：LLM 根据你的问题，自己判断："我应该先查搜索引擎，还是先算数学题？"</li>
-</ul>
+<p><strong>Agent</strong> 的核心定义是：将<code>LLM</code>、<code>Tools</code>、<code>Memory</code> 、<code>Planning</code> 、<code>Action</code>相结合的系统，能够<strong>对任务进行推理、决定使用哪些工具，并迭代地朝着解决问题的方向努力</strong>。</p>
+<h3 id="agent_1">Agent 的创建</h3>
+<p>在 <code>Langchain</code> 中，得到的 Agent 自动遵循 React 模式运行，下面是 0.3 与 1.0 + 的不同写法。</p>
+<h4 id="langchain-03">LangChain 0.3 核心写法</h4>
+<p>在 0.3 版本及更早的时期，创建 Agent 的核心是通过 <code>create_xxx_agent</code>（如 <code>create_tool_calling_agent</code>）将模型、工具和 Prompt 绑定为 Runnable，然后再交由 <code>AgentExecutor</code> 引擎来执行循环。</p>
+<p><strong>核心函数签名与参数说明</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 创建 Agent 路由逻辑</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_tool_calling_agent</span><span class="p">(</span>
+    <span class="n">llm</span><span class="p">:</span> <span class="n">BaseLanguageModel</span><span class="p">,</span>      <span class="c1"># 语言模型实例</span>
+    <span class="n">tools</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">BaseTool</span><span class="p">],</span>   <span class="c1"># 允许 Agent 调用的工具列表</span>
+    <span class="n">prompt</span><span class="p">:</span> <span class="n">ChatPromptTemplate</span><span class="p">,</span>  <span class="c1"># 必须包含 agent_scratchpad 占位符的提示词模板</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Runnable</span><span class="p">:</span>
+
+
+<span class="c1"># 2. Agent 执行器：负责协调 Agent 推理与工具执行的 ReAct 循环引擎。</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">AgentExecutor</span><span class="p">:</span> 
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">agent</span><span class="p">:</span> <span class="n">Runnable</span><span class="p">,</span>             <span class="c1"># create_tool_calling_agent 返回的 Runnable 实例</span>
+        <span class="n">tools</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">BaseTool</span><span class="p">],</span>   <span class="c1"># 与传入 agent 相同的工具列表</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>       <span class="c1"># 是否在控制台打印详细的执行过程</span>
+        <span class="n">max_iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>    <span class="c1"># 最大迭代步数，防止无限循环</span>
+        <span class="o">**</span><span class="n">kwargs</span>
+    <span class="p">):</span>
+</code></pre></div>
+<p><strong>核心代码示例</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_classic.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_tool_calling_agent</span><span class="p">,</span> <span class="n">AgentExecutor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.prompts</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatPromptTemplate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+
+<span class="c1"># 1. 定义 Prompt (0.3 版本必须显式管理 agent_scratchpad 暂存区)</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">ChatPromptTemplate</span><span class="o">.</span><span class="n">from_messages</span><span class="p">([</span>
+    <span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;你是一个有用的助手。&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;human&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{input}</span><span class="s2">&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;placeholder&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">{agent_scratchpad}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="c1"># 用于存储工具调用的中间观察结果</span>
+<span class="p">])</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">)</span>
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">your_tools_here</span><span class="p">]</span>
+
+<span class="c1"># 2. 创建 Agent 实体 (仅包含推理路由)</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">create_tool_calling_agent</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span> <span class="n">tools</span><span class="p">,</span> <span class="n">prompt</span><span class="p">)</span>
+
+<span class="c1"># 3. 包装为 AgentExecutor (真正的运行时引擎)</span>
+<span class="n">agent_executor</span> <span class="o">=</span> <span class="n">AgentExecutor</span><span class="p">(</span><span class="n">agent</span><span class="o">=</span><span class="n">agent</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 4. 调用</span>
+<span class="n">agent_executor</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="s2">&quot;帮我搜索一下最新的无线耳机&quot;</span><span class="p">})</span>
+</code></pre></div>
+<h4 id="langchain-10">LangChain 1.0+ 核心写法</h4>
+<p>在最新版本中，官方摒弃了沉重的 <code>AgentExecutor</code>，统一使用基于 LangGraph 构建的图（Graph）运行时。核心入口函数变为 <a href="https://reference.langchain.com/python/langchain/agents/factory/create_agent">create_agent</a>。此版本自动处理循环，并对类型有了更严格的限制。</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">Annotated</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatOpenAI</span>
+<span class="c1"># 注意：此处的 create_agent 是文档中提及的基于 LangGraph 的新版工厂函数</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.prebuilt</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_react_agent</span> <span class="k">as</span> <span class="n">create_agent</span> 
+
+<span class="c1"># 1. 1.0+ 强制规范：自定义状态必须使用 TypedDict </span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">]</span>
+    <span class="n">user_preference</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="c1"># 2. 结构化输出 Schema</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">OutputSchema</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="n">llm</span> <span class="o">=</span> <span class="n">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o&quot;</span><span class="p">)</span>
+<span class="n">tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">your_tools_here</span><span class="p">]</span>
+
+<span class="c1"># 3. 创建基于图的 Agent 运行时</span>
+<span class="n">agent</span> <span class="o">=</span> <span class="n">create_agent</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="n">tools</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;research_assistant&quot;</span><span class="p">,</span>        <span class="c1"># 规范：使用 snake_case 命名 </span>
+    <span class="n">state_schema</span><span class="o">=</span><span class="n">CustomState</span><span class="p">,</span>         <span class="c1"># 规范：传入 TypedDict 作为短时记忆</span>
+    <span class="n">response_format</span><span class="o">=</span><span class="n">OutputSchema</span>      <span class="c1"># 规范：自动采用 ProviderStrategy 原生结构化输出 </span>
+<span class="p">)</span>
+
+<span class="c1"># 4. 调用 (通过传递新消息触发状态更新) </span>
+<span class="n">agent</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;帮我搜索一下最新的无线耳机&quot;</span><span class="p">)]})</span>
+</code></pre></div>
 <h3 id="agent-llm">Agent 和 LLM 的区别</h3>
 <p>虽然 Agent 依赖 LLM 作为核心大脑，但两者在能力边界和运行模式上有着本质的区别。</p>
 <table>
@@ -7393,33 +8454,6 @@
 <li><strong>LLM 是 Agent 的大脑</strong> —— 提供推理和理解能力</li>
 <li><strong>Agent 是 LLM 的进化形态</strong> —— 让 LLM 从"会说话"变成"会做事"</li>
 </ul>
-<h3 id="agent_1">Agent 示例</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_community.chat_models.tongyi</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChatTongyi</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.output_parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">StrOutputParser</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain.agents</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_agent</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langchain_core.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">tool</span>
-
-<span class="nd">@tool</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;获取明天北京的天气信息&quot;</span><span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_weather</span><span class="p">():</span>
-    <span class="k">return</span> <span class="s2">&quot;明天北京的天气是晴天，温度是23度。&quot;</span>
-
-<span class="n">agent</span> <span class="o">=</span> <span class="n">create_agent</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="n">ChatTongyi</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;qwen-max&quot;</span><span class="p">),</span>  <span class="c1"># 智能体的大脑</span>
-    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">get_weather</span><span class="p">],</span>                  <span class="c1"># 智能体的工具</span>
-    <span class="n">system_prompt</span><span class="o">=</span><span class="s2">&quot;你是一个得力的助手，请精简的回答问题。&quot;</span>
-<span class="p">)</span>
-
-<span class="c1"># 智能体的调用：输入的是一个字典，字典必须包含一个 key 为 messages 的 value</span>
-<span class="n">res</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;明天北京的天气如何&quot;</span><span class="p">}</span>
-        <span class="p">]</span>
-    <span class="p">}</span>
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
-</code></pre></div>
 <h3 id="agent_2">Agent 四大组件</h3>
 <table>
 <thead>
@@ -7452,7 +8486,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="agent_3">Agent 流式输出</h3>
+<h3 id="agent_3"><a href="https://docs.langchain.com/oss/python/langchain/agents#streaming">Agent 流式输出</a></h3>
 <p>在 LangChain 中，Agent 的流式输出（Streaming）比普通 Chain 要复杂一些。因为 Agent 不只是在"说话"，它还在"思考"和"行动"。</p>
 <p>流式输出主要解决一个痛点：<strong>Agent 思考过程可能很长，如果不流式显示，用户会以为程序卡死了。</strong></p>
 <div class="highlight"><pre><span></span><code><span class="n">agent</span> <span class="o">=</span> <span class="n">create_agent</span><span class="p">(</span>
@@ -7476,52 +8510,68 @@
         <span class="k">pass</span>
 </code></pre></div>
 <h3 id="agent-react">Agent ReAct</h3>
-<p><strong>ReAct</strong> 是 Agent 领域最经典、最成熟的推理模式。它的名字由 <strong>Reason（推理）</strong> 和 <strong>Act（行动）</strong> 组合而成。在 langchain 中，agent 默认遵循的就是 ReAct 框架！</p>
-<p>ReAct 的精髓在于它强迫模型在执行动作之前先写出它的"内心独白"。这个循环通常包含以下四个步骤：</p>
+<p><strong>ReAct (Reasoning + Acting)</strong> 是 Agent 最核心的执行模式。在 LangChain 中，Agent 默认遵循的就是 ReAct 框架，它强迫模型在执行动作之前先进行“内心独白”（推理），并在简短的推理步骤与目标工具调用之间交替进行，直到得出最终答案。</p>
 <div class="highlight"><pre><span></span><code>Thought（思考） --&gt; Action（行动） --&gt; Observation（观察）--&gt; 循环往复直到结束
-from langchain.agents import create_react_agent, AgentExecutor
-from langchain import hub
-from langchain_community.chat_models import ChatTongyi
-from langchain.tools import Tool
-
-# 1. 定义一个简单的工具
-def get_word_length(word: str) -&gt; int:
-    return len(word)
-
-tools = [
-    Tool(
-        name=&quot;GetWordLength&quot;,
-        func=get_word_length,
-        description=&quot;当你需要计算一个单词的长度时使用它&quot;
-    )
-]
-
-# 2. 选择大脑
-llm = ChatTongyi(model=&quot;qwen-max&quot;)
-
-# 3. 拉取经典的 ReAct Prompt 模板
-# 这个模板里定义了具体的格式：Thought, Action, Action Input, Observation...
-prompt = hub.pull(&quot;hwchase17/react&quot;)
-
-# 4. 构造 Agent
-agent = create_react_agent(llm, tools, prompt)
-
-# 5. 构造执行器（负责跑循环）
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-
-# 6. 运行
-agent_executor.invoke({&quot;input&quot;: &quot;单词 &#39;supercalifragilisticexpialidocious&#39; 有多少个字母？&quot;})
 </code></pre></div>
-<p align='center'>
-  <img src="../../assets/imgs/python/langchian/langchain04.png" style="zoom:80%;" />  
-</p>
+<div class="highlight"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">init_chat_model</span><span class="p">(</span>  
+    <span class="n">model</span> <span class="o">=</span> <span class="s1">&#39;qwen3.5-plus&#39;</span><span class="p">,</span>  
+    <span class="n">model_provider</span> <span class="o">=</span> <span class="s1">&#39;openai&#39;</span><span class="p">,</span>  
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DASHSCOPE_API_KEY&quot;</span><span class="p">),</span>  
+    <span class="n">base_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;BASE_URL&quot;</span><span class="p">),</span>  
+    <span class="n">model_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;extra_body&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;enable_thinking&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}}</span> 
+<span class="p">)</span>  
+<span class="nd">@tool</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;获取指定用户的身高(cm)&quot;</span><span class="p">)</span>  
+<span class="k">def</span><span class="w"> </span><span class="nf">get_height</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>  
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">169</span><span class="p">,</span> <span class="mi">190</span><span class="p">)</span>  
 
+<span class="nd">@tool</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;获取指定用户的体重(kg)&quot;</span><span class="p">)</span>  
+<span class="k">def</span><span class="w"> </span><span class="nf">get_weight</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>  
+    <span class="k">return</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>  
+
+<span class="k">class</span><span class="w"> </span><span class="nc">output</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>  
+    <span class="n">user</span><span class="p">:</span> <span class="nb">str</span>  
+    <span class="n">height</span><span class="p">:</span> <span class="nb">int</span>  
+    <span class="n">weight</span><span class="p">:</span> <span class="nb">int</span>  
+    <span class="n">bmi</span><span class="p">:</span> <span class="nb">float</span>  
+
+<span class="n">agent</span> <span class="o">=</span> <span class="n">create_agent</span><span class="p">(</span>  
+    <span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="p">,</span>  
+    <span class="n">system_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;  </span>
+<span class="s2">    You are a helpful assistant.    你要严格遵循 React 模式  </span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">,</span>  
+    <span class="n">tools</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_height</span><span class="p">,</span> <span class="n">get_weight</span><span class="p">],</span>  
+    <span class="n">response_format</span><span class="o">=</span><span class="n">output</span>  
+<span class="p">)</span>  
+
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>  
+    <span class="n">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="n">agent</span><span class="o">.</span><span class="n">ainvoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span> <span class="p">:[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span><span class="s2">&quot;请获取张三的BMI&quot;</span><span class="p">}]})</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;structured_response&quot;</span><span class="p">])</span>  
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>  
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
+</code></pre></div>
+<p>![[react提示词模板.png]]</p>
 <p>虽然 ReAct 很强，但它也有局限性：</p>
 <ul>
 <li><strong>Token 消耗</strong>：反复的"思考-行动-观察"会消耗大量的 Token</li>
 <li><strong>死循环</strong>：如果工具返回的信息不够清晰，模型可能会陷入反复调用同一个工具的死循环</li>
 <li><strong>规划能力有限</strong>：对于极其复杂的长程任务，ReAct 容易"走一步看一步"而迷失全局目标</li>
 </ul>
+<h3 id="agent-a2a">Agent A2A</h3>
+<p><strong>A2A（Agent-to-Agent）架构</strong>，即“智能体到智能体”架构，是指多个独立的 AI Agent 在一个系统中相互通信、协作或博弈，以共同完成复杂任务的一种系统设计模式。</p>
+<p>在 A2A 架构中，系统不再依赖单一的 Agent 独立完成所有工作，而是强调<strong>分工与协作</strong>，主要具备以下特征：</p>
+<ol>
+<li>
+<p><strong>角色专业化</strong>：不同的 Agent 往往被配置了不同的系统提示词、特定的工具集甚至是不同的底层模型，扮演专门的角色（例如：负责收集信息的研究员 Agent、负责编写代码的程序员 Agent、负责把关的审查员 Agent）。</p>
+</li>
+<li>
+<p><strong>灵活的通信机制</strong>：Agent 之间可以通过互相传递消息、共享短时记忆（如共享 State）或通过图结构（Graph）进行互动和任务交接。</p>
+</li>
+<li>
+<p><strong>突破单体局限</strong>：单一的 ReAct 模式在处理极其复杂的长程任务时，容易因为 Context（上下文）过载或规划能力不足而迷失目标。A2A 架构能将宏大任务拆解并分发给对应的专业 Agent 执行，有效降低了系统的 Token 消耗，并大幅提升了复杂任务的成功率。目前主流的 A2A 框架包括 AutoGen、CrewAI 等</p>
+</li>
+</ol>
+<p>通过 <code>Langgraph</code> 可以优雅的实现 A2A 架构</p>
 <h3 id="agent-middleware">Agent Middleware</h3>
 <p>在 LangChain 中，<strong>Agent Middleware（智能体中间件）</strong> 是一种<strong>拦截器模式</strong>，允许在 Agent 执行流程的关键节点插入自定义逻辑。</p>
 <p>其核心思想类似于 Aop：在请求到达目标处理函数之前/之后，注入额外的处理逻辑。对于 Agent 而言，你可以在以下时机插入代码：</p>
