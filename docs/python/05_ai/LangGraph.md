@@ -608,3 +608,428 @@ graph.add_conditional_edges("node_a", continue_to_jokes)
 
 !!! tip "适用场景"
     Map-Reduce 模式：一个节点生成列表，后续节点并行处理列表中的每个元素（元素数量预先未知）。
+
+
+## LangGraph Command
+
+[`Command`](https://reference.langchain.com/python/langgraph/types/Command) 是一个灵活的原语，用于控制图的执行，支持状态更新和路由控制的组合。它接收下面这四个参数：
+
+- `update`: 应用状态更新（类似节点返回更新）
+- `goto`: 跳转到指定节点（类似条件边）
+- `graph`: 从子图跳转到父图的节点
+- `resume`: 在中断后恢复执行，提供值
+
+Command 被使用于下面这些场景：
+
+- **[Return from nodes](https://docs.langchain.com/oss/python/langgraph/graph-api#return-from-nodes)**：使用 `update` + `goto` 组合状态更新和控制流
+- **[Input to `invoke`/`stream`](https://docs.langchain.com/oss/python/langgraph/graph-api#input-to-invokestream)**：使用 `resume` 在中断后恢复执行
+- **[Return from tools](https://docs.langchain.com/oss/python/langgraph/graph-api#return-from-tools)**：在 Tool 内更新状态并控制路由
+
+
+### Return from nodes
+#### update and goto
+
+Return [`Command`](https://reference.langchain.com/python/langgraph/types/Command) from node functions to update state and route to the next node in a single step:
+
+``` python 
+def my_node(state: State) -> Command[Literal["my_other_node"]]:
+    return Command(
+        # state update
+        update={"foo": "bar"},
+        # control flow
+        goto="my_other_node"
+    )
+```
+
+With [`Command`](https://reference.langchain.com/python/langgraph/types/Command) you can also achieve dynamic control flow behavior (identical to [conditional edges](https://docs.langchain.com/oss/python/langgraph/graph-api#conditional-edges)):
+
+```python
+def my_node(state: State) -> Command[Literal["node_a", "node_b"]]:
+    if state["foo"] == "bar":
+        return Command(update={"foo": "baz"}, goto="node_a")
+    return Command(update={"foo": "qux"}, goto="node_b")
+```
+
+!!! tip "使用时机"
+    需要同时更新状态和路由时用 `Command`；仅路由不更新状态时，用条件边即可。
+
+!!! warning "类型注解要求"
+    返回 `Command` 时必须添加类型注解：`Command[Literal["node_name"]]`，用于图渲染和告知 LangGraph 可能的路由目标。
+
+!!! note "静态边仍生效"
+    `Command` 只添加动态边，`add_edge` 定义静态边仍会执行。如 `node_a` 返回 `Command(goto="x")` 且有 `add_edge("node_a", "node_b")`，则 `node_b` 和 `x` 都会执行。
+
+#### graph
+
+使用 `graph=Command.PARENT` 从子图节点跳转到父图节点，这在多智能体切换场景非常的 `useful`
+
+```python
+def my_node(state: State) -> Command[Literal["other_subgraph"]]:
+    return Command(
+        update={"foo": "bar"},
+        goto="other_subgraph",  # 父图中的节点
+        graph=Command.PARENT
+    )
+```
+
+!!! note "注意"
+    更新父图和子图共享的 key 时，父图必须定义对应的 Reducer。
+
+### Input to `invoke`/`stream`
+
+使用 `Command(resume=...)` 提供值并恢复中断后的执行：
+
+```python
+# 1. 定义 Stateclass AgentState(TypedDict):  
+    messages: Annotated[list[AnyMessage], operator.add]  
+  
+  
+# 2. 创建 checkpointer（必需！否则无法使用 Command(resume=...)）  
+checkpointer = MemorySaver()  
+  
+  
+# 3. 定义节点 - 使用 interrupt() 中断执行  
+def node_a(state: AgentState) -> AgentState:  
+    answer = interrupt('Do you approve?')  
+    print(f'用户回答：{answer}')  
+  
+    if answer == 'yes':  
+        return {'messages': [AIMessage(content='你同意了')]}  
+    else:  
+        return {'messages': [AIMessage(content='你拒绝了')]}  
+  
+  
+# 4. 构建图  
+graph = StateGraph(AgentState)  
+graph.add_node('node_a', node_a)  
+graph.set_entry_point('node_a')  
+graph.set_finish_point('node_a')  
+app = graph.compile(checkpointer=checkpointer)  
+  
+  
+# 5. 执行流程  
+config = {'configurable': {'thread_id': '1'}}  
+  
+# 第一次执行：触发中断  
+print('=== 第一次执行（触发中断）===')  
+resp = app.invoke({'messages': [HumanMessage(content='111')]}, config=config)  
+print(f'中断前结果：{resp}')  
+  
+# 第二次执行：恢复中断  
+print('\n=== 第二次执行（恢复中断）===')  
+resp = app.invoke(Command(resume='yes'), config=config)  
+print(f'恢复后结果：{resp}')
+```
+
+!!! warning "多轮对话不要用 Command 作为输入"
+    `Command` 会从最新 checkpoint 恢复（非 `__start__`），可能导致图卡住。继续对话应传普通 dict：
+
+    ```python
+    # ❌ 错误 - 从最新 checkpoint 恢复，可能卡住
+    graph.invoke(Command(update={"messages": [...]}), config)
+
+    # ✅ 正确 - 普通 dict 从 __start__ 重启
+    graph.invoke({"messages": [...]}, config)
+    ```
+
+### Return from tools
+
+Tool 内可返回 `Command` 更新状态并控制路由：
+
+```python
+@tool
+def my_tool(state: State) -> Command:
+    return Command(update={"saved": True}, goto="next_node")
+```
+
+!!! note "静态边仍生效"
+    Tool 内 `goto` 添加动态边，调用 Tool 的节点的静态边仍会执行。
+
+## LangGraph Runtime
+
+创建图时可指定 `context_schema`，用于向节点传递**不属于 State** 的运行时信息（如模型名称、数据库连接等依赖项）。
+		
+context_schema 的定义
+
+``` python
+@dataclass
+class ContextSchema:
+    llm_provider: str = "openai"
+
+graph = StateGraph(State, context_schema=ContextSchema)
+```
+
+传递 `context` 到 graph
+
+``` python
+graph.invoke(inputs, context={"llm_provider": "anthropic"})
+```
+
+在任意节点或者条件边路由函数获得 `context`
+
+``` python
+from langgraph.runtime import Runtime
+
+def node_a(state: State, runtime: Runtime[ContextSchema]):
+    llm = get_llm(runtime.context.llm_provider)
+    # ...
+```
+
+!!! tip "适用场景"
+    传递不属于 State 的依赖项（如配置、连接、用户信息），避免污染 State 结构。
+
+---
+
+## LangGraph RunnableConfig
+
+### Recursion Limit
+
+限制图执行的最大步数，超过则抛出 `GraphRecursionError`。
+
+- **默认限制**：1000 步（v1.0.6+）
+- **设置方式**：`config={"recursion_limit": 5}`
+- **注意**：`recursion_limit` 是独立配置项，不放在 `configurable` 中
+
+```python
+graph.invoke(inputs, config={"recursion_limit": 5}, context={"llm": "anthropic"})
+```
+
+---
+### 访问当前步数
+
+通过 `config["metadata"]["langgraph_step"]` 获取当前执行步数：
+
+```python
+def my_node(state: dict, config: RunnableConfig) -> dict:
+    current_step = config["metadata"]["langgraph_step"]
+    print(f"Currently on step: {current_step}")
+    return state
+```
+
+---
+
+### RemainingSteps（剩余步数追踪）
+
+LangGraph 提供 `RemainingSteps` 管理值，自动追踪剩余步数，实现**主动式递归处理**：
+
+```python
+from langgraph.managed import RemainingSteps
+
+class State(TypedDict):
+    messages: Annotated[list, lambda x, y: x + y]
+    remaining_steps: RemainingSteps  # 自动填充
+
+def reasoning_node(state: State) -> dict:
+    remaining = state["remaining_steps"]
+    if remaining <= 2:
+        return {"messages": ["Approaching limit, wrapping up..."]}
+    return {"messages": ["thinking..."]}
+```
+
+---
+
+### 主动式 vs 被动式处理
+
+| 方式 | 检测时机 | 处理位置 | 控制流 |
+|------|---------|---------|--------|
+| **主动式**（RemainingSteps） | 达到限制前 | 图内路由 | 正常完成 |
+| **被动式**（catch GraphRecursionError） | 超过限制后 | 图外 try/catch | 图终止 |
+
+**主动式优势**：优雅降级、保存中间状态、更好用户体验、图正常完成
+
+**被动式优势**：实现简单、无需修改图逻辑、集中错误处理
+
+---
+### 其他可用 metadata
+
+```python
+def inspect_metadata(state: dict, config: RunnableConfig) -> dict:
+    metadata = config["metadata"]
+    
+    print(f"Step: {metadata['langgraph_step']}")
+    print(f"Node: {metadata['langgraph_node']}")
+    print(f"Triggers: {metadata['langgraph_triggers']}")
+    print(f"Path: {metadata['langgraph_path']}")
+    print(f"Checkpoint NS: {metadata['langgraph_checkpoint_ns']}")
+    
+    return state
+```
+
+---
+
+!!! summary "一句话总结"
+    `context` 传递依赖项，`config` 控制 runtime 行为（如 recursion_limit），`metadata` 提供执行信息（如当前步数）。
+
+## LangGraph 高级特性
+
+### [Streaming](https://docs.langchain.com/oss/python/langgraph/streaming#stream-modes)
+
+LangGraph 提供流式输出能力，通过 `stream()` / `astream()` 方法实时返回执行更新，显著提升 LLM 应用的用户体验。
+
+#### 基础用法
+
+``` python
+for chunk in graph.stream(
+    {"topic": "ice cream"},
+    stream_mode=["updates", "custom"],  # 可传多个模式
+    version="v2",  # 推荐 v2 格式
+):
+    if chunk["type"] == "updates":
+        for node_name, state in chunk["data"].items():
+            print(f"Node {node_name} updated: {state}")
+    elif chunk["type"] == "custom":
+        print(f"Status: {chunk['data']['status']}")
+```
+
+#### Stream Modes
+
+| 模式            | 说明                                      |
+| ------------- | --------------------------------------- |
+| `values`      | 每步后的**完整 State**                        |
+| `updates`     | 每步后的 **State 更新**（仅变化的字段）               |
+| `messages`    | LLM **token 级别流式输出**                    |
+| `custom`      | **自定义数据**流式输出（通过 `get_stream_writer()`） |
+| `checkpoints` | Checkpoint 事件（需要 checkpointer）          |
+| `tasks`       | 任务开始/结束事件（需要 checkpointer）              |
+| `debug`       | 最全信息（checkpoints + tasks + 额外元数据）       |
+
+#### Graph State 流式
+
+``` python
+# updates：仅返回更新的字段
+for chunk in graph.stream(inputs, stream_mode="updates", version="v2"):
+    if chunk["type"] == "updates":
+        for node_name, state in chunk["data"].items():
+            print(f"Node `{node_name}` updated: {state}")
+
+# values：返回完整 State
+for chunk in graph.stream(inputs, stream_mode="values", version="v2"):
+    if chunk["type"] == "values":
+        print(chunk["data"])  # 完整 state
+```
+
+
+#### LLM Tokens 流式
+
+使用 `messages` 模式流式输出 LLM token，
+
+```python
+for chunk in graph.stream(inputs, stream_mode="messages", version="v2"):
+    if chunk["type"] == "messages":
+        msg, metadata = chunk["data"]
+        if msg.content:
+            print(msg.content, end="", flush=True)
+
+```
+
+**按 tags 过滤**
+
+``` python
+model = init_chat_model(model="gpt-4", tags=["joke"])
+
+# 只流式输出特定 tag 的 LLM
+if metadata["tags"] == ["joke"]:
+    print(msg.content)
+```
+
+**按 node 过滤**：
+
+``` python
+if metadata["langgraph_node"] == "some_node_name":
+    print(msg.content)
+```
+
+!!! tip
+    `messages` 模式返回的数据任然遵循统一的格式，但是 `data` 对应的是一个二元组，而不再是一个字典了。
+
+
+#### Custom 自定义流式
+
+节点内使用 `get_stream_writer()` 发送自定义数据：
+
+``` python
+from langgraph.config import get_stream_writer
+
+def my_node(state: State):
+    writer = get_stream_writer()
+    writer({"status": "processing...", "progress": 50}) 
+    return {"result": "done"}
+
+# 消费自定义数据
+for chunk in graph.stream(inputs, stream_mode="custom", version="v2"):
+    if chunk["type"] == "custom":
+        print(chunk["data"])
+
+```
+
+
+#### v2 输出格式
+
+``` python
+{
+    "type": "values" | "updates" | "messages" | "custom" | ...,
+    "ns": (),           # 子图命名空间（根图为空元组）
+    "data": ...,        # 实际数据
+}
+```
+
+
+[**v1 vs v2 对比**](https://docs.langchain.com/oss/python/langgraph/streaming#migrate-to-v2)
+
+| 场景            | v1（默认）                 | v2（推荐）                   |
+| ------------- | ---------------------- | ------------------------ |
+| 单模式           | 返回原始数据                 | `StreamPart` dict        |
+| 多模式           | `(mode, data)` 元组      | `StreamPart`，用 `type` 区分 |
+| 子图            | `(namespace, data)` 元组 | `StreamPart`，用 `ns` 区分   |
+| `invoke()` 返回 | 普通字典                   | `GraphOutput` 对象         |
+
+#### Subgraph 流式
+
+设置 `subgraphs=True` 包含子图输出：
+
+```python
+for chunk in graph.stream(
+    inputs,
+    subgraphs=True,
+    stream_mode="updates",
+    version="v2",
+):
+    if chunk["ns"]:
+        print(f"Subgraph {chunk['ns']}: {chunk['data']}")
+    else:
+        print(f"Root: {chunk['data']}")
+```
+
+#### 多模式组合
+
+在多模式组合下，v2 版本的输出结构才能体现出优势，无论是什么类型，是单模式还是多模式，v2 版本的输出都一致！
+
+``` python
+for chunk in graph.stream(
+    inputs,
+    stream_mode=["updates", "messages", "custom"],
+    version="v2",
+):
+    if chunk["type"] == "updates":
+        ...
+    elif chunk["type"] == "messages":
+        ...
+    elif chunk["type"] == "custom":
+        ...
+
+```
+
+#### 禁用特定 LLM 流式
+
+```python
+model = init_chat_model("claude-sonnet-4", streaming=False)
+```
+
+
+---
+
+!!! tip "使用建议"
+    - 推荐使用 `version="v2"` 获得统一格式
+    - `updates` 适合监控节点输出，`messages` 适合实时展示 LLM 输出
+    - `custom` 适合进度条、日志等自定义场景
+
