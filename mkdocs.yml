@@ -69,6 +69,7 @@ nav:
           - Python: ./interview/python/python.md
           - LLMBasic: ./interview/python/deepLearning.md
           - LangChain: ./interview/python/langchain.md
+          - LangGraph: ./interview/python/langgraph.md
 #  - Journal:
 #      - 202602: ./journal/2026-02.md
   - Tools:
