@@ -591,4 +591,30 @@ Agent 其实就是基于 LLM 构建的一个智能系统，它能够推理任务
 !!! tip "面试回答思路"
     `ReAct` 是单个 `Agent` 的内部工作模式（推理→行动→观察，循环迭代）。`A2A` 是多个 `Agent` 之间的协作模式（Agent 之间互相通信、分工协作）。两者的关系：`A2A` 协作中的每个 `Agent`，内部通常使用 `ReAct` 模式来工作。简单说就是：`ReAct` 是一个人怎么干活，`A2A` 是一群人怎么配合。
 
+
+### 6. Agent Skill 是什么？
+
+**Agent Skill** 是**可复用的 Agent 能力模块**，通过渐进式披露提供专门化的工作流和领域知识。
+
+**工作机制**（Match-Read-Execute）：
+
+| 步骤 | 说明 |
+|------|------|
+| **Match** | Agent 检查 `description` 是否匹配当前任务 |
+| **Read** | 匹配时才读取完整 `SKILL.md` |
+| **Execute** | 按指令执行，调用辅助文件（脚本、模板） |
+
+**文件结构**：
+
+```
+skills/
+├── langgraph-docs/
+│   ├── SKILL.md        # 必需：元数据 + 指令
+│   ├── scripts.py      # 可选：辅助脚本
+│   └── templates/      # 可选：模板资源
+```
+
+!!! tip "面试回答思路"
+    `Agent Skill` 是可复用的 `Agent` 能力模块，核心设计思想是**渐进式披露**——只在需要时才加载完整内容，节省 `token`。工作机制是`Match-Read-Execute`三步：匹配`description`→读取`SKILL.md`→按指令执行。与`Memory`（启动加载）和`Tools`（始终可用）不同，`Skills`是按需加载的专门化工作流。简单说就是：**"需要时才加载的专家能力包"**。
+
 ---

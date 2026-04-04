@@ -2714,3 +2714,81 @@ agent = create_agent(
     middleware=[log_before_agent, ...]  # 这里传入中间件
 )
 ```
+### Agent Skill
+
+**核心概念**
+
+Skills 是**可复用的 Agent 能力模块**，通过渐进式披露提供专门化的工作流和领域知识。
+
+**文件结构**
+
+```
+skills/
+├── langgraph-docs/
+│   ├── SKILL.md        # 必需：包含元数据和指令
+│   ├── scripts.py      # 可选：辅助脚本
+│   └── templates/      # 可选：模板资源
+```
+
+**SKILL.md 格式**
+
+```md
+---
+name: skill-name
+description: 匹配描述（Agent 依据此判断是否使用）
+license: MIT
+compatibility: 约束条件
+metadata:
+  author: xxx
+  version: "1.0"
+allowed-tools: fetch_url
+---
+
+# Skill 指令内容...
+```
+
+**工作机制**
+
+| 步骤 | 说明 |
+|------|------|
+| **Match** | Agent 检查 description 是否匹配当前任务 |
+| **Read** | 匹配时才读取完整 SKILL.md |
+| **Execute** | 按指令执行，调用辅助文件 |
+
+> **渐进式披露**：只在需要时才加载完整内容，节省 token
+
+**使用方式**
+
+```python
+agent = create_deep_agent(
+    skills=["/skills/user/", "/skills/project/"],  # 后者覆盖同名 skill
+    checkpointer=MemorySaver(),
+)
+```
+
+**Skills vs Memory vs Tools**
+
+| 类型 | 加载时机 | 用途 |
+|------|---------|------|
+| **Skills** | 按需加载 | 任务级专门能力（大量上下文） |
+| **Memory** (AGENTS.md) | 启动时加载 | 持久上下文（项目约定、偏好） |
+| **Tools** | 始终可用 | 单一操作能力 |
+
+**Subagent Skills 继承**
+
+- **通用子 Agent**：自动继承主 Agent skills
+- **自定义子 Agent**：需单独配置 `skills` 参数，与主 Agent 完全隔离
+
+```python
+research_subagent = {
+    "name": "researcher",
+    "skills": ["/skills/research/"],  # 仅此子 Agent 可用
+}
+```
+
+ **最佳实践**
+
+1. **description 要精确** — Agent 仅凭此判断是否使用
+2. **文件 < 10MB** — 超限会被跳过
+3. **用 skill 处理大上下文** — 避免污染系统提示
+4. **用 tool 处理无文件系统场景** — skill 需要文件系统支持

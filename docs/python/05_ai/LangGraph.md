@@ -335,23 +335,23 @@ def force_overwrite_node(state: State):
     In some cases, you may want to bypass a reducer and directly overwrite a state value. LangGraph provides the [`Overwrite`](https://reference.langchain.com/python/langgraph/types/) type for this purpose. [Learn how to use `Overwrite` here](https://docs.langchain.com/oss/python/langgraph/use-graph-api#bypass-reducers-with-overwrite).
 
 #### Reducer State 初始值陷阱  
-  
+
 **问题**：LangGraph 会为 State 字段赋予初始值，我们传入的值本质上是覆盖了原有的初始值。但是对于**非覆盖 Reducer**（如 `operator.mul`）来说，就会出现一些问题。  
-  
+
 ```python  
 class AgentState(TypedDict):  
     age: Annotated[float, operator.mul]  # float 默认值是 0.0  
     
 app.invoke({'age': 1})  # 结果：age = 0.0 ❌  
 # 原因：0.0 * 1 = 0.0  
-```  
-  
+```
+
 **解决方案**：  
 
 1. **方案 1**：不用 Annotated，直接 `age: float`，节点返回什么就是什么  
 2. **方案 2**：使用 `Overwrite(1)` 包裹初始值，避免与默认值进行 reducer 操作  
 3. **方案 3**：使用自定义 `Reducer`
-  
+
 !!! tip "累加型 reducer（`operator.add`）没问题（`0 + x = x`），但累乘型（`operator.mul`）会得到 0（`0.0 * x = 0.0`），必须特殊处理这个初始值。"
 
 ---
@@ -727,7 +727,7 @@ print(f'恢复后结果：{resp}')
     ```python
     # ❌ 错误 - 从最新 checkpoint 恢复，可能卡住
     graph.invoke(Command(update={"messages": [...]}), config)
-
+    
     # ✅ 正确 - 普通 dict 从 __start__ 重启
     graph.invoke({"messages": [...]}, config)
     ```
@@ -1032,4 +1032,590 @@ model = init_chat_model("claude-sonnet-4", streaming=False)
     - 推荐使用 `version="v2"` 获得统一格式
     - `updates` 适合监控节点输出，`messages` 适合实时展示 LLM 输出
     - `custom` 适合进度条、日志等自定义场景
+
+
+
+### [CheckPointer](https://docs.langchain.com/oss/python/langgraph/persistence)
+
+LangGraph 内置持久化层，通过 **Checkpoint** 保存图的执行状态。启用持久化后，每个执行步骤都会保存状态快照，从而实现了人工介入、对话记忆、时间旅行调试和故障恢复。
+
+
+!!! note "注意"
+    **`Agent Server` handles checkpointing automatically** When using the [`Agent Server`](https://docs.langchain.com/langsmith/agent-server), you don't need to implement or configure checkpointers manually. The server handles all persistence infrastructure for you behind the scenes.
+#### 为什么需要持久化？
+
+| 功能                    | 说明                        |
+| --------------------- | ------------------------- |
+| **Human-in-the-loop** | 人工可检查、中断、审批图的执行步骤         |
+| **Memory**            | 跨对话保持记忆，后续消息可访问之前的 State  |
+| **Time travel**       | 回放历史执行、查看/调试特定步骤、分支探索     |
+| **Fault tolerance**   | 节点失败后可从上一个成功的步骤恢复         |
+| **Pending writes**    | 超级步骤中部分节点成功时，恢复时不重跑已成功的节点 |
+
+#### 核心概念
+
+##### Threads
+
+每个 Checkpoint 关联一个唯一的 `thread_id`，作为存储和检索的主键。
+
+``` python
+config = {"configurable": {"thread_id": "1"}}
+graph.invoke(inputs, config)
+```
+
+!!! caution "必须指定 `thread_id`"
+    没有 `thread_id`，`Checkpointer` 无法保存状态或在中断后恢复执行。
+
+##### Checkpoints
+
+Checkpoint 是某个时刻的 State 快照，每个 **Super-step** 边界都会创建一个。
+
+##### SuperStep
+
+Super-step 是 LangGraph 运行时的最小执行单元，可以将其理解为图的一次“逻辑滴答（Tick）”。在一个 Super-step 中，所有当前被触发且可以执行的节点会同时启动（支持并行执行）。只有当该步骤内所有的节点都运行完毕后，图才会跨越边界进入下一个 Super-step。这种机制确保了复杂图结构在执行过程中的有序性。
+
+##### Checkpoint namespace
+
+每个检查点都有 `checkpoint_ns` 字段，标记着这个检查点属于哪个图或者子图。
+
+可以通过 `RunnableConfig` 对象去获得当前检查点的命名空间
+
+``` python
+from langchain_core.runnables import RunnableConfig
+
+def my_node(state: State, config: RunnableConfig):
+    checkpoint_ns = config["configurable"]["checkpoint_ns"]
+    # "" for the parent graph, "node_name:uuid" for a subgraph
+```
+
+
+#### 获取、更新状态
+
+**StateSnapshot 字段**
+
+| 字段              | 说明                                             |
+| --------------- | ---------------------------------------------- |
+| `values`        | 该 checkpoint 的 State 值                         |
+| `next`          | 下一步要执行的节点（空 `()` 表示图已完成）                       |
+| `config`        | 包含 `thread_id`、`checkpoint_ns`、`checkpoint_id` |
+| `metadata`      | 执行元数据（`source`、`writes`、`step`）                |
+| `created_at`    | 创建时间（ISO 8601）                                 |
+| `parent_config` | 上一个 checkpoint 的配置                             |
+| `tasks`         | 待执行任务列表                                        |
+
+##### Get State
+
+**获取状态的核心就是凭“号”查“快照”**：你必须提供一个 `thread_id`（线程 ID）作为索引，通过 `graph.get_state(config)` 就能拿到该线程最新的 `StateSnapshot`（状态快照）；如果带上特定的 `checkpoint_id`，还能精准提取历史某个瞬间的状态，这就是实现状态回溯的基础。
+
+```python
+# 获取最新状态
+config = {"configurable": {"thread_id": "1"}}
+graph.get_state(config)
+
+# 获取特定 checkpoint
+config = {"configurable": {"thread_id": "1", "checkpoint_id": "..."}}
+graph.get_state(config)
+```
+
+##### Get State History
+
+通过调用 `graph.get_state_history(config)`，可以获取特定线程下所有执行记录的完整清单。该方法返回一个包含多个 `StateSnapshot`（状态快照）对象的列表，反映了该线程经历过的每一个 Super-step。需要特别注意的是，这些检查点是按**逆序排列**的，即**最新的状态排在列表的首位**，方便你快速追溯最近一次的操作记录。
+
+```python
+history = list(graph.get_state_history(config))
+# 按时间倒序排列，最新的在最前面
+
+# 查找特定 checkpoint
+before_node_b = next(s for s in history if s.next == ("node_b",))
+step_2 = next(s for s in history if s.metadata["step"] == 2)
+
+```
+
+##### Replay 
+
+从历史 checkpoint 恢复执行，checkpoint 之前的节点跳过（结果已保存），之后的节点重新执行：
+
+``` python
+# 从特定 checkpoint_id 恢复
+config = {"configurable": {"thread_id": "1", "checkpoint_id": "..."}}
+graph.invoke(None, config)  # 会重新执行后续节点
+```
+
+
+##### Update State
+
+通过 `update_state` 方法可以手动编辑图的状态，其核心逻辑是“增量更新而非直接覆盖” ：每次更新都会产生一个全新的检查点，而不会修改历史记录。如果状态字段定义了 `reducer` 函数（如列表累加），更新的值会进行累积；否则才会被覆盖。
+
+``` python
+graph.update_state(config, {"foo": "new_value"}) 
+```
+
+此外，通过 `as_node` 参数可以伪装更新来源，从而改变图的下一步走向，是实现干预和控制执行流的关键手段。
+
+``` python
+graph.update_state(config, {"foo": "new"}, as_node="node_a")
+```
+
+#### [CheckPointer 实现线程内记忆](https://docs.langchain.com/oss/python/langgraph/add-memory#add-short-term-memory)
+
+线程级持久化让 Agent 能够追踪多轮对话。
+
+**基本用法**：
+
+```python
+from langgraph.checkpoint.memory import InMemorySaver
+
+checkpointer = InMemorySaver() # 创建一个检查点对象
+graph = builder.compile(checkpointer=checkpointer) # 在编译图的时候指定检查点
+
+# 同一 thread_id 的多次调用会保持记忆
+graph.invoke(
+    {"messages": [{"role": "user", "content": "hi! i am Bob"}]},
+    {"configurable": {"thread_id": "1"}},
+)
+```
+
+**生产环境**：使用数据库支持的 Checkpointer：
+
+```python
+from langgraph.checkpoint.postgres import PostgresSaver
+
+DB_URI = "postgresql://user:pass@localhost:5432/db"
+with PostgresSaver.from_conn_string(DB_URI) as checkpointer:
+    graph = builder.compile(checkpointer=checkpointer)
+```
+
+**子图中使用**：只需在父图编译时传入 checkpointer，LangGraph 会自动传播到子图：
+
+```python
+# 子图
+subgraph = subgraph_builder.compile()
+
+# 父图 - 只需在这里传入 checkpointer
+builder.add_node("node_1", subgraph)
+graph = builder.compile(checkpointer=InMemorySaver())
+```
+
+!!! tip "可用的 `Checkpointer` 实现"
+    [更多集成](https://docs.langchain.com/oss/python/integrations/checkpointers) 参考官方文档
+
+    - `InMemorySaver`：开发测试用
+    - `PostgresSaver`：生产推荐
+    - `SqliteSaver`：本地开发
+    - `RedisSaver` / `MongoDBSaver`：可选
+
+### [Memory Store](https://docs.langchain.com/oss/python/langgraph/add-memory#add-long-term-memory)
+
+Checkpointer 只能保存**线程内**的状态，`Store` 支持**跨线程**存储信息（如用户偏好）。
+
+!!! note "核心定位对比"
+    - **Checkpointer**：绑定 `thread_id`，负责当前对话的"进度条"。
+    - **Store**：绑定 `user_id`，负责长期留存的"档案袋"。
+
+#### 基础存取
+
+Store 使用元组（Tuple）作为命名空间（Namespace）来隔离不同用户或类别的数据。使用 `put` 存入数据，`search` 检索数据。
+
+``` python
+import uuid
+from langgraph.store.memory import InMemoryStore
+
+store = InMemoryStore()
+namespace = ("user_123", "memories") # 格式：(用户ID, 分类名)
+
+# 📥 写入记忆 (Put)
+store.put(namespace, str(uuid.uuid4()), {"food_preference": "I like pizza"})
+
+# 📤 读取记忆 (Search)
+memories = store.search(namespace)
+print(memories[-1].dict())  # 获取列表最后一条（即最新的一条）
+```
+
+
+#### 语义搜索
+
+给 Store 配置 Embedding 模型后，即可通过自然语言进行模糊搜索，打破精准查询的限制。
+
+``` python
+from langchain.embeddings import init_embeddings
+
+# 初始化配置了向量模型的 Store
+store = InMemoryStore(
+    index={
+        "embed": init_embeddings("openai:text-embedding-3-small"),
+        "dims": 1536,
+        "fields": ["food_preference", "$"] # 指定需要被向量化的字段
+    }
+)
+
+# 使用自然语言模糊搜索
+memories = store.search(
+    namespace,
+    query="What does the user like to eat?", # 模糊匹配，无需精准包含关键字
+    limit=3
+)
+```
+
+#### 在 LangGraph 中使用
+
+在图的节点函数中，LangGraph 会自动注入 `Runtime` 对象用于读写记忆库。执行图时，需同时挂载 Checkpointer 和 Store，并通过 `context` 传入当前用户信息。
+
+!!! warning "异步读写注意"
+    在异步节点（`async def`）中，必须使用异步方法 `runtime.store.aput` 和 `runtime.store.asearch`。
+
+``` python
+from dataclasses import dataclass
+from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.runtime import Runtime
+
+@dataclass
+class Context:
+    user_id: str
+
+# 节点：写入记忆
+async def update_memory(state: MessagesState, runtime: Runtime[Context]):
+    namespace = (runtime.context.user_id, "memories")
+    await runtime.store.aput(namespace, str(uuid.uuid4()), {"memory": "用户今天很烦躁"})
+
+# 节点：读取记忆
+async def call_model(state: MessagesState, runtime: Runtime[Context]):
+    namespace = (runtime.context.user_id, "memories")
+    memories = await runtime.store.asearch(
+        namespace,
+        query=state["messages"][-1].content, # 用用户的最新发言去匹配历史记忆
+        limit=3
+    )
+    info = "\n".join([d.value["memory"] for d in memories])
+
+# ==========================================
+# 图的编译与执行
+# ==========================================
+checkpointer = InMemorySaver()
+store = InMemoryStore()
+
+# 编译时同时挂载进度条和记忆库
+graph = builder.compile(checkpointer=checkpointer, store=store)
+
+config = {"configurable": {"thread_id": "1"}} # 区分会话
+graph.invoke(
+    {"messages": [{"role": "user", "content": "hi"}]},
+    config,
+    context=Context(user_id="1") # 传入 Context 区分用户
+)
+```
+
+
+### [Time-travel](https://docs.langchain.com/oss/python/langgraph/use-time-travel)
+
+基于 Checkpoint 实现，支持**重放**和**分支**两种模式。
+
+#### Replay 
+
+从历史 checkpoint 恢复执行，checkpoint 之前的节点跳过，之后的节点重新执行：
+
+``` python
+# 获取历史记录
+history = list(graph.get_state_history(config))
+
+# 找到特定 checkpoint
+before_joke = next(s for s in history if s.next == ("write_joke",))
+
+# 从该 checkpoint 重放
+result = graph.invoke(None, before_joke.config)
+
+```
+
+#### Fork 
+
+从历史 checkpoint 创建分支，修改状态后继续执行，**原历史记录保持不变**：
+
+``` python
+# 找到特定 checkpoint
+before_joke = next(s for s in history if s.next == ("write_joke",))
+
+# Fork：修改状态，创建分支
+fork_config = graph.update_state(
+    before_joke.config,
+    values={"topic": "chickens"},
+)
+
+# 从分支继续执行
+fork_result = graph.invoke(None, fork_config)
+
+```
+
+#### as_node 参数
+
+`update_state` 时可指定 `as_node`，控制更新被视为来自哪个节点，影响下一步执行：
+
+``` python
+fork_config = graph.update_state(
+    before_joke.config,
+    values={"topic": "chickens"},
+    as_node="generate_topic",  # 视为来自 generate_topic
+)
+# 执行从 generate_topic 的后继节点开始
+```
+
+#### Interrupt 与 Time-travel
+
+图使用 `interrupt()` 时，时间旅行会**重新触发中断**：
+
+``` python
+# Replay 会重新触发 interrupt
+replay_result = graph.invoke(None, before_ask.config)
+# 暂停在 interrupt，等待新的 Command(resume=...)
+
+# Fork 后也需要新的 resume
+fork_config = graph.update_state(before_ask.config, {"value": ["forked"]})
+fork_result = graph.invoke(None, fork_config)
+# 暂停在 interrupt
+graph.invoke(Command(resume="Bob"), fork_config)  # 用新的答案恢复
+```
+
+多 interrupt 场景
+
+``` python
+# 图：ask_name -> ask_age -> final
+# Fork 到 ask_name 之后、ask_age 之前
+between = [s for s in history if s.next == ("ask_age",)][-1]
+fork_config = graph.update_state(between.config, {"value": ["modified"]})
+result = graph.invoke(None, fork_config)
+# ask_name 结果保留，ask_age 暂停等待新答案
+```
+
+#### 子图的 Time Travel 
+
+利用子图进行时间旅行取决于子图是否拥有自己的检查点。这决定了你可以进行时间旅行的检查点粒度。
+
+| 模式                      | 说明                                      |
+| ----------------------- | --------------------------------------- |
+| **继承 checkpointer（默认）** | 子图作为单个 super-step，无法从子图内部 checkpoint 重放 |
+| **子图自有 checkpointer**   | 子图每步都有 checkpoint，可从子图内部任意点重放           |
+
+``` python
+# 子图自有 checkpointer
+subgraph = subgraph_builder.compile(checkpointer=True)
+
+# 获取子图的 checkpoint
+parent_state = graph.get_state(config, subgraphs=True)
+sub_config = parent_state.tasks[0].state.config
+
+# 从子图内部 fork
+fork_config = graph.update_state(sub_config, {"value": ["forked"]})
+```
+
+!!! summary
+    **`Replay`** 从历史 checkpoint 重新执行；**`Fork`** 从历史 checkpoint 创建分支探索不同路径；两者都会重新执行后续节点和 `interrupt`。
+
+
+### [Subgraphs](https://docs.langchain.com/oss/python/langgraph/use-subgraphs)
+
+子图是作为节点嵌入另一个图中的图，适用于多 Agent 系统、代码复用、团队协作开发。
+
+
+#### 子图通信模式
+
+添加子图时，需要定义父图和子图之间的通信方式：
+
+|模式|适用场景|说明|
+|---|---|---|
+|**在节点内调用子图**|父子图有**不同的 State Schema**（无共享 key）|需编写包装函数，手动转换父子图 State|
+|**将子图作为节点添加**|父子图**共享 State key**|直接将编译后的子图传给 `add_node`，无需包装函数|
+
+##### 在节点内调用子图（不同 State Schema）
+
+父子图状态独立，需手动转换：
+``` python
+class SubgraphState(TypedDict):
+    bar: str  # 子图私有
+
+class ParentState(TypedDict):
+    foo: str  # 父图私有
+
+def call_subgraph(state: ParentState):
+    # 父图 State → 子图 State
+    subgraph_output = subgraph.invoke({"bar": state["foo"]})
+    # 子图 State → 父图 State
+    return {"foo": subgraph_output["bar"]}
+
+builder.add_node("node_1", call_subgraph)
+
+```
+
+##### Add a subgraph as a node
+
+此时，子图可以看作是父图的一个节点，父子图共享 State（本质其实就是不同节点可以有不同的 State Schema，最终图的 Schema 是所有 Schema 的集合）：
+
+``` python
+class SubgraphState(TypedDict):
+    foo: str  # 与父图共享
+    bar: str  # 子图私有
+
+class ParentState(TypedDict):
+    foo: str  # 与子图共享
+
+# 子图直接作为节点
+builder.add_node("node_2", subgraph)
+```
+
+<p align='center'>
+    <img src="../../assets/imgs/python/langgraph/langgraph_01_subgraph.png" alt="langgraph_01_subgraph" style="zoom:80%;" />
+</p>
+
+
+
+!!! caution "注意"
+    子图可读取共享字段，也可写入共享字段；子图私有字段对外不可见。
+
+#### 子图持久化
+
+通过 `.compile(checkpointer=...)` 控制子图的持久化行为：
+
+|模式|`checkpointer=`|说明|
+|---|---|---|
+|**Per-invocation（默认）**|`None`|每次调用重新开始，继承父图 checkpointer 支持 interrupt|
+|**Per-thread**|`True`|跨调用累积状态，同一线程每次调用接续上次|
+|**Stateless**|`False`|无持久化，像普通函数调用，不支持 interrupt
+
+**Per-invocation（默认）**
+
+推荐用于多 Agent 系统，子 Agent 不需要记忆历史：
+
+``` python
+fruit_agent = create_agent(
+    model="gpt-4",
+    tools=[fruit_info],
+    # checkpointer 不设置，默认 None
+)
+
+# 每次调用子图都是全新状态
+agent.invoke({"messages": [...]}, config)
+```
+
+**Per-thread**
+
+``` python
+# 子图编译时设置 checkpointer=True
+subgraph = subgraph_builder.compile(checkpointer=True)
+
+# 同一 thread_id 的多次调用会累积状态
+graph.invoke({"messages": [...]}, config)  # 第一次
+graph.invoke({"messages": [...]}, config)  # 第二次，记住第一次的内容
+
+```
+
+!!! caution
+    `Per-thread` 模式下，同一子图不能在单次调用中并行执行多次。可用 `ToolCallLimitMiddleware` 限制。
+
+**Stateless**
+
+``` python
+subgraph = subgraph_builder.compile(checkpointer=False)
+```
+
+
+#### 查看子图的 State
+
+启用持久化后，可通过 `subgraphs=True` 查看子图状态：
+
+``` python
+# 获取包含子图状态的快照
+state = graph.get_state(config, subgraphs=True)
+subgraph_state = state.tasks[0].state
+```
+
+#### 流式输出子图事件
+
+设置 `subgraphs=True` 获取子图的流式输出：
+
+``` python
+for chunk in graph.stream(
+    inputs,
+    subgraphs=True,
+    stream_mode="updates",
+    version="v2",
+):
+    if chunk["ns"]:
+        print(f"Subgraph {chunk['ns']}: {chunk['data']}")
+    else:
+        print(f"Root: {chunk['data']}")
+
+```
+
+### **[Multi Agent](https://docs.langchain.com/oss/python/langchain/multi-agent/custom-workflow)**
+
+多 Agent 系统协调多个专门化组件处理复杂工作流。
+
+#### 为什么需要多 Agent
+
+| 需求        | 说明                    |
+| --------- | --------------------- |
+| **上下文管理** | 提供专门知识而不压垮模型上下文窗口     |
+| **分布式开发** | 不同团队独立开发和维护能力，组合成更大系统 |
+| **并行化**   | 生成专门化的 worker 并发执行子任务 |
+
+**适用场景**：
+
+- 单个 Agent 工具过多，决策困难
+- 任务需要专门知识和大量上下文
+- 需要顺序约束，某些能力仅在特定条件后解锁
+
+
+#### 多 Agent 模式
+
+| 模式                          | 工作方式                                  |
+| --------------------------- | ------------------------------------- |
+| **Subagents（子代理）**          | 主 Agent 将子 Agent 作为工具协调，所有路由通过主 Agent |
+| **Handoffs（交接）**            | Agent 通过 Tool 调用转移控制权，动态切换 Agent      |
+| **Skills（技能）**              | 单 Agent 按需加载专门化 prompt 和知识            |
+| **Router（路由器）**             | 路由步骤分类输入，分发给专门 Agent，合成结果             |
+| **Custom Workflow（自定义工作流）** | 用 LangGraph 构建自定义执行流                  |
+
+#### Subagents 实现
+
+官方推荐做法：将 Agent 调用包装为一个 tool，然后创建一个 Main Agent。还可以通过 [langgraph-supervisor](https://reference.langchain.com/python/langgraph-supervisor) 来实现，但官方现在不推荐这个了。
+
+```python
+from langchain.agents import create_agent
+from langchain.tools import tool
+
+# 1. 创建子 Agent
+fruit_agent = create_agent(
+    model="gpt-4",
+    tools=[fruit_info],
+    prompt="You are a fruit expert.",
+)
+
+# 2. 将子 Agent 包装为 Tool
+@tool
+def ask_fruit_expert(question: str) -> str:
+    """Ask the fruit expert. Use for ALL fruit questions."""
+    response = fruit_agent.invoke({"messages": [{"role": "user", "content": question}]})
+    return response["messages"][-1].content
+
+# 3. 创建主 Agent，挂载子 Agent 作为 Tool
+main_agent = create_agent(
+    model="gpt-4",
+    tools=[ask_fruit_expert],
+    prompt="You have a fruit expert. Delegate fruit questions to ask_fruit_expert.",
+    checkpointer=MemorySaver(),
+)
+```
+
+**执行流程**：
+
+```
+用户提问 → Main Agent 判断 → 调用 ask_fruit_expert → Fruit Agent 处理 → 返回结果 → Main Agent 回复
+```
+
+**特点**：
+
+- 主 Agent 作为唯一入口，统一调度
+- 子 Agent 彼此隔离，各自维护独立上下文
+- 每次调用子 Agent 都是从头开始（Per-invocation 默认行为）
+- 支持并行调用多个不同的子 Agent
+
+!!! tip "适用场景"
+    多 `Agent` 协作，主 `Agent` 作为协调者，子 `Agent` 各司其职（如专家系统、多领域问答）。更多 `multi-agent` 的实现，可以参考 [官方文档](https://docs.langchain.com/oss/python/langchain/multi-agent/subagents-personal-assistant)
 

@@ -806,34 +806,330 @@ def review_node(state: State):
 
 ### 3. LangGraph 的 Memory 机制是什么？
 
-LangGraph 提供两层记忆：
+LangGraph 提供**两层记忆**：
 
-**1. 短期记忆（Thread Memory）**
+| 类型 | 绑定对象 | 存储位置 | 用途 |
+|------|---------|---------|------|
+| **短期记忆** | `thread_id` | State 的 `messages` 字段 | 会话内对话历史 |
+| **长期记忆** | `user_id` | `Store` 接口 | 用户偏好、跨会话记忆 |
 
-- 基于 `thread_id` 的会话内记忆
-- 存储在 State 的 `messages` 字段
-- 会话结束即消失
+!!! tip "参考答案"
+    LangGraph 有两层记忆：短期记忆绑定 `thread_id`，存储在 State 的 `messages` 字段，用于会话内对话历史；长期记忆绑定 `user_id`，通过 `Store` 接口存取，用于用户偏好和跨会话记忆。简单说：短期记对话，长期记偏好。
 
-**2. 长期记忆（Cross-Thread Memory）**
+---
 
-- 跨会话的持久化记忆
-- 通过 `Store` 接口存取
-- 可用于用户偏好、历史经验等
+### 4. Checkpointer 的作用是什么？
 
+**Checkpointer（检查点器）** 是 LangGraph 的内置持久化层，每个 **Super-step** 边界自动保存 State 快照。它是后续实现时间旅行的基础。
+
+---
+
+### 5. Checkpointer 有哪些核心概念？
+
+!!! tip "参考答案"
+    Checkpointer 有四个核心概念：Threads（线程，关联 `thread_id`）、StateSnapshot（State 快照）、Super-step（一轮并行执行的最小单元）、Checkpoint namespace（标记属于哪个图）。
+
+---
+
+### 6. 如何获取和更新 State 快照？
+
+**StateSnapshot 字段**：
+
+- `values`：该 checkpoint 的 State 值
+- `next`：下一步要执行的节点（空表示完成）
+- `config`：包含 thread_id、checkpoint_ns、checkpoint_id
+- `metadata`：执行元数据（source、writes、step）
+- `parent_config`：上一个 checkpoint 的配置
+
+**获取状态**：
 ```python
-def memory_node(state: State, runtime: Runtime):
-    # 写入长期记忆
-    runtime.store.put(
-        ("user", state["user_id"]),
-        "preference",
-        {"theme": "dark"}
-    )
+# 获取最新状态
+latest_state = graph.get_state(config)
 
-    # 读取长期记忆
-    pref = runtime.store.get(("user", state["user_id"]), "preference")
+# 获取特定 checkpoint
+historical_state = graph.get_state(config)
 
-    return {"theme": pref["theme"]}
+# 获取历史记录（逆序，最新在前）
+history = list(graph.get_state_history(config))
+```
+
+**更新状态**：
+```python
+# 增量更新（产生新 checkpoint）
+graph.update_state(config, {"foo": "new_value"})
+
+# 伪装更新来源，改变下一步走向
+graph.update_state(config, {"foo": "new"}, as_node="node_a")
 ```
 
 !!! tip "参考答案"
-    LangGraph 提供两层记忆机制：第一层是短期记忆（Thread Memory），基于 thread_id 的会话内记忆，存储在 State 的 messages 字段，会话结束即消失；第二层是长期记忆（Cross-Thread Memory），跨会话的持久化记忆，通过 Store 接口存取，可用于用户偏好、历史经验等。
+    获取 State 快照使用 `get_state()` 方法，获取历史记录使用 `get_state_history()`。更新状态使用 `update_state()` 方法，每次更新产生新 checkpoint；通过 `as_node` 参数可伪装更新来源，改变下一步执行路径。
+
+---
+
+### 7. 什么是 Replay 和 Fork？有什么区别？
+
+| 维度 | Replay（重放） | Fork（分支） |
+|------|--------------|-------------|
+| **目的** | 重新执行历史路径 | 探索不同执行路径 |
+| **历史记录** | 沿用原历史 | 创建新分支，原历史不变 |
+| **状态修改** | 不可修改 | 可修改后再执行 |
+
+```python
+# Replay：从特定 checkpoint 重放
+result = graph.invoke(None, before_joke.config)
+
+# Fork：修改状态，创建分支
+fork_config = graph.update_state(
+    before_joke.config,
+    values={"topic": "chickens"},
+)
+fork_result = graph.invoke(None, fork_config)
+```
+
+!!! tip "参考答案"
+    Replay 是从历史 checkpoint 恢复执行，checkpoint 之前的节点跳过，之后的节点重新执行，不可修改状态。Fork 是从历史 checkpoint 创建分支，可修改状态后继续执行，原历史记录保持不变。简单说：Replay 是重新走老路，Fork 是开辟新路径。
+
+---
+
+### 8. Checkpointer 有哪些实现？
+
+| 实现 | 适用场景 |
+|------|----------|
+| **InMemorySaver** | 开发测试，重启丢失 |
+| **SqliteSaver** | 本地开发、小型应用 |
+| **PostgresSaver** | 生产环境（推荐） |
+| **RedisSaver** | 需要高性能缓存 |
+| **MongoDBSaver** | 已有 MongoDB 基础设施 |
+
+!!! tip "参考答案"
+    Checkpointer 有五种实现：InMemorySaver（开发测试）、SqliteSaver（本地开发）、PostgresSaver（生产推荐）、RedisSaver（高性能）、MongoDBSaver（已有基础设施）。
+
+---
+
+### 9. Store 和 Checkpointer 有什么区别？
+
+| 维度 | Checkpointer | Store |
+|------|-------------|-------|
+| **绑定对象** | `thread_id`（会话） | `user_id`（用户） |
+| **作用范围** | 线程内持久化 | 跨线程持久化 |
+| **用途** | 保存对话进度 | 保存用户偏好、长期记忆 |
+| **接口** | 自动保存 | 手动 `put`/`search` |
+
+!!! tip "参考答案"
+    Store 和 Checkpointer 的区别：Checkpointer 绑定 `thread_id`，负责当前对话的"进度条"；Store 绑定 `user_id`，负责长期留存的"档案袋"。一个管会话进度，一个管用户档案。
+
+---
+
+### 10. Store 如何存取数据和语义搜索？
+
+**基础存取**：
+```python
+namespace = ("user_123", "memories")
+store.put(namespace, uuid, {"food_preference": "I like pizza"})
+memories = store.search(namespace)
+```
+
+**语义搜索**（需配置 Embedding）：
+```python
+memories = store.search(
+    namespace,
+    query="What does the user like to eat?",  # 模糊匹配
+    limit=3
+)
+```
+
+!!! tip "参考答案"
+    Store 使用元组 `(用户 ID, 分类名)` 作为命名空间。`put()` 存入数据，`search()` 检索数据。配置 Embedding 后，可通过自然语言进行语义搜索，打破精准关键字匹配的限制。
+
+---
+
+### 11. Streaming 有哪些模式？
+
+| 模式 | 说明 | 适用场景 |
+|------|------|----------|
+| **`values`** | 每步后的**完整 State** | 监控完整状态变化 |
+| **`updates`** | 每步后的**State 更新** | 监控节点输出 |
+| **`messages`** | LLM **token 级别**流式 | 实时展示 LLM 回复 |
+| **`custom`** | **自定义数据**流式 | 进度条、日志 |
+| **`debug`** | 最全信息 | 调试场景 |
+
+!!! tip "参考答案"
+    Streaming 有七种模式：values（完整 State）、updates（State 更新）、messages（token 级流式）、custom（自定义数据）、checkpoints（检查点事件）、tasks（任务事件）、debug（最全信息）。常用的是 `updates`（监控节点输出）、`messages`（实时展示 LLM 输出）、`custom`（进度条）。
+
+---
+
+### 12. 如何实现 LLM Token 级别的流式输出？
+
+使用 `messages` 模式：
+
+```python
+for chunk in graph.stream(inputs, stream_mode="messages", version="v2"):
+    if chunk["type"] == "messages":
+        msg, metadata = chunk["data"]
+        if msg.content:
+            print(msg.content, end="", flush=True)
+```
+
+可通过 `tags` 或 `langgraph_node` 过滤特定节点或模型的输出。
+
+!!! tip "参考答案"
+    使用 `messages` 模式实现 LLM Token 级别流式输出。`messages` 模式返回 `(msg, metadata)` 二元组，可通过 `tags` 或 `langgraph_node` 过滤特定输出。
+
+---
+
+### 13. 什么是 Recursion Limit？如何设置？
+
+**Recursion Limit** 限制图执行的最大步数，超过则抛出 `GraphRecursionError`。
+
+- **默认限制**：1000 步（v1.0.6+）
+- **设置方式**：`config={"recursion_limit": 5}`
+- **注意**：`recursion_limit` 是独立配置项，不放在 `configurable` 中
+
+!!! tip "参考答案"
+    Recursion Limit 限制图执行的最大步数，超过则抛出 `GraphRecursionError`。默认 1000 步，通过 `config={"recursion_limit": 5}` 设置。注意它是独立配置项，不放在 `configurable` 中。
+
+---
+
+### 14. 如何获取当前执行步数？RemainingSteps 的作用？
+
+**获取当前步数**：
+```python
+current_step = config["metadata"]["langgraph_step"]
+```
+
+**RemainingSteps（剩余步数追踪）**：
+```python
+from langgraph.managed import RemainingSteps
+
+class State(TypedDict):
+    remaining_steps: RemainingSteps  # 自动填充
+```
+
+**主动式 vs 被动式**：
+- **主动式**（RemainingSteps）：达到限制前在图内主动降级
+- **被动式**：超过限制后在图外 try/catch
+
+!!! tip "参考答案"
+    通过 `config["metadata"]["langgraph_step"]` 获取当前执行步数。`RemainingSteps` 是自动追踪剩余步数的管理值，可在节点内根据剩余步数主动降级。主动式优势是优雅降级、图正常完成；被动式优势是实现简单。
+
+---
+
+### 15. 什么是 Context Schema？
+
+**Context Schema** 用于向节点传递**不属于 State** 的运行时信息（如模型名称、数据库连接、用户信息等）。
+
+```python
+@dataclass
+class ContextSchema:
+    llm_provider: str = "openai"
+
+graph = StateGraph(State, context_schema=ContextSchema)
+graph.invoke(inputs, context={"llm_provider": "anthropic"})
+
+# 节点中访问
+def node_a(state: State, runtime: Runtime[ContextSchema]):
+    llm = get_llm(runtime.context.llm_provider)
+```
+
+!!! tip "参考答案"
+    Context Schema 用于向节点传递不属于 State 的运行时信息，如配置、连接、用户信息等。定义方式是创建 dataclass 并传给 StateGraph 的 `context_schema` 参数，执行时通过 `context` 传入，节点中通过 `runtime.context` 访问。
+
+---
+
+## 八、Subgraphs（子图）
+
+### 1. 子图的使用场景？
+
+- **多 Agent 系统**：每个 Agent 是独立子图
+- **代码复用**：通用逻辑封装为子图
+- **团队协作**：不同团队开发独立子图
+
+!!! tip "参考答案"
+    子图是作为节点嵌入另一个图中的图，适用于多 Agent 系统、代码复用、团队协作开发。
+
+---
+
+### 2. 父子图通信有哪两种模式？
+
+| 模式 | 适用场景 | 说明 |
+|------|---------|------|
+| **节点内调用子图** | 父子图**State Schema 不同** | 需编写包装函数，手动转换 State |
+| **子图作为节点添加** | 父子图**共享 State key** | 直接将编译后的子图传给 add_node |
+
+!!! tip "参考答案"
+    父子图通信有两种模式：第一，节点内调用子图，适用于父子图 State Schema 不同（无共享 key），需编写包装函数手动转换 State；第二，将子图作为节点添加，适用于父子图共享 State key 的场景，直接将编译后的子图传给 add_node。
+
+---
+
+### 3. 子图的持久化有哪三种模式？
+
+| 模式 | checkpointer | 说明 |
+|------|-------------|------|
+| **Per-invocation（默认）** | `None` | 每次调用重新开始 |
+| **Per-thread** | `True` | 跨调用累积状态 |
+| **Stateless** | `False` | 无持久化，不支持 interrupt |
+
+!!! caution "注意"
+    Per-thread 模式下，同一子图不能在单次调用中并行执行多次。
+
+!!! tip "参考答案"
+    子图持久化有三种模式：Per-invocation（默认），每次调用重新开始；Per-thread，跨调用累积状态；Stateless，无持久化，不支持 interrupt。多 Agent 系统推荐 Per-invocation 模式，子 Agent 不需要记忆历史。
+
+---
+
+## 九、Multi-Agent（多 Agent 协作）
+
+### 1. 为什么需要多 Agent 系统？
+
+| 需求 | 说明 |
+|------|------|
+| **上下文管理** | 提供专门知识而不压垮上下文窗口 |
+| **分布式开发** | 不同团队独立开发和维护能力 |
+| **并行化** | 生成专门化的 worker 并发执行子任务 |
+
+**适用场景**：
+
+- 单个 Agent 工具过多，决策困难
+- 任务需要专门知识和大量上下文
+- 需要顺序约束，某些能力仅在特定条件后解锁
+
+!!! tip "参考答案"
+    多 Agent 系统解决三个问题：上下文管理（不压垮上下文窗口）、分布式开发（独立开发）、并行化（并发执行子任务）。适用场景：单个 Agent 工具过多决策困难、任务需要专门知识、需要顺序约束。
+
+---
+
+### 2. 多 Agent 有哪些协作模式？
+
+| 模式 | 工作方式 |
+|------|---------|
+| **Subagents（子代理）** | 主 Agent 将子 Agent 作为工具协调 |
+| **Handoffs（交接）** | Agent 通过 Tool 调用转移控制权 |
+| **Skills（技能）** | 单 Agent 按需加载专门化 prompt |
+| **Router（路由器）** | 分类输入后分发给专门 Agent |
+| **Custom Workflow** | 用 LangGraph 构建自定义执行流 |
+
+!!! tip "参考答案"
+    多 Agent 协作有五种模式：Subagents（子代理，主 Agent 将子 Agent 作为工具）、Handoffs（交接，通过 Tool 调用转移控制权）、Skills（技能，单 Agent 按需加载专门化 prompt）、Router（路由器，分类后分发）、Custom Workflow（自定义工作流）。
+
+---
+
+### 3. 如何实现 Subagents 模式？
+
+官方推荐三步：
+
+1. **创建子 Agent**
+2. **将子 Agent 包装为 Tool**
+3. **创建主 Agent，挂载子 Agent 作为 Tool**
+
+**特点**：
+
+- 主 Agent 作为唯一入口，统一调度
+- 子 Agent 彼此隔离，各自维护独立上下文
+- 每次调用子 Agent 都是从头开始
+- 支持并行调用多个不同的子 Agent
+
+!!! tip "参考答案"
+    实现 Subagents 模式分三步：创建子 Agent、将子 Agent 包装为 Tool、创建主 Agent 并挂载子 Agent 作为 Tool。特点是主 Agent 统一调度，子 Agent 彼此隔离，每次调用从头开始，支持并行调用。
+
+---
