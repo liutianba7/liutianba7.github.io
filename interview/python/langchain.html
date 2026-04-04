@@ -3245,6 +3245,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#6-agent-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Agent Skill 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4299,6 +4310,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#6-agent-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Agent Skill 是什么？
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4873,6 +4895,42 @@ output_parser (输入: AIMessage, 输出: str)
 <div class="admonition tip">
 <p class="admonition-title">面试回答思路</p>
 <p><code>ReAct</code> 是单个 <code>Agent</code> 的内部工作模式（推理→行动→观察，循环迭代）。<code>A2A</code> 是多个 <code>Agent</code> 之间的协作模式（Agent 之间互相通信、分工协作）。两者的关系：<code>A2A</code> 协作中的每个 <code>Agent</code>，内部通常使用 <code>ReAct</code> 模式来工作。简单说就是：<code>ReAct</code> 是一个人怎么干活，<code>A2A</code> 是一群人怎么配合。</p>
+</div>
+<h3 id="6-agent-skill">6. Agent Skill 是什么？</h3>
+<p><strong>Agent Skill</strong> 是<strong>可复用的 Agent 能力模块</strong>，通过渐进式披露提供专门化的工作流和领域知识。</p>
+<p><strong>工作机制</strong>（Match-Read-Execute）：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Match</strong></td>
+<td>Agent 检查 <code>description</code> 是否匹配当前任务</td>
+</tr>
+<tr>
+<td><strong>Read</strong></td>
+<td>匹配时才读取完整 <code>SKILL.md</code></td>
+</tr>
+<tr>
+<td><strong>Execute</strong></td>
+<td>按指令执行，调用辅助文件（脚本、模板）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>文件结构</strong>：</p>
+<div class="highlight"><pre><span></span><code>skills/
+├── langgraph-docs/
+│   ├── SKILL.md        # 必需：元数据 + 指令
+│   ├── scripts.py      # 可选：辅助脚本
+│   └── templates/      # 可选：模板资源
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">面试回答思路</p>
+<p><code>Agent Skill</code> 是可复用的 <code>Agent</code> 能力模块，核心设计思想是<strong>渐进式披露</strong>——只在需要时才加载完整内容，节省 <code>token</code>。工作机制是<code>Match-Read-Execute</code>三步：匹配<code>description</code>→读取<code>SKILL.md</code>→按指令执行。与<code>Memory</code>（启动加载）和<code>Tools</code>（始终可用）不同，<code>Skills</code>是按需加载的专门化工作流。简单说就是：<strong>"需要时才加载的专家能力包"</strong>。</p>
 </div>
 <hr />
 
