@@ -634,6 +634,7 @@ docker build -t centos7-jdk17 .
 Docker Compose 是 Docker 官方的容器编排工具，用于**批量管理多个容器**。
 
 **核心功能**：
+
 - 通过 YAML 文件定义多容器应用
 - 一键启动/停止所有容器
 - 管理容器间的依赖、网络、数据卷

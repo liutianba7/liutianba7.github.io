@@ -2566,6 +2566,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#agent-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5663,6 +5674,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#agent-skill" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent Skill
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -8630,6 +8652,106 @@
     <span class="n">middleware</span><span class="o">=</span><span class="p">[</span><span class="n">log_before_agent</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>  <span class="c1"># 这里传入中间件</span>
 <span class="p">)</span>
 </code></pre></div>
+<h3 id="agent-skill">Agent Skill</h3>
+<p><strong>核心概念</strong></p>
+<p>Skills 是<strong>可复用的 Agent 能力模块</strong>，通过渐进式披露提供专门化的工作流和领域知识。</p>
+<p><strong>文件结构</strong></p>
+<div class="highlight"><pre><span></span><code>skills/
+├── langgraph-docs/
+│   ├── SKILL.md        # 必需：包含元数据和指令
+│   ├── scripts.py      # 可选：辅助脚本
+│   └── templates/      # 可选：模板资源
+</code></pre></div>
+<p><strong>SKILL.md 格式</strong></p>
+<div class="highlight"><pre><span></span><code>---
+name: skill-name
+description: 匹配描述（Agent 依据此判断是否使用）
+license: MIT
+compatibility: 约束条件
+metadata:
+  author: xxx
+  version: &quot;1.0&quot;
+<span class="gu">allowed-tools: fetch_url</span>
+<span class="gu">---</span>
+
+<span class="gh"># Skill 指令内容...</span>
+</code></pre></div>
+<p><strong>工作机制</strong></p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Match</strong></td>
+<td>Agent 检查 description 是否匹配当前任务</td>
+</tr>
+<tr>
+<td><strong>Read</strong></td>
+<td>匹配时才读取完整 SKILL.md</td>
+</tr>
+<tr>
+<td><strong>Execute</strong></td>
+<td>按指令执行，调用辅助文件</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>渐进式披露</strong>：只在需要时才加载完整内容，节省 token</p>
+</blockquote>
+<p><strong>使用方式</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">agent</span> <span class="o">=</span> <span class="n">create_deep_agent</span><span class="p">(</span>
+    <span class="n">skills</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;/skills/user/&quot;</span><span class="p">,</span> <span class="s2">&quot;/skills/project/&quot;</span><span class="p">],</span>  <span class="c1"># 后者覆盖同名 skill</span>
+    <span class="n">checkpointer</span><span class="o">=</span><span class="n">MemorySaver</span><span class="p">(),</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><strong>Skills vs Memory vs Tools</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>加载时机</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Skills</strong></td>
+<td>按需加载</td>
+<td>任务级专门能力（大量上下文）</td>
+</tr>
+<tr>
+<td><strong>Memory</strong> (AGENTS.md)</td>
+<td>启动时加载</td>
+<td>持久上下文（项目约定、偏好）</td>
+</tr>
+<tr>
+<td><strong>Tools</strong></td>
+<td>始终可用</td>
+<td>单一操作能力</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Subagent Skills 继承</strong></p>
+<ul>
+<li><strong>通用子 Agent</strong>：自动继承主 Agent skills</li>
+<li><strong>自定义子 Agent</strong>：需单独配置 <code>skills</code> 参数，与主 Agent 完全隔离</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">research_subagent</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;researcher&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;skills&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;/skills/research/&quot;</span><span class="p">],</span>  <span class="c1"># 仅此子 Agent 可用</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>最佳实践</strong></p>
+<ol>
+<li><strong>description 要精确</strong> — Agent 仅凭此判断是否使用</li>
+<li><strong>文件 &lt; 10MB</strong> — 超限会被跳过</li>
+<li><strong>用 skill 处理大上下文</strong> — 避免污染系统提示</li>
+<li><strong>用 tool 处理无文件系统场景</strong> — skill 需要文件系统支持</li>
+</ol>
 
 
 

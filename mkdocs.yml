@@ -27,6 +27,7 @@ nav:
           - Pytest: ./python/03_others/pytest.md
       - Web:
           - Fastapi: ./python/04_web/fastapi.md
+          - Fastapi-v2: ./python/04_web/fastapi-v2.md
       - AI:
           - LangChain: ./python/05_ai/LangChain.md
           - LangGraph: ./python/05_ai/LangGraph.md
@@ -120,6 +121,8 @@ theme:
     - search.suggest               # 搜索输入补全
     - search.highlight             # 搜索结果高亮
     - content.code.copy            # 代码块一键复制按钮
+    - content.code.annotate        # 代码行注释支持
+    - content.tabs.link            # 标签切换状态持久化
 
   icon:
     logo: material/cat
@@ -138,10 +141,18 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:          # 语法高亮
+      anchor_linenums: true       # 行号锚点
+      line_spans: __span          # 行跨度
+      pygments_lang_class: true   # 语言类名
+  - pymdownx.inlinehilite        # 内联代码高亮
+  - pymdownx.snippets            # 代码片段
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.arithmatex:   # 数学公式支持
+  - pymdownx.arithmatex:         # 数学公式支持
       generic: true
 
 

@@ -139,6 +139,11 @@ git clone git@github.com:user/repo.git  # SSH方式
 | `git commit` | 提交到本地仓库 | `git commit -m "message"` |
 | `git rm` | 删除文件 | `git rm file.txt` |
 
+**将暂存区文件全部删除**
+```python
+git rm -r --cached -f .
+```
+
 **添加文件**：
 
 ```bash
