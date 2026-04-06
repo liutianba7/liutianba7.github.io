@@ -1438,6 +1438,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_web/fastapi-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastapi-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3617,18 +3645,18 @@
 </ul>
 <h3 id="12">1.2 安装</h3>
 <p>uv 默认安装在了C:\Users\liutianba7.local\bin</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># macOS/Linux</span>
-curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
-
-<span class="c1"># Windows (PowerShell)</span>
-irm<span class="w"> </span>https://astral.sh/uv/install.ps1<span class="w"> </span><span class="p">|</span><span class="w"> </span>iex
-
-<span class="c1"># 使用 pip 安装</span>
-pip<span class="w"> </span>install<span class="w"> </span>uv
-
-<span class="c1"># 验证安装成功</span>
-uv<span class="w"> </span>--version
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># macOS/Linux</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Windows (PowerShell)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>irm<span class="w"> </span>https://astral.sh/uv/install.ps1<span class="w"> </span><span class="p">|</span><span class="w"> </span>iex
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 使用 pip 安装</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>pip<span class="w"> </span>install<span class="w"> </span>uv
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># 验证安装成功</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>uv<span class="w"> </span>--version
+</span></code></pre></div>
 <h3 id="13">1.3 配置下载路径</h3>
 <p><code>uv</code> 主要有两类东西占用空间：<strong>Python 解释器本体</strong>（Interpreters）和<strong>包缓存</strong>（Cache）。可以通过设置 <strong>环境变量</strong> 来永久修改它们的位置。</p>
 <p><code>UV_PYTHON_INSTALL_DIR</code>：<strong>Python 解释器</strong>下载后的存放地</p>
@@ -3637,69 +3665,69 @@ uv<span class="w"> </span>--version
 <h2 id="_1">二、常用命令</h2>
 <h3 id="21">2.1 项目管理</h3>
 <p>最好还是用 uv add | remove 来下载，管理依赖，因为这样不会存在：一个依赖下载的时候，下载了 1（本体） + 4（间接依赖）个依赖，但是通过 <code>uv pip uninstall xxx</code>删除的时候，只会删除那一个依赖。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 初始化新项目</span>
-uv<span class="w"> </span>init<span class="w"> </span>myproject
-<span class="nb">cd</span><span class="w"> </span>myproject
-
-<span class="c1"># 初始化已有项目</span>
-uv<span class="w"> </span>init
-
-<span class="c1"># 添加依赖</span>
-uv<span class="w"> </span>add<span class="w"> </span>requests
-uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;flask&gt;=2.0&quot;</span>
-
-<span class="c1"># 添加开发依赖</span>
-uv<span class="w"> </span>add<span class="w"> </span>--dev<span class="w"> </span>pytest
-uv<span class="w"> </span>add<span class="w"> </span>-d<span class="w"> </span>black<span class="w"> </span>ruff
-
-<span class="c1"># 移除依赖</span>
-uv<span class="w"> </span>remove<span class="w"> </span>requests
-
-<span class="c1"># 同步依赖（根据 pyproject.toml / uv.lock）</span>
-uv<span class="w"> </span>sync
-
-<span class="c1"># 安装所有依赖（包括 dev）</span>
-uv<span class="w"> </span>sync<span class="w"> </span>--all-groups
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 初始化新项目</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>uv<span class="w"> </span>init<span class="w"> </span>myproject
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">cd</span><span class="w"> </span>myproject
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># 初始化已有项目</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>uv<span class="w"> </span>init
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># 添加依赖</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>uv<span class="w"> </span>add<span class="w"> </span>requests
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>uv<span class="w"> </span>add<span class="w"> </span><span class="s2">&quot;flask&gt;=2.0&quot;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># 添加开发依赖</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>uv<span class="w"> </span>add<span class="w"> </span>--dev<span class="w"> </span>pytest
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>uv<span class="w"> </span>add<span class="w"> </span>-d<span class="w"> </span>black<span class="w"> </span>ruff
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="c1"># 移除依赖</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>uv<span class="w"> </span>remove<span class="w"> </span>requests
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="c1"># 同步依赖（根据 pyproject.toml / uv.lock）</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>uv<span class="w"> </span>sync
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="c1"># 安装所有依赖（包括 dev）</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>uv<span class="w"> </span>sync<span class="w"> </span>--all-groups
+</span></code></pre></div>
 <h3 id="22">2.2 虚拟环境</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 创建虚拟环境</span>
-uv<span class="w"> </span>venv<span class="w"> </span><span class="o">[</span>env_name<span class="o">]</span>
-
-<span class="c1"># 删除虚拟环境</span>
-手动删除<span class="w"> </span>.venv<span class="w"> </span>文件夹就行
-
-<span class="c1"># 指定 Python 版本创建</span>
-uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.11
-uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span>myenv
-
-<span class="c1"># 激活环境</span>
-<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">  </span><span class="c1"># Linux/macOS</span>
-.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">     </span><span class="c1"># Windows</span>
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 创建虚拟环境</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>uv<span class="w"> </span>venv<span class="w"> </span><span class="o">[</span>env_name<span class="o">]</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 删除虚拟环境</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>手动删除<span class="w"> </span>.venv<span class="w"> </span>文件夹就行
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 指定 Python 版本创建</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.11
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>uv<span class="w"> </span>venv<span class="w"> </span>--python<span class="w"> </span><span class="m">3</span>.12<span class="w"> </span>myenv
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="c1"># 激活环境</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">  </span><span class="c1"># Linux/macOS</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>.venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">     </span><span class="c1"># Windows</span>
+</span></code></pre></div>
 <h3 id="23">2.3 运行脚本</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 直接运行脚本（自动管理临时环境）</span>
-uv<span class="w"> </span>run<span class="w"> </span>script.py
-
-<span class="c1"># 运行带内联依赖的脚本</span>
-uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>requests<span class="w"> </span>script.py
-
-<span class="c1"># 运行模块</span>
-uv<span class="w"> </span>run<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span>
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 直接运行脚本（自动管理临时环境）</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>uv<span class="w"> </span>run<span class="w"> </span>script.py
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># 运行带内联依赖的脚本</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>requests<span class="w"> </span>script.py
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># 运行模块</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>uv<span class="w"> </span>run<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span>
+</span></code></pre></div>
 <h3 id="24-pip">2.4 包安装（pip 兼容模式）</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 安装包</span>
-uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>requests
-uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-
-<span class="c1"># 卸载包</span>
-uv<span class="w"> </span>pip<span class="w"> </span>uninstall<span class="w"> </span>requests
-
-<span class="c1"># 列出已安装的包</span>
-uv<span class="w"> </span>pip<span class="w"> </span>list
-
-<span class="c1"># 导出依赖</span>
-uv<span class="w"> </span>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 安装包</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>requests
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># 卸载包</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>uv<span class="w"> </span>pip<span class="w"> </span>uninstall<span class="w"> </span>requests
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># 列出已安装的包</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>uv<span class="w"> </span>pip<span class="w"> </span>list
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1"># 导出依赖</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>uv<span class="w"> </span>pip<span class="w"> </span>freeze<span class="w"> </span>&gt;<span class="w"> </span>requirements.txt
+</span></code></pre></div>
 <h3 id="25-uv-add-pip">2.5 uv add 和 pip 的区别</h3>
 <table>
 <thead>
@@ -3733,53 +3761,53 @@ uv<span class="w"> </span>pip<span class="w"> </span>freeze<span class="w"> </sp
 </tbody>
 </table>
 <p><strong>团队协作流程：</strong></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 开发者 A 添加依赖</span>
-uv<span class="w"> </span>add<span class="w"> </span>requests<span class="w">    </span><span class="c1"># 自动更新 pyproject.toml + uv.lock</span>
-
-<span class="c1"># 开发者 B 拉取代码后同步</span>
-uv<span class="w"> </span>sync<span class="w">            </span><span class="c1"># 根据 uv.lock 安装完全一致的版本</span>
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 开发者 A 添加依赖</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>uv<span class="w"> </span>add<span class="w"> </span>requests<span class="w">    </span><span class="c1"># 自动更新 pyproject.toml + uv.lock</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># 开发者 B 拉取代码后同步</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>uv<span class="w"> </span>sync<span class="w">            </span><span class="c1"># 根据 uv.lock 安装完全一致的版本</span>
+</span></code></pre></div>
 <p>💡 <code>uv sync</code> 会严格按照 <code>uv.lock</code> 安装，确保团队成员依赖版本完全一致，避免"在我机器上能跑"的问题</p>
 <hr />
 <h2 id="python">三、Python 版本管理</h2>
 <p>uv 的 python 版本管理比起 conda，更加现代化，更加优秀！</p>
 <p><code>uv python install 3.13</code> 下载到 <code>D:\...\Uv\Interpreters</code> 里的那个 Python。它是<strong>只读</strong>的、纯净的“种子”。</p>
 <p>每个项目文件夹下运行 <code>uv venv</code> 创建的 <code>.venv</code>。它们是<strong>独立</strong>的、可随意折腾的“沙盒”。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 列出可用的 Python 版本</span>
-uv<span class="w"> </span>python<span class="w"> </span>list
-
-<span class="c1"># 安装 Python 版本</span>
-uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.11
-uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12
-
-<span class="c1"># 卸载 Python 版本</span>
-uv<span class="w"> </span>python<span class="w"> </span>uninstall<span class="w"> </span><span class="m">3</span>.13
-
-<span class="c1"># 查看已安装的 Python</span>
-uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
-
-<span class="c1"># 设置项目 Python 版本</span>
-uv<span class="w"> </span>python<span class="w"> </span>pin<span class="w"> </span><span class="m">3</span>.11
-
-<span class="c1"># 查找 Python 解释器</span>
-uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span><span class="m">3</span>.11
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 列出可用的 Python 版本</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>uv<span class="w"> </span>python<span class="w"> </span>list
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># 安装 Python 版本</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.11
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>uv<span class="w"> </span>python<span class="w"> </span>install<span class="w"> </span><span class="m">3</span>.12
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1"># 卸载 Python 版本</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>uv<span class="w"> </span>python<span class="w"> </span>uninstall<span class="w"> </span><span class="m">3</span>.13
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1"># 查看已安装的 Python</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>uv<span class="w"> </span>python<span class="w"> </span>list<span class="w"> </span>--only-installed
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="c1"># 设置项目 Python 版本</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>uv<span class="w"> </span>python<span class="w"> </span>pin<span class="w"> </span><span class="m">3</span>.11
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="c1"># 查找 Python 解释器</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>uv<span class="w"> </span>python<span class="w"> </span>find<span class="w"> </span><span class="m">3</span>.11
+</span></code></pre></div>
 <hr />
 <h2 id="pipx">四、工具安装（替代 pipx）</h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># 安装全局工具</span>
-uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>black
-uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff
-
-<span class="c1"># 运行工具（不安装）</span>
-uv<span class="w"> </span>tool<span class="w"> </span>run<span class="w"> </span>black<span class="w"> </span>.
-uvx<span class="w"> </span>black<span class="w"> </span>.<span class="w">  </span><span class="c1"># 简写形式</span>
-
-<span class="c1"># 列出已安装的工具</span>
-uv<span class="w"> </span>tool<span class="w"> </span>list
-
-<span class="c1"># 卸载工具</span>
-uv<span class="w"> </span>tool<span class="w"> </span>uninstall<span class="w"> </span>black
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 安装全局工具</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>black
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>uv<span class="w"> </span>tool<span class="w"> </span>install<span class="w"> </span>ruff
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># 运行工具（不安装）</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>uv<span class="w"> </span>tool<span class="w"> </span>run<span class="w"> </span>black<span class="w"> </span>.
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>uvx<span class="w"> </span>black<span class="w"> </span>.<span class="w">  </span><span class="c1"># 简写形式</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># 列出已安装的工具</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>uv<span class="w"> </span>tool<span class="w"> </span>list
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="c1"># 卸载工具</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>uv<span class="w"> </span>tool<span class="w"> </span>uninstall<span class="w"> </span>black
+</span></code></pre></div>
 <hr />
 <h2 id="vs">五、vs 传统工具对比</h2>
 <table>
@@ -3826,41 +3854,41 @@ uv<span class="w"> </span>tool<span class="w"> </span>uninstall<span class="w"> 
 <hr />
 <h2 id="_2">六、最佳实践</h2>
 <h3 id="61">6.1 新项目推荐结构</h3>
-<div class="highlight"><pre><span></span><code>uv<span class="w"> </span>init<span class="w"> </span>myproject
-<span class="nb">cd</span><span class="w"> </span>myproject
-<span class="c1"># 自动生成:</span>
-<span class="c1"># ├── .python-version</span>
-<span class="c1"># ├── pyproject.toml</span>
-<span class="c1"># ├── uv.lock</span>
-<span class="c1"># ├── .venv/</span>
-<span class="c1"># └── src/</span>
-<span class="c1">#     └── myproject/</span>
-<span class="c1">#         └── __init__.py</span>
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uv<span class="w"> </span>init<span class="w"> </span>myproject
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nb">cd</span><span class="w"> </span>myproject
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="c1"># 自动生成:</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># ├── .python-version</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># ├── pyproject.toml</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># ├── uv.lock</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># ├── .venv/</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="c1"># └── src/</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="c1">#     └── myproject/</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1">#         └── __init__.py</span>
+</span></code></pre></div>
 <h3 id="62-pip">6.2 从 pip 迁移</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 1. 创建新环境</span>
-uv<span class="w"> </span>venv
-
-<span class="c1"># 2. 从 requirements.txt 安装</span>
-uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-
-<span class="c1"># 3. 或初始化项目并迁移</span>
-uv<span class="w"> </span>init
-uv<span class="w"> </span>add<span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>requirements.txt<span class="k">)</span>
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 1. 创建新环境</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>uv<span class="w"> </span>venv
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># 2. 从 requirements.txt 安装</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># 3. 或初始化项目并迁移</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>uv<span class="w"> </span>init
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>uv<span class="w"> </span>add<span class="w"> </span><span class="k">$(</span>cat<span class="w"> </span>requirements.txt<span class="k">)</span>
+</span></code></pre></div>
 <h3 id="63">6.3 日常开发流程</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># 添加新依赖</span>
-uv<span class="w"> </span>add<span class="w"> </span>pandas
-
-<span class="c1"># 运行测试</span>
-uv<span class="w"> </span>run<span class="w"> </span>pytest
-
-<span class="c1"># 运行项目</span>
-uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>main.py
-
-<span class="c1"># 格式化代码</span>
-uv<span class="w"> </span>tool<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>.
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 添加新依赖</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>uv<span class="w"> </span>add<span class="w"> </span>pandas
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># 运行测试</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># 运行项目</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>uv<span class="w"> </span>run<span class="w"> </span>python<span class="w"> </span>main.py
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="c1"># 格式化代码</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>uv<span class="w"> </span>tool<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>.
+</span></code></pre></div>
 
 
 
@@ -3878,6 +3906,8 @@ uv<span class="w"> </span>tool<span class="w"> </span>run<span class="w"> </span
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -3921,7 +3951,7 @@ uv<span class="w"> </span>tool<span class="w"> </span>run<span class="w"> </span
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

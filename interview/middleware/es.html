@@ -1177,6 +1177,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/04_web/fastapi-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastapi-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3870,25 +3898,25 @@
     <img src="../../assets/imgs/interview/es/es01.png" alt="es01" style="zoom:80%;" />
 </p>
 
-<div class="highlight"><pre><span></span><code>GET /orders/_search
-{
-  &quot;query&quot;: {               // 1. 查询根节点
-    &quot;bool&quot;: {              // 2. 布尔组合查询
-      &quot;must&quot;: [            // 3. 必须满足（计算相关性得分）
-        { &quot;match&quot;: { &quot;product_name&quot;: &quot;手机&quot; } }
-      ],
-      &quot;filter&quot;: [          // 4. 过滤器（不计算得分，有缓存，性能高）
-        { &quot;range&quot;: { &quot;price&quot;: { &quot;gt&quot;: 5000 } } }
-      ]
-    }
-  },
-  &quot;sort&quot;: [                // 5. 排序
-    { &quot;price&quot;: { &quot;order&quot;: &quot;desc&quot; } }
-  ],
-  &quot;from&quot;: 0,               // 6. 分页偏移量
-  &quot;size&quot;: 10               // 7. 每页数量
-}
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>GET /orders/_search
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>{
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  &quot;query&quot;: {               // 1. 查询根节点
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    &quot;bool&quot;: {              // 2. 布尔组合查询
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>      &quot;must&quot;: [            // 3. 必须满足（计算相关性得分）
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        { &quot;match&quot;: { &quot;product_name&quot;: &quot;手机&quot; } }
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>      ],
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      &quot;filter&quot;: [          // 4. 过滤器（不计算得分，有缓存，性能高）
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        { &quot;range&quot;: { &quot;price&quot;: { &quot;gt&quot;: 5000 } } }
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>      ]
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    }
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  },
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  &quot;sort&quot;: [                // 5. 排序
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    { &quot;price&quot;: { &quot;order&quot;: &quot;desc&quot; } }
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  ],
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  &quot;from&quot;: 0,               // 6. 分页偏移量
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  &quot;size&quot;: 10               // 7. 每页数量
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>}
+</span></code></pre></div>
 <h3 id="match-term">match 和 term 的区别?⭐️</h3>
 <ul>
 <li><strong><code>match</code></strong>：模糊匹配。它会先对搜索词进行<strong>分词</strong>（比如把“小米手机”拆成“小米”和“手机”），然后再去匹配。</li>
@@ -3911,20 +3939,20 @@
 <h3 id="filter-must">filter 和 must 区别?⭐️</h3>
 <p><strong>must</strong> 是“全文检索”逻辑，不仅要匹配还要计算相关性得分来<strong>决定排名</strong>，性能消耗大；而 <strong>filter</strong> 是“硬性过滤”逻辑，只判断是/否而不计算分数，且自带<strong>缓存</strong>机制，性能极快。</p>
 <p>在实际业务中，我们通常把<strong>用户输入的关键词</strong>放进 <code>must</code>，把<strong>业务逻辑的硬性限制</strong>放进 <code>filter</code>。</p>
-<div class="highlight"><pre><span></span><code>{
-  &quot;query&quot;: {
-    &quot;bool&quot;: {
-      &quot;must&quot;: [
-        { &quot;match&quot;: { &quot;title&quot;: &quot;手机&quot; } } // 关键词匹配，决定了哪个手机最“手机”，排在前面
-      ],
-      &quot;filter&quot;: [
-        { &quot;range&quot;: { &quot;price&quot;: { &quot;gte&quot;: 2000, &quot;lte&quot;: 5000 } } }, // 价格区间，硬指标，不影响排序
-        { &quot;term&quot;: { &quot;stock&quot;: &quot;in_stock&quot; } } // 是否有货，硬指标，不影响排序
-      ]
-    }
-  }
-}
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  &quot;query&quot;: {
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    &quot;bool&quot;: {
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>      &quot;must&quot;: [
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        { &quot;match&quot;: { &quot;title&quot;: &quot;手机&quot; } } // 关键词匹配，决定了哪个手机最“手机”，排在前面
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>      ],
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>      &quot;filter&quot;: [
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        { &quot;range&quot;: { &quot;price&quot;: { &quot;gte&quot;: 2000, &quot;lte&quot;: 5000 } } }, // 价格区间，硬指标，不影响排序
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        { &quot;term&quot;: { &quot;stock&quot;: &quot;in_stock&quot; } } // 是否有货，硬指标，不影响排序
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>      ]
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    }
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  }
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>}
+</span></code></pre></div>
 <h3 id="bool">简单介绍介绍多条件查询 bool ⭐️⭐️⭐️</h3>
 <p>在 Elasticsearch 的 DSL 查询中，<code>bool</code> 查询是构建复杂逻辑的核心节点。它类似于 SQL 中的 <code>AND</code>、<code>OR</code> 和 <code>NOT</code> 的组合。</p>
 <p><code>bool</code> 查询就是把各种<strong>单条件查询</strong>（如 <code>match</code>, <code>term</code>, <code>range</code>）按照逻辑关系拼装起来的“框架”。 它定义了搜索的精准度（<code>must</code>）和性能优化的空间（<code>filter</code>）。</p>
@@ -3959,27 +3987,27 @@
 </ul>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code>{
-  &quot;query&quot;: {
-    &quot;bool&quot;: {
-      &quot;must&quot;: [
-        { &quot;match&quot;: { &quot;title&quot;: &quot;Java&quot; } }
-      ],
-      &quot;filter&quot;: [
-        { &quot;term&quot;: { &quot;status&quot;: &quot;published&quot; } },
-        { &quot;range&quot;: { &quot;price&quot;: { &quot;lte&quot;: 100 } } }
-      ],
-      &quot;must_not&quot;: [
-        { &quot;term&quot;: { &quot;category&quot;: &quot;trash&quot; } }
-      ],
-      &quot;should&quot;: [
-        { &quot;match&quot;: { &quot;description&quot;: &quot;Spring Boot&quot; } }
-      ],
-      &quot;minimum_should_match&quot;: 1
-    }
-  }
-}
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  &quot;query&quot;: {
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    &quot;bool&quot;: {
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>      &quot;must&quot;: [
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        { &quot;match&quot;: { &quot;title&quot;: &quot;Java&quot; } }
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>      ],
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>      &quot;filter&quot;: [
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        { &quot;term&quot;: { &quot;status&quot;: &quot;published&quot; } },
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        { &quot;range&quot;: { &quot;price&quot;: { &quot;lte&quot;: 100 } } }
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>      ],
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>      &quot;must_not&quot;: [
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        { &quot;term&quot;: { &quot;category&quot;: &quot;trash&quot; } }
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>      ],
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>      &quot;should&quot;: [
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        { &quot;match&quot;: { &quot;description&quot;: &quot;Spring Boot&quot; } }
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>      ],
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>      &quot;minimum_should_match&quot;: 1
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>    }
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>  }
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>}
+</span></code></pre></div>
 <h3 id="es-doc-values">什么是列式存储 (ES Doc Values)⭐️</h3>
 <p>数据在磁盘上是按列排布的：
 - 时间列：[2023-01-01, 2023-01-01, ...]
@@ -4107,6 +4135,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -4150,7 +4180,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

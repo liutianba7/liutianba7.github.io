@@ -1177,6 +1177,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/04_web/fastapi-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastapi-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5614,12 +5642,12 @@ RedisTimeSeries（时序数据库）
 <p><strong>复杂业务场景</strong>：通过 Redis 以及 Redis 扩展（比如 Redisson）提供的数据结构，我们可以很方便地完成很多复杂的业务场景，比如通过 Bitmap 统计活跃用户、通过 Sorted Set 维护排行榜、通过 HyperLogLog 统计网站 UV 和 PV。</p>
 <h4 id="2-redis">2. 如何基于 Redis 实现分布式锁⭐️</h4>
 <p>SETNX + EXPIRE(存在原子性问题)</p>
-<div class="highlight"><pre><span></span><code><span class="n">setnx</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="n">value</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">setnx</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="n">value</span>
+</span></code></pre></div>
 <p>原子 SET 命令 (主流手写方式)
 从 Redis 2.6.12 开始，<code>SET</code> 命令支持多个参数组合，可以一次性完成“判断、加锁、设过期时间”：</p>
-<div class="highlight"><pre><span></span><code><span class="n">SET</span><span class="w"> </span><span class="n">lock_key</span><span class="w"> </span><span class="n">unique_value</span><span class="w"> </span><span class="n">NX</span><span class="w"> </span><span class="n">PX</span><span class="w"> </span><span class="mi">30000</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">SET</span><span class="w"> </span><span class="n">lock_key</span><span class="w"> </span><span class="n">unique_value</span><span class="w"> </span><span class="n">NX</span><span class="w"> </span><span class="n">PX</span><span class="w"> </span><span class="mi">30000</span>
+</span></code></pre></div>
 <p>Redisson (工业级标准)</p>
 <p>① 看门狗机制 (Watch Dog) —— 解决“业务没执行完，锁过期了”</p>
 <p>② 可重入性</p>
@@ -5633,15 +5661,15 @@ RedisTimeSeries（时序数据库）
 <p>当然可以，并且有多种实现方式</p>
 <p>1、<strong>Redis 2.0 之前，如果想要使用 Redis 来做消息队列的话，只能通过 List 来实现。</strong>
 通过 <code>RPUSH/BLPOP</code> 或者 <code>LPUSH/BRPOP</code> 即可实现简易版消息队列,但这种实现方式无法完成广播
-<div class="highlight"><pre><span></span><code><span class="c1"># 生产者生产消息</span>
-RPUSH<span class="w"> </span>myList<span class="w"> </span>msg1<span class="w"> </span>msg2
-<span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">2</span>
-RPUSH<span class="w"> </span>myList<span class="w"> </span>msg3
-<span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">3</span>
-<span class="c1"># 消费者消费消息</span>
-LPOP<span class="w"> </span>myList
-<span class="s2">&quot;msg1&quot;</span>
-</code></pre></div></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 生产者生产消息</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>RPUSH<span class="w"> </span>myList<span class="w"> </span>msg1<span class="w"> </span>msg2
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">2</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>RPUSH<span class="w"> </span>myList<span class="w"> </span>msg3
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">3</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># 消费者消费消息</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>LPOP<span class="w"> </span>myList
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="s2">&quot;msg1&quot;</span>
+</span></code></pre></div></p>
 <p>不过，通过 <code>RPUSH/LPOP</code> 或者 <code>LPUSH/RPOP</code> 这样的方式存在性能问题，我们需要不断轮询去调用 <code>RPOP</code> 或 <code>LPOP</code> 来消费消息。当 List 为空时，大部分的轮询的请求都是无效请求，这种方式大量浪费了系统资源。
 Redis 还提供了 <code>BLPOP</code>、<code>BRPOP</code> 这种阻塞式读取的命令如果 List 为空，Redis 服务端不会立刻返回结果，它会等待 List 中有新数据后再返回或者是等待最多一个超时时间后返回空。如果将超时时间设置为 0 时，即可无限等待，直到弹出消息</p>
 <p>2、基于 Pub/Sub 的消息队列（广播）</p>
@@ -5653,11 +5681,11 @@ Redis 还提供了 <code>BLPOP</code>、<code>BRPOP</code> 这种阻塞式读取
 <ul>
 <li>发布者通过 <code>PUBLISH</code> 投递消息给指定 channel。</li>
 <li>订阅者通过<code>SUBSCRIBE</code>订阅它关心的 channel。并且，订阅者可以订阅一个或者多个 channel。
-<div class="highlight"><pre><span></span><code><span class="c1">// 发布信息</span>
-<span class="n">publish</span><span class="w"> </span><span class="n">channel1</span><span class="w"> </span><span class="n">msg1</span>
-<span class="c1">// 订阅频道</span>
-<span class="n">subscribe</span><span class="w"> </span><span class="n">channel1</span>
-</code></pre></div></li>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// 发布信息</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">publish</span><span class="w"> </span><span class="n">channel1</span><span class="w"> </span><span class="n">msg1</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">// 订阅频道</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">subscribe</span><span class="w"> </span><span class="n">channel1</span>
+</span></code></pre></div></li>
 </ul>
 <p>pub/sub 既能单播又能广播，还支持 channel 的简单正则匹配。不过，消息丢失（客户端断开连接或者 Redis 宕机都会导致消息丢失）、消息堆积（发布者发布消息的时候不会管消费者的具体消费能力如何）等问题依然没有一个比较好的解决办法。</p>
 <p>3.为此，Redis 5.0 新增加的一个数据结构 <code>Stream</code> 来做消息队列。<code>Stream</code> 支持：</p>
@@ -5673,36 +5701,36 @@ Redis 还提供了 <code>BLPOP</code>、<code>BRPOP</code> 这种阻塞式读取
 </p>
 
 <p>这是一个有序的消息链表，每个消息都有一个唯一的 ID 和对应的内容。ID 是一个时间戳和序列号的组合，用来保证消息的唯一性和递增性。内容是一个或多个键值对（类似 Hash 基本数据类型），用来存储消息的数据。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 生产者</span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sendStreamMessage</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// XADD 命令，* 表示自动生成消息 ID</span>
-<span class="w">    </span><span class="n">StreamEntryID</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jedis</span><span class="p">.</span><span class="na">xadd</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">StreamEntryID</span><span class="p">.</span><span class="na">NEW_ENTRY</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">);</span>
-<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;发送成功，消息ID: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="c1">// 消费者</span>
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">consumeStream</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">consumerName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// 1. 创建消费者组 (如果不存在)</span>
-<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">jedis</span><span class="p">.</span><span class="na">xgroupCreate</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">StreamEntryID</span><span class="p">.</span><span class="na">LAST_ENTRY</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
-
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// 2. 从组里读取消息</span>
-<span class="w">        </span><span class="c1">// XREADGROUP GROUP groupName consumerName COUNT 1 STREAMS streamKey &gt;</span>
-<span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">StreamEntry</span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-<span class="w">            </span><span class="n">jedis</span><span class="p">.</span><span class="na">xreadGroup</span><span class="p">(</span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">consumerName</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span>
-<span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleEntry</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">StreamEntryID</span><span class="p">.</span><span class="na">UNRECEIVED_ENTRY</span><span class="p">));</span>
-
-<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">StreamEntry</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">results</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">StreamEntry</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span><span class="na">getValue</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;处理消息内容: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="na">getFields</span><span class="p">());</span>
-
-<span class="w">                </span><span class="c1">// 3. 核心：处理完必须确认 (ACK)</span>
-<span class="w">                </span><span class="c1">// 只有 ACK 后，这条消息才会从 Pending 列表移除</span>
-<span class="w">                </span><span class="n">jedis</span><span class="p">.</span><span class="na">xack</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="na">getID</span><span class="p">());</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// 生产者</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">sendStreamMessage</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="c1">// XADD 命令，* 表示自动生成消息 ID</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">StreamEntryID</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jedis</span><span class="p">.</span><span class="na">xadd</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">StreamEntryID</span><span class="p">.</span><span class="na">NEW_ENTRY</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">);</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;发送成功，消息ID: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1">// 消费者</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">consumeStream</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">consumerName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="c1">// 1. 创建消费者组 (如果不存在)</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">jedis</span><span class="p">.</span><span class="na">xgroupCreate</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">StreamEntryID</span><span class="p">.</span><span class="na">LAST_ENTRY</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">        </span><span class="c1">// 2. 从组里读取消息</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">        </span><span class="c1">// XREADGROUP GROUP groupName consumerName COUNT 1 STREAMS streamKey &gt;</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">StreamEntry</span><span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">            </span><span class="n">jedis</span><span class="p">.</span><span class="na">xreadGroup</span><span class="p">(</span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">consumerName</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">            </span><span class="k">new</span><span class="w"> </span><span class="n">SimpleEntry</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">StreamEntryID</span><span class="p">.</span><span class="na">UNRECEIVED_ENTRY</span><span class="p">));</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Map</span><span class="p">.</span><span class="na">Entry</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">StreamEntry</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">results</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">StreamEntry</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">entry</span><span class="p">.</span><span class="na">getValue</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;处理消息内容: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="na">getFields</span><span class="p">());</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">                </span><span class="c1">// 3. 核心：处理完必须确认 (ACK)</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">                </span><span class="c1">// 只有 ACK 后，这条消息才会从 Pending 列表移除</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">                </span><span class="n">jedis</span><span class="p">.</span><span class="na">xack</span><span class="p">(</span><span class="n">streamKey</span><span class="p">,</span><span class="w"> </span><span class="n">groupName</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="na">getID</span><span class="p">());</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="p">}</span>
+</span></code></pre></div>
 <h4 id="redis_12">如何基于 Redis 实现延时任务？⭐️</h4>
 <p>如果面试官问“Redis 怎么做延时任务”，你先答 <strong>Zset</strong> 的实现原理，再提 <strong>Redisson</strong> 的成熟方案。最后如果他问“过期监听行不行”，你一定要指出其<strong>消息丢失</strong>和<strong>延迟不准</strong>的致命缺点，这样能体现你是有实战经验的。</p>
 <p>1、基于 Zset（最推荐，最通用）⭐</p>
@@ -5712,49 +5740,49 @@ Redis 还提供了 <code>BLPOP</code>、<code>BRPOP</code> 这种阻塞式读取
 <li><strong>消费者</strong>：轮询 Zset，使用 <code>ZRANGEBYSCORE</code> 获取 <code>score</code> 小于等于 <code>当前时间</code> 的任务。</li>
 <li><strong>核心操作</strong>：拿到任务后，必须用 <code>ZREM</code> 尝试删除任务。如果删除成功，说明抢到了任务，开始执行。</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">produce</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">delaySeconds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">executeTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">delaySeconds</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span>
-<span class="w">    </span><span class="n">jedis</span><span class="p">.</span><span class="na">zadd</span><span class="p">(</span><span class="s">&quot;delayed_tasks&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">executeTime</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">consume</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">();</span>
-<span class="w">        </span><span class="c1">// 获取 score 在 0 到 当前时间戳 之间的第一条任务</span>
-<span class="w">        </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jedis</span><span class="p">.</span><span class="na">zrangeByScore</span><span class="p">(</span><span class="s">&quot;delayed_tasks&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">now</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
-
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tasks</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"> </span><span class="c1">// 没任务，歇半秒</span>
-<span class="w">            </span><span class="k">continue</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-
-<span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tasks</span><span class="p">.</span><span class="na">iterator</span><span class="p">().</span><span class="na">next</span><span class="p">();</span>
-<span class="w">        </span><span class="c1">// 关键：利用 ZREM 的原子性判断谁抢到了任务，防止集群模式下重复消费</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">jedis</span><span class="p">.</span><span class="na">zrem</span><span class="p">(</span><span class="s">&quot;delayed_tasks&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;开始执行延时任务: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">produce</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">delaySeconds</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">executeTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">delaySeconds</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">jedis</span><span class="p">.</span><span class="na">zadd</span><span class="p">(</span><span class="s">&quot;delayed_tasks&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">executeTime</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">}</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">consume</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">();</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">        </span><span class="c1">// 获取 score 在 0 到 当前时间戳 之间的第一条任务</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">        </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tasks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">jedis</span><span class="p">.</span><span class="na">zrangeByScore</span><span class="p">(</span><span class="s">&quot;delayed_tasks&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">now</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tasks</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">            </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="w"> </span><span class="c1">// 没任务，歇半秒</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">taskId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tasks</span><span class="p">.</span><span class="na">iterator</span><span class="p">().</span><span class="na">next</span><span class="p">();</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">        </span><span class="c1">// 关键：利用 ZREM 的原子性判断谁抢到了任务，防止集群模式下重复消费</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">jedis</span><span class="p">.</span><span class="na">zrem</span><span class="p">(</span><span class="s">&quot;delayed_tasks&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">taskId</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;开始执行延时任务: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">taskId</span><span class="p">);</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="p">}</span>
+</span></code></pre></div>
 <p>2、使用 Redisson 延时队列（最简单，生产环境首选）⭐</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 1. 获取延时队列</span>
-<span class="n">RBlockingQueue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">blockingQueue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisson</span><span class="p">.</span><span class="na">getBlockingQueue</span><span class="p">(</span><span class="s">&quot;my_queue&quot;</span><span class="p">);</span>
-<span class="n">RDelayedQueue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">delayedQueue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisson</span><span class="p">.</span><span class="na">getDelayedQueue</span><span class="p">(</span><span class="n">blockingQueue</span><span class="p">);</span>
-
-<span class="c1">// 2. 发送延时任务（10秒后执行）</span>
-<span class="n">delayedQueue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">&quot;task_data&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">SECONDS</span><span class="p">);</span>
-
-<span class="c1">// 3. 消费者另起一个线程消费（类似监听器）</span>
-<span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="c1">// take() 是阻塞的，有任务才会醒来，不费 CPU</span>
-<span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockingQueue</span><span class="p">.</span><span class="na">take</span><span class="p">();</span>
-<span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;执行任务: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">task</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}).</span><span class="na">start</span><span class="p">();</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// 1. 获取延时队列</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">RBlockingQueue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">blockingQueue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisson</span><span class="p">.</span><span class="na">getBlockingQueue</span><span class="p">(</span><span class="s">&quot;my_queue&quot;</span><span class="p">);</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">RDelayedQueue</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">delayedQueue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisson</span><span class="p">.</span><span class="na">getDelayedQueue</span><span class="p">(</span><span class="n">blockingQueue</span><span class="p">);</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1">// 2. 发送延时任务（10秒后执行）</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">delayedQueue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="s">&quot;task_data&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">SECONDS</span><span class="p">);</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1">// 3. 消费者另起一个线程消费（类似监听器）</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">            </span><span class="c1">// take() 是阻塞的，有任务才会醒来，不费 CPU</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockingQueue</span><span class="p">.</span><span class="na">take</span><span class="p">();</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="w">            </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;执行任务: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">task</span><span class="p">);</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">InterruptedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="p">}).</span><span class="na">start</span><span class="p">();</span>
+</span></code></pre></div>
 <p>3、Redis 过期监听（最不推荐，有坑）❌
 开启 Redis 的 <code>Keyspace Notifications</code>，当某个 Key 过期时，Redis 会发布一个事件，应用监听这个事件。</p>
 <ul>
@@ -5777,11 +5805,11 @@ Redis 还提供了 <code>BLPOP</code>、<code>BRPOP</code> 这种阻塞式读取
 <li>限流：以用户 IP 为 Key，结合 <code>INCR</code> 和 <code>EXPIRE</code>。</li>
 </ul>
 <h4 id="string-hash">String 还是 Hash 存储对象更好？</h4>
-<pre><code>这个看情况，但还是得先说明白它两有什么区别？
+<div class="language-text highlight"><pre><span></span><code>这个看情况，但还是得先说明白它两有什么区别？
 首先，String 存储对象是将整个对象看成一个 Json，优点就是读取快，一次get请求就能拿走对象的全部数据。但缺点就是对对象的属性操作不方便。如果你只想修改 age，必须把整个字符串拿出来，反序列化，改完再序列化塞回去。在高并发下容易覆盖别人的修改。
 
 而Hash则将对象的字段分开存储，优点就是灵活性高，我们可以轻松的操作对象的任意属性，其次 Hash 类型在数据较少时使用 ziplist（压缩列表） 编码，因此占用内存更小！但缺点就是结构相对 String 来说比较复杂。
-</code></pre>
+</code></pre></div>
 <ul>
 <li>如果对象不涉及频繁的局部属性操作，那么我们选择String即可。</li>
 <li>如果需要频繁操作对象的部分字段或节省内存，<strong>Hash</strong> 可能是更好的选择。</li>
@@ -5794,37 +5822,37 @@ Redis 还提供了 <code>BLPOP</code>、<code>BRPOP</code> 这种阻塞式读取
 <li><strong>flags（标志）</strong>：标记 SDS 的类型（Redis 会根据内容长度选择不同的 header 以节省空间）。</li>
 <li><strong>buf[]（字节数组）</strong>：实际存储数据的区域，最后依然保留了 <code>\0</code> 以兼容 C 语言部分库函数。</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="cm">/* Note: sdshdr5 is never used, we just access the flags byte directly.</span>
-<span class="cm"> * However is here to document the layout of type 5 SDS strings. */</span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr5</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, and 5 msb of string length */</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
-<span class="p">};</span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr8</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
-<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
-<span class="p">};</span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr16</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
-<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
-<span class="p">};</span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr32</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
-<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
-<span class="p">};</span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr64</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
-<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
-<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
-<span class="p">};</span>
-</code></pre></div>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cm">/* Note: sdshdr5 is never used, we just access the flags byte directly.</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="cm"> * However is here to document the layout of type 5 SDS strings. */</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr5</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, and 5 msb of string length */</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">};</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr8</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="p">};</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr16</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="p">};</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr32</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="p">};</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">sdshdr64</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">len</span><span class="p">;</span><span class="w"> </span><span class="cm">/* used */</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">alloc</span><span class="p">;</span><span class="w"> </span><span class="cm">/* excluding the header and null terminator */</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span><span class="w"> </span><span class="cm">/* 3 lsb of type, 5 unused bits */</span>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[];</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="p">};</span>
+</span></code></pre></div>
 <p>1、<strong>可以避免缓冲区溢出</strong>：C 字符串在执行拼接操作（如 <code>strcat</code>）时，如果没分配够空间就会溢出。SDS 在修改前会检查 <code>len</code> 和 <code>alloc</code>，如果空间不够，会自动扩容。</p>
 <p>2、常数时间获取长度：C 字符串需要遍历整个数组直到遇到 <code>\0</code> 才能知道长度（<span class="arithmatex">\(O(N)\)</span>），而 SDS 直接读取 <code>len</code> 字段（<span class="arithmatex">\(O(1)\)</span>）。</p>
 <p>3、减少内存重分配次数（核心优化）：</p>
@@ -5841,19 +5869,19 @@ C 字符串通过 <code>\0</code> 判断结束，因此不能存储包含 <code>
 </p>
 
 <p>快速列表（quickList）：以一个一个的<code>quicklistNode</code>为节点构成的双向链表
-<div class="highlight"><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">quicklistNode</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">quicklistNode</span><span class="w"> </span><span class="o">*</span><span class="n">prev</span><span class="p">;</span>
-<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">quicklistNode</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">zl</span><span class="p">;</span><span class="w"> </span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sz</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span><span class="w">     </span><span class="cm">/* count of items in ziplist */</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">encoding</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">  </span><span class="cm">/* RAW==1 or LZF==2 */</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">container</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="cm">/* NONE==1 or ZIPLIST==2 */</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">recompress</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="cm">/* was this node previous compressed? */</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">attempted_compress</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="cm">/* node can&#39;t condense; too small */</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="cm">/* more bits to steal for future usage */</span>
-<span class="p">}</span><span class="w"> </span><span class="n">quicklistNode</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">quicklistNode</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">quicklistNode</span><span class="w"> </span><span class="o">*</span><span class="n">prev</span><span class="p">;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">quicklistNode</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">zl</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sz</span><span class="p">;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span><span class="w">     </span><span class="cm">/* count of items in ziplist */</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">encoding</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">  </span><span class="cm">/* RAW==1 or LZF==2 */</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">container</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="cm">/* NONE==1 or ZIPLIST==2 */</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">recompress</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="cm">/* was this node previous compressed? */</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">attempted_compress</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="cm">/* node can&#39;t condense; too small */</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">extra</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="cm">/* more bits to steal for future usage */</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="p">}</span><span class="w"> </span><span class="n">quicklistNode</span><span class="p">;</span>
+</span></code></pre></div>
 - <strong><code>*prev</code> / <code>*next</code></strong>：指向前一个和后一个节点的指针，构成<strong>双向链表</strong>。
 - <strong><code>*zl</code></strong>：指向实际存储数据的指针。在旧版本中指向 <code>ziplist</code>，新版本（Redis 7.0+）通常指向 <code>listpack</code>。
 - <strong><code>sz</code></strong>：表示 <code>zl</code> 指向的整个压缩列表占用的总字节数。
@@ -5920,26 +5948,26 @@ C 字符串通过 <code>\0</code> 判断结束，因此不能存储包含 <code>
 <h4 id="redis_15">使用Redis实现一个排行榜怎么做呢？⭐️</h4>
 <p>实现排行榜是 Redis 非常擅长的，这主要归功于它提供的一种特殊数据结构：<strong>Zset（Sorted Set，有序集合）</strong>。在有序集合中，每个 Member 都会关联一个 Score，Redis 会自动的按照 Score 对 Member 进行排序</p>
 <p>eg：实现“当天步数排行榜”，核心思路是利用 Redis 的 <strong>Zset（有序集合）</strong>。每一天使用一个独立的 Key，将用户 ID 作为 <code>member</code>，步数作为 <code>score</code>。
-<div class="highlight"><pre><span></span><code><span class="c1"># 1. 用户 001 走了 5000 步</span>
-ZINCRBY<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">5000</span><span class="w"> </span><span class="s2">&quot;user:001&quot;</span>
-
-<span class="c1"># 2. 用户 002 走了 8000 步</span>
-ZINCRBY<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">8000</span><span class="w"> </span><span class="s2">&quot;user:002&quot;</span>
-
-<span class="c1"># 3. 用户 001 后来又走了 4000 步</span>
-ZINCRBY<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">4000</span><span class="w"> </span><span class="s2">&quot;user:001&quot;</span>
-
-<span class="c1"># 4. 查看排行榜前三名（带分数）</span>
-ZREVRANGE<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>WITHSCORES
-<span class="c1"># 结果显示：</span>
-<span class="c1"># 1) &quot;user:001&quot;</span>
-<span class="c1"># 2) &quot;9000&quot;</span>
-<span class="c1"># 3) &quot;user:002&quot;</span>
-<span class="c1"># 4) &quot;8000&quot;</span>
-
-<span class="c1"># 5. 查看用户 002 的排名（返回 1 表示排在第 2 位）</span>
-ZREVRANK<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="s2">&quot;user:002&quot;</span>
-</code></pre></div></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 1. 用户 001 走了 5000 步</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ZINCRBY<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">5000</span><span class="w"> </span><span class="s2">&quot;user:001&quot;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># 2. 用户 002 走了 8000 步</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>ZINCRBY<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">8000</span><span class="w"> </span><span class="s2">&quot;user:002&quot;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># 3. 用户 001 后来又走了 4000 步</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>ZINCRBY<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">4000</span><span class="w"> </span><span class="s2">&quot;user:001&quot;</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># 4. 查看排行榜前三名（带分数）</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>ZREVRANGE<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>WITHSCORES
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="c1"># 结果显示：</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="c1"># 1) &quot;user:001&quot;</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="c1"># 2) &quot;9000&quot;</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="c1"># 3) &quot;user:002&quot;</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="c1"># 4) &quot;8000&quot;</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="c1"># 5. 查看用户 002 的排名（返回 1 表示排在第 2 位）</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>ZREVRANK<span class="w"> </span>rank:steps:20260111<span class="w"> </span><span class="s2">&quot;user:002&quot;</span>
+</span></code></pre></div></p>
 <p><code>ZREVRANK</code> 的作用是：<strong>获取某个成员在有序集合（Zset）中“从高到低”的排名。</strong>
 <code>ZSCORE</code> ：查询某个成员的分数</p>
 <h4 id="redis-b">Redis 的有序集合底层为什么要用跳表，而不用平衡树、红黑树或者 B+ 树？⭐️</h4>
@@ -6023,25 +6051,25 @@ Set 提供了随机获取元素的命令，非常适合公平抽奖。
 <li><strong>Value 含义</strong>：<code>1</code> 表示活跃，<code>0</code> 表示非活跃。</li>
 </ul>
 <p>（1）标记当前用户为活跃用户</p>
-<div class="highlight"><pre><span></span><code>SETBIT active:users:20260111 101 1
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>SETBIT active:users:20260111 101 1
+</span></code></pre></div>
 <p>（2）查询某个用户当天是否活跃
-<div class="highlight"><pre><span></span><code>GETBIT active:users:20260111 101
-# 返回 1 表示活跃，0 表示不活跃
-</code></pre></div></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>GETBIT active:users:20260111 101
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a># 返回 1 表示活跃，0 表示不活跃
+</span></code></pre></div></p>
 <p>（3）统计当天的总活跃人数 (DAU)</p>
-<div class="highlight"><pre><span></span><code># 使用 BITCOUNT 命令可以快速统计位图中 `1` 的个数：
-BITCOUNT active:users:20260111
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a># 使用 BITCOUNT 命令可以快速统计位图中 `1` 的个数：
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>BITCOUNT active:users:20260111
+</span></code></pre></div>
 <p>（4）统计多日连续活跃（留存/交集）</p>
-<div class="highlight"><pre><span></span><code># 将 10号和 11号的结果做 AND 运算，存入 result:and
-BITOP AND result:and active:users:20260110 active:users:20260111
-# 统计结果
-BITCOUNT result:and
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a># 将 10号和 11号的结果做 AND 运算，存入 result:and
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>BITOP AND result:and active:users:20260110 active:users:20260111
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a># 统计结果
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>BITCOUNT result:and
+</span></code></pre></div>
 <p>（5）统计多日累计活跃
-<div class="highlight"><pre><span></span><code>BITOP OR result:or active:users:20260101 active:users:20260102 ... BITCOUNT result:or
-</code></pre></div></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>BITOP OR result:or active:users:20260101 active:users:20260102 ... BITCOUNT result:or
+</span></code></pre></div></p>
 <p>极度省空间：1 个位代表 1 个用户，1 亿个用户只需要 1 亿个位。<span class="arithmatex">\(100,000,000 \text{ bits} \div 8 \div 1024 \div 1024 \approx 12 \text{ MB}\)</span>。</p>
 <p>运算速度快：<code>BITCOUNT</code> 和 <code>BITOP</code> 都是位运算，直接由 CPU 指令支持，处理千万级数据通常在毫秒级。</p>
 <h4 id="hyperloglog">HyperLogLog 适用场景？</h4>
@@ -6156,11 +6184,11 @@ BITCOUNT result:and
 </ul>
 <p>为了解决上述问题，Redis 6.0 引入了多线程来专门处理 <strong>网络数据的读写</strong>，而 <strong>执行命令</strong> 依然保留在主线程中。</p>
 <p>Redis6.0 的多线程默认是禁用的，只使用主线程。如需开启需要设置 IO 线程数 &gt; 1，需要修改 redis 配置文件 <code>redis.conf</code>：</p>
-<div class="highlight"><pre><span></span><code>io-threads 4 #设置1的话只会开启主线程，官网建议4核的机器建议设置为2或3个线程，8核的建议设置为6个线程
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>io-threads 4 #设置1的话只会开启主线程，官网建议4核的机器建议设置为2或3个线程，8核的建议设置为6个线程
+</span></code></pre></div>
 <p>开启多线程后，默认只会使用多线程进行 IO 写入 writes，即发送数据给客户端，如果需要开启多线程 IO 读取 reads，同样需要修改 redis 配置文件 <code>redis.conf</code>：</p>
-<p><div class="highlight"><pre><span></span><code>io-threads-do-reads yes
-</code></pre></div>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>io-threads-do-reads yes
+</span></code></pre></div>
 但是官网描述开启多线程读并不能有太大提升，因此一般情况下并不建议开启。</p>
 <h4 id="redis-40_1">Redis 后台线程？4.0 增强</h4>
 <ul>
@@ -6171,13 +6199,13 @@ BITCOUNT result:and
 <h2 id="redis_19">Redis 内存管理</h2>
 <h4 id="redis_20">Redis 给缓存设置过期时间有什么用？</h4>
 <p>可以总结为：节约内存空间 ，或者满足业务场景（验证码到时过期，登录状态最多维持时间...）</p>
-<div class="highlight"><pre><span></span><code><span class="m">127</span>.0.0.1:6379&gt;<span class="w"> </span>expire<span class="w"> </span>key<span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="c1"># 数据在 60s 后过期</span>
-<span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">1</span>
-<span class="m">127</span>.0.0.1:6379&gt;<span class="w"> </span>setex<span class="w"> </span>key<span class="w"> </span><span class="m">60</span><span class="w"> </span>value<span class="w"> </span><span class="c1"># 数据在 60s 后过期 (setex:[set] + [ex]pire)</span>
-OK
-<span class="m">127</span>.0.0.1:6379&gt;<span class="w"> </span>ttl<span class="w"> </span>key<span class="w"> </span><span class="c1"># 查看数据还有多久过期</span>
-<span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">56</span>
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="m">127</span>.0.0.1:6379&gt;<span class="w"> </span>expire<span class="w"> </span>key<span class="w"> </span><span class="m">60</span><span class="w"> </span><span class="c1"># 数据在 60s 后过期</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="m">127</span>.0.0.1:6379&gt;<span class="w"> </span>setex<span class="w"> </span>key<span class="w"> </span><span class="m">60</span><span class="w"> </span>value<span class="w"> </span><span class="c1"># 数据在 60s 后过期 (setex:[set] + [ex]pire)</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>OK
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="m">127</span>.0.0.1:6379&gt;<span class="w"> </span>ttl<span class="w"> </span>key<span class="w"> </span><span class="c1"># 查看数据还有多久过期</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">56</span>
+</span></code></pre></div>
 <p>注意 ⚠️：Redis 中除了字符串类型有自己独有设置过期时间的命令 <code>setex</code> 外，其他方法都需要依靠 <code>expire</code> 命令来设置过期时间 。另外，<code>persist</code> 命令可以移除一个键的过期时间。</p>
 <h4 id="redis_21">Redis 如何判断数据是否过期呢？⭐️</h4>
 <p>Redis 通过一个叫做过期字典（可以看作是 hash 表）来保存数据过期的时间。过期字典的键指向 Redis 数据库中的某个 key（键），过期字典的值是一个 long long 类型的整数，这个整数保存了 key 所指向的数据库键的过期时间（毫秒精度的 UNIX 时间戳）。</p>
@@ -6210,25 +6238,25 @@ OK
 <li><strong>命令入队</strong>：你输入的后续命令会返回 <code>QUEUED</code>。</li>
 <li><strong>执行事务 (<code>EXEC</code>)</strong>：让 Redis 一口气执行队列里的所有命令。</li>
 </ul>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>MULTI<span class="w">                </span><span class="c1"># 1. 开启事务</span>
-OK
-&gt;<span class="w"> </span>SET<span class="w"> </span>user:name<span class="w"> </span><span class="s2">&quot;Jack&quot;</span><span class="w"> </span><span class="c1"># 2. 命令入队</span>
-QUEUED
-&gt;<span class="w"> </span>INCR<span class="w"> </span>user:score<span class="w">      </span><span class="c1"># 3. 命令入队</span>
-QUEUED
-&gt;<span class="w"> </span>EXEC<span class="w">                 </span><span class="c1"># 4. 真正执行</span>
-<span class="m">1</span><span class="o">)</span><span class="w"> </span>OK<span class="w">                  </span><span class="c1"># 返回 SET 的结果</span>
-<span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">1</span><span class="w">         </span><span class="c1"># 返回 INCR 的结果</span>
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>&gt;<span class="w"> </span>MULTI<span class="w">                </span><span class="c1"># 1. 开启事务</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>OK
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>&gt;<span class="w"> </span>SET<span class="w"> </span>user:name<span class="w"> </span><span class="s2">&quot;Jack&quot;</span><span class="w"> </span><span class="c1"># 2. 命令入队</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>QUEUED
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>&gt;<span class="w"> </span>INCR<span class="w"> </span>user:score<span class="w">      </span><span class="c1"># 3. 命令入队</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>QUEUED
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>&gt;<span class="w"> </span>EXEC<span class="w">                 </span><span class="c1"># 4. 真正执行</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="m">1</span><span class="o">)</span><span class="w"> </span>OK<span class="w">                  </span><span class="c1"># 返回 SET 的结果</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="m">2</span><span class="o">)</span><span class="w"> </span><span class="o">(</span>integer<span class="o">)</span><span class="w"> </span><span class="m">1</span><span class="w">         </span><span class="c1"># 返回 INCR 的结果</span>
+</span></code></pre></div>
 <p>2、DisCard </p>
 <p>如果你在输入了一堆命令后突然反悔了，可以使用 <code>DISCARD</code>。它会清空命令队列并退出事务状态。
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>MULTI
-OK
-&gt;<span class="w"> </span>SET<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="s2">&quot;value&quot;</span>
-QUEUED
-&gt;<span class="w"> </span>DISCARD<span class="w">             </span><span class="c1"># 放弃，之前队列里的 SET 不会执行</span>
-OK
-</code></pre></div></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>&gt;<span class="w"> </span>MULTI
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>OK
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>&gt;<span class="w"> </span>SET<span class="w"> </span><span class="nb">test</span><span class="w"> </span><span class="s2">&quot;value&quot;</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>QUEUED
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>&gt;<span class="w"> </span>DISCARD<span class="w">             </span><span class="c1"># 放弃，之前队列里的 SET 不会执行</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>OK
+</span></code></pre></div></p>
 <p>3、乐观锁机制 (<code>WATCH</code>)</p>
 <p>这是 Redis 事务最强大的地方。<code>WATCH</code> 可以监视一个或多个 Key，如果在你执行 <code>EXEC</code> 之前，这些 Key 被<strong>其他客户端</strong>修改了，那么整个事务会自动失败。</p>
 <p>4、错误情况</p>
@@ -6273,8 +6301,8 @@ OK
 <li><strong>极高性能</strong>：因为是单条指令处理，效率最高。</li>
 <li><strong>局限性</strong>：只能操作同一种数据结构（比如 <code>MSET</code> 只能存 String）。</li>
 </ul>
-<div class="highlight"><pre><span></span><code>mset k1 v1 k2 v2 k3 v3
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>mset k1 v1 k2 v2 k3 v3
+</span></code></pre></div>
 <p>2、Pileline </p>
 <p>Pipeline 是一种“异步”的打包方式，允许客户端一次性发送多条<strong>不同类型</strong>的命令，这些不同的命令不需要等待其他命令的回复。它也只跑了 <strong>1 次网络往返</strong>，但它里面装的是<strong>不同种类</strong>的活。</p>
 <p>3、Lua 脚本</p>
@@ -6425,58 +6453,58 @@ OK
 <p>发现 HotKey 难在它的<strong>时效性</strong>（往往等你知道的时候，机器已经挂了）。</p>
 <p>1、<code>redis-cli --hotkeys</code>。</p>
 <p>使用该方案的前提条件是 Redis Server 的 <code>maxmemory-policy</code> 参数设置为 LFU 算法，不然就会出现如下所示的错误。
-<div class="highlight"><pre><span></span><code><span class="c1"># redis-cli -p 6379 --hotkeys</span>
-
-<span class="c1"># Scanning the entire keyspace to find hot keys as well as</span>
-<span class="c1"># average sizes per key type.  You can use -i 0.1 to sleep 0.1 sec</span>
-<span class="c1"># per 100 SCAN commands (not usually needed).</span>
-
-Error:<span class="w"> </span>ERR<span class="w"> </span>An<span class="w"> </span>LFU<span class="w"> </span>maxmemory<span class="w"> </span>policy<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>selected,<span class="w"> </span>access<span class="w"> </span>frequency<span class="w"> </span>not<span class="w"> </span>tracked.<span class="w"> </span>Please<span class="w"> </span>note<span class="w"> </span>that<span class="w"> </span>when<span class="w"> </span>switching<span class="w"> </span>between<span class="w"> </span>policies<span class="w"> </span>at<span class="w"> </span>runtime<span class="w"> </span>LRU<span class="w"> </span>and<span class="w"> </span>LFU<span class="w"> </span>data<span class="w"> </span>will<span class="w"> </span>take<span class="w"> </span>some<span class="w"> </span><span class="nb">time</span><span class="w"> </span>to<span class="w"> </span>adjust.
-</code></pre></div></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># redis-cli -p 6379 --hotkeys</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="c1"># Scanning the entire keyspace to find hot keys as well as</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># average sizes per key type.  You can use -i 0.1 to sleep 0.1 sec</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="c1"># per 100 SCAN commands (not usually needed).</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>Error:<span class="w"> </span>ERR<span class="w"> </span>An<span class="w"> </span>LFU<span class="w"> </span>maxmemory<span class="w"> </span>policy<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>selected,<span class="w"> </span>access<span class="w"> </span>frequency<span class="w"> </span>not<span class="w"> </span>tracked.<span class="w"> </span>Please<span class="w"> </span>note<span class="w"> </span>that<span class="w"> </span>when<span class="w"> </span>switching<span class="w"> </span>between<span class="w"> </span>policies<span class="w"> </span>at<span class="w"> </span>runtime<span class="w"> </span>LRU<span class="w"> </span>and<span class="w"> </span>LFU<span class="w"> </span>data<span class="w"> </span>will<span class="w"> </span>take<span class="w"> </span>some<span class="w"> </span><span class="nb">time</span><span class="w"> </span>to<span class="w"> </span>adjust.
+</span></code></pre></div></p>
 <p>2、借助开源项目：京东零售的 <a href="https://gitee.com/jd-platform-opensource/hotkey">hotkey</a> 这个项目不光支持 hotkey 的发现，还支持 hotkey 的处理。</p>
 <p>3、<strong>客户端监控</strong>：在代码层（如 Jedis、Lettuce）进行埋点统计，将每秒访问前 10 的 Key 定期上报。</p>
 <h5 id="hotkey_3">如何解决 hotkey</h5>
 <p>1、利用二级缓存（本地缓存）</p>
-<pre><code>这是最有效的方案。在业务应用服务器（JVM 内存）中，使用 Caffeine 或 Guava Cache 缓存一份热点数据。需要注意 Redis 和二级缓存的数据一致性
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code>这是最有效的方案。在业务应用服务器（JVM 内存）中，使用 Caffeine 或 Guava Cache 缓存一份热点数据。需要注意 Redis 和二级缓存的数据一致性
+</code></pre></div>
 <p>2、读写分离 / 全量副本</p>
-<pre><code>如果热 Key 主要是读操作，可以增加 Slave（从节点）来负担高并发的读操作
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code>如果热 Key 主要是读操作，可以增加 Slave（从节点）来负担高并发的读操作
+</code></pre></div>
 <p>3、Key 分散（加随机后缀）</p>
-<pre><code>将一个热 Key 拆分为多个物理 Key 存储。每次访问热点key 的时候都是随机挑一个去访问的。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code>将一个热 Key 拆分为多个物理 Key 存储。每次访问热点key 的时候都是随机挑一个去访问的。
+</code></pre></div>
 <h4 id="_10">慢查询命令</h4>
 <p>Redis 慢查询统计的是命令执行这一步骤的耗时，慢查询命令也就是那些命令执行时间较长的命令。</p>
 <h5 id="_11">为什么会有慢查询命令？</h5>
 <h5 id="_12">如何找到慢查询命令？</h5>
 <p>Redis 提供了内置的 <strong>Slow Log（慢查询日志）</strong> 功能，它就像是一个“黑匣子”，专门记录那些运行超过预设阈值的命令。</p>
 <p>在 <code>redis.conf</code> 文件中，我们可以使用 <code>slowlog-log-slower-than</code> 参数设置耗时命令的阈值，并使用 <code>slowlog-max-len</code> 参数设置耗时命令的最大记录条数。</p>
-<div class="highlight"><pre><span></span><code># The following time is expressed in microseconds, so 1000000 is equivalent
-# to one second. Note that a negative number disables the slow log, while
-# a value of zero forces the logging of every command.
-slowlog-log-slower-than 10000
-
-# There is no limit to this length. Just be aware that it will consume memory.
-# You can reclaim memory used by the slow log with SLOWLOG RESET.
-slowlog-max-len 128
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a># The following time is expressed in microseconds, so 1000000 is equivalent
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a># to one second. Note that a negative number disables the slow log, while
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a># a value of zero forces the logging of every command.
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>slowlog-log-slower-than 10000
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a># There is no limit to this length. Just be aware that it will consume memory.
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a># You can reclaim memory used by the slow log with SLOWLOG RESET.
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>slowlog-max-len 128
+</span></code></pre></div>
 <p>或者通过 config set 直接设置
-<div class="highlight"><pre><span></span><code># 命令执行耗时超过 10000 微妙（即10毫秒）就会被记录
-CONFIG SET slowlog-log-slower-than 10000
-# 只保留最近 128 条耗时命令
-CONFIG SET slowlog-max-len 128
-</code></pre></div></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a># 命令执行耗时超过 10000 微妙（即10毫秒）就会被记录
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>CONFIG SET slowlog-log-slower-than 10000
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a># 只保留最近 128 条耗时命令
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>CONFIG SET slowlog-max-len 128
+</span></code></pre></div></p>
 <p>获取慢查询日志的内容很简单，直接使用 <code>SLOWLOG GET</code> 命令即可。<code>SLOWLOG GET</code> 命令默认返回最近 10 条的慢查询命令，你也自己可以指定返回的慢查询命令的数量 <code>SLOWLOG GET N</code>。
-<div class="highlight"><pre><span></span><code>127.0.0.1:6379&gt; SLOWLOG GET #慢日志查询
- 1) 1) (integer) 5
-   2) (integer) 1684326682
-   3) (integer) 12000
-   4) 1) &quot;KEYS&quot;
-      2) &quot;*&quot;
-   5) &quot;172.17.0.1:61152&quot;
-   6) &quot;&quot;
-  // ...
-</code></pre></div></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>127.0.0.1:6379&gt; SLOWLOG GET #慢日志查询
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a> 1) 1) (integer) 5
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>   2) (integer) 1684326682
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>   3) (integer) 12000
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>   4) 1) &quot;KEYS&quot;
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>      2) &quot;*&quot;
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>   5) &quot;172.17.0.1:61152&quot;
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>   6) &quot;&quot;
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>  // ...
+</span></code></pre></div></p>
 <h4 id="redis_29">哪些情况可能导致 Redis 阻塞？</h4>
 <ul>
 <li><code>O(n)</code> 复杂度命令执行（如 <code>KEYS *</code>、<code>HGETALL</code>、<code>LRANGE</code>、<code>SMEMBERS</code> 等），随着数据量增大导致执行时间过长。</li>
@@ -6493,19 +6521,19 @@ CONFIG SET slowlog-max-len 128
 </ul>
 <h2 id="redis_30">Redis 生产问题⭐️⭐️⭐️</h2>
 <h4 id="1">1. 什么是缓存穿透⭐️</h4>
-<pre><code>是指查询一个不存在的数据，由于缓存无法命中，将去查询数据库，但是数据库也无此记录，并且出于容错考虑，我们没有将这次查询的null写入缓存，这将导致这个不存在的数据每次请求都要到存储层去查询，失去了缓存的意义。在流量大时，可能DB就挂掉了，要是有人利用不存在的key频繁攻击我们的应用，这就是漏洞。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code>是指查询一个不存在的数据，由于缓存无法命中，将去查询数据库，但是数据库也无此记录，并且出于容错考虑，我们没有将这次查询的null写入缓存，这将导致这个不存在的数据每次请求都要到存储层去查询，失去了缓存的意义。在流量大时，可能DB就挂掉了，要是有人利用不存在的key频繁攻击我们的应用，这就是漏洞。
+</code></pre></div>
 <ul>
 <li>解决1 ：空结果也进行缓存，但它的过期时间会很短，最长不超过五分钟，但是不能防止随机穿透。</li>
 <li>解决2 ：使用布隆过滤器或者Redis的Bitmap来解决随机穿透问题</li>
 </ul>
 <h4 id="2">2. 什么是缓存击穿⭐️</h4>
-<pre><code>是指对于一些设置了过期时间的key，如果这些key可能会在某些时间点被超高并发地访问，是一种非常“热点”的数据。这个时候，需要考虑一个问题：如果这个key在大量请求同时进 来之前正好失效，那么所有对这个key的数据查询都落到db，我们称为缓存击穿。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code>是指对于一些设置了过期时间的key，如果这些key可能会在某些时间点被超高并发地访问，是一种非常“热点”的数据。这个时候，需要考虑一个问题：如果这个key在大量请求同时进 来之前正好失效，那么所有对这个key的数据查询都落到db，我们称为缓存击穿。
+</code></pre></div>
 <p>解决方式：分布式锁</p>
 <h4 id="3">3. 什么是缓存雪崩⭐️</h4>
-<pre><code>是指在我们设置缓存时采用了相同的过期时间，导致缓存在某一时刻同时失效，请求全部转发到DB，DB瞬时压力过重雪崩。
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code>是指在我们设置缓存时采用了相同的过期时间，导致缓存在某一时刻同时失效，请求全部转发到DB，DB瞬时压力过重雪崩。
+</code></pre></div>
 <ul>
 <li>解决1：原有的失效时间基础上增加一个随机值，比如1-5分钟随机，这样每一个缓存的过期时间的重复率就会降低，就很难引发集体失效的事件。</li>
 <li>解决2：如果单节点宕机，可以采用集群部署方式防止雪崩</li>
@@ -6547,6 +6575,8 @@ CONFIG SET slowlog-max-len 128
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -6590,7 +6620,7 @@ CONFIG SET slowlog-max-len 128
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
