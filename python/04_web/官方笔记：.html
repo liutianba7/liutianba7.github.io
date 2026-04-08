@@ -1,0 +1,4240 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://liutianba7.github.io/python/04_web/%E5%AE%98%E6%96%B9%E7%AC%94%E8%AE%B0%EF%BC%9A.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Table Configuration with Declarative - LiuTianBa7 's Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#table-configuration-with-declarative" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-header__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LiuTianBa7 's Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Table Configuration with Declarative
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Welcome
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../java/02_Frameworks/ssm.html" class="md-tabs__link">
+          
+  
+  
+  Java
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../01_env/conda.html" class="md-tabs__link">
+          
+  
+  
+  Python
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../frontend/js.html" class="md-tabs__link">
+          
+  
+  
+  Frontend
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../code-notes/index.html" class="md-tabs__link">
+          
+  
+  
+  Code-Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../interview/index.html" class="md-tabs__link">
+          
+  
+  
+  Bagu
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../tools/git.html" class="md-tabs__link">
+          
+  
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
+          
+  
+  
+  Middleware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../linux/basic.html" class="md-tabs__link">
+          
+  
+  
+  Linux
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-nav__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
+
+    </a>
+    LiuTianBa7 's Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/liutianba7/liutianba7.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/02_Frameworks/ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/02_Frameworks/springboot.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SpringBoot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/01_Java_Core/maven.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maven
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/01_Java_Core/juc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Juc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Env
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Env
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_env/conda.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_env/uv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Uv
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_env/jupyter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jupyter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basic
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_basic/python%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonBasic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Others
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Others
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_others/requests.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_others/pandas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pandas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_others/numpy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numpy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_others/pytest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pytest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Web
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fastapi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastapi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fastapi-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastapi-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    AI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_ai/LangChain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_ai/LangGraph.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_ai/PyTorch.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PyTorch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_ai/Ollama.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ollama
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Frontend
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Frontend
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frontend/js.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Js
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frontend/vue2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vue2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frontend/vue3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vue3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../frontend/vue3-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vue3-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Code-Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Code-Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code-notes/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code-notes/java/concurrent.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    并发编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code-notes/java/design-patterns.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code-notes/python/ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ai
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Algorithm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Algorithm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code-notes/algorithm/template.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法模板
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bagu
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Bagu
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    复习路线
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Java
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/java/java%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/java/java%E9%9B%86%E5%90%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java集合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/java/juc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Juc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/java/jvm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jvm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/java/ssm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ssm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/java/springboot%2BCloud.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SpringBoot|Cloud
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    设计模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Database
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Database
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/database/mysql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mysql
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/database/redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Middleware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Middleware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/middleware/es.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ElasticSearch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/middleware/rmq.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rabbitmq
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/middleware/seata.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Seata
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/python/python.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/python/deepLearning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLMBasic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/python/langchain.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangChain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../interview/python/langgraph.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LangGraph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tools
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/git.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/git-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Git-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/docker-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Docker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Middleware
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Middleware
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mysql 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/mysql%E9%AB%98%E7%BA%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mysql 高级
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/redis.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Redis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../middleware/minio.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Minio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Linux
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/basic.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#declarative-table-with-mapped_column" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Declarative Table with mapped_column()
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="table-configuration-with-declarative">Table Configuration with Declarative<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#table-configuration-with-declarative" title="Link to this heading"></a></h1>
+<p>As introduced at <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_styles.html#orm-declarative-mapping">Declarative Mapping</a>, the Declarative style includes the ability to generate a mapped <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> object at the same time, or to accommodate a <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> or other <a href="https://docs.sqlalchemy.org/en/20/core/selectable.html#sqlalchemy.sql.expression.FromClause" title="sqlalchemy.sql.expression.FromClause"><code>FromClause</code></a> object directly.</p>
+<p>The following examples assume a declarative base class as:</p>
+<p>from sqlalchemy.orm import DeclarativeBase</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>All of the examples that follow illustrate a class inheriting from the above <code>Base</code>. The decorator style introduced at <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_styles.html#orm-declarative-decorator">Declarative Mapping using a Decorator (no declarative base)</a> is fully supported with all the following examples as well, as are legacy forms of Declarative Base including base classes generated by <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.declarative_base" title="sqlalchemy.orm.declarative_base"><code>declarative_base()</code></a>.</p>
+<h2 id="declarative-table-with-mapped_column">Declarative Table with <code>mapped_column()</code><a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#declarative-table-with-mapped-column" title="Link to this heading"></a></h2>
+<p>When using Declarative, the body of the class to be mapped in most cases includes an attribute <code>__tablename__</code> that indicates the string name of a <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> that should be generated along with the mapping. The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct, which features additional ORM-specific configuration capabilities not present in the plain <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> class, is then used within the class body to indicate columns in the table. The example below illustrates the most basic use of this construct within a Declarative mapping:</p>
+<p>from sqlalchemy import Integer, String
+from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import mapped_column</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class User(Base):
+    <strong>tablename</strong> = "user"</p>
+<div class="language-text highlight"><pre><span></span><code>id = mapped_column(Integer, primary_key=True)
+name = mapped_column(String(50), nullable=False)
+fullname = mapped_column(String)
+nickname = mapped_column(String(30))
+</code></pre></div>
+<p>Above, <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> constructs are placed inline within the class definition as class level attributes. At the point at which the class is declared, the Declarative mapping process will generate a new <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> object against the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.MetaData" title="sqlalchemy.schema.MetaData"><code>MetaData</code></a> collection associated with the Declarative <code>Base</code>; each instance of <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> will then be used to generate a <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> object during this process, which will become part of the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table.columns" title="sqlalchemy.schema.Table.columns"><code>Table.columns</code></a> collection of this <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> object.</p>
+<p>In the above example, Declarative will build a <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> construct that is equivalent to the following:</p>
+<h1 id="equivalent-table-object-produced">equivalent Table object produced</h1>
+<p>user_table = Table(
+    "user",
+    Base.metadata,
+    Column("id", Integer, primary_key=True),
+    Column("name", String(50)),
+    Column("fullname", String()),
+    Column("nickname", String(30)),
+)</p>
+<p>When the <code>User</code> class above is mapped, this <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> object can be accessed directly via the <code>__table__</code> attribute; this is described further at <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-metadata">Accessing Table and Metadata</a>.</p>
+<p><code>mapped_column()</code> supersedes the use of <code>Column()</code></p>
+<p>Users of 1.x SQLAlchemy will note the use of the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct, which is new as of the SQLAlchemy 2.0 series. This ORM-specific construct is intended first and foremost to be a drop-in replacement for the use of <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> within Declarative mappings only, adding new ORM-specific convenience features such as the ability to establish <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.deferred" title="sqlalchemy.orm.mapped_column"><code>mapped_column.deferred</code></a> within the construct, and most importantly to indicate to typing tools such as <a href="https://mypy.readthedocs.io/en/stable/">Mypy</a> and <a href="https://github.com/microsoft/pylance-release">Pylance</a> an accurate representation of how the attribute will behave at runtime at both the class level as well as the instance level. As will be seen in the following sections, it’s also at the forefront of a new annotation-driven configuration style introduced in SQLAlchemy 2.0.</p>
+<p>Users of legacy code should be aware that the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> form will always work in Declarative in the same way it always has. The different forms of attribute mapping may also be mixed within a single mapping on an attribute by attribute basis, so migration to the new form can be at any pace. See the section <a href="https://docs.sqlalchemy.org/en/20/changelog/whatsnew_20.html#whatsnew-20-orm-declarative-typing">ORM Declarative Models</a> for a step by step guide to migrating a Declarative model to the new form.</p>
+<p>The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct accepts all arguments that are accepted by the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> construct, as well as additional ORM-specific arguments. The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.__name" title="sqlalchemy.orm.mapped_column"><code>mapped_column.__name</code></a> positional parameter, indicating the name of the database column, is typically omitted, as the Declarative process will make use of the attribute name given to the construct and assign this as the name of the column (in the above example, this refers to the names <code>id</code>, <code>name</code>, <code>fullname</code>, <code>nickname</code>). Assigning an alternate <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.__name" title="sqlalchemy.orm.mapped_column"><code>mapped_column.__name</code></a> is valid as well, where the resulting <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> will use the given name in SQL and DDL statements, while the <code>User</code> mapped class will continue to allow access to the attribute using the attribute name given, independent of the name given to the column itself (more on this at <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#mapper-column-distinct-names">Naming Declarative Mapped Columns Explicitly</a>).</p>
+<p>Tip</p>
+<p>The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct is <strong>only valid within a Declarative class mapping</strong>. When constructing a <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> object using Core as well as when using <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-imperative-table-configuration">imperative table</a> configuration, the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> construct is still required in order to indicate the presence of a database column.</p>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/mapping_columns.html">Mapping Table Columns</a> - contains additional notes on affecting how <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper" title="sqlalchemy.orm.Mapper"><code>Mapper</code></a> interprets incoming <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> objects.</p>
+<h3 id="orm-annotated-declarative-automated-mapping-with-type-annotations">ORM Annotated Declarative - Automated Mapping with Type Annotations<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-annotated-declarative-automated-mapping-with-type-annotations" title="Link to this heading"></a></h3>
+<p>The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct in modern Python is normally augmented by the use of <a href="https://peps.python.org/pep-0484/"><strong>PEP 484</strong></a> Python type annotations, where it is capable of deriving its column-configuration information from type annotations associated with the attribute as declared in the Declarative mapped class. These type annotations, if used, must be present within a special SQLAlchemy type called <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a>, which is a generic type that indicates a specific Python type within it.</p>
+<p>Using this technique, the example in the previous section can be written more succinctly as below:</p>
+<p>from sqlalchemy import String
+from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class User(Base):
+    <strong>tablename</strong> = "user"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[int] = mapped_column(primary_key=True)
+name: Mapped[str] = mapped_column(String(50))
+fullname: Mapped[str | None]
+nickname: Mapped[str | None] = mapped_column(String(30))
+</code></pre></div>
+<p>The example above demonstrates that if a class attribute is type-hinted with <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> but doesn’t have an explicit <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> assigned to it, SQLAlchemy will automatically create one. Furthermore, details like the column’s datatype and whether it can be null (nullability) are inferred from the <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> annotation. However, you can always explicitly provide these arguments to <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> to override these automatically-derived settings.</p>
+<p>For complete details on using the ORM Annotated Declarative system, see <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-mapped-column">ORM Annotated Declarative - Complete Guide</a> later in this chapter.</p>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-mapped-column">ORM Annotated Declarative - Complete Guide</a> - complete reference for ORM Annotated Declarative</p>
+<h3 id="dataclass-features-in-mapped_column">Dataclass features in <code>mapped_column()</code><a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#dataclass-features-in-mapped-column" title="Link to this heading"></a></h3>
+<p>The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct integrates with SQLAlchemy’s “native dataclasses” feature, discussed at <a href="https://docs.sqlalchemy.org/en/20/orm/dataclasses.html#orm-declarative-native-dataclasses">Declarative Dataclass Mapping</a>. See that section for current background on additional directives supported by <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a>.</p>
+<h3 id="accessing-table-and-metadata">Accessing Table and Metadata<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#accessing-table-and-metadata" title="Link to this heading"></a></h3>
+<p>A declaratively mapped class will always include an attribute called <code>__table__</code>; when the above configuration using <code>__tablename__</code> is complete, the declarative process makes the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> available via the <code>__table__</code> attribute:</p>
+<h1 id="access-the-table">access the Table</h1>
+<p>user_table = User.<strong>table</strong></p>
+<p>The above table is ultimately the same one that corresponds to the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper.local_table" title="sqlalchemy.orm.Mapper.local_table"><code>Mapper.local_table</code></a> attribute, which we can see through the <a href="https://docs.sqlalchemy.org/en/20/core/inspection.html">runtime inspection system</a>:</p>
+<p>from sqlalchemy import inspect</p>
+<p>user_table = inspect(User).local_table</p>
+<p>The <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.MetaData" title="sqlalchemy.schema.MetaData"><code>MetaData</code></a> collection associated with both the declarative <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry" title="sqlalchemy.orm.registry"><code>registry</code></a> as well as the base class is frequently necessary in order to run DDL operations such as CREATE, as well as in use with migration tools such as Alembic. This object is available via the <code>.metadata</code> attribute of <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry" title="sqlalchemy.orm.registry"><code>registry</code></a> as well as the declarative base class. Below, for a small script we may wish to emit a CREATE for all tables against a SQLite database:</p>
+<p>engine = create_engine("sqlite://")</p>
+<p>Base.metadata.create_all(engine)</p>
+<h3 id="declarative-table-configuration">Declarative Table Configuration<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#declarative-table-configuration" title="Link to this heading"></a></h3>
+<p>When using Declarative Table configuration with the <code>__tablename__</code> declarative class attribute, additional arguments to be supplied to the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> constructor should be provided using the <code>__table_args__</code> declarative class attribute.</p>
+<p>This attribute accommodates both positional as well as keyword arguments that are normally sent to the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> constructor. The attribute can be specified in one of two forms. One is as a dictionary:</p>
+<p>class MyClass(Base):
+    <strong>tablename</strong> = "sometable"
+    <strong>table_args</strong> = {"mysql_engine": "InnoDB"}</p>
+<p>The other, a tuple, where each argument is positional (usually constraints):</p>
+<p>class MyClass(Base):
+    <strong>tablename</strong> = "sometable"
+    <strong>table_args</strong> = (
+        ForeignKeyConstraint(["id"], ["remote_table.id"]),
+        UniqueConstraint("foo"),
+    )</p>
+<p>Keyword arguments can be specified with the above form by specifying the last argument as a dictionary:</p>
+<p>class MyClass(Base):
+    <strong>tablename</strong> = "sometable"
+    <strong>table_args</strong> = (
+        ForeignKeyConstraint(["id"], ["remote_table.id"]),
+        UniqueConstraint("foo"),
+        {"autoload": True},
+    )</p>
+<p>A class may also specify the <code>__table_args__</code> declarative attribute, as well as the <code>__tablename__</code> attribute, in a dynamic style using the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.declared_attr" title="sqlalchemy.orm.declared_attr"><code>declared_attr()</code></a> method decorator. See <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_mixins.html">Composing Mapped Hierarchies with Mixins</a> for background.</p>
+<h3 id="explicit-schema-name-with-declarative-table">Explicit Schema Name with Declarative Table<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#explicit-schema-name-with-declarative-table" title="Link to this heading"></a></h3>
+<p>The schema name for a <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> as documented at <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#schema-table-schema-name">Specifying the Schema Name</a> is applied to an individual <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> using the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table.params.schema" title="sqlalchemy.schema.Table"><code>Table.schema</code></a> argument. When using Declarative tables, this option is passed like any other to the <code>__table_args__</code> dictionary:</p>
+<p>from sqlalchemy.orm import DeclarativeBase</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class MyClass(Base):
+    <strong>tablename</strong> = "sometable"
+    <strong>table_args</strong> = {"schema": "some_schema"}</p>
+<p>The schema name can also be applied to all <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> objects globally by using the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.MetaData.params.schema" title="sqlalchemy.schema.MetaData"><code>MetaData.schema</code></a> parameter documented at <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#schema-metadata-schema-name">Specifying a Default Schema Name with MetaData</a>. The <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.MetaData" title="sqlalchemy.schema.MetaData"><code>MetaData</code></a> object may be constructed separately and associated with a <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.DeclarativeBase" title="sqlalchemy.orm.DeclarativeBase"><code>DeclarativeBase</code></a> subclass by assigning to the <code>metadata</code> attribute directly:</p>
+<p>from sqlalchemy import MetaData
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>metadata_obj = MetaData(schema="some_schema")</p>
+<p>class Base(DeclarativeBase):
+    metadata = metadata_obj</p>
+<p>class MyClass(Base):
+    # will use "some_schema" by default
+    <strong>tablename</strong> = "sometable"</p>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#schema-table-schema-name">Specifying the Schema Name</a> - in the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html">Describing Databases with MetaData</a> documentation.</p>
+<h3 id="setting-load-and-persistence-options-for-declarative-mapped-columns">Setting Load and Persistence Options for Declarative Mapped Columns<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#setting-load-and-persistence-options-for-declarative-mapped-columns" title="Link to this heading"></a></h3>
+<p>The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct accepts additional ORM-specific arguments that affect how the generated <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> is mapped, affecting its load and persistence-time behavior. Options that are commonly used include:</p>
+<ul>
+<li>
+<p><strong>deferred column loading</strong> - The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.deferred" title="sqlalchemy.orm.mapped_column"><code>mapped_column.deferred</code></a> boolean establishes the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> using <a href="https://docs.sqlalchemy.org/en/20/orm/queryguide/columns.html#orm-queryguide-column-deferral">deferred column loading</a> by default. In the example below, the <code>User.bio</code> column will not be loaded by default, but only when accessed:</p>
+<p>class User(Base):
+    <strong>tablename</strong> = "user"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[int] = mapped_column(primary_key=True)
+name: Mapped[str]
+bio: Mapped[str] = mapped_column(Text, deferred=True)
+</code></pre></div>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/queryguide/columns.html#orm-queryguide-column-deferral">Limiting which Columns Load with Column Deferral</a> - full description of deferred column loading</p>
+</li>
+<li>
+<p><strong>active history</strong> - The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.active_history" title="sqlalchemy.orm.mapped_column"><code>mapped_column.active_history</code></a> ensures that upon change of value for the attribute, the previous value will have been loaded and made part of the <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.AttributeState.history" title="sqlalchemy.orm.AttributeState.history"><code>AttributeState.history</code></a> collection when inspecting the history of the attribute. This may incur additional SQL statements:</p>
+<p>class User(Base):
+    <strong>tablename</strong> = "user"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[int] = mapped_column(primary_key=True)
+important_identifier: Mapped[str] = mapped_column(active_history=True)
+</code></pre></div>
+</li>
+</ul>
+<p>See the docstring for <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> for a list of supported parameters.</p>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-imperative-table-column-options">Applying Load, Persistence and Mapping Options for Imperative Table Columns</a> - describes using <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.column_property" title="sqlalchemy.orm.column_property"><code>column_property()</code></a> and <a href="https://docs.sqlalchemy.org/en/20/orm/queryguide/columns.html#sqlalchemy.orm.deferred" title="sqlalchemy.orm.deferred"><code>deferred()</code></a> for use with Imperative Table configuration</p>
+<h3 id="naming-declarative-mapped-columns-explicitly">Naming Declarative Mapped Columns Explicitly<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#naming-declarative-mapped-columns-explicitly" title="Link to this heading"></a></h3>
+<p>All of the examples thus far feature the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct linked to an ORM mapped attribute, where the Python attribute name given to the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> is also that of the column as we see in CREATE TABLE statements as well as queries. The name for a column as expressed in SQL may be indicated by passing the string positional argument <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.__name" title="sqlalchemy.orm.mapped_column"><code>mapped_column.__name</code></a> as the first positional argument. In the example below, the <code>User</code> class is mapped with alternate names given to the columns themselves:</p>
+<p>class User(Base):
+    <strong>tablename</strong> = "user"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[int] = mapped_column(&quot;user_id&quot;, primary_key=True)
+name: Mapped[str] = mapped_column(&quot;user_name&quot;)
+</code></pre></div>
+<p>Where above <code>User.id</code> resolves to a column named <code>user_id</code> and <code>User.name</code> resolves to a column named <code>user_name</code>. We may write a <a href="https://docs.sqlalchemy.org/en/20/core/selectable.html#sqlalchemy.sql.expression.select" title="sqlalchemy.sql.expression.select"><code>select()</code></a> statement using our Python attribute names and will see the SQL names generated:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>from sqlalchemy import select
+print(select(User.id, User.name).where(User.name == "x"))</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>SELECT "user".user_id, "user".user_name
+FROM "user"
+WHERE "user".user_name = :user_name_1</p>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-imperative-table-column-naming">Alternate Attribute Names for Mapping Table Columns</a> - applies to Imperative Table</p>
+<h3 id="appending-additional-columns-to-an-existing-declarative-mapped-class">Appending additional columns to an existing Declarative mapped class<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#appending-additional-columns-to-an-existing-declarative-mapped-class" title="Link to this heading"></a></h3>
+<p>A declarative table configuration allows the addition of new <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> objects to an existing mapping after the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> metadata has already been generated.</p>
+<p>For a declarative class that is declared using a declarative base class, the underlying metaclass <code>DeclarativeMeta</code> includes a <code>__setattr__()</code> method that will intercept additional <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> or Core <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> objects and add them to both the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> using <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table.append_column" title="sqlalchemy.schema.Table.append_column"><code>Table.append_column()</code></a> as well as to the existing <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper" title="sqlalchemy.orm.Mapper"><code>Mapper</code></a> using <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper.add_property" title="sqlalchemy.orm.Mapper.add_property"><code>Mapper.add_property()</code></a>:</p>
+<p>MyClass.some_new_column = mapped_column(String)</p>
+<p>Using core <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a>:</p>
+<p>MyClass.some_new_column = Column(String)</p>
+<p>All arguments are supported including an alternate name, such as <code>MyClass.some_new_column = mapped_column("some_name", String)</code>. However, the SQL type must be passed to the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> or <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> object explicitly, as in the above examples where the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.String" title="sqlalchemy.types.String"><code>String</code></a> type is passed. There’s no capability for the <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> annotation type to take part in the operation.</p>
+<p>Additional <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> objects may also be added to a mapping in the specific circumstance of using single table inheritance, where additional columns are present on mapped subclasses that have no <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> of their own. This is illustrated in the section <a href="https://docs.sqlalchemy.org/en/20/orm/inheritance.html#single-inheritance">Single Table Inheritance</a>.</p>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#orm-declarative-table-adding-relationship">Adding Relationships to Mapped Classes After Declaration</a> - similar examples for <a href="https://docs.sqlalchemy.org/en/20/orm/relationship_api.html#sqlalchemy.orm.relationship" title="sqlalchemy.orm.relationship"><code>relationship()</code></a></p>
+<p>Note</p>
+<p>Assignment of mapped properties to an already mapped class will only function correctly if the “declarative base” class is used, meaning the user-defined subclass of <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.DeclarativeBase" title="sqlalchemy.orm.DeclarativeBase"><code>DeclarativeBase</code></a> or the dynamically generated class returned by <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.declarative_base" title="sqlalchemy.orm.declarative_base"><code>declarative_base()</code></a> or <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.generate_base" title="sqlalchemy.orm.registry.generate_base"><code>registry.generate_base()</code></a>. This “base” class includes a Python metaclass which implements a special <code>__setattr__()</code> method that intercepts these operations.</p>
+<p>Runtime assignment of class-mapped attributes to a mapped class will <strong>not</strong> work if the class is mapped using decorators like <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.mapped" title="sqlalchemy.orm.registry.mapped"><code>registry.mapped()</code></a> or imperative functions like <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.map_imperatively" title="sqlalchemy.orm.registry.map_imperatively"><code>registry.map_imperatively()</code></a>.</p>
+<h2 id="orm-annotated-declarative-complete-guide">ORM Annotated Declarative - Complete Guide<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-annotated-declarative-complete-guide" title="Link to this heading"></a></h2>
+<p>The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct is capable of deriving its column-configuration information from <a href="https://peps.python.org/pep-0484/"><strong>PEP 484</strong></a> type annotations associated with the attribute as declared in the Declarative mapped class. These type annotations, if used, must be present within a special SQLAlchemy type called <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a>, which is a <a href="https://peps.python.org/pep-0484/#generics">generic</a> type that then indicates a specific Python type within it.</p>
+<p>Using this technique, the <code>User</code> example from previous sections may be written as below:</p>
+<p>from sqlalchemy import String
+from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class User(Base):
+    <strong>tablename</strong> = "user"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[int] = mapped_column(primary_key=True)
+name: Mapped[str] = mapped_column(String(50))
+fullname: Mapped[str | None]
+nickname: Mapped[str | None] = mapped_column(String(30))
+</code></pre></div>
+<p>Above, when Declarative processes each class attribute, each <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> will derive additional arguments from the corresponding <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> type annotation on the left side, if present. Additionally, Declarative will generate an empty <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> directive implicitly, whenever a <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> type annotation is encountered that does not have a value assigned to the attribute (this form is inspired by the similar style used in Python <a href="https://docs.python.org/3/library/dataclasses.html">dataclasses</a>); this <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct proceeds to derive its configuration from the <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> annotation present.</p>
+<h3 id="mapped_column-derives-the-datatype-and-nullability-from-the-mapped-annotation"><code>mapped_column()</code> derives the datatype and nullability from the <code>Mapped</code> annotation<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#mapped-column-derives-the-datatype-and-nullability-from-the-mapped-annotation" title="Link to this heading"></a></h3>
+<p>The two qualities that <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> derives from the <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> annotation are:</p>
+<ul>
+<li>
+<p><strong>datatype</strong> - the Python type given inside <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a>, as contained within the <code>typing.Optional</code> construct if present, is associated with a <a href="https://docs.sqlalchemy.org/en/20/core/type_api.html#sqlalchemy.types.TypeEngine" title="sqlalchemy.types.TypeEngine"><code>TypeEngine</code></a> subclass such as <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Integer" title="sqlalchemy.types.Integer"><code>Integer</code></a>, <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.String" title="sqlalchemy.types.String"><code>String</code></a>, <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.DateTime" title="sqlalchemy.types.DateTime"><code>DateTime</code></a>, or <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Uuid" title="sqlalchemy.types.Uuid"><code>Uuid</code></a>, to name a few common types.</p>
+<p>The datatype is determined based on a dictionary of Python type to SQLAlchemy datatype. This dictionary is completely customizable, as detailed in the next section <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-mapped-column-type-map">Customizing the Type Map</a>. The default type map is implemented as in the code example below:</p>
+<p>from typing import Any
+from typing import Dict
+from typing import Type</p>
+<p>import datetime
+import decimal
+import uuid</p>
+<p>from sqlalchemy import types</p>
+<h1 id="default-type-mapping-deriving-the-type-for-mapped_column">default type mapping, deriving the type for mapped_column()</h1>
+<h1 id="from-a-mapped-annotation">from a Mapped[] annotation</h1>
+<p>type_map: Dict[Type[Any], TypeEngine[Any]] = {
+    bool: types.Boolean(),
+    bytes: types.LargeBinary(),
+    datetime.date: types.Date(),
+    datetime.datetime: types.DateTime(),
+    datetime.time: types.Time(),
+    datetime.timedelta: types.Interval(),
+    decimal.Decimal: types.Numeric(),
+    float: types.Float(),
+    int: types.Integer(),
+    str: types.String(),
+    uuid.UUID: types.Uuid(),
+}</p>
+<p>If the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct indicates an explicit type as passed to the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.__type" title="sqlalchemy.orm.mapped_column"><code>mapped_column.__type</code></a> argument, then the given Python type is disregarded.</p>
+</li>
+<li>
+<p><strong>nullability</strong> - The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct will indicate its <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> as <code>NULL</code> or <code>NOT NULL</code> first and foremost by the presence of the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.nullable" title="sqlalchemy.orm.mapped_column"><code>mapped_column.nullable</code></a> parameter, passed either as <code>True</code> or <code>False</code>. Additionally , if the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.primary_key" title="sqlalchemy.orm.mapped_column"><code>mapped_column.primary_key</code></a> parameter is present and set to <code>True</code>, that will also imply that the column should be <code>NOT NULL</code>.</p>
+<p>In the absence of <strong>both</strong> of these parameters, the presence of <code>typing.Optional[]</code> (or its equivalent) within the <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> type annotation will be used to determine nullability, where <code>typing.Optional[]</code> means <code>NULL</code>, and the absence of <code>typing.Optional[]</code> means <code>NOT NULL</code>. If there is no <code>Mapped[]</code> annotation present at all, and there is no <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.nullable" title="sqlalchemy.orm.mapped_column"><code>mapped_column.nullable</code></a> or <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.primary_key" title="sqlalchemy.orm.mapped_column"><code>mapped_column.primary_key</code></a> parameter, then SQLAlchemy’s usual default for <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> of <code>NULL</code> is used.</p>
+<p>In the example below, the <code>id</code> and <code>data</code> columns will be <code>NOT NULL</code>, and the <code>additional_info</code> column will be <code>NULL</code>:</p>
+<p>from typing import Optional</p>
+<p>from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code># primary_key=True, therefore will be NOT NULL
+id: Mapped[int] = mapped_column(primary_key=True)
+
+# not Optional[], therefore will be NOT NULL
+data: Mapped[str]
+
+# Optional[], therefore will be NULL
+additional_info: Mapped[Optional[str]]
+</code></pre></div>
+<p>It is also perfectly valid to have a <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> whose nullability is <strong>different</strong> from what would be implied by the annotation. For example, an ORM mapped attribute may be annotated as allowing <code>None</code> within Python code that works with the object as it is first being created and populated, however the value will ultimately be written to a database column that is <code>NOT NULL</code>. The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.nullable" title="sqlalchemy.orm.mapped_column"><code>mapped_column.nullable</code></a> parameter, when present, will always take precedence:</p>
+<p>class SomeClass(Base):
+    # ...</p>
+<div class="language-text highlight"><pre><span></span><code># will be String() NOT NULL, but can be None in Python
+data: Mapped[Optional[str]] = mapped_column(nullable=False)
+</code></pre></div>
+<p>Similarly, a non-None attribute that’s written to a database column that for whatever reason needs to be NULL at the schema level, <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.nullable" title="sqlalchemy.orm.mapped_column"><code>mapped_column.nullable</code></a> may be set to <code>True</code>:</p>
+<p>class SomeClass(Base):
+    # ...</p>
+<div class="language-text highlight"><pre><span></span><code># will be String() NULL, but type checker will not expect
+# the attribute to be None
+data: Mapped[str] = mapped_column(nullable=True)
+</code></pre></div>
+</li>
+</ul>
+<h3 id="customizing-the-type-map">Customizing the Type Map<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#customizing-the-type-map" title="Link to this heading"></a></h3>
+<p>The mapping of Python types to SQLAlchemy <a href="https://docs.sqlalchemy.org/en/20/core/type_api.html#sqlalchemy.types.TypeEngine" title="sqlalchemy.types.TypeEngine"><code>TypeEngine</code></a> types described in the previous section defaults to a hardcoded dictionary present in the <code>sqlalchemy.sql.sqltypes</code> module. However, the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry" title="sqlalchemy.orm.registry"><code>registry</code></a> object that coordinates the Declarative mapping process will first consult a local, user defined dictionary of types which may be passed as the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a> parameter when constructing the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry" title="sqlalchemy.orm.registry"><code>registry</code></a>, which may be associated with the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.DeclarativeBase" title="sqlalchemy.orm.DeclarativeBase"><code>DeclarativeBase</code></a> superclass when first used.</p>
+<p>As an example, if we wish to make use of the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.BIGINT" title="sqlalchemy.types.BIGINT"><code>BIGINT</code></a> datatype for <code>int</code>, the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.TIMESTAMP" title="sqlalchemy.types.TIMESTAMP"><code>TIMESTAMP</code></a> datatype with <code>timezone=True</code> for <code>datetime.datetime</code>, and then for <code>str</code> types we’d like to see <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.NVARCHAR" title="sqlalchemy.types.NVARCHAR"><code>NVARCHAR</code></a> when Microsoft SQL Server is used and <code>VARCHAR(255)</code> when MySQL is used, the registry and Declarative base could be configured as:</p>
+<p>import datetime</p>
+<p>from sqlalchemy import BIGINT, NVARCHAR, String, TIMESTAMP
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column</p>
+<p>class Base(DeclarativeBase):
+    type_annotation_map = {
+        int: BIGINT,
+        datetime.datetime: TIMESTAMP(timezone=True),
+        # set up variants for str/String()
+        str: String()
+        # use NVARCHAR for MSSQL
+        .with_variant(NVARCHAR, "mssql")
+        # add a default VARCHAR length for MySQL
+        .with_variant(VARCHAR(255), "mysql"),
+    }</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[int] = mapped_column(primary_key=True)
+date: Mapped[datetime.datetime]
+status: Mapped[str]
+</code></pre></div>
+<p>Below illustrates the CREATE TABLE statement generated for the above mapping, first on the Microsoft SQL Server backend, illustrating the <code>NVARCHAR</code> datatype:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>from sqlalchemy.schema import CreateTable
+from sqlalchemy.dialects import mssql, mysql, postgresql
+print(CreateTable(SomeClass.<strong>table</strong>).compile(dialect=mssql.dialect()))</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>CREATE TABLE some_table (
+  id BIGINT NOT NULL IDENTITY,
+  date TIMESTAMP NOT NULL,
+  status NVARCHAR(max) NOT NULL,
+  PRIMARY KEY (id)
+)</p>
+<p>On MySQL, we get a VARCHAR column with an explicit length (required by MySQL):</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>print(CreateTable(SomeClass.<strong>table</strong>).compile(dialect=mysql.dialect()))</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>CREATE TABLE some_table (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    date TIMESTAMP NOT NULL,
+    status VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+)</p>
+<p>Then on the PostgreSQL backend, illustrating <code>TIMESTAMP WITH TIME ZONE</code>:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>print(CreateTable(SomeClass.<strong>table</strong>).compile(dialect=postgresql.dialect()))</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>CREATE TABLE some_table (
+  id BIGSERIAL NOT NULL,
+  date TIMESTAMP WITH TIME ZONE NOT NULL,
+  status VARCHAR NOT NULL,
+  PRIMARY KEY (id)
+)</p>
+<p>By making use of methods such as <a href="https://docs.sqlalchemy.org/en/20/core/type_api.html#sqlalchemy.types.TypeEngine.with_variant" title="sqlalchemy.types.TypeEngine.with_variant"><code>TypeEngine.with_variant()</code></a>, we’re able to build up a type map that’s customized to what we need for different backends, while still being able to use succinct annotation-only <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> configurations. There are two more levels of Python-type configurability available beyond this, described in the next two sections.</p>
+<h3 id="union-types-inside-the-type-map">Union types inside the Type Map<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#union-types-inside-the-type-map" title="Link to this heading"></a></h3>
+<p>Changed in version 2.0.37: The features described in this section have been repaired and enhanced to work consistently. Prior to this change, union types were supported in <code>type_annotation_map</code>, however the feature exhibited inconsistent behaviors between union syntaxes as well as in how <code>None</code> was handled. Please ensure SQLAlchemy is up to date before attempting to use the features described in this section.</p>
+<p>SQLAlchemy supports mapping union types inside the <code>type_annotation_map</code> to allow mapping database types that can support multiple Python types, such as <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.JSON" title="sqlalchemy.types.JSON"><code>JSON</code></a> or <a href="https://docs.sqlalchemy.org/en/20/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB" title="sqlalchemy.dialects.postgresql.JSONB"><code>JSONB</code></a>:</p>
+<p>from typing import Union, Optional
+from sqlalchemy import JSON
+from sqlalchemy.dialects import postgresql
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from sqlalchemy.schema import CreateTable</p>
+<h1 id="new-style-union-using-a-pipe-operator">new style Union using a pipe operator</h1>
+<p>json_list = list[int] | list[str]</p>
+<h1 id="old-style-union-using-union-explicitly">old style Union using Union explicitly</h1>
+<p>json_scalar = Union[float, str, bool]</p>
+<p>class Base(DeclarativeBase):
+    type_annotation_map = {
+        json_list: postgresql.JSONB,
+        json_scalar: JSON,
+    }</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[int] = mapped_column(primary_key=True)
+list_col: Mapped[list[str] | list[int]]
+
+# uses JSON
+scalar_col: Mapped[json_scalar]
+
+# uses JSON and is also nullable=True
+scalar_col_nullable: Mapped[json_scalar | None]
+
+# these forms all use JSON as well due to the json_scalar entry
+scalar_col_newstyle: Mapped[float | str | bool]
+scalar_col_oldstyle: Mapped[Union[float, str, bool]]
+scalar_col_mixedstyle: Mapped[Optional[float | str | bool]]
+</code></pre></div>
+<p>The above example maps the union of <code>list[int]</code> and <code>list[str]</code> to the Postgresql <a href="https://docs.sqlalchemy.org/en/20/dialects/postgresql.html#sqlalchemy.dialects.postgresql.JSONB" title="sqlalchemy.dialects.postgresql.JSONB"><code>JSONB</code></a> datatype, while naming a union of <code>float, str, bool</code> will match to the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.JSON" title="sqlalchemy.types.JSON"><code>JSON</code></a> datatype. An equivalent union, stated in the <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> construct, will match into the corresponding entry in the type map.</p>
+<p>The matching of a union type is based on the contents of the union regardless of how the individual types are named, and additionally excluding the use of the <code>None</code> type. That is, <code>json_scalar</code> will also match to <code>str | bool | float | None</code>. It will <strong>not</strong> match to a union that is a subset or superset of this union; that is, <code>str | bool</code> would not match, nor would <code>str | bool | float | int</code>. The individual contents of the union excluding <code>None</code> must be an exact match.</p>
+<p>The <code>None</code> value is never significant as far as matching from <code>type_annotation_map</code> to <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a>, however is significant as an indicator for nullability of the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a>. When <code>None</code> is present in the union either as it is placed in the <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> construct. When present in <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a>, it indicates the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> would be nullable, in the absence of more specific indicators. This logic works in the same way as indicating an <code>Optional</code> type as described at <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-mapped-column-nullability">mapped_column() derives the datatype and nullability from the Mapped annotation</a>.</p>
+<p>The CREATE TABLE statement for the above mapping will look as below:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>print(CreateTable(SomeClass.<strong>table</strong>).compile(dialect=postgresql.dialect()))</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>CREATE TABLE some_table (
+    id SERIAL NOT NULL,
+    list_col JSONB NOT NULL,
+    scalar_col JSON,
+    scalar_col_not_null JSON NOT NULL,
+    PRIMARY KEY (id)
+)</p>
+<p>While union types use a “loose” matching approach that matches on any equivalent set of subtypes, Python typing also features a way to create “type aliases” that are treated as distinct types that are non-equivalent to another type that includes the same composition. Integration of these types with <code>type_annotation_map</code> is described in the next section, <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-type-map-pep695-types">Support for Type Alias Types (defined by PEP 695) and NewType</a>.</p>
+<h3 id="support-for-type-alias-types-defined-by-pep-695-and-newtype">Support for Type Alias Types (defined by PEP 695) and NewType<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#support-for-type-alias-types-defined-by-pep-695-and-newtype" title="Link to this heading"></a></h3>
+<p>In contrast to the typing lookup described in <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-type-map-union-types">Union types inside the Type Map</a>, Python typing also includes two ways to create a composed type in a more formal way, using <code>typing.NewType</code> as well as the <code>type</code> keyword introduced in <a href="https://peps.python.org/pep-0695/"><strong>PEP 695</strong></a>. These types behave differently from ordinary type aliases (i.e. assigning a type to a variable name), and this difference is honored in how SQLAlchemy resolves these types from the type map.</p>
+<p>Changed in version 2.0.44: Support for resolving pep-695 types without a corresponding entry in <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a> has been expanded, reversing part of the restrictions introduced in 2.0.37. Please ensure SQLAlchemy is up to date before attempting to use the features described in this section.</p>
+<p>Changed in version 2.0.37: The behaviors described in this section for <code>typing.NewType</code> as well as <a href="https://peps.python.org/pep-0695/"><strong>PEP 695</strong></a> <code>type</code> were formalized to disallow these types from being implicitly resolvable without entries in <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a>, with deprecation warnings emitted when these patterns were detected. As of 2.0.44, a pep-695 type is implicitly resolvable as long as the type it resolves to is present in the type map.</p>
+<p>The typing module allows the creation of “new types” using <code>typing.NewType</code>:</p>
+<p>from typing import NewType</p>
+<p>nstr30 = NewType("nstr30", str)
+nstr50 = NewType("nstr50", str)</p>
+<p>The <code>NewType</code> construct creates types that are analogous to creating a subclass of the referenced type.</p>
+<p>Additionally, <a href="https://peps.python.org/pep-0695/"><strong>PEP 695</strong></a> introduced in Python 3.12 provides a new <code>type</code> keyword for creating type aliases with greater separation of concerns from plain aliases, as well as succinct support for generics without requiring explicit use of <code>TypeVar</code> or <code>Generic</code> elements. Types created by the <code>type</code> keyword are represented at runtime by <code>typing.TypeAliasType</code>:</p>
+<p>type SmallInt = int
+type BigInt = int
+type JsonScalar = str | float | bool | None</p>
+<p>Both <code>NewType</code> and pep-695 <code>type</code> constructs may be used as arguments within <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> annotations, where they will be resolved to Python types using the following rules:</p>
+<ul>
+<li>
+<p>When a <code>TypeAliasType</code> or <code>NewType</code> object is present in the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a>, it will resolve directly:</p>
+<p>from typing import NewType
+from sqlalchemy import String, BigInteger</p>
+<p>nstr30 = NewType("nstr30", str)
+type BigInt = int</p>
+<p>class Base(DeclarativeBase):
+    type_annotation_map = {nstr30: String(30), BigInt: BigInteger}</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code># BigInt is in the type_annotation_map.  So this
+# will resolve to sqlalchemy.BigInteger
+id: Mapped[BigInt] = mapped_column(primary_key=True)
+
+# nstr30 is in the type_annotation_map.  So this
+# will resolve to sqlalchemy.String(30)
+data: Mapped[nstr30]
+</code></pre></div>
+</li>
+<li>
+<p>A <code>TypeAliasType</code> that refers <strong>directly</strong> to another type present in the type map will resolve against that type:</p>
+<p>type PlainInt = int</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code># PlainInt refers to int, which is one of the default types
+# already in the type_annotation_map.   So this
+# will resolve to sqlalchemy.Integer via the int type
+id: Mapped[PlainInt] = mapped_column(primary_key=True)
+</code></pre></div>
+</li>
+<li>
+<p>A <code>TypeAliasType</code> that refers to another pep-695 <code>TypeAliasType</code> not present in the type map will not resolve (emits a deprecation warning in 2.0), as this would involve a recursive lookup:</p>
+<p>type PlainInt = int
+type AlsoAnInt = PlainInt</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code># AlsoAnInt refers to PlainInt, which is not in the type_annotation_map.
+# This will emit a deprecation warning in 2.0, will fail in 2.1
+id: Mapped[AlsoAnInt] = mapped_column(primary_key=True)
+</code></pre></div>
+</li>
+<li>
+<p>A <code>NewType</code> that is not in the type map will not resolve (emits a deprecation warning in 2.0). Since <code>NewType</code> is analogous to creating an entirely new type with different semantics than the type it extends, these must be explicitly matched in the type map:</p>
+<p>from typing import NewType</p>
+<p>nstr30 = NewType("nstr30", str)</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code># a NewType is a new kind of type, so this will emit a deprecation
+# warning in 2.0 and fail in 2.1, as nstr30 is not present
+# in the type_annotation_map.
+id: Mapped[nstr30] = mapped_column(primary_key=True)
+</code></pre></div>
+</li>
+</ul>
+<p>For all of the above examples, any type that is combined with <code>Optional[]</code> or <code>| None</code> will consider this to indicate the column is nullable, if no other directive for nullability is present.</p>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-mapped-column-generic-pep593">Mapping Whole Column Declarations to Generic Python Types</a></p>
+<h3 id="mapping-multiple-type-configurations-to-python-types">Mapping Multiple Type Configurations to Python Types<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#mapping-multiple-type-configurations-to-python-types" title="Link to this heading"></a></h3>
+<p>As individual Python types may be associated with <a href="https://docs.sqlalchemy.org/en/20/core/type_api.html#sqlalchemy.types.TypeEngine" title="sqlalchemy.types.TypeEngine"><code>TypeEngine</code></a> configurations of any variety by using the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a> parameter, an additional capability is the ability to associate a single Python type with different variants of a SQL type based on additional type qualifiers. One typical example of this is mapping the Python <code>str</code> datatype to <code>VARCHAR</code> SQL types of different lengths. Another is mapping different varieties of <code>decimal.Decimal</code> to differently sized <code>NUMERIC</code> columns.</p>
+<p>Python’s typing system provides a great way to add additional metadata to a Python type which is by using the <a href="https://peps.python.org/pep-0593/"><strong>PEP 593</strong></a> <code>Annotated</code> generic type, which allows additional information to be bundled along with a Python type. The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct will correctly interpret an <code>Annotated</code> object by identity when resolving it in the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a>, as in the example below where we declare two variants of <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.String" title="sqlalchemy.types.String"><code>String</code></a> and <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Numeric" title="sqlalchemy.types.Numeric"><code>Numeric</code></a>:</p>
+<p>from decimal import Decimal</p>
+<p>from typing_extensions import Annotated</p>
+<p>from sqlalchemy import Numeric
+from sqlalchemy import String
+from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import registry</p>
+<p>str_30 = Annotated[str, 30]
+str_50 = Annotated[str, 50]
+num_12_4 = Annotated[Decimal, 12]
+num_6_2 = Annotated[Decimal, 6]</p>
+<p>class Base(DeclarativeBase):
+    registry = registry(
+        type_annotation_map={
+            str_30: String(30),
+            str_50: String(50),
+            num_12_4: Numeric(12, 4),
+            num_6_2: Numeric(6, 2),
+        }
+    )</p>
+<p>The Python type passed to the <code>Annotated</code> container, in the above example the <code>str</code> and <code>Decimal</code> types, is important only for the benefit of typing tools; as far as the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct is concerned, it will only need perform a lookup of each type object in the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a> dictionary without actually looking inside of the <code>Annotated</code> object, at least in this particular context. Similarly, the arguments passed to <code>Annotated</code> beyond the underlying Python type itself are also not important, it’s only that at least one argument must be present for the <code>Annotated</code> construct to be valid. We can then use these augmented types directly in our mapping where they will be matched to the more specific type constructions, as in the following example:</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code>short_name: Mapped[str_30] = mapped_column(primary_key=True)
+long_name: Mapped[str_50]
+num_value: Mapped[num_12_4]
+short_num_value: Mapped[num_6_2]
+</code></pre></div>
+<p>a CREATE TABLE for the above mapping will illustrate the different variants of <code>VARCHAR</code> and <code>NUMERIC</code> we’ve configured, and looks like:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>from sqlalchemy.schema import CreateTable
+print(CreateTable(SomeClass.<strong>table</strong>))</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>CREATE TABLE some_table (
+  short_name VARCHAR(30) NOT NULL,
+  long_name VARCHAR(50) NOT NULL,
+  num_value NUMERIC(12, 4) NOT NULL,
+  short_num_value NUMERIC(6, 2) NOT NULL,
+  PRIMARY KEY (short_name)
+)</p>
+<p>While variety in linking <code>Annotated</code> types to different SQL types grants us a wide degree of flexibility, the next section illustrates a second way in which <code>Annotated</code> may be used with Declarative that is even more open ended.</p>
+<h3 id="mapping-whole-column-declarations-to-python-types">Mapping Whole Column Declarations to Python Types<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#mapping-whole-column-declarations-to-python-types" title="Link to this heading"></a></h3>
+<p>The previous section illustrated using <a href="https://peps.python.org/pep-0593/"><strong>PEP 593</strong></a> <code>Annotated</code> type instances as keys within the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a> dictionary. In this form, the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct does not actually look inside the <code>Annotated</code> object itself, it’s instead used only as a dictionary key. However, Declarative also has the ability to extract an entire pre-established <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct from an <code>Annotated</code> object directly. Using this form, we can define not only different varieties of SQL datatypes linked to Python types without using the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a> dictionary, we can also set up any number of arguments such as nullability, column defaults, and constraints in a reusable fashion.</p>
+<p>A set of ORM models will usually have some kind of primary key style that is common to all mapped classes. There also may be common column configurations such as timestamps with defaults and other fields of pre-established sizes and configurations. We can compose these configurations into <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> instances that we then bundle directly into instances of <code>Annotated</code>, which are then reused in any number of class declarations. Declarative will unpack an <code>Annotated</code> object when provided in this manner, skipping over any other directives that don’t apply to SQLAlchemy and searching only for SQLAlchemy ORM constructs.</p>
+<p>The example below illustrates a variety of pre-configured field types used in this way, where we define <code>intpk</code> that represents an <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Integer" title="sqlalchemy.types.Integer"><code>Integer</code></a> primary key column, <code>timestamp</code> that represents a <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.DateTime" title="sqlalchemy.types.DateTime"><code>DateTime</code></a> type which will use <code>CURRENT_TIMESTAMP</code> as a DDL level column default, and <code>required_name</code> which is a <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.String" title="sqlalchemy.types.String"><code>String</code></a> of length 30 that’s <code>NOT NULL</code>:</p>
+<p>import datetime</p>
+<p>from typing_extensions import Annotated</p>
+<p>from sqlalchemy import func
+from sqlalchemy import String
+from sqlalchemy.orm import mapped_column</p>
+<p>intpk = Annotated[int, mapped_column(primary_key=True)]
+timestamp = Annotated[
+    datetime.datetime,
+    mapped_column(nullable=False, server_default=func.CURRENT_TIMESTAMP()),
+]
+required_name = Annotated[str, mapped_column(String(30), nullable=False)]</p>
+<p>The above <code>Annotated</code> objects can then be used directly within <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a>, where the pre-configured <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> constructs will be extracted and copied to a new instance that will be specific to each attribute:</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[intpk]
+name: Mapped[required_name]
+created_at: Mapped[timestamp]
+</code></pre></div>
+<p><code>CREATE TABLE</code> for our above mapping looks like:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>from sqlalchemy.schema import CreateTable
+print(CreateTable(SomeClass.<strong>table</strong>))</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>CREATE TABLE some_table (
+  id INTEGER NOT NULL,
+  name VARCHAR(30) NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  PRIMARY KEY (id)
+)</p>
+<p>When using <code>Annotated</code> types in this way, the configuration of the type may also be affected on a per-attribute basis. For the types in the above example that feature explicit use of <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column.params.nullable" title="sqlalchemy.orm.mapped_column"><code>mapped_column.nullable</code></a>, we can apply the <code>Optional[]</code> generic modifier to any of our types so that the field is optional or not at the Python level, which will be independent of the <code>NULL</code> / <code>NOT NULL</code> setting that takes place in the database:</p>
+<p>from typing_extensions import Annotated</p>
+<p>import datetime
+from typing import Optional</p>
+<p>from sqlalchemy.orm import DeclarativeBase</p>
+<p>timestamp = Annotated[
+    datetime.datetime,
+    mapped_column(nullable=False),
+]</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class SomeClass(Base):
+    # ...</p>
+<div class="language-text highlight"><pre><span></span><code># pep-484 type will be Optional, but column will be
+# NOT NULL
+created_at: Mapped[Optional[timestamp]]
+</code></pre></div>
+<p>The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct is also reconciled with an explicitly passed <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct, whose arguments will take precedence over those of the <code>Annotated</code> construct. Below we add a <a href="https://docs.sqlalchemy.org/en/20/core/constraints.html#sqlalchemy.schema.ForeignKey" title="sqlalchemy.schema.ForeignKey"><code>ForeignKey</code></a> constraint to our integer primary key and also use an alternate server default for the <code>created_at</code> column:</p>
+<p>import datetime</p>
+<p>from typing_extensions import Annotated</p>
+<p>from sqlalchemy import ForeignKey
+from sqlalchemy import func
+from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column
+from sqlalchemy.schema import CreateTable</p>
+<p>intpk = Annotated[int, mapped_column(primary_key=True)]
+timestamp = Annotated[
+    datetime.datetime,
+    mapped_column(nullable=False, server_default=func.CURRENT_TIMESTAMP()),
+]</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class Parent(Base):
+    <strong>tablename</strong> = "parent"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[intpk]
+</code></pre></div>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code># add ForeignKey to mapped_column(Integer, primary_key=True)
+id: Mapped[intpk] = mapped_column(ForeignKey(&quot;parent.id&quot;))
+
+# change server default from CURRENT_TIMESTAMP to UTC_TIMESTAMP
+created_at: Mapped[timestamp] = mapped_column(server_default=func.UTC_TIMESTAMP())
+</code></pre></div>
+<p>The CREATE TABLE statement illustrates these per-attribute settings, adding a <code>FOREIGN KEY</code> constraint as well as substituting <code>UTC_TIMESTAMP</code> for <code>CURRENT_TIMESTAMP</code>:</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>from sqlalchemy.schema import CreateTable
+print(CreateTable(SomeClass.<strong>table</strong>))</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>CREATE TABLE some_table (
+  id INTEGER NOT NULL,
+  created_at DATETIME DEFAULT UTC_TIMESTAMP() NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY(id) REFERENCES parent (id)
+)</p>
+<p>Note</p>
+<p>The feature of <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> just described, where a fully constructed set of column arguments may be indicated using <a href="https://peps.python.org/pep-0593/"><strong>PEP 593</strong></a> <code>Annotated</code> objects that contain a “template” <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> object to be copied into the attribute, is currently not implemented for other ORM constructs such as <a href="https://docs.sqlalchemy.org/en/20/orm/relationship_api.html#sqlalchemy.orm.relationship" title="sqlalchemy.orm.relationship"><code>relationship()</code></a> and <a href="https://docs.sqlalchemy.org/en/20/orm/composites.html#sqlalchemy.orm.composite" title="sqlalchemy.orm.composite"><code>composite()</code></a>. While this functionality is in theory possible, for the moment attempting to use <code>Annotated</code> to indicate further arguments for <a href="https://docs.sqlalchemy.org/en/20/orm/relationship_api.html#sqlalchemy.orm.relationship" title="sqlalchemy.orm.relationship"><code>relationship()</code></a> and similar will raise a <code>NotImplementedError</code> exception at runtime, but may be implemented in future releases.</p>
+<h4 id="mapping-whole-column-declarations-to-generic-python-types">Mapping Whole Column Declarations to Generic Python Types<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#mapping-whole-column-declarations-to-generic-python-types" title="Link to this heading"></a></h4>
+<p>Using the <code>Annotated</code> approach from the previous section, we may also create a generic version that will apply particular <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> elements across many different Python/SQL types in one step. Below illustrates a plain alias against a generic form of <code>Annotated</code> that will apply the <code>primary_key=True</code> option to any column to which it’s applied:</p>
+<p>from typing import Annotated
+from typing import TypeVar</p>
+<p>T = TypeVar("T", bound=Any)</p>
+<p>PrimaryKey = Annotated[T, mapped_column(primary_key=True)]</p>
+<p>The above type can now apply <code>primary_key=True</code> to any Python type:</p>
+<p>import uuid</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class A(Base):
+    <strong>tablename</strong> = "a"</p>
+<div class="language-text highlight"><pre><span></span><code># will create an Integer primary key
+id: Mapped[PrimaryKey[int]]
+</code></pre></div>
+<p>class B(Base):
+    <strong>tablename</strong> = "b"</p>
+<div class="language-text highlight"><pre><span></span><code># will create a UUID primary key
+id: Mapped[PrimaryKey[uuid.UUID]]
+</code></pre></div>
+<p>For a more shorthand approach, we may opt to use the <a href="https://peps.python.org/pep-0695/"><strong>PEP 695</strong></a> <code>type</code> keyword (Python 3.12 or above) which allows us to skip having to define a <code>TypeVar</code> variable:</p>
+<p>type PrimaryKey[T] = Annotated[T, mapped_column(primary_key=True)]</p>
+<p>Added in version 2.0.44: Generic <a href="https://peps.python.org/pep-0695/"><strong>PEP 695</strong></a> types may be used with <a href="https://peps.python.org/pep-0593/"><strong>PEP 593</strong></a> <code>Annotated</code> elements to create generic types that automatically deliver <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> arguments.</p>
+<h3 id="using-python-enum-or-pep-586-literal-types-in-the-type-map">Using Python <code>Enum</code> or pep-586 <code>Literal</code> types in the type map<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#using-python-enum-or-pep-586-literal-types-in-the-type-map" title="Link to this heading"></a></h3>
+<p>Added in version 2.0.0b4: - Added <code>Enum</code> support</p>
+<p>Added in version 2.0.1: - Added <code>Literal</code> support</p>
+<p>User-defined Python types which derive from the Python built-in <code>enum.Enum</code> as well as the <code>typing.Literal</code> class are automatically linked to the SQLAlchemy <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.types.Enum"><code>Enum</code></a> datatype when used in an ORM declarative mapping. The example below uses a custom <code>enum.Enum</code> within the <code>Mapped[]</code> constructor:</p>
+<p>import enum</p>
+<p>from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class Status(enum.Enum):
+    PENDING = "pending"
+    RECEIVED = "received"
+    COMPLETED = "completed"</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[int] = mapped_column(primary_key=True)
+status: Mapped[Status]
+</code></pre></div>
+<p>In the above example, the mapped attribute <code>SomeClass.status</code> will be linked to a <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> with the datatype of <code>Enum(Status)</code>. We can see this for example in the CREATE TABLE output for the PostgreSQL database:</p>
+<p>CREATE TYPE status AS ENUM ('PENDING', 'RECEIVED', 'COMPLETED')</p>
+<p>CREATE TABLE some_table (
+  id SERIAL NOT NULL,
+  status status NOT NULL,
+  PRIMARY KEY (id)
+)</p>
+<p>In a similar way, <code>typing.Literal</code> may be used instead, using a <code>typing.Literal</code> that consists of all strings:</p>
+<p>from typing import Literal</p>
+<p>from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import Mapped
+from sqlalchemy.orm import mapped_column</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>Status = Literal["pending", "received", "completed"]</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[int] = mapped_column(primary_key=True)
+status: Mapped[Status]
+</code></pre></div>
+<p>The entries used in <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a> link the base <code>enum.Enum</code> Python type as well as the <code>typing.Literal</code> type to the SQLAlchemy <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.types.Enum"><code>Enum</code></a> SQL type, using a special form which indicates to the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.types.Enum"><code>Enum</code></a> datatype that it should automatically configure itself against an arbitrary enumerated type. This configuration, which is implicit by default, would be indicated explicitly as:</p>
+<p>import enum
+import typing</p>
+<p>import sqlalchemy
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>class Base(DeclarativeBase):
+    type_annotation_map = {
+        enum.Enum: sqlalchemy.Enum(enum.Enum),
+        typing.Literal: sqlalchemy.Enum(enum.Enum),
+    }</p>
+<p>The resolution logic within Declarative is able to resolve subclasses of <code>enum.Enum</code> as well as instances of <code>typing.Literal</code> to match the <code>enum.Enum</code> or <code>typing.Literal</code> entry in the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a> dictionary. The <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.types.Enum"><code>Enum</code></a> SQL type then knows how to produce a configured version of itself with the appropriate settings, including default string length. If a <code>typing.Literal</code> that does not consist of only string values is passed, an informative error is raised.</p>
+<p><code>typing.TypeAliasType</code> can also be used to create enums, by assigning them to a <code>typing.Literal</code> of strings:</p>
+<p>from typing import Literal</p>
+<p>type Status = Literal["on", "off", "unknown"]</p>
+<p>Since this is a <code>typing.TypeAliasType</code>, it represents a unique type object, so it must be placed in the <code>type_annotation_map</code> for it to be looked up successfully, keyed to the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.types.Enum"><code>Enum</code></a> type as follows:</p>
+<p>import enum
+import sqlalchemy</p>
+<p>class Base(DeclarativeBase):
+    type_annotation_map = {Status: sqlalchemy.Enum(enum.Enum)}</p>
+<p>Since SQLAlchemy supports mapping different <code>typing.TypeAliasType</code> objects that are otherwise structurally equivalent individually, these must be present in <code>type_annotation_map</code> to avoid ambiguity.</p>
+<h4 id="native-enums-and-naming">Native Enums and Naming<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#native-enums-and-naming" title="Link to this heading"></a></h4>
+<p>The <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum.params.native_enum" title="sqlalchemy.sql.sqltypes.Enum"><code>Enum.native_enum</code></a> parameter refers to if the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.sql.sqltypes.Enum"><code>Enum</code></a> datatype should create a so-called “native” enum, which on MySQL/MariaDB is the <code>ENUM</code> datatype and on PostgreSQL is a new <code>TYPE</code> object created by <code>CREATE TYPE</code>, or a “non-native” enum, which means that <code>VARCHAR</code> will be used to create the datatype. For backends other than MySQL/MariaDB or PostgreSQL, <code>VARCHAR</code> is used in all cases (third party dialects may have their own behaviors).</p>
+<p>Because PostgreSQL’s <code>CREATE TYPE</code> requires that there’s an explicit name for the type to be created, special fallback logic exists when working with implicitly generated <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.sql.sqltypes.Enum"><code>Enum</code></a> without specifying an explicit <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.sql.sqltypes.Enum"><code>Enum</code></a> datatype within a mapping:</p>
+<ol>
+<li>
+<p>If the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.sql.sqltypes.Enum"><code>Enum</code></a> is linked to an <code>enum.Enum</code> object, the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum.params.native_enum" title="sqlalchemy.sql.sqltypes.Enum"><code>Enum.native_enum</code></a> parameter defaults to <code>True</code> and the name of the enum will be taken from the name of the <code>enum.Enum</code> datatype. The PostgreSQL backend will assume <code>CREATE TYPE</code> with this name.</p>
+</li>
+<li>
+<p>If the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.sql.sqltypes.Enum"><code>Enum</code></a> is linked to a <code>typing.Literal</code> object, the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum.params.native_enum" title="sqlalchemy.sql.sqltypes.Enum"><code>Enum.native_enum</code></a> parameter defaults to <code>False</code>; no name is generated and <code>VARCHAR</code> is assumed.</p>
+</li>
+</ol>
+<p>To use <code>typing.Literal</code> with a PostgreSQL <code>CREATE TYPE</code> type, an explicit <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.sql.sqltypes.Enum"><code>Enum</code></a> must be used, either within the type map:</p>
+<p>import enum
+import typing</p>
+<p>import sqlalchemy
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>Status = Literal["pending", "received", "completed"]</p>
+<p>class Base(DeclarativeBase):
+    type_annotation_map = {
+        Status: sqlalchemy.Enum("pending", "received", "completed", name="status_enum"),
+    }</p>
+<p>Or alternatively within <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a>:</p>
+<p>import enum
+import typing</p>
+<p>import sqlalchemy
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>Status = Literal["pending", "received", "completed"]</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class SomeClass(Base):
+    <strong>tablename</strong> = "some_table"</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[int] = mapped_column(primary_key=True)
+status: Mapped[Status] = mapped_column(
+    sqlalchemy.Enum(&quot;pending&quot;, &quot;received&quot;, &quot;completed&quot;, name=&quot;status_enum&quot;)
+)
+</code></pre></div>
+<h4 id="altering-the-configuration-of-the-default-enum">Altering the Configuration of the Default Enum<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#altering-the-configuration-of-the-default-enum" title="Link to this heading"></a></h4>
+<p>In order to modify the fixed configuration of the <code>Enum</code> datatype that’s generated implicitly, specify new entries in the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a>, indicating additional arguments. For example, to use “non native enumerations” unconditionally, the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum.params.native_enum" title="sqlalchemy.types.Enum"><code>Enum.native_enum</code></a> parameter may be set to False for all types:</p>
+<p>import enum
+import typing
+import sqlalchemy
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>class Base(DeclarativeBase):
+    type_annotation_map = {
+        enum.Enum: sqlalchemy.Enum(enum.Enum, native_enum=False),
+        typing.Literal: sqlalchemy.Enum(enum.Enum, native_enum=False),
+    }</p>
+<p>Changed in version 2.0.1: Implemented support for overriding parameters such as <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum.params.native_enum" title="sqlalchemy.types.Enum"><code>Enum.native_enum</code></a> within the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.types.Enum"><code>Enum</code></a> datatype when establishing the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.registry.params.type_annotation_map" title="sqlalchemy.orm.registry"><code>registry.type_annotation_map</code></a>. Previously, this functionality was not working.</p>
+<p>To use a specific configuration for a specific <code>enum.Enum</code> subtype, such as setting the string length to 50 when using the example <code>Status</code> datatype:</p>
+<p>import enum
+import sqlalchemy
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>class Status(enum.Enum):
+    PENDING = "pending"
+    RECEIVED = "received"
+    COMPLETED = "completed"</p>
+<p>class Base(DeclarativeBase):
+    type_annotation_map = {
+        Status: sqlalchemy.Enum(Status, length=50, native_enum=False)
+    }</p>
+<p>By default <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.types.Enum"><code>Enum</code></a> that are automatically generated are not associated with the <code>MetaData</code> instance used by the <code>Base</code>, so if the metadata defines a schema it will not be automatically associated with the enum. To automatically associate the enum with the schema in the metadata or table they belong to the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum.params.inherit_schema" title="sqlalchemy.types.Enum"><code>Enum.inherit_schema</code></a> can be set:</p>
+<p>from enum import Enum
+import sqlalchemy as sa
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>class Base(DeclarativeBase):
+    metadata = sa.MetaData(schema="my_schema")
+    type_annotation_map = {Enum: sa.Enum(Enum, inherit_schema=True)}</p>
+<h4 id="linking-specific-enumenum-or-typingliteral-to-other-datatypes">Linking Specific <code>enum.Enum</code> or <code>typing.Literal</code> to other datatypes<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#linking-specific-enum-enum-or-typing-literal-to-other-datatypes" title="Link to this heading"></a></h4>
+<p>The above examples feature the use of an <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.types.Enum"><code>Enum</code></a> that is automatically configuring itself to the arguments / attributes present on an <code>enum.Enum</code> or <code>typing.Literal</code> type object. For use cases where specific kinds of <code>enum.Enum</code> or <code>typing.Literal</code> should be linked to other types, these specific types may be placed in the type map also. In the example below, an entry for <code>Literal[]</code> that contains non-string types is linked to the <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.JSON" title="sqlalchemy.types.JSON"><code>JSON</code></a> datatype:</p>
+<p>from typing import Literal</p>
+<p>from sqlalchemy import JSON
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>my_literal = Literal[0, 1, True, False, "true", "false"]</p>
+<p>class Base(DeclarativeBase):
+    type_annotation_map = {my_literal: JSON}</p>
+<p>In the above configuration, the <code>my_literal</code> datatype will resolve to a <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.JSON" title="sqlalchemy.types.JSON"><code>JSON</code></a> instance. Other <code>Literal</code> variants will continue to resolve to <a href="https://docs.sqlalchemy.org/en/20/core/type_basics.html#sqlalchemy.types.Enum" title="sqlalchemy.types.Enum"><code>Enum</code></a> datatypes.</p>
+<h2 id="declarative-with-imperative-table-aka-hybrid-declarative">Declarative with Imperative Table (a.k.a. Hybrid Declarative)<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#declarative-with-imperative-table-a-k-a-hybrid-declarative" title="Link to this heading"></a></h2>
+<p>Declarative mappings may also be provided with a pre-existing <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> object, or otherwise a <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> or other arbitrary <a href="https://docs.sqlalchemy.org/en/20/core/selectable.html#sqlalchemy.sql.expression.FromClause" title="sqlalchemy.sql.expression.FromClause"><code>FromClause</code></a> construct (such as a <a href="https://docs.sqlalchemy.org/en/20/core/selectable.html#sqlalchemy.sql.expression.Join" title="sqlalchemy.sql.expression.Join"><code>Join</code></a> or <a href="https://docs.sqlalchemy.org/en/20/core/selectable.html#sqlalchemy.sql.expression.Subquery" title="sqlalchemy.sql.expression.Subquery"><code>Subquery</code></a>) that is constructed separately.</p>
+<p>This is referred to as a “hybrid declarative” mapping, as the class is mapped using the declarative style for everything involving the mapper configuration, however the mapped <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> object is produced separately and passed to the declarative process directly:</p>
+<p>from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<h1 id="construct-a-table-directly-the-basemetadata-collection-is">construct a Table directly.  The Base.metadata collection is</h1>
+<h1 id="usually-a-good-choice-for-metadata-but-any-metadata">usually a good choice for MetaData but any MetaData</h1>
+<h1 id="collection-may-be-used">collection may be used.</h1>
+<p>user_table = Table(
+    "user",
+    Base.metadata,
+    Column("id", Integer, primary_key=True),
+    Column("name", String),
+    Column("fullname", String),
+    Column("nickname", String),
+)</p>
+<h1 id="construct-the-user-class-using-this-table">construct the User class using this table.</h1>
+<p>class User(Base):
+    <strong>table</strong> = user_table</p>
+<p>Above, a <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> object is constructed using the approach described at <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#metadata-describing">Describing Databases with MetaData</a>. It can then be applied directly to a class that is declaratively mapped. The <code>__tablename__</code> and <code>__table_args__</code> declarative class attributes are not used in this form. The above configuration is often more readable as an inline definition:</p>
+<p>class User(Base):
+    <strong>table</strong> = Table(
+        "user",
+        Base.metadata,
+        Column("id", Integer, primary_key=True),
+        Column("name", String),
+        Column("fullname", String),
+        Column("nickname", String),
+    )</p>
+<p>A natural effect of the above style is that the <code>__table__</code> attribute is itself defined within the class definition block. As such it may be immediately referenced within subsequent attributes, such as the example below which illustrates referring to the <code>type</code> column in a polymorphic mapper configuration:</p>
+<p>class Person(Base):
+    <strong>table</strong> = Table(
+        "person",
+        Base.metadata,
+        Column("id", Integer, primary_key=True),
+        Column("name", String(50)),
+        Column("type", String(50)),
+    )</p>
+<div class="language-text highlight"><pre><span></span><code>__mapper_args__ = {
+    &quot;polymorphic_on&quot;: __table__.c.type,
+    &quot;polymorphic_identity&quot;: &quot;person&quot;,
+}
+</code></pre></div>
+<p>The “imperative table” form is also used when a non-<a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> construct, such as a <a href="https://docs.sqlalchemy.org/en/20/core/selectable.html#sqlalchemy.sql.expression.Join" title="sqlalchemy.sql.expression.Join"><code>Join</code></a> or <a href="https://docs.sqlalchemy.org/en/20/core/selectable.html#sqlalchemy.sql.expression.Subquery" title="sqlalchemy.sql.expression.Subquery"><code>Subquery</code></a> object, is to be mapped. An example below:</p>
+<p>from sqlalchemy import func, select</p>
+<p>subq = (
+    select(
+        func.count(orders.c.id).label("order_count"),
+        func.max(orders.c.price).label("highest_order"),
+        orders.c.customer_id,
+    )
+    .group_by(orders.c.customer_id)
+    .subquery()
+)</p>
+<p>customer_select = (
+    select(customers, subq)
+    .join_from(customers, subq, customers.c.id == subq.c.customer_id)
+    .subquery()
+)</p>
+<p>class Customer(Base):
+    <strong>table</strong> = customer_select</p>
+<p>For background on mapping to non-<a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> constructs see the sections <a href="https://docs.sqlalchemy.org/en/20/orm/nonstandard_mappings.html#orm-mapping-joins">Mapping a Class against Multiple Tables</a> and <a href="https://docs.sqlalchemy.org/en/20/orm/nonstandard_mappings.html#orm-mapping-arbitrary-subqueries">Mapping a Class against Arbitrary Subqueries</a>.</p>
+<p>The “imperative table” form is of particular use when the class itself is using an alternative form of attribute declaration, such as Python dataclasses. See the section <a href="https://docs.sqlalchemy.org/en/20/orm/dataclasses.html#orm-declarative-dataclasses">Applying ORM Mappings to an existing dataclass (legacy dataclass use)</a> for detail.</p>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#metadata-describing">Describing Databases with MetaData</a></p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/dataclasses.html#orm-declarative-dataclasses">Applying ORM Mappings to an existing dataclass (legacy dataclass use)</a></p>
+<h3 id="alternate-attribute-names-for-mapping-table-columns">Alternate Attribute Names for Mapping Table Columns<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#alternate-attribute-names-for-mapping-table-columns" title="Link to this heading"></a></h3>
+<p>The section <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-table-column-naming">Naming Declarative Mapped Columns Explicitly</a> illustrated how to use <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> to provide a specific name for the generated <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> object separate from the attribute name under which it is mapped.</p>
+<p>When using Imperative Table configuration, we already have <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> objects present. To map these to alternate names we may assign the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> to the desired attributes directly:</p>
+<p>user_table = Table(
+    "user",
+    Base.metadata,
+    Column("user_id", Integer, primary_key=True),
+    Column("user_name", String),
+)</p>
+<p>class User(Base):
+    <strong>table</strong> = user_table</p>
+<div class="language-text highlight"><pre><span></span><code>id = user_table.c.user_id
+name = user_table.c.user_name
+</code></pre></div>
+<p>The <code>User</code> mapping above will refer to the <code>"user_id"</code> and <code>"user_name"</code> columns via the <code>User.id</code> and <code>User.name</code> attributes, in the same way as demonstrated at <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-table-column-naming">Naming Declarative Mapped Columns Explicitly</a>.</p>
+<p>One caveat to the above mapping is that the direct inline link to <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> will not be typed correctly when using <a href="https://peps.python.org/pep-0484/"><strong>PEP 484</strong></a> typing tools. A strategy to resolve this is to apply the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> objects within the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.column_property" title="sqlalchemy.orm.column_property"><code>column_property()</code></a> function; while the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper" title="sqlalchemy.orm.Mapper"><code>Mapper</code></a> already generates this property object for its internal use automatically, by naming it in the class declaration, typing tools will be able to match the attribute to the <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.Mapped" title="sqlalchemy.orm.Mapped"><code>Mapped</code></a> annotation:</p>
+<p>from sqlalchemy.orm import column_property
+from sqlalchemy.orm import Mapped</p>
+<p>class User(Base):
+    <strong>table</strong> = user_table</p>
+<div class="language-text highlight"><pre><span></span><code>id: Mapped[int] = column_property(user_table.c.user_id)
+name: Mapped[str] = column_property(user_table.c.user_name)
+</code></pre></div>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-table-column-naming">Naming Declarative Mapped Columns Explicitly</a> - applies to Declarative Table</p>
+<h3 id="applying-load-persistence-and-mapping-options-for-imperative-table-columns">Applying Load, Persistence and Mapping Options for Imperative Table Columns<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#applying-load-persistence-and-mapping-options-for-imperative-table-columns" title="Link to this heading"></a></h3>
+<p>The section <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-column-options">Setting Load and Persistence Options for Declarative Mapped Columns</a> reviewed how to set load and persistence options when using the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a> construct with Declarative Table configuration. When using Imperative Table configuration, we already have existing <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> objects that are mapped. In order to map these <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> objects along with additional parameters that are specific to the ORM mapping, we may use the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.column_property" title="sqlalchemy.orm.column_property"><code>column_property()</code></a> and <a href="https://docs.sqlalchemy.org/en/20/orm/queryguide/columns.html#sqlalchemy.orm.deferred" title="sqlalchemy.orm.deferred"><code>deferred()</code></a> constructs in order to associate additional parameters with the column. Options include:</p>
+<ul>
+<li>
+<p><strong>deferred column loading</strong> - The <a href="https://docs.sqlalchemy.org/en/20/orm/queryguide/columns.html#sqlalchemy.orm.deferred" title="sqlalchemy.orm.deferred"><code>deferred()</code></a> function is shorthand for invoking <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.column_property" title="sqlalchemy.orm.column_property"><code>column_property()</code></a> with the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.column_property.params.deferred" title="sqlalchemy.orm.column_property"><code>column_property.deferred</code></a> parameter set to <code>True</code>; this construct establishes the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> using <a href="https://docs.sqlalchemy.org/en/20/orm/queryguide/columns.html#orm-queryguide-column-deferral">deferred column loading</a> by default. In the example below, the <code>User.bio</code> column will not be loaded by default, but only when accessed:</p>
+<p>from sqlalchemy.orm import deferred</p>
+<p>user_table = Table(
+    "user",
+    Base.metadata,
+    Column("id", Integer, primary_key=True),
+    Column("name", String),
+    Column("bio", Text),
+)</p>
+<p>class User(Base):
+    <strong>table</strong> = user_table</p>
+<div class="language-text highlight"><pre><span></span><code>bio = deferred(user_table.c.bio)
+</code></pre></div>
+</li>
+</ul>
+<blockquote>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/queryguide/columns.html#orm-queryguide-column-deferral">Limiting which Columns Load with Column Deferral</a> - full description of deferred column loading</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>active history</strong> - The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.column_property.params.active_history" title="sqlalchemy.orm.column_property"><code>column_property.active_history</code></a> ensures that upon change of value for the attribute, the previous value will have been loaded and made part of the <a href="https://docs.sqlalchemy.org/en/20/orm/internals.html#sqlalchemy.orm.AttributeState.history" title="sqlalchemy.orm.AttributeState.history"><code>AttributeState.history</code></a> collection when inspecting the history of the attribute. This may incur additional SQL statements:</p>
+<p>from sqlalchemy.orm import column_property</p>
+<p>user_table = Table(
+    "user",
+    Base.metadata,
+    Column("id", Integer, primary_key=True),
+    Column("important_identifier", String),
+)</p>
+<p>class User(Base):
+    <strong>table</strong> = user_table</p>
+<div class="language-text highlight"><pre><span></span><code>important_identifier = column_property(
+    user_table.c.important_identifier, active_history=True
+)
+</code></pre></div>
+</li>
+</ul>
+<p>See also</p>
+<p>The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.column_property" title="sqlalchemy.orm.column_property"><code>column_property()</code></a> construct is also important for cases where classes are mapped to alternative FROM clauses such as joins and selects. More background on these cases is at:</p>
+<ul>
+<li>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/nonstandard_mappings.html#maptojoin">Mapping a Class against Multiple Tables</a></p>
+</li>
+<li>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/mapped_sql_expr.html#mapper-sql-expressions">SQL Expressions as Mapped Attributes</a></p>
+</li>
+</ul>
+<p>For Declarative Table configuration with <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.mapped_column" title="sqlalchemy.orm.mapped_column"><code>mapped_column()</code></a>, most options are available directly; see the section <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-column-options">Setting Load and Persistence Options for Declarative Mapped Columns</a> for examples.</p>
+<h2 id="mapping-declaratively-with-reflected-tables">Mapping Declaratively with Reflected Tables<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#mapping-declaratively-with-reflected-tables" title="Link to this heading"></a></h2>
+<p>There are several patterns available which provide for producing mapped classes against a series of <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> objects that were introspected from the database, using the reflection process described at <a href="https://docs.sqlalchemy.org/en/20/core/reflection.html#metadata-reflection">Reflecting Database Objects</a>.</p>
+<p>A simple way to map a class to a table reflected from the database is to use a declarative hybrid mapping, passing the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table.params.autoload_with" title="sqlalchemy.schema.Table"><code>Table.autoload_with</code></a> parameter to the constructor for <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a>:</p>
+<p>from sqlalchemy import create_engine
+from sqlalchemy import Table
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>engine = create_engine("postgresql+psycopg2://user:pass@hostname/my_existing_database")</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class MyClass(Base):
+    <strong>table</strong> = Table(
+        "mytable",
+        Base.metadata,
+        autoload_with=engine,
+    )</p>
+<p>A variant on the above pattern that scales for many tables is to use the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.MetaData.reflect" title="sqlalchemy.schema.MetaData.reflect"><code>MetaData.reflect()</code></a> method to reflect a full set of <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> objects at once, then refer to them from the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.MetaData" title="sqlalchemy.schema.MetaData"><code>MetaData</code></a>:</p>
+<p>from sqlalchemy import create_engine
+from sqlalchemy import Table
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>engine = create_engine("postgresql+psycopg2://user:pass@hostname/my_existing_database")</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>Base.metadata.reflect(engine)</p>
+<p>class MyClass(Base):
+    <strong>table</strong> = Base.metadata.tables["mytable"]</p>
+<p>One caveat to the approach of using <code>__table__</code> is that the mapped classes cannot be declared until the tables have been reflected, which requires the database connectivity source to be present while the application classes are being declared; it’s typical that classes are declared as the modules of an application are being imported, but database connectivity isn’t available until the application starts running code so that it can consume configuration information and create an engine. There are currently two approaches to working around this, described in the next two sections.</p>
+<h3 id="using-deferredreflection">Using DeferredReflection<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#using-deferredreflection" title="Link to this heading"></a></h3>
+<p>To accommodate the use case of declaring mapped classes where reflection of table metadata can occur afterwards, a simple extension called the <a href="https://docs.sqlalchemy.org/en/20/orm/extensions/declarative/index.html#sqlalchemy.ext.declarative.DeferredReflection" title="sqlalchemy.ext.declarative.DeferredReflection"><code>DeferredReflection</code></a> mixin is available, which alters the declarative mapping process to be delayed until a special class-level <a href="https://docs.sqlalchemy.org/en/20/orm/extensions/declarative/index.html#sqlalchemy.ext.declarative.DeferredReflection.prepare" title="sqlalchemy.ext.declarative.DeferredReflection.prepare"><code>DeferredReflection.prepare()</code></a> method is called, which will perform the reflection process against a target database, and will integrate the results with the declarative table mapping process, that is, classes which use the <code>__tablename__</code> attribute:</p>
+<p>from sqlalchemy.ext.declarative import DeferredReflection
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class Reflected(DeferredReflection):
+    <strong>abstract</strong> = True</p>
+<p>class Foo(Reflected, Base):
+    <strong>tablename</strong> = "foo"
+    bars = relationship("Bar")</p>
+<p>class Bar(Reflected, Base):
+    <strong>tablename</strong> = "bar"</p>
+<div class="language-text highlight"><pre><span></span><code>foo_id = mapped_column(Integer, ForeignKey(&quot;foo.id&quot;))
+</code></pre></div>
+<p>Above, we create a mixin class <code>Reflected</code> that will serve as a base for classes in our declarative hierarchy that should become mapped when the <code>Reflected.prepare</code> method is called. The above mapping is not complete until we do so, given an <a href="https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Engine" title="sqlalchemy.engine.Engine"><code>Engine</code></a>:</p>
+<p>engine = create_engine("postgresql+psycopg2://user:pass@hostname/my_existing_database")
+Reflected.prepare(engine)</p>
+<p>The purpose of the <code>Reflected</code> class is to define the scope at which classes should be reflectively mapped. The plugin will search among the subclass tree of the target against which <code>.prepare()</code> is called and reflect all tables which are named by declared classes; tables in the target database that are not part of mappings and are not related to the target tables via foreign key constraint will not be reflected.</p>
+<h3 id="using-automap">Using Automap<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#using-automap" title="Link to this heading"></a></h3>
+<p>A more automated solution to mapping against an existing database where table reflection is to be used is to use the <a href="https://docs.sqlalchemy.org/en/20/orm/extensions/automap.html">Automap</a> extension. This extension will generate entire mapped classes from a database schema, including relationships between classes based on observed foreign key constraints. While it includes hooks for customization, such as hooks that allow custom class naming and relationship naming schemes, automap is oriented towards an expedient zero-configuration style of working. If an application wishes to have a fully explicit model that makes use of table reflection, the <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-reflected-deferred-reflection">DeferredReflection</a> class may be preferable for its less automated approach.</p>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/extensions/automap.html">Automap</a></p>
+<h3 id="automating-column-naming-schemes-from-reflected-tables">Automating Column Naming Schemes from Reflected Tables<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#automating-column-naming-schemes-from-reflected-tables" title="Link to this heading"></a></h3>
+<p>When using any of the previous reflection techniques, we have the option to change the naming scheme by which columns are mapped. The <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> object includes a parameter <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column.params.key" title="sqlalchemy.schema.Column"><code>Column.key</code></a> which is a string name that determines under what name this <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> will be present in the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table.c" title="sqlalchemy.schema.Table.c"><code>Table.c</code></a> collection, independently of the SQL name of the column. This key is also used by <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper" title="sqlalchemy.orm.Mapper"><code>Mapper</code></a> as the attribute name under which the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> will be mapped, if not supplied through other means such as that illustrated at <a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-imperative-table-column-naming">Alternate Attribute Names for Mapping Table Columns</a>.</p>
+<p>When working with table reflection, we can intercept the parameters that will be used for <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> as they are received using the <a href="https://docs.sqlalchemy.org/en/20/core/events.html#sqlalchemy.events.DDLEvents.column_reflect" title="sqlalchemy.events.DDLEvents.column_reflect"><code>DDLEvents.column_reflect()</code></a> event and apply whatever changes we need, including the <code>.key</code> attribute but also things like datatypes.</p>
+<p>The event hook is most easily associated with the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.MetaData" title="sqlalchemy.schema.MetaData"><code>MetaData</code></a> object that’s in use as illustrated below:</p>
+<p>from sqlalchemy import event
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>@event.listens_for(Base.metadata, "column_reflect")
+def column_reflect(inspector, table, column_info):
+    # set column.key = "attr_<lower_case_name>"
+    column_info["key"] = "attr_%s" % column_info["name"].lower()</p>
+<p>With the above event, the reflection of <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> objects will be intercepted with our event that adds a new “.key” element, such as in a mapping as below:</p>
+<p>class MyClass(Base):
+    <strong>table</strong> = Table("some_table", Base.metadata, autoload_with=some_engine)</p>
+<p>The approach also works with both the <a href="https://docs.sqlalchemy.org/en/20/orm/extensions/declarative/index.html#sqlalchemy.ext.declarative.DeferredReflection" title="sqlalchemy.ext.declarative.DeferredReflection"><code>DeferredReflection</code></a> base class as well as with the <a href="https://docs.sqlalchemy.org/en/20/orm/extensions/automap.html">Automap</a> extension. For automap specifically, see the section <a href="https://docs.sqlalchemy.org/en/20/orm/extensions/automap.html#automap-intercepting-columns">Intercepting Column Definitions</a> for background.</p>
+<p>See also</p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#orm-declarative-reflected">Mapping Declaratively with Reflected Tables</a></p>
+<p><a href="https://docs.sqlalchemy.org/en/20/core/events.html#sqlalchemy.events.DDLEvents.column_reflect" title="sqlalchemy.events.DDLEvents.column_reflect"><code>DDLEvents.column_reflect()</code></a></p>
+<p><a href="https://docs.sqlalchemy.org/en/20/orm/extensions/automap.html#automap-intercepting-columns">Intercepting Column Definitions</a> - in the <a href="https://docs.sqlalchemy.org/en/20/orm/extensions/automap.html">Automap</a> documentation</p>
+<h3 id="mapping-to-an-explicit-set-of-primary-key-columns">Mapping to an Explicit Set of Primary Key Columns<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#mapping-to-an-explicit-set-of-primary-key-columns" title="Link to this heading"></a></h3>
+<p>The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper" title="sqlalchemy.orm.Mapper"><code>Mapper</code></a> construct in order to successfully map a table always requires that at least one column be identified as the “primary key” for that selectable. This is so that when an ORM object is loaded or persisted, it can be placed in the <a href="https://docs.sqlalchemy.org/en/20/glossary.html#term-identity-map">identity map</a> with an appropriate <a href="https://docs.sqlalchemy.org/en/20/glossary.html#term-identity-key">identity key</a>.</p>
+<p>In those cases where a reflected table to be mapped does not include a primary key constraint, as well as in the general case for <a href="https://docs.sqlalchemy.org/en/20/orm/nonstandard_mappings.html#orm-mapping-arbitrary-subqueries">mapping against arbitrary selectables</a> where primary key columns might not be present, the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper.params.primary_key" title="sqlalchemy.orm.Mapper"><code>Mapper.primary_key</code></a> parameter is provided so that any set of columns may be configured as the “primary key” for the table, as far as ORM mapping is concerned.</p>
+<p>Given the following example of an Imperative Table mapping against an existing <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> object where the table does not have any declared primary key (as may occur in reflection scenarios), we may map such a table as in the following example:</p>
+<p>from sqlalchemy import Column
+from sqlalchemy import MetaData
+from sqlalchemy import String
+from sqlalchemy import Table
+from sqlalchemy import UniqueConstraint
+from sqlalchemy.orm import DeclarativeBase</p>
+<p>metadata = MetaData()
+group_users = Table(
+    "group_users",
+    metadata,
+    Column("user_id", String(40), nullable=False),
+    Column("group_id", String(40), nullable=False),
+    UniqueConstraint("user_id", "group_id"),
+)</p>
+<p>class Base(DeclarativeBase):
+    pass</p>
+<p>class GroupUsers(Base):
+    <strong>table</strong> = group_users
+    <strong>mapper_args</strong> = {"primary_key": [group_users.c.user_id, group_users.c.group_id]}</p>
+<p>Above, the <code>group_users</code> table is an association table of some kind with string columns <code>user_id</code> and <code>group_id</code>, but no primary key is set up; instead, there is only a <a href="https://docs.sqlalchemy.org/en/20/core/constraints.html#sqlalchemy.schema.UniqueConstraint" title="sqlalchemy.schema.UniqueConstraint"><code>UniqueConstraint</code></a> establishing that the two columns represent a unique key. The <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper" title="sqlalchemy.orm.Mapper"><code>Mapper</code></a> does not automatically inspect unique constraints for primary keys; instead, we make use of the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper.params.primary_key" title="sqlalchemy.orm.Mapper"><code>Mapper.primary_key</code></a> parameter, passing a collection of <code>[group_users.c.user_id, group_users.c.group_id]</code>, indicating that these two columns should be used in order to construct the identity key for instances of the <code>GroupUsers</code> class.</p>
+<h3 id="mapping-a-subset-of-table-columns">Mapping a Subset of Table Columns<a href="https://docs.sqlalchemy.org/en/20/orm/declarative_tables.html#mapping-a-subset-of-table-columns" title="Link to this heading"></a></h3>
+<p>Sometimes table reflection may provide a <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> with many columns that are not important for our needs and may be safely ignored. For such a table that has lots of columns that don’t need to be referenced in the application, the <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper.params.include_properties" title="sqlalchemy.orm.Mapper"><code>Mapper.include_properties</code></a> or <a href="https://docs.sqlalchemy.org/en/20/orm/mapping_api.html#sqlalchemy.orm.Mapper.params.exclude_properties" title="sqlalchemy.orm.Mapper"><code>Mapper.exclude_properties</code></a> parameters can indicate a subset of columns to be mapped, where other columns from the target <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a> will not be considered by the ORM in any way. Example:</p>
+<p>class User(Base):
+    <strong>table</strong> = user_table
+    <strong>mapper_args</strong> = {"include_properties": ["user_id", "user_name"]}</p>
+<p>In the above example, the <code>User</code> class will map to the <code>user_table</code> table, only including the <code>user_id</code> and <code>user_name</code> columns - the rest are not referenced.</p>
+<p>Similarly:</p>
+<p>class Address(Base):
+    <strong>table</strong> = address_table
+    <strong>mapper_args</strong> = {"exclude_properties": ["street", "city", "state", "zip"]}</p>
+<p>will map the <code>Address</code> class to the <code>address_table</code> table, including all columns present except <code>street</code>, <code>city</code>, <code>state</code>, and <code>zip</code>.</p>
+<p>As indicated in the two examples, columns may be referenced either by string name or by referring to the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> object directly. Referring to the object directly may be useful for explicitness as well as to resolve ambiguities when mapping to multi-table constructs that might have repeated names:</p>
+<p>class User(Base):
+    <strong>table</strong> = user_table
+    <strong>mapper_args</strong> = {
+        "include_properties": [user_table.c.user_id, user_table.c.user_name]
+    }</p>
+<p>When columns are not included in a mapping, these columns will not be referenced in any SELECT statements emitted when executing <a href="https://docs.sqlalchemy.org/en/20/core/selectable.html#sqlalchemy.sql.expression.select" title="sqlalchemy.sql.expression.select"><code>select()</code></a> or legacy <a href="https://docs.sqlalchemy.org/en/20/orm/queryguide/query.html#sqlalchemy.orm.Query" title="sqlalchemy.orm.Query"><code>Query</code></a> objects, nor will there be any mapped attribute on the mapped class which represents the column; assigning an attribute of that name will have no effect beyond that of a normal Python attribute assignment.</p>
+<p>However, it is important to note that <strong>schema level column defaults WILL still be in effect</strong> for those <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> objects that include them, even though they may be excluded from the ORM mapping.</p>
+<p>“Schema level column defaults” refers to the defaults described at <a href="https://docs.sqlalchemy.org/en/20/core/defaults.html#metadata-defaults">Column INSERT/UPDATE Defaults</a> including those configured by the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column.params.default" title="sqlalchemy.schema.Column"><code>Column.default</code></a>, <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column.params.onupdate" title="sqlalchemy.schema.Column"><code>Column.onupdate</code></a>, <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column.params.server_default" title="sqlalchemy.schema.Column"><code>Column.server_default</code></a> and <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column.params.server_onupdate" title="sqlalchemy.schema.Column"><code>Column.server_onupdate</code></a> parameters. These constructs continue to have normal effects because in the case of <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column.params.default" title="sqlalchemy.schema.Column"><code>Column.default</code></a> and <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column.params.onupdate" title="sqlalchemy.schema.Column"><code>Column.onupdate</code></a>, the <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column" title="sqlalchemy.schema.Column"><code>Column</code></a> object is still present on the underlying <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Table" title="sqlalchemy.schema.Table"><code>Table</code></a>, thus allowing the default functions to take place when the ORM emits an INSERT or UPDATE, and in the case of <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column.params.server_default" title="sqlalchemy.schema.Column"><code>Column.server_default</code></a> and <a href="https://docs.sqlalchemy.org/en/20/core/metadata.html#sqlalchemy.schema.Column.params.server_onupdate" title="sqlalchemy.schema.Column"><code>Column.server_onupdate</code></a>, the relational database itself emits these defaults as a server side behavior.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 LiuTianBa7 
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/reading-progress.js"></script>
+      
+    
+  </body>
+</html>
