@@ -1177,6 +1177,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/04_web/fastapi-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastapi-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4909,22 +4937,22 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1"># TypedDict（最常用）</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">AgentState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="n">add_messages</span><span class="p">]</span>
-    <span class="n">count</span><span class="p">:</span> <span class="nb">int</span>
-
-<span class="c1"># dataclass（需要默认值）</span>
-<span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">:</span>
-    <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
-    <span class="n">retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
-
-<span class="c1"># Pydantic（需要校验）</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">AgentState</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># TypedDict（最常用）</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">AgentState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="n">add_messages</span><span class="p">]</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">count</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># dataclass（需要默认值）</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nd">@dataclass</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># Pydantic（需要校验）</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">class</span><span class="w"> </span><span class="nc">AgentState</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">age</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">gt</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
 <p>LangChain 的 create_agent 工厂函数不支持 Pydantic 定义的 State。</p>
@@ -4967,26 +4995,26 @@
 <h3 id="4-reducer">4. 什么是 Reducer？它的函数签名是什么？</h3>
 <p><strong>Reducer</strong> 是定义 State 中每个键如何被更新的函数。</p>
 <p><strong>函数签名</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="n">reducer</span><span class="p">(</span><span class="n">current_value</span><span class="p">,</span> <span class="n">new_value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">merged_value</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">reducer</span><span class="p">(</span><span class="n">current_value</span><span class="p">,</span> <span class="n">new_value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">merged_value</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>Reducer 是定义 State 中每个键如何被更新的函数，函数签名是 <code>reducer(current_value, new_value) -&gt; merged_value</code>。每个 State 字段都对应一个 Reducer，决定该字段如何被更新。</p>
 </div>
 <h3 id="5-reducer-reducer">5. Reducer 的默认行为是什么？如何自定义 Reducer？</h3>
 <p><strong>默认行为</strong>：直接覆盖（Replace）</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># 默认 Reducer 是直接覆盖</span>
-    <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span>  <span class="c1"># 也是直接覆盖</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># 默认 Reducer 是直接覆盖</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span>  <span class="c1"># 也是直接覆盖</span>
+</span></code></pre></div>
 <p><strong>自定义 Reducer</strong>：使用 <code>Annotated[type, reducer]</code></p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">custom_reducer</span><span class="p">(</span><span class="n">current</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;去重合并&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">current</span> <span class="o">+</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">new</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current</span><span class="p">]</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">items</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">custom_reducer</span><span class="p">]</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">custom_reducer</span><span class="p">(</span><span class="n">current</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">new</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;去重合并&quot;&quot;&quot;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">return</span> <span class="n">current</span> <span class="o">+</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">new</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current</span><span class="p">]</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">items</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">custom_reducer</span><span class="p">]</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>Reducer 的默认行为是直接覆盖。自定义 Reducer 可以使用 Annotated[type, reducer] 语法，比如 <code>Annotated[list[str], custom_reducer]</code>。LangGraph 还内置了一些常用 Reducer，如 operator.add、add_messages、merge_dicts 等。</p>
@@ -5029,14 +5057,14 @@
 </div>
 <h3 id="7-reducer-state">7. 如何绕过 Reducer 直接覆盖 State？</h3>
 <p>使用 <strong><code>Overwrite</code></strong> 类型可绕过 Reducer 直接覆盖：</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">Overwrite</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">bar</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">]</span>  <span class="c1"># 配置了追加策略</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">force_overwrite_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="n">Overwrite</span><span class="p">([</span><span class="s2">&quot;new_value&quot;</span><span class="p">])}</span>  <span class="c1"># 强制覆盖，不追加</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">Overwrite</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">bar</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">operator</span><span class="o">.</span><span class="n">add</span><span class="p">]</span>  <span class="c1"># 配置了追加策略</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">force_overwrite_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">):</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;bar&quot;</span><span class="p">:</span> <span class="n">Overwrite</span><span class="p">([</span><span class="s2">&quot;new_value&quot;</span><span class="p">])}</span>  <span class="c1"># 强制覆盖，不追加</span>
+</span></code></pre></div>
 <p><strong>适用场景</strong>：某些节点需要重置某个字段，而不是按 Reducer 逻辑累积。</p>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
@@ -5044,12 +5072,12 @@
 </div>
 <h3 id="8-reducer">8. Reducer 初始值陷阱是什么？如何解决？</h3>
 <p><strong>问题</strong>：非覆盖型 Reducer（如 <code>operator.mul</code>）与默认初始值运算会产生意外结果。</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">age</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">]</span>  <span class="c1"># float 默认值 0.0</span>
-
-<span class="n">app</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>  <span class="c1"># 结果：age = 0.0 ❌</span>
-<span class="c1"># 原因：0.0 * 1 = 0.0</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="n">age</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">operator</span><span class="o">.</span><span class="n">mul</span><span class="p">]</span>  <span class="c1"># float 默认值 0.0</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">app</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>  <span class="c1"># 结果：age = 0.0 ❌</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># 原因：0.0 * 1 = 0.0</span>
+</span></code></pre></div>
 <p><strong>解决方案</strong>：</p>
 <table>
 <thead>
@@ -5086,23 +5114,23 @@
 <li>输出只包含少数关键字段，隐藏内部细节</li>
 </ul>
 <p><strong>定义方式</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PrivateState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">bar</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># 仅内部使用</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">InputState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">OutputState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">graph_output</span><span class="p">:</span> <span class="nb">str</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">OverallState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">foo</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">graph_output</span><span class="p">:</span> <span class="nb">str</span>
-
-<span class="c1"># 创建图时指定 input/output schema</span>
-<span class="n">builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">OverallState</span><span class="p">,</span> <span class="n">input_schema</span><span class="o">=</span><span class="n">InputState</span><span class="p">,</span> <span class="n">output_schema</span><span class="o">=</span><span class="n">OutputState</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">PrivateState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">bar</span><span class="p">:</span> <span class="nb">str</span>  <span class="c1"># 仅内部使用</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">InputState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">OutputState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="n">graph_output</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">OverallState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="n">foo</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    <span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    <span class="n">graph_output</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="c1"># 创建图时指定 input/output schema</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="n">builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">OverallState</span><span class="p">,</span> <span class="n">input_schema</span><span class="o">=</span><span class="n">InputState</span><span class="p">,</span> <span class="n">output_schema</span><span class="o">=</span><span class="n">OutputState</span><span class="p">)</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>Private State 是仅内部节点使用的状态，不暴露给图的输入/输出。Input/Output Schema 分离的原因是：内部节点传递的信息不需要出现在图的输入/输出中；图的输入/输出 Schema 可能与内部 Schema 不同；输出只包含少数关键字段，可以隐藏内部细节。实现方式是在创建 StateGraph 时指定 input_schema 和 output_schema 参数。</p>
@@ -5115,23 +5143,23 @@
 <li><strong>新 Schema 自动注册</strong>：只要 Schema 类定义存在，节点就能使用，LangGraph 自动注册</li>
 </ol>
 <p><strong>示例</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PrivateState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">internal_data</span><span class="p">:</span> <span class="nb">str</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">OverallState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">output</span><span class="p">:</span> <span class="nb">str</span>
-
-<span class="n">builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">OverallState</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">node_1</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">OverallState</span><span class="p">):</span>
-    <span class="c1"># 可写入 PrivateState 中定义的字段</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;internal_data&quot;</span><span class="p">:</span> <span class="s2">&quot;hello&quot;</span><span class="p">}</span>  <span class="c1"># ✅ 合法</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">node_2</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">OverallState</span><span class="p">):</span>
-    <span class="c1"># 可写入 OverallState 中定义的字段</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="s2">&quot;world&quot;</span><span class="p">}</span>  <span class="c1"># ✅ 合法</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">PrivateState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="n">internal_data</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">OverallState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="n">output</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="n">builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">OverallState</span><span class="p">)</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">node_1</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">OverallState</span><span class="p">):</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="c1"># 可写入 PrivateState 中定义的字段</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;internal_data&quot;</span><span class="p">:</span> <span class="s2">&quot;hello&quot;</span><span class="p">}</span>  <span class="c1"># ✅ 合法</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">node_2</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">OverallState</span><span class="p">):</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    <span class="c1"># 可写入 OverallState 中定义的字段</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="s2">&quot;world&quot;</span><span class="p">}</span>  <span class="c1"># ✅ 合法</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>图的 State Schema 整合规则有三点：第一，图的 State 是所有定义 Schema 的合集；第二，节点可写入图中任何已定义的字段，即使节点输入 Schema 不包含某字段，只要该字段在图的某个 Schema 中定义过，节点就能写入；第三，新 Schema 自动注册，只要 Schema 类定义存在，LangGraph 会自动注册。</p>
@@ -5163,20 +5191,20 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1"># 只接收 state</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">plain_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">state</span>
-
-<span class="c1"># 接收 state + config</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">node_with_config</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">RunnableConfig</span><span class="p">):</span>
-    <span class="n">thread_id</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;configurable&quot;</span><span class="p">][</span><span class="s2">&quot;thread_id&quot;</span><span class="p">]</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello from thread </span><span class="si">{</span><span class="n">thread_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
-
-<span class="c1"># 接收 state + runtime</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">node_with_runtime</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">Runtime</span><span class="p">):</span>
-    <span class="n">user_id</span> <span class="o">=</span> <span class="n">runtime</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">user_id</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 只接收 state</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">plain_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">):</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    <span class="k">return</span> <span class="n">state</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># 接收 state + config</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">node_with_config</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">RunnableConfig</span><span class="p">):</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="n">thread_id</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;configurable&quot;</span><span class="p">][</span><span class="s2">&quot;thread_id&quot;</span><span class="p">]</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello from thread </span><span class="si">{</span><span class="n">thread_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># 接收 state + runtime</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="k">def</span><span class="w"> </span><span class="nf">node_with_runtime</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">Runtime</span><span class="p">):</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>    <span class="n">user_id</span> <span class="o">=</span> <span class="n">runtime</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">user_id</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello user </span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>Node 函数可接收 3 种参数：第一，state，图的当前 State；第二，config，RunnableConfig 对象，包含 thread_id、tags 等配置信息；第三，runtime，Runtime 对象，包含 context、store、stream_writer、execution_info 等。</p>
@@ -5227,12 +5255,12 @@
 </tbody>
 </table>
 <p><strong>典型用途</strong>：重试时获取当前重试次数</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">my_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">Runtime</span><span class="p">):</span>
-    <span class="n">info</span> <span class="o">=</span> <span class="n">runtime</span><span class="o">.</span><span class="n">execution_info</span>
-    <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">node_attempt</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">call_fallback</span><span class="p">()}</span>  <span class="c1"># 重试时使用备用方案</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">call_primary</span><span class="p">()}</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">Runtime</span><span class="p">):</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="n">info</span> <span class="o">=</span> <span class="n">runtime</span><span class="o">.</span><span class="n">execution_info</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">node_attempt</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">call_fallback</span><span class="p">()}</span>  <span class="c1"># 重试时使用备用方案</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">call_primary</span><span class="p">()}</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>Runtime 对象包含 context（运行时上下文）、store（持久化存储接口）、stream_writer（流式输出写入器）、execution_info（执行信息）。execution_info 的作用是获取当前执行状态，主要有两个属性：node_attempt（当前执行尝试次数，重试时递增）和 node_first_attempt_time（第一次尝试的 Unix 时间戳）。典型用途是在重试时获取当前重试次数，根据重试次数选择不同的处理策略。</p>
@@ -5240,13 +5268,13 @@
 <hr />
 <h3 id="5-start-end">5. 什么是 START 和 END 节点？它们的作用？</h3>
 <p><strong>START</strong>：入口节点常量，表示用户输入进入图的起点。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">START</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;node_a&quot;</span><span class="p">)</span>  <span class="c1"># 指定首个执行的节点</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">START</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;node_a&quot;</span><span class="p">)</span>  <span class="c1"># 指定首个执行的节点</span>
+</span></code></pre></div>
 <p><strong>END</strong>：终止节点常量，表示流程结束。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="n">END</span><span class="p">)</span>  <span class="c1"># node_a 执行完毕后结束</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">END</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="n">END</span><span class="p">)</span>  <span class="c1"># node_a 执行完毕后结束</span>
+</span></code></pre></div>
 <p>它们不是真正的节点，而是表示"开始"和"结束"的标记常量。</p>
 <h3 id="6-node-cache">6. Node 缓存（Cache）如何使用？适用什么场景？</h3>
 <p><strong>使用步骤</strong>：</p>
@@ -5254,23 +5282,23 @@
 <li>编译图时指定 <code>cache</code></li>
 <li>添加节点时指定 <code>cache_policy</code></li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.cache.memory</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryCache</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">CachePolicy</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">expensive_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">):</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># 耗时计算</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">}</span>
-
-<span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;expensive_node&quot;</span><span class="p">,</span> <span class="n">expensive_node</span><span class="p">,</span>
-                 <span class="n">cache_policy</span><span class="o">=</span><span class="n">CachePolicy</span><span class="p">(</span><span class="n">ttl</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
-<span class="n">graph</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">cache</span><span class="o">=</span><span class="n">InMemoryCache</span><span class="p">())</span>
-
-<span class="c1"># 第一次：耗时 2s</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>  <span class="c1"># {&#39;result&#39;: 10}</span>
-
-<span class="c1"># 第二次（3s 内）：命中缓存</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>  <span class="c1"># {&#39;result&#39;: 10, &#39;__metadata__&#39;: {&#39;cached&#39;: True}}</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.cache.memory</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryCache</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">CachePolicy</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">expensive_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">):</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># 耗时计算</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span><span class="p">}</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;expensive_node&quot;</span><span class="p">,</span> <span class="n">expensive_node</span><span class="p">,</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>                 <span class="n">cache_policy</span><span class="o">=</span><span class="n">CachePolicy</span><span class="p">(</span><span class="n">ttl</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="n">graph</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">cache</span><span class="o">=</span><span class="n">InMemoryCache</span><span class="p">())</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="c1"># 第一次：耗时 2s</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="n">graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>  <span class="c1"># {&#39;result&#39;: 10}</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="c1"># 第二次（3s 内）：命中缓存</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="n">graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>  <span class="c1"># {&#39;result&#39;: 10, &#39;__metadata__&#39;: {&#39;cached&#39;: True}}</span>
+</span></code></pre></div>
 <p><strong>适用场景</strong>：耗时计算节点（如 LLM 调用、数据处理），相同输入频繁执行时。</p>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
@@ -5296,23 +5324,23 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1"># 自定义 key_func</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">custom_key_func</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span>  <span class="c1"># 按用户 ID 生成缓存 key</span>
-
-<span class="n">CachePolicy</span><span class="p">(</span><span class="n">key_func</span><span class="o">=</span><span class="n">custom_key_func</span><span class="p">,</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>  <span class="c1"># 5 分钟过期</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 自定义 key_func</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">custom_key_func</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="k">return</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span>  <span class="c1"># 按用户 ID 生成缓存 key</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="n">CachePolicy</span><span class="p">(</span><span class="n">key_func</span><span class="o">=</span><span class="n">custom_key_func</span><span class="p">,</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>  <span class="c1"># 5 分钟过期</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>CachePolicy 有两个参数：ttl 是缓存过期时间（秒），不指定则永不过期；key_func 是生成缓存 key 的函数，默认对输入做 pickle hash。</p>
 </div>
 <h3 id="8-node-retrypolicy">8. Node 异常重试（RetryPolicy）如何配置？</h3>
 <p><strong>基本用法</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">RetryPolicy</span>
-
-<span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;node_name&quot;</span><span class="p">,</span> <span class="n">node_function</span><span class="p">,</span>
-                 <span class="n">retry_policy</span><span class="o">=</span><span class="n">RetryPolicy</span><span class="p">(</span><span class="n">max_attempts</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">RetryPolicy</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;node_name&quot;</span><span class="p">,</span> <span class="n">node_function</span><span class="p">,</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>                 <span class="n">retry_policy</span><span class="o">=</span><span class="n">RetryPolicy</span><span class="p">(</span><span class="n">max_attempts</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</span></code></pre></div>
 <p><strong>RetryPolicy 参数</strong>：</p>
 <table>
 <thead>
@@ -5356,21 +5384,21 @@
 </div>
 <h3 id="10">10. 如何在重试时获取当前重试次数？</h3>
 <p>通过 <code>runtime.execution_info.node_attempt</code> 获取：</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Runtime</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">RetryPolicy</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">my_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">Runtime</span><span class="p">):</span>
-    <span class="n">info</span> <span class="o">=</span> <span class="n">runtime</span><span class="o">.</span><span class="n">execution_info</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;当前是第 </span><span class="si">{</span><span class="n">info</span><span class="o">.</span><span class="n">node_attempt</span><span class="si">}</span><span class="s2"> 次尝试&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">node_attempt</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">call_fallback</span><span class="p">()}</span>  <span class="c1"># 重试时使用备用方案</span>
-
-    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">call_primary_api</span><span class="p">()}</span>
-
-<span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;my_node&quot;</span><span class="p">,</span> <span class="n">my_node</span><span class="p">,</span>
-                 <span class="n">retry_policy</span><span class="o">=</span><span class="n">RetryPolicy</span><span class="p">(</span><span class="n">max_attempts</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">Runtime</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">RetryPolicy</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">Runtime</span><span class="p">):</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="n">info</span> <span class="o">=</span> <span class="n">runtime</span><span class="o">.</span><span class="n">execution_info</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;当前是第 </span><span class="si">{</span><span class="n">info</span><span class="o">.</span><span class="n">node_attempt</span><span class="si">}</span><span class="s2"> 次尝试&quot;</span><span class="p">)</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">node_attempt</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">call_fallback</span><span class="p">()}</span>  <span class="c1"># 重试时使用备用方案</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">call_primary_api</span><span class="p">()}</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;my_node&quot;</span><span class="p">,</span> <span class="n">my_node</span><span class="p">,</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>                 <span class="n">retry_policy</span><span class="o">=</span><span class="n">RetryPolicy</span><span class="p">(</span><span class="n">max_attempts</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</span></code></pre></div>
 <p><code>node_attempt</code> 从 1 开始计数，首次执行是 1，第一次重试是 2。</p>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
@@ -5440,31 +5468,31 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1"># Normal Edge：A → B（固定）</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="s2">&quot;node_b&quot;</span><span class="p">)</span>
-
-<span class="c1"># Conditional Edge：根据条件决定去 B 还是 C</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">route</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s2">&quot;node_b&quot;</span> <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;node_c&quot;</span>
-
-<span class="n">graph</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="n">route</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Normal Edge：A → B（固定）</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="s2">&quot;node_b&quot;</span><span class="p">)</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># Conditional Edge：根据条件决定去 B 还是 C</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">route</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>    <span class="k">return</span> <span class="s2">&quot;node_b&quot;</span> <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;node_c&quot;</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="n">route</span><span class="p">)</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>Normal Edge 和 Conditional Edge 的区别有四点：第一，路由方式不同，Normal Edge 是固定跳转，Conditional Edge 是动态路由；第二，定义方式不同；第三，返回值不同；第四，适用场景不同，Normal Edge 适合固定流程，Conditional Edge 适合条件分支、动态路由。</p>
 </div>
 <h3 id="3">3. 条件边的返回值是什么？</h3>
 <p>条件边函数返回 <strong>目标节点的名称</strong>（字符串）。</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">routing_function</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-    <span class="k">return</span> <span class="s2">&quot;node_b&quot;</span> <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;node_c&quot;</span>
-
-<span class="c1"># 可映射返回值到节点名</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span>
-    <span class="s2">&quot;node_a&quot;</span><span class="p">,</span>
-    <span class="n">routing_function</span><span class="p">,</span>
-    <span class="p">{</span><span class="kc">True</span><span class="p">:</span> <span class="s2">&quot;node_b&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="s2">&quot;node_c&quot;</span><span class="p">}</span>
-<span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">routing_function</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="k">return</span> <span class="s2">&quot;node_b&quot;</span> <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;node_c&quot;</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="c1"># 可映射返回值到节点名</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="s2">&quot;node_a&quot;</span><span class="p">,</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>    <span class="n">routing_function</span><span class="p">,</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>    <span class="p">{</span><span class="kc">True</span><span class="p">:</span> <span class="s2">&quot;node_b&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="s2">&quot;node_c&quot;</span><span class="p">}</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="p">)</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>条件边函数返回目标节点的名称（字符串）。也可以通过映射字典将返回值映射到节点名，比如 <code>{True: "node_b", False: "node_c"}</code>。</p>
@@ -5496,44 +5524,44 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1"># Entry Point：固定从 node_a 开始</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;node_a&quot;</span><span class="p">)</span>
-
-<span class="c1"># Conditional Entry Point：根据条件决定入口</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">choose_entry</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
-    <span class="k">return</span> <span class="s2">&quot;node_b&quot;</span> <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;urgent&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;node_c&quot;</span>
-
-<span class="n">graph</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="n">choose_entry</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Entry Point：固定从 node_a 开始</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s2">&quot;node_a&quot;</span><span class="p">)</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1"># Conditional Entry Point：根据条件决定入口</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">choose_entry</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>    <span class="k">return</span> <span class="s2">&quot;node_b&quot;</span> <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;urgent&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;node_c&quot;</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="n">choose_entry</span><span class="p">)</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>Entry Point 和 Conditional Entry Point 的区别有三点：第一，目标不同，Entry Point 是固定入口节点，Conditional Entry Point 是动态决定入口节点；第二，定义方式不同；第三，适用场景不同，Entry Point 适合单一入口，Conditional Entry Point 适合多入口、条件路由。</p>
 </div>
 <h3 id="5">5. 一个节点可以有多个出边吗？执行行为是什么？</h3>
 <p><strong>可以</strong>。一个节点可以有多个出边，所有目标节点将在下一个 <strong>superstep</strong> 中<strong>并行执行</strong>。</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># node_a 的出边指向 node_b 和 node_c</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="s2">&quot;node_b&quot;</span><span class="p">)</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="s2">&quot;node_c&quot;</span><span class="p">)</span>
-
-<span class="c1"># 执行顺序：</span>
-<span class="c1"># 1. node_a 执行</span>
-<span class="c1"># 2. node_b 和 node_c 并行执行</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># node_a 的出边指向 node_b 和 node_c</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="s2">&quot;node_b&quot;</span><span class="p">)</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="s2">&quot;node_c&quot;</span><span class="p">)</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="c1"># 执行顺序：</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="c1"># 1. node_a 执行</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="c1"># 2. node_b 和 node_c 并行执行</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>一个节点可以有多个出边，所有目标节点将在下一个 superstep 中并行执行。Superstep 是 LangGraph 的执行模型，每轮执行所有可执行的节点。</p>
 </div>
 <h3 id="6-command">6. 什么是 Command？它和条件边有什么区别？</h3>
 <p><strong>Command</strong> 是条件边的替代方案，可同时<strong>更新状态和路由</strong>。</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Command</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">my_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">):</span>
-    <span class="c1"># 同时返回状态更新和路由决策</span>
-    <span class="k">return</span> <span class="n">Command</span><span class="p">(</span>
-        <span class="n">update</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="s2">&quot;processed&quot;</span><span class="p">},</span>  <span class="c1"># 更新状态</span>
-        <span class="n">goto</span><span class="o">=</span><span class="s2">&quot;next_node&quot;</span>  <span class="c1"># 路由到下一节点</span>
-    <span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Command</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">my_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">):</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="c1"># 同时返回状态更新和路由决策</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>    <span class="k">return</span> <span class="n">Command</span><span class="p">(</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>        <span class="n">update</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="s2">&quot;processed&quot;</span><span class="p">},</span>  <span class="c1"># 更新状态</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>        <span class="n">goto</span><span class="o">=</span><span class="s2">&quot;next_node&quot;</span>  <span class="c1"># 路由到下一节点</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    <span class="p">)</span>
+</span></code></pre></div>
 <p><strong>与条件边的区别</strong>：</p>
 <table>
 <thead>
@@ -5578,8 +5606,8 @@
 <p>Send 的使用场景有两个：第一，边的数量预先未知，如动态生成的列表；第二，需要不同版本的 State 同时存在，如 Map-Reduce 模式。默认情况下，节点和边在编译前就已定义，所有节点共享同一个 State，而 Send 用于支持动态分发模式。</p>
 </div>
 <h3 id="2-send">2. Send 对象的两个参数是什么？</h3>
-<div class="highlight"><pre><span></span><code><span class="n">Send</span><span class="p">(</span><span class="n">node_name</span><span class="p">,</span> <span class="n">state_dict</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">Send</span><span class="p">(</span><span class="n">node_name</span><span class="p">,</span> <span class="n">state_dict</span><span class="p">)</span>
+</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -5603,20 +5631,20 @@
 <p>Send 对象有两个参数：node_name（目标节点名称）和 state_dict（传递给该节点的 State，可以是不同的 State）。</p>
 </div>
 <h3 id="3-send-map-reduce">3. 如何用 Send 实现 Map-Reduce 模式？</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Send</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">continue_to_jokes</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">OverallState</span><span class="p">):</span>
-    <span class="c1"># 动态生成多个 Send，每个 subject 发送到 generate_joke 节点</span>
-    <span class="k">return</span> <span class="p">[</span>
-        <span class="n">Send</span><span class="p">(</span><span class="s2">&quot;generate_joke&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;subject&quot;</span><span class="p">:</span> <span class="n">s</span><span class="p">})</span>
-        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">state</span><span class="p">[</span><span class="s1">&#39;subjects&#39;</span><span class="p">]</span>
-    <span class="p">]</span>
-
-<span class="n">graph</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="n">continue_to_jokes</span><span class="p">)</span>
-
-<span class="c1"># 后续添加 reduce 节点汇总结果</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;generate_joke&quot;</span><span class="p">,</span> <span class="s2">&quot;reduce_node&quot;</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Send</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">continue_to_jokes</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">OverallState</span><span class="p">):</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>    <span class="c1"># 动态生成多个 Send，每个 subject 发送到 generate_joke 节点</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="k">return</span> <span class="p">[</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>        <span class="n">Send</span><span class="p">(</span><span class="s2">&quot;generate_joke&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;subject&quot;</span><span class="p">:</span> <span class="n">s</span><span class="p">})</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">state</span><span class="p">[</span><span class="s1">&#39;subjects&#39;</span><span class="p">]</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>    <span class="p">]</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_conditional_edges</span><span class="p">(</span><span class="s2">&quot;node_a&quot;</span><span class="p">,</span> <span class="n">continue_to_jokes</span><span class="p">)</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="c1"># 后续添加 reduce 节点汇总结果</span>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;generate_joke&quot;</span><span class="p">,</span> <span class="s2">&quot;reduce_node&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 <p><strong>执行流程</strong>：</p>
 <ol>
 <li><code>node_a</code> 生成 subjects 列表</li>
@@ -5630,38 +5658,38 @@
 </div>
 <h2 id="graph">六、Graph 构建</h2>
 <h3 id="1-langgraph_1">1. LangGraph 构建图的基本流程？</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span><span class="p">,</span> <span class="n">START</span><span class="p">,</span> <span class="n">END</span>
-
-<span class="c1"># 1. 定义 State</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span>
-    <span class="n">count</span><span class="p">:</span> <span class="nb">int</span>
-
-<span class="c1"># 2. 创建图</span>
-<span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">State</span><span class="p">)</span>
-
-<span class="c1"># 3. 添加节点</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;node_a&#39;</span><span class="p">,</span> <span class="n">node_a_func</span><span class="p">)</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;node_b&#39;</span><span class="p">,</span> <span class="n">node_b_func</span><span class="p">)</span>
-
-<span class="c1"># 4. 添加边</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s1">&#39;node_a&#39;</span><span class="p">)</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;node_a&#39;</span><span class="p">,</span> <span class="s1">&#39;node_b&#39;</span><span class="p">)</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;node_b&#39;</span><span class="p">,</span> <span class="n">END</span><span class="p">)</span>
-
-<span class="c1"># 5. 编译</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
-
-<span class="c1"># 6. 执行</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span><span class="p">,</span> <span class="n">START</span><span class="p">,</span> <span class="n">END</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="c1"># 1. 定义 State</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>    <span class="n">messages</span><span class="p">:</span> <span class="nb">list</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>    <span class="n">count</span><span class="p">:</span> <span class="nb">int</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="c1"># 2. 创建图</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">State</span><span class="p">)</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="c1"># 3. 添加节点</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;node_a&#39;</span><span class="p">,</span> <span class="n">node_a_func</span><span class="p">)</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s1">&#39;node_b&#39;</span><span class="p">,</span> <span class="n">node_b_func</span><span class="p">)</span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="c1"># 4. 添加边</span>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">START</span><span class="p">,</span> <span class="s1">&#39;node_a&#39;</span><span class="p">)</span>
+</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;node_a&#39;</span><span class="p">,</span> <span class="s1">&#39;node_b&#39;</span><span class="p">)</span>
+</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s1">&#39;node_b&#39;</span><span class="p">,</span> <span class="n">END</span><span class="p">)</span>
+</span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a>
+</span><span id="__span-23-20"><a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="c1"># 5. 编译</span>
+</span><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="n">app</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">compile</span><span class="p">()</span>
+</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a>
+</span><span id="__span-23-23"><a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a><span class="c1"># 6. 执行</span>
+</span><span id="__span-23-24"><a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a><span class="n">result</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">invoke</span><span class="p">({</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[],</span> <span class="s2">&quot;count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>LangGraph 构建图的基本流程有 6 步：第一，定义 State；第二，创建图（StateGraph）；第三，添加节点；第四，添加边（包括 START 和 END）；第五，编译（compile）；第六，执行（invoke）。</p>
 </div>
 <h3 id="2-stategraph-schema">2. StateGraph 构造函数可以指定哪些 Schema？</h3>
-<div class="highlight"><pre><span></span><code><span class="n">StateGraph</span><span class="p">(</span><span class="n">state_schema</span><span class="p">,</span> <span class="n">input_schema</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_schema</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">StateGraph</span><span class="p">(</span><span class="n">state_schema</span><span class="p">,</span> <span class="n">input_schema</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_schema</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -5685,21 +5713,21 @@
 </tbody>
 </table>
 <p><strong>示例</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">InputState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">OutputState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">graph_output</span><span class="p">:</span> <span class="nb">str</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">OverallState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">foo</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">graph_output</span><span class="p">:</span> <span class="nb">str</span>
-
-<span class="n">builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">OverallState</span><span class="p">,</span>
-                     <span class="n">input_schema</span><span class="o">=</span><span class="n">InputState</span><span class="p">,</span>
-                     <span class="n">output_schema</span><span class="o">=</span><span class="n">OutputState</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">InputState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    <span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">OutputState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>    <span class="n">graph_output</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">OverallState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>    <span class="n">foo</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>    <span class="n">user_input</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>    <span class="n">graph_output</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="n">builder</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">OverallState</span><span class="p">,</span>
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>                     <span class="n">input_schema</span><span class="o">=</span><span class="n">InputState</span><span class="p">,</span>
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>                     <span class="n">output_schema</span><span class="o">=</span><span class="n">OutputState</span><span class="p">)</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>StateGraph 构造函数可以指定三个 Schema：state_schema（图的整体 State Schema，必需）、input_schema（输入 Schema，约束图的输入）、output_schema（输出 Schema，约束图的输出）。</p>
@@ -5745,20 +5773,20 @@
 <li>使用 <code>interrupt()</code> 函数暂停执行</li>
 <li>人工检查/修改状态后，调用 <code>continue()</code> 恢复</li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">interrupt</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">review_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">):</span>
-    <span class="c1"># 暂停执行，等待人工审核</span>
-    <span class="n">decision</span> <span class="o">=</span> <span class="n">interrupt</span><span class="p">({</span>
-        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;review&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;pending_content&quot;</span><span class="p">]</span>
-    <span class="p">})</span>
-
-    <span class="k">if</span> <span class="n">decision</span><span class="p">[</span><span class="s2">&quot;approve&quot;</span><span class="p">]:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;approved&quot;</span><span class="p">}</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;rejected&quot;</span><span class="p">}</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.types</span><span class="w"> </span><span class="kn">import</span> <span class="n">interrupt</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">review_node</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">):</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>    <span class="c1"># 暂停执行，等待人工审核</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>    <span class="n">decision</span> <span class="o">=</span> <span class="n">interrupt</span><span class="p">({</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;review&quot;</span><span class="p">,</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>        <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">state</span><span class="p">[</span><span class="s2">&quot;pending_content&quot;</span><span class="p">]</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>    <span class="p">})</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>    <span class="k">if</span> <span class="n">decision</span><span class="p">[</span><span class="s2">&quot;approve&quot;</span><span class="p">]:</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;approved&quot;</span><span class="p">}</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;rejected&quot;</span><span class="p">}</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>Human-in-the-loop 是指在工作流中引入人工审核节点，让人可以在关键节点检查、修改状态后再继续。实现方式是：在需要人工介入的节点前设置中断点，使用 interrupt() 函数暂停执行，人工检查/修改状态后，调用 continue() 恢复。</p>
@@ -5813,22 +5841,22 @@
 <li><code>parent_config</code>：上一个 checkpoint 的配置</li>
 </ul>
 <p><strong>获取状态</strong>：
-<div class="highlight"><pre><span></span><code><span class="c1"># 获取最新状态</span>
-<span class="n">latest_state</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-
-<span class="c1"># 获取特定 checkpoint</span>
-<span class="n">historical_state</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-
-<span class="c1"># 获取历史记录（逆序，最新在前）</span>
-<span class="n">history</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">get_state_history</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
-</code></pre></div></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># 获取最新状态</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">latest_state</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="c1"># 获取特定 checkpoint</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="n">historical_state</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="c1"># 获取历史记录（逆序，最新在前）</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="n">history</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">get_state_history</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
+</span></code></pre></div></p>
 <p><strong>更新状态</strong>：
-<div class="highlight"><pre><span></span><code><span class="c1"># 增量更新（产生新 checkpoint）</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span> <span class="s2">&quot;new_value&quot;</span><span class="p">})</span>
-
-<span class="c1"># 伪装更新来源，改变下一步走向</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span> <span class="s2">&quot;new&quot;</span><span class="p">},</span> <span class="n">as_node</span><span class="o">=</span><span class="s2">&quot;node_a&quot;</span><span class="p">)</span>
-</code></pre></div></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># 增量更新（产生新 checkpoint）</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">graph</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span> <span class="s2">&quot;new_value&quot;</span><span class="p">})</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="c1"># 伪装更新来源，改变下一步走向</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="n">graph</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;foo&quot;</span><span class="p">:</span> <span class="s2">&quot;new&quot;</span><span class="p">},</span> <span class="n">as_node</span><span class="o">=</span><span class="s2">&quot;node_a&quot;</span><span class="p">)</span>
+</span></code></pre></div></p>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>获取 State 快照使用 <code>get_state()</code> 方法，获取历史记录使用 <code>get_state_history()</code>。更新状态使用 <code>update_state()</code> 方法，每次更新产生新 checkpoint；通过 <code>as_node</code> 参数可伪装更新来源，改变下一步执行路径。</p>
@@ -5861,16 +5889,16 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><span class="c1"># Replay：从特定 checkpoint 重放</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">before_joke</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
-
-<span class="c1"># Fork：修改状态，创建分支</span>
-<span class="n">fork_config</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span>
-    <span class="n">before_joke</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>
-    <span class="n">values</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;chickens&quot;</span><span class="p">},</span>
-<span class="p">)</span>
-<span class="n">fork_result</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">fork_config</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Replay：从特定 checkpoint 重放</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">result</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">before_joke</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="c1"># Fork：修改状态，创建分支</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="n">fork_config</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    <span class="n">before_joke</span><span class="o">.</span><span class="n">config</span><span class="p">,</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a>    <span class="n">values</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;topic&quot;</span><span class="p">:</span> <span class="s2">&quot;chickens&quot;</span><span class="p">},</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="p">)</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="n">fork_result</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">fork_config</span><span class="p">)</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>Replay 是从历史 checkpoint 恢复执行，checkpoint 之前的节点跳过，之后的节点重新执行，不可修改状态。Fork 是从历史 checkpoint 创建分支，可修改状态后继续执行，原历史记录保持不变。简单说：Replay 是重新走老路，Fork 是开辟新路径。</p>
@@ -5951,17 +5979,17 @@
 <hr />
 <h3 id="10-store">10. Store 如何存取数据和语义搜索？</h3>
 <p><strong>基础存取</strong>：
-<div class="highlight"><pre><span></span><code><span class="n">namespace</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;user_123&quot;</span><span class="p">,</span> <span class="s2">&quot;memories&quot;</span><span class="p">)</span>
-<span class="n">store</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="n">uuid</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;food_preference&quot;</span><span class="p">:</span> <span class="s2">&quot;I like pizza&quot;</span><span class="p">})</span>
-<span class="n">memories</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">namespace</span><span class="p">)</span>
-</code></pre></div></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">namespace</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;user_123&quot;</span><span class="p">,</span> <span class="s2">&quot;memories&quot;</span><span class="p">)</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="n">store</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">namespace</span><span class="p">,</span> <span class="n">uuid</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;food_preference&quot;</span><span class="p">:</span> <span class="s2">&quot;I like pizza&quot;</span><span class="p">})</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="n">memories</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">namespace</span><span class="p">)</span>
+</span></code></pre></div></p>
 <p><strong>语义搜索</strong>（需配置 Embedding）：
-<div class="highlight"><pre><span></span><code><span class="n">memories</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">namespace</span><span class="p">,</span>
-    <span class="n">query</span><span class="o">=</span><span class="s2">&quot;What does the user like to eat?&quot;</span><span class="p">,</span>  <span class="c1"># 模糊匹配</span>
-    <span class="n">limit</span><span class="o">=</span><span class="mi">3</span>
-<span class="p">)</span>
-</code></pre></div></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">memories</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>    <span class="n">namespace</span><span class="p">,</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>    <span class="n">query</span><span class="o">=</span><span class="s2">&quot;What does the user like to eat?&quot;</span><span class="p">,</span>  <span class="c1"># 模糊匹配</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>    <span class="n">limit</span><span class="o">=</span><span class="mi">3</span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="p">)</span>
+</span></code></pre></div></p>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>Store 使用元组 <code>(用户 ID, 分类名)</code> 作为命名空间。<code>put()</code> 存入数据，<code>search()</code> 检索数据。配置 Embedding 后，可通过自然语言进行语义搜索，打破精准关键字匹配的限制。</p>
@@ -6011,12 +6039,12 @@
 <hr />
 <h3 id="12-llm-token">12. 如何实现 LLM Token 级别的流式输出？</h3>
 <p>使用 <code>messages</code> 模式：</p>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">stream_mode</span><span class="o">=</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s2">&quot;v2&quot;</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">chunk</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;messages&quot;</span><span class="p">:</span>
-        <span class="n">msg</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">chunk</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">stream</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">stream_mode</span><span class="o">=</span><span class="s2">&quot;messages&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s2">&quot;v2&quot;</span><span class="p">):</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>    <span class="k">if</span> <span class="n">chunk</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;messages&quot;</span><span class="p">:</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>        <span class="n">msg</span><span class="p">,</span> <span class="n">metadata</span> <span class="o">=</span> <span class="n">chunk</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>        <span class="k">if</span> <span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">:</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div>
 <p>可通过 <code>tags</code> 或 <code>langgraph_node</code> 过滤特定节点或模型的输出。</p>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
@@ -6037,14 +6065,14 @@
 <hr />
 <h3 id="14-remainingsteps">14. 如何获取当前执行步数？RemainingSteps 的作用？</h3>
 <p><strong>获取当前步数</strong>：
-<div class="highlight"><pre><span></span><code><span class="n">current_step</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;metadata&quot;</span><span class="p">][</span><span class="s2">&quot;langgraph_step&quot;</span><span class="p">]</span>
-</code></pre></div></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">current_step</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;metadata&quot;</span><span class="p">][</span><span class="s2">&quot;langgraph_step&quot;</span><span class="p">]</span>
+</span></code></pre></div></p>
 <p><strong>RemainingSteps（剩余步数追踪）</strong>：
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.managed</span><span class="w"> </span><span class="kn">import</span> <span class="n">RemainingSteps</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-    <span class="n">remaining_steps</span><span class="p">:</span> <span class="n">RemainingSteps</span>  <span class="c1"># 自动填充</span>
-</code></pre></div></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.managed</span><span class="w"> </span><span class="kn">import</span> <span class="n">RemainingSteps</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">State</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>    <span class="n">remaining_steps</span><span class="p">:</span> <span class="n">RemainingSteps</span>  <span class="c1"># 自动填充</span>
+</span></code></pre></div></p>
 <p><strong>主动式 vs 被动式</strong>：
 - <strong>主动式</strong>（RemainingSteps）：达到限制前在图内主动降级
 - <strong>被动式</strong>：超过限制后在图外 try/catch</p>
@@ -6055,17 +6083,17 @@
 <hr />
 <h3 id="15-context-schema">15. 什么是 Context Schema？</h3>
 <p><strong>Context Schema</strong> 用于向节点传递<strong>不属于 State</strong> 的运行时信息（如模型名称、数据库连接、用户信息等）。</p>
-<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
-<span class="k">class</span><span class="w"> </span><span class="nc">ContextSchema</span><span class="p">:</span>
-    <span class="n">llm_provider</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;openai&quot;</span>
-
-<span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">State</span><span class="p">,</span> <span class="n">context_schema</span><span class="o">=</span><span class="n">ContextSchema</span><span class="p">)</span>
-<span class="n">graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;llm_provider&quot;</span><span class="p">:</span> <span class="s2">&quot;anthropic&quot;</span><span class="p">})</span>
-
-<span class="c1"># 节点中访问</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">node_a</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">Runtime</span><span class="p">[</span><span class="n">ContextSchema</span><span class="p">]):</span>
-    <span class="n">llm</span> <span class="o">=</span> <span class="n">get_llm</span><span class="p">(</span><span class="n">runtime</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">llm_provider</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nd">@dataclass</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">ContextSchema</span><span class="p">:</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>    <span class="n">llm_provider</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;openai&quot;</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="n">graph</span> <span class="o">=</span> <span class="n">StateGraph</span><span class="p">(</span><span class="n">State</span><span class="p">,</span> <span class="n">context_schema</span><span class="o">=</span><span class="n">ContextSchema</span><span class="p">)</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="n">graph</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;llm_provider&quot;</span><span class="p">:</span> <span class="s2">&quot;anthropic&quot;</span><span class="p">})</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="c1"># 节点中访问</span>
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">node_a</span><span class="p">(</span><span class="n">state</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span> <span class="n">runtime</span><span class="p">:</span> <span class="n">Runtime</span><span class="p">[</span><span class="n">ContextSchema</span><span class="p">]):</span>
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>    <span class="n">llm</span> <span class="o">=</span> <span class="n">get_llm</span><span class="p">(</span><span class="n">runtime</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">llm_provider</span><span class="p">)</span>
+</span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">参考答案</p>
 <p>Context Schema 用于向节点传递不属于 State 的运行时信息，如配置、连接、用户信息等。定义方式是创建 dataclass 并传给 StateGraph 的 <code>context_schema</code> 参数，执行时通过 <code>context</code> 传入，节点中通过 <code>runtime.context</code> 访问。</p>
@@ -6253,6 +6281,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -6296,7 +6326,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

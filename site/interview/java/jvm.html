@@ -1177,6 +1177,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/04_web/fastapi-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastapi-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4437,12 +4465,12 @@
 </ul>
 <p>在 JDK 1.7 及之后，字符串常量池存的是“字符串对象的引用”和“字符串的内容”。本质上是一个 HashTable，K 是字符串内容得到的Hash值，Value 则是当前字符串的引用。</p>
 <p>当我们声明了一个字符串变量：</p>
-<div class="highlight"><pre><span></span><code><span class="n">String</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;abc&quot;</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">String</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;abc&quot;</span>
+</span></code></pre></div>
 <p>此时，不会直接去堆区创建一个内容为 "abc" 的对象，而是先去字符串常量池里面找有问有内容为 ”abc" 的对象，如果有，则直接返回，没有，才去堆区创建一个 “abc" 对象，然后把这个对象的引用放到字符串常量池里面。
  注意，如果是通过 <code>new</code> 关键字声明字符串，则一定会在堆区创建一个对象</p>
-<div class="highlight"><pre><span></span><code><span class="n">String</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">)</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">String</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 <h4 id="5">5. 一个什么都没用的空方法，包括入参，那么局部变量表有没有变量？⭐️⭐️</h4>
 <p>分情况，对于静态方法，由于不需要访问实例对象 this，因此，局部变量表为空。
  对于非静态方式，即使是一个完全空的方法，局部变量表中也会有一个用于存储 this 引用的变量。this 引用指向当前实例对象，在方法调用时被隐式传入。</p>
@@ -4463,15 +4491,15 @@
  在 java 8 之前，方法区的实现称为永久代 PermGen，但在 Java 8 及之后的版本中，已经被元空间 Metaspace 所替代。</p>
 <h4 id="9">9. 变量存在堆栈的什么位置呢？</h4>
 <p>局部变量会存在当前方法栈帧中的局部变量表中，当方法执行完毕，栈帧被回收，所以局部变量也会被释放。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">method</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">localVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">  </span><span class="c1">// 局部变量，存储在栈帧中的局部变量表里</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">method</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">localVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">  </span><span class="c1">// 局部变量，存储在栈帧中的局部变量表里</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">}</span>
+</span></code></pre></div>
 <p>静态变量会存在方法区中，在 Java 7 中是永久带，在 Java8 及以后 是元空间。</p>
-<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StaticVarDemo</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">staticVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">  </span><span class="c1">// 静态变量，存储在方法区中</span>
-<span class="p">}</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StaticVarDemo</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">staticVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">  </span><span class="c1">// 静态变量，存储在方法区中</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">}</span>
+</span></code></pre></div>
 <h4 id="10-jdk-161718">10. 说一下 JDK 1.6、1.7、1.8 内存区域的变化?</h4>
 <p>“JDK 1.6 时代方法区还在 JVM 内的‘永久代’里；1.7 开始把字符串和静态变量‘遣散’到堆中；1.8 则干脆把永久代‘拆迁’了，将剩下的类元信息搬到了物理内存里的‘元空间’，彻底解决了永久代容易内存溢出的历史包袱。”</p>
 <p>结论先行：在 JDK 1.8 之后，字符串常量池以及静态变量依然留在“堆（Heap）”中，并没有随类元信息一起搬到“元空间（Metaspace）”。</p>
@@ -4486,10 +4514,10 @@
 <h4 id="13-jvm">13. JVM 类加载过程⭐️⭐️⭐️</h4>
 <p>类加载的全过程可以概括为：<strong>加载 <span class="arithmatex">\(\rightarrow\)</span> 链接（验证、准备、解析） <span class="arithmatex">\(\rightarrow\)</span> 初始化</strong>。</p>
 <p>（1）加载就是根据类的<strong>全限定名</strong>（比如 <code>com.test.User</code>）找到对应的 <code>.class</code> 文件，以二进制流读入到内存中。</p>
-<div class="highlight"><pre><span></span><code>通过一个类的全限定名获取该类的二进制流。
-将该二进制流中的静态存储结构转化为方法去运行时数据结构。 
-在内存中生成该类的Class对象，作为该类的数据访问入口。
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>通过一个类的全限定名获取该类的二进制流。
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>将该二进制流中的静态存储结构转化为方法去运行时数据结构。 
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>在内存中生成该类的Class对象，作为该类的数据访问入口。
+</span></code></pre></div>
 <p>（2）链接又可以分为三个阶段，分别为：</p>
 <ul>
 <li>验证：安检。检查加载的字节码是否符合 JVM 规范。</li>
@@ -4555,13 +4583,13 @@
 <h4 id="16">16. 堆内存的分配方式⭐️⭐️</h4>
 <p>在堆中为对象分配内存时，主要使用两种策略：指针碰撞和空闲列表。指针碰撞适用于管理简单、碎片化较少的内存区域，如年轻代；而空闲列表适用于内存碎片化较严重或对象大小差异较大的场景如老年代。</p>
 <h5 id="_4">什么是指针碰撞</h5>
-<div class="highlight"><pre><span></span><code>假设堆内存是一个连续的空间，分为两个部分，一部分是已经被使用的内存，另一部分是未被使用的内存。
-在分配内存时，Java 虚拟机会维护一个指针，指向下一个可用的内存地址，当需要为新对象分配内存时，指针只需向空闲空间的方向移动一段距离，这段距离的大小等于对象的大小。
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>假设堆内存是一个连续的空间，分为两个部分，一部分是已经被使用的内存，另一部分是未被使用的内存。
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>在分配内存时，Java 虚拟机会维护一个指针，指向下一个可用的内存地址，当需要为新对象分配内存时，指针只需向空闲空间的方向移动一段距离，这段距离的大小等于对象的大小。
+</span></code></pre></div>
 <h5 id="_5">什么是空闲列表</h5>
-<div class="highlight"><pre><span></span><code>堆内存是碎片化的（不规整）。已用内存和空闲内存相互交错，没有明显的界限。JVM 必须维护一张列表，记录哪些内存块是可用的，以及它们的大小。
-当需要分配内存时，JVM 会从列表中找到一块足够大的空间划分给对象实例，并更新列表上的记录。
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>堆内存是碎片化的（不规整）。已用内存和空闲内存相互交错，没有明显的界限。JVM 必须维护一张列表，记录哪些内存块是可用的，以及它们的大小。
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>当需要分配内存时，JVM 会从列表中找到一块足够大的空间划分给对象实例，并更新列表上的记录。
+</span></code></pre></div>
 <p align='center'>
     <img src="../../assets/imgs/interview/java/jvm/jvm02.png" style="zoom:80%;" />
 </p>
@@ -4774,6 +4802,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -4817,7 +4847,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

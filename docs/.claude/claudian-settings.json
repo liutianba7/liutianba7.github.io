@@ -1,0 +1,79 @@
+{
+  "userName": "",
+  "enableBlocklist": true,
+  "blockedCommands": {
+    "unix": [
+      "rm -rf",
+      "chmod 777",
+      "chmod -R 777"
+    ],
+    "windows": [
+      "del /s /q",
+      "rd /s /q",
+      "rmdir /s /q",
+      "format",
+      "diskpart",
+      "Remove-Item -Recurse -Force",
+      "Remove-Item -Force -Recurse",
+      "Remove-Item -r -fo",
+      "Remove-Item -fo -r",
+      "Remove-Item -Recurse",
+      "Remove-Item -r",
+      "ri -Recurse",
+      "ri -r",
+      "ri -Force",
+      "ri -fo",
+      "rm -r -fo",
+      "rm -Recurse",
+      "rm -Force",
+      "del -Recurse",
+      "del -Force",
+      "erase -Recurse",
+      "erase -Force",
+      "rd -Recurse",
+      "rmdir -Recurse",
+      "Format-Volume",
+      "Clear-Disk",
+      "Initialize-Disk",
+      "Remove-Partition"
+    ]
+  },
+  "permissionMode": "yolo",
+  "model": "haiku",
+  "thinkingBudget": "off",
+  "enableAutoTitleGeneration": true,
+  "titleGenerationModel": "",
+  "show1MModel": false,
+  "enableChrome": false,
+  "enableBangBash": false,
+  "excludedTags": [],
+  "mediaFolder": "",
+  "systemPrompt": "当你现在的任务是完成笔记的时候，需要注意：\n1）一定要参考官方文档，并且给出引用链接\n2）适当的采用 callout 语法，这里的风格为 mkdcos 风格\n3）笔记要精美，简练，好用",
+  "allowedExportPaths": [
+    "~/Desktop",
+    "~/Downloads"
+  ],
+  "persistentExternalContextPaths": [],
+  "environmentVariables": "",
+  "envSnippets": [],
+  "customContextLimits": {},
+  "keyboardNavigation": {
+    "scrollUpKey": "w",
+    "scrollDownKey": "s",
+    "focusInputKey": "i"
+  },
+  "locale": "en",
+  "claudeCliPath": "",
+  "claudeCliPathsByHost": {
+    "LIUTIANBA7": "D:\\02_DevStack\\08_Frontend\\nodejs\\node_modules\\@anthropic-ai\\claude-code\\cli.js"
+  },
+  "loadUserClaudeSettings": true,
+  "lastClaudeModel": "haiku",
+  "lastCustomModel": "",
+  "lastEnvHash": "",
+  "maxTabs": 3,
+  "tabBarPosition": "input",
+  "enableAutoScroll": true,
+  "openInMainTab": false,
+  "hiddenSlashCommands": []
+}

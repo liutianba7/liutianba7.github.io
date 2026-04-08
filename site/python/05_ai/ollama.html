@@ -1184,6 +1184,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_web/fastapi-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastapi-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3390,9 +3418,9 @@
 <li>双击安装，默认安装到 <code>C:\Users\&lt;用户名&gt;\AppData\Local\Programs\Ollama</code></li>
 </ol>
 <p><strong>自定义安装路径（命令行安装）</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 使用 /DIR 参数指定安装目录</span>
-OllamaSetup.exe<span class="w"> </span>/DIR<span class="o">=</span>D:<span class="se">\0</span>2_DevStack<span class="se">\0</span>9_AI<span class="se">\O</span>llama
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 使用 /DIR 参数指定安装目录</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>OllamaSetup.exe<span class="w"> </span>/DIR<span class="o">=</span>D:<span class="se">\0</span>2_DevStack<span class="se">\0</span>9_AI<span class="se">\O</span>llama
+</span></code></pre></div>
 <h5 id="2">2. 配置模型存放路径</h5>
 <p>默认情况下，模型文件存放在：</p>
 <ul>
@@ -3401,21 +3429,21 @@ OllamaSetup.exe<span class="w"> </span>/DIR<span class="o">=</span>D:<span class
 </ul>
 <p>模型文件较大（几 GB 到几十 GB），建议修改到空间充足的位置：</p>
 <p><strong>Windows 设置环境变量</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c"># 方式1：PowerShell 临时设置（当前会话有效）</span>
-<span class="nv">$env:OLLAMA_MODELS</span><span class="p">=</span><span class="s2">&quot;D:\02_DevStack\09_AI\OllamaModels&quot;</span>
-
-<span class="c"># 方式2：系统环境变量（永久有效）</span>
-<span class="c"># 设置 → 系统 → 关于 → 高级系统设置 → 环境变量</span>
-<span class="c"># 新建系统变量：OLLAMA_MODELS = D:\02_DevStack\09_AI\OllamaModels</span>
-</code></pre></div>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c"># 方式1：PowerShell 临时设置（当前会话有效）</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">$env:OLLAMA_MODELS</span><span class="p">=</span><span class="s2">&quot;D:\02_DevStack\09_AI\OllamaModels&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c"># 方式2：系统环境变量（永久有效）</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c"># 设置 → 系统 → 关于 → 高级系统设置 → 环境变量</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c"># 新建系统变量：OLLAMA_MODELS = D:\02_DevStack\09_AI\OllamaModels</span>
+</span></code></pre></div>
 <p>注意💡：我改环境变量失效啊，但是可以直接在 ollama 的设置里边配置模型存放位置。</p>
 <h5 id="3">3. 验证安装</h5>
-<div class="highlight"><pre><span></span><code><span class="c1"># 查看版本</span>
-ollama<span class="w"> </span>--version
-
-<span class="c1"># 查看帮助</span>
-ollama<span class="w"> </span>--help
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 查看版本</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ollama<span class="w"> </span>--version
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 查看帮助</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>ollama<span class="w"> </span>--help
+</span></code></pre></div>
 <h5 id="4">4. 常用环境变量配置</h5>
 <table>
 <thead>
@@ -3454,10 +3482,10 @@ ollama<span class="w"> </span>--help
 </tbody>
 </table>
 <p><strong>配置示例（Windows 系统变量）</strong>：</p>
-<div class="highlight"><pre><span></span><code>OLLAMA_MODELS = D:\02_DevStack\09_AI\OllamaModels
-OLLAMA_HOST = 0.0.0.0
-OLLAMA_PORT = 11434
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>OLLAMA_MODELS = D:\02_DevStack\09_AI\OllamaModels
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>OLLAMA_HOST = 0.0.0.0
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>OLLAMA_PORT = 11434
+</span></code></pre></div>
 <blockquote>
 <p>⚠️ <strong>注意</strong>：修改环境变量后需要<strong>重启 Ollama 服务</strong>才能生效。</p>
 </blockquote>
@@ -3465,13 +3493,13 @@ OLLAMA_PORT = 11434
 <p><strong>Windows/macOS</strong>：
 安装后自动在后台运行，系统托盘可见 Ollama 图标。</p>
 <p><strong>Linux/手动启动</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 后台启动</span>
-ollama<span class="w"> </span>serve
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 后台启动</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>ollama<span class="w"> </span>serve
+</span></code></pre></div>
 <p><strong>验证服务是否运行</strong>：</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 测试 API 是否可用</span>
-curl<span class="w"> </span>http://localhost:11434/api/tags
-</code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 测试 API 是否可用</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>curl<span class="w"> </span>http://localhost:11434/api/tags
+</span></code></pre></div>
 <h4 id="ollama_2">Ollama 常用命令</h4>
 <table>
 <thead>
@@ -3540,6 +3568,8 @@ curl<span class="w"> </span>http://localhost:11434/api/tags
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -3583,7 +3613,7 @@ curl<span class="w"> </span>http://localhost:11434/api/tags
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

@@ -1,0 +1,203 @@
+{
+  "main": {
+    "id": "5b90a90b317376ca",
+    "type": "split",
+    "children": [
+      {
+        "id": "3dd58f66bad6c7fe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c638d2ce35974c15",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "python/04_web/fastapi-v2.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "fastapi-v2"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "406d307d71e6ea93",
+    "type": "split",
+    "children": [
+      {
+        "id": "3655b08a281bfe6f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3d3d576130c78ddc",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "97902ed32e7e6f5a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "python/04_web/fastapi-v2.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "fastapi-v2 的大纲"
+            }
+          },
+          {
+            "id": "37d6c36a7a92ab9b",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "42d8cd818f66f3b9",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7c5e86e03a5a36ba",
+    "type": "split",
+    "children": [
+      {
+        "id": "d59075b03788911e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "69f32e6ebdd24abe",
+            "type": "leaf",
+            "state": {
+              "type": "claudian-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Claudian"
+            }
+          },
+          {
+            "id": "f49238499448fc4d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "python/04_web/fastapi-v2.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "fastapi-v2 的反向链接列表"
+            }
+          },
+          {
+            "id": "37a941308b7b6118",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "python/04_web/fastapi-v2.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "fastapi-v2 的出链列表"
+            }
+          },
+          {
+            "id": "7661e525c0cd1210",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "642504ee0ade84b3",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 542.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "claudian:Open Claudian": false,
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "97902ed32e7e6f5a",
+  "lastOpenFiles": [
+    "python/04_web/fastapi.md",
+    "python/04_web/官方笔记：.md",
+    "python/04_web/fastapi-v2.md"
+  ]
+}

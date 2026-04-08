@@ -1171,6 +1171,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/04_web/fastapi-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastapi-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3448,217 +3476,217 @@
 </ul>
 <h3 id="docker_2"><strong>安装docker</strong></h3>
 <p>先去安装c,c++环境</p>
-<div class="highlight"><pre><span></span><code>yum install gcc
-yum install gcc-c++
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>yum install gcc
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>yum install gcc-c++
+</span></code></pre></div>
 <p>再去安装一些docker的依赖</p>
-<div class="highlight"><pre><span></span><code>yum install -y yum-utils \
-  device-mapper-persistent-data \
-  lvm2
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>yum install -y yum-utils \
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  device-mapper-persistent-data \
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  lvm2
+</span></code></pre></div>
 <p>添加镜像源</p>
-<div class="highlight"><pre><span></span><code># 12月1日，发现这个源有问题
-sudo yum-config-manager \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
-
-# 清华源
-sed -i &#39;s+https://download.docker.com+https://mirrors.tuna.tsinghua.edu.cn/docker-ce+&#39; /etc/yum.repos.d/docker-ce.repo
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a># 12月1日，发现这个源有问题
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo yum-config-manager \
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    --add-repo \
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    https://download.docker.com/linux/centos/docker-ce.repo
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a># 清华源
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>sed -i &#39;s+https://download.docker.com+https://mirrors.tuna.tsinghua.edu.cn/docker-ce+&#39; /etc/yum.repos.d/docker-ce.repo
+</span></code></pre></div>
 <p>安装docker</p>
-<div class="highlight"><pre><span></span><code># 一个一个安装，不然有问题
-yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-# 一键安装
-curl -fsSL https://github.com/tech-shrimp/docker_installer/releases/download/latest/linux.sh| bash -s docker --mirror Aliyun
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a># 一个一个安装，不然有问题
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a># 一键安装
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>curl -fsSL https://github.com/tech-shrimp/docker_installer/releases/download/latest/linux.sh| bash -s docker --mirror Aliyun
+</span></code></pre></div>
 <p>删除 docker</p>
-<div class="highlight"><pre><span></span><code>yum remove docker \  
-                  docker-client \  
-                  docker-client-latest \  
-                  docker-common \  
-                  docker-latest \  
-                  docker-latest-logrotate \  
-                  docker-logrotate \  
-                  docker-engine
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>yum remove docker \  
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>                  docker-client \  
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>                  docker-client-latest \  
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>                  docker-common \  
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>                  docker-latest \  
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>                  docker-latest-logrotate \  
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>                  docker-logrotate \  
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>                  docker-engine
+</span></code></pre></div>
 <h3 id="docker_3"><strong>docker的配置</strong></h3>
 <p>配置仓库</p>
-<div class="highlight"><pre><span></span><code><span class="n">sudo</span><span class="w"> </span><span class="n">mkdir</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">docker</span><span class="w"> </span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">tee</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">daemon</span><span class="p">.</span><span class="na">json</span><span class="w"> </span><span class="o">&lt;&lt;-</span><span class="err">&#39;</span><span class="n">EOF</span><span class="err">&#39;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;registry-mirrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="s">&quot;https://kf7vf3vo.mirror.aliyuncs.com&quot;</span><span class="o">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">EOF</span><span class="w"> </span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">daemon</span><span class="o">-</span><span class="n">reload</span><span class="w"> </span>
-<span class="n">sudo</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">restart</span><span class="w"> </span><span class="n">docker</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">sudo</span><span class="w"> </span><span class="n">mkdir</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">docker</span><span class="w"> </span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">sudo</span><span class="w"> </span><span class="n">tee</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">daemon</span><span class="p">.</span><span class="na">json</span><span class="w"> </span><span class="o">&lt;&lt;-</span><span class="err">&#39;</span><span class="n">EOF</span><span class="err">&#39;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;registry-mirrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="s">&quot;https://kf7vf3vo.mirror.aliyuncs.com&quot;</span><span class="o">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">EOF</span><span class="w"> </span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">sudo</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">daemon</span><span class="o">-</span><span class="n">reload</span><span class="w"> </span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">sudo</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="n">restart</span><span class="w"> </span><span class="n">docker</span>
+</span></code></pre></div>
 <p>完整配置如下（现在阿里的仓库不对外开放了，只能阿里云的云服务器才能用）<code>ps: 实在没源用我意思挂着梯子下到本地, 然后从本机传到 docker</code></p>
-<div class="highlight"><pre><span></span><code>坑：最后不要有逗号！！
- {
-  &quot;registry-mirrors&quot;: [
-        &quot;https://docker.m.daocloud.io&quot;,
-        &quot;https://docker.1panel.live&quot;,
-        &quot;https://docker.xuanyuan.me&quot;,
-        &quot;https://docker.mirrors.ustc.edu.cn&quot;,
-        &quot;https://registry.dockermirror.com&quot;,
-        &quot;https://hub-mirror.c.163.com&quot;
-        ]
-}
-
-// 腾讯云服务器的配置
- {
-  &quot;registry-mirrors&quot;: [
-        &quot;https://docker.m.daocloud.io&quot;,
-        &quot;https://docker.1panel.live&quot;,
-        &quot;https://docker.xuanyuan.me&quot;,
-        &quot;https://docker.mirrors.ustc.edu.cn&quot;,
-        &quot;https://registry.dockermirror.com&quot;,
-        &quot;https://hub-mirror.c.163.com&quot;,
-        &quot;https://mirror.ccs.tencentyun.com&quot;
-        ]
-}
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>坑：最后不要有逗号！！
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a> {
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  &quot;registry-mirrors&quot;: [
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        &quot;https://docker.m.daocloud.io&quot;,
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        &quot;https://docker.1panel.live&quot;,
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        &quot;https://docker.xuanyuan.me&quot;,
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        &quot;https://docker.mirrors.ustc.edu.cn&quot;,
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>        &quot;https://registry.dockermirror.com&quot;,
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        &quot;https://hub-mirror.c.163.com&quot;
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>        ]
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>}
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>// 腾讯云服务器的配置
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a> {
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>  &quot;registry-mirrors&quot;: [
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>        &quot;https://docker.m.daocloud.io&quot;,
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>        &quot;https://docker.1panel.live&quot;,
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>        &quot;https://docker.xuanyuan.me&quot;,
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>        &quot;https://docker.mirrors.ustc.edu.cn&quot;,
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>        &quot;https://registry.dockermirror.com&quot;,
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>        &quot;https://hub-mirror.c.163.com&quot;,
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>        &quot;https://mirror.ccs.tencentyun.com&quot;
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>        ]
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>}
+</span></code></pre></div>
 <p>配置允许远程连接（为了后续把springboot项目打包成镜像，上传到docker）</p>
 <ul>
 <li><code>-H tcp://0.0.0.0:2375</code>：开启 TCP 端口监听，允许所有 IP 访问（生产环境建议限制 IP）。</li>
 <li><code>-H fd://</code>：保留默认 Unix socket 方式（本地通信仍可用）。</li>
 <li><code>2375</code> 是 Docker 默认的远程 API 端口。
-<div class="highlight"><pre><span></span><code><span class="c1">// 1. 编辑配置文件</span>
-<span class="n">vim</span><span class="w"> </span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">docker</span><span class="p">.</span><span class="na">service</span>
-
-<span class="c1">// 2. 修改配置</span>
-<span class="n">ExecStart</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">dockerd</span><span class="w"> </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="n">fd</span><span class="p">:</span><span class="c1">// --containerd=/run/containerd/containerd.sock</span>
-<span class="n">ExecStart</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">dockerd</span><span class="w"> </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="n">tcp</span><span class="p">:</span><span class="c1">//0.0.0.0:2375 -H fd:// --containerd=/run/containerd/containerd.sock</span>
-
-<span class="c1">// 3. 重启服务</span>
-<span class="n">systemctl</span><span class="w"> </span><span class="n">daemon</span><span class="o">-</span><span class="n">reload</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">重载</span><span class="w"> </span><span class="n">systemd</span><span class="w"> </span><span class="n">配置</span>
-<span class="n">systemctl</span><span class="w"> </span><span class="n">restart</span><span class="w"> </span><span class="n">docker</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="n">重启</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="n">服务</span>
-</code></pre></div></li>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// 1. 编辑配置文件</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">vim</span><span class="w"> </span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">systemd</span><span class="o">/</span><span class="n">system</span><span class="o">/</span><span class="n">docker</span><span class="p">.</span><span class="na">service</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1">// 2. 修改配置</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">ExecStart</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">dockerd</span><span class="w"> </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="n">fd</span><span class="p">:</span><span class="c1">// --containerd=/run/containerd/containerd.sock</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">ExecStart</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">dockerd</span><span class="w"> </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="n">tcp</span><span class="p">:</span><span class="c1">//0.0.0.0:2375 -H fd:// --containerd=/run/containerd/containerd.sock</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="c1">// 3. 重启服务</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">systemctl</span><span class="w"> </span><span class="n">daemon</span><span class="o">-</span><span class="n">reload</span><span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">重载</span><span class="w"> </span><span class="n">systemd</span><span class="w"> </span><span class="n">配置</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="n">systemctl</span><span class="w"> </span><span class="n">restart</span><span class="w"> </span><span class="n">docker</span><span class="w">       </span><span class="err">#</span><span class="w"> </span><span class="n">重启</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="n">服务</span>
+</span></code></pre></div></li>
 </ul>
 <h3 id="docker_4"><strong>docker常用命令</strong></h3>
 <p>镜像是由很多层组成的，这样的好处是层是公用的，这样下载其他镜像时可以复用之前下载过的层。</p>
 <h5 id="1">1. 镜像相关</h5>
-<div class="highlight"><pre><span></span><code>//  查看中央仓库
-docker search 镜像关键字:版本  
-
-// 查看本地镜像
-docker images -a 
-
-// 拉取镜像
-docker pull 镜像名称:版本号 
-
-//删除镜像
-docker rmi --force | -f id/镜像名称:版本号 
-
-// 删除所有
-ddocker rmi -f $(docker images -aq)
-
-// 从本地加载镜像（也就是把tar --&gt; 镜像）
-docker load -i xxx.tar  
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>//  查看中央仓库
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>docker search 镜像关键字:版本  
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>// 查看本地镜像
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>docker images -a 
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>// 拉取镜像
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>docker pull 镜像名称:版本号 
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>//删除镜像
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>docker rmi --force | -f id/镜像名称:版本号 
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>// 删除所有
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>ddocker rmi -f $(docker images -aq)
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>// 从本地加载镜像（也就是把tar --&gt; 镜像）
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>docker load -i xxx.tar  
+</span></code></pre></div>
 <h5 id="2">2. 容器相关</h5>
-<div class="highlight"><pre><span></span><code>// 查看容器
-docker ps -aq
--a : 所有  不加-a就是只看正在运行时的
--q : 查id
-
-// 创建容器
--i：表示运行容器
--t：表示容器启动后会进入其命令行。加入这两个参数后，容器创建就能登录进去。即分配一个伪终端。
---name :为创建的容器命名。
--v：表示目录映射关系（前者是宿主机目录，后者是映射到宿主机上的目录），可以使用多个－v做多个目录或文件映射。注意：最好做目录映射，在宿主机上做修改，然后共享到容器上。
--d：在run后面加上-d参数,则会创建一个守护式容器在后台运行（这样创建容器后不会自动登录容器，如果只加-i -t两个参数，创建后就会自动进去容器）。
--p：表示端口映射，前者是宿主机端口，后者是容器内的映射端口。可以使用多个-p做多个端口映射
-
-
-交互型容器：具有和用户交互的输入和输出终端，容器创建后自动进入容器，首次退出exit容器后，容器自动关闭。
-容器启动了，但容器里面的程序没自己启动
-// 创建容器并进入它、同时用终端于它交互
-docker run --name 容器名 镜像名:版本号
-eg: docker run -it -p 8888:8080 --name tomcat tomcat /bin/bash
-
-// 进入交互式容器
-docker exec -it 容器名 /bin/bash
-
-// 创建守护型容器
-守护型容器：没有和用户交互终端，需要使用docker exec进入容器，退出后，容器不会关闭。
-docker run -id --name -p xxxx:xxxx 镜像名：版本号
-
-
-// 运行容器
-docker start xxx
-
-// 停止容器
-docker stop xxx
-
-// 重启容器
-docker restart xxx
-
-// 删除容器     
-docker rm xxx
-
-// 删除所有容器
-docker rm $(docker ps -aq)
-
-// 进入容器
-docker exec -it xxx /bin/bash 
-
-// 修改容器的一些属性
-docker update 容器名 参数 参数值
-eg: docker update xxx --restart alaways
-// 退出容器         
-exit
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>// 查看容器
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>docker ps -aq
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>-a : 所有  不加-a就是只看正在运行时的
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>-q : 查id
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>// 创建容器
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>-i：表示运行容器
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>-t：表示容器启动后会进入其命令行。加入这两个参数后，容器创建就能登录进去。即分配一个伪终端。
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>--name :为创建的容器命名。
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>-v：表示目录映射关系（前者是宿主机目录，后者是映射到宿主机上的目录），可以使用多个－v做多个目录或文件映射。注意：最好做目录映射，在宿主机上做修改，然后共享到容器上。
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>-d：在run后面加上-d参数,则会创建一个守护式容器在后台运行（这样创建容器后不会自动登录容器，如果只加-i -t两个参数，创建后就会自动进去容器）。
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>-p：表示端口映射，前者是宿主机端口，后者是容器内的映射端口。可以使用多个-p做多个端口映射
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>交互型容器：具有和用户交互的输入和输出终端，容器创建后自动进入容器，首次退出exit容器后，容器自动关闭。
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>容器启动了，但容器里面的程序没自己启动
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>// 创建容器并进入它、同时用终端于它交互
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>docker run --name 容器名 镜像名:版本号
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>eg: docker run -it -p 8888:8080 --name tomcat tomcat /bin/bash
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>// 进入交互式容器
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>docker exec -it 容器名 /bin/bash
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a>// 创建守护型容器
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>守护型容器：没有和用户交互终端，需要使用docker exec进入容器，退出后，容器不会关闭。
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a>docker run -id --name -p xxxx:xxxx 镜像名：版本号
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>// 运行容器
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>docker start xxx
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a>// 停止容器
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>docker stop xxx
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a>
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a>// 重启容器
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a>docker restart xxx
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a>
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a>// 删除容器     
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a>docker rm xxx
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a>
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a>// 删除所有容器
+</span><span id="__span-9-42"><a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a>docker rm $(docker ps -aq)
+</span><span id="__span-9-43"><a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a>
+</span><span id="__span-9-44"><a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a>// 进入容器
+</span><span id="__span-9-45"><a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a>docker exec -it xxx /bin/bash 
+</span><span id="__span-9-46"><a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a>
+</span><span id="__span-9-47"><a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a>// 修改容器的一些属性
+</span><span id="__span-9-48"><a id="__codelineno-9-48" name="__codelineno-9-48" href="#__codelineno-9-48"></a>docker update 容器名 参数 参数值
+</span><span id="__span-9-49"><a id="__codelineno-9-49" name="__codelineno-9-49" href="#__codelineno-9-49"></a>eg: docker update xxx --restart alaways
+</span><span id="__span-9-50"><a id="__codelineno-9-50" name="__codelineno-9-50" href="#__codelineno-9-50"></a>// 退出容器         
+</span><span id="__span-9-51"><a id="__codelineno-9-51" name="__codelineno-9-51" href="#__codelineno-9-51"></a>exit
+</span></code></pre></div>
 <h5 id="3">3. 其他命令</h5>
 <p>日志相关</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 查看容器内进程的日志</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">容器名</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">id</span>
-
-<span class="c1">// 查看容器详情信息</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">inspect</span><span class="w"> </span><span class="n">容器名</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">id</span>
-</code></pre></div>
+<div class="language-Java highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// 查看容器内进程的日志</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">docker</span><span class="w"> </span><span class="n">logs</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">容器名</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">id</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1">// 查看容器详情信息</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">docker</span><span class="w"> </span><span class="n">inspect</span><span class="w"> </span><span class="n">容器名</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">id</span>
+</span></code></pre></div>
 <p>宿主机与docker容器的文件传递</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 宿主机的文件与容器进行交互</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span><span class="n">宿主机的文件路径</span><span class="w"> </span><span class="n">容器名</span><span class="p">:</span><span class="n">要拷贝到该容器的路径</span>
-
-<span class="n">docker</span><span class="w"> </span><span class="n">容器名</span><span class="p">:</span><span class="n">要拷贝到该容器的路径</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span><span class="n">宿主机的文件路径</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// 宿主机的文件与容器进行交互</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">docker</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span><span class="n">宿主机的文件路径</span><span class="w"> </span><span class="n">容器名</span><span class="p">:</span><span class="n">要拷贝到该容器的路径</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="n">docker</span><span class="w"> </span><span class="n">容器名</span><span class="p">:</span><span class="n">要拷贝到该容器的路径</span><span class="w"> </span><span class="n">cp</span><span class="w"> </span><span class="n">宿主机的文件路径</span>
+</span></code></pre></div>
 <p>备份与迁移</p>
 <p align='center'>
     <img src="../assets/imgs/tools/docker/docker2.png" alt="docker2" style="zoom:68%"/>
 </p>
 
-<div class="highlight"><pre><span></span><code>// 1. 先通过容器去创建一个镜像
-docker commit 容器名/id 镜像名
-eg:docker commit redis01 myredis_image
-// 2. 把镜像归纳成tar包
-docker save -o tar包的文件名 镜像名称/id
-eg:docker save -o ./images/redis_image.tar myredis_image
-
-// 3. 把tar包重写加载为镜像
-docker load -i 镜像tar文件名称
-eg: docker load -i /opt/images/
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>// 1. 先通过容器去创建一个镜像
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>docker commit 容器名/id 镜像名
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>eg:docker commit redis01 myredis_image
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>// 2. 把镜像归纳成tar包
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>docker save -o tar包的文件名 镜像名称/id
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>eg:docker save -o ./images/redis_image.tar myredis_image
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>// 3. 把tar包重写加载为镜像
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>docker load -i 镜像tar文件名称
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>eg: docker load -i /opt/images/
+</span></code></pre></div>
 <h3 id="docker_5"><strong>docker 数据卷</strong></h3>
 <h6 id="1_1">1. 概念</h6>
 <p><strong>Docker 数据卷（Volumes）</strong> 是宿主机（Host）与容器（Container）之间进行<strong>数据共享和持久化</strong>的特殊目录。</p>
 <h6 id="2_1">2. 数据卷相关命令</h6>
 <p>查看数据卷</p>
-<div class="highlight"><pre><span></span><code>docker volume ls
-docker volume inspect 数据卷名称
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>docker volume ls
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>docker volume inspect 数据卷名称
+</span></code></pre></div>
 <p>创建数据卷</p>
-<div class="highlight"><pre><span></span><code>docker volume create 数据卷名称
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker volume create 数据卷名称
+</span></code></pre></div>
 <p>删除数据卷</p>
-<div class="highlight"><pre><span></span><code>docker volume rm 数据卷名称
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker volume rm 数据卷名称
+</span></code></pre></div>
 <p>数据卷的挂载（也就是和哪个容器绑定）</p>
-<div class="highlight"><pre><span></span><code> docker run -id -p xxx: xxx --name xxx -v 数据卷名字:/data redis:7.0.15
- 解释：数据卷名字:/data
- /data 是容器内部的数据
-
- 注：卷名前面不能有 / ，如果有/，就是目录挂载，这样的挂载方式都不需要创建卷了
-
-Docker挂载主机目录Docker访问出现cannot open directory .: Permission denied
-解决办法：在挂载目录后多加一个--privileged=true参数即可
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a> docker run -id -p xxx: xxx --name xxx -v 数据卷名字:/data redis:7.0.15
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a> 解释：数据卷名字:/data
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a> /data 是容器内部的数据
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a> 注：卷名前面不能有 / ，如果有/，就是目录挂载，这样的挂载方式都不需要创建卷了
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>Docker挂载主机目录Docker访问出现cannot open directory .: Permission denied
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>解决办法：在挂载目录后多加一个--privileged=true参数即可
+</span></code></pre></div>
 <p>注意事项：</p>
 <ul>
 <li>如果数据卷没有提前创建好，那么在创建容器的时候会自动创建对应的数据卷</li>
@@ -3668,8 +3696,8 @@ Docker挂载主机目录Docker访问出现cannot open directory .: Permission de
 <li>数据卷目录如果为空，容器目录不为空，此时就会使用容器目录内容覆盖数据卷目录</li>
 </ul>
 <p>目录挂载</p>
-<div class="highlight"><pre><span></span><code>docker run -d --name=redis02 -p 6380:6379 -v /redis-data:/data redis:7.0.10
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker run -d --name=redis02 -p 6380:6379 -v /redis-data:/data redis:7.0.10
+</span></code></pre></div>
 <p>注意事项：</p>
 <ul>
 <li>如果宿主机目录没有提前创建好，那么在创建容器的时候会自动创建对应的宿主机目录</li>
@@ -3688,17 +3716,17 @@ Docker挂载主机目录Docker访问出现cannot open directory .: Permission de
 <li>centos:7 表示使用官方仓库中的 CentOS 7 镜像作为起点。</li>
 <li>如果你不需要操作系统层，也可以用 scratch`（空镜像），但一般用于极简场景。</li>
 </ul>
-<div class="highlight"><pre><span></span><code>FROM centos:7
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>FROM centos:7
+</span></code></pre></div>
 <p>（2）<code>MAINTAINER</code>（已弃用，建议用 <code>LABEL</code>）</p>
-<div class="highlight"><pre><span></span><code>LABEL maintainer=&quot;atguigu@example.com&quot;
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>LABEL maintainer=&quot;atguigu@example.com&quot;
+</span></code></pre></div>
 <p>（3）<code>RUN</code> —— 在镜像中执行命令</p>
 <ul>
 <li><strong>作用</strong>：在构建过程中<strong>创建新的镜像层</strong>，并执行 shell 命令。</li>
 <li>每个 <code>RUN</code> 会生成一层（layer），建议合并多个命令以减少层数（用 <code>&amp;&amp;</code> 连接）：
-<div class="highlight"><pre><span></span><code>RUN mkdir -p /usr/local/java &amp;&amp; yum update -y
-</code></pre></div></li>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>RUN mkdir -p /usr/local/java &amp;&amp; yum update -y
+</span></code></pre></div></li>
 </ul>
 <p>（4）ADD ——  复制文件/解压/下载</p>
 <ul>
@@ -3706,17 +3734,17 @@ Docker挂载主机目录Docker访问出现cannot open directory .: Permission de
 <li><strong>自动解压</strong> <code>.tar</code>, <code>.tar.gz</code>, <code>.zip</code> 等压缩包（仅限本地路径）。</li>
 <li>也支持从 URL 下载文件（但不推荐，建议用 <code>curl</code> + <code>RUN</code> 更可控）。</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">ADD</span><span class="w"> </span><span class="n">jdk</span><span class="o">-</span><span class="mi">17_l</span><span class="n">inux</span><span class="o">-</span><span class="n">x64_bin</span><span class="p">.</span><span class="na">tar</span><span class="p">.</span><span class="na">gz</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="o">/</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">ADD</span><span class="w"> </span><span class="n">jdk</span><span class="o">-</span><span class="mi">17_l</span><span class="n">inux</span><span class="o">-</span><span class="n">x64_bin</span><span class="p">.</span><span class="na">tar</span><span class="p">.</span><span class="na">gz</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="o">/</span>
+</span></code></pre></div>
 <p>（5） ENV —— 设置环境变量</p>
 <p>设置环境变量，后续的 <code>RUN</code>、容器启动时都可用。
-<div class="highlight"><pre><span></span><code><span class="n">ENV</span><span class="w"> </span><span class="n">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">jdk</span><span class="o">-</span><span class="mf">17.0.7</span>
-<span class="n">ENV</span><span class="w"> </span><span class="n">PATH</span><span class="o">=</span><span class="n">$PATH</span><span class="p">:</span><span class="n">$JAVA_HOME</span><span class="o">/</span><span class="n">bin</span>
-
-<span class="c1">// 可以写成一行</span>
-<span class="n">ENV</span><span class="w"> </span><span class="n">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">jdk</span><span class="o">-</span><span class="mf">17.0.7</span><span class="w"> </span><span class="err">\</span>
-<span class="w">    </span><span class="n">PATH</span><span class="o">=</span><span class="n">$PATH</span><span class="p">:</span><span class="n">$JAVA_HOME</span><span class="o">/</span><span class="n">bin</span>
-</code></pre></div></p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">ENV</span><span class="w"> </span><span class="n">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">jdk</span><span class="o">-</span><span class="mf">17.0.7</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">ENV</span><span class="w"> </span><span class="n">PATH</span><span class="o">=</span><span class="n">$PATH</span><span class="p">:</span><span class="n">$JAVA_HOME</span><span class="o">/</span><span class="n">bin</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1">// 可以写成一行</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="n">ENV</span><span class="w"> </span><span class="n">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">jdk</span><span class="o">-</span><span class="mf">17.0.7</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="n">PATH</span><span class="o">=</span><span class="n">$PATH</span><span class="p">:</span><span class="n">$JAVA_HOME</span><span class="o">/</span><span class="n">bin</span>
+</span></code></pre></div></p>
 <p>（6） 其他指令：</p>
 <table>
 <thead>
@@ -3750,242 +3778,242 @@ Docker挂载主机目录Docker访问出现cannot open directory .: Permission de
 </table>
 <h6 id="2_2">2. 构建过程</h6>
 <p>编写dockerfile</p>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">使用</span><span class="w"> </span><span class="n">CentOS</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="n">作为基础镜像</span><span class="w"> </span>
-<span class="n">FROM</span><span class="w"> </span><span class="n">centos</span><span class="p">:</span><span class="mi">7</span><span class="w"> </span>
-
-<span class="err">#</span><span class="w"> </span><span class="n">标注维护者</span><span class="err">（</span><span class="n">推荐用</span><span class="w"> </span><span class="n">LABEL</span><span class="err">）</span><span class="w"> </span>
-<span class="n">LABEL</span><span class="w"> </span><span class="n">maintainer</span><span class="o">=</span><span class="s">&quot;atguigu&quot;</span><span class="w"> </span>
-
-<span class="err">#</span><span class="w"> </span><span class="n">创建</span><span class="w"> </span><span class="n">Java</span><span class="w"> </span><span class="n">安装目录</span><span class="w"> </span>
-<span class="n">RUN</span><span class="w"> </span><span class="n">mkdir</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="w"> </span>
-
-<span class="err">#</span><span class="w"> </span><span class="n">将本地</span><span class="w"> </span><span class="n">JDK</span><span class="w"> </span><span class="n">压缩包添加并自动解压到指定目录</span><span class="w"> </span><span class="n">ADD</span><span class="w"> </span><span class="n">jdk</span><span class="o">-</span><span class="mi">17_l</span><span class="n">inux</span><span class="o">-</span><span class="n">x64_bin</span><span class="p">.</span><span class="na">tar</span><span class="p">.</span><span class="na">gz</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="w"> </span>
-
-<span class="err">#</span><span class="w"> </span><span class="n">设置环境变量</span><span class="w"> </span>
-<span class="n">ENV</span><span class="w"> </span><span class="n">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">jdk</span><span class="o">-</span><span class="mf">17.0.7</span><span class="w"> </span>
-<span class="n">ENV</span><span class="w"> </span><span class="n">PATH</span><span class="o">=</span><span class="n">$PATH</span><span class="p">:</span><span class="n">$JAVA_HOME</span><span class="o">/</span><span class="n">bin</span><span class="w"> </span><span class="err">#</span><span class="w"> </span>
-
-<span class="err">（</span><span class="n">可选</span><span class="err">）</span><span class="n">验证</span><span class="w"> </span><span class="n">Java</span><span class="w"> </span><span class="n">安装</span><span class="w"> </span>
-<span class="n">RUN</span><span class="w"> </span><span class="n">java</span><span class="w"> </span><span class="o">-</span><span class="n">version</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="err">#</span><span class="w"> </span><span class="n">使用</span><span class="w"> </span><span class="n">CentOS</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="n">作为基础镜像</span><span class="w"> </span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="n">FROM</span><span class="w"> </span><span class="n">centos</span><span class="p">:</span><span class="mi">7</span><span class="w"> </span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="err">#</span><span class="w"> </span><span class="n">标注维护者</span><span class="err">（</span><span class="n">推荐用</span><span class="w"> </span><span class="n">LABEL</span><span class="err">）</span><span class="w"> </span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="n">LABEL</span><span class="w"> </span><span class="n">maintainer</span><span class="o">=</span><span class="s">&quot;atguigu&quot;</span><span class="w"> </span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="err">#</span><span class="w"> </span><span class="n">创建</span><span class="w"> </span><span class="n">Java</span><span class="w"> </span><span class="n">安装目录</span><span class="w"> </span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="n">RUN</span><span class="w"> </span><span class="n">mkdir</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="w"> </span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="err">#</span><span class="w"> </span><span class="n">将本地</span><span class="w"> </span><span class="n">JDK</span><span class="w"> </span><span class="n">压缩包添加并自动解压到指定目录</span><span class="w"> </span><span class="n">ADD</span><span class="w"> </span><span class="n">jdk</span><span class="o">-</span><span class="mi">17_l</span><span class="n">inux</span><span class="o">-</span><span class="n">x64_bin</span><span class="p">.</span><span class="na">tar</span><span class="p">.</span><span class="na">gz</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="w"> </span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="err">#</span><span class="w"> </span><span class="n">设置环境变量</span><span class="w"> </span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="n">ENV</span><span class="w"> </span><span class="n">JAVA_HOME</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">jdk</span><span class="o">-</span><span class="mf">17.0.7</span><span class="w"> </span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="n">ENV</span><span class="w"> </span><span class="n">PATH</span><span class="o">=</span><span class="n">$PATH</span><span class="p">:</span><span class="n">$JAVA_HOME</span><span class="o">/</span><span class="n">bin</span><span class="w"> </span><span class="err">#</span><span class="w"> </span>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="err">（</span><span class="n">可选</span><span class="err">）</span><span class="n">验证</span><span class="w"> </span><span class="n">Java</span><span class="w"> </span><span class="n">安装</span><span class="w"> </span>
+</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="n">RUN</span><span class="w"> </span><span class="n">java</span><span class="w"> </span><span class="o">-</span><span class="n">version</span>
+</span></code></pre></div>
 <p>构建镜像</p>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span><span class="w"> </span><span class="n">build</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="n">centos7</span><span class="o">-</span><span class="n">jdk17</span><span class="w"> </span><span class="p">.</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">docker</span><span class="w"> </span><span class="n">build</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="n">centos7</span><span class="o">-</span><span class="n">jdk17</span><span class="w"> </span><span class="p">.</span>
+</span></code></pre></div>
 <ul>
 <li><code>-t</code>：指定镜像名称和标签</li>
 <li><code>.</code>：表示当前目录为构建上下文（Dockerfile 和 JDK 包必须在此）</li>
 </ul>
 <h3 id="_2"><strong>一些常用容器的下载与启动</strong></h3>
 <h5 id="mysql">mysql</h5>
-<div class="highlight"><pre><span></span><code><span class="c1">// 创建一个容器</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">di</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="p">:</span><span class="mi">3306</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">mysql_data</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">mysql_conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="n">liuqiang</span><span class="w"> </span><span class="n">mysql</span><span class="p">:</span><span class="mf">8.0.30</span>
-
-
-<span class="c1">// 之后，进入该容器，记得设置编码格式，否则中文可能乱码</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">LANG</span><span class="o">=</span><span class="n">C</span><span class="p">.</span><span class="na">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="n">bash</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1">// 创建一个容器</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">di</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="p">:</span><span class="mi">3306</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">mysql_data</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">mysql_conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="n">liuqiang</span><span class="w"> </span><span class="n">mysql</span><span class="p">:</span><span class="mf">8.0.30</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="c1">// 之后，进入该容器，记得设置编码格式，否则中文可能乱码</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">LANG</span><span class="o">=</span><span class="n">C</span><span class="p">.</span><span class="na">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="n">bash</span>
+</span></code></pre></div>
 <h5 id="rabbitmq">rabbitmq</h5>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">参数</span><span class="err">：</span><span class="n">后台运行</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="n">容器</span>
-<span class="err">#</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="n">参数</span><span class="err">：</span><span class="n">设置容器名称</span>
-<span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="n">参数</span><span class="err">：</span><span class="n">映射端口号</span><span class="err">，</span><span class="n">格式是</span><span class="err">“</span><span class="n">宿主机端口号</span><span class="p">:</span><span class="n">容器内端口号</span><span class="err">”。</span><span class="mi">5672</span><span class="n">供客户端程序访问</span><span class="err">，</span><span class="mi">15672</span><span class="n">供后台管理界面访问</span>
-<span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">参数</span><span class="err">：</span><span class="n">卷映射目录</span>
-<span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">参数</span><span class="err">：</span><span class="n">设置容器内的环境变量</span><span class="err">，</span><span class="n">这里我们设置了登录RabbitMQ管理后台的默认用户和密码</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="err">\</span>
-<span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="n">rabbitmq</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">5672</span><span class="p">:</span><span class="mi">5672</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">15672</span><span class="p">:</span><span class="mi">15672</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">rabbitmq</span><span class="o">-</span><span class="n">plugin</span><span class="p">:</span><span class="o">/</span><span class="n">plugins</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">RABBITMQ_DEFAULT_USER</span><span class="o">=</span><span class="n">root</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">RABBITMQ_DEFAULT_PASS</span><span class="o">=</span><span class="n">liuqiang</span><span class="w"> </span><span class="err">\</span>
-<span class="nl">rabbitmq</span><span class="p">:</span><span class="mf">3.12.0</span><span class="o">-</span><span class="n">management</span>
-
-
-<span class="c1">// 然后，把插件上传到数据卷后，启动插件即可</span>
-<span class="n">rabbitmq</span><span class="o">-</span><span class="n">plugins</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">rabbitmq_delayed_message_exchange</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">参数</span><span class="err">：</span><span class="n">后台运行</span><span class="w"> </span><span class="n">Docker</span><span class="w"> </span><span class="n">容器</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="err">#</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="n">参数</span><span class="err">：</span><span class="n">设置容器名称</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="n">参数</span><span class="err">：</span><span class="n">映射端口号</span><span class="err">，</span><span class="n">格式是</span><span class="err">“</span><span class="n">宿主机端口号</span><span class="p">:</span><span class="n">容器内端口号</span><span class="err">”。</span><span class="mi">5672</span><span class="n">供客户端程序访问</span><span class="err">，</span><span class="mi">15672</span><span class="n">供后台管理界面访问</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">参数</span><span class="err">：</span><span class="n">卷映射目录</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">参数</span><span class="err">：</span><span class="n">设置容器内的环境变量</span><span class="err">，</span><span class="n">这里我们设置了登录RabbitMQ管理后台的默认用户和密码</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="n">rabbitmq</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">5672</span><span class="p">:</span><span class="mi">5672</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">15672</span><span class="p">:</span><span class="mi">15672</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">rabbitmq</span><span class="o">-</span><span class="n">plugin</span><span class="p">:</span><span class="o">/</span><span class="n">plugins</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">RABBITMQ_DEFAULT_USER</span><span class="o">=</span><span class="n">root</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">RABBITMQ_DEFAULT_PASS</span><span class="o">=</span><span class="n">liuqiang</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="nl">rabbitmq</span><span class="p">:</span><span class="mf">3.12.0</span><span class="o">-</span><span class="n">management</span>
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>
+</span><span id="__span-26-16"><a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="c1">// 然后，把插件上传到数据卷后，启动插件即可</span>
+</span><span id="__span-26-17"><a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a><span class="n">rabbitmq</span><span class="o">-</span><span class="n">plugins</span><span class="w"> </span><span class="n">enable</span><span class="w"> </span><span class="n">rabbitmq_delayed_message_exchange</span>
+</span></code></pre></div>
 <h5 id="nacos">nacos</h5>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">拉取镜像</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">nacos</span><span class="o">/</span><span class="n">nacos</span><span class="o">-</span><span class="n">server</span><span class="p">:</span><span class="n">v2</span><span class="mf">.1.1</span>
-
-<span class="err">#</span><span class="w"> </span><span class="n">创建容器</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="n">nacos</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">MODE</span><span class="o">=</span><span class="n">standalone</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">8848</span><span class="p">:</span><span class="mi">8848</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">9848</span><span class="p">:</span><span class="mi">9848</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">nacos</span><span class="o">/</span><span class="n">nacos</span><span class="o">-</span><span class="n">server</span><span class="p">:</span><span class="n">v2</span><span class="mf">.1.1</span>
-
-<span class="err">#</span><span class="w"> </span><span class="n">nacos2</span><span class="p">.</span><span class="na">x的版本新增了一个客户端与服务端的gRpc的通讯端口号9848</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="err">#</span><span class="w"> </span><span class="n">拉取镜像</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">nacos</span><span class="o">/</span><span class="n">nacos</span><span class="o">-</span><span class="n">server</span><span class="p">:</span><span class="n">v2</span><span class="mf">.1.1</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="err">#</span><span class="w"> </span><span class="n">创建容器</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="n">nacos</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">MODE</span><span class="o">=</span><span class="n">standalone</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">8848</span><span class="p">:</span><span class="mi">8848</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">9848</span><span class="p">:</span><span class="mi">9848</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">nacos</span><span class="o">/</span><span class="n">nacos</span><span class="o">-</span><span class="n">server</span><span class="p">:</span><span class="n">v2</span><span class="mf">.1.1</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="err">#</span><span class="w"> </span><span class="n">nacos2</span><span class="p">.</span><span class="na">x的版本新增了一个客户端与服务端的gRpc的通讯端口号9848</span>
+</span></code></pre></div>
 <h5 id="redis">redis</h5>
-<div class="highlight"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">创建redis数据存放以及配置文件</span>
-
-<span class="n">mkdir</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">conf</span><span class="w"> </span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">data</span>
-<span class="n">touch</span><span class="w"> </span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="na">conf</span>
-
-<span class="mf">2.</span><span class="w"> </span><span class="n">运行redis</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="err">\</span>
-<span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="n">redis</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">6379</span><span class="p">:</span><span class="mi">6379</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="na">conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="na">conf</span><span class="w"> </span><span class="err">\</span>
-<span class="nl">redis</span><span class="p">:</span><span class="mf">7.0.15</span><span class="w"> </span><span class="n">redis</span><span class="o">-</span><span class="n">server</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="na">conf</span>
-
-<span class="mf">3.</span><span class="w"> </span><span class="n">进入redis</span><span class="o">-</span><span class="n">cli测试</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="n">redis</span><span class="w"> </span><span class="n">redis</span><span class="o">-</span><span class="n">cli</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="mf">1.</span><span class="w"> </span><span class="n">创建redis数据存放以及配置文件</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="n">mkdir</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">conf</span><span class="w"> </span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">data</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="n">touch</span><span class="w"> </span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="na">conf</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="mf">2.</span><span class="w"> </span><span class="n">运行redis</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="n">redis</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">6379</span><span class="p">:</span><span class="mi">6379</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="na">conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="na">conf</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="nl">redis</span><span class="p">:</span><span class="mf">7.0.15</span><span class="w"> </span><span class="n">redis</span><span class="o">-</span><span class="n">server</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">redis</span><span class="o">/</span><span class="n">redis</span><span class="p">.</span><span class="na">conf</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="mf">3.</span><span class="w"> </span><span class="n">进入redis</span><span class="o">-</span><span class="n">cli测试</span>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="n">redis</span><span class="w"> </span><span class="n">redis</span><span class="o">-</span><span class="n">cli</span>
+</span></code></pre></div>
 <h5 id="minio">minio</h5>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">minio</span><span class="o">/</span><span class="n">minio</span>
-
-
-<span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">9000</span><span class="p">:</span><span class="mi">9000</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">9001</span><span class="p">:</span><span class="mi">9001</span><span class="w"> </span><span class="err">\</span>
-<span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">spzx_minio</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">--</span><span class="n">restart</span><span class="o">=</span><span class="n">always</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="s">&quot;MINIO_ROOT_USER=minioadmin&quot;</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="s">&quot;MINIO_ROOT_PASSWORD=minioadmin&quot;</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">spzx_minio</span><span class="o">-</span><span class="n">data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">spzx_minio</span><span class="o">-</span><span class="n">config</span><span class="p">:</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="p">.</span><span class="na">minio</span><span class="w"> </span><span class="err">\</span>
-<span class="n">minio</span><span class="o">/</span><span class="n">minio</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="o">/</span><span class="n">data</span><span class="w"> </span><span class="o">--</span><span class="n">console</span><span class="o">-</span><span class="n">address</span><span class="w"> </span><span class="s">&quot;:9001&quot;</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">minio</span><span class="o">/</span><span class="n">minio</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">9000</span><span class="p">:</span><span class="mi">9000</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">9001</span><span class="p">:</span><span class="mi">9001</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">spzx_minio</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">--</span><span class="n">restart</span><span class="o">=</span><span class="n">always</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="s">&quot;MINIO_ROOT_USER=minioadmin&quot;</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="s">&quot;MINIO_ROOT_PASSWORD=minioadmin&quot;</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">spzx_minio</span><span class="o">-</span><span class="n">data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">spzx_minio</span><span class="o">-</span><span class="n">config</span><span class="p">:</span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="p">.</span><span class="na">minio</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="n">minio</span><span class="o">/</span><span class="n">minio</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="o">/</span><span class="n">data</span><span class="w"> </span><span class="o">--</span><span class="n">console</span><span class="o">-</span><span class="n">address</span><span class="w"> </span><span class="s">&quot;:9001&quot;</span>
+</span></code></pre></div>
 <h5 id="nginx">nginx</h5>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">nginx</span>
-
-<span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">spzx_nginx</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">80</span><span class="p">:</span><span class="mi">80</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">nginx_conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">nginx_html</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">html</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">nginx_logs</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="w"> </span><span class="n">nginx</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">nginx</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">spzx_nginx</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">80</span><span class="p">:</span><span class="mi">80</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">nginx_conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">nginx_html</span><span class="p">:</span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">html</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">nginx_logs</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="w"> </span><span class="n">nginx</span>
+</span></code></pre></div>
 <h5 id="sentinel-8080">sentinel 默认8080</h5>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">bladex</span><span class="o">/</span><span class="n">sentinel</span><span class="o">-</span><span class="n">dashboard</span><span class="p">:</span><span class="n">latest</span>
-
-<span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">sentinel</span><span class="o">-</span><span class="n">dashboard</span><span class="w"> </span><span class="o">--</span><span class="n">restart</span><span class="o">=</span><span class="n">always</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">8858</span><span class="p">:</span><span class="mi">8858</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">bladex</span><span class="o">/</span><span class="n">sentinel</span><span class="o">-</span><span class="n">dashboard</span><span class="p">:</span><span class="n">latest</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">bladex</span><span class="o">/</span><span class="n">sentinel</span><span class="o">-</span><span class="n">dashboard</span><span class="p">:</span><span class="n">latest</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">sentinel</span><span class="o">-</span><span class="n">dashboard</span><span class="w"> </span><span class="o">--</span><span class="n">restart</span><span class="o">=</span><span class="n">always</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">8858</span><span class="p">:</span><span class="mi">8858</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">bladex</span><span class="o">/</span><span class="n">sentinel</span><span class="o">-</span><span class="n">dashboard</span><span class="p">:</span><span class="n">latest</span>
+</span></code></pre></div>
 <h5 id="elasticsearch">elasticsearch</h5>
 <p>拉取镜像</p>
-<div class="highlight"><pre><span></span><code>docker pull elasticsearch:8.5.0
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>docker pull elasticsearch:8.5.0
+</span></code></pre></div>
 <p>在宿主机建立要被挂载的目录</p>
-<div class="highlight"><pre><span></span><code>rm -rf /opt/elasticsearch
-mkdir -p /opt/elasticsearch/{config,plugins,data}
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>rm -rf /opt/elasticsearch
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>mkdir -p /opt/elasticsearch/{config,plugins,data}
+</span></code></pre></div>
 <p>去 github 下载中文分词器，然后拷贝到plugins目录重启 es</p>
-<div class="highlight"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">下载elasticsearch</span><span class="o">-</span><span class="n">analysis</span><span class="o">-</span><span class="n">ik</span><span class="o">-</span><span class="mf">8.5.0</span><span class="p">.</span><span class="na">zip</span>
-<span class="mf">2.</span><span class="w"> </span><span class="n">上传到</span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">plugins</span><span class="w"> </span><span class="n">目录后</span><span class="err">，</span><span class="n">解压</span><span class="err">：</span><span class="n">unzip</span><span class="w"> </span><span class="n">elasticsearch</span><span class="o">-</span><span class="n">analysis</span><span class="o">-</span><span class="n">ik</span><span class="o">-</span><span class="mf">8.5.0</span><span class="p">.</span><span class="na">zip</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">ik</span><span class="o">-</span><span class="n">analyzer</span><span class="w"> </span><span class="n">必须删除原来的压缩包elasticsearch</span><span class="o">-</span><span class="n">analysis</span><span class="o">-</span><span class="n">ik</span><span class="o">-</span><span class="mf">8.5.0</span><span class="p">.</span><span class="na">zip</span><span class="o">**</span>
-<span class="mf">3.</span><span class="w"> </span><span class="n">重启es</span><span class="err">：</span><span class="n">docker</span><span class="w"> </span><span class="n">restart</span><span class="w"> </span><span class="n">a24eb9941759</span>
-
-<span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">unzip</span>
-<span class="n">unzip</span><span class="w"> </span><span class="n">elasticsearch</span><span class="o">-</span><span class="n">analysis</span><span class="o">-</span><span class="n">ik</span><span class="o">-</span><span class="mf">8.5.0</span><span class="p">.</span><span class="na">zip</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">ik</span><span class="o">-</span><span class="n">analyzer</span>
-<span class="n">rm</span><span class="w"> </span><span class="o">-</span><span class="n">rf</span><span class="w"> </span><span class="n">elasticsearch</span><span class="o">-</span><span class="n">analysis</span><span class="o">-</span><span class="n">ik</span><span class="o">-</span><span class="mf">8.5.0</span><span class="p">.</span><span class="na">zip</span><span class="w"> </span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="mf">1.</span><span class="w"> </span><span class="n">下载elasticsearch</span><span class="o">-</span><span class="n">analysis</span><span class="o">-</span><span class="n">ik</span><span class="o">-</span><span class="mf">8.5.0</span><span class="p">.</span><span class="na">zip</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="mf">2.</span><span class="w"> </span><span class="n">上传到</span><span class="o">/</span><span class="n">mydata</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">/</span><span class="n">plugins</span><span class="w"> </span><span class="n">目录后</span><span class="err">，</span><span class="n">解压</span><span class="err">：</span><span class="n">unzip</span><span class="w"> </span><span class="n">elasticsearch</span><span class="o">-</span><span class="n">analysis</span><span class="o">-</span><span class="n">ik</span><span class="o">-</span><span class="mf">8.5.0</span><span class="p">.</span><span class="na">zip</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">ik</span><span class="o">-</span><span class="n">analyzer</span><span class="w"> </span><span class="n">必须删除原来的压缩包elasticsearch</span><span class="o">-</span><span class="n">analysis</span><span class="o">-</span><span class="n">ik</span><span class="o">-</span><span class="mf">8.5.0</span><span class="p">.</span><span class="na">zip</span><span class="o">**</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="mf">3.</span><span class="w"> </span><span class="n">重启es</span><span class="err">：</span><span class="n">docker</span><span class="w"> </span><span class="n">restart</span><span class="w"> </span><span class="n">a24eb9941759</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">unzip</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="n">unzip</span><span class="w"> </span><span class="n">elasticsearch</span><span class="o">-</span><span class="n">analysis</span><span class="o">-</span><span class="n">ik</span><span class="o">-</span><span class="mf">8.5.0</span><span class="p">.</span><span class="na">zip</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="n">ik</span><span class="o">-</span><span class="n">analyzer</span>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="n">rm</span><span class="w"> </span><span class="o">-</span><span class="n">rf</span><span class="w"> </span><span class="n">elasticsearch</span><span class="o">-</span><span class="n">analysis</span><span class="o">-</span><span class="n">ik</span><span class="o">-</span><span class="mf">8.5.0</span><span class="p">.</span><span class="na">zip</span><span class="w"> </span>
+</span></code></pre></div>
 <p>制作配置文件</p>
-<div class="highlight"><pre><span></span><code>cat &lt;&lt;EOF&gt; /opt/elasticsearch/config/elasticsearch.yml
-xpack.security.enabled: true # true为开始密码验证
-xpack.license.self_generated.type: basic
-xpack.security.transport.ssl.enabled: false  # 不配报错
-xpack.security.enrollment.enabled: true
-http.host: 0.0.0.0
-EOF
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>cat &lt;&lt;EOF&gt; /opt/elasticsearch/config/elasticsearch.yml
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>xpack.security.enabled: true # true为开始密码验证
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>xpack.license.self_generated.type: basic
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>xpack.security.transport.ssl.enabled: false  # 不配报错
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>xpack.security.enrollment.enabled: true
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>http.host: 0.0.0.0
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a>EOF
+</span></code></pre></div>
 <p>给当前el目录设置权限</p>
-<div class="highlight"><pre><span></span><code>chmod -R 777 /opt/elasticsearch
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>chmod -R 777 /opt/elasticsearch
+</span></code></pre></div>
 <p>启动 el</p>
-<div class="highlight"><pre><span></span><code>docker run --name elasticsearch -p 9200:9200 -p 9300:9300 \
---net elastic \
---restart=always \
--e &quot;discovery.type=single-node&quot; \
--e ES_JAVA_OPTS=&quot;-Xms512m -Xmx512m&quot; \
--v /opt/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \
--v /opt/elasticsearch/data:/usr/share/elasticsearch/data \
--v /opt/elasticsearch/plugins:/usr/share/elasticsearch/plugins \
--d elasticsearch:8.5.0
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>docker run --name elasticsearch -p 9200:9200 -p 9300:9300 \
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>--net elastic \
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>--restart=always \
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>-e &quot;discovery.type=single-node&quot; \
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>-e ES_JAVA_OPTS=&quot;-Xms512m -Xmx512m&quot; \
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>-v /opt/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml \
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a>-v /opt/elasticsearch/data:/usr/share/elasticsearch/data \
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a>-v /opt/elasticsearch/plugins:/usr/share/elasticsearch/plugins \
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>-d elasticsearch:8.5.0
+</span></code></pre></div>
 <p>如果运行时提示elastic 未找到 执行这个命令 ： docker network create elastic</p>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">重置下面两个密码</span><span class="err">，</span><span class="n">注意</span><span class="err">：</span><span class="n">需等待es启动</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="n">elasticsearch</span><span class="w"> </span><span class="n">bin</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">-</span><span class="n">reset</span><span class="o">-</span><span class="n">password</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">elastic</span><span class="w">  </span><span class="o">-</span><span class="n">i</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="n">表示自定义密码</span><span class="w"> </span><span class="n">给java客户端用的</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="n">elasticsearch</span><span class="w"> </span><span class="n">bin</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">-</span><span class="n">reset</span><span class="o">-</span><span class="n">password</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">kibana_system</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">给</span><span class="w"> </span><span class="n">kibana</span><span class="w"> </span><span class="n">用的</span>
-
-<span class="nl">用户名</span><span class="p">:</span><span class="w"> </span><span class="n">elastic</span><span class="w"> </span><span class="n">密码可以使用</span><span class="p">:</span><span class="w"> </span><span class="n">liuqiang</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="err">#</span><span class="w"> </span><span class="n">重置下面两个密码</span><span class="err">，</span><span class="n">注意</span><span class="err">：</span><span class="n">需等待es启动</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="n">elasticsearch</span><span class="w"> </span><span class="n">bin</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">-</span><span class="n">reset</span><span class="o">-</span><span class="n">password</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">elastic</span><span class="w">  </span><span class="o">-</span><span class="n">i</span><span class="w">   </span><span class="err">#</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="n">表示自定义密码</span><span class="w"> </span><span class="n">给java客户端用的</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="n">elasticsearch</span><span class="w"> </span><span class="n">bin</span><span class="o">/</span><span class="n">elasticsearch</span><span class="o">-</span><span class="n">reset</span><span class="o">-</span><span class="n">password</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">kibana_system</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">给</span><span class="w"> </span><span class="n">kibana</span><span class="w"> </span><span class="n">用的</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="nl">用户名</span><span class="p">:</span><span class="w"> </span><span class="n">elastic</span><span class="w"> </span><span class="n">密码可以使用</span><span class="p">:</span><span class="w"> </span><span class="n">liuqiang</span>
+</span></code></pre></div>
 <h5 id="portainer">portainer</h5>
-<div class="highlight"><pre><span></span><code><span class="n">步骤</span><span class="w"> </span><span class="mi">1</span><span class="err">：</span><span class="n">拉取</span><span class="w"> </span><span class="n">Portainer</span><span class="w"> </span><span class="n">英文版</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">portainer</span><span class="o">/</span><span class="n">portainer</span><span class="o">-</span><span class="n">ce</span><span class="p">:</span><span class="n">latest</span>
-
-<span class="n">步骤</span><span class="w"> </span><span class="mi">2</span><span class="err">：</span><span class="n">启动</span><span class="w"> </span><span class="n">Portainer</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="n">portainer</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">19000</span><span class="p">:</span><span class="mi">9000</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="p">.</span><span class="na">sock</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="p">.</span><span class="na">sock</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">portainer_data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="w"> </span><span class="o">--</span><span class="n">restart</span><span class="w"> </span><span class="n">always</span><span class="w"> </span><span class="o">--</span><span class="n">privileged</span><span class="o">=</span><span class="kc">true</span><span class="w"> </span><span class="n">portainer</span><span class="o">/</span><span class="n">portainer</span><span class="o">-</span><span class="n">ce</span><span class="p">:</span><span class="n">latest</span>
-
-<span class="n">步骤</span><span class="w"> </span><span class="mi">3</span><span class="err">：</span><span class="n">访问</span><span class="w"> </span><span class="n">Portainer</span><span class="w"> </span><span class="n">Web</span><span class="w"> </span><span class="n">界面</span>
-<span class="nl">http</span><span class="p">:</span><span class="c1">//115.190.231.171:19000/</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="n">步骤</span><span class="w"> </span><span class="mi">1</span><span class="err">：</span><span class="n">拉取</span><span class="w"> </span><span class="n">Portainer</span><span class="w"> </span><span class="n">英文版</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">portainer</span><span class="o">/</span><span class="n">portainer</span><span class="o">-</span><span class="n">ce</span><span class="p">:</span><span class="n">latest</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="n">步骤</span><span class="w"> </span><span class="mi">2</span><span class="err">：</span><span class="n">启动</span><span class="w"> </span><span class="n">Portainer</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="w"> </span><span class="n">portainer</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">19000</span><span class="p">:</span><span class="mi">9000</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="p">.</span><span class="na">sock</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">docker</span><span class="p">.</span><span class="na">sock</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">app</span><span class="o">/</span><span class="n">portainer_data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span><span class="w"> </span><span class="o">--</span><span class="n">restart</span><span class="w"> </span><span class="n">always</span><span class="w"> </span><span class="o">--</span><span class="n">privileged</span><span class="o">=</span><span class="kc">true</span><span class="w"> </span><span class="n">portainer</span><span class="o">/</span><span class="n">portainer</span><span class="o">-</span><span class="n">ce</span><span class="p">:</span><span class="n">latest</span>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="n">步骤</span><span class="w"> </span><span class="mi">3</span><span class="err">：</span><span class="n">访问</span><span class="w"> </span><span class="n">Portainer</span><span class="w"> </span><span class="n">Web</span><span class="w"> </span><span class="n">界面</span>
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a><span class="nl">http</span><span class="p">:</span><span class="c1">//115.190.231.171:19000/</span>
+</span></code></pre></div>
 <h5 id="zipkin">zipkin</h5>
-<div class="highlight"><pre><span></span><code>docker pull openzipkin/zipkin
-
-docker run --name zipkin --restart=always -d -p 9411:9411 openzipkin/zipkin
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>docker pull openzipkin/zipkin
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>docker run --name zipkin --restart=always -d -p 9411:9411 openzipkin/zipkin
+</span></code></pre></div>
 <h5 id="canal">canal</h5>
-<div class="highlight"><pre><span></span><code>
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>
+</span></code></pre></div>
 <h5 id="mondb">mondb</h5>
 <p>直接拉取镜像</p>
-<div class="highlight"><pre><span></span><code>docker pull mongo:7.0.0
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>docker pull mongo:7.0.0
+</span></code></pre></div>
 <p>创建宿主机上的挂载目录</p>
-<div class="highlight"><pre><span></span><code>rm -rf /opt/mongo
-mkdir -p /opt/mongo/data/db
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>rm -rf /opt/mongo
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>mkdir -p /opt/mongo/data/db
+</span></code></pre></div>
 <p>创建并启动容器</p>
-<div class="highlight"><pre><span></span><code>docker run -d --restart=always -p 27017:27017 --name mongo -v /opt/mongo/data/db:/data/db mongo:7.0.0
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>docker run -d --restart=always -p 27017:27017 --name mongo -v /opt/mongo/data/db:/data/db mongo:7.0.0
+</span></code></pre></div>
 <p>连接mongosh</p>
-<div class="highlight"><pre><span></span><code>docker exec -it mongo mongosh
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>docker exec -it mongo mongosh
+</span></code></pre></div>
 <p>断开连接（在linux中）</p>
-<div class="highlight"><pre><span></span><code>exit 
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>exit 
+</span></code></pre></div>
 <h3 id="docker-compose"><strong>docker compose</strong></h3>
 <p>批量管理容器, 是docker内置的插件</p>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">启动容器</span><span class="p">(</span><span class="n">如果不存在容器就创建</span><span class="err">、</span><span class="n">存在则修改</span><span class="p">)</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="o">-</span><span class="n">d</span>
-
-<span class="err">#</span><span class="w"> </span><span class="n">删除所有容器</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span><span class="w"> </span><span class="n">down</span>
-
-<span class="err">#</span><span class="w"> </span><span class="n">停止所有容器</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span><span class="w"> </span><span class="n">stop</span>
-
-<span class="err">#</span><span class="w"> </span><span class="n">启动所有容器</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span><span class="w"> </span><span class="n">start</span>
-
-<span class="err">#</span><span class="w"> </span><span class="n">重启所有容器</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span><span class="w"> </span><span class="n">restart</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="err">#</span><span class="w"> </span><span class="n">启动容器</span><span class="p">(</span><span class="n">如果不存在容器就创建</span><span class="err">、</span><span class="n">存在则修改</span><span class="p">)</span>
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="o">-</span><span class="n">d</span>
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>
+</span><span id="__span-47-4"><a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a><span class="err">#</span><span class="w"> </span><span class="n">删除所有容器</span>
+</span><span id="__span-47-5"><a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a><span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span><span class="w"> </span><span class="n">down</span>
+</span><span id="__span-47-6"><a id="__codelineno-47-6" name="__codelineno-47-6" href="#__codelineno-47-6"></a>
+</span><span id="__span-47-7"><a id="__codelineno-47-7" name="__codelineno-47-7" href="#__codelineno-47-7"></a><span class="err">#</span><span class="w"> </span><span class="n">停止所有容器</span>
+</span><span id="__span-47-8"><a id="__codelineno-47-8" name="__codelineno-47-8" href="#__codelineno-47-8"></a><span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span><span class="w"> </span><span class="n">stop</span>
+</span><span id="__span-47-9"><a id="__codelineno-47-9" name="__codelineno-47-9" href="#__codelineno-47-9"></a>
+</span><span id="__span-47-10"><a id="__codelineno-47-10" name="__codelineno-47-10" href="#__codelineno-47-10"></a><span class="err">#</span><span class="w"> </span><span class="n">启动所有容器</span>
+</span><span id="__span-47-11"><a id="__codelineno-47-11" name="__codelineno-47-11" href="#__codelineno-47-11"></a><span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span><span class="w"> </span><span class="n">start</span>
+</span><span id="__span-47-12"><a id="__codelineno-47-12" name="__codelineno-47-12" href="#__codelineno-47-12"></a>
+</span><span id="__span-47-13"><a id="__codelineno-47-13" name="__codelineno-47-13" href="#__codelineno-47-13"></a><span class="err">#</span><span class="w"> </span><span class="n">重启所有容器</span>
+</span><span id="__span-47-14"><a id="__codelineno-47-14" name="__codelineno-47-14" href="#__codelineno-47-14"></a><span class="n">docker</span><span class="w"> </span><span class="n">compose</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span><span class="w"> </span><span class="n">restart</span>
+</span></code></pre></div>
 <p>compose 管理多个容器的 yml 配置
-<div class="highlight"><pre><span></span><code><span class="n">容器编排</span><span class="err">：</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span>
-<span class="o">---------------------------------------------</span>
-<span class="nl">services</span><span class="p">:</span>
-<span class="w">  </span><span class="n">redis</span><span class="p">:</span>
-<span class="w">    </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="n">redis</span><span class="p">:</span><span class="mf">7.0.10</span>
-<span class="w">    </span><span class="n">container_name</span><span class="p">:</span><span class="w"> </span><span class="n">redis001</span>
-<span class="w">    </span><span class="n">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="s">&quot;6399:6379&quot;</span>
-<span class="w">    </span><span class="n">volumes</span><span class="p">:</span><span class="w"> </span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">redis</span><span class="o">-</span><span class="n">data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span>
-<span class="w">  </span><span class="n">mysql</span><span class="p">:</span>
-<span class="w">    </span><span class="n">container_name</span><span class="p">:</span><span class="w"> </span><span class="n">mysql001</span>
-<span class="w">    </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="n">mysql</span><span class="p">:</span><span class="mf">8.0.30</span>
-<span class="w">    </span><span class="n">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="s">&quot;3399:3306&quot;</span>
-<span class="w">    </span><span class="n">volumes</span><span class="p">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">mysql_data</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">mysql_conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mysql</span>
-<span class="w">    </span><span class="n">privileged</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="n">environment</span><span class="p">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="s">&quot;MYSQL_ROOT_PASSWORD=1234&quot;</span>
-<span class="w">  </span><span class="n">ebuy</span><span class="p">:</span>
-<span class="w">    </span><span class="n">container_name</span><span class="p">:</span><span class="w"> </span><span class="n">ebuy001</span>
-<span class="w">    </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="n">ebuy</span><span class="o">-</span><span class="n">docker</span><span class="p">:</span><span class="n">v2</span><span class="mf">.0</span>
-<span class="w">    </span><span class="n">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="s">&quot;8099:8081&quot;</span>
-<span class="nl">volumes</span><span class="p">:</span>
-<span class="w">  </span><span class="n">redis</span><span class="o">-</span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">  </span><span class="n">mysql_data</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
-<span class="w">  </span><span class="n">mysql_conf</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
-<span class="o">---------------------------------------------</span>
-</code></pre></div></p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="n">容器编排</span><span class="err">：</span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="na">yml</span>
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="o">---------------------------------------------</span>
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="nl">services</span><span class="p">:</span>
+</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a><span class="w">  </span><span class="n">redis</span><span class="p">:</span>
+</span><span id="__span-48-5"><a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a><span class="w">    </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="n">redis</span><span class="p">:</span><span class="mf">7.0.10</span>
+</span><span id="__span-48-6"><a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a><span class="w">    </span><span class="n">container_name</span><span class="p">:</span><span class="w"> </span><span class="n">redis001</span>
+</span><span id="__span-48-7"><a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a><span class="w">    </span><span class="n">ports</span><span class="p">:</span>
+</span><span id="__span-48-8"><a id="__codelineno-48-8" name="__codelineno-48-8" href="#__codelineno-48-8"></a><span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="s">&quot;6399:6379&quot;</span>
+</span><span id="__span-48-9"><a id="__codelineno-48-9" name="__codelineno-48-9" href="#__codelineno-48-9"></a><span class="w">    </span><span class="n">volumes</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-48-10"><a id="__codelineno-48-10" name="__codelineno-48-10" href="#__codelineno-48-10"></a><span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">redis</span><span class="o">-</span><span class="n">data</span><span class="p">:</span><span class="o">/</span><span class="n">data</span>
+</span><span id="__span-48-11"><a id="__codelineno-48-11" name="__codelineno-48-11" href="#__codelineno-48-11"></a><span class="w">  </span><span class="n">mysql</span><span class="p">:</span>
+</span><span id="__span-48-12"><a id="__codelineno-48-12" name="__codelineno-48-12" href="#__codelineno-48-12"></a><span class="w">    </span><span class="n">container_name</span><span class="p">:</span><span class="w"> </span><span class="n">mysql001</span>
+</span><span id="__span-48-13"><a id="__codelineno-48-13" name="__codelineno-48-13" href="#__codelineno-48-13"></a><span class="w">    </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="n">mysql</span><span class="p">:</span><span class="mf">8.0.30</span>
+</span><span id="__span-48-14"><a id="__codelineno-48-14" name="__codelineno-48-14" href="#__codelineno-48-14"></a><span class="w">    </span><span class="n">ports</span><span class="p">:</span>
+</span><span id="__span-48-15"><a id="__codelineno-48-15" name="__codelineno-48-15" href="#__codelineno-48-15"></a><span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="s">&quot;3399:3306&quot;</span>
+</span><span id="__span-48-16"><a id="__codelineno-48-16" name="__codelineno-48-16" href="#__codelineno-48-16"></a><span class="w">    </span><span class="n">volumes</span><span class="p">:</span>
+</span><span id="__span-48-17"><a id="__codelineno-48-17" name="__codelineno-48-17" href="#__codelineno-48-17"></a><span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">mysql_data</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span>
+</span><span id="__span-48-18"><a id="__codelineno-48-18" name="__codelineno-48-18" href="#__codelineno-48-18"></a><span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">mysql_conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mysql</span>
+</span><span id="__span-48-19"><a id="__codelineno-48-19" name="__codelineno-48-19" href="#__codelineno-48-19"></a><span class="w">    </span><span class="n">privileged</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-48-20"><a id="__codelineno-48-20" name="__codelineno-48-20" href="#__codelineno-48-20"></a><span class="w">    </span><span class="n">environment</span><span class="p">:</span>
+</span><span id="__span-48-21"><a id="__codelineno-48-21" name="__codelineno-48-21" href="#__codelineno-48-21"></a><span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="s">&quot;MYSQL_ROOT_PASSWORD=1234&quot;</span>
+</span><span id="__span-48-22"><a id="__codelineno-48-22" name="__codelineno-48-22" href="#__codelineno-48-22"></a><span class="w">  </span><span class="n">ebuy</span><span class="p">:</span>
+</span><span id="__span-48-23"><a id="__codelineno-48-23" name="__codelineno-48-23" href="#__codelineno-48-23"></a><span class="w">    </span><span class="n">container_name</span><span class="p">:</span><span class="w"> </span><span class="n">ebuy001</span>
+</span><span id="__span-48-24"><a id="__codelineno-48-24" name="__codelineno-48-24" href="#__codelineno-48-24"></a><span class="w">    </span><span class="n">image</span><span class="p">:</span><span class="w"> </span><span class="n">ebuy</span><span class="o">-</span><span class="n">docker</span><span class="p">:</span><span class="n">v2</span><span class="mf">.0</span>
+</span><span id="__span-48-25"><a id="__codelineno-48-25" name="__codelineno-48-25" href="#__codelineno-48-25"></a><span class="w">    </span><span class="n">ports</span><span class="p">:</span>
+</span><span id="__span-48-26"><a id="__codelineno-48-26" name="__codelineno-48-26" href="#__codelineno-48-26"></a><span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="s">&quot;8099:8081&quot;</span>
+</span><span id="__span-48-27"><a id="__codelineno-48-27" name="__codelineno-48-27" href="#__codelineno-48-27"></a><span class="nl">volumes</span><span class="p">:</span>
+</span><span id="__span-48-28"><a id="__codelineno-48-28" name="__codelineno-48-28" href="#__codelineno-48-28"></a><span class="w">  </span><span class="n">redis</span><span class="o">-</span><span class="n">data</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-48-29"><a id="__codelineno-48-29" name="__codelineno-48-29" href="#__codelineno-48-29"></a><span class="w">  </span><span class="n">mysql_data</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-48-30"><a id="__codelineno-48-30" name="__codelineno-48-30" href="#__codelineno-48-30"></a><span class="w">  </span><span class="n">mysql_conf</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-48-31"><a id="__codelineno-48-31" name="__codelineno-48-31" href="#__codelineno-48-31"></a><span class="o">---------------------------------------------</span>
+</span></code></pre></div></p>
 
 
 
@@ -4003,6 +4031,8 @@ mkdir -p /opt/mongo/data/db
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -4046,7 +4076,7 @@ mkdir -p /opt/mongo/data/db
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>

@@ -1177,6 +1177,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/04_web/fastapi-v2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastapi-v2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5708,22 +5736,22 @@
 <h2 id="linux">一、Linux 下的安装与使用</h2>
 <h4 id="1-docker">1. docker 下的安装</h4>
 <p>1、拉取镜像</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 远程拉取</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">mysql</span><span class="p">:</span><span class="mf">8.0.30</span>
-<span class="c1">// 本地加载镜像</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">load</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="n">xxx</span><span class="p">.</span><span class="na">tar</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// 远程拉取</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">docker</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">mysql</span><span class="p">:</span><span class="mf">8.0.30</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// 本地加载镜像</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">docker</span><span class="w"> </span><span class="n">load</span><span class="w"> </span><span class="o">-</span><span class="n">i</span><span class="w"> </span><span class="n">xxx</span><span class="p">.</span><span class="na">tar</span>
+</span></code></pre></div>
 <p>2、运行</p>
-<div class="highlight"><pre><span></span><code><span class="c1">// 创建一个容器</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">di</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="p">:</span><span class="mi">3306</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">mysql_data</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">mysql_conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="n">liuqiang</span><span class="w"> </span><span class="n">mysql</span><span class="p">:</span><span class="mf">8.0.30</span>
-
-<span class="c1">// 之后，进入该容器，记得设置编码格式，否则中文可能乱码</span>
-<span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">LANG</span><span class="o">=</span><span class="n">C</span><span class="p">.</span><span class="na">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="n">bash</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// 创建一个容器</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">di</span><span class="w"> </span><span class="o">--</span><span class="n">name</span><span class="o">=</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="p">:</span><span class="mi">3306</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">mysql_data</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="n">mysql_conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="n">liuqiang</span><span class="w"> </span><span class="n">mysql</span><span class="p">:</span><span class="mf">8.0.30</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">// 之后，进入该容器，记得设置编码格式，否则中文可能乱码</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">docker</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="o">-</span><span class="n">it</span><span class="w"> </span><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">LANG</span><span class="o">=</span><span class="n">C</span><span class="p">.</span><span class="na">UTF</span><span class="o">-</span><span class="mi">8</span><span class="w"> </span><span class="n">mysql</span><span class="w"> </span><span class="n">bash</span>
+</span></code></pre></div>
 <h4 id="2">2. 字符集</h4>
 <p><code>MySQL 8版本之前</code>，默认字符集为 latin1（ISO-8859-1） ，不支持中文，使用前必须设置字符集为utf8（utf8mb3）或utf8mb4。从MySQL 8开始，数据库的默认字符集为 utf8mb4 ，从而避免中文乱码的问题。</p>
-<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%char%&#39;</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%char%&#39;</span><span class="p">;</span>
+</span></code></pre></div>
 <p>utf8 字符集表示一个字符需要使用1～4个字节，但是我们常用的一些字符使用1～3个字节就可以表示了。而字符集表示一个字符所用的最大字节长度，在某些方面会影响系统的存储和性能，所以设计MySQL的设计者偷偷的定义了两个概念：</p>
 <p>utf8mb3 ：阉割过的 utf8 字符集，只使用1～3个字节表示字符。（无法存储emoji表情）</p>
 <p><strong>utf8mb4</strong> ：正宗的 utf8 字符集，使用1～4个字节表示字符。</p>
@@ -5739,34 +5767,34 @@
 </li>
 </ul>
 <p>设置大小写规则（了解即可）</p>
-<div class="highlight"><pre><span></span><code><span class="mi">1</span><span class="err">、停止</span><span class="n">MySQL服务</span><span class="w"> </span>
-<span class="mi">2</span><span class="err">、删除数据目录，即删除</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="err">目录</span><span class="w"> </span>
-<span class="mi">3</span><span class="err">、在</span><span class="n">MySQL配置文件</span><span class="err">（</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">my</span><span class="p">.</span><span class="n">cnf</span><span class="w"> </span><span class="err">）的</span><span class="w"> </span><span class="p">[</span><span class="n">mysqld</span><span class="p">]</span><span class="w"> </span><span class="err">中添加</span><span class="w"> </span><span class="n">lower_case_table_names</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span>
-<span class="mi">4</span><span class="err">、初始化数据目录</span><span class="w"> </span><span class="n">mysqld</span><span class="w"> </span><span class="c1">--initialize --user=mysql</span>
-<span class="mi">5</span><span class="err">、启动</span><span class="n">MySQL服务</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="n">mysqld</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="mi">1</span><span class="err">、停止</span><span class="n">MySQL服务</span><span class="w"> </span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="mi">2</span><span class="err">、删除数据目录，即删除</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="err">目录</span><span class="w"> </span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="mi">3</span><span class="err">、在</span><span class="n">MySQL配置文件</span><span class="err">（</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">my</span><span class="p">.</span><span class="n">cnf</span><span class="w"> </span><span class="err">）的</span><span class="w"> </span><span class="p">[</span><span class="n">mysqld</span><span class="p">]</span><span class="w"> </span><span class="err">中添加</span><span class="w"> </span><span class="n">lower_case_table_names</span><span class="o">=</span><span class="mi">1</span><span class="w"> </span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="mi">4</span><span class="err">、初始化数据目录</span><span class="w"> </span><span class="n">mysqld</span><span class="w"> </span><span class="c1">--initialize --user=mysql</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="mi">5</span><span class="err">、启动</span><span class="n">MySQL服务</span><span class="w"> </span><span class="n">systemctl</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="n">mysqld</span>
+</span></code></pre></div>
 <h4 id="4-sql_mode">4. sql_mode</h4>
 <ol>
 <li>宽松模式：执行错误的SQL或插入不规范的数据，也会被接受，并且不报错。</li>
 <li>执行错误的SQL或插入不规范的数据，会报错。MySQL5.7版本开始就将sql_mode默认值设置为了严格模式。</li>
 </ol>
-<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="w"> </span><span class="err">查看</span><span class="w"> </span><span class="n">sql_mode</span>
-<span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;sql_mode&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">--session级别</span>
-<span class="c1">-- 或者</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">sql_mode</span><span class="p">;</span><span class="w">   </span><span class="o">#</span><span class="err">查询当前会话</span><span class="n">sql_mode</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">sql_mode</span><span class="p">;</span><span class="w">    </span><span class="o">#</span><span class="err">查询全局</span><span class="n">sql_mode</span>
-
-
-<span class="o">#</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="w"> </span><span class="err">设置</span><span class="n">sql_mode</span>
-<span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">sql_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;mode1,model2,...&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">--全局，要重新启动客户端生效，重启MySQL服务后失效</span>
-<span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">sql_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;mode1,model2,...&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">--当前会话生效效，关闭当前会话就不生效了。可以省略SESSION关键字</span>
-
-<span class="o">#</span><span class="w"> </span><span class="err">也可以通过配置文件去永久设置</span>
-<span class="p">[</span><span class="n">mysqld</span><span class="p">]</span>
-<span class="k">sql</span><span class="o">-</span><span class="k">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;mode1,model2,...&quot;</span>
-
-<span class="n">docker</span><span class="w"> </span><span class="k">restart</span><span class="w"> </span><span class="n">mysql</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">#</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="w"> </span><span class="err">查看</span><span class="w"> </span><span class="n">sql_mode</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;sql_mode&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">--session级别</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">-- 或者</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">session</span><span class="p">.</span><span class="n">sql_mode</span><span class="p">;</span><span class="w">   </span><span class="o">#</span><span class="err">查询当前会话</span><span class="n">sql_mode</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">sql_mode</span><span class="p">;</span><span class="w">    </span><span class="o">#</span><span class="err">查询全局</span><span class="n">sql_mode</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="o">#</span><span class="w"> </span><span class="mi">2</span><span class="p">.</span><span class="w"> </span><span class="err">设置</span><span class="n">sql_mode</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">sql_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;mode1,model2,...&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">--全局，要重新启动客户端生效，重启MySQL服务后失效</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">sql_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;mode1,model2,...&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">--当前会话生效效，关闭当前会话就不生效了。可以省略SESSION关键字</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="o">#</span><span class="w"> </span><span class="err">也可以通过配置文件去永久设置</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="p">[</span><span class="n">mysqld</span><span class="p">]</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="k">sql</span><span class="o">-</span><span class="k">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;mode1,model2,...&quot;</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="n">docker</span><span class="w"> </span><span class="k">restart</span><span class="w"> </span><span class="n">mysql</span>
+</span></code></pre></div>
 <p>规则常用指：</p>
 <ul>
 <li><code>ONLY_FULL_GROUP_BY：</code>对于GROUP BY聚合操作，SELECT子句中只能包含函数和 GROUP BY 中出现的字段。</li>
@@ -5827,8 +5855,8 @@
 <li>语法分析：将词法分析拆分出的字段，按照MySQl语法规则，生成解析树</li>
 <li>语义分析：<code>检查解析树是否合法/用户是否有操作权限</code>，比如查看表是否存在，列是否存在</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w">  </span><span class="n">username</span><span class="p">,</span><span class="n">ismale</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">userinfo</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">age</span><span class="o">&gt;</span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">level</span><span class="o">&gt;</span><span class="mi">5</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">select</span><span class="w">  </span><span class="n">username</span><span class="p">,</span><span class="n">ismale</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">userinfo</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">age</span><span class="o">&gt;</span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="k">level</span><span class="o">&gt;</span><span class="mi">5</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">1</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span></code></pre></div>
 <p align='center'>
     <img src="../assets/imgs/middleware/mysql/mysql02.png" alt="mysql02" style="zoom:80%;" />
 </p>
@@ -5848,39 +5876,39 @@
 <h3 id="23-sql">2.3 sql 的执行流程</h3>
 <p>利用<code>SHOW profiles</code> 可以查看SQL的执行流程。使用前需要先开启该功能：</p>
 <p>1、开启 profiling</p>
-<div class="highlight"><pre><span></span><code><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%prifiling%&#39;</span><span class="p">;</span>
-<span class="k">set</span><span class="w"> </span><span class="n">profiling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%prifiling%&#39;</span><span class="p">;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">set</span><span class="w"> </span><span class="n">profiling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span></code></pre></div>
 <p>2、查询最近执行的sql</p>
-<div class="highlight"><pre><span></span><code><span class="k">show</span><span class="w"> </span><span class="n">profiles</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">show</span><span class="w"> </span><span class="n">profiles</span><span class="p">;</span>
+</span></code></pre></div>
 <p>3、查询具体sql的执行流程</p>
-<div class="highlight"><pre><span></span><code><span class="k">show</span><span class="w"> </span><span class="n">profile</span><span class="p">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">查询最后一次执行的</span><span class="n">sql的执行过程</span>
-<span class="k">show</span><span class="w"> </span><span class="n">profile</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">query_id</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">show</span><span class="w"> </span><span class="n">profile</span><span class="p">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">查询最后一次执行的</span><span class="n">sql的执行过程</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">show</span><span class="w"> </span><span class="n">profile</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">query_id</span><span class="p">;</span>
+</span></code></pre></div>
 <p align='center'>
     <img src="../assets/imgs/middleware/mysql/mysql03.png" alt="mysql03" style="zoom:80%;" />
 </p>
 
 <h3 id="24">2.4 存储引擎</h3>
 <p>1、查看mysql提供了什么引擎</p>
-<div class="highlight"><pre><span></span><code><span class="k">show</span><span class="w"> </span><span class="n">engines</span><span class="p">;</span>
-
-<span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="ss">&quot;default_storeage_engine&quot;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">show</span><span class="w"> </span><span class="n">engines</span><span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="ss">&quot;default_storeage_engine&quot;</span>
+</span></code></pre></div>
 <p>2、设置存储引擎（了解）</p>
-<div class="highlight"><pre><span></span><code><span class="k">set</span><span class="w"> </span><span class="n">DEFAULT_STORAGE_ENGINE</span><span class="o">=</span><span class="n">MyISAM</span><span class="p">;</span>
-
-<span class="o">#</span><span class="w"> </span><span class="err">或者修改配置文件</span>
-<span class="n">vim</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">my</span><span class="p">.</span><span class="n">cnf</span><span class="w"> </span>
-<span class="err">在</span><span class="p">[</span><span class="n">mysqld</span><span class="p">]</span><span class="err">节点下新增一行：</span>
-<span class="k">default</span><span class="o">-</span><span class="k">storage</span><span class="o">-</span><span class="n">engine</span><span class="o">=</span><span class="n">MyISAM</span><span class="w"> </span>
-<span class="err">重启</span><span class="n">MySQL</span><span class="err">：</span><span class="n">systemctl</span><span class="w"> </span><span class="k">restart</span><span class="w"> </span><span class="n">mysqld</span>
-
-<span class="o">#</span><span class="w"> </span><span class="err">在建表的时候去设置存储引擎</span>
-<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="p">(</span><span class="w"> </span><span class="err">建表语句</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">存储引擎名称</span><span class="p">;</span>
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="n">ENGINE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">存储引擎名称</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">set</span><span class="w"> </span><span class="n">DEFAULT_STORAGE_ENGINE</span><span class="o">=</span><span class="n">MyISAM</span><span class="p">;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="o">#</span><span class="w"> </span><span class="err">或者修改配置文件</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">vim</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">my</span><span class="p">.</span><span class="n">cnf</span><span class="w"> </span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="err">在</span><span class="p">[</span><span class="n">mysqld</span><span class="p">]</span><span class="err">节点下新增一行：</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">default</span><span class="o">-</span><span class="k">storage</span><span class="o">-</span><span class="n">engine</span><span class="o">=</span><span class="n">MyISAM</span><span class="w"> </span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="err">重启</span><span class="n">MySQL</span><span class="err">：</span><span class="n">systemctl</span><span class="w"> </span><span class="k">restart</span><span class="w"> </span><span class="n">mysqld</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="o">#</span><span class="w"> </span><span class="err">在建表的时候去设置存储引擎</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="p">(</span><span class="w"> </span><span class="err">建表语句</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="n">ENGINE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">存储引擎名称</span><span class="p">;</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="n">ENGINE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">存储引擎名称</span><span class="p">;</span>
+</span></code></pre></div>
 <h4 id="1_1">1. 不同存储引擎的介绍</h4>
 <p align='center'>
     <img src="../assets/imgs/middleware/mysql/mysql04.png" alt="mysql04" style="zoom:150%;" />
@@ -6141,34 +6169,34 @@
 <h3 id="4_1">4. 索引操作</h3>
 <h4 id="41">4.1 创建索引</h4>
 <p>1、随表一起创建</p>
-<div class="highlight"><pre><span></span><code>CREATE TABLE customer (
-
-  id INT UNSIGNED AUTO_INCREMENT,
-  customer_no VARCHAR(200),
-  customer_name VARCHAR(200),
-
-  PRIMARY KEY(id), -- 主键索引：列设定为主键后会自动建立索引，唯一且不能为空。
-  UNIQUE INDEX uk_no (customer_no), -- 唯一索引：索引列值必须唯一，允许有NULL值，且NULL可能会出现多次。
-  KEY idx_name (customer_name), -- 普通索引：既不是主键，列值也不需要唯一，单纯的为了提高查询速度而创建。
-  KEY idx_no_name (customer_no,customer_name) -- 复合索引：即一个索引包含多个列。
-);
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>CREATE TABLE customer (
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>  id INT UNSIGNED AUTO_INCREMENT,
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>  customer_no VARCHAR(200),
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>  customer_name VARCHAR(200),
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>  PRIMARY KEY(id), -- 主键索引：列设定为主键后会自动建立索引，唯一且不能为空。
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>  UNIQUE INDEX uk_no (customer_no), -- 唯一索引：索引列值必须唯一，允许有NULL值，且NULL可能会出现多次。
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>  KEY idx_name (customer_name), -- 普通索引：既不是主键，列值也不需要唯一，单纯的为了提高查询速度而创建。
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>  KEY idx_no_name (customer_no,customer_name) -- 复合索引：即一个索引包含多个列。
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>);
+</span></code></pre></div>
 <p>2、单独创建索引</p>
-<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="w"> </span><span class="err">主键索引</span>
-<span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t_name</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="err">索引名</span><span class="p">(</span><span class="err">索引列</span><span class="p">)</span>
-
-<span class="o">#</span><span class="w"> </span><span class="err">普通索引</span>
-<span class="k">create</span><span class="w"> </span><span class="p">[</span><span class="k">unique</span><span class="p">]</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="err">索引名</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">t_name</span><span class="p">(</span><span class="err">索引列</span><span class="p">)</span><span class="w"> </span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">#</span><span class="w"> </span><span class="err">主键索引</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">t_name</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="err">索引名</span><span class="p">(</span><span class="err">索引列</span><span class="p">)</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="o">#</span><span class="w"> </span><span class="err">普通索引</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="k">create</span><span class="w"> </span><span class="p">[</span><span class="k">unique</span><span class="p">]</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="err">索引名</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">t_name</span><span class="p">(</span><span class="err">索引列</span><span class="p">)</span><span class="w"> </span>
+</span></code></pre></div>
 <h4 id="42">4.2 查看索引</h4>
-<div class="highlight"><pre><span></span><code><span class="k">show</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t_name</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">show</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t_name</span><span class="p">;</span>
+</span></code></pre></div>
 <h4 id="43">4.3 删除索引</h4>
-<div class="highlight"><pre><span></span><code><span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customer</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 删除单值、唯一、复合索引</span>
-
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customer</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="p">,</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 删除主键索引(有主键自增)</span>
-<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customer1</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 删除主键索引(没有主键自增)</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_name</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">customer</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 删除单值、唯一、复合索引</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customer</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="p">,</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 删除主键索引(有主键自增)</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">customer1</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 删除主键索引(没有主键自增)</span>
+</span></code></pre></div>
 <h3 id="5">5. 索引的使用场景</h3>
 <p>应该创建索引的场景：</p>
 <ol>
@@ -6197,8 +6225,8 @@
 <h3 id="2-explain">2. explain（性能分析）</h3>
 <p>查看SQL执行计划：使用EXPLAIN关键字可以<code>模拟优化器执行SQL查询语句</code>，从而知道MySQL是如何处理你的SQL语句的。<code>分析你的查询语句或是表结构的性能瓶颈</code>。</p>
 <p>用法：</p>
-<div class="highlight"><pre><span></span><code><span class="k">explain</span><span class="w"> </span><span class="k">sql</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">explain</span><span class="w"> </span><span class="k">sql</span><span class="p">;</span>
+</span></code></pre></div>
 <h4 id="21">2.1 重要性能字段介绍</h4>
 <h5 id="1-id">1. id</h5>
 <p>在一个完整的查询语句中，每个SELECT关键字，都对应一个唯一的id。同时通过id也可以知道操作表的顺序。</p>
@@ -6212,11 +6240,11 @@
 <p>单表：显示这一行的数据是关于哪张表的
 多表：关联查询中，显示在执行计划第一行的是驱动表，第二行是被驱动表</p>
 <h5 id="3-type">3. type ☆</h5>
-<div class="highlight"><pre><span></span><code>system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL
-
-但是常见的就下面这些：
-system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>但是常见的就下面这些：
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL
+</span></code></pre></div>
 <ul>
 <li>
 <p>ALL：全表扫描。Full Table Scan，将遍历全表以找到匹配的行</p>
@@ -6237,10 +6265,10 @@ system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL
 <p>const：根据<code>主键</code>或者<code>唯一二级索引</code>列与<code>常数</code>进行匹配时。单表查询。</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="c1">-- 对于 order 表的每一行，根据 user_id 去 user 表查</span>
-<span class="c1">-- 因为 user.id 是主键，所以 type 是 eq_ref</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1">-- 对于 order 表的每一行，根据 user_id 去 user 表查</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1">-- 因为 user.id 是主键，所以 type 是 eq_ref</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="n">o</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="k">user</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">o</span><span class="p">.</span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">id</span><span class="p">;</span>
+</span></code></pre></div>
 <ul>
 <li>system：MyISAM引擎中，当表中只有一条记录时。<code>（这是所有type的值中性能最高的场景）</code></li>
 </ul>
@@ -6282,16 +6310,16 @@ system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL
 <p>3、当类型转换时，也会导致索引失效</p>
 <p>4、左模糊查询、不等于也会导致索引失效</p>
 <p>5、索引中范围条件右边的列失效</p>
-<div class="highlight"><pre><span></span><code>小口诀：
-全值匹配我最爱，最左前缀要遵守（查询条件尽可能完全匹配符合索引列）； 
-带头大哥（复合索引第一列）不能死，中间兄弟不能断（复合索引后边列可能用不到）； 
-索引列上少计算，范围之后全失效（范围查询列后面索引列值无序）； 
-like百分写最右，覆盖索引不写 * ；
-(减少回表次数) 不等空值还有or（肯能会引起索引缩小，or,in 可以用union替代），索引失效要少用； 
-var引号不能丢（类型转换），sql高级也不难；
-
-关联查询两表中列类型，表编码不一致都会造成索引失效。
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>小口诀：
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>全值匹配我最爱，最左前缀要遵守（查询条件尽可能完全匹配符合索引列）； 
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>带头大哥（复合索引第一列）不能死，中间兄弟不能断（复合索引后边列可能用不到）； 
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>索引列上少计算，范围之后全失效（范围查询列后面索引列值无序）； 
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>like百分写最右，覆盖索引不写 * ；
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>(减少回表次数) 不等空值还有or（肯能会引起索引缩小，or,in 可以用union替代），索引失效要少用； 
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>var引号不能丢（类型转换），sql高级也不难；
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>关联查询两表中列类型，表编码不一致都会造成索引失效。
+</span></code></pre></div>
 <p>在复合索引中，范围查询会“中断”最左前缀原则，使得该列之后的索引列无法用于快速查找或排序优化，但可能仍可用于覆盖索引。</p>
 <h3 id="4_2">4.  关联查询优化</h3>
 <p>对于关联查询的优化，需要注意的如下：</p>
@@ -6309,35 +6337,35 @@ var引号不能丢（类型转换），sql高级也不难；
 <p>下面sql是一个子查询，存在问题：</p>
 <p>q：子查询的过滤字段 dept.ceo 上没有索引，所以是全表查询 all</p>
 <p>所以如果能改成关联查询，就改成关联查询，如果非要用子查询，记得给子查询去进行优化。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- 不推荐</span>
-<span class="c1">-- 查询员工，这些员工的id没在（掌门人id列表中）</span>
-<span class="c1">-- 【查询不是CEO的员工】</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t_emp</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">emp</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span>
-<span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="n">ceo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t_dept</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="n">ceo</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
-
-<span class="c1">-- 推荐</span>
-<span class="c1">-- 按照集合查询</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="n">emp</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t_emp</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span>
-<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">t_dept</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">emp</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="n">ceo</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">-- 不推荐</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="c1">-- 查询员工，这些员工的id没在（掌门人id列表中）</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="c1">-- 【查询不是CEO的员工】</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t_emp</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">emp</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="n">ceo</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t_dept</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="n">ceo</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="c1">-- 推荐</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="c1">-- 按照集合查询</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">emp</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">t_emp</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">t_dept</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">emp</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="n">ceo</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">dept</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</span></code></pre></div>
 <h3 id="6">6. 排序优化</h3>
 <p>如果想在排序时候用到索引，那必须要有过滤条件，不然就算排序字段是索引字段，也会是 all，所以，排序也要加 过滤条件或者limit。</p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- 没有使用索引：</span>
-<span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="n">deptid</span><span class="p">;</span>
-
-<span class="c1">-- 使用了索引：order by想使用索引，必须有过滤条件，索引才能生效，limit也可以看作是过滤条件</span>
-<span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="n">deptid</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1">-- 没有使用索引：</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="n">deptid</span><span class="p">;</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1">-- 使用了索引：order by想使用索引，必须有过滤条件，索引才能生效，limit也可以看作是过滤条件</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">emp</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="n">deptid</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span>
+</span></code></pre></div>
 <p>注意点：</p>
 <p>1、无 where|limit 过滤、不索引(错误的，即使，即使没有where， limit，order by 后跟着索引列，也可以是性能从 all -&gt;index)</p>
-<div class="highlight"><pre><span></span><code><span class="k">explain</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t_emp</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
-<span class="k">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">all</span>
-<span class="err">即使</span><span class="n">name有索引</span><span class="err">，也会全表遍历，因为查询优化器会认为本次就算走索引，回表的代价也很大，因为当前</span><span class="n">name索引不包含所有字段</span><span class="err">。</span>
-
-<span class="k">explain</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="s1">&#39;name&#39;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t_emp</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
-<span class="k">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">index</span>
-<span class="err">这个</span><span class="n">sql就会走索引</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">explain</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t_emp</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">all</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="err">即使</span><span class="n">name有索引</span><span class="err">，也会全表遍历，因为查询优化器会认为本次就算走索引，回表的代价也很大，因为当前</span><span class="n">name索引不包含所有字段</span><span class="err">。</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="k">explain</span><span class="w"> </span><span class="k">select</span><span class="w"> </span><span class="s1">&#39;name&#39;</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">t_emp</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="k">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">index</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="err">这个</span><span class="n">sql就会走索引</span>
+</span></code></pre></div>
 <p>2、索引字段顺序错、不索引</p>
 <p>3、排序字段方向反、不索引</p>
 <p><code>所有的排序都是在条件过滤之后才执行的，所以，如果条件过滤掉大部分数据的话，剩下几百几千条数据进行排序其实并不是很消耗性能，即使索引优化了排序，但实际提升性能很有限。 相对的</code>empno&lt;101000<code>这个条件，如果没有用到索引的话，要对几万条的数据进行扫描，这是非常消耗性能的，所以索引放在这个字段上性价比最高，是最优选择。</code></p>
@@ -6372,8 +6400,8 @@ var引号不能丢（类型转换），sql高级也不难；
 </ul>
 <p><strong>优化策略</strong>
 MySQL根据<code>max_length_for_sort_data(返回的列的总长度)</code>变量来确定使用哪种算法，默认值是4096字节，如果需要返回的列的总长度大于max_length_for_sort_data，使用双路排序算法，否则使用单路排序算法。</p>
-<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%max_length_for_sort_data%&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">--默认4K</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%max_length_for_sort_data%&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">--默认4K</span>
+</span></code></pre></div>
 <p>1、如果数据总量很小（单路一次就可以读取所有数据），单条记录大小很大（大于4K，默认会使用双路排序），此时，可以增加max_length_for_sort_data的值，增加sort_buffer_size的值，让服务器默认使用单路排序。</p>
 <p>2、如果数据总量很大（单路很多次IO才可以），单条记录大小很小（小于4K，默认会使用单路排序），此时，可以减小max_length_for_sort_data的值，让服务器默认使用双路排序。</p>
 <h3 id="8">8、分组优化</h3>
@@ -6387,15 +6415,15 @@ MySQL根据<code>max_length_for_sort_data(返回的列的总长度)</code>变量
 <h2 id="_2">六、慢查询日志</h2>
 <h4 id="61">6.1 开启慢查询日志</h4>
 <p>默认情况下，MySQL数据库没有开启慢查询日志，需要我们手动来设置这个参数。当然，如果不是调优需要的话，一般不建议启动该参数，因为开启慢查询日志会或多或少带来一定的性能影响。</p>
-<div class="highlight"><pre><span></span><code>SET GLOBAL slow_query_log=1; 
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>SET GLOBAL slow_query_log=1; 
+</span></code></pre></div>
 <p>然后我们再来查看下慢查询日志是否开启，以及慢查询日志文件的位置：</p>
-<div class="highlight"><pre><span></span><code>SHOW VARIABLES LIKE &#39;%slow_query_log%&#39;; 
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>SHOW VARIABLES LIKE &#39;%slow_query_log%&#39;; 
+</span></code></pre></div>
 <p>修改long_query_time阈值</p>
-<div class="highlight"><pre><span></span><code><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%long_query_time%&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 查看值：默认10秒</span>
-<span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">long_query_time</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 设置一个比较短的时间，便于测试</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="n">VARIABLES</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%long_query_time%&#39;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 查看值：默认10秒</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">long_query_time</span><span class="o">=</span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 设置一个比较短的时间，便于测试</span>
+</span></code></pre></div>
 <ul>
 <li><strong>需要重新登录客户端</strong>使上面的设置生效</li>
 <li>假如运行时间正好等于long_query_time的情况，并不会被记录下来。</li>
@@ -6403,30 +6431,30 @@ MySQL根据<code>max_length_for_sort_data(返回的列的总长度)</code>变量
 </ul>
 <h4 id="62">6.2 日志分析工具</h4>
 <p><strong>执行耗时sql：</strong></p>
-<div class="highlight"><pre><span></span><code>SELECT * from emp;
-SELECT * FROM emp;
-SELECT * FROM emp WHERE deptid &gt; 1;
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>SELECT * from emp;
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>SELECT * FROM emp;
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>SELECT * FROM emp WHERE deptid &gt; 1;
+</span></code></pre></div>
 <p><strong>查询慢查询记录数：</strong></p>
-<div class="highlight"><pre><span></span><code>SHOW GLOBAL STATUS LIKE &#39;%Slow_queries%&#39;; 
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>SHOW GLOBAL STATUS LIKE &#39;%Slow_queries%&#39;; 
+</span></code></pre></div>
 <p><strong>查询日志：</strong></p>
-<div class="highlight"><pre><span></span><code>vim /var/lib/mysql/xxxx-slow.log
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>vim /var/lib/mysql/xxxx-slow.log
+</span></code></pre></div>
 <p><strong>mysqldumpslow：</strong></p>
-<div class="highlight"><pre><span></span><code><span class="c1">-- 查看mysqldumpslow的帮助信息</span>
-<span class="n">mysqldumpslow</span><span class="w"> </span><span class="c1">--help</span>
-
-<span class="c1">-- 工作常用参考</span>
-<span class="c1">-- 1.得到返回记录集最多的10个SQL</span>
-<span class="n">mysqldumpslow</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">atguigu</span><span class="o">-</span><span class="n">slow</span><span class="p">.</span><span class="n">log</span>
-<span class="c1">-- 2.得到访问次数最多的10个SQL</span>
-<span class="n">mysqldumpslow</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">atguigu</span><span class="o">-</span><span class="n">slow</span><span class="p">.</span><span class="n">log</span>
-<span class="c1">-- 3.得到按照时间排序的前10条里面含有左连接的查询语句</span>
-<span class="n">mysqldumpslow</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">-</span><span class="k">g</span><span class="w"> </span><span class="ss">&quot;left join&quot;</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">atguigu</span><span class="o">-</span><span class="n">slow</span><span class="p">.</span><span class="n">log</span>
-<span class="c1">-- 4.另外建议在使用这些命令时结合 | 和more 使用 ，否则语句过多有可能出现爆屏情况</span>
-<span class="n">mysqldumpslow</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">atguigu</span><span class="o">-</span><span class="n">slow</span><span class="p">.</span><span class="n">log</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">more</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1">-- 查看mysqldumpslow的帮助信息</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">mysqldumpslow</span><span class="w"> </span><span class="c1">--help</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="c1">-- 工作常用参考</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="c1">-- 1.得到返回记录集最多的10个SQL</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="n">mysqldumpslow</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">atguigu</span><span class="o">-</span><span class="n">slow</span><span class="p">.</span><span class="n">log</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="c1">-- 2.得到访问次数最多的10个SQL</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="n">mysqldumpslow</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">atguigu</span><span class="o">-</span><span class="n">slow</span><span class="p">.</span><span class="n">log</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="c1">-- 3.得到按照时间排序的前10条里面含有左连接的查询语句</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="n">mysqldumpslow</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">-</span><span class="k">g</span><span class="w"> </span><span class="ss">&quot;left join&quot;</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">atguigu</span><span class="o">-</span><span class="n">slow</span><span class="p">.</span><span class="n">log</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="c1">-- 4.另外建议在使用这些命令时结合 | 和more 使用 ，否则语句过多有可能出现爆屏情况</span>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="n">mysqldumpslow</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">atguigu</span><span class="o">-</span><span class="n">slow</span><span class="p">.</span><span class="n">log</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">more</span>
+</span></code></pre></div>
 <ul>
 <li>-a: 不将数字抽象成N，字符串抽象成S</li>
 <li>-s: 是表示按照何种方式排序；</li>
@@ -6463,12 +6491,12 @@ SELECT * FROM emp WHERE deptid &gt; 1;
 <p>4、当多层视图嵌套后，sql执行计划难以分析</p>
 <h4 id="73">7.3 语法</h4>
 <p>1、创建视图</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="p">[</span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="p">]</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">view_name</span><span class="w"> </span>
-<span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">column_name</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">condition</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="p">[</span><span class="k">or</span><span class="w"> </span><span class="k">replace</span><span class="p">]</span><span class="w"> </span><span class="k">VIEW</span><span class="w"> </span><span class="n">view_name</span><span class="w"> </span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">column_name</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">table_name</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">condition</span><span class="p">;</span>
+</span></code></pre></div>
 <p>2、删除视图</p>
-<div class="highlight"><pre><span></span><code>drop view view_name
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>drop view view_name
+</span></code></pre></div>
 <p>3、使用
 使用的时候就把它当成是一个虚拟表就可以了，可以直接查询，也可以和其他表进行关联</p>
 <h2 id="mvcc">八、MVCC</h2>
@@ -6509,31 +6537,31 @@ SELECT * FROM emp WHERE deptid &gt; 1;
 <p><strong>一种用于撤销回退的日志，在事务开始之前，会先记录存放到 Undo 日志文件里，备份起来，当事务回滚时或者数据库崩溃时用于回滚事务</strong>。</p>
 <p><strong>undo日志的主要作用是事务回滚和实现MVCC快照读</strong></p>
 <p>1、事务回滚：当执行下面的事务时</p>
-<div class="highlight"><pre><span></span><code><span class="k">BEGIN</span><span class="p">;</span>
-<span class="k">UPDATE</span><span class="w"> </span><span class="n">t_emp</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-<span class="c1">-- 此时 age 原值是 25</span>
-<span class="k">ROLLBACK</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">BEGIN</span><span class="p">;</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">t_emp</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="c1">-- 此时 age 原值是 25</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="k">ROLLBACK</span><span class="p">;</span>
+</span></code></pre></div>
 <p>MySQL 能把 <code>age</code> 从 30 改回 25，靠的就是 Undo Log 中保存的旧值（25）</p>
 <p>2、实现 mvcc：当一个事务正在修改某行数据时，另一个事务执行：</p>
-<div class="highlight"><pre><span></span><code>SELECT * FROM t_emp WHERE id = 1;  -- 普通 SELECT（快照读）
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>SELECT * FROM t_emp WHERE id = 1;  -- 普通 SELECT（快照读）
+</span></code></pre></div>
 <p>它<strong>不会被阻塞</strong>，而是通过 Undo Log 找到该行的<strong>历史版本</strong>（比如 age=25），从而实现“读不阻塞写，写不阻塞读”。</p>
 <h4 id="84">8.4 版本链</h4>
 <p>当事务对某一行数据进行改动时，会产生一条Undo日志，多个事务同时操作一条记录时，就会产生多个版本的Undo日志，这些日志通过回滚指针（DB_ROLL_PTR）连成一个链表，称为版本链。</p>
 <h4 id="85">8.5 快照读和当前读</h4>
 <p><strong>快照读【Consistent Read】</strong>
 也叫普通读，读取的是记录数据的可见版本，不加锁，不加锁的普通select语句都是快照读。快照读的执行方式是生成 ReadView，直接利用 MVCC 机制来进行读取，并不会对记录进行加锁。</p>
-<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">table</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">table</span><span class="p">;</span>
+</span></code></pre></div>
 <p><strong>当前读【Locking Read】</strong>
 也称锁定读，读取的是记录数据的最新版本，并且需要先获取对应记录的锁。如下语句：</p>
-<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">lock</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">share</span><span class="w"> </span><span class="k">mode</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="err">共享</span><span class="w"> </span><span class="err">锁</span>
-<span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="err">排他锁</span>
-<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">...</span><span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="err">排他锁</span>
-<span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="p">...</span><span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="err">排他锁</span>
-<span class="k">UPDATE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="p">...</span><span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="err">排他锁</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">lock</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">share</span><span class="w"> </span><span class="k">mode</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="err">共享</span><span class="w"> </span><span class="err">锁</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">FOR</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">;</span><span class="w"> </span><span class="o">#</span><span class="w"> </span><span class="err">排他锁</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">...</span><span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="err">排他锁</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="p">...</span><span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="err">排他锁</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="p">...</span><span class="w">  </span><span class="o">#</span><span class="w"> </span><span class="err">排他锁</span>
+</span></code></pre></div>
 <h4 id="86-read-view">8.6 读视图【Read View】</h4>
 <p><strong>Read View提供了某一时刻事务系统的快照，主要是用来做<code>可见性</code>判断, 里面保存了【对本事务不可见的其他活跃事务】</strong>。</p>
 <p>人话：读视图就是用来控制其他事务对当前事务的可见性的，可见性指的就是由其他事务创建、修改的记录能不能被该事务查到。也就是记录的那些版本不能被该事务查询，那些版本能被该事务查询。</p>
@@ -6593,14 +6621,14 @@ SELECT * FROM emp WHERE deptid &gt; 1;
 <li>默认使用 <strong>STATEMENT</strong> 格式记录；</li>
 <li>当 MySQL 检测到 SQL 语句<strong>可能引起主从不一致</strong>（如包含 <code>NOW()</code>、<code>RAND()</code> 等非确定性函数）时，<strong>自动切换为 ROW 模式</strong>记录该语句。</li>
 </ul>
-<div class="highlight"><pre><span></span><code>SHOW VARIABLES LIKE &#39;binlog_format&#39;;
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c1">-- 仅对当前会话生效</span>
-<span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">binlog_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ROW&#39;</span><span class="p">;</span>
-
-<span class="c1">-- 全局生效（需 SUPER 权限）</span>
-<span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">binlog_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ROW&#39;</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>SHOW VARIABLES LIKE &#39;binlog_format&#39;;
+</span></code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1">-- 仅对当前会话生效</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="k">SET</span><span class="w"> </span><span class="k">SESSION</span><span class="w"> </span><span class="n">binlog_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ROW&#39;</span><span class="p">;</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="c1">-- 全局生效（需 SUPER 权限）</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">binlog_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ROW&#39;</span><span class="p">;</span>
+</span></code></pre></div>
 <h2 id="_3">九、分库分表</h2>
 <p>阿里巴巴Java开发手册：【推荐】单表行数超过 500 万行或者单表容量超过 2GB，才推荐进行分库分表。</p>
 <p>说明：如果预计三年后的数据量根本达不到这个级别，<code>请不要在创建表时就分库分表</code>。</p>
@@ -6681,54 +6709,54 @@ SELECT * FROM emp WHERE deptid &gt; 1;
 <h4 id="2_4">2. 一主多从配置</h4>
 <h5 id="21_2">2.1 准备主服务器</h5>
 <p>在docker容器创建并启动主服务器</p>
-<div class="highlight"><pre><span></span><code><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3307</span><span class="p">:</span><span class="mi">3306</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">conf</span><span class="p">.</span><span class="n">d</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="k">data</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="err">\</span>
-<span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="n">liuqiang</span><span class="w"> </span><span class="err">\</span>
-<span class="c1">--name atguigu-mysql-master \</span>
-<span class="n">mysql</span><span class="p">:</span><span class="mi">8</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">30</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3307</span><span class="p">:</span><span class="mi">3306</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">conf</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">conf</span><span class="p">.</span><span class="n">d</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="k">data</span><span class="p">:</span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">mysql</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="o">-</span><span class="n">e</span><span class="w"> </span><span class="n">MYSQL_ROOT_PASSWORD</span><span class="o">=</span><span class="n">liuqiang</span><span class="w"> </span><span class="err">\</span>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="c1">--name atguigu-mysql-master \</span>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="n">mysql</span><span class="p">:</span><span class="mi">8</span><span class="p">.</span><span class="mi">0</span><span class="p">.</span><span class="mi">30</span>
+</span></code></pre></div>
 <p>默认情况下MySQL的binlog日志是自动开启的，可以通过如下配置定义一些可选配置</p>
-<div class="highlight"><pre><span></span><code>vim /root/mysql/master/conf/my.cnf
-
-[mysqld]
-# 服务器唯一id，默认值1
-server-id=1
-# 设置日志格式，默认值ROW
-binlog_format=STATEMENT
-# 二进制日志名，默认binlog
-# log-bin=binlog
-# 设置需要复制的数据库，默认复制全部数据库
-#binlog-do-db=mytestdb1
-#binlog-do-db=mytestdb2
-# 设置不需要复制的数据库
-#binlog-ignore-db=mytestdb3
-#binlog-ignore-db=mytestdb4
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>vim /root/mysql/master/conf/my.cnf
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>[mysqld]
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a># 服务器唯一id，默认值1
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>server-id=1
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a># 设置日志格式，默认值ROW
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>binlog_format=STATEMENT
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a># 二进制日志名，默认binlog
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a># log-bin=binlog
+</span><span id="__span-39-10"><a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a># 设置需要复制的数据库，默认复制全部数据库
+</span><span id="__span-39-11"><a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a>#binlog-do-db=mytestdb1
+</span><span id="__span-39-12"><a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a>#binlog-do-db=mytestdb2
+</span><span id="__span-39-13"><a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a># 设置不需要复制的数据库
+</span><span id="__span-39-14"><a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a>#binlog-ignore-db=mytestdb3
+</span><span id="__span-39-15"><a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a>#binlog-ignore-db=mytestdb4
+</span></code></pre></div>
 <p>重启容器</p>
-<div class="highlight"><pre><span></span><code>docker restart xxx
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>docker restart xxx
+</span></code></pre></div>
 <p>进入主服务器，然后创建从机用户并分配权限</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#进入容器：env LANG=C.UTF-8 避免容器中显示中文乱码</span>
-docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>atguigu-mysql-master<span class="w"> </span>env<span class="w"> </span><span class="nv">LANG</span><span class="o">=</span>C.UTF-8<span class="w"> </span>/bin/bash
-<span class="c1">#进入容器内的mysql命令行</span>
-mysql<span class="w"> </span>-uroot<span class="w"> </span>-p
-<span class="c1">#修改默认密码插件</span>
-ALTER<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>WITH<span class="w"> </span>mysql_native_password<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">;</span>
-
---<span class="w"> </span>创建slave用户
-CREATE<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;atguigu_slave&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
---<span class="w"> </span>设置密码
-ALTER<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;atguigu_slave&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>WITH<span class="w"> </span>mysql_native_password<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;liuqiang&#39;</span><span class="p">;</span>
---<span class="w"> </span>授予复制权限
-GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>SLAVE<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w"> </span>TO<span class="w"> </span><span class="s1">&#39;atguigu_slave&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
---<span class="w"> </span>刷新权限
-FLUSH<span class="w"> </span>PRIVILEGES<span class="p">;</span>
-</code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="c1">#进入容器：env LANG=C.UTF-8 避免容器中显示中文乱码</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>atguigu-mysql-master<span class="w"> </span>env<span class="w"> </span><span class="nv">LANG</span><span class="o">=</span>C.UTF-8<span class="w"> </span>/bin/bash
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="c1">#进入容器内的mysql命令行</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>mysql<span class="w"> </span>-uroot<span class="w"> </span>-p
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="c1">#修改默认密码插件</span>
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>ALTER<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>WITH<span class="w"> </span>mysql_native_password<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;123456&#39;</span><span class="p">;</span>
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>--<span class="w"> </span>创建slave用户
+</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a>CREATE<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;atguigu_slave&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
+</span><span id="__span-41-10"><a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a>--<span class="w"> </span>设置密码
+</span><span id="__span-41-11"><a id="__codelineno-41-11" name="__codelineno-41-11" href="#__codelineno-41-11"></a>ALTER<span class="w"> </span>USER<span class="w"> </span><span class="s1">&#39;atguigu_slave&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="w"> </span>IDENTIFIED<span class="w"> </span>WITH<span class="w"> </span>mysql_native_password<span class="w"> </span>BY<span class="w"> </span><span class="s1">&#39;liuqiang&#39;</span><span class="p">;</span>
+</span><span id="__span-41-12"><a id="__codelineno-41-12" name="__codelineno-41-12" href="#__codelineno-41-12"></a>--<span class="w"> </span>授予复制权限
+</span><span id="__span-41-13"><a id="__codelineno-41-13" name="__codelineno-41-13" href="#__codelineno-41-13"></a>GRANT<span class="w"> </span>REPLICATION<span class="w"> </span>SLAVE<span class="w"> </span>ON<span class="w"> </span>*.*<span class="w"> </span>TO<span class="w"> </span><span class="s1">&#39;atguigu_slave&#39;</span>@<span class="s1">&#39;%&#39;</span><span class="p">;</span>
+</span><span id="__span-41-14"><a id="__codelineno-41-14" name="__codelineno-41-14" href="#__codelineno-41-14"></a>--<span class="w"> </span>刷新权限
+</span><span id="__span-41-15"><a id="__codelineno-41-15" name="__codelineno-41-15" href="#__codelineno-41-15"></a>FLUSH<span class="w"> </span>PRIVILEGES<span class="p">;</span>
+</span></code></pre></div>
 <p>查看主机的状态</p>
-<div class="highlight"><pre><span></span><code>show master status;
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>show master status;
+</span></code></pre></div>
 <p align='center'>
     <img src="../assets/imgs/middleware/mysql/mysql10.png" alt="mysql10" style="zoom:80%;" />
 </p>
@@ -6736,75 +6764,75 @@ FLUSH<span class="w"> </span>PRIVILEGES<span class="p">;</span>
 <p>file 是 binlog 文件的名称，而position则是偏移量，也就是从机应该从1107这个位置开始读取。</p>
 <h5 id="22_1">2.2 准备两台从机</h5>
 <p>创建并运行文件，然后写配置文件</p>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
--p<span class="w"> </span><span class="m">3308</span>:3306<span class="w"> </span><span class="se">\</span>
--v<span class="w"> </span>/root/mysql/slave1/conf:/etc/mysql/conf.d<span class="w"> </span><span class="se">\</span>
--v<span class="w"> </span>/root/mysql/slave1/data:/var/lib/mysql<span class="w"> </span><span class="se">\</span>
--e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>liuqiang<span class="w"> </span><span class="se">\</span>
---name<span class="w"> </span>atguigu-mysql-slave1<span class="w"> </span><span class="se">\</span>
-mysql:8.0.30
-
-vim<span class="w"> </span>/root/mysql/slave1/conf/my.cnf
-
-<span class="o">[</span>mysqld<span class="o">]</span>
-<span class="c1"># 服务器唯一id，每台服务器的id必须不同，如果配置其他从机，注意修改id</span>
-server-id<span class="o">=</span><span class="m">2</span>
-<span class="c1"># 中继日志名，默认xxxxxxxxxxxx-relay-bin</span>
-<span class="c1">#relay-log=relay-bin</span>
-
-
-
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
--p<span class="w"> </span><span class="m">3309</span>:3306<span class="w"> </span><span class="se">\</span>
--v<span class="w"> </span>/root/mysql/slave2/conf:/etc/mysql/conf.d<span class="w"> </span><span class="se">\</span>
--v<span class="w"> </span>/root/mysql/slave2/data:/var/lib/mysql<span class="w"> </span><span class="se">\</span>
--e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>liuqiang<span class="w"> </span><span class="se">\</span>
---name<span class="w"> </span>atguigu-mysql-slave2<span class="w"> </span><span class="se">\</span>
-mysql:8.0.30
-
-vim<span class="w"> </span>/root/mysql/slave2/conf/my.cnf
-
-<span class="o">[</span>mysqld<span class="o">]</span>
-<span class="c1"># 服务器唯一id，每台服务器的id必须不同，如果配置其他从机，注意修改id</span>
-server-id<span class="o">=</span><span class="m">3</span>
-<span class="c1"># 中继日志名，默认xxxxxxxxxxxx-relay-bin</span>
-<span class="c1">#relay-log=relay-bin</span>
-
-docker<span class="w"> </span>restart<span class="w"> </span>xxx
-</code></pre></div>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>-p<span class="w"> </span><span class="m">3308</span>:3306<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>-v<span class="w"> </span>/root/mysql/slave1/conf:/etc/mysql/conf.d<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>-v<span class="w"> </span>/root/mysql/slave1/data:/var/lib/mysql<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>liuqiang<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-6"><a id="__codelineno-43-6" name="__codelineno-43-6" href="#__codelineno-43-6"></a>--name<span class="w"> </span>atguigu-mysql-slave1<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-7"><a id="__codelineno-43-7" name="__codelineno-43-7" href="#__codelineno-43-7"></a>mysql:8.0.30
+</span><span id="__span-43-8"><a id="__codelineno-43-8" name="__codelineno-43-8" href="#__codelineno-43-8"></a>
+</span><span id="__span-43-9"><a id="__codelineno-43-9" name="__codelineno-43-9" href="#__codelineno-43-9"></a>vim<span class="w"> </span>/root/mysql/slave1/conf/my.cnf
+</span><span id="__span-43-10"><a id="__codelineno-43-10" name="__codelineno-43-10" href="#__codelineno-43-10"></a>
+</span><span id="__span-43-11"><a id="__codelineno-43-11" name="__codelineno-43-11" href="#__codelineno-43-11"></a><span class="o">[</span>mysqld<span class="o">]</span>
+</span><span id="__span-43-12"><a id="__codelineno-43-12" name="__codelineno-43-12" href="#__codelineno-43-12"></a><span class="c1"># 服务器唯一id，每台服务器的id必须不同，如果配置其他从机，注意修改id</span>
+</span><span id="__span-43-13"><a id="__codelineno-43-13" name="__codelineno-43-13" href="#__codelineno-43-13"></a>server-id<span class="o">=</span><span class="m">2</span>
+</span><span id="__span-43-14"><a id="__codelineno-43-14" name="__codelineno-43-14" href="#__codelineno-43-14"></a><span class="c1"># 中继日志名，默认xxxxxxxxxxxx-relay-bin</span>
+</span><span id="__span-43-15"><a id="__codelineno-43-15" name="__codelineno-43-15" href="#__codelineno-43-15"></a><span class="c1">#relay-log=relay-bin</span>
+</span><span id="__span-43-16"><a id="__codelineno-43-16" name="__codelineno-43-16" href="#__codelineno-43-16"></a>
+</span><span id="__span-43-17"><a id="__codelineno-43-17" name="__codelineno-43-17" href="#__codelineno-43-17"></a>
+</span><span id="__span-43-18"><a id="__codelineno-43-18" name="__codelineno-43-18" href="#__codelineno-43-18"></a>
+</span><span id="__span-43-19"><a id="__codelineno-43-19" name="__codelineno-43-19" href="#__codelineno-43-19"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-20"><a id="__codelineno-43-20" name="__codelineno-43-20" href="#__codelineno-43-20"></a>-p<span class="w"> </span><span class="m">3309</span>:3306<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-21"><a id="__codelineno-43-21" name="__codelineno-43-21" href="#__codelineno-43-21"></a>-v<span class="w"> </span>/root/mysql/slave2/conf:/etc/mysql/conf.d<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-22"><a id="__codelineno-43-22" name="__codelineno-43-22" href="#__codelineno-43-22"></a>-v<span class="w"> </span>/root/mysql/slave2/data:/var/lib/mysql<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-23"><a id="__codelineno-43-23" name="__codelineno-43-23" href="#__codelineno-43-23"></a>-e<span class="w"> </span><span class="nv">MYSQL_ROOT_PASSWORD</span><span class="o">=</span>liuqiang<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-24"><a id="__codelineno-43-24" name="__codelineno-43-24" href="#__codelineno-43-24"></a>--name<span class="w"> </span>atguigu-mysql-slave2<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-43-25"><a id="__codelineno-43-25" name="__codelineno-43-25" href="#__codelineno-43-25"></a>mysql:8.0.30
+</span><span id="__span-43-26"><a id="__codelineno-43-26" name="__codelineno-43-26" href="#__codelineno-43-26"></a>
+</span><span id="__span-43-27"><a id="__codelineno-43-27" name="__codelineno-43-27" href="#__codelineno-43-27"></a>vim<span class="w"> </span>/root/mysql/slave2/conf/my.cnf
+</span><span id="__span-43-28"><a id="__codelineno-43-28" name="__codelineno-43-28" href="#__codelineno-43-28"></a>
+</span><span id="__span-43-29"><a id="__codelineno-43-29" name="__codelineno-43-29" href="#__codelineno-43-29"></a><span class="o">[</span>mysqld<span class="o">]</span>
+</span><span id="__span-43-30"><a id="__codelineno-43-30" name="__codelineno-43-30" href="#__codelineno-43-30"></a><span class="c1"># 服务器唯一id，每台服务器的id必须不同，如果配置其他从机，注意修改id</span>
+</span><span id="__span-43-31"><a id="__codelineno-43-31" name="__codelineno-43-31" href="#__codelineno-43-31"></a>server-id<span class="o">=</span><span class="m">3</span>
+</span><span id="__span-43-32"><a id="__codelineno-43-32" name="__codelineno-43-32" href="#__codelineno-43-32"></a><span class="c1"># 中继日志名，默认xxxxxxxxxxxx-relay-bin</span>
+</span><span id="__span-43-33"><a id="__codelineno-43-33" name="__codelineno-43-33" href="#__codelineno-43-33"></a><span class="c1">#relay-log=relay-bin</span>
+</span><span id="__span-43-34"><a id="__codelineno-43-34" name="__codelineno-43-34" href="#__codelineno-43-34"></a>
+</span><span id="__span-43-35"><a id="__codelineno-43-35" name="__codelineno-43-35" href="#__codelineno-43-35"></a>docker<span class="w"> </span>restart<span class="w"> </span>xxx
+</span></code></pre></div>
 <p>进入容器</p>
-<div class="highlight"><pre><span></span><code>#进入容器：
-docker exec -it atguigu-mysql-slave1 env LANG=C.UTF-8 /bin/bash
-#进入容器内的mysql命令行
-mysql -uroot -p
-#修改默认密码插件(不需要)
-ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;liuqiang&#39;;
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>#进入容器：
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>docker exec -it atguigu-mysql-slave1 env LANG=C.UTF-8 /bin/bash
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a>#进入容器内的mysql命令行
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>mysql -uroot -p
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>#修改默认密码插件(不需要)
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;liuqiang&#39;;
+</span></code></pre></div>
 <p>去与主机绑定</p>
-<div class="highlight"><pre><span></span><code><span class="n">CHANGE</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">MASTER_HOST</span><span class="o">=</span><span class="s1">&#39;119.91.193.23&#39;</span><span class="p">,</span><span class="w"> </span>
-<span class="n">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;slave&#39;</span><span class="p">,</span><span class="n">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;liuqiang&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">MASTER_PORT</span><span class="o">=</span><span class="mi">3307</span><span class="p">,</span>
-<span class="n">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;binlog.000004&#39;</span><span class="p">,</span><span class="n">MASTER_LOG_POS</span><span class="o">=</span><span class="mi">445</span><span class="p">;</span><span class="w"> </span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="n">CHANGE</span><span class="w"> </span><span class="n">MASTER</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">MASTER_HOST</span><span class="o">=</span><span class="s1">&#39;119.91.193.23&#39;</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="n">MASTER_USER</span><span class="o">=</span><span class="s1">&#39;slave&#39;</span><span class="p">,</span><span class="n">MASTER_PASSWORD</span><span class="o">=</span><span class="s1">&#39;liuqiang&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">MASTER_PORT</span><span class="o">=</span><span class="mi">3307</span><span class="p">,</span>
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="n">MASTER_LOG_FILE</span><span class="o">=</span><span class="s1">&#39;binlog.000004&#39;</span><span class="p">,</span><span class="n">MASTER_LOG_POS</span><span class="o">=</span><span class="mi">445</span><span class="p">;</span><span class="w"> </span>
+</span></code></pre></div>
 <p>查看从机状态</p>
-<div class="highlight"><pre><span></span><code><span class="k">START</span><span class="w"> </span><span class="n">SLAVE</span><span class="p">;</span>
-<span class="c1">-- 查看状态（不需要分号）</span>
-<span class="k">SHOW</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">START</span><span class="w"> </span><span class="n">SLAVE</span><span class="p">;</span>
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="c1">-- 查看状态（不需要分号）</span>
+</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="k">SHOW</span><span class="w"> </span><span class="n">SLAVE</span><span class="w"> </span><span class="n">STATUS</span><span class="err">\</span><span class="k">G</span>
+</span></code></pre></div>
 <h5 id="23">2.3 常见问题</h5>
 <p>当主机设置的用户验证插件是 caching_sha2_password，那么从机的连接会失败，因此该插件不允许非加密的连接，此时改为 mysql_native_password 即可。</p>
-<div class="highlight"><pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;slave&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">mysql_native_password</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;your_password&#39;</span><span class="p">;</span>
-<span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
-</code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;slave&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">mysql_native_password</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;your_password&#39;</span><span class="p">;</span>
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="n">FLUSH</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="p">;</span>
+</span></code></pre></div>
 <p>从机复制是从特定位置开始的，所以在主机执行的命令一定要安全，因为可能存在主机的数据库和表从机根本没感知到，也就是没复制到，如果此时直接删除会导致从机报错。</p>
 <p>从机与主机的解绑</p>
-<div class="highlight"><pre><span></span><code>stop slave; // 只是去停止 bin log 的io
-
-reset slave all; // 清除本次主从连接的全部信息
-
--- 在主机上执行。功能说明：删除所有的binlog日志文件，并将日志索引文件清空，重新开始所有新的日志文件。
--- 用于第一次进行搭建主从库时，进行主库binlog初始化工作；
-reset master;
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>stop slave; // 只是去停止 bin log 的io
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>reset slave all; // 清除本次主从连接的全部信息
+</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a>
+</span><span id="__span-48-5"><a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a>-- 在主机上执行。功能说明：删除所有的binlog日志文件，并将日志索引文件清空，重新开始所有新的日志文件。
+</span><span id="__span-48-6"><a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a>-- 用于第一次进行搭建主从库时，进行主库binlog初始化工作；
+</span><span id="__span-48-7"><a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a>reset master;
+</span></code></pre></div>
 <h3 id="04-shardingsphere-jdbc">04 shardingSphere-JDBC</h3>
 <p>springboot 集成 shardingSphere 配置</p>
 <p align='center'>
@@ -6814,125 +6842,125 @@ reset master;
 <h4 id="1_8">1. <a href="https://shardingsphere.apache.org/document/current/cn/user-manual/shardingsphere-jdbc/yaml-config/rules/readwrite-splitting/">读写分离配置</a></h4>
 <p><a href="https://shardingsphere.apache.org/index_zh.html">官网地址：</a> <a href="https://shardingsphere.apache.org/document/5.4.0/cn/overview/">文档地址</a></p>
 <p><strong>导入依赖</strong></p>
-<div class="highlight"><pre><span></span><code>&lt;parent&gt;
-    &lt;!-- 版本对应： https://start.spring.io/actuator/info --&gt;
-    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
-    &lt;version&gt;3.0.5&lt;/version&gt;
-&lt;/parent&gt;
-
-
-&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
-        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
-        &lt;scope&gt;test&lt;/scope&gt;
-    &lt;/dependency&gt;
-
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.apache.shardingsphere&lt;/groupId&gt;
-        &lt;artifactId&gt;shardingsphere-jdbc-core&lt;/artifactId&gt;
-        &lt;version&gt;5.4.0&lt;/version&gt;
-    &lt;/dependency&gt;
-
-    &lt;!--兼容jdk17和spring boot3--&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.yaml&lt;/groupId&gt;
-        &lt;artifactId&gt;snakeyaml&lt;/artifactId&gt;
-        &lt;version&gt;1.33&lt;/version&gt;
-    &lt;/dependency&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.glassfish.jaxb&lt;/groupId&gt;
-        &lt;artifactId&gt;jaxb-runtime&lt;/artifactId&gt;
-        &lt;version&gt;2.3.8&lt;/version&gt;
-    &lt;/dependency&gt;
-... 
-&lt;/dependencies&gt;
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>&lt;parent&gt;
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>    &lt;!-- 版本对应： https://start.spring.io/actuator/info --&gt;
+</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+</span><span id="__span-49-4"><a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a>    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+</span><span id="__span-49-5"><a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>    &lt;version&gt;3.0.5&lt;/version&gt;
+</span><span id="__span-49-6"><a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a>&lt;/parent&gt;
+</span><span id="__span-49-7"><a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a>
+</span><span id="__span-49-8"><a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a>
+</span><span id="__span-49-9"><a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a>&lt;dependencies&gt;
+</span><span id="__span-49-10"><a id="__codelineno-49-10" name="__codelineno-49-10" href="#__codelineno-49-10"></a>    &lt;dependency&gt;
+</span><span id="__span-49-11"><a id="__codelineno-49-11" name="__codelineno-49-11" href="#__codelineno-49-11"></a>        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+</span><span id="__span-49-12"><a id="__codelineno-49-12" name="__codelineno-49-12" href="#__codelineno-49-12"></a>        &lt;artifactId&gt;spring-boot-starter&lt;/artifactId&gt;
+</span><span id="__span-49-13"><a id="__codelineno-49-13" name="__codelineno-49-13" href="#__codelineno-49-13"></a>    &lt;/dependency&gt;
+</span><span id="__span-49-14"><a id="__codelineno-49-14" name="__codelineno-49-14" href="#__codelineno-49-14"></a>
+</span><span id="__span-49-15"><a id="__codelineno-49-15" name="__codelineno-49-15" href="#__codelineno-49-15"></a>    &lt;dependency&gt;
+</span><span id="__span-49-16"><a id="__codelineno-49-16" name="__codelineno-49-16" href="#__codelineno-49-16"></a>        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+</span><span id="__span-49-17"><a id="__codelineno-49-17" name="__codelineno-49-17" href="#__codelineno-49-17"></a>        &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;
+</span><span id="__span-49-18"><a id="__codelineno-49-18" name="__codelineno-49-18" href="#__codelineno-49-18"></a>        &lt;scope&gt;test&lt;/scope&gt;
+</span><span id="__span-49-19"><a id="__codelineno-49-19" name="__codelineno-49-19" href="#__codelineno-49-19"></a>    &lt;/dependency&gt;
+</span><span id="__span-49-20"><a id="__codelineno-49-20" name="__codelineno-49-20" href="#__codelineno-49-20"></a>
+</span><span id="__span-49-21"><a id="__codelineno-49-21" name="__codelineno-49-21" href="#__codelineno-49-21"></a>    &lt;dependency&gt;
+</span><span id="__span-49-22"><a id="__codelineno-49-22" name="__codelineno-49-22" href="#__codelineno-49-22"></a>        &lt;groupId&gt;org.apache.shardingsphere&lt;/groupId&gt;
+</span><span id="__span-49-23"><a id="__codelineno-49-23" name="__codelineno-49-23" href="#__codelineno-49-23"></a>        &lt;artifactId&gt;shardingsphere-jdbc-core&lt;/artifactId&gt;
+</span><span id="__span-49-24"><a id="__codelineno-49-24" name="__codelineno-49-24" href="#__codelineno-49-24"></a>        &lt;version&gt;5.4.0&lt;/version&gt;
+</span><span id="__span-49-25"><a id="__codelineno-49-25" name="__codelineno-49-25" href="#__codelineno-49-25"></a>    &lt;/dependency&gt;
+</span><span id="__span-49-26"><a id="__codelineno-49-26" name="__codelineno-49-26" href="#__codelineno-49-26"></a>
+</span><span id="__span-49-27"><a id="__codelineno-49-27" name="__codelineno-49-27" href="#__codelineno-49-27"></a>    &lt;!--兼容jdk17和spring boot3--&gt;
+</span><span id="__span-49-28"><a id="__codelineno-49-28" name="__codelineno-49-28" href="#__codelineno-49-28"></a>    &lt;dependency&gt;
+</span><span id="__span-49-29"><a id="__codelineno-49-29" name="__codelineno-49-29" href="#__codelineno-49-29"></a>        &lt;groupId&gt;org.yaml&lt;/groupId&gt;
+</span><span id="__span-49-30"><a id="__codelineno-49-30" name="__codelineno-49-30" href="#__codelineno-49-30"></a>        &lt;artifactId&gt;snakeyaml&lt;/artifactId&gt;
+</span><span id="__span-49-31"><a id="__codelineno-49-31" name="__codelineno-49-31" href="#__codelineno-49-31"></a>        &lt;version&gt;1.33&lt;/version&gt;
+</span><span id="__span-49-32"><a id="__codelineno-49-32" name="__codelineno-49-32" href="#__codelineno-49-32"></a>    &lt;/dependency&gt;
+</span><span id="__span-49-33"><a id="__codelineno-49-33" name="__codelineno-49-33" href="#__codelineno-49-33"></a>    &lt;dependency&gt;
+</span><span id="__span-49-34"><a id="__codelineno-49-34" name="__codelineno-49-34" href="#__codelineno-49-34"></a>        &lt;groupId&gt;org.glassfish.jaxb&lt;/groupId&gt;
+</span><span id="__span-49-35"><a id="__codelineno-49-35" name="__codelineno-49-35" href="#__codelineno-49-35"></a>        &lt;artifactId&gt;jaxb-runtime&lt;/artifactId&gt;
+</span><span id="__span-49-36"><a id="__codelineno-49-36" name="__codelineno-49-36" href="#__codelineno-49-36"></a>        &lt;version&gt;2.3.8&lt;/version&gt;
+</span><span id="__span-49-37"><a id="__codelineno-49-37" name="__codelineno-49-37" href="#__codelineno-49-37"></a>    &lt;/dependency&gt;
+</span><span id="__span-49-38"><a id="__codelineno-49-38" name="__codelineno-49-38" href="#__codelineno-49-38"></a>... 
+</span><span id="__span-49-39"><a id="__codelineno-49-39" name="__codelineno-49-39" href="#__codelineno-49-39"></a>&lt;/dependencies&gt;
+</span></code></pre></div>
 <p><strong>配置 application.yaml</strong></p>
-<div class="highlight"><pre><span></span><code><span class="c1"># 配置 DataSource Driver</span>
-<span class="nt">spring</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">datasource</span><span class="p">:</span>
-<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">driver-class-name :org.apache.shardingsphere.driver.ShardingSphereDriver</span>
-<span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jdbc:shardingsphere:classpath:shardingsphere.yaml</span>
-</code></pre></div>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1"># 配置 DataSource Driver</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="nt">spring</span><span class="p">:</span>
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="w">    </span><span class="nt">datasource</span><span class="p">:</span>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">driver-class-name :org.apache.shardingsphere.driver.ShardingSphereDriver</span>
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jdbc:shardingsphere:classpath:shardingsphere.yaml</span>
+</span></code></pre></div>
 <p><strong>配置 shardingsphere.yaml</strong></p>
-<div class="highlight"><pre><span></span><code><span class="n">模式配置</span>
-<span class="nl">mode</span><span class="p">:</span>
-<span class="w">  </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">Standalone</span>
-<span class="w">  </span><span class="n">repository</span><span class="p">:</span>
-<span class="w">    </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">JDBC</span>
-
-
-<span class="n">数据源配置</span>
-
-<span class="nl">dataSources</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据源配置</span><span class="err">，</span><span class="n">可配置多个</span><span class="w"> </span><span class="o">&lt;</span><span class="n">data</span><span class="o">-</span><span class="n">source</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="w"> </span>
-<span class="o">&lt;</span><span class="n">data_source_name</span><span class="o">&gt;</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据源名称</span><span class="w"> </span>
-<span class="nl">dataSourceClassName</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据源完整类名</span>
-<span class="nl">driverClassName</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据库驱动类名</span><span class="err">，</span><span class="n">以数据库连接池自身配置为准</span>
-<span class="nl">standardJdbcUrl</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据库</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">连接</span><span class="err">，</span><span class="n">以数据库连接池自身配置为准</span><span class="w"> </span>
-<span class="nl">username</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据库用户名</span><span class="err">，</span><span class="n">以数据库连接池自身配置为准</span>
-<span class="w"> </span><span class="n">assword</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据库密码</span><span class="err">，</span><span class="n">以数据库连接池自身配置为准</span><span class="w"> </span>
-<span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">数据库连接池的其它属性</span>
-
-<span class="nl">dataSources</span><span class="p">:</span>
-<span class="w">  </span><span class="n">write_ds</span><span class="p">:</span>
-<span class="w">    </span><span class="n">dataSourceClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span>
-<span class="w">    </span><span class="n">driverClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">mysql</span><span class="p">.</span><span class="na">cj</span><span class="p">.</span><span class="na">jdbc</span><span class="p">.</span><span class="na">Driver</span>
-<span class="w">    </span><span class="n">jdbcUrl</span><span class="p">:</span><span class="w"> </span><span class="n">jdbc</span><span class="p">:</span><span class="n">mysql</span><span class="p">:</span><span class="c1">//192.168.200.10:3306/db_user</span>
-<span class="w">    </span><span class="n">username</span><span class="p">:</span><span class="w"> </span><span class="n">root</span>
-<span class="w">    </span><span class="n">password</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span>
-<span class="w">  </span><span class="n">read_ds_0</span><span class="p">:</span>
-<span class="w">    </span><span class="n">dataSourceClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span>
-<span class="w">    </span><span class="n">driverClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">mysql</span><span class="p">.</span><span class="na">cj</span><span class="p">.</span><span class="na">jdbc</span><span class="p">.</span><span class="na">Driver</span>
-<span class="w">    </span><span class="n">jdbcUrl</span><span class="p">:</span><span class="w"> </span><span class="n">jdbc</span><span class="p">:</span><span class="n">mysql</span><span class="p">:</span><span class="c1">//192.168.200.10:3307/db_user</span>
-<span class="w">    </span><span class="n">username</span><span class="p">:</span><span class="w"> </span><span class="n">root</span>
-<span class="w">    </span><span class="n">password</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span>
-<span class="w">  </span><span class="n">read_ds_1</span><span class="p">:</span>
-<span class="w">    </span><span class="n">dataSourceClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span>
-<span class="w">    </span><span class="n">driverClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">mysql</span><span class="p">.</span><span class="na">cj</span><span class="p">.</span><span class="na">jdbc</span><span class="p">.</span><span class="na">Driver</span>
-<span class="w">    </span><span class="n">jdbcUrl</span><span class="p">:</span><span class="w"> </span><span class="n">jdbc</span><span class="p">:</span><span class="n">mysql</span><span class="p">:</span><span class="c1">//192.168.200.10:3308/db_user</span>
-<span class="w">    </span><span class="n">username</span><span class="p">:</span><span class="w"> </span><span class="n">root</span>
-<span class="w">    </span><span class="n">password</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span>
-</code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="n">模式配置</span>
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a><span class="nl">mode</span><span class="p">:</span>
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="w">  </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">Standalone</span>
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="w">  </span><span class="n">repository</span><span class="p">:</span>
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="w">    </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="n">JDBC</span>
+</span><span id="__span-51-6"><a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a>
+</span><span id="__span-51-7"><a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a>
+</span><span id="__span-51-8"><a id="__codelineno-51-8" name="__codelineno-51-8" href="#__codelineno-51-8"></a><span class="n">数据源配置</span>
+</span><span id="__span-51-9"><a id="__codelineno-51-9" name="__codelineno-51-9" href="#__codelineno-51-9"></a>
+</span><span id="__span-51-10"><a id="__codelineno-51-10" name="__codelineno-51-10" href="#__codelineno-51-10"></a><span class="nl">dataSources</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据源配置</span><span class="err">，</span><span class="n">可配置多个</span><span class="w"> </span><span class="o">&lt;</span><span class="n">data</span><span class="o">-</span><span class="n">source</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span><span class="w"> </span>
+</span><span id="__span-51-11"><a id="__codelineno-51-11" name="__codelineno-51-11" href="#__codelineno-51-11"></a><span class="o">&lt;</span><span class="n">data_source_name</span><span class="o">&gt;</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据源名称</span><span class="w"> </span>
+</span><span id="__span-51-12"><a id="__codelineno-51-12" name="__codelineno-51-12" href="#__codelineno-51-12"></a><span class="nl">dataSourceClassName</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据源完整类名</span>
+</span><span id="__span-51-13"><a id="__codelineno-51-13" name="__codelineno-51-13" href="#__codelineno-51-13"></a><span class="nl">driverClassName</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据库驱动类名</span><span class="err">，</span><span class="n">以数据库连接池自身配置为准</span>
+</span><span id="__span-51-14"><a id="__codelineno-51-14" name="__codelineno-51-14" href="#__codelineno-51-14"></a><span class="nl">standardJdbcUrl</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据库</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">连接</span><span class="err">，</span><span class="n">以数据库连接池自身配置为准</span><span class="w"> </span>
+</span><span id="__span-51-15"><a id="__codelineno-51-15" name="__codelineno-51-15" href="#__codelineno-51-15"></a><span class="nl">username</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据库用户名</span><span class="err">，</span><span class="n">以数据库连接池自身配置为准</span>
+</span><span id="__span-51-16"><a id="__codelineno-51-16" name="__codelineno-51-16" href="#__codelineno-51-16"></a><span class="w"> </span><span class="n">assword</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">数据库密码</span><span class="err">，</span><span class="n">以数据库连接池自身配置为准</span><span class="w"> </span>
+</span><span id="__span-51-17"><a id="__codelineno-51-17" name="__codelineno-51-17" href="#__codelineno-51-17"></a><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="n">数据库连接池的其它属性</span>
+</span><span id="__span-51-18"><a id="__codelineno-51-18" name="__codelineno-51-18" href="#__codelineno-51-18"></a>
+</span><span id="__span-51-19"><a id="__codelineno-51-19" name="__codelineno-51-19" href="#__codelineno-51-19"></a><span class="nl">dataSources</span><span class="p">:</span>
+</span><span id="__span-51-20"><a id="__codelineno-51-20" name="__codelineno-51-20" href="#__codelineno-51-20"></a><span class="w">  </span><span class="n">write_ds</span><span class="p">:</span>
+</span><span id="__span-51-21"><a id="__codelineno-51-21" name="__codelineno-51-21" href="#__codelineno-51-21"></a><span class="w">    </span><span class="n">dataSourceClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span>
+</span><span id="__span-51-22"><a id="__codelineno-51-22" name="__codelineno-51-22" href="#__codelineno-51-22"></a><span class="w">    </span><span class="n">driverClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">mysql</span><span class="p">.</span><span class="na">cj</span><span class="p">.</span><span class="na">jdbc</span><span class="p">.</span><span class="na">Driver</span>
+</span><span id="__span-51-23"><a id="__codelineno-51-23" name="__codelineno-51-23" href="#__codelineno-51-23"></a><span class="w">    </span><span class="n">jdbcUrl</span><span class="p">:</span><span class="w"> </span><span class="n">jdbc</span><span class="p">:</span><span class="n">mysql</span><span class="p">:</span><span class="c1">//192.168.200.10:3306/db_user</span>
+</span><span id="__span-51-24"><a id="__codelineno-51-24" name="__codelineno-51-24" href="#__codelineno-51-24"></a><span class="w">    </span><span class="n">username</span><span class="p">:</span><span class="w"> </span><span class="n">root</span>
+</span><span id="__span-51-25"><a id="__codelineno-51-25" name="__codelineno-51-25" href="#__codelineno-51-25"></a><span class="w">    </span><span class="n">password</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span>
+</span><span id="__span-51-26"><a id="__codelineno-51-26" name="__codelineno-51-26" href="#__codelineno-51-26"></a><span class="w">  </span><span class="n">read_ds_0</span><span class="p">:</span>
+</span><span id="__span-51-27"><a id="__codelineno-51-27" name="__codelineno-51-27" href="#__codelineno-51-27"></a><span class="w">    </span><span class="n">dataSourceClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span>
+</span><span id="__span-51-28"><a id="__codelineno-51-28" name="__codelineno-51-28" href="#__codelineno-51-28"></a><span class="w">    </span><span class="n">driverClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">mysql</span><span class="p">.</span><span class="na">cj</span><span class="p">.</span><span class="na">jdbc</span><span class="p">.</span><span class="na">Driver</span>
+</span><span id="__span-51-29"><a id="__codelineno-51-29" name="__codelineno-51-29" href="#__codelineno-51-29"></a><span class="w">    </span><span class="n">jdbcUrl</span><span class="p">:</span><span class="w"> </span><span class="n">jdbc</span><span class="p">:</span><span class="n">mysql</span><span class="p">:</span><span class="c1">//192.168.200.10:3307/db_user</span>
+</span><span id="__span-51-30"><a id="__codelineno-51-30" name="__codelineno-51-30" href="#__codelineno-51-30"></a><span class="w">    </span><span class="n">username</span><span class="p">:</span><span class="w"> </span><span class="n">root</span>
+</span><span id="__span-51-31"><a id="__codelineno-51-31" name="__codelineno-51-31" href="#__codelineno-51-31"></a><span class="w">    </span><span class="n">password</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span>
+</span><span id="__span-51-32"><a id="__codelineno-51-32" name="__codelineno-51-32" href="#__codelineno-51-32"></a><span class="w">  </span><span class="n">read_ds_1</span><span class="p">:</span>
+</span><span id="__span-51-33"><a id="__codelineno-51-33" name="__codelineno-51-33" href="#__codelineno-51-33"></a><span class="w">    </span><span class="n">dataSourceClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">zaxxer</span><span class="p">.</span><span class="na">hikari</span><span class="p">.</span><span class="na">HikariDataSource</span>
+</span><span id="__span-51-34"><a id="__codelineno-51-34" name="__codelineno-51-34" href="#__codelineno-51-34"></a><span class="w">    </span><span class="n">driverClassName</span><span class="p">:</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">mysql</span><span class="p">.</span><span class="na">cj</span><span class="p">.</span><span class="na">jdbc</span><span class="p">.</span><span class="na">Driver</span>
+</span><span id="__span-51-35"><a id="__codelineno-51-35" name="__codelineno-51-35" href="#__codelineno-51-35"></a><span class="w">    </span><span class="n">jdbcUrl</span><span class="p">:</span><span class="w"> </span><span class="n">jdbc</span><span class="p">:</span><span class="n">mysql</span><span class="p">:</span><span class="c1">//192.168.200.10:3308/db_user</span>
+</span><span id="__span-51-36"><a id="__codelineno-51-36" name="__codelineno-51-36" href="#__codelineno-51-36"></a><span class="w">    </span><span class="n">username</span><span class="p">:</span><span class="w"> </span><span class="n">root</span>
+</span><span id="__span-51-37"><a id="__codelineno-51-37" name="__codelineno-51-37" href="#__codelineno-51-37"></a><span class="w">    </span><span class="n">password</span><span class="p">:</span><span class="w"> </span><span class="mi">123456</span>
+</span></code></pre></div>
 <p><strong>读写分离配置</strong></p>
 <p align='center'>
     <img src="../assets/imgs/middleware/mysql/mysql12.png" alt="mysql12" style="zoom:80%;" />
 </p>
 
-<div class="highlight"><pre><span></span><code>// 读写分离 YAML 配置方式可读性高，通过 YAML 格式，能够快速地理解读写分片规则之间的依赖关系，ShardingSphere 会根据 YAML 配置，自动完成 ShardingSphereDataSource 对象的创建，减少用户不必要的编码工作。
-rules:
-  - !READWRITE_SPLITTING
-    dataSourceGroups:
-      readwrite_ds:
-        writeDataSourceName: write_ds
-        readDataSourceNames:
-          - read_ds_0
-          - read_ds_1
-        transactionalReadQueryStrategy: PRIMARY # 事务内读请求的路由策略，可选值：PRIMARY（路由至主库）、FIXED（同一事务内路由至固定数据源）、DYNAMIC（同一事务内路由至非固定数据源）。默认值：DYNAMIC
-        loadBalancerName: random
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>// 读写分离 YAML 配置方式可读性高，通过 YAML 格式，能够快速地理解读写分片规则之间的依赖关系，ShardingSphere 会根据 YAML 配置，自动完成 ShardingSphereDataSource 对象的创建，减少用户不必要的编码工作。
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>rules:
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>  - !READWRITE_SPLITTING
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a>    dataSourceGroups:
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>      readwrite_ds:
+</span><span id="__span-52-6"><a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>        writeDataSourceName: write_ds
+</span><span id="__span-52-7"><a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a>        readDataSourceNames:
+</span><span id="__span-52-8"><a id="__codelineno-52-8" name="__codelineno-52-8" href="#__codelineno-52-8"></a>          - read_ds_0
+</span><span id="__span-52-9"><a id="__codelineno-52-9" name="__codelineno-52-9" href="#__codelineno-52-9"></a>          - read_ds_1
+</span><span id="__span-52-10"><a id="__codelineno-52-10" name="__codelineno-52-10" href="#__codelineno-52-10"></a>        transactionalReadQueryStrategy: PRIMARY # 事务内读请求的路由策略，可选值：PRIMARY（路由至主库）、FIXED（同一事务内路由至固定数据源）、DYNAMIC（同一事务内路由至非固定数据源）。默认值：DYNAMIC
+</span><span id="__span-52-11"><a id="__codelineno-52-11" name="__codelineno-52-11" href="#__codelineno-52-11"></a>        loadBalancerName: random
+</span></code></pre></div>
 <p><strong>负载均衡算法配置</strong></p>
-<div class="highlight"><pre><span></span><code> loadBalancers:
-      random:
-        type: RANDOM
-      round_robin:
-        type: ROUND_ROBIN
-      weight:
-        type: WEIGHT
-        props:
-         - read_ls_0: 1
-         - read_ds_1: 2
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a> loadBalancers:
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a>      random:
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>        type: RANDOM
+</span><span id="__span-53-4"><a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a>      round_robin:
+</span><span id="__span-53-5"><a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a>        type: ROUND_ROBIN
+</span><span id="__span-53-6"><a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>      weight:
+</span><span id="__span-53-7"><a id="__codelineno-53-7" name="__codelineno-53-7" href="#__codelineno-53-7"></a>        type: WEIGHT
+</span><span id="__span-53-8"><a id="__codelineno-53-8" name="__codelineno-53-8" href="#__codelineno-53-8"></a>        props:
+</span><span id="__span-53-9"><a id="__codelineno-53-9" name="__codelineno-53-9" href="#__codelineno-53-9"></a>         - read_ls_0: 1
+</span><span id="__span-53-10"><a id="__codelineno-53-10" name="__codelineno-53-10" href="#__codelineno-53-10"></a>         - read_ds_1: 2
+</span></code></pre></div>
 <p><strong>输出sql</strong></p>
-<div class="highlight"><pre><span></span><code>props:
-  sql-show: true
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a>props:
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>  sql-show: true
+</span></code></pre></div>
 <h4 id="2_5">2. 数据库分片架构配置</h4>
 <p><a href="https://shardingsphere.apache.org/document/current/cn/user-manual/shardingsphere-jdbc/yaml-config/rules/sharding/">数据分片配置</a></p>
 <h5 id="21_3">2.1 数据库垂直分片配置</h5>
@@ -6944,95 +6972,95 @@ rules:
 <p>去写shardingSphere的配置文件,先配置数据源列表</p>
 </li>
 </ol>
-<div class="highlight"><pre><span></span><code>// 数据源列表
-dataSources:
-  ds_0:
-    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
-    driverClassName: com.mysql.cj.jdbc.Driver
-    jdbcUrl: jdbc:mysql://192.168.200.10:3306/db_user
-    username: root
-    password: 123456
-
-   ds_1:
-       ...
-... 
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a>// 数据源列表
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a>dataSources:
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>  ds_0:
+</span><span id="__span-55-4"><a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a>    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+</span><span id="__span-55-5"><a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a>    driverClassName: com.mysql.cj.jdbc.Driver
+</span><span id="__span-55-6"><a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a>    jdbcUrl: jdbc:mysql://192.168.200.10:3306/db_user
+</span><span id="__span-55-7"><a id="__codelineno-55-7" name="__codelineno-55-7" href="#__codelineno-55-7"></a>    username: root
+</span><span id="__span-55-8"><a id="__codelineno-55-8" name="__codelineno-55-8" href="#__codelineno-55-8"></a>    password: 123456
+</span><span id="__span-55-9"><a id="__codelineno-55-9" name="__codelineno-55-9" href="#__codelineno-55-9"></a>
+</span><span id="__span-55-10"><a id="__codelineno-55-10" name="__codelineno-55-10" href="#__codelineno-55-10"></a>   ds_1:
+</span><span id="__span-55-11"><a id="__codelineno-55-11" name="__codelineno-55-11" href="#__codelineno-55-11"></a>       ...
+</span><span id="__span-55-12"><a id="__codelineno-55-12" name="__codelineno-55-12" href="#__codelineno-55-12"></a>... 
+</span></code></pre></div>
 <ol>
 <li>配置数据库的垂直分片</li>
 </ol>
-<div class="highlight"><pre><span></span><code>rules:
-  - !SHARDING
-    tables:
-      t_user:
-        actualDataNodes: user_ds.t_user
-      t_order:
-        actualDataNodes: order_ds.t_order
-props:
-  sql-show: false
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a>rules:
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>  - !SHARDING
+</span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a>    tables:
+</span><span id="__span-56-4"><a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a>      t_user:
+</span><span id="__span-56-5"><a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a>        actualDataNodes: user_ds.t_user
+</span><span id="__span-56-6"><a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a>      t_order:
+</span><span id="__span-56-7"><a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a>        actualDataNodes: order_ds.t_order
+</span><span id="__span-56-8"><a id="__codelineno-56-8" name="__codelineno-56-8" href="#__codelineno-56-8"></a>props:
+</span><span id="__span-56-9"><a id="__codelineno-56-9" name="__codelineno-56-9" href="#__codelineno-56-9"></a>  sql-show: false
+</span></code></pre></div>
 <h5 id="22_2">2.2 数据库的水平分片</h5>
 <p>注：在数据库的水平分片架构下，主键id就不能用mysql自带的自增了，因为这样会导致id重复。因为无论数据库怎么水平分片，逻辑上它就是一个数据库，表也是同理。</p>
 <p>因此，现在的主键要用mybatis-plus的 assign-id</p>
 <p><strong>配置数据源列</strong></p>
-<div class="highlight"><pre><span></span><code>datasources:
-    order_ds_1：
-        dataSourceClassName: xxx
-        driverClassName: xxx
-        jdbcUrl: 
-        username: xxx
-        password: xxx
-    order_ds_2:
-        ...
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a>datasources:
+</span><span id="__span-57-2"><a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>    order_ds_1：
+</span><span id="__span-57-3"><a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a>        dataSourceClassName: xxx
+</span><span id="__span-57-4"><a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a>        driverClassName: xxx
+</span><span id="__span-57-5"><a id="__codelineno-57-5" name="__codelineno-57-5" href="#__codelineno-57-5"></a>        jdbcUrl: 
+</span><span id="__span-57-6"><a id="__codelineno-57-6" name="__codelineno-57-6" href="#__codelineno-57-6"></a>        username: xxx
+</span><span id="__span-57-7"><a id="__codelineno-57-7" name="__codelineno-57-7" href="#__codelineno-57-7"></a>        password: xxx
+</span><span id="__span-57-8"><a id="__codelineno-57-8" name="__codelineno-57-8" href="#__codelineno-57-8"></a>    order_ds_2:
+</span><span id="__span-57-9"><a id="__codelineno-57-9" name="__codelineno-57-9" href="#__codelineno-57-9"></a>        ...
+</span></code></pre></div>
 <p><strong>配置水平分片</strong>的规则：操作哪个数据库以及数据库里的哪张表</p>
-<div class="highlight"><pre><span></span><code>rules:
-  - !SHARDING
-    tables:
-      t_order:
-        // 笨方法，一个一个写，可以映射多个数据节点
-        actualDataNodes: order_ds_1.t_order0, ...   
-        // 行表达式
-        actualDataNodes: order_ds_${0..1}.t_order_${0..1}
-        databaseStrategy:
-            standard: # 用于单分片键的标准分片场景
-                shardingColumn: user_id # 分片列名称 (根据业务要求来选)
-                shardingAlgorithmName: aaa # 分片算法名称
-        tableStrategy:
-            standard:
-                shardingColumn: id
-                shardingAlgorithmName: bbb # 分片算法名称
-
-
-
-    shardingAlgorithms:
-        aaa:
-            type: INLINE
-            props:
-                algorithm-expression: order_ds_${user_id % 2}
-
-        bbb:
-            type: INLINE
-            props:
-                algorithm-expression: t_order_${id % 2}
-</code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="n">分片算法配置</span><span class="w"> </span>
-<span class="nl">shardingAlgorithms</span><span class="p">:</span><span class="w"> </span>
-<span class="w">    </span><span class="o">&lt;</span><span class="n">sharding_algorithm_name</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="o">+</span><span class="p">):</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">分片算法名称</span><span class="w"> </span>
-<span class="w">        </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">分片算法类型</span><span class="w"> </span>
-<span class="w">        </span><span class="n">props</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">分片算法属性配置</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="p">...</span>
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a>rules:
+</span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>  - !SHARDING
+</span><span id="__span-58-3"><a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>    tables:
+</span><span id="__span-58-4"><a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a>      t_order:
+</span><span id="__span-58-5"><a id="__codelineno-58-5" name="__codelineno-58-5" href="#__codelineno-58-5"></a>        // 笨方法，一个一个写，可以映射多个数据节点
+</span><span id="__span-58-6"><a id="__codelineno-58-6" name="__codelineno-58-6" href="#__codelineno-58-6"></a>        actualDataNodes: order_ds_1.t_order0, ...   
+</span><span id="__span-58-7"><a id="__codelineno-58-7" name="__codelineno-58-7" href="#__codelineno-58-7"></a>        // 行表达式
+</span><span id="__span-58-8"><a id="__codelineno-58-8" name="__codelineno-58-8" href="#__codelineno-58-8"></a>        actualDataNodes: order_ds_${0..1}.t_order_${0..1}
+</span><span id="__span-58-9"><a id="__codelineno-58-9" name="__codelineno-58-9" href="#__codelineno-58-9"></a>        databaseStrategy:
+</span><span id="__span-58-10"><a id="__codelineno-58-10" name="__codelineno-58-10" href="#__codelineno-58-10"></a>            standard: # 用于单分片键的标准分片场景
+</span><span id="__span-58-11"><a id="__codelineno-58-11" name="__codelineno-58-11" href="#__codelineno-58-11"></a>                shardingColumn: user_id # 分片列名称 (根据业务要求来选)
+</span><span id="__span-58-12"><a id="__codelineno-58-12" name="__codelineno-58-12" href="#__codelineno-58-12"></a>                shardingAlgorithmName: aaa # 分片算法名称
+</span><span id="__span-58-13"><a id="__codelineno-58-13" name="__codelineno-58-13" href="#__codelineno-58-13"></a>        tableStrategy:
+</span><span id="__span-58-14"><a id="__codelineno-58-14" name="__codelineno-58-14" href="#__codelineno-58-14"></a>            standard:
+</span><span id="__span-58-15"><a id="__codelineno-58-15" name="__codelineno-58-15" href="#__codelineno-58-15"></a>                shardingColumn: id
+</span><span id="__span-58-16"><a id="__codelineno-58-16" name="__codelineno-58-16" href="#__codelineno-58-16"></a>                shardingAlgorithmName: bbb # 分片算法名称
+</span><span id="__span-58-17"><a id="__codelineno-58-17" name="__codelineno-58-17" href="#__codelineno-58-17"></a>
+</span><span id="__span-58-18"><a id="__codelineno-58-18" name="__codelineno-58-18" href="#__codelineno-58-18"></a>
+</span><span id="__span-58-19"><a id="__codelineno-58-19" name="__codelineno-58-19" href="#__codelineno-58-19"></a>
+</span><span id="__span-58-20"><a id="__codelineno-58-20" name="__codelineno-58-20" href="#__codelineno-58-20"></a>    shardingAlgorithms:
+</span><span id="__span-58-21"><a id="__codelineno-58-21" name="__codelineno-58-21" href="#__codelineno-58-21"></a>        aaa:
+</span><span id="__span-58-22"><a id="__codelineno-58-22" name="__codelineno-58-22" href="#__codelineno-58-22"></a>            type: INLINE
+</span><span id="__span-58-23"><a id="__codelineno-58-23" name="__codelineno-58-23" href="#__codelineno-58-23"></a>            props:
+</span><span id="__span-58-24"><a id="__codelineno-58-24" name="__codelineno-58-24" href="#__codelineno-58-24"></a>                algorithm-expression: order_ds_${user_id % 2}
+</span><span id="__span-58-25"><a id="__codelineno-58-25" name="__codelineno-58-25" href="#__codelineno-58-25"></a>
+</span><span id="__span-58-26"><a id="__codelineno-58-26" name="__codelineno-58-26" href="#__codelineno-58-26"></a>        bbb:
+</span><span id="__span-58-27"><a id="__codelineno-58-27" name="__codelineno-58-27" href="#__codelineno-58-27"></a>            type: INLINE
+</span><span id="__span-58-28"><a id="__codelineno-58-28" name="__codelineno-58-28" href="#__codelineno-58-28"></a>            props:
+</span><span id="__span-58-29"><a id="__codelineno-58-29" name="__codelineno-58-29" href="#__codelineno-58-29"></a>                algorithm-expression: t_order_${id % 2}
+</span></code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="err">#</span><span class="w"> </span><span class="n">分片算法配置</span><span class="w"> </span>
+</span><span id="__span-59-2"><a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="nl">shardingAlgorithms</span><span class="p">:</span><span class="w"> </span>
+</span><span id="__span-59-3"><a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="w">    </span><span class="o">&lt;</span><span class="n">sharding_algorithm_name</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="o">+</span><span class="p">):</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">分片算法名称</span><span class="w"> </span>
+</span><span id="__span-59-4"><a id="__codelineno-59-4" name="__codelineno-59-4" href="#__codelineno-59-4"></a><span class="w">        </span><span class="n">type</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">分片算法类型</span><span class="w"> </span>
+</span><span id="__span-59-5"><a id="__codelineno-59-5" name="__codelineno-59-5" href="#__codelineno-59-5"></a><span class="w">        </span><span class="n">props</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">分片算法属性配置</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="p">...</span>
+</span></code></pre></div>
 <h4 id="3_3">3. 行表达式</h4>
 <p>在配置中使用 <code>${ expression }</code> 或 <code>$-&gt;{ expression }</code> 标识 Groovy 表达式即可。 Groovy 表达式使用的是 Groovy 的语法，Groovy 能够支持的所有操作，行表达式均能够支持。 <code>${begin..end}</code> 表示范围区间； <code>${[unit1, unit2, unit_x]}</code> 表示枚举值。 行表达式中如果出现连续多个 <code>${ expression }</code> 或 <code>$-&gt;{ expression }</code> 表达式，整个表达式最终的结果将会根据每个子表达式的结果进行笛卡尔组合。</p>
 <p>基础语法：</p>
-<div class="highlight"><pre><span></span><code>${} 
-$-&gt;{}
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>${} 
+</span><span id="__span-60-2"><a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>$-&gt;{}
+</span></code></pre></div>
 <p>范围展开</p>
-<div class="highlight"><pre><span></span><code>${0..1} // 表示从 0 到 1 的整数序列（包含两端）。
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>${0..1} // 表示从 0 到 1 的整数序列（包含两端）。
+</span></code></pre></div>
 <p>表达式计算：</p>
-<div class="highlight"><pre><span></span><code>$-&gt;{order_id % 2
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a>$-&gt;{order_id % 2
+</span></code></pre></div>
 <h4 id="4_3">4. 雪花算法</h4>
 <h4 id="5_2">5. 跨分片查询</h4>
 <p>这正是 <strong>分库分表架构中的核心痛点：如何高效查询非分片键字段？</strong></p>
@@ -7070,6 +7098,8 @@ $-&gt;{}
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -7113,7 +7143,7 @@ $-&gt;{}
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>

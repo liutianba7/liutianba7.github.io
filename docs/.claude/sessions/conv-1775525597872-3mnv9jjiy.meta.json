@@ -1,0 +1,20 @@
+{
+  "id": "conv-1775525597872-3mnv9jjiy",
+  "title": "你是谁",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1775525597873,
+  "updatedAt": 1775625138944,
+  "lastResponseAt": 1775625138944,
+  "sessionId": "aab56a14-f62a-4ef4-a9fc-581a233bf261",
+  "sdkSessionId": "aab56a14-f62a-4ef4-a9fc-581a233bf261",
+  "currentNote": "python/04_web/fastapi-v2.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 44347,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 44347,
+    "percentage": 22
+  }
+}
