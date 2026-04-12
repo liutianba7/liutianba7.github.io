@@ -22,16 +22,15 @@ nav:
           - PythonBasic: ./python/02_basic/python基础.md
       - Others:
           - Requests: ./python/03_others/requests.md
-          - Pandas: ./python/03_others/pandas.md
-          - Numpy: ./python/03_others/numpy.md
-          - Pytest: ./python/03_others/pytest.md
+          - Loguru: ./python/03_others/loguru.md
       - Web:
           - Fastapi: ./python/04_web/fastapi.md
           - Fastapi-v2: ./python/04_web/fastapi-v2.md
       - AI:
           - LangChain: ./python/05_ai/LangChain.md
           - LangGraph: ./python/05_ai/LangGraph.md
-          - PyTorch: ./python/05_ai/PyTorch.md
+          - DeepAgents: ./python/05_ai/DeepAgents.md
+          - PyTorch: ./python/05_ai/Pytorch.md
           - Ollama: ./python/05_ai/Ollama.md
   - Frontend:
       - Js: ./frontend/js.md
@@ -140,7 +139,11 @@ markdown_extensions:
   - md_in_html
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.highlight:          # 语法高亮
@@ -160,6 +163,8 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/reading-progress.js
+  - https://unpkg.com/mermaid@10.9.3/dist/mermaid.min.js
+  - javascripts/mermaid.js
 
 extra_css:
   - stylesheets/extra.css
