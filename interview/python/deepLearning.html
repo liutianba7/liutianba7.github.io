@@ -921,6 +921,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/02_basic/python%E6%A0%87%E5%87%86%E5%BA%93.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PythonStandard
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2813,56 +2841,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#embedding" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第四部分：Embedding 与向量表示
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="第四部分：Embedding 与向量表示">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1、词向量演进
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2rag" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2、向量数据库（RAG 基础）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        面试高频问答速记
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2915,6 +2893,34 @@
     
   
     LangGraph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%9D%A2%E8%AF%95%E9%A2%98.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLMInterview
   
 
     
@@ -3536,56 +3542,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#embedding" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        第四部分：Embedding 与向量表示
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="第四部分：Embedding 与向量表示">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1、词向量演进
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2rag" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2、向量数据库（RAG 基础）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        面试高频问答速记
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3952,76 +3908,6 @@ $<span class="arithmatex">\(\text{MultiHead} = \text{Concat}(\text{head}_1, ...,
 </tbody>
 </table>
 <hr />
-<h2 id="embedding">第四部分：Embedding 与向量表示</h2>
-<h3 id="1_2">1、词向量演进</h3>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>特点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Word2Vec / GloVe</td>
-<td>静态词向量，同一词固定表示</td>
-</tr>
-<tr>
-<td>BERT Embedding</td>
-<td>动态词向量，语境敏感</td>
-</tr>
-<tr>
-<td>Sentence Embedding</td>
-<td>句子级表示，用于检索、相似度计算</td>
-</tr>
-</tbody>
-</table>
-<h3 id="2rag">2、向量数据库（RAG 基础）</h3>
-<p><strong>作用</strong>：存储 Embedding 向量，支持相似度检索</p>
-<p><strong>常见方案</strong>：Milvus、Pinecone、Chroma、FAISS</p>
-<p><strong>检索流程</strong>：
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Query → Embedding → 向量数据库检索 Top-K → 返回相关文档
-</span></code></pre></div></p>
-<hr />
-<h2 id="_4">面试高频问答速记</h2>
-<table>
-<thead>
-<tr>
-<th>问题</th>
-<th>核心答案</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Transformer 为什么比 RNN 好？</td>
-<td>并行计算 + 长距离依赖建模</td>
-</tr>
-<tr>
-<td>Self-Attention 的计算过程？</td>
-<td>X→Q,K,V → softmax(QK^T/√d)×V</td>
-</tr>
-<tr>
-<td>为什么用多头注意力？</td>
-<td>从不同子空间捕捉不同关系</td>
-</tr>
-<tr>
-<td>BERT 和 GPT 的区别？</td>
-<td>BERT 双向理解，GPT 单向生成</td>
-</tr>
-<tr>
-<td>梯度消失怎么解决？</td>
-<td>ReLU、BN、残差结构、合理初始化</td>
-</tr>
-<tr>
-<td>LayerNorm vs BatchNorm？</td>
-<td>LN 对样本内部归一化，适合 NLP；BN 跨 batch 归一化，适合 CNN</td>
-</tr>
-<tr>
-<td>什么是 RLHF？</td>
-<td>用人类反馈训练模型，让输出更符合人类偏好</td>
-</tr>
-</tbody>
-</table>
 
 
 
