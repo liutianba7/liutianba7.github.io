@@ -6,7 +6,7 @@
 
 ### DeepAgents 是什么？
 
-`deepagents` 是一个 **Agent Harness**（智能体框架），用于构建能够处理复杂、多步骤任务的 AI Agent。它基于 LangChain 核心构建，使用 LangGraph 运行时提供持久化执行、流式输出、人机协同等功能。内置了任务规划、用于上下文管理的文件系统、子代理生成和长期记忆能力
+`deepagents` 是一个 **Agent Harness**（智能体框架），用于构建能够处理复杂、多步骤任务的 AI Agent。它基于 LangChain 核心组件构建，使用 LangGraph 运行时提供持久化执行、流式输出、人机协同等功能。内置了任务规划、用于上下文管理和长期记忆的文件系统、子代理生成等。
 
 如 [官方定义](https://docs.langchain.com/oss/python/deepagents/overview) 所述：构建 LLM 驱动的智能体和应用最简单的方式——内置任务规划、用于上下文管理的文件系统、子代理生成和长期记忆能力。你可以用 DeepAgents 处理任何任务，包括复杂的多步任务。
 
@@ -288,7 +288,7 @@ for chunk in agent.stream(
 ---
 
 
-## DeepAgents 创建 Agent
+## DeepAgents 自定义 DeepAgent
 
 > 本节整理自 [Customize Deep Agents](https://docs.langchain.com/oss/python/deepagents/customization) 官方文档。
 
@@ -392,32 +392,48 @@ agent = create_deep_agent(
     自定义提示词只需定义 Agent 的"角色"和"输出规范"，
     不需要重复写如何使用工具——内置提示词已经包含了。
 
-### 中间件（Middleware）
+### 中间件（[Middleware](https://docs.langchain.com/oss/python/langchain/middleware/overview)）
 
-> 详见 [Middleware](https://docs.langchain.com/oss/python/deepagents/customization#middleware) 官方文档。
+中间件是 Agent 的**核心扩展机制**，允许你精确控制 Agent 内部的每一步行为。
+类似于 Web 框架的中间件，它工作在模型调用和工具执行的生命周期钩子中。
 
-中间件是 DeepAgents 的**扩展机制**，类似于 Web 框架的中间件概念。
-每个中间件可以注入工具、拦截工具调用、修改系统提示词，或实现自定义钩子。
+中间件适用于以下场景：
+
+- **追踪与调试** — 记录 Agent 行为、日志、分析 
+- **转换处理** — 改写提示词、过滤工具选择、格式化输出
+- **韧性增强** — 重试、降级、提前终止逻辑
+- **安全管控** — 速率限制、护栏、PII 检测
 
 #### 默认中间件
 
+> 详见 [DeepAgents->Middleware](https://docs.langchain.com/oss/python/deepagents/customization#middleware) 官方文档。
+
 `create_deep_agent` 默认包含 6 个中间件：
 
-| 中间件 | 功能 |
-|--------|------|
-| `TodoListMiddleware` | 注入 `write_todos` 工具，管理任务列表 |
-| `FilesystemMiddleware` | 注入文件系统工具（read/write/edit/list） |
-| `SubAgentMiddleware` | 注入 `task` 工具，管理子代理生命周期 |
-| `SummarizationMiddleware` | 上下文过长时自动摘要压缩 |
-| `AnthropicPromptCachingMiddleware` | Anthropic 模型 Prompt 缓存优化 |
-| `PatchToolCallsMiddleware` | 自动修复被中断的工具调用历史 |
+| 中间件                                | 功能                              |     |
+| ---------------------------------- | ------------------------------- | --- |
+| `TodoListMiddleware`               | 注入 `write_todos` 工具，管理任务列表      |     |
+| `FilesystemMiddleware`             | 注入文件系统工具（read/write/edit/list ） |     |
+| `SubAgentMiddleware`               | 注入 `task` 工具，管理子代理生命周期          |     |
+| `SummarizationMiddleware`          | 上下文过长时自动摘要压缩                    |     |
+| `AnthropicPromptCachingMiddleware` | Anthropic 模型 Prompt 缓存优化        |     |
+| `PatchToolCallsMiddleware`         | 自动修复被中断的工具调用历史                  |     |
 
 当启用 memory、skills 或 human-in-the-loop 时，还会自动注入对应的中间件。
 
 #### 自定义中间件
 
-通过 `@wrap_tool_call` 装饰器可以实现**工具调用拦截**，
-类似于 AOP（面向切面编程），在工具执行前后注入自定义逻辑：
+LangChain 中间件通过以下**生命周期钩子**介入 Agent 执行：
+
+| 装饰器 / 钩子          | 触发时机       | 典型用途         |
+| ----------------- | ---------- | ------------ |
+| `@wrap_tool_call` | 每次工具调用（环绕） | 日志、审计、参数校验   |
+| `before_model`    | 模型调用前      | 改写提示词、过滤工具列表 |
+| `after_model`     | 模型响应后      | 解析输出、注入 HITL |
+| `before_agent`    | Agent 执行前  | 初始化上下文       |
+| `after_agent`     | Agent 执行后  | 格式化输出、清理资源   |
+
+下面是 `@wrap_tool_call`的示例，实现对工具调用的**环绕通知**（Around advice）：
 
 ```python
 from langchain.tools import tool
@@ -531,14 +547,14 @@ Skills 和 Memory 也需要将文件预先放入后端。
 
 #### 后端总览
 
-| 后端 | 持久化 | 适用场景 |
-|------|--------|----------|
-| `StateBackend` | 否（单线程内临时） | 默认，开发测试 |
-| `FilesystemBackend` | 本地磁盘 | 本地开发、CI |
-| `LocalShellBackend` | 本地磁盘 + Shell | 本地编码助手 |
-| `StoreBackend` | 是（跨线程持久化） | 生产部署 |
-| `CompositeBackend` | 混合路由 | 多后端组合 |
-| 沙箱（Modal/Daytona/Deno） | 隔离环境 | 不可信代码执行 |
+| 后端                     | 持久化          | 适用场景    |
+| ---------------------- | ------------ | ------- |
+| `StateBackend`         | 否（单线程内临时）    | 默认，开发测试 |
+| `FilesystemBackend`    | 本地磁盘         | 本地开发、CI |
+| `LocalShellBackend`    | 本地磁盘 + Shell | 本地编码助手  |
+| `StoreBackend`         | 是（跨线程持久化）    | 生产部署    |
+| `CompositeBackend`     | 混合路由         | 多后端组合   |
+| 沙箱（Modal/Daytona/Deno） | 隔离环境         | 不可信代码执行 |
 
 ```mermaid
 graph TB
@@ -1107,39 +1123,192 @@ result = agent.invoke(
 
 ### 技能（Skills）
 
-> 详见 [Skills](https://docs.langchain.com/oss/python/deepagents/customization#skills) 官方文档。
+> 详见 [Skills 完整官方文档](https://docs.langchain.com/oss/python/deepagents/skills)。
 
 Skills 是 DeepAgents 的**按需加载能力包**。
-与 Tools 不同，Skills 不是 Python 函数，而是包含使用说明、参考信息和模板的**文件集合**（通常是 `SKILL.md`）。
+与 Tools 不同，Skills 不是 Python 函数，而是包含使用说明、参考信息和模板的**文件集合**（核心是 `SKILL.md`）。
 
-关键区别在于**加载时机**：
+#### SKILL.md 格式
 
-- Tools 始终在上下文中（占用 Token）
-- Skills 只在 Agent 判断需要时才加载（**渐进式披露**，节省 Token）
+每个技能目录必须包含一个 `SKILL.md` 文件，以 YAML frontmatter 开头：
+
+```yaml
+---
+name: langgraph-docs                                    # 技能名称
+description: 使用此技能获取 LangGraph 相关文档，...         # 触发描述（Agent 仅凭此决定是否加载）
+license: MIT                                             # 许可证（可选）
+compatibility: 需要互联网访问以获取文档                      # 兼容性说明（可选）
+metadata:                                                # 元数据（可选）
+  author: langchain
+  version: "1.0"
+allowed-tools: fetch_url                                 # 允许使用的工具列表（可选）
+---
+```
+
+Frontmatter 之后是 Markdown 格式的详细说明，Agent 匹配到技能后会读取全部内容。
+
+#### Skill 的工作流程
+
+Agent 遵循 **Match → Read → Execute** 三步流程：
+
+```
+用户发送提示
+  → Match: 检查所有 SKILL.md 的 description 是否匹配任务
+    → Read: 匹配成功，加载完整 SKILL.md 内容
+      → Execute: 按照技能指示执行，访问支持文件（脚本、模板、文档）
+```
+
+!!! tip "渐进式披露"
+    Agent 启动时仅读取所有 `SKILL.md` 的 frontmatter 元数据。
+    收到用户提示后，**仅凭 description 判断**是否需要该技能，匹配成功才加载完整内容。
+    这种渐进式披露大幅节省了 Token 消耗。
+
+#### 使用 Skills
 
 ```python
 from deepagents import create_deep_agent
 
 agent = create_deep_agent(
-    skills=["/skills/"],  # 指定技能目录路径
+    skills=["/skills/"],  # 指定技能目录路径（正斜杠，相对后端根路径）
 )
 ```
 
-一个典型的 Skill 结构：
+一个典型的 Skill 目录结构：
+
 ```
-/skills/langgraph-docs/
-├── SKILL.md          # 使用说明 + 触发条件
-├── reference.md      # 参考文档
-└── templates/        # 模板文件
+skills/
+├── langgraph-docs
+│   └── SKILL.md
+└── arxiv_search
+    ├── SKILL.md
+    └── arxiv_search.py  # 辅助脚本
 ```
 
-!!! tip "Skills vs Tools"
-    | 对比 | Tools | Skills |
-    |------|-------|--------|
-    | 内容 | 低层操作（文件读写、规划） | 高层指导 + 参考信息 + 模板 |
-    | 加载时机 | 始终可用 | Agent 判断需要时才加载 |
-    | 形式 | Python 函数 | SKILL.md 文件 + 资源 |
-    | 适用场景 | 具体操作 | 复杂流程指导 |
+!!! warning "SKILL.md 限制"
+    - `description` 超过 1024 字符会被截断
+    - `SKILL.md` 文件超过 10 MB 会被跳过
+
+#### 不同后端加载 Skills
+
+Skills 的加载方式取决于后端类型：
+
+=== "FilesystemBackend"
+
+    从磁盘直接读取，最简单：
+
+    ```python
+    from deepagents import create_deep_agent
+    from deepagents.backends import FilesystemBackend
+
+    agent = create_deep_agent(
+        backend=FilesystemBackend(root_dir="/path/to/project"),
+        skills=["/path/to/project/skills/"],  # 绝对路径
+    )
+    ```
+
+=== "StateBackend"
+
+    默认后端，需要通过 `invoke(files=...)` 预置技能文件：
+
+    ```python
+    from urllib.request import urlopen
+    from deepagents import create_deep_agent
+    from deepagents.backends.utils import create_file_data
+
+    skill_url = "https://raw.githubusercontent.com/langchain-ai/deepagents/refs/heads/main/libs/cli/examples/skills/langgraph-docs/SKILL.md"
+    with urlopen(skill_url) as response:
+        skill_content = response.read().decode("utf-8")
+
+    agent = create_deep_agent(
+        skills=["/skills/"],
+    )
+
+    result = agent.invoke({
+        "messages": [{"role": "user", "content": "LangGraph 是什么?"}],
+        "files": {
+            "/skills/langgraph-docs/SKILL.md": create_file_data(skill_content)
+        },
+    })
+    ```
+
+=== "StoreBackend"
+
+    通过 `store.put()` 预置技能文件：
+
+    ```python
+    from deepagents import create_deep_agent
+    from deepagents.backends import StoreBackend
+    from deepagents.backends.utils import create_file_data
+    from langgraph.store.memory import InMemoryStore
+
+    store = InMemoryStore()
+    store.put(
+        namespace=("filesystem",),
+        key="/skills/langgraph-docs/SKILL.md",
+        value=create_file_data(skill_content),
+    )
+
+    agent = create_deep_agent(
+        backend=StoreBackend(),
+        store=store,
+        skills=["/skills/"],
+    )
+    ```
+
+#### 来源优先级
+
+多个 Skill 来源包含同名技能时，**后者覆盖前者**（last wins）：
+
+```python
+# 同名技能，/skills/project/ 的会覆盖 /skills/user/ 的
+agent = create_deep_agent(
+    skills=["/skills/user/", "/skills/project/"],
+)
+```
+
+#### 子代理 Skill 隔离
+
+- **通用子代理**：自动继承主代理的 Skills，无需额外配置
+- **自定义子代理**：不继承，需在子代理定义中独立配置 `skills` 参数
+- **隔离性**：主代理和子代理的 Skill 状态完全隔离，互不可见
+
+```python
+from deepagents import create_deep_agent
+
+agent = create_deep_agent(
+    model="claude-sonnet-4-6",
+    skills=["/skills/main/"],  # 主代理 + 通用子代理
+    subagents=[{
+        "name": "researcher",
+        "description": "研究助手",
+        "system_prompt": "你是研究员",
+        "skills": ["/skills/research/"],  # 仅这个子代理可用
+    }],
+)
+```
+
+#### 编写建议
+
+- **description 要具体明确** — Agent 仅凭它决定是否加载该技能
+- **资源文件要在 SKILL.md 中引用** — 说明用途和使用方法，Agent 才能决定何时使用它们
+- **文件 < 10 MB** — 超出限制的 SKILL.md 会被跳过
+
+#### Skills vs Tools vs Memory
+
+| 维度 | Tools | Skills | Memory (`AGENTS.md`) |
+|------|-------|--------|---------------------|
+| **形式** | Python 函数 | SKILL.md 文件 + 资源 | AGENTS.md 文件 |
+| **加载时机** | 始终在上下文 | Agent 判断需要时才加载 | 启动时始终注入 |
+| **内容** | 低层操作（读写、计算） | 高层指导 + 参考 + 模板 | 背景知识、项目约定 |
+| **适用场景** | 具体操作 | 复杂流程指导、大量上下文 | 始终相关的背景信息 |
+| **层叠策略** | — | 后者覆盖前者 | 合并 |
+
+!!! tip "何时用什么"
+
+    - 上下文太大 → 用 **Skills**（渐进式加载，省 Token）
+    - 需要文件系统 → 用 **Tools**（无需文件系统时直接传函数）
+    - 始终相关的背景 → 用 **Memory**（`AGENTS.md`）
+
 
 ### 记忆（Memory）
 

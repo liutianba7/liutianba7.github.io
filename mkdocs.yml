@@ -20,6 +20,7 @@ nav:
           - Jupyter: ./python/01_env/jupyter.md
       - Basic:
           - PythonBasic: ./python/02_basic/python基础.md
+          - PythonStandard: ./python/02_basic/python标准库.md
       - Others:
           - Requests: ./python/03_others/requests.md
           - Loguru: ./python/03_others/loguru.md
@@ -70,6 +71,7 @@ nav:
           - LLMBasic: ./interview/python/deepLearning.md
           - LangChain: ./interview/python/langchain.md
           - LangGraph: ./interview/python/langgraph.md
+          - LLMInterview: ./interview/python/大模型面试题.md
 #  - Journal:
 #      - 202602: ./journal/2026-02.md
   - Tools:

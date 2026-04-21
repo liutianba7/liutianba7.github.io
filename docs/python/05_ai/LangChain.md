@@ -2272,8 +2272,10 @@ if __name__ == "__main__":
 
 ### RAG 基础概念
 
-**RAG（Retrieval-Augmented Generation）**，即检索增强生成。简单来说，就是给大模型配一个"实时更新的图书馆"，让它在回答问题前先翻书，以此解决模型知识过时和"胡说八道"（幻觉）的问题。
 
+**RAG （Retrieval-Augmented Generation）**，就是检索增强生成。它解决的核心问题是，LLM 的知识在训练完成之后就固定了，遇到私有数据或者最新的信息它就答不上来。
+
+RAG 其实就是给大模型配一个"实时更新的外部知识库" ，在生成答案之前，先去外部知识库里检索相关内容，然后把检索结果和用户的问题一起交给 LLM，让它基于这些上下文来回答。
 <p align='center'>
     <img src="../../assets/imgs/python/langchian/langchain03.png" alt="langchain03" style="zoom:100%;" />
 </p>
