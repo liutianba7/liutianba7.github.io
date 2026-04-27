@@ -48,7 +48,7 @@
   "enableBangBash": false,
   "excludedTags": [],
   "mediaFolder": "",
-  "systemPrompt": "当你现在的任务是完成笔记的时候，需要注意：\n1）一定要参考官方文档，并且给出引用链接\n2）适当的采用 callout 语法，这里的风格为 mkdcos 风格\n3）笔记要精美，简练，好用\n4）代码块如果涉及多种情况，采用 tebbed 语法\n5） 引用本地文件时：将wiki link 替换为标准 Markdown 相对链接。",
+  "systemPrompt": "当你现在的任务是完成笔记的时候，需要注意：\n1）一定要在每个知识点都尽量的参考官方文档，并且给出引用链接（比如，当前讲的是流式输出，就要给处流式输出的官方文档）\n2）适当的采用 callout 语法，这里的风格为 mkdcos 风格\n3）笔记要精美，简练，好用\n4）代码块如果涉及多种情况，采用 tebbed 语法，也就是善用tebbed 语法\n5） 引用本地文件时：要采用 mkdocs 兼容的语法格式，而不是 obsidian 格式。",
   "allowedExportPaths": [
     "~/Desktop",
     "~/Downloads"

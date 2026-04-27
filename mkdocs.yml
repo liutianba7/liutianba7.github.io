@@ -80,14 +80,23 @@ nav:
       - Docker: ./tools/docker-v2.md
       # - docker-v2: ./tools/docker-v2.md
 
-  - Middleware:
-    - Mysql 基础: ./middleware/mysql基础.md
-    - Mysql 高级: ./middleware/mysql高级.md
-    - Redis: ./middleware/redis.md
-    - Minio: ./middleware/minio.md
+  - DB:
+    # - Mysql 基础: ./db/mysql基础.md
+    - Mysql 基础: ./db/mysql基础-v2.md
+    # - Mysql 高级: ./db/mysql高级.md
+    - Mysql 高级: ./db/mysql高级-v2.md
+
+    - Mongodb: ./db/mongodb-v2.md
+    # - Redis: ./db/redis.md
+    - Redis: ./db/redis-v2.md
+    - Minio: ./db/minio.md
+
   - Linux:
       - Basic: ./linux/basic.md
-
+  - Computer-Science:
+      - network:
+          - Http: ./computer-science/network/Http.md
+          - Sse: ./computer-science/network/Sse.md
 use_directory_urls: false
 
 plugins:

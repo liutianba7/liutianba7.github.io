@@ -3,18 +3,18 @@
   "title": "提取文字",
   "titleGenerationStatus": "failed",
   "createdAt": 1776239428902,
-  "updatedAt": 1776757027774,
-  "lastResponseAt": 1776757027774,
+  "updatedAt": 1776998632857,
+  "lastResponseAt": 1776998314142,
   "sessionId": "06b2735c-78e9-4d05-a315-5a95ae42604c",
   "sdkSessionId": "06b2735c-78e9-4d05-a315-5a95ae42604c",
   "usage": {
     "model": "haiku",
-    "inputTokens": 33615,
+    "inputTokens": 142053,
     "cacheCreationInputTokens": 0,
     "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 33615,
-    "percentage": 17
+    "contextTokens": 142053,
+    "percentage": 71
   },
   "subagentData": {
     "toolu_a515a47678634f2aa4045163": {

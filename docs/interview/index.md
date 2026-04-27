@@ -1,51 +1,77 @@
-# 🗺️ Java 后端八股文 · 复习路线图
+## 🗺️ Java 后端八股文 · 复习路线图
 
 💡遵循 java基础 + java集合 --> juc --> jvm --> ssm --> springboot --> springcloud --> mysql --> redis --> es --> rmq --> seate -> 设计模式 的顺序来复习！
 
-## 🚀 复习流转顺序
+### 🚀 复习流转顺序
 
-### 01. ☕ Java 基础 + java 集合
+#### 01. ☕ Java 基础 + java 集合
 
 ⬇️ *(向下扎根，进入并发世界)*
 
-### 02. ⚡ JUC (Java Util Concurrent)
+#### 02. ⚡ JUC (Java Util Concurrent)
 
 ⬇️ *(深入底层，探究虚拟机)*
 
-### 03. 🧠 JVM (Java Virtual Machine)
+#### 03. 🧠 JVM (Java Virtual Machine)
 
 ⬇️ *(掌握核心，拥抱框架生态)*
 
-### 04. 🍃 SSM 框架 (Spring + SpringMVC + MyBatis)
+#### 04. 🍃 SSM 框架 (Spring + SpringMVC + MyBatis)
 
 ⬇️ *(简化配置，快速启动)*
 
-### 05. 👢 Spring Boot
+#### 05. 👢 Spring Boot
 
 ⬇️ *(单体拆分，走向分布式)*
 
-### 06. ☁️ Spring Cloud
+#### 06. ☁️ Spring Cloud
 
 ⬇️ *(架构稳固，回归数据存储)*
 
-### 07. 🐬 MySQ
+#### 07. 🐬 MySQ
 
 ⬇️ *(提速增效，引入缓存)*
 
-### 08. 🔴 Redis
+#### 08. 🔴 Redis
 
 ⬇️ *(海量数据，全文检索)*
 
-### 09. 🔎 ElasticSearch (ES)
+#### 09. 🔎 ElasticSearch (ES)
 
 ⬇️ *(解耦削峰，消息驱动)*
 
-### 10. 📨 RMQ (消息队列)
+#### 10. 📨 RMQ (消息队列)
 
 ⬇️ *(数据一致，分布式难题)*
 
-### 11. ⚖️ Seata
+#### 11. ⚖️ Seata
 
 ⬇️ *(升华思维，设计之美)*
 
-### 12. 🎨 设计模式
+#### 12. 🎨 设计模式
+
+---
+
+## 🗺️ Python AI 工程师八股文 · 复习路线图
+
+💡遵循 python基础 --> deepLearning --> llm(大模型面试题) --> LangChain --> LangGraph 的顺序来复习！
+
+### 🚀 复习流转顺序
+
+#### 01. 🐍 Python 基础
+
+⬇️ *(夯实语言根基，走向 AI 世界)*
+
+#### 02. 🧠 Deep Learning (深度学习)
+
+⬇️ *(掌握神经网络核心，踏入模型训练)*
+
+#### 03. 🤖 LLM (大模型面试题)
+
+⬇️ *(拥抱大语言模型，理解 Agent 核心)*
+
+#### 04. 🔗 LangChain
+
+⬇️ *(深入 RAG 与 Agent 框架)*
+
+#### 05. 🕸️ LangGraph

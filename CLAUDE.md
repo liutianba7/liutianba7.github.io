@@ -88,3 +88,36 @@ myBlog/
 ## Deployment
 
 The site is deployed to GitHub Pages at `https://liutianba7.github.io`. Use `mkdocs gh-deploy` to push the built site to the gh-pages branch.
+
+## Author Profile
+
+- **Name**: 留白 (liutianba7)
+- **Role**: AI Application Engineer | Full-Stack Developer
+- **Tech Stack**: Java (Spring Boot/Cloud), Python (LangChain, FastAPI), Frontend (Vue.js), Cloud-Native (Docker, K8s)
+
+## Knowledge Base Summary
+
+### Programming Languages
+- **Java**: Core, Collections, JUC (concurrency), JVM
+- **Python**: Core, standard library, decorators, generators, metaclasses
+- **JavaScript/TypeScript**: ES6+, Promise, async/await, TypeScript generics
+
+### Frameworks & Libraries
+- **Java**: Spring, Spring MVC, Spring Boot, Spring Cloud, MyBatis
+- **Python**: LangChain, LangGraph, FastAPI, PyTorch, requests, pytest, loguru
+- **Frontend**: Vue 2, Vue 3 (Composition API), Pinia, Vue Router, Vite
+- **AI/LLM**: RAG pipeline, Agent patterns (ReAct, A2A), Tool Calling, MCP protocol, Prompt Engineering
+
+### Databases & Middleware
+- **MySQL**: Architecture, InnoDB, indexes, transactions, MVCC, locks, performance tuning
+- **Redis**: Data types, persistence, high availability, cache patterns, distributed locks
+- **Elasticsearch**: Inverted index, DSL, distributed architecture
+- **RabbitMQ**: Reliability, idempotency, delayed messages, dead letter queues
+- **Seata**: Distributed transactions (AT, XA, TCC modes)
+- **MinIO**: S3-compatible object storage
+
+### Tools & DevOps
+- **Git**: Branching, merging, Conventional Commits
+- **Docker**: Dockerfile, Docker Compose, container orchestration
+- **Linux**: System administration, shell commands, service management
+- **Maven**: Dependency management, build lifecycle, multi-module projects

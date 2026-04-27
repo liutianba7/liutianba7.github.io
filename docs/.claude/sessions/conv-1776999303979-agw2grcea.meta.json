@@ -1,0 +1,19 @@
+{
+  "id": "conv-1776999303979-agw2grcea",
+  "title": "现在，你可以给我优化这个笔记，先给我思路，然后再去优化，",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1776999303979,
+  "updatedAt": 1777084326703,
+  "lastResponseAt": 1777084326703,
+  "sessionId": "3867cc02-1110-4d3a-95d4-9783299eddb8",
+  "sdkSessionId": "3867cc02-1110-4d3a-95d4-9783299eddb8",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 32422,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 32422,
+    "percentage": 16
+  }
+}

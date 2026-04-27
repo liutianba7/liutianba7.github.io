@@ -395,4 +395,92 @@ with os.popen("git log --oneline -5") as f:
     print(output)
 ```
 
+## asyncio — 异步IO标准库
 
+> 官方文档：[asyncio — Asynchronous I/O](https://docs.python.org/3/library/asyncio.html)
+
+Python内置的异步IO框架，基于协程（async/await）和事件循环，适合IO密集型场景（爬虫、API服务、大模型并发调用），比多线程更轻量，单线程可同时跑上千个协程，上下文切换开销极低。
+
+### 核心概念
+
+- **协程**：用`async/await`语法定义的轻量级执行单元，比线程轻量得多
+- **事件循环**：asyncio的核心调度器，负责轮询协程状态，切换执行
+- **Task**：事件循环调度的最小单位，将协程包装为可并发执行的任务
+
+### 基础用法
+
+```python
+import asyncio
+
+# 定义协程函数
+async def hello():
+    print("hello")
+    await asyncio.sleep(1)  # 异步等待，不会阻塞其他协程
+    print("world")
+
+# 运行协程（Python 3.7+ 推荐写法）
+asyncio.run(hello())
+```
+
+### 并发任务（核心场景）
+
+用`asyncio.gather`同时运行多个协程，自动并发调度，总耗时等于最长任务耗时而非总和：
+```python
+async def task(name, delay):
+    await asyncio.sleep(delay)
+    print(f"task {name} finished")
+
+async def main():
+    # 同时启动3个任务，总耗时3秒，而非2+1+3=6秒
+    await asyncio.gather(
+        task("A", 2),
+        task("B", 1),
+        task("C", 3)
+    )
+
+asyncio.run(main())
+```
+
+### 常用工具函数
+```python
+# 异步等待，替代time.sleep（time.sleep会阻塞整个事件循环）
+await asyncio.sleep(1)
+
+# 给任务加超时，超时抛出TimeoutError
+try:
+    async with asyncio.timeout(5):
+        await long_time_task()
+except asyncio.TimeoutError:
+    print("任务超时")
+
+# 等待多个任务完成，支持按条件返回
+done, pending = await asyncio.wait(tasks, timeout=10)
+```
+
+### 兼容同步代码（run_in_executor）
+
+当必须使用没有异步版本的同步阻塞库时，用`run_in_executor`将任务丢到线程池/进程池中执行，避免卡住整个事件循环：
+
+```python
+import time
+import asyncio
+
+def sync_blocking_task():
+    # 同步阻塞函数，比如time.sleep、普通requests请求
+    time.sleep(2)
+    return "同步任务执行完成"
+
+async def main():
+    loop = asyncio.get_running_loop()
+    # 第一个参数传None使用默认线程池，也可传入自定义ThreadPoolExecutor控制并发
+    result = await loop.run_in_executor(None, sync_blocking_task)
+    print(result)
+
+asyncio.run(main())
+```
+
+> [!warning] 核心避坑
+> 协程内**绝对不能运行同步阻塞代码**（比如`time.sleep`、普通`requests`、同步文件读写），否则会卡住整个事件循环，所有任务都会暂停。必须用对应异步库替代：
+> - HTTP请求：`aiohttp` 替代 `requests`
+> - 文件读写：`aiofiles` 替代 普通open
+> - 数据库访问：用对应异步驱动（如`asyncpg`替代`psycopg2`）
