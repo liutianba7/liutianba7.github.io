@@ -1,0 +1,19 @@
+{
+  "id": "conv-1777258209993-giz135hdi",
+  "title": "Complete interview question about basic princip...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1777258209994,
+  "updatedAt": 1777276823576,
+  "lastResponseAt": 1777276618309,
+  "sessionId": "e599d7b7-24c5-4910-9883-39f73873eb07",
+  "sdkSessionId": "e599d7b7-24c5-4910-9883-39f73873eb07",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 99280,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 99280,
+    "percentage": 50
+  }
+}

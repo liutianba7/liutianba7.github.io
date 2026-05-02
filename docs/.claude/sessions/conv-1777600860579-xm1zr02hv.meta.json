@@ -1,0 +1,19 @@
+{
+  "id": "conv-1777600860579-xm1zr02hv",
+  "title": "Explain PyTorch installation and import methods",
+  "titleGenerationStatus": "success",
+  "createdAt": 1777600860579,
+  "updatedAt": 1777603636382,
+  "lastResponseAt": 1777602803640,
+  "sessionId": "9dd3e40f-8213-49f2-acce-1660ed912527",
+  "sdkSessionId": "9dd3e40f-8213-49f2-acce-1660ed912527",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 1689,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 39224,
+    "contextWindow": 200000,
+    "contextTokens": 40913,
+    "percentage": 20
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "conv-1777603705913-d2yj3vmoe",
+  "title": "Add all 3 jieba segmentation modes to Python demo",
+  "titleGenerationStatus": "success",
+  "createdAt": 1777603705914,
+  "updatedAt": 1777701902955,
+  "lastResponseAt": 1777701902955,
+  "sessionId": "82596af5-3aae-4f81-a463-147f457c745c",
+  "sdkSessionId": "82596af5-3aae-4f81-a463-147f457c745c",
+  "currentNote": "python/05_ai/NLP.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 1158,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 43832,
+    "contextWindow": 200000,
+    "contextTokens": 44990,
+    "percentage": 22
+  }
+}

@@ -1,6 +1,6 @@
 ## 🗺️ Java 后端八股文 · 复习路线图
 
-💡遵循 java基础 + java集合 --> juc --> jvm --> ssm --> springboot --> springcloud --> mysql --> redis --> es --> rmq --> seate -> 设计模式 的顺序来复习！
+💡遵循  Java基础 + java集合 --> juc --> jvm --> ssm --> springboot --> springcloud --> mysql --> redis --> es --> rmq --> seate -> 设计模式 的顺序来复习！
 
 ### 🚀 复习流转顺序
 
@@ -49,6 +49,8 @@
 ⬇️ *(升华思维，设计之美)*
 
 #### 12. 🎨 设计模式
+
+⬇️ *(基础打底，cs基础知识)*
 
 ---
 

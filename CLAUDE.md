@@ -45,7 +45,8 @@ myBlog/
 │   │   ├── 02_basic/        # Python basics
 │   │   ├── 03_others/       # Libraries (requests, pandas, numpy, pytest)
 │   │   ├── 04_web/          # Web frameworks (fastapi)
-│   │   └── 05_ai/           # AI/ML (langchain, pytorch)
+│   │   ├── 05_ai/           # AI/ML (langchain, pytorch)
+│   │   └── 06_aiInfra/      # AI Infrastructure (ollama, vllm)
 │   ├── frontend/       # Frontend notes (js, vue2, vue3)
 │   ├── code-notes/     # Code snippets and examples
 │   │   ├── java/            # Java code (concurrent, design-patterns)
@@ -106,7 +107,7 @@ The site is deployed to GitHub Pages at `https://liutianba7.github.io`. Use `mkd
 - **Java**: Spring, Spring MVC, Spring Boot, Spring Cloud, MyBatis
 - **Python**: LangChain, LangGraph, FastAPI, PyTorch, requests, pytest, loguru
 - **Frontend**: Vue 2, Vue 3 (Composition API), Pinia, Vue Router, Vite
-- **AI/LLM**: RAG pipeline, Agent patterns (ReAct, A2A), Tool Calling, MCP protocol, Prompt Engineering
+- **AI/LLM**: RAG pipeline, Agent patterns (ReAct, A2A), Tool Calling, MCP protocol, Prompt Engineering, Local LLM inference (Ollama, vLLM)
 
 ### Databases & Middleware
 - **MySQL**: Architecture, InnoDB, indexes, transactions, MVCC, locks, performance tuning

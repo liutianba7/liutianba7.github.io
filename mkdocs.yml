@@ -32,7 +32,11 @@ nav:
           - LangGraph: ./python/05_ai/LangGraph.md
           - DeepAgents: ./python/05_ai/DeepAgents.md
           - PyTorch: ./python/05_ai/Pytorch.md
-          - Ollama: ./python/05_ai/Ollama.md
+          - NLP: ./python/05_ai/NLP.md
+      - AI_Infra:
+          - Ollama: ./python/06_aiInfra/Ollama.md
+          - LLMFinetune: ./python/06_aiInfra/LLMFinetune.md
+
   - Frontend:
       - Js: ./frontend/js.md
       - Vue2: ./frontend/vue2.md
@@ -42,10 +46,12 @@ nav:
   - Code-Notes:
       - 概览: ./code-notes/index.md
       - Java:
-          - 并发编程: ./code-notes/java/concurrent.md
-          - 设计模式: ./code-notes/java/design-patterns.md
-      - Python:
-          - ai: ./code-notes/python/ai.md
+          - 并发编程: ./code-notes/java/concurrent/concurrent.md
+          - 设计模式: ./code-notes/common/design-patterns/design-patterns.md
+#      - Python:
+#          - utils:
+#          - core:
+#          - web:
       - Algorithm:
           - 算法模板: ./code-notes/algorithm/template.md
 
@@ -97,6 +103,8 @@ nav:
       - network:
           - Http: ./computer-science/network/Http.md
           - Sse: ./computer-science/network/Sse.md
+      - os:
+          - Basic: ./computer-science/os/Os.md
 use_directory_urls: false
 
 plugins:

@@ -54,6 +54,7 @@ uv --version
 
 最好还是用 uv add | remove 来下载，管理依赖，因为这样不会存在：一个依赖下载的时候，下载了 1（本体） + 4（间接依赖）个依赖，但是通过 `uv pip uninstall xxx `删除的时候，只会删除那一个依赖。
 
+更加详细的依赖管理可以参考 [uv依赖管理](https://docs.astral.sh/uv/concepts/projects/dependencies/#multiple-sources)
 ```bash
 # 初始化新项目
 uv init myproject

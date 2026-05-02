@@ -8,8 +8,8 @@
 
 | 主题 | 说明 |
 |------|------|
-| [并发编程](./java/concurrent.md) | 多线程、锁机制、线程池、并发工具类等实践代码 |
-| [设计模式](./java/design-patterns.md) | 常见设计模式的 Java 实现 |
+| [并发编程](java/concurrent/concurrent.md) | 多线程、锁机制、线程池、并发工具类等实践代码 |
+| [设计模式](common/design-patterns/design-patterns.md) | 常见设计模式的 Java 实现 |
 
 ### 🐍 Python
 

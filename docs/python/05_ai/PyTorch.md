@@ -16,6 +16,32 @@
     uv add torch torchvision torchaudio
     ```
 
+=== "gpu"
+
+    ```toml title="pyproject.toml"
+    [project]
+    name = "nlp"
+    version = "0.1.0"
+    requires-python = ">=3.12"
+    dependencies = [
+        "torch",
+        "torchvision",
+        "torchaudio",
+    ]
+
+
+    [[tool.uv.index]]
+    name = "pytorch-gpu"
+    url = "https://download.pytorch.org/whl/cu126"
+    explicit = true  # 关键：这确保只有明确指定该索引的包才去这里找
+
+    # 强制指定这三个包去 pytorch-gpu 索引找（这步最关键）
+    [tool.uv.sources]
+    torch = { index = "pytorch-gpu" }
+    torchvision = { index = "pytorch-gpu" }
+    torchaudio = { index = "pytorch-gpu" }
+    ```
+
 !!! tip "GPU 支持"
     如需 CUDA 支持，请参考 [PyTorch 官方安装指南](https://pytorch.org/get-started/locally/) 选择对应版本。
 

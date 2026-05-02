@@ -1,0 +1,19 @@
+{
+  "id": "conv-1777277090554-nr3shwptb",
+  "title": "Explain Shangguigu large model fine-tuning work...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1777277090554,
+  "updatedAt": 1777598267688,
+  "lastResponseAt": 1777596895237,
+  "sessionId": "049cbd34-a442-4091-9344-d18d24000439",
+  "sdkSessionId": "049cbd34-a442-4091-9344-d18d24000439",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 404,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 138040,
+    "contextWindow": 200000,
+    "contextTokens": 138444,
+    "percentage": 69
+  }
+}
