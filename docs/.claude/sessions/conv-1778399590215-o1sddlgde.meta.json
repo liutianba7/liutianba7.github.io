@@ -1,0 +1,20 @@
+{
+  "id": "conv-1778399590215-o1sddlgde",
+  "title": "Explain self attention in NLP Transformer",
+  "titleGenerationStatus": "success",
+  "createdAt": 1778399590216,
+  "updatedAt": 1778413595131,
+  "lastResponseAt": 1778413595131,
+  "sessionId": "190835d0-f929-4101-80be-46d5515ce7b5",
+  "sdkSessionId": "190835d0-f929-4101-80be-46d5515ce7b5",
+  "currentNote": "python/05_ai/NLP.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 1087,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 94008,
+    "contextWindow": 200000,
+    "contextTokens": 95095,
+    "percentage": 48
+  }
+}

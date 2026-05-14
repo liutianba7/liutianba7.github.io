@@ -1,0 +1,19 @@
+{
+  "id": "conv-1778391499349-ezur3eq2n",
+  "title": "分析计算机就业方向并整理学习方法笔记",
+  "titleGenerationStatus": "success",
+  "createdAt": 1778391499349,
+  "updatedAt": 1778399567926,
+  "lastResponseAt": 1778399564972,
+  "sessionId": "ce92248e-afd9-4e7d-b882-157970507157",
+  "sdkSessionId": "ce92248e-afd9-4e7d-b882-157970507157",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 2726,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 21304,
+    "contextWindow": 200000,
+    "contextTokens": 24030,
+    "percentage": 12
+  }
+}

@@ -700,12 +700,275 @@ optimizer = optim.AdamW(model.parameters(), lr=0.001, weight_decay=0.01)
 
 ---
 
-## 8. CNN
+## 8. 数据加载器
+
+!!! note "官方文档"
+    详见 [torch.utils.data 文档](https://pytorch.org/docs/stable/data.html)
+
+在 PyTorch 中，数据加载分为两步：
+
+1.  **Dataset**：定义数据集，负责**单个样本**的获取
+2.  **DataLoader**：封装 Dataset，负责按批次加载、多线程预取、打乱等
+
+### 8.1 Dataset 基类
+
+所有自定义数据集都需要继承 `torch.utils.data.Dataset` 抽象类，并实现两个方法：
+
+| 方法 | 作用 |
+|------|------|
+| `__getitem__(self, index)` | 根据索引获取**一个样本** |
+| `__len__(self)` | 返回数据集总大小 |
+
+#### 自定义数据集示例
+
+```python
+from torch.utils.data import Dataset
+
+class MyDataset(Dataset):
+    def __init__(self, data, labels):
+        """初始化数据集，一般传入数据路径或数据本身"""
+        self.data = data
+        self.labels = labels
+
+    def __getitem__(self, index):
+        """根据索引返回一个样本 (data, label)"""
+        return self.data[index], self.labels[index]
+
+    def __len__(self):
+        """返回数据集大小"""
+        return len(self.data)
+```
+
+使用示例：
+
+```python
+import torch
+
+# 构造数据
+data = torch.randn(1000, 10)   # 1000 个样本，每个 10 维
+labels = torch.randint(0, 2, (1000,)) # 二分类标签
+
+dataset = MyDataset(data, labels)
+print(len(dataset))        # 1000
+x, y = dataset[0]          # 获取第一个样本
+print(x.shape, y)          # torch.Size([10]) tensor(0)
+```
+
+#### 处理大型数据集
+
+如果数据集太大无法全部加载进内存，可以在 `__init__` 中只存储文件路径，在 `__getitem__` 中读取文件：
+
+```python
+from torch.utils.data import Dataset
+from PIL import Image
+
+class ImageDataset(Dataset):
+    def __init__(self, image_paths, labels, transform=None):
+        self.image_paths = image_paths
+        self.labels = labels
+        self.transform = transform
+
+    def __getitem__(self, index):
+        # 按需读取，节省内存
+        img = Image.open(self.image_paths[index]).convert('RGB')
+        if self.transform:
+            img = self.transform(img)
+        return img, self.labels[index]
+
+    def __len__(self):
+        return len(self.image_paths)
+```
+
+### 8.2 DataLoader 迭代器
+
+`DataLoader` 将 `Dataset` 包装成可迭代对象，支持：
+
+- 按批次（batch）加载
+- 自动打乱（shuffle）
+- 多进程并行加载
+- 自动整理批数据形状
+
+```python
+from torch.utils.data import DataLoader
+
+dataloader = DataLoader(
+    dataset,                # 数据集
+    batch_size=32,         # 批次大小
+    shuffle=True,          # 每个 epoch 是否打乱
+    num_workers=4,         # 加载数据的进程数
+    drop_last=False,       # 丢弃最后不完整的批次
+    pin_memory=False,      # 锁页内存，加快传到 GPU 的速度
+)
+```
+
+| 参数 | 说明 |
+|------|------|
+| `batch_size` | 每个批次包含多少样本 |
+| `shuffle` | 是否在每个 epoch 开始时打乱数据 |
+| `num_workers` | 多少个子进程加载数据。`0` 表示主进程加载。一般设为 CPU 核心数 |
+| `drop_last` | 当样本数不能被 `batch_size` 整除时，是否丢弃最后一个不完整的批次 |
+| `pin_memory` | 是否将数据锁在内存中，可以加快数据传输到 GPU 的速度，GPU 训练时建议开启 |
+
+使用方式：
+
+```python
+for epoch in range(10):
+    for batch_x, batch_y in dataloader:
+        # 此时 batch_x 形状: [batch_size, feature_dim]
+        # 训练步骤...
+        optimizer.zero_grad()
+        output = model(batch_x)
+        loss = criterion(output, batch_y)
+        loss.backward()
+        optimizer.step()
+```
+
+!!! tip "num_workers 设置建议"
+    - `num_workers=0`：主进程加载，调试方便，不会卡死
+    - 建议设置：`min(4, CPU核心数)`，过大反而会因为进程间通信变慢
+    - Windows 下遇到多进程问题可以先设为 `0` 调试
+
+### 8.3 常用内置数据集
+
+PyTorch 的 `torchvision`、`torchtext` 等库提供了很多常用的公开数据集：
+
+=== "torchvision"
+
+    ```python
+    from torchvision import datasets
+    from torchvision.transforms import ToTensor
+
+    # MNIST 手写数字
+    train_data = datasets.MNIST(
+        root='./data',
+        train=True,
+        download=True,
+        transform=ToTensor()
+    )
+
+    # CIFAR-10
+    train_data = datasets.CIFAR10(
+        root='./data',
+        train=True,
+        download=True,
+        transform=ToTensor()
+    )
+    ```
+
+=== "ImageFolder"
+
+    当你的数据按文件夹分类存放时，可以直接使用 `ImageFolder`：
+
+    ```
+    data/
+        train/
+            cat/
+                img001.jpg
+                img002.jpg
+            dog/
+                img001.jpg
+                img002.jpg
+        val/
+            cat/
+            dog/
+    ```
+
+    ```python
+    from torchvision import datasets
+
+    train_dataset = datasets.ImageFolder(root='./data/train')
+    # train_dataset.classes 会自动得到类别列表 ['cat', 'dog']
+    # train_dataset.imgs 会得到所有 (path, label) 列表
+    ```
+
+### 8.4 数据变换（Transform）
+
+Transform 用于对数据进行预处理和数据增强。`torchvision.transforms` 提供了很多常用变换。
+
+```python
+from torchvision import transforms
+
+# 组合多个变换
+transform = transforms.Compose([
+    transforms.Resize((224, 224)),      # 调整大小
+    transforms.RandomCrop(200),         # 随机裁剪（数据增强）
+    transforms.RandomHorizontalFlip(),  # 水平翻转（数据增强）
+    transforms.ToTensor(),              # PIL Image → Tensor，范围 [0, 1]
+    transforms.Normalize(               # 标准化
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]
+    )
+])
+```
+
+常用变换：
+
+| 变换 | 作用 |
+|------|------|
+| `ToTensor()` | 将 `PIL Image` 或 `numpy.ndarray` 转为 `Tensor`，并自动归一化到 `[0, 1]` |
+| `Normalize(mean, std)` | 标准化：`(x - mean) / std` |
+| `Resize((h, w))` | 调整图像大小 |
+| `CenterCrop(size)` | 中心裁剪 |
+| `RandomCrop(size)` | 随机裁剪 |
+| `RandomHorizontalFlip(p)` | 随机水平翻转 |
+| `RandomVerticalFlip(p)` | 随机垂直翻转 |
+| `RandomRotation(degrees)` | 随机旋转 |
+
+### 8.5 完整示例
+
+```python
+import torch
+from torch.utils.data import Dataset, DataLoader
+from torchvision import transforms
+from PIL import Image
+
+# 1. 自定义数据集
+class MyDataset(Dataset):
+    def __init__(self, image_paths, labels, transform=None):
+        self.image_paths = image_paths
+        self.labels = labels
+        self.transform = transform
+
+    def __getitem__(self, idx):
+        img = Image.open(self.image_paths[idx]).convert('RGB')
+        if self.transform:
+            img = self.transform(img)
+        return img, self.labels[idx]
+
+    def __len__(self):
+        return len(self.image_paths)
+
+# 2. 定义变换
+transform = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.RandomHorizontalFlip(),
+    transforms.ToTensor(),
+    transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                         std=[0.229, 0.224, 0.225])
+])
+
+# 3. 创建数据集和加载器
+image_paths = ['path/to/img1.jpg', 'path/to/img2.jpg']
+labels = [0, 1]
+
+dataset = MyDataset(image_paths, labels, transform=transform)
+dataloader = DataLoader(dataset, batch_size=2, shuffle=True, num_workers=2)
+
+# 4. 遍历加载
+for batch_imgs, batch_labels in dataloader:
+    print(batch_imgs.shape)  # [batch_size, 3, 224, 224]
+    print(batch_labels)      # [0, 1]
+    # 训练模型...
+```
+
+---
+
+## 9. CNN
 
 !!! note "官方文档"
     详见 [Convolution Layers 文档](https://pytorch.org/docs/stable/generated/torch.nn.Conv2d.html)
 
-### 8.1 概述
+### 9.1 概述
 
 卷积神经网络（CNN）常被用于图像识别、语音识别等各种场合。它在计算机视觉领域表现尤为出色，广泛应用于图像分类、目标检测、图像分割等任务。
 
@@ -713,7 +976,7 @@ optimizer = optim.AdamW(model.parameters(), lr=0.001, weight_decay=0.01)
     <img src="../../assets/imgs/python/pytorch/pytorch05.png" alt="pytorch05" style="zoom:80%;" />
 </p>
 
-### 8.2 输出尺寸计算
+### 9.2 输出尺寸计算
 
 假设输入数据形状为 $(H, W)$，卷积核大小为 $(FH, FW)$，填充为 $P$，步幅为 $S$，则输出尺寸：
 
@@ -729,7 +992,7 @@ $$
     - `kernel_size=3, stride=1, padding=1` → 尺寸不变
     - `kernel_size=3, stride=2, padding=1` → 尺寸减半
 
-### 8.3 卷积层
+### 9.3 卷积层
 
 ```python
 nn.Conv2d(
@@ -745,7 +1008,7 @@ nn.Conv2d(
 )
 ```
 
-### 8.4 池化层
+### 9.4 池化层
 
 池化层用于对特征图进行下采样，降低空间维度，减少计算量并增强特征的尺度不变性。
 
@@ -774,9 +1037,9 @@ $$
 
 ---
 
-## 9. NLP 基础
+## 10. NLP 基础
 
-### 9.1 词嵌入层（Embedding）
+### 10.1 词嵌入层（Embedding）
 
 !!! note "官方文档"
     详见 [nn.Embedding 文档](https://pytorch.org/docs/stable/generated/torch.nn.Embedding.html)
@@ -804,7 +1067,7 @@ for word, idx in word2id.items():
     print(f"{idx:>2}: {word:8} {vec.detach().numpy()}")
 ```
 
-### 9.2 RNN
+### 10.2 RNN
 
 !!! note "官方文档"
     详见 [nn.RNN 文档](https://pytorch.org/docs/stable/generated/torch.nn.RNN.html)
@@ -843,7 +1106,7 @@ output, h_n = rnn(x)        # x: [batch, seq_len, input_size]
 
 ---
 
-## 10. 训练模板
+## 11. 训练模板
 
 ```python
 def train(model, dataloader, optimizer, criterion, device):

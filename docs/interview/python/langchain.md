@@ -552,6 +552,13 @@ RunnableWithMessageHistory 是 LangChain 1.0+ 推荐的**新版记忆组件**，
 !!! tip "面试回答思路"
     优化 `RAG` 检索效果从三个层面入手：索引阶段（调整切分策略、选用领域 `Embeddings`、添加元数据）、检索阶段（混合检索、多查询检索、重排序 `Rerank`）、后处理（上下文压缩、去重）。简单说就是：**"切好片、选对模型、混合检索、再重排"**。
 
+### 8. 什么是 LlamaIndex，它如何与 LangChain 结合？
+
+**LlamaIndex** 是专为大模型设计的**数据框架（Data Framework）**，专注于数据的解析、索引和检索；而它与 **LangChain** 结合的本质是**“最强组件的强强联合”**——将 LlamaIndex 作为高性能检索工具（Tool），集成进 LangChain 的工作流编排中。
+
+1. **LlamaIndex（数据专家）**：擅长**非结构化数据解析**。它提供了极其丰富的 Data Loaders（连接器）和复杂的 Indexing（索引策略，如树状、图状索引），能将琐碎的文档转化为 LLM 易于检索的知识结构。
+2. LangChain：则是用来快速搭建 Agent 或者 AI 应用的一个框架，它的核心机制就是 LCEL，同时抽象和集成了非常多的组件，比如 ChatModel，Embedding，VectorStore，Memory，Agent，Tool，OutPutParser，Document Loader.
+
 ---
 
 ## 八、Agent

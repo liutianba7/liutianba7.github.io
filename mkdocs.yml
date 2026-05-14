@@ -79,7 +79,7 @@ nav:
           - LangGraph: ./interview/python/langgraph.md
           - LLMInterview: ./interview/python/大模型面试题.md
 #  - Journal:
-#      - 202602: ./journal/2026-02.md
+#      - test: ./journal/test.md
   - Tools:
       - Git: ./tools/git.md
       - Git-v2: ./tools/git-v2.md

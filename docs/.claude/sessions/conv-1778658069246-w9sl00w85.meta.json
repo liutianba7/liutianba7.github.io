@@ -1,0 +1,20 @@
+{
+  "id": "conv-1778658069246-w9sl00w85",
+  "title": "完成Transformer概述AI技术笔记",
+  "titleGenerationStatus": "success",
+  "createdAt": 1778658069246,
+  "updatedAt": 1778658128865,
+  "lastResponseAt": 1778658128865,
+  "sessionId": "ef3ce488-ef30-4873-ae5b-21c0efaf0ecb",
+  "sdkSessionId": "ef3ce488-ef30-4873-ae5b-21c0efaf0ecb",
+  "currentNote": "python/05_ai/NLP.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 526,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 28984,
+    "contextWindow": 200000,
+    "contextTokens": 29510,
+    "percentage": 15
+  }
+}
