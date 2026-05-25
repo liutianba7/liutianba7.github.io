@@ -1,0 +1,20 @@
+{
+  "id": "conv-1779414695085-5rhix8utv",
+  "title": "生成精美每日规划模板",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779414695085,
+  "updatedAt": 1779698271434,
+  "lastResponseAt": 1779414710892,
+  "sessionId": "1e26cd43-a935-495e-b74d-f32188666379",
+  "sdkSessionId": "1e26cd43-a935-495e-b74d-f32188666379",
+  "currentNote": "每日计划（2026年5月22日，两段小厂实习版本）.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 1329,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 21304,
+    "contextWindow": 200000,
+    "contextTokens": 22633,
+    "percentage": 11
+  }
+}

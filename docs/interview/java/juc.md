@@ -811,6 +811,55 @@ public final class NamingThreadFactory implements ThreadFactory {
 
 3、对于性能方面的影响，是没办法避免的，毕竟需要对任务进行排序操作。并且，对于大部分业务场景来说，这点性能影响是可以接受的。
 
+#### 16. 线程池 execute 和 submit 的区别？🚀🚀
+
+`submit()` 的底层其实就是调用了 `execute()`。它只是先把任务包装成了带有状态和结果的 `FutureTask`，然后再交给 `execute()` 去执行。
+
+**🚀 3个核心区别：**
+
+（1）submit 有返回值，execute 无返回值
+
+（2）execute 只能接收 Runnable 类型的任务，submit 既可以接收 Runnable，也可以接收 Callable
+
+（3）**异常处理机制不同（最容易踩坑的点）**：
+
+- `execute()`：如果任务抛出异常，会直接抛到线程池层面（通常打印堆栈或触发未捕获异常处理器），主线程无法感知。
+- `submit()`：**它会悄悄“吃掉”异常！** 异常会被封装进返回的 `Future` 对象里。只有当你主动调用 `future.get()` 时，才会以 `ExecutionException` 的形式重新抛出。
+
+#### 17. 如何优雅的关闭线程池
+
+优雅关闭线程池需要遵循”**先礼后兵**“的原则，核心是组合使用 `shutdown()`、`awaitTermination()` 和 `shutdownNow()`。首先调用 `shutdown()` 拒绝接收新任务并继续执行已提交的任务；接着通过 `awaitTermination()` 设置合理的超时时间来阻塞等待任务自然完成；如果超时后仍有未结束的任务，再调用 `shutdownNow()` 尝试强制中断正在执行的线程并清空队列；最后务必在 `catch` 块中捕获 `InterruptedException` 异常并再次执行强制关闭，以防止资源泄漏和数据丢失。
+
+``` java
+public void gracefulShutdown(ExecutorService executor, long timeout, TimeUnit unit) {  
+    if (executor == null || executor.isTerminated()) return;  
+  
+    // 1. 温柔关闭：拒绝新任务，等待已有任务完成  
+    executor.shutdown();  
+  
+    try {  
+        // 2. 设定超时等待：给任务一点时间自然结束  
+        if (!executor.awaitTermination(timeout, unit)) {  
+            System.err.println("线程池未在规定时间内终止，准备强制关闭...");  
+  
+            // 3. 暴力兜底：超时后强制中断所有线程  
+            List<Runnable> droppedTasks = executor.shutdownNow();  
+            System.out.println("被强制丢弃的任务数量: " + droppedTasks.size());  
+  
+            // 再次等待一小段时间，给中断处理留出响应时间  
+            if (!executor.awaitTermination(timeout, unit)) {  
+                System.err.println("线程池强制关闭失败，可能存在无法中断的死循环任务！");  
+            }  
+        }  
+    } catch (InterruptedException e) {  
+        // 如果等待过程中当前线程被中断，也要执行强制关闭  
+        System.err.println("关闭过程中被外部中断");  
+        executor.shutdownNow();  
+        Thread.currentThread().interrupt(); // 恢复中断状态，避免吞掉中断信号  
+    }  
+}
+```
+
 ## Future
 
 #### 1. Future 类有什么用

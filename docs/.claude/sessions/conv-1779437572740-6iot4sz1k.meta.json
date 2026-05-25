@@ -1,0 +1,20 @@
+{
+  "id": "conv-1779437572740-6iot4sz1k",
+  "title": "Summarize the interview question on decoder-onl...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779437572740,
+  "updatedAt": 1779525995226,
+  "lastResponseAt": 1779437601015,
+  "sessionId": "142d5566-dbb0-4875-a219-33fa481a6ebe",
+  "sdkSessionId": "142d5566-dbb0-4875-a219-33fa481a6ebe",
+  "currentNote": "interview/python/大模型面试题.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 23776,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 23776,
+    "percentage": 12
+  }
+}

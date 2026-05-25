@@ -1,0 +1,20 @@
+{
+  "id": "conv-1779677529274-n77j9i1cf",
+  "title": "Create Java基础笔记大纲",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779677529275,
+  "updatedAt": 1779692932801,
+  "lastResponseAt": 1779692932801,
+  "sessionId": "c1f5687f-d143-4f09-b49a-98398609bd25",
+  "sdkSessionId": "c1f5687f-d143-4f09-b49a-98398609bd25",
+  "currentNote": "java/01_Java_Core/java 基础.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 136,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 119936,
+    "contextWindow": 200000,
+    "contextTokens": 120072,
+    "percentage": 60
+  }
+}

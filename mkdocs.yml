@@ -9,10 +9,11 @@ edit_uri: edit/main/docs/  # 允许直接从网页跳转到 GitHub 编辑源码
 nav:
   - Welcome: index.md
   - Java:
+    - Java_Basic: ./java/01_Java_Core/java 基础.md
+    - Juc: ./java/01_Java_Core/juc.md
     - Ssm: ./java/02_Frameworks/ssm.md
     - SpringBoot: ./java/02_Frameworks/springboot.md
     - Maven: ./java/01_Java_Core/maven.md
-    - Juc: ./java/01_Java_Core/juc.md
   - Python:
       - Env:
           - Conda: ./python/01_env/conda.md
@@ -53,7 +54,8 @@ nav:
 #          - core:
 #          - web:
       - Algorithm:
-          - 算法模板: ./code-notes/algorithm/template.md
+          - Algorithm_Basic: ./code-notes/algorithm/template.md
+          - Hot100: ./code-notes/algorithm/hot100总结.md
 
   - Bagu:
       - 复习路线: ./interview/index.md

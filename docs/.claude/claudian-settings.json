@@ -48,7 +48,7 @@
   "enableBangBash": false,
   "excludedTags": [],
   "mediaFolder": "",
-  "systemPrompt": "当你现在的任务是完成笔记的时候，需要注意：\n1）一定要在每个知识点都尽量的参考官方文档，并且给出引用链接（比如，当前讲的是流式输出，就要给处流式输出的官方文档）\n2）适当的采用 callout 语法，这里的风格为 mkdcos 风格\n3）笔记要精美，简练，好用\n4）代码块如果涉及多种情况，采用 tebbed 语法，也就是善用tebbed 语法\n5） 引用本地文件时：要采用 mkdocs 兼容的语法格式，而不是 obsidian 格式。",
+  "systemPrompt": "当你现在的任务是完成笔记的时候，需要注意：\n1）在重要的，复杂的知识点参考官方文档，并且给出引用链接（比如，当前讲的是流式输出，就要给处流式输出的官方文档）\n2）适当的采用 callout 语法，这里的风格为 mkdcos 风格\n3）笔记要精美，简练，好用\n4）代码块如果涉及多种情况，采用 tebbed 语法，也就是善用tebbed 语法\n5） 引用本地文件时：要采用 mkdocs 兼容的语法格式，而不是 obsidian 格式。\n6）但凡设计一段文字后边要跟\n- \n- \n- \n这样的无序列表，一定要注意在这段文字后加一个换行，不然mkdocs 无法渲染这个无序列表",
   "allowedExportPaths": [
     "~/Desktop",
     "~/Downloads"
@@ -62,7 +62,7 @@
     "scrollDownKey": "s",
     "focusInputKey": "i"
   },
-  "locale": "en",
+  "locale": "zh-CN",
   "claudeCliPath": "",
   "claudeCliPathsByHost": {
     "LIUTIANBA7": "D:\\02_DevStack\\08_Frontend\\nodejs\\node_modules\\@anthropic-ai\\claude-code\\cli.js"
