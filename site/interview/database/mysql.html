@@ -246,7 +246,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../java/02_Frameworks/ssm.html" class="md-tabs__link">
+        <a href="../../java/01_Java_Core/java%20%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
           
   
   
@@ -569,6 +569,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../../java/01_Java_Core/java%20%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Java_Basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../java/01_Java_Core/juc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Juc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../java/02_Frameworks/ssm.html" class="md-nav__link">
         
   
@@ -633,34 +689,6 @@
     
   
     Maven
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../java/01_Java_Core/juc.html" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Juc
   
 
     
@@ -1959,7 +1987,35 @@
   <span class="md-ellipsis">
     
   
-    算法模板
+    Algorithm_Basic
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../code-notes/algorithm/hot100%E6%80%BB%E7%BB%93.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hot100
   
 
     
@@ -3207,6 +3263,17 @@
     <span class="md-ellipsis">
       
         字节一面：Mysql 有哪些隐式锁呢？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
       
     </span>
   </a>
@@ -5125,6 +5192,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5718,6 +5796,12 @@ MySQL 5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。
 <li><strong>插入意向锁</strong>：INSERT 前自动加，保证并发插入安全</li>
 </ul>
 <p>我刚才提到的 Next-Key Lock 就是行锁 + 间隙锁的组合，是 MySQL 解决幻读的关键。</p>
+<h4 id="_26">总结</h4>
+<ul>
+<li>普通 SELECT：MVCC 快照读，无锁，高并发。</li>
+<li>显式加锁 SELECT：FOR UPDATE（或 LOCK IN SHARE MODE / FOR SHARE） 等，加行锁/间隙锁，用于强一致性读取。</li>
+<li>增删改（DML）：自动加排他锁 + 间隙锁（RR级别下），且极度依赖索引来保证只锁住必要的行。</li>
+</ul>
 <h3 id="mysql_14">Mysql 性能优化⭐️</h3>
 <h4 id="sql">如何分析 SQL 性能</h4>
 <p>我们可以使用 <code>EXPLAIN</code> 命令来分析 SQL 的 <strong>执行计划</strong> 。执行计划是指一条 SQL 语句在经过 MySQL 查询优化器的优化会后，具体的执行方式。</p>
@@ -5726,6 +5810,21 @@ MySQL 5.5 版本之后，InnoDB 是 MySQL 的默认存储引擎。
 <p><strong>1. 抓住核心：慢 SQL 定位与分析</strong></p>
 <ul>
 <li>开启<strong>慢查询日志</strong>，用 <code>mysqldumpslow</code> 分析高频慢 SQL</li>
+</ul>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">-- 开启慢查询日志开关</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">slow_query_log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ON&#39;</span><span class="p">;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1">-- 设置慢查询阈值（例如超过 1 秒就算慢查询）</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">long_query_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1">-- （可选）记录没有使用索引的 SQL</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">log_queries_not_using_indexes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ON&#39;</span><span class="p">;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="o">#</span><span class="w"> </span><span class="err">查看执行时间最慢的前</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="err">条</span><span class="w"> </span><span class="k">SQL</span><span class="err">（最常用）</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="n">mysqldumpslow</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">slow</span><span class="p">.</span><span class="n">log</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="o">#</span><span class="w"> </span><span class="err">查看执行次数最多的前</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="err">条高频慢</span><span class="w"> </span><span class="k">SQL</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="n">mysqldumpslow</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="k">c</span><span class="w"> </span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">slow</span><span class="p">.</span><span class="n">log</span>
+</span></code></pre></div>
+<ul>
 <li>用 <code>EXPLAIN</code> 查看执行计划，重点关注 <code>type</code>（是否全表扫描）和 <code>Extra</code>（是否 Using filesort）</li>
 </ul>
 <p><strong>2. 索引、表结构和 SQL 优化</strong></p>

@@ -89,7 +89,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -193,9 +194,10 @@
       "bases:新建数据库": false
     }
   },
-  "active": "6ebe946f017caadc",
+  "active": "97902ed32e7e6f5a",
   "lastOpenFiles": [
     "每日计划（2026年5月22日，两段小厂实习版本）.md",
+    "code-notes/algorithm/hot100总结.md",
     "java/01_Java_Core/java 基础.md",
     "interview/java/java基础.md",
     "interview/java/java集合.md",
@@ -204,7 +206,6 @@
     "interview/面试准备.md",
     "interview/database/mysql.md~",
     "interview/index.md",
-    "code-notes/algorithm/hot100总结.md",
     "code-notes/algorithm/template.md",
     "interview/python/大模型面试题.md",
     "python/05_ai/NLP.md",
