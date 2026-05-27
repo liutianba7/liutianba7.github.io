@@ -33,7 +33,6 @@ yum install -y yum-utils \
 添加镜像源
 
 ``` 
-
 # 12月1日，发现这个源有问题
 sudo yum-config-manager \
     --add-repo \

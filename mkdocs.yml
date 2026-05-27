@@ -86,6 +86,9 @@ nav:
       - Git: ./tools/git.md
       - Git-v2: ./tools/git-v2.md
       - Docker: ./tools/docker-v2.md
+      - Vibe-Coding:
+          - ClaudeCode: ./tools/vibe-coding/claudecode.md
+          - OpenSpec: ./tools/vibe-coding/openspec.md
       # - docker-v2: ./tools/docker-v2.md
 
   - DB:

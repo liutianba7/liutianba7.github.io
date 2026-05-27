@@ -269,16 +269,16 @@ docker history nginx:1.24
 
 #### 3.2.2 容器生命周期命令
 
-| 命令 | 说明 | 示例 |
-|------|------|------|
-| `docker run` | 创建并启动容器 | `docker run -d --name web nginx` |
-| `docker start` | 启动已停止的容器 | `docker start web` |
-| `docker stop` | 停止容器 | `docker stop web` |
-| `docker restart` | 重启容器 | `docker restart web` |
-| `docker kill` | 强制停止容器 | `docker kill web` |
-| `docker rm` | 删除容器 | `docker rm web` |
-| `docker pause` | 暂停容器 | `docker pause web` |
-| `docker unpause` | 恢复容器 | `docker unpause web` |
+| 命令               | 说明       | 示例                               |
+| ---------------- | -------- | -------------------------------- |
+| `docker run`     | 创建并启动容器  | `docker run -d --name web nginx` |
+| `docker start`   | 启动已停止的容器 | `docker start web`               |
+| `docker stop`    | 停止容器     | `docker stop web`                |
+| `docker restart` | 重启容器     | `docker restart web`             |
+| `docker kill`    | 强制停止容器   | `docker kill web`                |
+| `docker rm`      | 删除容器     | `docker rm web`                  |
+| `docker pause`   | 暂停容器     | `docker pause web`               |
+| `docker unpause` | 恢复容器     | `docker unpause web`             |
 
 #### 3.2.3 容器操作命令
 

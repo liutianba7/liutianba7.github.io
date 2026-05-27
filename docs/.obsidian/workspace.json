@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code-notes/algorithm/hot100总结.md",
+                "file": "tools/vibe-coding/openspec.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "hot100总结"
+              "title": "openspec"
             }
           }
         ]
@@ -53,13 +53,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code-notes/algorithm/hot100总结.md",
+                "file": "tools/vibe-coding/openspec.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "hot100总结 的大纲"
+              "title": "openspec 的大纲"
             }
           },
           {
@@ -89,8 +89,7 @@
               "title": "书签"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -194,11 +193,19 @@
       "bases:新建数据库": false
     }
   },
-  "active": "97902ed32e7e6f5a",
+  "active": "6ebe946f017caadc",
   "lastOpenFiles": [
+    "tools/vibe-coding/claude-code.md",
+    "tools/vibe-coding/openspec.md",
+    "tools/docker-v2.md",
+    "tools/docker.md",
+    "java/02_Frameworks/ssm.md",
+    "tools/vibe-coding",
+    "java/02_Frameworks/springboot.md",
     "每日计划（2026年5月22日，两段小厂实习版本）.md",
-    "code-notes/algorithm/hot100总结.md",
+    "index.md",
     "java/01_Java_Core/java 基础.md",
+    "code-notes/algorithm/hot100总结.md",
     "interview/java/java基础.md",
     "interview/java/java集合.md",
     "interview/java/juc.md",
@@ -211,24 +218,17 @@
     "python/05_ai/NLP.md",
     "interview/python/deepLearning.md",
     "python/05_ai/Pytorch.md",
-    "index.md",
     "interview/简历.pdf",
     "python/06_aiInfra/LLMFinetune.md",
     "python/06_aiInfra/Ollama.md",
     "python/05_ai/pytorch_backup.md",
     "python/05_ai/DeepAgents.md",
     "python/05_ai/LangChain.md",
-    "python/05_ai/langchainBack.md",
     "assets/imgs/python/nlp/nlp06_transformer_architecture.png",
     "assets/imgs/python/nlp/nlp06_transformer_architecture.png.Uidzxe",
     "assets/imgs/python/nlp/nlp_07transformer_architecture.png",
-    "interview/python/langchain.md",
-    "python/05_ai/LangGraph.md",
-    "interview/python/python.md",
-    "l.md",
     "assets/imgs/python/nlp/nlp05_encoder_decoder_old.png",
     "assets/imgs/python/nlp/nlp05_encoder_decoder架构图.png.XnyAeo",
-    "db/redis-v2.md",
     "python/05_ai/Pytorch.md.tmp.25260.1777885646430",
     "assets/imgs/python/nlp/nlp04_gru结构图.png",
     "assets/imgs/python/nlp/nlp03_gru结构图.png.sMdxac",
@@ -238,7 +238,6 @@
     "assets/imgs/python/nlp/nlp_01_文本预处理环节.png",
     "assets/imgs/python/nlp/nlp_01_文本预处理环节.png.eVrTKr",
     "assets/imgs/python/nlp",
-    "code-notes/scripts",
     "assets/imgs/db/redis/redis6.png",
     "assets/imgs/db/redis/redis5.png",
     "assets/imgs/db/redis/redis4.png"

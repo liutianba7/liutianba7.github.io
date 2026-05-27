@@ -1,0 +1,19 @@
+{
+  "id": "conv-1779875489750-0vldezqoq",
+  "title": "Analyze blog structure for vibe coding notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1779875489750,
+  "updatedAt": 1779888456201,
+  "lastResponseAt": 1779888253338,
+  "sessionId": "9b105b09-be6d-4a6d-bd34-8aafe7a1cc27",
+  "sdkSessionId": "9b105b09-be6d-4a6d-bd34-8aafe7a1cc27",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 214,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 63360,
+    "contextWindow": 200000,
+    "contextTokens": 63574,
+    "percentage": 32
+  }
+}
