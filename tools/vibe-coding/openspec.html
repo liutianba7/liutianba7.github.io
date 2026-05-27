@@ -6,33 +6,35 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="系统学习 OpenSpec —— 专为 AI 编程设计的规范驱动开发（SDD）框架，让 AI 从"随性编码"走向"规范驱动"">
       
       
-        <link rel="canonical" href="https://liutianba7.github.io/code-notes/index.html">
+      
+        <link rel="canonical" href="https://liutianba7.github.io/tools/vibe-coding/openspec.html">
       
       
-        <link rel="prev" href="../frontend/vue3-v2.html">
+        <link rel="prev" href="../docker-v2.html">
       
       
-        <link rel="next" href="java/concurrent/concurrent.html">
+        <link rel="next" href="../../db/mysql%E5%9F%BA%E7%A1%80-v2.html">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>概览 - LiuTianBa7 's Blog</title>
+        <title>OpenSpec 学习笔记 - LiuTianBa7 's Blog</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#openspec" class="md-skip">
           跳转至
         </a>
       
@@ -92,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../index.html" title="LiuTianBa7 &#39;s Blog" class="md-header__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-header__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
@@ -112,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              概览
+              OpenSpec 学习笔记
             
           </span>
         </div>
@@ -225,7 +227,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../index.html" class="md-tabs__link">
+      <a href="../../index.html" class="md-tabs__link">
         
   
   
@@ -246,7 +248,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../java/01_Java_Core/java%20%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
+        <a href="../../java/01_Java_Core/java%20%E5%9F%BA%E7%A1%80.html" class="md-tabs__link">
           
   
   
@@ -273,7 +275,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../python/01_env/conda.html" class="md-tabs__link">
+        <a href="../../python/01_env/conda.html" class="md-tabs__link">
           
   
   
@@ -296,7 +298,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../frontend/js.html" class="md-tabs__link">
+        <a href="../../frontend/js.html" class="md-tabs__link">
           
   
   
@@ -312,13 +314,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="index.html" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../code-notes/index.html" class="md-tabs__link">
           
   
   
@@ -338,7 +338,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../interview/index.html" class="md-tabs__link">
+        <a href="../../interview/index.html" class="md-tabs__link">
           
   
   
@@ -354,11 +354,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../tools/git.html" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../git.html" class="md-tabs__link">
           
   
   
@@ -378,7 +380,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../db/mysql%E5%9F%BA%E7%A1%80-v2.html" class="md-tabs__link">
+        <a href="../../db/mysql%E5%9F%BA%E7%A1%80-v2.html" class="md-tabs__link">
           
   
   
@@ -398,7 +400,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../linux/basic.html" class="md-tabs__link">
+        <a href="../../linux/basic.html" class="md-tabs__link">
           
   
   
@@ -425,7 +427,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../computer-science/network/Http.html" class="md-tabs__link">
+        <a href="../../computer-science/network/Http.html" class="md-tabs__link">
           
   
   
@@ -462,7 +464,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../index.html" title="LiuTianBa7 &#39;s Blog" class="md-nav__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
+    <a href="../../index.html" title="LiuTianBa7 &#39;s Blog" class="md-nav__button md-logo" aria-label="LiuTianBa7 's Blog" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 8-1.33.09C9.81 7.07 7.4 4.5 5 4.5c0 0-1.97 2.96-.04 6.91-.55.83-.89 1.26-.96 2.25l-1.93.29.21.98 1.76-.26.14.71-1.57.94.47.89 1.45-.89C5.68 18.76 8.59 20 12 20s6.32-1.24 7.47-3.68l1.45.89.47-.89-1.57-.94.14-.71 1.76.26.21-.98-1.93-.29c-.07-.99-.41-1.42-.96-2.25C20.97 7.46 19 4.5 19 4.5c-2.4 0-4.81 2.57-5.67 3.59zm-3 3a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m6 0a1 1 0 0 1 1 1 1 1 0 0 1-1 1 1 1 0 0 1-1-1 1 1 0 0 1 1-1m-4 3h2l-.7 1.39c.2.64.76 1.11 1.45 1.11a1.5 1.5 0 0 0 1.5-1.5h.5a2 2 0 0 1-2 2c-.75 0-1.4-.41-1.75-1-.35.59-1 1-1.75 1a2 2 0 0 1-2-2h.5a1.5 1.5 0 0 0 1.5 1.5c.69 0 1.25-.47 1.45-1.11z"/></svg>
@@ -492,7 +494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../index.html" class="md-nav__link">
+      <a href="../../index.html" class="md-nav__link">
         
   
   
@@ -569,7 +571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../java/01_Java_Core/java%20%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+      <a href="../../java/01_Java_Core/java%20%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
         
   
   
@@ -597,7 +599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../java/01_Java_Core/juc.html" class="md-nav__link">
+      <a href="../../java/01_Java_Core/juc.html" class="md-nav__link">
         
   
   
@@ -625,7 +627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../java/02_Frameworks/ssm.html" class="md-nav__link">
+      <a href="../../java/02_Frameworks/ssm.html" class="md-nav__link">
         
   
   
@@ -653,7 +655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../java/02_Frameworks/springboot.html" class="md-nav__link">
+      <a href="../../java/02_Frameworks/springboot.html" class="md-nav__link">
         
   
   
@@ -681,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../java/01_Java_Core/maven.html" class="md-nav__link">
+      <a href="../../java/01_Java_Core/maven.html" class="md-nav__link">
         
   
   
@@ -816,7 +818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/01_env/conda.html" class="md-nav__link">
+      <a href="../../python/01_env/conda.html" class="md-nav__link">
         
   
   
@@ -844,7 +846,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/01_env/uv.html" class="md-nav__link">
+      <a href="../../python/01_env/uv.html" class="md-nav__link">
         
   
   
@@ -872,7 +874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/01_env/jupyter.html" class="md-nav__link">
+      <a href="../../python/01_env/jupyter.html" class="md-nav__link">
         
   
   
@@ -958,7 +960,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/02_basic/python%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+      <a href="../../python/02_basic/python%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
         
   
   
@@ -986,7 +988,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/02_basic/python%E6%A0%87%E5%87%86%E5%BA%93.html" class="md-nav__link">
+      <a href="../../python/02_basic/python%E6%A0%87%E5%87%86%E5%BA%93.html" class="md-nav__link">
         
   
   
@@ -1072,7 +1074,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/03_others/requests.html" class="md-nav__link">
+      <a href="../../python/03_others/requests.html" class="md-nav__link">
         
   
   
@@ -1100,7 +1102,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/03_others/loguru.html" class="md-nav__link">
+      <a href="../../python/03_others/loguru.html" class="md-nav__link">
         
   
   
@@ -1186,7 +1188,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/04_web/fastapi.html" class="md-nav__link">
+      <a href="../../python/04_web/fastapi.html" class="md-nav__link">
         
   
   
@@ -1214,7 +1216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/04_web/fastapi-v2.html" class="md-nav__link">
+      <a href="../../python/04_web/fastapi-v2.html" class="md-nav__link">
         
   
   
@@ -1300,7 +1302,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/05_ai/LangChain.html" class="md-nav__link">
+      <a href="../../python/05_ai/LangChain.html" class="md-nav__link">
         
   
   
@@ -1328,7 +1330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/05_ai/LangGraph.html" class="md-nav__link">
+      <a href="../../python/05_ai/LangGraph.html" class="md-nav__link">
         
   
   
@@ -1356,7 +1358,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/05_ai/DeepAgents.html" class="md-nav__link">
+      <a href="../../python/05_ai/DeepAgents.html" class="md-nav__link">
         
   
   
@@ -1384,7 +1386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/05_ai/Pytorch.html" class="md-nav__link">
+      <a href="../../python/05_ai/Pytorch.html" class="md-nav__link">
         
   
   
@@ -1412,7 +1414,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/05_ai/NLP.html" class="md-nav__link">
+      <a href="../../python/05_ai/NLP.html" class="md-nav__link">
         
   
   
@@ -1498,7 +1500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/06_aiInfra/Ollama.html" class="md-nav__link">
+      <a href="../../python/06_aiInfra/Ollama.html" class="md-nav__link">
         
   
   
@@ -1526,7 +1528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../python/06_aiInfra/LLMFinetune.html" class="md-nav__link">
+      <a href="../../python/06_aiInfra/LLMFinetune.html" class="md-nav__link">
         
   
   
@@ -1619,7 +1621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend/js.html" class="md-nav__link">
+      <a href="../../frontend/js.html" class="md-nav__link">
         
   
   
@@ -1647,7 +1649,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend/vue2.html" class="md-nav__link">
+      <a href="../../frontend/vue2.html" class="md-nav__link">
         
   
   
@@ -1675,7 +1677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend/vue3.html" class="md-nav__link">
+      <a href="../../frontend/vue3.html" class="md-nav__link">
         
   
   
@@ -1703,7 +1705,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend/vue3-v2.html" class="md-nav__link">
+      <a href="../../frontend/vue3-v2.html" class="md-nav__link">
         
   
   
@@ -1735,29 +1737,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -1775,7 +1772,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1790,37 +1787,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    概览
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="index.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../code-notes/index.html" class="md-nav__link">
         
   
   
@@ -1836,76 +1806,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📂 目录结构
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📂 目录结构">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#java" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ☕ Java
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🐍 Python
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#algorithm" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        📐 Algorithm
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1968,7 +1868,7 @@
   
   
     <li class="md-nav__item">
-      <a href="java/concurrent/concurrent.html" class="md-nav__link">
+      <a href="../../code-notes/java/concurrent/concurrent.html" class="md-nav__link">
         
   
   
@@ -1996,7 +1896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="common/design-patterns/design-patterns.html" class="md-nav__link">
+      <a href="../../code-notes/common/design-patterns/design-patterns.html" class="md-nav__link">
         
   
   
@@ -2082,7 +1982,7 @@
   
   
     <li class="md-nav__item">
-      <a href="algorithm/template.html" class="md-nav__link">
+      <a href="../../code-notes/algorithm/template.html" class="md-nav__link">
         
   
   
@@ -2110,7 +2010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="algorithm/hot100%E6%80%BB%E7%BB%93.html" class="md-nav__link">
+      <a href="../../code-notes/algorithm/hot100%E6%80%BB%E7%BB%93.html" class="md-nav__link">
         
   
   
@@ -2203,7 +2103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/index.html" class="md-nav__link">
+      <a href="../../interview/index.html" class="md-nav__link">
         
   
   
@@ -2281,7 +2181,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/java/java%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
+      <a href="../../interview/java/java%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
         
   
   
@@ -2309,7 +2209,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/java/java%E9%9B%86%E5%90%88.html" class="md-nav__link">
+      <a href="../../interview/java/java%E9%9B%86%E5%90%88.html" class="md-nav__link">
         
   
   
@@ -2337,7 +2237,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/java/juc.html" class="md-nav__link">
+      <a href="../../interview/java/juc.html" class="md-nav__link">
         
   
   
@@ -2365,7 +2265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/java/jvm.html" class="md-nav__link">
+      <a href="../../interview/java/jvm.html" class="md-nav__link">
         
   
   
@@ -2393,7 +2293,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/java/ssm.html" class="md-nav__link">
+      <a href="../../interview/java/ssm.html" class="md-nav__link">
         
   
   
@@ -2421,7 +2321,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/java/springboot%2BCloud.html" class="md-nav__link">
+      <a href="../../interview/java/springboot%2BCloud.html" class="md-nav__link">
         
   
   
@@ -2449,7 +2349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html" class="md-nav__link">
+      <a href="../../interview/java/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.html" class="md-nav__link">
         
   
   
@@ -2535,7 +2435,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/database/mysql.html" class="md-nav__link">
+      <a href="../../interview/database/mysql.html" class="md-nav__link">
         
   
   
@@ -2563,7 +2463,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/database/redis.html" class="md-nav__link">
+      <a href="../../interview/database/redis.html" class="md-nav__link">
         
   
   
@@ -2649,7 +2549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/middleware/es.html" class="md-nav__link">
+      <a href="../../interview/middleware/es.html" class="md-nav__link">
         
   
   
@@ -2677,7 +2577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/middleware/rmq.html" class="md-nav__link">
+      <a href="../../interview/middleware/rmq.html" class="md-nav__link">
         
   
   
@@ -2705,7 +2605,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/middleware/seata.html" class="md-nav__link">
+      <a href="../../interview/middleware/seata.html" class="md-nav__link">
         
   
   
@@ -2791,7 +2691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/python/python.html" class="md-nav__link">
+      <a href="../../interview/python/python.html" class="md-nav__link">
         
   
   
@@ -2819,7 +2719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/python/deepLearning.html" class="md-nav__link">
+      <a href="../../interview/python/deepLearning.html" class="md-nav__link">
         
   
   
@@ -2847,7 +2747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/python/langchain.html" class="md-nav__link">
+      <a href="../../interview/python/langchain.html" class="md-nav__link">
         
   
   
@@ -2875,7 +2775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/python/langgraph.html" class="md-nav__link">
+      <a href="../../interview/python/langgraph.html" class="md-nav__link">
         
   
   
@@ -2903,7 +2803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../interview/python/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%9D%A2%E8%AF%95%E9%A2%98.html" class="md-nav__link">
+      <a href="../../interview/python/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%9D%A2%E8%AF%95%E9%A2%98.html" class="md-nav__link">
         
   
   
@@ -2943,24 +2843,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
             
   
   
@@ -2978,7 +2883,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
@@ -2996,7 +2901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/git.html" class="md-nav__link">
+      <a href="../git.html" class="md-nav__link">
         
   
   
@@ -3024,7 +2929,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/git-v2.html" class="md-nav__link">
+      <a href="../git-v2.html" class="md-nav__link">
         
   
   
@@ -3052,7 +2957,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/docker-v2.html" class="md-nav__link">
+      <a href="../docker-v2.html" class="md-nav__link">
         
   
   
@@ -3077,6 +2982,8 @@
                 
   
   
+    
+  
   
   
     
@@ -3087,11 +2994,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" checked>
         
           
           <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
@@ -3112,7 +3019,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_7_4">
             <span class="md-nav__icon md-icon"></span>
             
@@ -3130,7 +3037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tools/vibe-coding/claudecode.md" class="md-nav__link">
+      <a href="claudecode.md" class="md-nav__link">
         
   
   
@@ -3155,10 +3062,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../tools/vibe-coding/openspec.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenSpec
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="openspec.html" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3174,6 +3108,259 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#openspec_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一章：认识 OpenSpec
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一章：认识 OpenSpec">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-openspec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 为什么需要 OpenSpec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-spec-driven-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 什么是 Spec-Driven Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-openspec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 什么是 OpenSpec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 与其他工具的对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二章：使用指南
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二章：使用指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 安装与初始化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 目录结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 核心工作流概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 CLI 命令详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 CLI 命令详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core 工作流（默认，新手首选）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expanded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expanded 工作流（进阶，更精细的控制）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 实战示例：厨房计时器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 实战示例：厨房计时器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 1：编辑项目上下文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 2：起草变更提案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 3：审查与对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 4：实施变更
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 5：归档
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 最佳实践
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3251,7 +3438,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../db/mysql%E5%9F%BA%E7%A1%80-v2.html" class="md-nav__link">
+      <a href="../../db/mysql%E5%9F%BA%E7%A1%80-v2.html" class="md-nav__link">
         
   
   
@@ -3279,7 +3466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../db/mysql%E9%AB%98%E7%BA%A7-v2.html" class="md-nav__link">
+      <a href="../../db/mysql%E9%AB%98%E7%BA%A7-v2.html" class="md-nav__link">
         
   
   
@@ -3307,7 +3494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../db/mongodb-v2.html" class="md-nav__link">
+      <a href="../../db/mongodb-v2.html" class="md-nav__link">
         
   
   
@@ -3335,7 +3522,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../db/redis-v2.html" class="md-nav__link">
+      <a href="../../db/redis-v2.html" class="md-nav__link">
         
   
   
@@ -3363,7 +3550,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../db/minio.html" class="md-nav__link">
+      <a href="../../db/minio.html" class="md-nav__link">
         
   
   
@@ -3448,7 +3635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../linux/basic.html" class="md-nav__link">
+      <a href="../../linux/basic.html" class="md-nav__link">
         
   
   
@@ -3583,7 +3770,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../computer-science/network/Http.html" class="md-nav__link">
+      <a href="../../computer-science/network/Http.html" class="md-nav__link">
         
   
   
@@ -3611,7 +3798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../computer-science/network/Sse.html" class="md-nav__link">
+      <a href="../../computer-science/network/Sse.html" class="md-nav__link">
         
   
   
@@ -3697,7 +3884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../computer-science/os/Os.html" class="md-nav__link">
+      <a href="../../computer-science/os/Os.html" class="md-nav__link">
         
   
   
@@ -3760,22 +3947,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#openspec_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📂 目录结构
+        第一章：认识 OpenSpec
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="📂 目录结构">
+    <nav class="md-nav" aria-label="第一章：认识 OpenSpec">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#java" class="md-nav__link">
+  <a href="#11-openspec" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ☕ Java
+        1.1 为什么需要 OpenSpec
       
     </span>
   </a>
@@ -3783,10 +3970,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#python" class="md-nav__link">
+  <a href="#12-spec-driven-development" class="md-nav__link">
     <span class="md-ellipsis">
       
-        🐍 Python
+        1.2 什么是 Spec-Driven Development
       
     </span>
   </a>
@@ -3794,10 +3981,193 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#algorithm" class="md-nav__link">
+  <a href="#13-openspec" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📐 Algorithm
+        1.3 什么是 OpenSpec
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 与其他工具的对比
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二章：使用指南
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二章：使用指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 安装与初始化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 目录结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 核心工作流概述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 CLI 命令详解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.4 CLI 命令详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Core 工作流（默认，新手首选）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expanded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expanded 工作流（进阶，更精细的控制）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 实战示例：厨房计时器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.5 实战示例：厨房计时器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 1：编辑项目上下文
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 2：起草变更提案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 3：审查与对齐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 4：实施变更
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 5：归档
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 最佳实践
       
     </span>
   </a>
@@ -3829,65 +4199,474 @@
   
 
 
-<h1 id="_1">💻 代码实践笔记</h1>
-<p>本目录用于存放各类代码实践示例，涵盖多线程、IO、设计模式、算法等核心编程技能。</p>
-<h2 id="_2">📂 目录结构</h2>
-<h3 id="java">☕ Java</h3>
+<h1 id="openspec">OpenSpec 学习笔记</h1>
+<hr />
+<h2 id="openspec_1">第一章：认识 OpenSpec</h2>
+<h3 id="11-openspec">1.1 为什么需要 OpenSpec</h3>
+<p>你有没有这样的经历：让 AI 助手"帮我实现一个用户认证功能"，结果它生成了一大段代码——</p>
+<ul>
+<li>用了你没用过的框架</li>
+<li>遗漏了你提的关键需求</li>
+<li>添加了你根本不需要的功能</li>
+<li>代码看起来很美，但跑起来全是坑</li>
+</ul>
+<p>这不是 AI 不够聪明，而是<strong>上下文缺失</strong>导致的。AI 不知道你的项目约定、架构决策和历史背景，只能靠"猜"来完成你的需求。</p>
+<div class="admonition quote">
+<p class="admonition-title">Vibe Coding 的局限性</p>
+<p>Vibe Coding（随性编码）对于快速原型验证或许尚可接受，但要构建<strong>严肃的、生产级别的软件系统</strong>，显然远远不够。我们需要一种能将传统软件工程的严谨性与 AI 的强大能力相结合的方法论。</p>
+</div>
+<h3 id="12-spec-driven-development">1.2 什么是 Spec-Driven Development</h3>
+<p><strong>Spec-Driven Development（SDD，规范驱动开发）</strong> 是一种开发范式：<strong>先写规范，再写代码</strong>。</p>
+<p>GitHub 在 2025 年 9 月的一篇博文中给出了 SDD 的定义：</p>
+<blockquote>
+<p>Instead of coding first and writing docs later, in spec-driven development, you start with a (you guessed it) spec. This is a contract for how your code should behave and becomes the source of truth your tools and AI agents use to generate, test, and validate code. The result is less guesswork, fewer surprises, and higher-quality code.</p>
+</blockquote>
+<p>翻译过来就是：</p>
+<blockquote>
+<p>在规范驱动开发中，你不是先写代码再补文档，而是<strong>从规范开始</strong>。规范是代码行为的契约，是 AI 工具用于生成、测试和验证代码的<strong>唯一真理源</strong>。结果就是：更少的猜测、更少的意外、更高质量的代码。</p>
+</blockquote>
+<p>SDD 与传统开发流程的对比：</p>
 <table>
 <thead>
 <tr>
-<th>主题</th>
-<th>说明</th>
+<th>维度</th>
+<th>传统 Vibe Coding</th>
+<th>SDD 规范驱动开发</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="java/concurrent/concurrent.html">并发编程</a></td>
-<td>多线程、锁机制、线程池、并发工具类等实践代码</td>
+<td><strong>起点</strong></td>
+<td>模糊的对话需求</td>
+<td>结构化的规范文档</td>
 </tr>
 <tr>
-<td><a href="common/design-patterns/design-patterns.html">设计模式</a></td>
-<td>常见设计模式的 Java 实现</td>
+<td><strong>过程</strong></td>
+<td>让 AI 自由发挥</td>
+<td>按已批准的规范执行</td>
+</tr>
+<tr>
+<td><strong>可复现性</strong></td>
+<td>相同提示可能得到不同结果</td>
+<td>相同规范 → 相同结果</td>
+</tr>
+<tr>
+<td><strong>可追溯性</strong></td>
+<td>需求散落在聊天记录中</td>
+<td>规范的变更历史完整可查</td>
+</tr>
+<tr>
+<td><strong>验证标准</strong></td>
+<td>人肉测试几个用例</td>
+<td>规范即测试标准</td>
+</tr>
+<tr>
+<td><strong>维护成本</strong></td>
+<td>变更时需重写对话历史</td>
+<td>更新规范即可</td>
 </tr>
 </tbody>
 </table>
-<h3 id="python">🐍 Python</h3>
+<h3 id="13-openspec">1.3 什么是 OpenSpec</h3>
+<p><strong>OpenSpec</strong> 是由 <a href="https://github.com/Fission-AI">Fission AI</a> 开发的一款<strong>轻量级规范驱动开发（SDD）框架和 CLI 工具</strong>，专为 AI 辅助编程场景设计。</p>
+<div class="admonition tip">
+<p class="admonition-title">核心定位</p>
+<p>OpenSpec 的本质不是让 AI 变得更聪明，而是给 AI 编程助手套上<strong>"规范的笼头"</strong>——在人类开发者与 AI 编码助手之间建立一个<strong>持久化的共识层</strong>。</p>
+</div>
+<p><strong>关键数据：</strong></p>
+<ul>
+<li>2025 年底开源，2026 年初在 AI 编程社区迅速走红</li>
+<li>GitHub 已获 <strong>46.8k+ Star</strong>（截至 2026 年 5 月）</li>
+<li>支持 Claude Code、Cursor、GitHub Copilot、Windsurf 等主流 AI 编程工具</li>
+</ul>
+<p><strong>OpenSpec 的四个核心理念：</strong></p>
+<ol>
+<li><strong>先对齐</strong> —— 起草变更提案，明确需求，锁定范围</li>
+<li><strong>再规划</strong> —— 审查与对齐规格，直到人类和 AI 达成一致</li>
+<li><strong>后编码</strong> —— 按照已批准的规范实现任务</li>
+<li><strong>必归档</strong> —— 完成后更新主规范，保持可追溯</li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Brownfield-first（存量项目优先）</p>
+<p>OpenSpec 不仅适用于从零开始的项目（0→1），更擅长在<strong>已有项目</strong>（1→n）中进行功能演进。它通过 <code>specs/</code> 和 <code>changes/</code> 两个核心目录，将"真理源"与"提议变更"清晰分离。</p>
+</div>
+<h3 id="14">1.4 与其他工具的对比</h3>
 <table>
 <thead>
 <tr>
-<th>主题</th>
-<th>说明</th>
+<th>工具</th>
+<th>定位</th>
+<th>特点</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="./python/ai.md">AI</a></td>
-<td>人工智能相关代码实践</td>
+<td><strong>OpenSpec</strong></td>
+<td>轻量级 SDD 框架</td>
+<td>轻量、工具无关、Brownfield-first</td>
 </tr>
-</tbody>
-</table>
-<h3 id="algorithm">📐 Algorithm</h3>
-<table>
-<thead>
 <tr>
-<th>主题</th>
-<th>说明</th>
+<td><strong>Spec Kit</strong>（GitHub）</td>
+<td>全功能规范框架</td>
+<td>功能全面但体积庞大，有严格的阶段门控</td>
 </tr>
-</thead>
-<tbody>
 <tr>
-<td><a href="algorithm/template.html">算法模板</a></td>
-<td>常用算法模板与经典题型</td>
+<td><strong>Kiro</strong>（AWS）</td>
+<td>全栈 AI IDE</td>
+<td>功能强大但绑定特定 IDE 和 Claude 模型</td>
+</tr>
+<tr>
+<td><strong>Cursor Plan 模式</strong></td>
+<td>内置规划模式</td>
+<td>单一工具内嵌，不可跨工具使用</td>
+</tr>
+<tr>
+<td><strong>无规范的 AI 编码</strong></td>
+<td>纯对话驱动</td>
+<td>模糊提示 + 不可预测的结果</td>
 </tr>
 </tbody>
 </table>
 <hr />
+<h2 id="_1">第二章：使用指南</h2>
+<h3 id="21">2.1 安装与初始化</h3>
+<p><strong>前置条件</strong></p>
+<ul>
+<li><strong>Node.js</strong> 20.19.0 或更高版本</li>
+</ul>
+<p><strong>安装</strong></p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">npm（推荐）</label><label for="__tabbed_1_2">pnpm</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@fission-ai/openspec@latest
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pnpm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>@fission-ai/openspec@latest
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p><strong>验证安装</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>openspec<span class="w"> </span>--version
+</span></code></pre></div>
+<p><strong>在项目中初始化</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>your-project
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>openspec<span class="w"> </span>init
+</span></code></pre></div>
+<p>初始化过程会引导你：</p>
+<ol>
+<li>选择使用的 AI 工具（Claude Code、Cursor、Copilot 等）</li>
+<li>自动配置对应的斜杠命令</li>
+<li>创建 <code>openspec/</code> 目录结构</li>
+<li>生成 <code>AGENTS.md</code> 文件（AI 助手操作指南）</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">验证初始化</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 查看生成的配置</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>openspec<span class="w"> </span>list
+</span></code></pre></div>
+<p>如果 AI 助手没有立即显示新的斜杠命令，请<strong>重启它</strong>。</p>
+</div>
+<h3 id="22">2.2 目录结构</h3>
+<p>初始化完成后，项目会生成以下目录结构：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>your-project/
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>└── openspec/
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    ├── specs/               # 真理源规范（已构建完成的内容）
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    │   └── [capability]/
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    │       └── spec.md      # 某个功能模块的规范
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    ├── changes/             # 变更提案（待实施的内容）
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    │   ├── [change-name]/   # 单个变更的完整目录
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    │   │   ├── proposal.md  # 变更说明（需求描述）
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    │   │   ├── tasks.md     # 实施任务清单
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    │   │   ├── design.md    # 技术设计方案（可选）
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    │   │   └── specs/       # 本次变更带来的规范增量
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    │   └── archive/         # 已完成的变更（历史归档）
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    ├── config.yaml          # OpenSpec 配置文件
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    └── AGENTS.md            # AI 助手的操作指南
+</span></code></pre></div>
+<p>关键目录的职责：</p>
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>作用</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>specs/</code></td>
+<td>当前系统的<strong>真实规范</strong></td>
+<td>已发布的产品文档</td>
+</tr>
+<tr>
+<td><code>changes/</code></td>
+<td>正在进行的<strong>变更提案</strong></td>
+<td>待审批的 PR</td>
+</tr>
+<tr>
+<td><code>changes/archive/</code></td>
+<td>已完成的<strong>变更归档</strong></td>
+<td>已合并的 PR 历史</td>
+</tr>
+<tr>
+<td><code>changes/[name]/specs/</code></td>
+<td>本次变更的<strong>规范增量</strong></td>
+<td>PR 中的 diff</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23">2.3 核心工作流概述</h3>
+<p>OpenSpec 的工作流遵循 <strong>4 个阶段</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>                   ┌──────────────────────┐
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>                   │  1. 起草变更提案      │
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>                   │  Draft Change Proposal │
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>                   └──────────┬───────────┘
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>                              │ 与 AI 共享意图
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>                              ▼
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>                   ┌──────────────────────┐
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>                   │  2. 审查与对齐        │
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>            ┌───── │  Review &amp; Align       │ ◀──── 人类 + AI 迭代调整
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>            │      └──────────┬───────────┘
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>            │                 │ 达成一致
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>            │                 ▼
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>            │      ┌──────────────────────┐
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>            │      │  3. 实施变更          │
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>            │      │  Implement Change     │
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>            │      └──────────┬───────────┘
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>            │                 │ 代码完成
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>            │                 ▼
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>            │      ┌──────────────────────┐
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>            │      │  4. 归档与更新        │
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>            │      │  Archive &amp; Update     │
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>            │      └──────────────────────┘
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>            │
+</span><span id="__span-6-24"><a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>            └── 如果需求变更，回到阶段 1
+</span></code></pre></div>
+<h3 id="24-cli">2.4 CLI 命令详解</h3>
+<p>OpenSpec 提供两套工作流配置文件（profile）：<strong>Core（默认）</strong> 和 <strong>Expanded（扩展）</strong>。</p>
+<div class="admonition tip">
+<p class="admonition-title">切换工作流</p>
+<p>如需启用 Expanded 工作流：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>openspec<span class="w"> </span>config<span class="w"> </span>profile<span class="w">  </span><span class="c1"># 选择 workflows</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>openspec<span class="w"> </span>update<span class="w">          </span><span class="c1"># 应用配置</span>
+</span></code></pre></div>
+</div>
+<h4 id="core">Core 工作流（默认，新手首选）</h4>
+<p>Core 是安装后的默认配置，提供 4 个命令，覆盖日常开发的核心流程：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/opsx:propose</code></td>
+<td>创建变更提案</td>
+<td>一步生成 proposal、specs、tasks 等全部规划制品</td>
+</tr>
+<tr>
+<td><code>/opsx:explore</code></td>
+<td>探索与调研</td>
+<td>开发前梳理思路、调研方案、明确需求</td>
+</tr>
+<tr>
+<td><code>/opsx:apply</code></td>
+<td>执行实现</td>
+<td>根据已批准的规范，让 AI 编写代码</td>
+</tr>
+<tr>
+<td><code>/opsx:archive</code></td>
+<td>归档变更</td>
+<td>将完成的变更归档，更新主规范</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Core 工作流示意图：</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>/opsx:propose  →  /opsx:apply  →  /opsx:archive
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>     │                                  │
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>     └── 不满意可重复 propose ──────────┘
+</span></code></pre></div>
+<h4 id="expanded">Expanded 工作流（进阶，更精细的控制）</h4>
+<p>Expanded 在 Core 的基础上新增了 7 个命令，提供更细粒度的控制：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/opsx:new</code></td>
+<td>新建变更脚手架</td>
+<td>初始化新变更的基础目录和文件</td>
+</tr>
+<tr>
+<td><code>/opsx:continue</code></td>
+<td>逐步生成下一个制品</td>
+<td>按依赖关系逐步生成 proposal → design → tasks</td>
+</tr>
+<tr>
+<td><code>/opsx:ff</code></td>
+<td>快速生成全部制品</td>
+<td>等同于一步到位生成所有规划制品</td>
+</tr>
+<tr>
+<td><code>/opsx:verify</code></td>
+<td>验证实现与规范是否一致</td>
+<td>自动检查代码是否满足规格要求</td>
+</tr>
+<tr>
+<td><code>/opsx:sync</code></td>
+<td>同步规范增量到主规范</td>
+<td>将变更的增量 specs 合并到主 specs 中</td>
+</tr>
+<tr>
+<td><code>/opsx:bulk-archive</code></td>
+<td>批量归档多个变更</td>
+<td>处理多个已完成变更的归档并解决规范冲突</td>
+</tr>
+<tr>
+<td><code>/opsx:onboard</code></td>
+<td>交互式教程</td>
+<td>引导熟悉完整的 OpenSpec 工作流</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Expanded vs Core 的对比：</strong></p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th style="text-align: center;">Core 能否处理</th>
+<th style="text-align: center;">Expanded 推荐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求明确的中小变更</td>
+<td style="text-align: center;">✅ 够用</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td>逐个审查每个制品</td>
+<td style="text-align: center;">❌ 只能一次性生成</td>
+<td style="text-align: center;">✅ <code>/opsx:continue</code></td>
+</tr>
+<tr>
+<td>验证代码是否匹配规范</td>
+<td style="text-align: center;">❌ 无法自动检查</td>
+<td style="text-align: center;">✅ <code>/opsx:verify</code></td>
+</tr>
+<tr>
+<td>并行管理多个变更</td>
+<td style="text-align: center;">❌ 只能逐个归档</td>
+<td style="text-align: center;">✅ <code>/opsx:bulk-archive</code></td>
+</tr>
+<tr>
+<td>控制工作流节奏</td>
+<td style="text-align: center;">❌ 要么全生成，要么不生成</td>
+<td style="text-align: center;">✅ 灵活控制</td>
+</tr>
+</tbody>
+</table>
+<h3 id="25">2.5 实战示例：厨房计时器</h3>
+<p>下面通过一个"厨房计时器"的例子，演示 OpenSpec 的完整工作流。</p>
+<h4 id="1">步骤 1：编辑项目上下文</h4>
+<p>初始化后，编辑 <code>openspec/config.yaml</code>，描述项目目的和技术栈：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># openspec/config.yaml</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nt">project</span><span class="p">:</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kitchen-timer</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">提供一个简单、高可见性的厨房计时器，用于家庭和商用厨房</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="nt">tech_stack</span><span class="p">:</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTML5 / CSS3</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JavaScript (ES6)</span>
+</span></code></pre></div>
+<h4 id="2">步骤 2：起草变更提案</h4>
+<p>在 AI 助手中输入：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>/opsx:propose 为厨房计时器添加倒计时功能
+</span></code></pre></div>
+<p>AI 会自动生成：</p>
+<ul>
+<li><code>proposal.md</code> —— 功能描述：提供 1 分钟、3 分钟、5 分钟快捷按钮</li>
+<li><code>tasks.md</code> —— 任务清单：创建 UI、实现倒计时逻辑、添加声音提醒</li>
+<li><code>specs/</code> —— 规范增量：倒计时行为的具体规格</li>
+</ul>
+<h4 id="3">步骤 3：审查与对齐</h4>
+<p>人类审查 AI 生成的提案，调整细节。比如：</p>
+<ul>
+<li>修改 <code>proposal.md</code>：增加"倒计时结束后发出蜂鸣声"</li>
+<li>修改 <code>tasks.md</code>：将"发音提醒"拆分为两个子任务</li>
+</ul>
+<h4 id="4">步骤 4：实施变更</h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>/opsx:apply
+</span></code></pre></div>
+<p>AI 根据已批准的 <code>tasks.md</code> 和 <code>specs/</code> 编写代码。</p>
+<h4 id="5">步骤 5：归档</h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>/opsx:archive
+</span></code></pre></div>
+<p>变更被归档到 <code>changes/archive/</code>，规范增量合并到 <code>specs/</code> 中，成为新的真理源。</p>
+<h3 id="26">2.6 最佳实践</h3>
+<p><strong>1. 规范要精简</strong></p>
+<p>规范不是越详细越好。好的规范应该：</p>
+<ul>
+<li><strong>描述行为</strong>，而不是实现细节</li>
+<li><strong>覆盖边界情况</strong>，而不是穷举所有路径</li>
+<li><strong>模块化拆分</strong>，每个规范聚焦一个能力</li>
+</ul>
+<p><strong>2. 变更粒度要适中</strong></p>
+<ul>
+<li>太粗 → 任务不明确，AI 容易偏离</li>
+<li>太细 → 流程繁琐，效率低下</li>
+<li>推荐：<strong>一个变更 = 一个独立功能点</strong></li>
+</ul>
+<p><strong>3. 重视归档环节</strong></p>
+<p>归档不只是存档，它能：</p>
+<ul>
+<li>将增量规范合并到主规范，<strong>持续积累项目知识</strong></li>
+<li>为未来的变更提供参考</li>
+<li>形成<strong>可追溯的变更历史</strong></li>
+</ul>
+<p><strong>4. 活用 Expanded 工作流</strong></p>
+<p>当你遇到以下情况时，切换到 Expanded 模式：</p>
+<ul>
+<li>需要<strong>逐项审查</strong>提案的每个部分</li>
+<li>需要<strong>验证</strong>代码实现是否满足规范</li>
+<li>需要<strong>批量处理</strong>多个并行变更</li>
+</ul>
+<p><strong>5. 团队协作</strong></p>
+<p>OpenSpec 的目录结构可以纳入版本控制（推荐）：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a># .gitignore 建议
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>openspec/              # 纳入版本控制
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>openspec/changes/      # 团队可见的变更提案
+</span></code></pre></div>
+<p>团队成员通过 Git 共享 <code>openspec/</code>，每个人都能看到当前的变更状态和规范演进。</p>
+<hr />
+<blockquote>
+<p><strong>参考链接</strong></p>
+<ul>
+<li><a href="https://github.com/Fission-AI/OpenSpec">OpenSpec GitHub 仓库</a> —— 官方源码与文档</li>
+<li><a href="https://github.blog/engineering/devops/spec-driven-development/">GitHub Blog: Spec-Driven Development</a> —— SDD 概念起源</li>
+<li><a href="https://docs.anthropic.com/en/docs/claude-code/overview">Anthropic Claude Code 官方文档</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/2652352">Spec-Driven Development: 为混乱的 AI 编程增加工程纪律</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/2663958">OpenSpec 进阶：从 Core 到 Expanded</a></li>
+</ul>
+</blockquote>
 
 
 
 
 
 
+
+  
+  
 
 
 
@@ -3944,20 +4723,20 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tracking", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
-        <script src="../javascripts/reading-progress.js"></script>
+        <script src="../../javascripts/reading-progress.js"></script>
       
         <script src="https://unpkg.com/mermaid@10.9.3/dist/mermaid.min.js"></script>
       
-        <script src="../javascripts/mermaid.js"></script>
+        <script src="../../javascripts/mermaid.js"></script>
       
     
   </body>
