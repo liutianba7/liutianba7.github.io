@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "tools/vibe-coding/openspec.md",
+                "file": "code-notes/algorithm/hot100总结.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "openspec"
+              "title": "hot100总结"
             }
           }
         ]
@@ -53,13 +53,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "tools/vibe-coding/openspec.md",
+                "file": "code-notes/algorithm/hot100总结.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "openspec 的大纲"
+              "title": "hot100总结 的大纲"
             }
           },
           {
@@ -89,7 +89,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -193,10 +194,15 @@
       "bases:新建数据库": false
     }
   },
-  "active": "6ebe946f017caadc",
+  "active": "97902ed32e7e6f5a",
   "lastOpenFiles": [
-    "tools/vibe-coding/claude-code.md",
+    "code-notes/algorithm/template.md",
+    "interview/python/大模型面试题.md",
+    "python/02_basic/python basic.md",
+    "python/02_basic/python标准库.md",
+    "interview/python/python.md",
     "tools/vibe-coding/openspec.md",
+    "tools/vibe-coding/claude-code.md",
     "tools/docker-v2.md",
     "tools/docker.md",
     "java/02_Frameworks/ssm.md",
@@ -213,17 +219,12 @@
     "interview/面试准备.md",
     "interview/database/mysql.md~",
     "interview/index.md",
-    "code-notes/algorithm/template.md",
-    "interview/python/大模型面试题.md",
     "python/05_ai/NLP.md",
     "interview/python/deepLearning.md",
     "python/05_ai/Pytorch.md",
     "interview/简历.pdf",
     "python/06_aiInfra/LLMFinetune.md",
     "python/06_aiInfra/Ollama.md",
-    "python/05_ai/pytorch_backup.md",
-    "python/05_ai/DeepAgents.md",
-    "python/05_ai/LangChain.md",
     "assets/imgs/python/nlp/nlp06_transformer_architecture.png",
     "assets/imgs/python/nlp/nlp06_transformer_architecture.png.Uidzxe",
     "assets/imgs/python/nlp/nlp_07transformer_architecture.png",

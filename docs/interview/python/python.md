@@ -1203,20 +1203,18 @@ GIL（Global Interpreter Lock）是 CPython 的一个互斥锁，确保同一时
 
 **为什么需要 GIL？**
 
-- CPython 的内存管理（引用计数）不是线程安全的
-- 加锁简化了实现，避免了复杂的并发问题
+**核心原因**：引用计数的增减操作（`+1` / `-1`）在底层并非**原子操作**，而是分为“读取 → 修改 → 写回”三个独立步骤。也就是说，引用计数不是线程安全的！
+
+因此，如果没有 GIL，会出现的问题如下：
+
+- **更新丢失**：多个线程同时增加引用时，可能互相覆盖写入结果，导致最终计数比实际值小，引发对象过早释放。
+- **双重释放 (Double Free)**：两个线程同时读到计数为 `1`，各自减为 `0` 后都去释放内存。同一块内存被释放两次，会直接破坏堆结构，导致程序崩溃。
 
 **GIL 的影响：**
 
 - 多线程无法利用多核 CPU 执行 CPU 密集型任务
 - I/O 操作会释放 GIL，多线程适合 I/O 密集型任务
 - 多进程可以绕过 GIL
-
-**解决方案：**
-
-- CPU 密集型：使用多进程
-- I/O 密集型：使用多线程或协程
-
 #### 5. 线程安全与锁机制
 
 ```python
@@ -1383,8 +1381,8 @@ mypy my_script.py
 **核心概念**：
 
 - **TypeVar**：定义类型变量，表示一个待确定的类型
-  - **Generic[T]**：声明类为泛型类，T 是类型参数
-  - **类型参数传递**：实例化时指定具体类型，IDE 和类型检查器会进行类型推断
+- **Generic[T]**：声明类为泛型类，T 是类型参数
+ - **类型参数传递**：实例化时指定具体类型，IDE 和类型检查器会进行类型推断
 
 **应用场景**：容器类（如 Box、Stack）、工具函数、ORM 模型等需要处理多种类型的场景。
 
@@ -1410,6 +1408,18 @@ str_box: Box[str] = Box("hello")  # str_box.get() 返回 str
 # 限制类型范围
 T = TypeVar('T', bound=Number)      # T 必须是 Number 或其子类
 K = TypeVar('K', str, bytes)        # K 只能是 str 或 bytes
+```
+
+在 Python 3.12 中，官方引入了全新的 PEP 695 语法，让泛型的写法变得更加简洁直观，不再需要显式导入 `TypeVar` 和 `Generic`：
+
+``` python
+# 新语法：直接在函数/类名后加方括号声明类型参数  
+def get_first_element[T](items: list[T]) -> T:  
+    return items[0]  
+  
+class Box[T]:  
+    def __init__(self, content: T) -> None:  
+        self.content = content
 ```
 
 ---
@@ -1494,8 +1504,44 @@ print(f"{name.upper()}")
 print(f"{age:.2f}")
 print(f"{1000:,}")  # "1,000"
 
+```
+
+Python 3.8 新增 = 语法，使用如下：
+
+``` python
 # Python 3.8+: = 语法调试
 print(f"{name=}, {age=}")  # "name='张三', age=25"
+```
+
+#### 5. 泛型语法升级
+
+这是 Python 类型系统的一次重大现代化升级。不再需要从 `typing` 模块导入 `TypeVar` 和 `Generic`，直接使用方括号 `[]` 即可定义泛型，且内置类型（如 `list`, `dict`）可直接作为泛型容器使用。
+
+!!! note "官方参考"  
+	关于 PEP 695 的详细设计动机与规范，可查阅官方文档：[PEP 695 – Type Parameter Syntax](https://peps.python.org/pep-0695/)
+
+新写法如下：
+
+```python
+# 直接声明一个泛型类
+class ClassA[T: str]:
+    def method1(self) -> T:
+        ...
+        
+# 泛型函数
+def func[T](a: T, b: T) -> T:
+    ...
+    
+# 类型别名
+# before
+from typing import TypeAlias
+
+_T = TypeVar("_T")
+
+ListOrSet: TypeAlias = list[_T] | set[_T]
+
+# now
+type ListOrSet[T] = list[T] | set[T]
 ```
 
 ---
