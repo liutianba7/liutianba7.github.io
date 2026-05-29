@@ -2532,6 +2532,61 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#leetcode-230-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 230. 二叉搜索树中第 K 小的元素
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-199" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 199. 二叉树的右视图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-114" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 114. 二叉树展开为链表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-105" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 105. 从前序与中序遍历序列构造二叉树
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-437-iii" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 437. 路径总和 III
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3745,6 +3800,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../db/pgsql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PgSql
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../db/redis-v2.html" class="md-nav__link">
         
   
@@ -4623,6 +4706,61 @@
     <span class="md-ellipsis">
       
         LeetCode 98. 验证二叉搜索树
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-230-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 230. 二叉搜索树中第 K 小的元素
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-199" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 199. 二叉树的右视图
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-114" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 114. 二叉树展开为链表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-105" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 105. 从前序与中序遍历序列构造二叉树
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-437-iii" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 437. 路径总和 III
       
     </span>
   </a>
@@ -8136,6 +8274,477 @@ a = k \cdot (b + c) - b = (k-1)(b + c) + c
 <ul>
 <li><strong>时间复杂度</strong>：O(n) — 每个节点访问一次</li>
 <li><strong>空间复杂度</strong>：O(h) — 递归栈深度取决于树高 h，最坏 O(n)</li>
+</ul>
+</details>
+<h3 id="leetcode-230-k">LeetCode 230. 二叉搜索树中第 K 小的元素</h3>
+<p><strong>难度</strong>：⭐⭐ 中等 &nbsp;|&nbsp; <strong>标签</strong>：<code>二叉搜索树</code> <code>中序遍历</code> <code>栈</code></p>
+<p><a href="https://leetcode.cn/problems/kth-smallest-element-in-a-bst/">🔗 LeetCode 原题链接</a></p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">核心思路</p>
+<p>BST 的中序遍历结果是有序的，利用栈模拟中序遍历，找到第 k 个即返回：</p>
+<ul>
+<li>一直往左走，沿途节点入栈</li>
+<li>弹出栈顶，计数减 1，若计数为 0 则返回当前节点值</li>
+<li>转向右子树继续</li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="44:2"><input checked="checked" id="__tabbed_44_1" name="__tabbed_44" type="radio" /><input id="__tabbed_44_2" name="__tabbed_44" type="radio" /><div class="tabbed-labels"><label for="__tabbed_44_1">Python</label><label for="__tabbed_44_2">Java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-85-1"><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+</span><span id="__span-85-2"><a id="__codelineno-85-2" name="__codelineno-85-2" href="#__codelineno-85-2"></a>
+</span><span id="__span-85-3"><a id="__codelineno-85-3" name="__codelineno-85-3" href="#__codelineno-85-3"></a><span class="c1"># Definition for a binary tree node.</span>
+</span><span id="__span-85-4"><a id="__codelineno-85-4" name="__codelineno-85-4" href="#__codelineno-85-4"></a><span class="c1"># class TreeNode:</span>
+</span><span id="__span-85-5"><a id="__codelineno-85-5" name="__codelineno-85-5" href="#__codelineno-85-5"></a><span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+</span><span id="__span-85-6"><a id="__codelineno-85-6" name="__codelineno-85-6" href="#__codelineno-85-6"></a><span class="c1">#         self.val = val</span>
+</span><span id="__span-85-7"><a id="__codelineno-85-7" name="__codelineno-85-7" href="#__codelineno-85-7"></a><span class="c1">#         self.left = left</span>
+</span><span id="__span-85-8"><a id="__codelineno-85-8" name="__codelineno-85-8" href="#__codelineno-85-8"></a><span class="c1">#         self.right = right</span>
+</span><span id="__span-85-9"><a id="__codelineno-85-9" name="__codelineno-85-9" href="#__codelineno-85-9"></a>
+</span><span id="__span-85-10"><a id="__codelineno-85-10" name="__codelineno-85-10" href="#__codelineno-85-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+</span><span id="__span-85-11"><a id="__codelineno-85-11" name="__codelineno-85-11" href="#__codelineno-85-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">kthSmallest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">],</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span><span id="__span-85-12"><a id="__codelineno-85-12" name="__codelineno-85-12" href="#__codelineno-85-12"></a>        <span class="n">stk</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-85-13"><a id="__codelineno-85-13" name="__codelineno-85-13" href="#__codelineno-85-13"></a>        <span class="k">while</span> <span class="n">root</span> <span class="ow">or</span> <span class="n">stk</span><span class="p">:</span>
+</span><span id="__span-85-14"><a id="__codelineno-85-14" name="__codelineno-85-14" href="#__codelineno-85-14"></a>            <span class="k">while</span> <span class="n">root</span><span class="p">:</span>
+</span><span id="__span-85-15"><a id="__codelineno-85-15" name="__codelineno-85-15" href="#__codelineno-85-15"></a>                <span class="n">stk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+</span><span id="__span-85-16"><a id="__codelineno-85-16" name="__codelineno-85-16" href="#__codelineno-85-16"></a>                <span class="n">root</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">left</span>
+</span><span id="__span-85-17"><a id="__codelineno-85-17" name="__codelineno-85-17" href="#__codelineno-85-17"></a>
+</span><span id="__span-85-18"><a id="__codelineno-85-18" name="__codelineno-85-18" href="#__codelineno-85-18"></a>            <span class="n">root</span> <span class="o">=</span> <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</span><span id="__span-85-19"><a id="__codelineno-85-19" name="__codelineno-85-19" href="#__codelineno-85-19"></a>            <span class="n">k</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="__span-85-20"><a id="__codelineno-85-20" name="__codelineno-85-20" href="#__codelineno-85-20"></a>            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-85-21"><a id="__codelineno-85-21" name="__codelineno-85-21" href="#__codelineno-85-21"></a>                <span class="k">return</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span>
+</span><span id="__span-85-22"><a id="__codelineno-85-22" name="__codelineno-85-22" href="#__codelineno-85-22"></a>
+</span><span id="__span-85-23"><a id="__codelineno-85-23" name="__codelineno-85-23" href="#__codelineno-85-23"></a>            <span class="n">root</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">right</span>
+</span><span id="__span-85-24"><a id="__codelineno-85-24" name="__codelineno-85-24" href="#__codelineno-85-24"></a>
+</span><span id="__span-85-25"><a id="__codelineno-85-25" name="__codelineno-85-25" href="#__codelineno-85-25"></a>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-86-1"><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a><span class="cm">/**</span>
+</span><span id="__span-86-2"><a id="__codelineno-86-2" name="__codelineno-86-2" href="#__codelineno-86-2"></a><span class="cm"> * Definition for a binary tree node.</span>
+</span><span id="__span-86-3"><a id="__codelineno-86-3" name="__codelineno-86-3" href="#__codelineno-86-3"></a><span class="cm"> * public class TreeNode {</span>
+</span><span id="__span-86-4"><a id="__codelineno-86-4" name="__codelineno-86-4" href="#__codelineno-86-4"></a><span class="cm"> *     int val;</span>
+</span><span id="__span-86-5"><a id="__codelineno-86-5" name="__codelineno-86-5" href="#__codelineno-86-5"></a><span class="cm"> *     TreeNode left;</span>
+</span><span id="__span-86-6"><a id="__codelineno-86-6" name="__codelineno-86-6" href="#__codelineno-86-6"></a><span class="cm"> *     TreeNode right;</span>
+</span><span id="__span-86-7"><a id="__codelineno-86-7" name="__codelineno-86-7" href="#__codelineno-86-7"></a><span class="cm"> *     TreeNode() {}</span>
+</span><span id="__span-86-8"><a id="__codelineno-86-8" name="__codelineno-86-8" href="#__codelineno-86-8"></a><span class="cm"> *     TreeNode(int val) { this.val = val; }</span>
+</span><span id="__span-86-9"><a id="__codelineno-86-9" name="__codelineno-86-9" href="#__codelineno-86-9"></a><span class="cm"> *     TreeNode(int val, TreeNode left, TreeNode right) {</span>
+</span><span id="__span-86-10"><a id="__codelineno-86-10" name="__codelineno-86-10" href="#__codelineno-86-10"></a><span class="cm"> *         this.val = val;</span>
+</span><span id="__span-86-11"><a id="__codelineno-86-11" name="__codelineno-86-11" href="#__codelineno-86-11"></a><span class="cm"> *         this.left = left;</span>
+</span><span id="__span-86-12"><a id="__codelineno-86-12" name="__codelineno-86-12" href="#__codelineno-86-12"></a><span class="cm"> *         this.right = right;</span>
+</span><span id="__span-86-13"><a id="__codelineno-86-13" name="__codelineno-86-13" href="#__codelineno-86-13"></a><span class="cm"> *     }</span>
+</span><span id="__span-86-14"><a id="__codelineno-86-14" name="__codelineno-86-14" href="#__codelineno-86-14"></a><span class="cm"> * }</span>
+</span><span id="__span-86-15"><a id="__codelineno-86-15" name="__codelineno-86-15" href="#__codelineno-86-15"></a><span class="cm"> */</span>
+</span><span id="__span-86-16"><a id="__codelineno-86-16" name="__codelineno-86-16" href="#__codelineno-86-16"></a><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-86-17"><a id="__codelineno-86-17" name="__codelineno-86-17" href="#__codelineno-86-17"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">kthSmallest</span><span class="p">(</span><span class="n">TreeNode</span><span class="w"> </span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-86-18"><a id="__codelineno-86-18" name="__codelineno-86-18" href="#__codelineno-86-18"></a><span class="w">        </span><span class="n">Deque</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span><span class="w"> </span><span class="n">stk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayDeque</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-86-19"><a id="__codelineno-86-19" name="__codelineno-86-19" href="#__codelineno-86-19"></a><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">!</span><span class="n">stk</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-86-20"><a id="__codelineno-86-20" name="__codelineno-86-20" href="#__codelineno-86-20"></a><span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-86-21"><a id="__codelineno-86-21" name="__codelineno-86-21" href="#__codelineno-86-21"></a><span class="w">                </span><span class="n">stk</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+</span><span id="__span-86-22"><a id="__codelineno-86-22" name="__codelineno-86-22" href="#__codelineno-86-22"></a><span class="w">                </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+</span><span id="__span-86-23"><a id="__codelineno-86-23" name="__codelineno-86-23" href="#__codelineno-86-23"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-86-24"><a id="__codelineno-86-24" name="__codelineno-86-24" href="#__codelineno-86-24"></a><span class="w">            </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stk</span><span class="p">.</span><span class="na">pop</span><span class="p">();</span>
+</span><span id="__span-86-25"><a id="__codelineno-86-25" name="__codelineno-86-25" href="#__codelineno-86-25"></a><span class="w">            </span><span class="n">k</span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-86-26"><a id="__codelineno-86-26" name="__codelineno-86-26" href="#__codelineno-86-26"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="p">;</span>
+</span><span id="__span-86-27"><a id="__codelineno-86-27" name="__codelineno-86-27" href="#__codelineno-86-27"></a><span class="w">            </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+</span><span id="__span-86-28"><a id="__codelineno-86-28" name="__codelineno-86-28" href="#__codelineno-86-28"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-86-29"><a id="__codelineno-86-29" name="__codelineno-86-29" href="#__codelineno-86-29"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-86-30"><a id="__codelineno-86-30" name="__codelineno-86-30" href="#__codelineno-86-30"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-86-31"><a id="__codelineno-86-31" name="__codelineno-86-31" href="#__codelineno-86-31"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>复杂度分析</summary>
+<ul>
+<li><strong>时间复杂度</strong>：O(n) — 最坏需遍历到第 k 个节点</li>
+<li><strong>空间复杂度</strong>：O(h) — 栈深度取决于树高 h，最坏 O(n)</li>
+</ul>
+</details>
+<h3 id="leetcode-199">LeetCode 199. 二叉树的右视图</h3>
+<p><strong>难度</strong>：⭐⭐ 中等 &nbsp;|&nbsp; <strong>标签</strong>：<code>二叉树</code> <code>BFS</code> <code>层序遍历</code></p>
+<p><a href="https://leetcode.cn/problems/binary-tree-right-side-view/">🔗 LeetCode 原题链接</a></p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">核心思路</p>
+<p>BFS 层序遍历，每层最后一个节点即为右视图看到的节点：</p>
+<ul>
+<li>根节点入队</li>
+<li>每次处理一层，当 <code>size</code> 减到 0 时，当前节点就是该层最右节点，记录值</li>
+<li>按顺序将左右子节点入队</li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="45:2"><input checked="checked" id="__tabbed_45_1" name="__tabbed_45" type="radio" /><input id="__tabbed_45_2" name="__tabbed_45" type="radio" /><div class="tabbed-labels"><label for="__tabbed_45_1">Python</label><label for="__tabbed_45_2">Java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-87-1"><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
+</span><span id="__span-87-2"><a id="__codelineno-87-2" name="__codelineno-87-2" href="#__codelineno-87-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+</span><span id="__span-87-3"><a id="__codelineno-87-3" name="__codelineno-87-3" href="#__codelineno-87-3"></a>
+</span><span id="__span-87-4"><a id="__codelineno-87-4" name="__codelineno-87-4" href="#__codelineno-87-4"></a><span class="c1"># Definition for a binary tree node.</span>
+</span><span id="__span-87-5"><a id="__codelineno-87-5" name="__codelineno-87-5" href="#__codelineno-87-5"></a><span class="c1"># class TreeNode:</span>
+</span><span id="__span-87-6"><a id="__codelineno-87-6" name="__codelineno-87-6" href="#__codelineno-87-6"></a><span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+</span><span id="__span-87-7"><a id="__codelineno-87-7" name="__codelineno-87-7" href="#__codelineno-87-7"></a><span class="c1">#         self.val = val</span>
+</span><span id="__span-87-8"><a id="__codelineno-87-8" name="__codelineno-87-8" href="#__codelineno-87-8"></a><span class="c1">#         self.left = left</span>
+</span><span id="__span-87-9"><a id="__codelineno-87-9" name="__codelineno-87-9" href="#__codelineno-87-9"></a><span class="c1">#         self.right = right</span>
+</span><span id="__span-87-10"><a id="__codelineno-87-10" name="__codelineno-87-10" href="#__codelineno-87-10"></a>
+</span><span id="__span-87-11"><a id="__codelineno-87-11" name="__codelineno-87-11" href="#__codelineno-87-11"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+</span><span id="__span-87-12"><a id="__codelineno-87-12" name="__codelineno-87-12" href="#__codelineno-87-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">rightSideView</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+</span><span id="__span-87-13"><a id="__codelineno-87-13" name="__codelineno-87-13" href="#__codelineno-87-13"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+</span><span id="__span-87-14"><a id="__codelineno-87-14" name="__codelineno-87-14" href="#__codelineno-87-14"></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="__span-87-15"><a id="__codelineno-87-15" name="__codelineno-87-15" href="#__codelineno-87-15"></a>        <span class="n">res</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">deque</span><span class="p">()</span>
+</span><span id="__span-87-16"><a id="__codelineno-87-16" name="__codelineno-87-16" href="#__codelineno-87-16"></a>        <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+</span><span id="__span-87-17"><a id="__codelineno-87-17" name="__codelineno-87-17" href="#__codelineno-87-17"></a>
+</span><span id="__span-87-18"><a id="__codelineno-87-18" name="__codelineno-87-18" href="#__codelineno-87-18"></a>        <span class="k">while</span> <span class="n">q</span><span class="p">:</span>
+</span><span id="__span-87-19"><a id="__codelineno-87-19" name="__codelineno-87-19" href="#__codelineno-87-19"></a>            <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</span><span id="__span-87-20"><a id="__codelineno-87-20" name="__codelineno-87-20" href="#__codelineno-87-20"></a>            <span class="k">while</span> <span class="n">size</span><span class="p">:</span>
+</span><span id="__span-87-21"><a id="__codelineno-87-21" name="__codelineno-87-21" href="#__codelineno-87-21"></a>                <span class="n">size</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="__span-87-22"><a id="__codelineno-87-22" name="__codelineno-87-22" href="#__codelineno-87-22"></a>                <span class="n">cur</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+</span><span id="__span-87-23"><a id="__codelineno-87-23" name="__codelineno-87-23" href="#__codelineno-87-23"></a>                <span class="k">if</span> <span class="ow">not</span> <span class="n">size</span><span class="p">:</span>          <span class="c1"># 当前层最后一个节点</span>
+</span><span id="__span-87-24"><a id="__codelineno-87-24" name="__codelineno-87-24" href="#__codelineno-87-24"></a>                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+</span><span id="__span-87-25"><a id="__codelineno-87-25" name="__codelineno-87-25" href="#__codelineno-87-25"></a>                <span class="k">if</span> <span class="n">cur</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+</span><span id="__span-87-26"><a id="__codelineno-87-26" name="__codelineno-87-26" href="#__codelineno-87-26"></a>                    <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+</span><span id="__span-87-27"><a id="__codelineno-87-27" name="__codelineno-87-27" href="#__codelineno-87-27"></a>                <span class="k">if</span> <span class="n">cur</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+</span><span id="__span-87-28"><a id="__codelineno-87-28" name="__codelineno-87-28" href="#__codelineno-87-28"></a>                    <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+</span><span id="__span-87-29"><a id="__codelineno-87-29" name="__codelineno-87-29" href="#__codelineno-87-29"></a>
+</span><span id="__span-87-30"><a id="__codelineno-87-30" name="__codelineno-87-30" href="#__codelineno-87-30"></a>        <span class="k">return</span> <span class="n">res</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-88-1"><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a><span class="cm">/**</span>
+</span><span id="__span-88-2"><a id="__codelineno-88-2" name="__codelineno-88-2" href="#__codelineno-88-2"></a><span class="cm"> * Definition for a binary tree node.</span>
+</span><span id="__span-88-3"><a id="__codelineno-88-3" name="__codelineno-88-3" href="#__codelineno-88-3"></a><span class="cm"> * public class TreeNode {</span>
+</span><span id="__span-88-4"><a id="__codelineno-88-4" name="__codelineno-88-4" href="#__codelineno-88-4"></a><span class="cm"> *     int val;</span>
+</span><span id="__span-88-5"><a id="__codelineno-88-5" name="__codelineno-88-5" href="#__codelineno-88-5"></a><span class="cm"> *     TreeNode left;</span>
+</span><span id="__span-88-6"><a id="__codelineno-88-6" name="__codelineno-88-6" href="#__codelineno-88-6"></a><span class="cm"> *     TreeNode right;</span>
+</span><span id="__span-88-7"><a id="__codelineno-88-7" name="__codelineno-88-7" href="#__codelineno-88-7"></a><span class="cm"> *     TreeNode() {}</span>
+</span><span id="__span-88-8"><a id="__codelineno-88-8" name="__codelineno-88-8" href="#__codelineno-88-8"></a><span class="cm"> *     TreeNode(int val) { this.val = val; }</span>
+</span><span id="__span-88-9"><a id="__codelineno-88-9" name="__codelineno-88-9" href="#__codelineno-88-9"></a><span class="cm"> *     TreeNode(int val, TreeNode left, TreeNode right) {</span>
+</span><span id="__span-88-10"><a id="__codelineno-88-10" name="__codelineno-88-10" href="#__codelineno-88-10"></a><span class="cm"> *         this.val = val;</span>
+</span><span id="__span-88-11"><a id="__codelineno-88-11" name="__codelineno-88-11" href="#__codelineno-88-11"></a><span class="cm"> *         this.left = left;</span>
+</span><span id="__span-88-12"><a id="__codelineno-88-12" name="__codelineno-88-12" href="#__codelineno-88-12"></a><span class="cm"> *         this.right = right;</span>
+</span><span id="__span-88-13"><a id="__codelineno-88-13" name="__codelineno-88-13" href="#__codelineno-88-13"></a><span class="cm"> *     }</span>
+</span><span id="__span-88-14"><a id="__codelineno-88-14" name="__codelineno-88-14" href="#__codelineno-88-14"></a><span class="cm"> * }</span>
+</span><span id="__span-88-15"><a id="__codelineno-88-15" name="__codelineno-88-15" href="#__codelineno-88-15"></a><span class="cm"> */</span>
+</span><span id="__span-88-16"><a id="__codelineno-88-16" name="__codelineno-88-16" href="#__codelineno-88-16"></a><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-88-17"><a id="__codelineno-88-17" name="__codelineno-88-17" href="#__codelineno-88-17"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">rightSideView</span><span class="p">(</span><span class="n">TreeNode</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-88-18"><a id="__codelineno-88-18" name="__codelineno-88-18" href="#__codelineno-88-18"></a><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-88-19"><a id="__codelineno-88-19" name="__codelineno-88-19" href="#__codelineno-88-19"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+</span><span id="__span-88-20"><a id="__codelineno-88-20" name="__codelineno-88-20" href="#__codelineno-88-20"></a>
+</span><span id="__span-88-21"><a id="__codelineno-88-21" name="__codelineno-88-21" href="#__codelineno-88-21"></a><span class="w">        </span><span class="n">Queue</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayDeque</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-88-22"><a id="__codelineno-88-22" name="__codelineno-88-22" href="#__codelineno-88-22"></a><span class="w">        </span><span class="n">q</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+</span><span id="__span-88-23"><a id="__codelineno-88-23" name="__codelineno-88-23" href="#__codelineno-88-23"></a>
+</span><span id="__span-88-24"><a id="__codelineno-88-24" name="__codelineno-88-24" href="#__codelineno-88-24"></a><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">q</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-88-25"><a id="__codelineno-88-25" name="__codelineno-88-25" href="#__codelineno-88-25"></a><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="na">size</span><span class="p">();</span>
+</span><span id="__span-88-26"><a id="__codelineno-88-26" name="__codelineno-88-26" href="#__codelineno-88-26"></a><span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-88-27"><a id="__codelineno-88-27" name="__codelineno-88-27" href="#__codelineno-88-27"></a><span class="w">                </span><span class="n">size</span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-88-28"><a id="__codelineno-88-28" name="__codelineno-88-28" href="#__codelineno-88-28"></a><span class="w">                </span><span class="n">TreeNode</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="na">poll</span><span class="p">();</span>
+</span><span id="__span-88-29"><a id="__codelineno-88-29" name="__codelineno-88-29" href="#__codelineno-88-29"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">          </span><span class="c1">// 当前层最后一个节点</span>
+</span><span id="__span-88-30"><a id="__codelineno-88-30" name="__codelineno-88-30" href="#__codelineno-88-30"></a><span class="w">                    </span><span class="n">res</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="na">val</span><span class="p">);</span>
+</span><span id="__span-88-31"><a id="__codelineno-88-31" name="__codelineno-88-31" href="#__codelineno-88-31"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-88-32"><a id="__codelineno-88-32" name="__codelineno-88-32" href="#__codelineno-88-32"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+</span><span id="__span-88-33"><a id="__codelineno-88-33" name="__codelineno-88-33" href="#__codelineno-88-33"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="n">q</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="n">cur</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+</span><span id="__span-88-34"><a id="__codelineno-88-34" name="__codelineno-88-34" href="#__codelineno-88-34"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-88-35"><a id="__codelineno-88-35" name="__codelineno-88-35" href="#__codelineno-88-35"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-88-36"><a id="__codelineno-88-36" name="__codelineno-88-36" href="#__codelineno-88-36"></a>
+</span><span id="__span-88-37"><a id="__codelineno-88-37" name="__codelineno-88-37" href="#__codelineno-88-37"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+</span><span id="__span-88-38"><a id="__codelineno-88-38" name="__codelineno-88-38" href="#__codelineno-88-38"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-88-39"><a id="__codelineno-88-39" name="__codelineno-88-39" href="#__codelineno-88-39"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>复杂度分析</summary>
+<ul>
+<li><strong>时间复杂度</strong>：O(n) — 每个节点访问一次</li>
+<li><strong>空间复杂度</strong>：O(n) — 队列最多存储一层的节点</li>
+</ul>
+</details>
+<h3 id="leetcode-114">LeetCode 114. 二叉树展开为链表</h3>
+<p><strong>难度</strong>：⭐⭐ 中等 &nbsp;|&nbsp; <strong>标签</strong>：<code>二叉树</code> <code>递归</code> <code>DFS</code> <code>后序遍历</code></p>
+<p><a href="https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/">🔗 LeetCode 原题链接</a></p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">核心思路</p>
+<p>将二叉树按<strong>先序遍历顺序</strong>展开为链表（右指针 → next，左指针置空）。</p>
+<p>使用<strong>后序遍历</strong>（右 → 左 → 根）配合全局变量 <code>pre</code> 实现 O(1) 额外空间：</p>
+<ul>
+<li>递归顺序：先右子树，再左子树，最后根节点</li>
+<li>每访问一个节点：<code>root.left = None; root.right = pre; pre = root</code></li>
+<li>这样从后往前构建链表，巧妙地符合了先序顺序</li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="46:2"><input checked="checked" id="__tabbed_46_1" name="__tabbed_46" type="radio" /><input id="__tabbed_46_2" name="__tabbed_46" type="radio" /><div class="tabbed-labels"><label for="__tabbed_46_1">Python</label><label for="__tabbed_46_2">Java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-89-1"><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+</span><span id="__span-89-2"><a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a>
+</span><span id="__span-89-3"><a id="__codelineno-89-3" name="__codelineno-89-3" href="#__codelineno-89-3"></a><span class="c1"># Definition for a binary tree node.</span>
+</span><span id="__span-89-4"><a id="__codelineno-89-4" name="__codelineno-89-4" href="#__codelineno-89-4"></a><span class="c1"># class TreeNode:</span>
+</span><span id="__span-89-5"><a id="__codelineno-89-5" name="__codelineno-89-5" href="#__codelineno-89-5"></a><span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+</span><span id="__span-89-6"><a id="__codelineno-89-6" name="__codelineno-89-6" href="#__codelineno-89-6"></a><span class="c1">#         self.val = val</span>
+</span><span id="__span-89-7"><a id="__codelineno-89-7" name="__codelineno-89-7" href="#__codelineno-89-7"></a><span class="c1">#         self.left = left</span>
+</span><span id="__span-89-8"><a id="__codelineno-89-8" name="__codelineno-89-8" href="#__codelineno-89-8"></a><span class="c1">#         self.right = right</span>
+</span><span id="__span-89-9"><a id="__codelineno-89-9" name="__codelineno-89-9" href="#__codelineno-89-9"></a>
+</span><span id="__span-89-10"><a id="__codelineno-89-10" name="__codelineno-89-10" href="#__codelineno-89-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+</span><span id="__span-89-11"><a id="__codelineno-89-11" name="__codelineno-89-11" href="#__codelineno-89-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">flatten</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-89-12"><a id="__codelineno-89-12" name="__codelineno-89-12" href="#__codelineno-89-12"></a>        <span class="n">pre</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-89-13"><a id="__codelineno-89-13" name="__codelineno-89-13" href="#__codelineno-89-13"></a>
+</span><span id="__span-89-14"><a id="__codelineno-89-14" name="__codelineno-89-14" href="#__codelineno-89-14"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-89-15"><a id="__codelineno-89-15" name="__codelineno-89-15" href="#__codelineno-89-15"></a>            <span class="k">nonlocal</span> <span class="n">pre</span>
+</span><span id="__span-89-16"><a id="__codelineno-89-16" name="__codelineno-89-16" href="#__codelineno-89-16"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+</span><span id="__span-89-17"><a id="__codelineno-89-17" name="__codelineno-89-17" href="#__codelineno-89-17"></a>                <span class="k">return</span>
+</span><span id="__span-89-18"><a id="__codelineno-89-18" name="__codelineno-89-18" href="#__codelineno-89-18"></a>            <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+</span><span id="__span-89-19"><a id="__codelineno-89-19" name="__codelineno-89-19" href="#__codelineno-89-19"></a>            <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+</span><span id="__span-89-20"><a id="__codelineno-89-20" name="__codelineno-89-20" href="#__codelineno-89-20"></a>            <span class="n">root</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-89-21"><a id="__codelineno-89-21" name="__codelineno-89-21" href="#__codelineno-89-21"></a>            <span class="n">root</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">pre</span>
+</span><span id="__span-89-22"><a id="__codelineno-89-22" name="__codelineno-89-22" href="#__codelineno-89-22"></a>            <span class="n">pre</span> <span class="o">=</span> <span class="n">root</span>
+</span><span id="__span-89-23"><a id="__codelineno-89-23" name="__codelineno-89-23" href="#__codelineno-89-23"></a>
+</span><span id="__span-89-24"><a id="__codelineno-89-24" name="__codelineno-89-24" href="#__codelineno-89-24"></a>        <span class="n">dfs</span><span class="p">(</span><span class="n">_root</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-90-1"><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a><span class="cm">/**</span>
+</span><span id="__span-90-2"><a id="__codelineno-90-2" name="__codelineno-90-2" href="#__codelineno-90-2"></a><span class="cm"> * Definition for a binary tree node.</span>
+</span><span id="__span-90-3"><a id="__codelineno-90-3" name="__codelineno-90-3" href="#__codelineno-90-3"></a><span class="cm"> * public class TreeNode {</span>
+</span><span id="__span-90-4"><a id="__codelineno-90-4" name="__codelineno-90-4" href="#__codelineno-90-4"></a><span class="cm"> *     int val;</span>
+</span><span id="__span-90-5"><a id="__codelineno-90-5" name="__codelineno-90-5" href="#__codelineno-90-5"></a><span class="cm"> *     TreeNode left;</span>
+</span><span id="__span-90-6"><a id="__codelineno-90-6" name="__codelineno-90-6" href="#__codelineno-90-6"></a><span class="cm"> *     TreeNode right;</span>
+</span><span id="__span-90-7"><a id="__codelineno-90-7" name="__codelineno-90-7" href="#__codelineno-90-7"></a><span class="cm"> *     TreeNode() {}</span>
+</span><span id="__span-90-8"><a id="__codelineno-90-8" name="__codelineno-90-8" href="#__codelineno-90-8"></a><span class="cm"> *     TreeNode(int val) { this.val = val; }</span>
+</span><span id="__span-90-9"><a id="__codelineno-90-9" name="__codelineno-90-9" href="#__codelineno-90-9"></a><span class="cm"> *     TreeNode(int val, TreeNode left, TreeNode right) {</span>
+</span><span id="__span-90-10"><a id="__codelineno-90-10" name="__codelineno-90-10" href="#__codelineno-90-10"></a><span class="cm"> *         this.val = val;</span>
+</span><span id="__span-90-11"><a id="__codelineno-90-11" name="__codelineno-90-11" href="#__codelineno-90-11"></a><span class="cm"> *         this.left = left;</span>
+</span><span id="__span-90-12"><a id="__codelineno-90-12" name="__codelineno-90-12" href="#__codelineno-90-12"></a><span class="cm"> *         this.right = right;</span>
+</span><span id="__span-90-13"><a id="__codelineno-90-13" name="__codelineno-90-13" href="#__codelineno-90-13"></a><span class="cm"> *     }</span>
+</span><span id="__span-90-14"><a id="__codelineno-90-14" name="__codelineno-90-14" href="#__codelineno-90-14"></a><span class="cm"> * }</span>
+</span><span id="__span-90-15"><a id="__codelineno-90-15" name="__codelineno-90-15" href="#__codelineno-90-15"></a><span class="cm"> */</span>
+</span><span id="__span-90-16"><a id="__codelineno-90-16" name="__codelineno-90-16" href="#__codelineno-90-16"></a><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-90-17"><a id="__codelineno-90-17" name="__codelineno-90-17" href="#__codelineno-90-17"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">TreeNode</span><span class="w"> </span><span class="n">pre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span><span id="__span-90-18"><a id="__codelineno-90-18" name="__codelineno-90-18" href="#__codelineno-90-18"></a>
+</span><span id="__span-90-19"><a id="__codelineno-90-19" name="__codelineno-90-19" href="#__codelineno-90-19"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">flatten</span><span class="p">(</span><span class="n">TreeNode</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-90-20"><a id="__codelineno-90-20" name="__codelineno-90-20" href="#__codelineno-90-20"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-90-21"><a id="__codelineno-90-21" name="__codelineno-90-21" href="#__codelineno-90-21"></a><span class="w">        </span><span class="n">flatten</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+</span><span id="__span-90-22"><a id="__codelineno-90-22" name="__codelineno-90-22" href="#__codelineno-90-22"></a><span class="w">        </span><span class="n">flatten</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+</span><span id="__span-90-23"><a id="__codelineno-90-23" name="__codelineno-90-23" href="#__codelineno-90-23"></a><span class="w">        </span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span><span id="__span-90-24"><a id="__codelineno-90-24" name="__codelineno-90-24" href="#__codelineno-90-24"></a><span class="w">        </span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pre</span><span class="p">;</span>
+</span><span id="__span-90-25"><a id="__codelineno-90-25" name="__codelineno-90-25" href="#__codelineno-90-25"></a><span class="w">        </span><span class="n">pre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">root</span><span class="p">;</span>
+</span><span id="__span-90-26"><a id="__codelineno-90-26" name="__codelineno-90-26" href="#__codelineno-90-26"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-90-27"><a id="__codelineno-90-27" name="__codelineno-90-27" href="#__codelineno-90-27"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>复杂度分析</summary>
+<ul>
+<li><strong>时间复杂度</strong>：O(n) — 每个节点访问一次</li>
+<li><strong>空间复杂度</strong>：O(h) — 递归栈深度取决于树高 h，最坏 O(n)</li>
+</ul>
+</details>
+<h3 id="leetcode-105">LeetCode 105. 从前序与中序遍历序列构造二叉树</h3>
+<p><strong>难度</strong>：⭐⭐ 中等 &nbsp;|&nbsp; <strong>标签</strong>：<code>二叉树</code> <code>递归</code> <code>分治</code> <code>哈希表</code></p>
+<p><a href="https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">🔗 LeetCode 原题链接</a></p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">核心思路</p>
+<p>利用先序和中序遍历的性质分治构造：</p>
+<ul>
+<li><strong>先序</strong>：<code>[根, 左子树, 右子树]</code></li>
+<li><strong>中序</strong>：<code>[左子树, 根, 右子树]</code></li>
+<li>用哈希表记录中序值到索引的映射，O(1) 查找根位置</li>
+<li>左子树节点数 <code>size = pos - l2</code>，据此划分先序和中序的左右部分，递归构造</li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="47:2"><input checked="checked" id="__tabbed_47_1" name="__tabbed_47" type="radio" /><input id="__tabbed_47_2" name="__tabbed_47" type="radio" /><div class="tabbed-labels"><label for="__tabbed_47_1">Python</label><label for="__tabbed_47_2">Java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-91-1"><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+</span><span id="__span-91-2"><a id="__codelineno-91-2" name="__codelineno-91-2" href="#__codelineno-91-2"></a>
+</span><span id="__span-91-3"><a id="__codelineno-91-3" name="__codelineno-91-3" href="#__codelineno-91-3"></a><span class="c1"># Definition for a binary tree node.</span>
+</span><span id="__span-91-4"><a id="__codelineno-91-4" name="__codelineno-91-4" href="#__codelineno-91-4"></a><span class="c1"># class TreeNode:</span>
+</span><span id="__span-91-5"><a id="__codelineno-91-5" name="__codelineno-91-5" href="#__codelineno-91-5"></a><span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+</span><span id="__span-91-6"><a id="__codelineno-91-6" name="__codelineno-91-6" href="#__codelineno-91-6"></a><span class="c1">#         self.val = val</span>
+</span><span id="__span-91-7"><a id="__codelineno-91-7" name="__codelineno-91-7" href="#__codelineno-91-7"></a><span class="c1">#         self.left = left</span>
+</span><span id="__span-91-8"><a id="__codelineno-91-8" name="__codelineno-91-8" href="#__codelineno-91-8"></a><span class="c1">#         self.right = right</span>
+</span><span id="__span-91-9"><a id="__codelineno-91-9" name="__codelineno-91-9" href="#__codelineno-91-9"></a>
+</span><span id="__span-91-10"><a id="__codelineno-91-10" name="__codelineno-91-10" href="#__codelineno-91-10"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+</span><span id="__span-91-11"><a id="__codelineno-91-11" name="__codelineno-91-11" href="#__codelineno-91-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">buildTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">preorder</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">inorder</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]:</span>
+</span><span id="__span-91-12"><a id="__codelineno-91-12" name="__codelineno-91-12" href="#__codelineno-91-12"></a>        <span class="n">dic</span> <span class="o">=</span> <span class="p">{</span><span class="n">val</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">inorder</span><span class="p">)}</span>
+</span><span id="__span-91-13"><a id="__codelineno-91-13" name="__codelineno-91-13" href="#__codelineno-91-13"></a>
+</span><span id="__span-91-14"><a id="__codelineno-91-14" name="__codelineno-91-14" href="#__codelineno-91-14"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">l1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">r1</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">l2</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">r2</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">]:</span>
+</span><span id="__span-91-15"><a id="__codelineno-91-15" name="__codelineno-91-15" href="#__codelineno-91-15"></a>            <span class="k">if</span> <span class="n">l1</span> <span class="o">&gt;</span> <span class="n">r1</span><span class="p">:</span>
+</span><span id="__span-91-16"><a id="__codelineno-91-16" name="__codelineno-91-16" href="#__codelineno-91-16"></a>                <span class="k">return</span> <span class="kc">None</span>
+</span><span id="__span-91-17"><a id="__codelineno-91-17" name="__codelineno-91-17" href="#__codelineno-91-17"></a>
+</span><span id="__span-91-18"><a id="__codelineno-91-18" name="__codelineno-91-18" href="#__codelineno-91-18"></a>            <span class="n">root</span> <span class="o">=</span> <span class="n">preorder</span><span class="p">[</span><span class="n">l1</span><span class="p">]</span>
+</span><span id="__span-91-19"><a id="__codelineno-91-19" name="__codelineno-91-19" href="#__codelineno-91-19"></a>            <span class="n">pos</span> <span class="o">=</span> <span class="n">dic</span><span class="p">[</span><span class="n">root</span><span class="p">]</span>
+</span><span id="__span-91-20"><a id="__codelineno-91-20" name="__codelineno-91-20" href="#__codelineno-91-20"></a>            <span class="n">size</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">-</span> <span class="n">l2</span>  <span class="c1"># 左子树节点数</span>
+</span><span id="__span-91-21"><a id="__codelineno-91-21" name="__codelineno-91-21" href="#__codelineno-91-21"></a>
+</span><span id="__span-91-22"><a id="__codelineno-91-22" name="__codelineno-91-22" href="#__codelineno-91-22"></a>            <span class="n">left</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">l1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">l1</span> <span class="o">+</span> <span class="n">size</span><span class="p">,</span> <span class="n">l2</span><span class="p">,</span> <span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-91-23"><a id="__codelineno-91-23" name="__codelineno-91-23" href="#__codelineno-91-23"></a>            <span class="n">right</span> <span class="o">=</span> <span class="n">dfs</span><span class="p">(</span><span class="n">l1</span> <span class="o">+</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r2</span><span class="p">)</span>
+</span><span id="__span-91-24"><a id="__codelineno-91-24" name="__codelineno-91-24" href="#__codelineno-91-24"></a>
+</span><span id="__span-91-25"><a id="__codelineno-91-25" name="__codelineno-91-25" href="#__codelineno-91-25"></a>            <span class="k">return</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+</span><span id="__span-91-26"><a id="__codelineno-91-26" name="__codelineno-91-26" href="#__codelineno-91-26"></a>
+</span><span id="__span-91-27"><a id="__codelineno-91-27" name="__codelineno-91-27" href="#__codelineno-91-27"></a>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">preorder</span><span class="p">)</span>
+</span><span id="__span-91-28"><a id="__codelineno-91-28" name="__codelineno-91-28" href="#__codelineno-91-28"></a>        <span class="k">return</span> <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-92-1"><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="cm">/**</span>
+</span><span id="__span-92-2"><a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a><span class="cm"> * Definition for a binary tree node.</span>
+</span><span id="__span-92-3"><a id="__codelineno-92-3" name="__codelineno-92-3" href="#__codelineno-92-3"></a><span class="cm"> * public class TreeNode {</span>
+</span><span id="__span-92-4"><a id="__codelineno-92-4" name="__codelineno-92-4" href="#__codelineno-92-4"></a><span class="cm"> *     int val;</span>
+</span><span id="__span-92-5"><a id="__codelineno-92-5" name="__codelineno-92-5" href="#__codelineno-92-5"></a><span class="cm"> *     TreeNode left;</span>
+</span><span id="__span-92-6"><a id="__codelineno-92-6" name="__codelineno-92-6" href="#__codelineno-92-6"></a><span class="cm"> *     TreeNode right;</span>
+</span><span id="__span-92-7"><a id="__codelineno-92-7" name="__codelineno-92-7" href="#__codelineno-92-7"></a><span class="cm"> *     TreeNode() {}</span>
+</span><span id="__span-92-8"><a id="__codelineno-92-8" name="__codelineno-92-8" href="#__codelineno-92-8"></a><span class="cm"> *     TreeNode(int val) { this.val = val; }</span>
+</span><span id="__span-92-9"><a id="__codelineno-92-9" name="__codelineno-92-9" href="#__codelineno-92-9"></a><span class="cm"> *     TreeNode(int val, TreeNode left, TreeNode right) {</span>
+</span><span id="__span-92-10"><a id="__codelineno-92-10" name="__codelineno-92-10" href="#__codelineno-92-10"></a><span class="cm"> *         this.val = val;</span>
+</span><span id="__span-92-11"><a id="__codelineno-92-11" name="__codelineno-92-11" href="#__codelineno-92-11"></a><span class="cm"> *         this.left = left;</span>
+</span><span id="__span-92-12"><a id="__codelineno-92-12" name="__codelineno-92-12" href="#__codelineno-92-12"></a><span class="cm"> *         this.right = right;</span>
+</span><span id="__span-92-13"><a id="__codelineno-92-13" name="__codelineno-92-13" href="#__codelineno-92-13"></a><span class="cm"> *     }</span>
+</span><span id="__span-92-14"><a id="__codelineno-92-14" name="__codelineno-92-14" href="#__codelineno-92-14"></a><span class="cm"> * }</span>
+</span><span id="__span-92-15"><a id="__codelineno-92-15" name="__codelineno-92-15" href="#__codelineno-92-15"></a><span class="cm"> */</span>
+</span><span id="__span-92-16"><a id="__codelineno-92-16" name="__codelineno-92-16" href="#__codelineno-92-16"></a><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-92-17"><a id="__codelineno-92-17" name="__codelineno-92-17" href="#__codelineno-92-17"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="p">;</span>
+</span><span id="__span-92-18"><a id="__codelineno-92-18" name="__codelineno-92-18" href="#__codelineno-92-18"></a>
+</span><span id="__span-92-19"><a id="__codelineno-92-19" name="__codelineno-92-19" href="#__codelineno-92-19"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">TreeNode</span><span class="w"> </span><span class="nf">buildTree</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">preorder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">inorder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-92-20"><a id="__codelineno-92-20" name="__codelineno-92-20" href="#__codelineno-92-20"></a><span class="w">        </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-92-21"><a id="__codelineno-92-21" name="__codelineno-92-21" href="#__codelineno-92-21"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">inorder</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-92-22"><a id="__codelineno-92-22" name="__codelineno-92-22" href="#__codelineno-92-22"></a><span class="w">            </span><span class="n">map</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">inorder</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+</span><span id="__span-92-23"><a id="__codelineno-92-23" name="__codelineno-92-23" href="#__codelineno-92-23"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-92-24"><a id="__codelineno-92-24" name="__codelineno-92-24" href="#__codelineno-92-24"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">preorder</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">preorder</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">inorder</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-92-25"><a id="__codelineno-92-25" name="__codelineno-92-25" href="#__codelineno-92-25"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-92-26"><a id="__codelineno-92-26" name="__codelineno-92-26" href="#__codelineno-92-26"></a>
+</span><span id="__span-92-27"><a id="__codelineno-92-27" name="__codelineno-92-27" href="#__codelineno-92-27"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">TreeNode</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">preorder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">l2</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">r2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-92-28"><a id="__codelineno-92-28" name="__codelineno-92-28" href="#__codelineno-92-28"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">r1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+</span><span id="__span-92-29"><a id="__codelineno-92-29" name="__codelineno-92-29" href="#__codelineno-92-29"></a>
+</span><span id="__span-92-30"><a id="__codelineno-92-30" name="__codelineno-92-30" href="#__codelineno-92-30"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preorder</span><span class="o">[</span><span class="n">l1</span><span class="o">]</span><span class="p">;</span>
+</span><span id="__span-92-31"><a id="__codelineno-92-31" name="__codelineno-92-31" href="#__codelineno-92-31"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+</span><span id="__span-92-32"><a id="__codelineno-92-32" name="__codelineno-92-32" href="#__codelineno-92-32"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">l2</span><span class="p">;</span><span class="w">  </span><span class="c1">// 左子树节点数</span>
+</span><span id="__span-92-33"><a id="__codelineno-92-33" name="__codelineno-92-33" href="#__codelineno-92-33"></a>
+</span><span id="__span-92-34"><a id="__codelineno-92-34" name="__codelineno-92-34" href="#__codelineno-92-34"></a><span class="w">        </span><span class="n">TreeNode</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">preorder</span><span class="p">,</span><span class="w"> </span><span class="n">l1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">l1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">l2</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-92-35"><a id="__codelineno-92-35" name="__codelineno-92-35" href="#__codelineno-92-35"></a><span class="w">        </span><span class="n">TreeNode</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dfs</span><span class="p">(</span><span class="n">preorder</span><span class="p">,</span><span class="w"> </span><span class="n">l1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">r2</span><span class="p">);</span>
+</span><span id="__span-92-36"><a id="__codelineno-92-36" name="__codelineno-92-36" href="#__codelineno-92-36"></a>
+</span><span id="__span-92-37"><a id="__codelineno-92-37" name="__codelineno-92-37" href="#__codelineno-92-37"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TreeNode</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">);</span>
+</span><span id="__span-92-38"><a id="__codelineno-92-38" name="__codelineno-92-38" href="#__codelineno-92-38"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-92-39"><a id="__codelineno-92-39" name="__codelineno-92-39" href="#__codelineno-92-39"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>复杂度分析</summary>
+<ul>
+<li><strong>时间复杂度</strong>：O(n) — 每个节点构造一次，哈希表 O(1) 查找</li>
+<li><strong>空间复杂度</strong>：O(n) — 哈希表 + 递归栈空间</li>
+</ul>
+</details>
+<h3 id="leetcode-437-iii">LeetCode 437. 路径总和 III</h3>
+<p><strong>难度</strong>：⭐⭐ 中等 &nbsp;|&nbsp; <strong>标签</strong>：<code>二叉树</code> <code>前缀和</code> <code>哈希表</code> <code>回溯</code></p>
+<p><a href="https://leetcode.cn/problems/path-sum-iii/">🔗 LeetCode 原题链接</a></p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">核心思路</p>
+<p>将路径和问题转化为<strong>前缀和</strong>思想（类似 [[560]] 和为 K 的子数组），应用到树上：</p>
+<ul>
+<li>DFS 遍历过程中维护当前路径和 <code>sum</code> 及前缀和字典 <code>cnt</code></li>
+<li>对于当前节点，<code>need = sum - targetSum</code>，<code>cnt[need]</code> 即为以该节点为结尾的合法路径数</li>
+<li>递归完左右子树后<strong>回溯</strong>，恢复 <code>cnt[sum]</code> 和 <code>sum</code></li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="48:2"><input checked="checked" id="__tabbed_48_1" name="__tabbed_48" type="radio" /><input id="__tabbed_48_2" name="__tabbed_48" type="radio" /><div class="tabbed-labels"><label for="__tabbed_48_1">Python</label><label for="__tabbed_48_2">Java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-93-1"><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+</span><span id="__span-93-2"><a id="__codelineno-93-2" name="__codelineno-93-2" href="#__codelineno-93-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+</span><span id="__span-93-3"><a id="__codelineno-93-3" name="__codelineno-93-3" href="#__codelineno-93-3"></a>
+</span><span id="__span-93-4"><a id="__codelineno-93-4" name="__codelineno-93-4" href="#__codelineno-93-4"></a><span class="c1"># Definition for a binary tree node.</span>
+</span><span id="__span-93-5"><a id="__codelineno-93-5" name="__codelineno-93-5" href="#__codelineno-93-5"></a><span class="c1"># class TreeNode:</span>
+</span><span id="__span-93-6"><a id="__codelineno-93-6" name="__codelineno-93-6" href="#__codelineno-93-6"></a><span class="c1">#     def __init__(self, val=0, left=None, right=None):</span>
+</span><span id="__span-93-7"><a id="__codelineno-93-7" name="__codelineno-93-7" href="#__codelineno-93-7"></a><span class="c1">#         self.val = val</span>
+</span><span id="__span-93-8"><a id="__codelineno-93-8" name="__codelineno-93-8" href="#__codelineno-93-8"></a><span class="c1">#         self.left = left</span>
+</span><span id="__span-93-9"><a id="__codelineno-93-9" name="__codelineno-93-9" href="#__codelineno-93-9"></a><span class="c1">#         self.right = right</span>
+</span><span id="__span-93-10"><a id="__codelineno-93-10" name="__codelineno-93-10" href="#__codelineno-93-10"></a>
+</span><span id="__span-93-11"><a id="__codelineno-93-11" name="__codelineno-93-11" href="#__codelineno-93-11"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+</span><span id="__span-93-12"><a id="__codelineno-93-12" name="__codelineno-93-12" href="#__codelineno-93-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">pathSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">],</span> <span class="n">targetSum</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+</span><span id="__span-93-13"><a id="__codelineno-93-13" name="__codelineno-93-13" href="#__codelineno-93-13"></a>        <span class="nb">sum</span><span class="p">,</span> <span class="n">cnt</span><span class="p">,</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="mi">0</span>
+</span><span id="__span-93-14"><a id="__codelineno-93-14" name="__codelineno-93-14" href="#__codelineno-93-14"></a>        <span class="n">cnt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-93-15"><a id="__codelineno-93-15" name="__codelineno-93-15" href="#__codelineno-93-15"></a>
+</span><span id="__span-93-16"><a id="__codelineno-93-16" name="__codelineno-93-16" href="#__codelineno-93-16"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">cur</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TreeNode</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-93-17"><a id="__codelineno-93-17" name="__codelineno-93-17" href="#__codelineno-93-17"></a>            <span class="k">nonlocal</span> <span class="n">res</span><span class="p">,</span> <span class="nb">sum</span>
+</span><span id="__span-93-18"><a id="__codelineno-93-18" name="__codelineno-93-18" href="#__codelineno-93-18"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">cur</span><span class="p">:</span>
+</span><span id="__span-93-19"><a id="__codelineno-93-19" name="__codelineno-93-19" href="#__codelineno-93-19"></a>                <span class="k">return</span>
+</span><span id="__span-93-20"><a id="__codelineno-93-20" name="__codelineno-93-20" href="#__codelineno-93-20"></a>
+</span><span id="__span-93-21"><a id="__codelineno-93-21" name="__codelineno-93-21" href="#__codelineno-93-21"></a>            <span class="nb">sum</span> <span class="o">+=</span> <span class="n">cur</span><span class="o">.</span><span class="n">val</span>
+</span><span id="__span-93-22"><a id="__codelineno-93-22" name="__codelineno-93-22" href="#__codelineno-93-22"></a>            <span class="n">need</span> <span class="o">=</span> <span class="nb">sum</span> <span class="o">-</span> <span class="n">targetSum</span>
+</span><span id="__span-93-23"><a id="__codelineno-93-23" name="__codelineno-93-23" href="#__codelineno-93-23"></a>            <span class="n">res</span> <span class="o">+=</span> <span class="n">cnt</span><span class="p">[</span><span class="n">need</span><span class="p">]</span>
+</span><span id="__span-93-24"><a id="__codelineno-93-24" name="__codelineno-93-24" href="#__codelineno-93-24"></a>            <span class="n">cnt</span><span class="p">[</span><span class="nb">sum</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-93-25"><a id="__codelineno-93-25" name="__codelineno-93-25" href="#__codelineno-93-25"></a>
+</span><span id="__span-93-26"><a id="__codelineno-93-26" name="__codelineno-93-26" href="#__codelineno-93-26"></a>            <span class="n">dfs</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+</span><span id="__span-93-27"><a id="__codelineno-93-27" name="__codelineno-93-27" href="#__codelineno-93-27"></a>            <span class="n">dfs</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+</span><span id="__span-93-28"><a id="__codelineno-93-28" name="__codelineno-93-28" href="#__codelineno-93-28"></a>
+</span><span id="__span-93-29"><a id="__codelineno-93-29" name="__codelineno-93-29" href="#__codelineno-93-29"></a>            <span class="c1"># 回溯</span>
+</span><span id="__span-93-30"><a id="__codelineno-93-30" name="__codelineno-93-30" href="#__codelineno-93-30"></a>            <span class="n">cnt</span><span class="p">[</span><span class="nb">sum</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="__span-93-31"><a id="__codelineno-93-31" name="__codelineno-93-31" href="#__codelineno-93-31"></a>            <span class="nb">sum</span> <span class="o">-=</span> <span class="n">cur</span><span class="o">.</span><span class="n">val</span>
+</span><span id="__span-93-32"><a id="__codelineno-93-32" name="__codelineno-93-32" href="#__codelineno-93-32"></a>
+</span><span id="__span-93-33"><a id="__codelineno-93-33" name="__codelineno-93-33" href="#__codelineno-93-33"></a>        <span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+</span><span id="__span-93-34"><a id="__codelineno-93-34" name="__codelineno-93-34" href="#__codelineno-93-34"></a>        <span class="k">return</span> <span class="n">res</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-94-1"><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a><span class="cm">/**</span>
+</span><span id="__span-94-2"><a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a><span class="cm"> * Definition for a binary tree node.</span>
+</span><span id="__span-94-3"><a id="__codelineno-94-3" name="__codelineno-94-3" href="#__codelineno-94-3"></a><span class="cm"> * public class TreeNode {</span>
+</span><span id="__span-94-4"><a id="__codelineno-94-4" name="__codelineno-94-4" href="#__codelineno-94-4"></a><span class="cm"> *     int val;</span>
+</span><span id="__span-94-5"><a id="__codelineno-94-5" name="__codelineno-94-5" href="#__codelineno-94-5"></a><span class="cm"> *     TreeNode left;</span>
+</span><span id="__span-94-6"><a id="__codelineno-94-6" name="__codelineno-94-6" href="#__codelineno-94-6"></a><span class="cm"> *     TreeNode right;</span>
+</span><span id="__span-94-7"><a id="__codelineno-94-7" name="__codelineno-94-7" href="#__codelineno-94-7"></a><span class="cm"> *     TreeNode() {}</span>
+</span><span id="__span-94-8"><a id="__codelineno-94-8" name="__codelineno-94-8" href="#__codelineno-94-8"></a><span class="cm"> *     TreeNode(int val) { this.val = val; }</span>
+</span><span id="__span-94-9"><a id="__codelineno-94-9" name="__codelineno-94-9" href="#__codelineno-94-9"></a><span class="cm"> *     TreeNode(int val, TreeNode left, TreeNode right) {</span>
+</span><span id="__span-94-10"><a id="__codelineno-94-10" name="__codelineno-94-10" href="#__codelineno-94-10"></a><span class="cm"> *         this.val = val;</span>
+</span><span id="__span-94-11"><a id="__codelineno-94-11" name="__codelineno-94-11" href="#__codelineno-94-11"></a><span class="cm"> *         this.left = left;</span>
+</span><span id="__span-94-12"><a id="__codelineno-94-12" name="__codelineno-94-12" href="#__codelineno-94-12"></a><span class="cm"> *         this.right = right;</span>
+</span><span id="__span-94-13"><a id="__codelineno-94-13" name="__codelineno-94-13" href="#__codelineno-94-13"></a><span class="cm"> *     }</span>
+</span><span id="__span-94-14"><a id="__codelineno-94-14" name="__codelineno-94-14" href="#__codelineno-94-14"></a><span class="cm"> * }</span>
+</span><span id="__span-94-15"><a id="__codelineno-94-15" name="__codelineno-94-15" href="#__codelineno-94-15"></a><span class="cm"> */</span>
+</span><span id="__span-94-16"><a id="__codelineno-94-16" name="__codelineno-94-16" href="#__codelineno-94-16"></a><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-94-17"><a id="__codelineno-94-17" name="__codelineno-94-17" href="#__codelineno-94-17"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-94-18"><a id="__codelineno-94-18" name="__codelineno-94-18" href="#__codelineno-94-18"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-94-19"><a id="__codelineno-94-19" name="__codelineno-94-19" href="#__codelineno-94-19"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-94-20"><a id="__codelineno-94-20" name="__codelineno-94-20" href="#__codelineno-94-20"></a>
+</span><span id="__span-94-21"><a id="__codelineno-94-21" name="__codelineno-94-21" href="#__codelineno-94-21"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">pathSum</span><span class="p">(</span><span class="n">TreeNode</span><span class="w"> </span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">targetSum</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-94-22"><a id="__codelineno-94-22" name="__codelineno-94-22" href="#__codelineno-94-22"></a><span class="w">        </span><span class="n">cnt</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-94-23"><a id="__codelineno-94-23" name="__codelineno-94-23" href="#__codelineno-94-23"></a><span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">targetSum</span><span class="p">);</span>
+</span><span id="__span-94-24"><a id="__codelineno-94-24" name="__codelineno-94-24" href="#__codelineno-94-24"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+</span><span id="__span-94-25"><a id="__codelineno-94-25" name="__codelineno-94-25" href="#__codelineno-94-25"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-94-26"><a id="__codelineno-94-26" name="__codelineno-94-26" href="#__codelineno-94-26"></a>
+</span><span id="__span-94-27"><a id="__codelineno-94-27" name="__codelineno-94-27" href="#__codelineno-94-27"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">TreeNode</span><span class="w"> </span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">targetSum</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-94-28"><a id="__codelineno-94-28" name="__codelineno-94-28" href="#__codelineno-94-28"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-94-29"><a id="__codelineno-94-29" name="__codelineno-94-29" href="#__codelineno-94-29"></a>
+</span><span id="__span-94-30"><a id="__codelineno-94-30" name="__codelineno-94-30" href="#__codelineno-94-30"></a><span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="p">;</span>
+</span><span id="__span-94-31"><a id="__codelineno-94-31" name="__codelineno-94-31" href="#__codelineno-94-31"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">targetSum</span><span class="p">;</span>
+</span><span id="__span-94-32"><a id="__codelineno-94-32" name="__codelineno-94-32" href="#__codelineno-94-32"></a><span class="w">        </span><span class="n">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">cnt</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">need</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-94-33"><a id="__codelineno-94-33" name="__codelineno-94-33" href="#__codelineno-94-33"></a><span class="w">        </span><span class="n">cnt</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="n">cnt</span><span class="p">.</span><span class="na">getOrDefault</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-94-34"><a id="__codelineno-94-34" name="__codelineno-94-34" href="#__codelineno-94-34"></a>
+</span><span id="__span-94-35"><a id="__codelineno-94-35" name="__codelineno-94-35" href="#__codelineno-94-35"></a><span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">targetSum</span><span class="p">);</span>
+</span><span id="__span-94-36"><a id="__codelineno-94-36" name="__codelineno-94-36" href="#__codelineno-94-36"></a><span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">targetSum</span><span class="p">);</span>
+</span><span id="__span-94-37"><a id="__codelineno-94-37" name="__codelineno-94-37" href="#__codelineno-94-37"></a>
+</span><span id="__span-94-38"><a id="__codelineno-94-38" name="__codelineno-94-38" href="#__codelineno-94-38"></a><span class="w">        </span><span class="c1">// 回溯</span>
+</span><span id="__span-94-39"><a id="__codelineno-94-39" name="__codelineno-94-39" href="#__codelineno-94-39"></a><span class="w">        </span><span class="n">cnt</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="n">cnt</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-94-40"><a id="__codelineno-94-40" name="__codelineno-94-40" href="#__codelineno-94-40"></a><span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="p">;</span>
+</span><span id="__span-94-41"><a id="__codelineno-94-41" name="__codelineno-94-41" href="#__codelineno-94-41"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-94-42"><a id="__codelineno-94-42" name="__codelineno-94-42" href="#__codelineno-94-42"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>复杂度分析</summary>
+<ul>
+<li><strong>时间复杂度</strong>：O(n) — 每个节点访问一次</li>
+<li><strong>空间复杂度</strong>：O(n) — 前缀和哈希表 + 递归栈空间</li>
 </ul>
 </details>
 
