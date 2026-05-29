@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "code-notes/algorithm/hot100总结.md",
+                "file": "db/pgsql.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "hot100总结"
+              "title": "pgsql"
             }
           }
         ]
@@ -53,13 +53,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "code-notes/algorithm/hot100总结.md",
+                "file": "db/pgsql.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "hot100总结 的大纲"
+              "title": "pgsql 的大纲"
             }
           },
           {
@@ -89,8 +89,7 @@
               "title": "书签"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -180,7 +179,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 665.5
+    "width": 649.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -194,10 +193,21 @@
       "bases:新建数据库": false
     }
   },
-  "active": "97902ed32e7e6f5a",
+  "active": "3d3d576130c78ddc",
   "lastOpenFiles": [
-    "code-notes/algorithm/template.md",
+    "others/01_理财学习",
+    "others",
+    "assets/imgs/db/pgsql",
+    "code-notes/algorithm/hot100总结.md",
     "interview/python/大模型面试题.md",
+    "nul",
+    "interview/面试准备.md",
+    "db/pgsql.md",
+    "db/mysql高级-v2.md",
+    "backup/mysql高级.md",
+    "backup",
+    "db/redis-v2.md",
+    "code-notes/algorithm/template.md",
     "python/02_basic/python basic.md",
     "python/02_basic/python标准库.md",
     "interview/python/python.md",
@@ -211,20 +221,13 @@
     "每日计划（2026年5月22日，两段小厂实习版本）.md",
     "index.md",
     "java/01_Java_Core/java 基础.md",
-    "code-notes/algorithm/hot100总结.md",
     "interview/java/java基础.md",
     "interview/java/java集合.md",
     "interview/java/juc.md",
     "java/01_Java_Core/juc.md",
-    "interview/面试准备.md",
     "interview/database/mysql.md~",
     "interview/index.md",
-    "python/05_ai/NLP.md",
-    "interview/python/deepLearning.md",
-    "python/05_ai/Pytorch.md",
     "interview/简历.pdf",
-    "python/06_aiInfra/LLMFinetune.md",
-    "python/06_aiInfra/Ollama.md",
     "assets/imgs/python/nlp/nlp06_transformer_architecture.png",
     "assets/imgs/python/nlp/nlp06_transformer_architecture.png.Uidzxe",
     "assets/imgs/python/nlp/nlp_07transformer_architecture.png",
@@ -232,13 +235,9 @@
     "assets/imgs/python/nlp/nlp05_encoder_decoder架构图.png.XnyAeo",
     "python/05_ai/Pytorch.md.tmp.25260.1777885646430",
     "assets/imgs/python/nlp/nlp04_gru结构图.png",
-    "assets/imgs/python/nlp/nlp03_gru结构图.png.sMdxac",
     "assets/imgs/python/nlp/nlp03_lstm结构图.png",
-    "assets/imgs/python/nlp/nlp03_lstm结构图.png.wsZrMN",
     "assets/imgs/python/nlp/nlp02_rnn结构图.png",
     "assets/imgs/python/nlp/nlp_01_文本预处理环节.png",
-    "assets/imgs/python/nlp/nlp_01_文本预处理环节.png.eVrTKr",
-    "assets/imgs/python/nlp",
     "assets/imgs/db/redis/redis6.png",
     "assets/imgs/db/redis/redis5.png",
     "assets/imgs/db/redis/redis4.png"

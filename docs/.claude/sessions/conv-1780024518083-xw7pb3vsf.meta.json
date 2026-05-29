@@ -1,0 +1,20 @@
+{
+  "id": "conv-1780024518083-xw7pb3vsf",
+  "title": "Explain Prompt Engineering interview question",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780024518083,
+  "updatedAt": 1780043801245,
+  "lastResponseAt": 1780024971718,
+  "sessionId": "5bd0d478-c5f5-4922-81c2-fec982cfabd7",
+  "sdkSessionId": "5bd0d478-c5f5-4922-81c2-fec982cfabd7",
+  "currentNote": "interview/python/大模型面试题.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 424,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 37632,
+    "contextWindow": 200000,
+    "contextTokens": 38056,
+    "percentage": 19
+  }
+}

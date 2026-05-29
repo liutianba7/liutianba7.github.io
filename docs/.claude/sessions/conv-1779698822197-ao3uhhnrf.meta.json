@@ -3,18 +3,18 @@
   "title": "优化 LeetCode 笔记格式与模板",
   "titleGenerationStatus": "success",
   "createdAt": 1779698822198,
-  "updatedAt": 1779958741453,
-  "lastResponseAt": 1779958741453,
+  "updatedAt": 1780028556623,
+  "lastResponseAt": 1780028556622,
   "sessionId": "7fe2975a-ff8e-49ff-93db-f67fe3a32abe",
   "sdkSessionId": "7fe2975a-ff8e-49ff-93db-f67fe3a32abe",
   "currentNote": "code-notes/algorithm/hot100总结.md",
   "usage": {
     "model": "haiku",
-    "inputTokens": 122,
+    "inputTokens": 132,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 97664,
+    "cacheReadInputTokens": 111232,
     "contextWindow": 200000,
-    "contextTokens": 97786,
-    "percentage": 49
+    "contextTokens": 111364,
+    "percentage": 56
   }
 }

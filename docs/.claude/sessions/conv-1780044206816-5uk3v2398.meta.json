@@ -1,0 +1,20 @@
+{
+  "id": "conv-1780044206816-5uk3v2398",
+  "title": "Outline MkDocs blog notes by directory",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780044206817,
+  "updatedAt": 1780056447927,
+  "lastResponseAt": 1780056447927,
+  "sessionId": "307c5821-127f-488a-8546-da5877df6b70",
+  "sdkSessionId": "307c5821-127f-488a-8546-da5877df6b70",
+  "currentNote": "db/pgsql.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 121,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 72320,
+    "contextWindow": 200000,
+    "contextTokens": 72441,
+    "percentage": 36
+  }
+}

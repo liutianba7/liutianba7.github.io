@@ -98,6 +98,7 @@ nav:
     - Mysql 高级: ./db/mysql高级-v2.md
 
     - Mongodb: ./db/mongodb-v2.md
+    - PgSql: ./db/pgsql.md
     # - Redis: ./db/redis.md
     - Redis: ./db/redis-v2.md
     - Minio: ./db/minio.md
