@@ -89,7 +89,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -193,16 +194,20 @@
       "bases:新建数据库": false
     }
   },
-  "active": "3d3d576130c78ddc",
+  "active": "97902ed32e7e6f5a",
   "lastOpenFiles": [
+    "others/01_理财学习/02_实操入门.md",
+    "others/01_理财学习/01_理财基本概念.md",
+    "db/pgsql.md",
+    "code-notes/algorithm/hot100总结.md",
+    "others/01_理财学习/04_估值与买卖策略.md",
+    "others/01_理财学习/03_资产配置.md",
     "others/01_理财学习",
     "others",
     "assets/imgs/db/pgsql",
-    "code-notes/algorithm/hot100总结.md",
     "interview/python/大模型面试题.md",
     "nul",
     "interview/面试准备.md",
-    "db/pgsql.md",
     "db/mysql高级-v2.md",
     "backup/mysql高级.md",
     "backup",
@@ -223,17 +228,13 @@
     "java/01_Java_Core/java 基础.md",
     "interview/java/java基础.md",
     "interview/java/java集合.md",
-    "interview/java/juc.md",
-    "java/01_Java_Core/juc.md",
     "interview/database/mysql.md~",
-    "interview/index.md",
     "interview/简历.pdf",
     "assets/imgs/python/nlp/nlp06_transformer_architecture.png",
     "assets/imgs/python/nlp/nlp06_transformer_architecture.png.Uidzxe",
     "assets/imgs/python/nlp/nlp_07transformer_architecture.png",
     "assets/imgs/python/nlp/nlp05_encoder_decoder_old.png",
     "assets/imgs/python/nlp/nlp05_encoder_decoder架构图.png.XnyAeo",
-    "python/05_ai/Pytorch.md.tmp.25260.1777885646430",
     "assets/imgs/python/nlp/nlp04_gru结构图.png",
     "assets/imgs/python/nlp/nlp03_lstm结构图.png",
     "assets/imgs/python/nlp/nlp02_rnn结构图.png",

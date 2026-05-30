@@ -1104,3 +1104,1084 @@ SELECT DISTINCT ON (dept_id)
     `DISTINCT ON (expr)` 中 `ORDER BY` 的**起始列必须与 `DISTINCT ON` 中的表达式一致**，否则报错。
 
 ---
+
+## 五、常用函数
+
+> 参考文档：[PostgreSQL 官方文档 — 函数和操作符](https://www.postgresql.org/docs/current/functions.html)
+
+在 PostgreSQL 中，函数就像是 **"内置的小工具"**，能帮你直接在 SQL 层把原始数据加工成最终需要的格式。
+
+我们可以把常用的函数分为四大类：**字符串处理**、**数值计算**、**日期时间**以及**聚合处理**。
+
+---
+
+### 5.1 字符串处理函数（清洗数据的利器）
+
+当文件路径、用户名格式不统一时，这些函数能帮大忙。
+
+#### CONCAT / ||
+
+拼接字符串：
+
+```sql
+SELECT CONCAT('Hello', ' ', 'World');  -- Hello World
+SELECT 'Hello' || ' ' || 'World';      -- Hello World（|| 是 SQL 标准操作符）
+
+-- 多字段拼接
+SELECT name || ' - ' || email AS info FROM users;
+```
+
+!!! tip "CONCAT 与 || 的区别"
+
+    - `CONCAT` 会自动忽略 `NULL` 参数，不会报错
+    - `||` 操作符：只要有一个值为 `NULL`，整个结果就是 `NULL`（需配合 `COALESCE` 使用）
+
+    ```sql
+    SELECT CONCAT('a', NULL, 'b');   -- 'ab'
+    SELECT 'a' || NULL || 'b';       -- NULL
+    SELECT 'a' || COALESCE(NULL, '') || 'b';  -- 'ab'
+    ```
+
+#### UPPER / LOWER
+
+```sql
+SELECT UPPER('hello world');  -- HELLO WORLD
+SELECT LOWER('HELLO WORLD');  -- hello world
+
+-- 示例：统一邮箱查询
+SELECT * FROM users WHERE LOWER(email) = LOWER('ZHANGSAN@EXAMPLE.COM');
+```
+
+#### SUBSTRING（截取字符串）
+
+```sql
+-- 语法：SUBSTRING(string FROM start FOR length) 或 SUBSTR(string, start, length)
+SELECT SUBSTRING('PostgreSQL' FROM 1 FOR 4);  -- Post
+SELECT SUBSTR('PostgreSQL', 6, 4);            -- reSQ
+
+-- 截取邮箱的用户名部分
+SELECT name,
+       email,
+       SUBSTRING(email FROM 1 FOR POSITION('@' IN email) - 1) AS username
+  FROM users
+ WHERE email IS NOT NULL;
+```
+
+#### REPLACE（替换内容）
+
+```sql
+-- 将字符串中的某段内容替换为另一段
+SELECT REPLACE('hello world', 'world', 'PostgreSQL');  -- hello PostgreSQL
+
+-- 实际场景：清理数据中的特殊字符
+SELECT name, REPLACE(name, ' ', '') AS cleaned_name FROM users;
+```
+
+#### COALESCE（万能默认值）
+
+**这是日常开发中最常用的函数之一**，返回参数列表中第一个非 `NULL` 的值：
+
+```sql
+-- 基础用法：NULL 值替换
+SELECT name, COALESCE(email, '无邮箱') AS email FROM users;
+
+-- 进阶用法：多字段回退（按优先级依次尝试）
+SELECT name,
+       COALESCE(phone, mobile, '无联系方式') AS contact
+  FROM users;
+```
+
+!!! tip "COALESCE 的常见场景"
+
+    1. **数据显示**：查询结果中的 NULL 替换为占位文本
+    2. **计算安全**：`COALESCE(amount, 0)` 防止 NULL 参与计算导致结果也为 NULL
+    3. **配置回退**：`COALESCE(custom_config, default_config, 'default')` 实现多级默认值
+
+---
+
+### 5.2 数值计算函数
+
+#### ROUND（四舍五入）
+
+```sql
+SELECT ROUND(123.4567);      -- 123（取整）
+SELECT ROUND(123.4567, 2);   -- 123.46（保留两位小数）
+SELECT ROUND(123.4567, 0);   -- 123（等同于 ROUND(123.4567)）
+
+-- 薪资取整显示
+SELECT name, salary, ROUND(salary * 0.12, 2) AS tax FROM users;
+```
+
+#### CEIL / FLOOR（向上/向下取整）
+
+```sql
+SELECT CEIL(12.3);    -- 13（向上取整）
+SELECT CEIL(-12.3);   -- -12
+SELECT FLOOR(12.8);   -- 12（向下取整）
+SELECT FLOOR(-12.8);  -- -13
+
+-- 实际场景：统计文件大小分级
+SELECT name,
+       CEIL(file_size / 1024.0 / 1024.0) AS size_mb
+  FROM files;
+```
+
+#### ABS（取绝对值）
+
+```sql
+SELECT ABS(-10);     -- 10
+SELECT ABS(10);      -- 10
+
+-- 计算差值绝对值
+SELECT ABS(salary - 10000) AS diff_from_10k FROM users;
+```
+
+#### 数值函数速查表
+
+| 函数 | 说明 | 示例 | 结果 |
+|------|------|------|------|
+| `ROUND(n, d)` | 四舍五入，保留 d 位小数 | `ROUND(3.14159, 2)` | `3.14` |
+| `CEIL(n)` | 向上取整 | `CEIL(3.14)` | `4` |
+| `FLOOR(n)` | 向下取整 | `FLOOR(3.14)` | `3` |
+| `ABS(n)` | 取绝对值 | `ABS(-5)` | `5` |
+| `POWER(a, b)` | a 的 b 次幂 | `POWER(2, 10)` | `1024` |
+| `SQRT(n)` | 平方根 | `SQRT(16)` | `4` |
+| `MOD(a, b)` | 取模（余数） | `MOD(10, 3)` | `1` |
+| `RANDOM()` | 返回 0.0~1.0 随机数 | `RANDOM()` | `0.23456` |
+
+---
+
+### 5.3 日期时间函数（时间管理的灵魂）
+
+#### NOW / CURRENT_DATE / CURRENT_TIME
+
+```sql
+-- 获取当前时间
+SELECT NOW();              -- 2026-05-30 14:30:00.123456+08（完整时间，带时区）
+SELECT CURRENT_DATE;       -- 2026-05-30（仅日期）
+SELECT CURRENT_TIME;       -- 14:30:00.123456+08（仅时间，带时区）
+SELECT CURRENT_TIMESTAMP;  -- 同 NOW()
+
+-- 获取当天 00:00:00
+SELECT CURRENT_DATE::TIMESTAMP;                 -- 2026-05-30 00:00:00
+SELECT DATE_TRUNC('day', NOW());                -- 同上，推荐
+```
+
+!!! tip "NOW() 与 CLOCK_TIMESTAMP() 的区别"
+
+    - `NOW()`：返回**事务开始时间**，同一事务中多次调用值不变（符合 SQL 标准）
+    - `CLOCK_TIMESTAMP()`：返回**实际当前时间**，每次调用值都不同
+
+    ```sql
+    SELECT NOW(), NOW();                    -- 两个值相同
+    SELECT CLOCK_TIMESTAMP(), CLOCK_TIMESTAMP();  -- 两个值可能不同（微妙级差异）
+    ```
+
+#### AGE（计算时间差）
+
+```sql
+-- 语法：AGE(timestamp) → 计算从该时间到现在的差值
+--        AGE(end, start) → 计算两个时间之间的差值
+
+SELECT AGE('2026-05-30', '1998-03-15');  -- 28 years 2 mons 15 days
+
+-- 查看用户注册了多久
+SELECT name, AGE(created_at) AS active_duration FROM users;
+```
+
+`AGE` 返回的是 PostgreSQL 的 `INTERVAL` 类型，可直接用于排序和筛选：
+
+```sql
+-- 查询注册超过 1 年的用户
+SELECT name, created_at
+  FROM users
+ WHERE AGE(CURRENT_DATE, created_at::DATE) > INTERVAL '1 year';
+```
+
+#### EXTRACT（提取年/月/日/小时）
+
+```sql
+-- 语法：EXTRACT(field FROM source)
+-- field 可选: YEAR, MONTH, DAY, HOUR, MINUTE, SECOND, DOW(星期几) 等
+
+SELECT EXTRACT(YEAR   FROM NOW());  -- 2026
+SELECT EXTRACT(MONTH  FROM NOW());  -- 5
+SELECT EXTRACT(DAY    FROM NOW());  -- 30
+SELECT EXTRACT(HOUR   FROM NOW());  -- 14
+SELECT EXTRACT(DOW    FROM NOW());  -- 6（0=周日, 1=周一, ..., 6=周六）
+
+-- 统计每小时数据量
+SELECT EXTRACT(HOUR FROM created_at) AS hour,
+       COUNT(*) AS cnt
+  FROM users
+ GROUP BY EXTRACT(HOUR FROM created_at)
+ ORDER BY hour;
+```
+
+!!! info "EXTRACT 与 DATE_PART"
+
+    `EXTRACT` 是 SQL 标准语法，`DATE_PART` 是 PostgreSQL 的传统语法，二者功能完全一致：
+
+    ```sql
+    SELECT EXTRACT(YEAR FROM NOW());     -- 标准写法，推荐
+    SELECT DATE_PART('year', NOW());     -- 等价写法
+    ```
+
+#### DATE_TRUNC（时间截断，非常实用）
+
+将时间截断到指定精度，是 **按时间段统计的利器**：
+
+```sql
+-- 按天/月/年 截断
+SELECT DATE_TRUNC('hour', NOW());     -- 2026-05-30 14:00:00+08
+SELECT DATE_TRUNC('day', NOW());      -- 2026-05-30 00:00:00+08
+SELECT DATE_TRUNC('month', NOW());    -- 2026-05-01 00:00:00+08
+SELECT DATE_TRUNC('year', NOW());     -- 2026-01-01 00:00:00+08
+
+-- 按月份统计注册人数
+SELECT DATE_TRUNC('month', created_at) AS month,
+       COUNT(*) AS reg_count
+  FROM users
+ GROUP BY DATE_TRUNC('month', created_at)
+ ORDER BY month;
+```
+
+#### TO_CHAR（时间格式化）
+
+将时间转换为任意格式的字符串：
+
+```sql
+SELECT TO_CHAR(NOW(), 'YYYY-MM-DD HH24:MI:SS');   -- 2026-04-30 14:30:00
+SELECT TO_CHAR(NOW(), 'YYYY-MM-DD');               -- 2026-04-30
+SELECT TO_CHAR(NOW(), 'HH24:MI:SS');               -- 14:30:00
+SELECT TO_CHAR(NOW(), 'Mon DD, YYYY');             -- May 30, 2026
+SELECT TO_CHAR(NOW(), 'YYYY年MM月DD日');            -- 2026年05月30日
+
+-- 实际场景：按日期格式化输出
+SELECT name,
+       TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI:SS') AS 创建时间
+  FROM users;
+```
+
+| 格式模板   | 说明            | 示例         |
+| ------ | ------------- | ---------- |
+| `YYYY` | 四位年份          | `2026`     |
+| `MM`   | 月份（01-12）     | `05`       |
+| `DD`   | 日（01-31）      | `30`       |
+| `HH24` | 24 小时制（00-23） | `14`       |
+| `HH12` | 12 小时制（01-12） | `02`       |
+| `MI`   | 分钟（00-59）     | `30`       |
+| `SS`   | 秒（00-59）      | `45`       |
+| `Mon`  | 缩写的月份名        | `May`      |
+| `Day`  | 完整的星期名        | `Saturday` |
+| `DOW`  | 星期几（0-6）      | `6`        |
+
+#### 日期计算
+
+```sql
+-- 加减时间
+SELECT NOW() + INTERVAL '1 day';         -- 明天这个时间
+SELECT NOW() - INTERVAL '7 days';        -- 一周前
+SELECT NOW() + INTERVAL '2 hours';       -- 两小时后
+SELECT NOW() + INTERVAL '1 month';       -- 下个月
+
+-- 日期差（天数）
+SELECT DATE '2026-05-30' - DATE '2026-01-01';  -- 149（间隔天数）
+
+-- 两个日期间的月份数
+SELECT EXTRACT(YEAR FROM AGE('2026-05-30', '2024-03-15')) * 12
+     + EXTRACT(MONTH FROM AGE('2026-05-30', '2024-03-15'));  -- 26 个月
+```
+
+---
+
+### 5.4 流程控制与聚合函数
+
+#### CASE WHEN（SQL 里的 if-else）
+
+```sql
+-- 基础用法：根据条件赋值
+SELECT name,
+       salary,
+       CASE
+           WHEN salary < 10000 THEN '初级'
+           WHEN salary BETWEEN 10000 AND 15000 THEN '中级'
+           WHEN salary > 15000 THEN '高级'
+       END AS 职级
+  FROM users;
+```
+
+=== "简单 CASE（等值判断）"
+
+    ```sql
+    SELECT name,
+           CASE dept_id
+               WHEN 1 THEN '后端'
+               WHEN 2 THEN '前端'
+               WHEN 3 THEN '运维'
+               ELSE '其他'
+           END AS 部门
+      FROM users;
+    ```
+
+=== "搜索 CASE（范围判断）"
+
+    ```sql
+    SELECT name,
+           salary,
+           CASE
+               WHEN salary < 10000 THEN '初级'
+               WHEN salary BETWEEN 10000 AND 15000 THEN '中级'
+               WHEN salary > 15000 THEN '高级'
+               ELSE '未定'
+           END AS 职级
+      FROM users;
+    ```
+
+=== "CASE 聚合（行转列）"
+
+    ```sql
+    -- 统计每个薪资等级的人数（行转列）
+    SELECT
+        COUNT(*) FILTER (WHERE salary < 10000)   AS 初级,
+        COUNT(*) FILTER (WHERE salary BETWEEN 10000 AND 15000) AS 中级,
+        COUNT(*) FILTER (WHERE salary > 15000)  AS 高级
+    FROM users;
+    ```
+
+#### STRING_AGG（PG 特色：行转字符串）
+
+把多行结果合并成一行字符串，是 **PostgreSQL 独有的强大聚合函数**：
+
+```sql
+-- 将所有用户名拼成逗号分隔的字符串
+SELECT STRING_AGG(name, ', ') AS all_names FROM users;
+-- 张三, 李四, 王五, 赵六, 陈七
+
+-- 按部门分组，拼接组内姓名
+SELECT dept_id,
+       STRING_AGG(name, ', ' ORDER BY salary DESC) AS 组员
+  FROM users
+ GROUP BY dept_id;
+
+-- 拼接数组字段
+SELECT uploader_ip,
+       STRING_AGG(tags::text, ' | ') AS tag_list
+  FROM file_details
+ GROUP BY uploader_ip;
+```
+
+!!! tip "STRING_AGG vs MySQL 的 GROUP_CONCAT"
+
+    `STRING_AGG` 在功能上等价于 MySQL 的 `GROUP_CONCAT`，但 PostgreSQL 的版本支持 **`ORDER BY` 子句**，可以在拼接时控制顺序，更加灵活。
+
+#### ARRAY_AGG（行转数组）
+
+```sql
+-- 将多行结果聚合成数组
+SELECT dept_id,
+       ARRAY_AGG(name ORDER BY salary DESC) AS 组员列表
+  FROM users
+ GROUP BY dept_id;
+
+-- 结合 unnest 实现复杂拼接
+SELECT
+    uploader_ip,
+    array_to_string(ARRAY_AGG(unnest_tags), ', ') AS tag_list
+FROM (
+    SELECT uploader_ip, unnest(tags) AS unnest_tags FROM file_details
+) t
+GROUP BY uploader_ip;
+```
+
+#### 聚合函数速查表
+
+| 函数 | 说明 | MySQL 对应 | PG 特有 |
+|------|------|-----------|---------|
+| `COUNT(*)` | 行数计数 | ✅ | ❌ |
+| `SUM(col)` | 求和 | ✅ | ❌ |
+| `AVG(col)` | 平均值 | ✅ | ❌ |
+| `MAX(col)` | 最大值 | ✅ | ❌ |
+| `MIN(col)` | 最小值 | ✅ | ❌ |
+| `STRING_AGG(col, delim)` | 行转字符串 | `GROUP_CONCAT` | ✅ |
+| `ARRAY_AGG(col)` | 行转数组 | ❌ | ✅ |
+| `FILTER (WHERE ...)` | 条件聚合 | ❌ | ✅ |
+
+---
+
+### 5.5 综合实战：一起用起来
+
+把字符串函数、数值计算、日期处理和聚合全部串联到一张报表中：
+
+```sql
+-- 员工分析报表
+SELECT
+    -- 字符串处理
+    COALESCE(UPPER(name), '未知')                     AS 姓名大写,
+    COALESCE(email, '无邮箱')                         AS 邮箱,
+    -- 数值计算
+    ROUND(AVG(salary), 0)                            AS 平均薪资,
+    ROUND(SUM(salary), 2)                            AS 薪资总额,
+    -- 日期处理
+    TO_CHAR(MIN(created_at), 'YYYY-MM-DD')           AS 最早入职日,
+    EXTRACT(YEAR FROM AGE(CURRENT_DATE, MIN(created_at)::DATE)) AS 最资深员工年限,
+    -- 聚合
+    COUNT(*)                                          AS 人数,
+    STRING_AGG(name, ', ' ORDER BY salary DESC)      AS 成员列表(按薪资降序)
+  FROM users
+ GROUP BY dept_id
+ ORDER BY 平均薪资 DESC;
+```
+
+---
+
+## 六、多表查询
+
+> 参考文档：[PostgreSQL 官方文档 — 表连接](https://www.postgresql.org/docs/current/queries-table-expressions.html#QUERIES-JOIN)
+
+在真实的业务中，数据往往分散在多张表中，我们需要通过**表之间的关系**将它们重新串联起来。
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                       业务世界                           │
+│  ┌──────────┐     ┌──────────────┐    ┌──────────┐      │
+│  │  用户表   │────→│   订单表      │←───│  商品表   │     │
+│  └──────────┘     │ (中间桥梁)    │    └──────────┘      │
+│                   └──────────────┘                      │
+│     一对一                   一对多              多对多   │
+└─────────────────────────────────────────────────────────┘
+```
+
+表与表之间存在三种核心关系：**一对一**、**一对多**、**多对多**。
+
+!!! tip "本章示例表复用说明"
+    本章使用全新的示例表（goddesses / simps / students / clubs 等），与第四章的 `users` 表示例独立，**互不影响**。
+
+---
+
+### 6.1 一对一关系 (1:1)
+
+#### 概念
+
+表 A 的一行只能对应表 B 的一行。通常用于将 **"核心高频数据"** 与 **"扩展低频数据"** 分离，提高查询效率。
+
+#### 示例：用户 (users) 与用户详细信息 (user_profiles)
+
+在用户系统中，账号密码是核心高频字段，而个人介绍、头像 URL、收货地址属于扩展信息。分表存储可以减少主表的行宽，提升缓存效率。
+
+```sql
+-- 主表：核心账户
+CREATE TABLE users (
+    id       BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    username TEXT NOT NULL UNIQUE
+);
+
+-- 扩展表：详细资料
+CREATE TABLE user_profiles (
+    user_id    BIGINT PRIMARY KEY,  -- 既是主键，也是外键
+    avatar_url TEXT,
+    bio        TEXT,
+    CONSTRAINT fk_user
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+```
+
+!!! tip "实现一对一的关键"
+    在子表中，将外键字段设为 `PRIMARY KEY` 或 `UNIQUE`，确保一个用户 ID 只能在 Profile 表里出现一次。
+
+#### ON DELETE CASCADE（定义"连坐"逻辑）
+
+这是定义当 **主表（users）** 的数据被删除时，**从表（user_profiles）** 该如何处理的核心规则。
+
+**CASCADE（级联）**：就像多米诺骨牌。如果 ID 为 1 的用户被删除了，数据库会自动、静默地把 `user_profiles` 里所有 `user_id = 1` 的行也删掉。
+
+为什么用它：在"一对一"或"一对多"关系中，如果主体（用户）都不存在了，相关的详细资料或头像信息也就没有存在的意义了。使用级联可以防止数据库堆积垃圾数据。
+
+| 选项 | 效果 | 适用场景 |
+|------|------|---------|
+| `CASCADE` | 主表删除，从表对应行自动删除 | 主体不存在时，附属数据无意义 |
+| `RESTRICT`（默认） | 如果有关联数据，禁止删除主表行 | 保护重要数据，防止误删 |
+| `SET NULL` | 主表删除，从表外键置为 NULL | 用户注销了，但想保留其评论痕迹 |
+| `NO ACTION` | 与 RESTRICT 类似，但在事务结束时检查 | 复杂事务处理 |
+
+#### 插入数据
+
+```sql
+-- 第一步：插入核心用户
+INSERT INTO users (username) VALUES ('fengfeng') RETURNING id;
+
+-- 假设上面返回的 ID 是 1
+-- 第二步：插入对应的详细资料
+INSERT INTO user_profiles (user_id, avatar_url, bio)
+VALUES (1, 'https://example.com/avatar.png', '技术教育者，B站UP主');
+
+-- ❌ 尝试再次为 ID 为 1 的用户插入资料（会报错！）
+-- ERROR: duplicate key value violates unique constraint "user_profiles_pkey"
+-- 这正是 PRIMARY KEY 设计的目的，保证了一对一的严格性
+```
+
+#### 查询数据
+
+=== "正向联查（由用户查详情）"
+
+    ```sql
+    SELECT username, avatar_url
+      FROM users
+      JOIN user_profiles up ON users.id = up.user_id;
+    ```
+
+=== "反向联查（由详情查用户）"
+
+    ```sql
+    SELECT avatar_url, username
+      FROM user_profiles
+      LEFT JOIN users u ON u.id = user_profiles.user_id;
+    ```
+
+#### 关于外键的现实考量
+
+!!! warning "物理外键 vs 逻辑外键"
+
+    | 类型 | 优点 | 缺点 |
+    |------|------|------|
+    | **物理外键**（`FOREIGN KEY`） | 数据一致性由数据库保证 | 高并发下影响写入性能；大表 DDL 操作困难；分布式/分库分表无法使用 |
+    | **逻辑外键**（仅存 ID） | 性能高，灵活，适合分布式 | 需要业务代码保证一致性 |
+
+    **生产建议**：大部分互联网业务（尤其是高并发场景）会**去掉物理外键**，使用逻辑外键 + 业务层保证数据一致性。
+
+---
+
+### 6.2 一对多关系 (1:N)
+
+#### 概念
+
+表 A 的一行可以对应表 B 的多行，但表 B 的一行只能属于表 A 的一个实体。
+
+```
+┌─────────────────────┐                ┌──────────────────────┐
+│     女神表 (1)       │                │     舔狗表 (N)        │
+│  ┌─────────────────┐ │                │  ┌──────────────────┐│
+│  │ 林青霞  天蝎座    │ │────────────────│  │ 阿强  │ 520.00   ││
+│  │ 王祖贤  水瓶座    │ │   target_id    │  │ 小明  │ 1314.00  ││
+│  └─────────────────┘ │                │  │ 旺财  │ 9.90     ││
+└─────────────────────┘                │  │ 大壮  │ 8888.88  ││
+                                       │  │ 铁柱  │ 0.01     ││
+                                       │  └──────────────────┘│
+                                       └──────────────────────┘
+```
+
+#### 示例：女神与舔狗
+
+一位"女神"可以拥有成千上万名"舔狗"，但一名"舔狗"在特定时间内往往只能追一位女神。
+
+```sql
+-- 1. 女神表（一）
+CREATE TABLE goddesses (
+    id        BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    name      TEXT NOT NULL,
+    star_sign TEXT  -- 星座
+);
+
+-- 2. 舔狗表（多）
+CREATE TABLE simps (
+    id                 BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    target_id          BIGINT NOT NULL,       -- 目标女神的 ID（外键）
+    nickname           TEXT NOT NULL,          -- 舔狗昵称
+    contributed_amount DECIMAL(10, 2) DEFAULT 0,  -- 累计贡献金额
+
+    -- 外键约束：如果女神号注销了，舔狗记录也级联消失
+    CONSTRAINT fk_goddess
+        FOREIGN KEY (target_id) REFERENCES goddesses(id) ON DELETE CASCADE
+);
+```
+
+!!! tip "一对多实现要点"
+    在 **"多"的一方（simps）** 添加一个字段存储 **"一"的一方（goddesses）** 的主键。
+
+#### 插入数据
+
+```sql
+-- 插入两位女神
+INSERT INTO goddesses (name, star_sign)
+VALUES ('林青霞', '天蝎座'), ('王祖贤', '水瓶座')
+RETURNING id, name;
+-- 假设 林青霞 ID=1, 王祖贤 ID=2
+
+-- 为 林青霞 (ID: 1) 插入忠实粉丝
+INSERT INTO simps (target_id, nickname, contributed_amount) VALUES
+    (1, '阿强', 520.00),
+    (1, '小明', 1314.00),
+    (1, '旺财', 9.90);
+
+-- 为 王祖贤 (ID: 2) 插入忠实粉丝
+INSERT INTO simps (target_id, nickname, contributed_amount) VALUES
+    (2, '大壮', 8888.88),
+    (2, '铁柱', 0.01);
+```
+
+#### 查询数据
+
+=== "查看每位舔狗正在追谁"
+
+    ```sql
+    SELECT
+        s.nickname          AS 舔狗,
+        g.name              AS 女神,
+        s.contributed_amount AS 贡献值
+      FROM simps s
+      JOIN goddesses g ON s.target_id = g.id
+     ORDER BY s.contributed_amount DESC;
+    ```
+
+=== "查看哪位女神收到的贡献总额最高"
+
+    ```sql
+    SELECT
+        g.name              AS 女神,
+        COUNT(s.id)          AS 舔狗总数,
+        SUM(s.contributed_amount) AS 收到总金额
+      FROM goddesses g
+      LEFT JOIN simps s ON g.id = s.target_id
+     GROUP BY g.name
+     ORDER BY 收到总金额 DESC;
+    ```
+
+=== "找出贡献金额低于 10 元的舔狗"
+
+    ```sql
+    SELECT nickname, contributed_amount
+      FROM simps
+     WHERE contributed_amount < 10.00;
+    ```
+
+---
+
+### 6.3 多对多关系 (M:N)
+
+#### 概念
+
+表 A 的一行对应表 B 的多行，反之亦然。这种关系无法在任何一张表里通过加一个字段来解决，必须有一个 **"中间人"（关联表）** 来牵线搭桥。
+
+```
+┌──────────────┐     ┌──────────────────┐     ┌──────────────┐
+│   学生表      │     │    成员关系表      │     │   社团表      │
+│──────────────│     │──────────────────│     │──────────────│
+│ 枫枫  ID=1   │────→│ student_id=1     │←────│ Go语言社      │
+│ 小红  ID=2   │     │ club_id=1        │     │ 篮球社        │
+│ 老王  ID=3   │     │ student_id=1     │     │ 钓鱼社        │
+│              │     │ club_id=2        │     │              │
+│              │     │ student_id=2     │     │              │
+│              │     │ club_id=2        │     │              │
+│              │────→│ student_id=3     │←────│              │
+│              │     │ club_id=1        │     │              │
+│              │     │ student_id=3     │     │              │
+│              │     │ club_id=3        │     │              │
+└──────────────┘     └──────────────────┘     └──────────────┘
+```
+
+#### 示例：学生 (students) 与 社团 (clubs)
+
+一个学生可以参加多个社团（既参加羽毛球社，又参加代码社），一个社团也可以拥有多名学生。
+
+```sql
+-- 1. 学生表（核心实体 A）
+CREATE TABLE students (
+    id   BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+-- 2. 社团表（核心实体 B）
+CREATE TABLE clubs (
+    id          BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    club_name   TEXT NOT NULL UNIQUE,
+    description TEXT
+);
+
+-- 3. 成员关系表（中间桥梁）
+-- 这张表记录了 "谁" 参加了 "哪个" 社团
+CREATE TABLE memberships (
+    student_id BIGINT REFERENCES students(id) ON DELETE CASCADE,
+    club_id    BIGINT REFERENCES clubs(id) ON DELETE CASCADE,
+    joined_at  TIMESTAMPTZ DEFAULT NOW(),
+    PRIMARY KEY (student_id, club_id)  -- 联合主键：防止重复加入
+);
+```
+
+!!! tip "多对多实现要点"
+
+    - 需要一张**中间表**（关联表），存储两个外键
+    - 中间表通常使用**联合主键** `PRIMARY KEY (a_id, b_id)`，保证不会重复关联
+    - 中间表可以带**额外字段**（如 `joined_at`、`role` 等），记录关系的属性
+
+#### 插入数据
+
+```sql
+-- 插入学生
+INSERT INTO students (name) VALUES ('枫枫'), ('小红'), ('老王') RETURNING id;
+-- 假设 ID 分别是 1, 2, 3
+
+-- 插入社团
+INSERT INTO clubs (club_name, description) VALUES
+    ('Go语言社', '高性能后端开发探讨'),
+    ('篮球社',   '只因你太美'),
+    ('钓鱼社',   '永不空军')
+RETURNING id;
+-- 假设 ID 分别是 1, 2, 3
+
+-- 建立多对多关系
+INSERT INTO memberships (student_id, club_id) VALUES
+    (1, 1),  -- 枫枫 → Go语言社
+    (1, 2),  -- 枫枫 → 篮球社
+    (2, 2),  -- 小红 → 篮球社
+    (3, 1),  -- 老王 → Go语言社
+    (3, 3);  -- 老王 → 钓鱼社
+```
+
+#### 查询数据（两次 JOIN 跳转）
+
+由于信息隔了两层，我们需要两次 `JOIN` 跨过中间表：
+
+=== "查成员：某个社团里有哪些人？"
+
+    ```sql
+    SELECT
+        c.club_name  AS 社团名,
+        s.name       AS 成员名,
+        m.joined_at  AS 入社时间
+      FROM clubs c
+      JOIN memberships m ON c.id = m.club_id
+      JOIN students s   ON m.student_id = s.id
+     WHERE c.club_name = 'Go语言社';
+    ```
+
+=== "查轨迹：某个学生参加了多少个社团？"
+
+    ```sql
+    SELECT
+        s.name            AS 学生名,
+        COUNT(m.club_id)  AS 参加社团数,
+        STRING_AGG(c.club_name, ', ') AS 社团清单
+      FROM students s
+      LEFT JOIN memberships m ON s.id = m.student_id
+      LEFT JOIN clubs c      ON m.club_id = c.id
+     WHERE s.name = '枫枫'
+     GROUP BY s.name;
+    ```
+
+=== "查热度：哪个社团人最多？"
+
+    ```sql
+    SELECT
+        c.club_name,
+        COUNT(m.student_id) AS 总人数
+      FROM clubs c
+      LEFT JOIN memberships m ON c.id = m.club_id
+     GROUP BY c.club_name
+     ORDER BY 总人数 DESC;
+    ```
+
+---
+
+### 6.4 JOIN 详解（连接的四种方式）
+
+在前面三节中，我们大量使用了 `JOIN` / `LEFT JOIN`。这里做一个系统的总结。
+
+#### 示例数据
+
+```sql
+-- 左表：员工
+CREATE TABLE emp (id INT, name TEXT);
+INSERT INTO emp VALUES (1, '张三'), (2, '李四'), (3, '王五');
+
+-- 右表：部门
+CREATE TABLE dept (id INT, name TEXT);
+INSERT INTO dept VALUES (1, '技术部'), (2, '市场部'), (4, '财务部');
+```
+
+#### 四种 JOIN 对比
+
+=== "INNER JOIN（交集）"
+
+    ```sql
+    SELECT e.name AS 员工, d.name AS 部门
+      FROM emp e
+      JOIN dept d ON e.id = d.id;
+
+    -- 结果：
+    --  员工  │  部门
+    ────────┼────────
+    --  张三  │ 技术部
+    --  李四  │ 市场部
+    ```
+
+    !!! tip "`JOIN` 默认就是 `INNER JOIN`"
+        只返回**两表中匹配的行**。王五（id=3）和 财务部（id=4）都不在对方的表中，所以不出现。
+
+=== "LEFT JOIN（左表全保留）"
+
+    ```sql
+    SELECT e.name AS 员工, d.name AS 部门
+      FROM emp e
+      LEFT JOIN dept d ON e.id = d.id;
+
+    -- 结果：
+    --  员工  │  部门
+    ────────┼────────
+    --  张三  │ 技术部
+    --  李四  │ 市场部
+    --  王五  │ NULL    ← 王五没有匹配部门，但左表数据仍保留
+    ```
+
+    **最常用的 JOIN 类型**，左表数据全部保留，右表无匹配则补 NULL。
+
+=== "RIGHT JOIN（右表全保留）"
+
+    ```sql
+    SELECT e.name AS 员工, d.name AS 部门
+      FROM emp e
+      RIGHT JOIN dept d ON e.id = d.id;
+
+    -- 结果：
+    --  员工  │  部门
+    ────────┼────────
+    --  张三  │ 技术部
+    --  李四  │ 市场部
+    --  NULL  │ 财务部   ← 财务部没有匹配员工
+    ```
+
+    !!! info "RIGHT JOIN 可以改用 LEFT JOIN 实现"
+        只需交换表的顺序即可：`dept LEFT JOIN emp` 等价于 `emp RIGHT JOIN dept`。多数开发者习惯只用 `LEFT JOIN`。
+
+=== "FULL JOIN（全外连接）"
+
+    ```sql
+    SELECT e.name AS 员工, d.name AS 部门
+      FROM emp e
+      FULL JOIN dept d ON e.id = d.id;
+
+    -- 结果：
+    --  员工  │  部门
+    ────────┼────────
+    --  张三  │ 技术部
+    --  李四  │ 市场部
+    --  王五  │ NULL
+    --  NULL  │ 财务部
+    ```
+
+    返回两表中**所有行**，不匹配的补 NULL。相当于 `LEFT JOIN` + `RIGHT JOIN` 的并集。
+
+#### JOIN 方式速查
+
+| JOIN 类型 | 左表保留 | 右表保留 | 不匹配时 | 场景 |
+|-----------|---------|---------|---------|------|
+| `INNER JOIN` | ❌ 只保留匹配 | ❌ 只保留匹配 | 丢弃 | 只需要双方都有的数据 |
+| `LEFT JOIN` | ✅ 全保留 | ❌ 只保留匹配 | 右表补 NULL | **最常见**，主表全显示 |
+| `RIGHT JOIN` | ❌ 只保留匹配 | ✅ 全保留 | 左表补 NULL | 少见，可被 LEFT JOIN 替代 |
+| `FULL JOIN` | ✅ 全保留 | ✅ 全保留 | 双方都补 NULL | 需要两表全部数据 |
+
+```sql
+-- 实用技巧：用 LEFT JOIN 找出"在左表但不在右表"的数据
+SELECT e.* FROM emp e
+LEFT JOIN dept d ON e.id = d.id
+WHERE d.id IS NULL;
+-- 结果：王五（有员工但没有部门的）
+
+-- 同理，FULL JOIN + WHERE 找出两表的"差集"
+SELECT e.*, d.* FROM emp e
+FULL JOIN dept d ON e.id = d.id
+WHERE e.id IS NULL OR d.id IS NULL;
+```
+
+!!! warning "JOIN 的性能注意事项"
+
+    - JOIN 查询一定要确保**关联字段有索引**（通常是主键或已建索引的外键）
+    - 多表 JOIN 时尽量先用 WHERE 过滤再关联，减少中间结果集大小
+    - `EXPLAIN ANALYZE` 是分析 JOIN 性能的利器
+
+---
+
+### 6.5 表关系设计总结
+
+| 关系类型 | 实现方式 | 示例 | 中间表 |
+|---------|---------|------|-------|
+| **一对一 (1:1)** | 子表外键设为 PRIMARY KEY | users ↔ user_profiles | ❌ 不需要 |
+| **一对多 (1:N)** | "多"的一方存"一"的一方的主键 | goddesses ↔ simps | ❌ 不需要 |
+| **多对多 (M:N)** | 独立的中间表记录双方外键 | students ↔ memberships ↔ clubs | ✅ 需要 |
+
+!!! tip "如何选择关系类型"
+
+    问自己三个问题：
+
+    1. A 的一条记录对应 B 的几条？ → 确定**基数**
+    2. 这两张表的数据**更新频率**差异大吗？ → 决定是否分表（1:1 常用于垂直拆分）
+    3. 我是否需要单独记录**关系本身的属性**？ → 决定中间表是否需要额外字段
+
+---
+
+## 七、索引
+
+> 参考文档：[PostgreSQL 官方文档 — 索引](https://www.postgresql.org/docs/current/indexes.html)
+
+在数据库中，索引就像字典的**拼音检字表**：没有它，查一个词得翻遍整本书（全表扫描）；有了它，直接定位到目标区域，效率提升几个数量级。
+
+---
+
+### 7.1 创建索引（核心实操）
+
+#### 单列索引
+
+```sql
+-- 1. 创建演示表
+CREATE TABLE cloud_files (
+    id         BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+    file_name  TEXT NOT NULL,
+    file_type  VARCHAR(20),
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 2. 插入 100 万条模拟数据
+INSERT INTO cloud_files (file_name, file_type)
+SELECT
+    'file_' || i || '.pdf',
+    (ARRAY['video', 'image', 'doc'])[floor(random()*3)+1]
+  FROM generate_series(1, 1000000) s(i);
+
+-- 3. 【无索引前】全表扫描
+EXPLAIN ANALYZE
+SELECT * FROM cloud_files WHERE file_name = 'file_999999.pdf';
+-- 输出: Seq Scan  (cost=0.00..183.00 rows=1 width=...)
+
+-- 4. 创建 B-Tree 索引
+CREATE INDEX idx_file_name ON cloud_files(file_name);
+
+-- 5. 【有索引后】索引扫描，速度提升百倍
+EXPLAIN ANALYZE
+SELECT * FROM cloud_files WHERE file_name = 'file_999999.pdf';
+-- 输出: Index Scan using idx_file_name  (cost=0.42..4.44 rows=1)
+```
+
+#### 索引类型一览
+
+```sql
+-- B-Tree（默认，最通用）
+CREATE INDEX idx_name      ON cloud_files USING btree (file_name);
+
+-- Hash（仅适用于 = 等值查询）
+CREATE INDEX idx_name_hash ON cloud_files USING hash (file_name);
+
+-- GIN（倒排索引，适合 数组/JSONB/全文搜索）
+CREATE INDEX idx_tags ON cloud_files USING gin (tags);
+CREATE INDEX idx_meta ON cloud_files USING gin (meta_data jsonb_path_ops);
+
+-- GiST（适合 地理空间/范围类型/全文搜索）
+CREATE INDEX idx_period ON room_bookings USING gist (period);
+
+-- BRIN（适合 时序数据/天然有序的大表）
+CREATE INDEX idx_created ON cloud_files USING brin (created_at);
+```
+
+#### 复合索引与唯一索引
+
+```sql
+-- 复合索引（最左匹配原则：必须从 user_id 开始查询才能用到）
+CREATE INDEX idx_user_type ON cloud_files (user_id, file_type);
+
+-- 唯一索引（防止重复，常用于文件指纹/MD5）
+CREATE UNIQUE INDEX idx_file_md5 ON cloud_files (file_md5);
+```
+
+!!! tip "复合索引的"最左匹配"原则"
+    索引 `(a, b, c)` 能用到索引的查询：
+    
+    - ✅ `WHERE a = 1`
+    - ✅ `WHERE a = 1 AND b = 2`
+    - ✅ `WHERE a = 1 AND b = 2 AND c = 3`
+    - ✅ `WHERE a = 1 ORDER BY b`（排序也能用）
+    - ❌ `WHERE b = 2`（跳过了 a，不走索引）
+
+---
+
+### 7.2 B-Tree vs B+Tree（与 MySQL 的核心差异）
+
+这是 PostgreSQL 和 MySQL（InnoDB）在索引底层**最本质的区别**：
+
+| 特性 | PostgreSQL B-Tree | MySQL InnoDB B+Tree |
+|------|------------------|-------------------|
+| **数据存放** | 叶子节点存 **CTID**（行指针），再通过 CTID 回表 | 叶子节点存 **完整行数据**（聚簇索引） |
+| **聚簇性** | ❌ 非聚簇索引，表和索引分开存储 | ✅ 聚簇索引，数据和索引在一起 |
+| **回表次数** | 每次走索引都要回表查堆表 | 聚簇索引无需回表，二级索引需回表 |
+| **叶子节点链表** | ❌ 无链表，不支持区间直接跳转 | ✅ 叶子节点有双向链表，区间扫描极快 |
+| **页大小** | 8KB（默认） | 16KB（默认） |
+
+```text
+PostgreSQL B-Tree                    MySQL InnoDB B+Tree
+┌──────────────┐                    ┌──────────────┐
+│   内节点       │   存 key + 指针     │   内节点       │  只存 key
+│   key1 key2  │                    │   key1 key2  │
+└──────┬───────┘                    └──────┬───────┘
+       │                                   │
+┌──────┴───────┐                    ┌──────┴───────┐
+│   叶子节点     │  存 key + CTID     │   叶子节点     │  存 key + 完整行
+│   key CTID   │                    │   key 行数据  │
+│   ─────────  │                    │   ─────────  │
+│   key CTID  │◄──────────────      │   key 行数据 │◄────► (双向链表)
+│   key CTID  │  无叶子节点链表      │   key 行数据 │
+└──────────────┘                    └──────────────┘
+```
+
+!!! info "这个差异意味着什么？"
+
+    - PostgreSQL 的 B-Tree 是**标准的平衡树**，每次查找到叶子节点后，拿到 CTID（行指针），再去堆表（Heap）中读取实际数据
+    - MySQL 的 B+Tree 的叶子节点有**双向链表**，且 InnoDB 的聚簇索引直接存行数据，所以**范围扫描**（`BETWEEN`、`>`、`<`）非常高效
+    - PostgreSQL 的 MVCC 通过**堆表 + 死元组清理**实现，所以索引存 CTID 更灵活；MySQL 的 MVCC 通过 **undo log** 实现
+
+---
+
+### 7.3 索引的代价
+
+天下没有免费的午餐，索引会带来三项开销：
+
+| 代价 | 说明 |
+|------|------|
+| **磁盘空间** | 索引是一棵树，需要额外存储。一个 10GB 的表建满索引可能翻到 30GB |
+| **写入性能** | `INSERT`/`UPDATE`/`DELETE` 时，数据库不但要改数据，还要同步更新每棵索引树 |
+| **维护成本** | 频繁 DML 会产生索引碎片，偶尔需要 `REINDEX` 恢复性能 |
+
+```sql
+-- 查看当前表占用的空间（含索引）
+SELECT
+    pg_size_pretty(pg_total_relation_size('cloud_files')) AS 总大小,
+    pg_size_pretty(pg_relation_size('cloud_files'))       AS 表大小,
+    pg_size_pretty(pg_indexes_size('cloud_files'))        AS 索引大小;
+
+-- 重建索引（清理碎片，不锁写）
+REINDEX INDEX CONCURRENTLY idx_file_name;
+
+-- 删除不再需要的索引
+DROP INDEX idx_file_name;
+```
+
+---
+
+### 7.4 索引失效的常见场景
+
+| 场景 | 错误写法（走全表扫描） | 正确姿势 |
+|------|----------------------|---------|
+| **模糊查询左模糊** | `WHERE file_name LIKE '%file%'` | 只有 `LIKE 'file%'`（左前缀）能用索引 |
+| **函数包裹字段** | `WHERE UPPER(file_name) = 'FILE.PDF'` | 建**函数索引**：`CREATE INDEX idx_upper ON cloud_files (UPPER(file_name))` |
+| **隐式类型转换** | `WHERE id = '123'`（id 是数字） | 保持类型一致：`WHERE id = 123` |
+| **复合索引跳列** | 索引 `(a, b)`，只查 `WHERE b = 1` | 复合索引必须**从最左侧开始匹配** |
+| **OR 条件** | `WHERE name = 'a' OR age = 20` | 改为 `UNION ALL`，或建两个单列索引 |
+
+!!! tip "PostgreSQL 的函数索引（Functional Index）"
+    这是 PG 的一个强大特性——可以对**表达式的结果**建立索引，绕过函数包裹导致的索引失效：
+
+    ```sql
+    -- 对 UPPER 表达式建立索引
+    CREATE INDEX idx_upper_name ON users (UPPER(name));
+
+    -- 现在这个查询就能走索引了
+    SELECT * FROM users WHERE UPPER(name) = 'ZHANGSAN';
+    ```
+
+    MySQL 需要生成虚拟列再加索引，PG 直接支持函数索引，简洁很多。

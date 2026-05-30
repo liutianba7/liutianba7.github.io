@@ -1,0 +1,20 @@
+{
+  "id": "conv-1780132612554-aj8ghjgu6",
+  "title": "Write PostgreSQL common functions chapter",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780132612554,
+  "updatedAt": 1780137074491,
+  "lastResponseAt": 1780137074491,
+  "sessionId": "1b0c3be9-f21b-4e73-adf2-a4afaa99b2ba",
+  "sdkSessionId": "1b0c3be9-f21b-4e73-adf2-a4afaa99b2ba",
+  "currentNote": "db/pgsql.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 192,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 88960,
+    "contextWindow": 200000,
+    "contextTokens": 89152,
+    "percentage": 45
+  }
+}
