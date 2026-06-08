@@ -1,0 +1,20 @@
+{
+  "id": "conv-1780886512415-szxo7scg9",
+  "title": "Introduce Pandas library for data analysis",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780886512415,
+  "updatedAt": 1780890657484,
+  "lastResponseAt": 1780890657484,
+  "sessionId": "3c60fec6-7cab-4e4e-a46f-cb337c45c6f4",
+  "sdkSessionId": "3c60fec6-7cab-4e4e-a46f-cb337c45c6f4",
+  "currentNote": "python/03_others/数据分析相关/pandas.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 5385,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 140672,
+    "contextWindow": 200000,
+    "contextTokens": 146057,
+    "percentage": 73
+  }
+}

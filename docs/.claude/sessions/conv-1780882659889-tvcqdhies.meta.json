@@ -1,0 +1,20 @@
+{
+  "id": "conv-1780882659889-tvcqdhies",
+  "title": "Explain NumPy ndarray fundamentals",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780882659889,
+  "updatedAt": 1780886453462,
+  "lastResponseAt": 1780882909683,
+  "sessionId": "366896b7-8ce4-4659-ae66-6d74a6e927b5",
+  "sdkSessionId": "366896b7-8ce4-4659-ae66-6d74a6e927b5",
+  "currentNote": "python/03_others/数据分析相关/numpy.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 6396,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 43136,
+    "contextWindow": 200000,
+    "contextTokens": 49532,
+    "percentage": 25
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "conv-1780214370131-vqahqmoen",
+  "title": "这个笔记放在那个位置比较好呢，你分析你下，我目前放到了interview 下面，但我又感觉不太合适",
+  "titleGenerationStatus": "failed",
+  "createdAt": 1780214370132,
+  "updatedAt": 1780801044941,
+  "lastResponseAt": 1780216664223,
+  "sessionId": "27da4085-6d0d-4fb4-84f6-e816facc5d54",
+  "sdkSessionId": "27da4085-6d0d-4fb4-84f6-e816facc5d54",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 739,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 48256,
+    "contextWindow": 200000,
+    "contextTokens": 48995,
+    "percentage": 24
+  }
+}

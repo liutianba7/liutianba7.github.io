@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "db/pgsql.md",
+                "file": "python/03_others/数据分析相关/pandas.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "pgsql"
+              "title": "pandas"
             }
           }
         ]
@@ -53,13 +53,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "db/pgsql.md",
+                "file": "python/03_others/数据分析相关/pandas.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "pgsql 的大纲"
+              "title": "pandas 的大纲"
             }
           },
           {
@@ -89,8 +89,7 @@
               "title": "书签"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -194,53 +193,53 @@
       "bases:新建数据库": false
     }
   },
-  "active": "97902ed32e7e6f5a",
+  "active": "3d3d576130c78ddc",
   "lastOpenFiles": [
-    "others/01_理财学习/02_实操入门.md",
+    "assets/imgs/python/shufeng/pandas思维导图.png",
+    "python/03_others/数据分析相关/numpy.md",
+    "python/03_others/数据分析相关/pandas.md",
+    "python/03_others/数据分析相关/Matplotlib.md",
+    "_cleanup.py",
+    "python/03_others/数据分析相关/pandas.md.tmp.10816.1780886861627",
+    "_fix_format.py",
+    "assets/imgs/python/shufeng/numpy思维导图.png",
+    "assets/imgs/python/shufeng/numpy思维导图.png.BlzJNj",
+    "assets/imgs/python/shufeng",
+    "python/02_basic/python基础.md",
+    "python/05_ai/深度学习.md",
+    "assets/imgs/python/pytorch/pytorch01.png",
+    "assets/imgs/python/pytorch/deep01.png",
+    "assets/imgs/python/pytorch/deep01.png.WcAHFG",
+    "code-notes/blog/wx公众号/01_三年之约.md",
+    "code-notes/blog/最小 mvp 技术博客的 template.md",
+    "code-notes/blog/wx公众号",
+    "每日计划（2026年5月22日，两段小厂实习版本）.md",
     "others/01_理财学习/01_理财基本概念.md",
-    "db/pgsql.md",
-    "code-notes/algorithm/hot100总结.md",
+    "code-notes/blog",
     "others/01_理财学习/04_估值与买卖策略.md",
     "others/01_理财学习/03_资产配置.md",
+    "others/01_理财学习/02_实操入门.md",
+    "interview/python/langgraph.md",
+    "interview/python/deepLearning.md",
+    "interview/python/langchain.md",
+    "interview/python/大模型面试题.md",
+    "interview/python/claude code 源码分析.md",
+    "interview/python/python.md",
+    "db/pgsql.md",
+    "db/pgsql_final.md",
+    "db/pgsql_ch10.md",
+    "db/pgsql_ch9.md",
+    "db/pgsql_fixed.md",
+    "code-notes/algorithm/hot100总结.md",
     "others/01_理财学习",
     "others",
-    "assets/imgs/db/pgsql",
-    "interview/python/大模型面试题.md",
-    "nul",
     "interview/面试准备.md",
-    "db/mysql高级-v2.md",
-    "backup/mysql高级.md",
-    "backup",
-    "db/redis-v2.md",
-    "code-notes/algorithm/template.md",
-    "python/02_basic/python basic.md",
-    "python/02_basic/python标准库.md",
-    "interview/python/python.md",
-    "tools/vibe-coding/openspec.md",
-    "tools/vibe-coding/claude-code.md",
-    "tools/docker-v2.md",
-    "tools/docker.md",
-    "java/02_Frameworks/ssm.md",
-    "tools/vibe-coding",
-    "java/02_Frameworks/springboot.md",
-    "每日计划（2026年5月22日，两段小厂实习版本）.md",
-    "index.md",
-    "java/01_Java_Core/java 基础.md",
-    "interview/java/java基础.md",
-    "interview/java/java集合.md",
-    "interview/database/mysql.md~",
-    "interview/简历.pdf",
     "assets/imgs/python/nlp/nlp06_transformer_architecture.png",
-    "assets/imgs/python/nlp/nlp06_transformer_architecture.png.Uidzxe",
     "assets/imgs/python/nlp/nlp_07transformer_architecture.png",
     "assets/imgs/python/nlp/nlp05_encoder_decoder_old.png",
-    "assets/imgs/python/nlp/nlp05_encoder_decoder架构图.png.XnyAeo",
     "assets/imgs/python/nlp/nlp04_gru结构图.png",
     "assets/imgs/python/nlp/nlp03_lstm结构图.png",
     "assets/imgs/python/nlp/nlp02_rnn结构图.png",
-    "assets/imgs/python/nlp/nlp_01_文本预处理环节.png",
-    "assets/imgs/db/redis/redis6.png",
-    "assets/imgs/db/redis/redis5.png",
-    "assets/imgs/db/redis/redis4.png"
+    "assets/imgs/python/nlp/nlp_01_文本预处理环节.png"
   ]
 }

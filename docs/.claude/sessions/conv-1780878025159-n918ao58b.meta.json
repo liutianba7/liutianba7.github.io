@@ -1,0 +1,20 @@
+{
+  "id": "conv-1780878025159-n918ao58b",
+  "title": "Outline deep learning fundamentals",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780878025160,
+  "updatedAt": 1780882494922,
+  "lastResponseAt": 1780878087775,
+  "sessionId": "f9c311d2-0392-4666-a586-067765567df7",
+  "sdkSessionId": "f9c311d2-0392-4666-a586-067765567df7",
+  "currentNote": "python/05_ai/深度学习.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 138,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 67072,
+    "contextWindow": 200000,
+    "contextTokens": 67210,
+    "percentage": 34
+  }
+}

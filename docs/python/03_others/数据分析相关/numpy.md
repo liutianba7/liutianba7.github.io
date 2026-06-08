@@ -1,5 +1,9 @@
 # NumPy - 数值计算基础
 
+<p align='center'>
+	<img src='../../../assets/imgs/python/shufeng/numpy思维导图.png'>
+</p>
+
 ## 一、简介
 
 NumPy（Numerical Python）是 Python 科学计算的基础库，提供高性能的多维数组对象和数学函数。
@@ -87,6 +91,55 @@ np.random.randint(0, 10, (3, 4))  # 整数
 np.random.random((3, 4))       # [0, 1) 随机浮点数
 ```
 
+### 2.4 array() 与 asarray()
+
+`array()` 和 `asarray()` 都可以将输入数据转换为 ndarray，关键区别在于**是否复制内存**。
+
+=== "`np.array()` — 总是复制"
+
+    ```python
+    data = [1, 2, 3]
+    arr1 = np.array(data)       # 从 list 创建，会复制
+    arr2 = np.array(arr1)       # 从 ndarray 创建，也会复制
+    print(arr1 is arr2)         # False，不同对象
+    ```
+
+=== "`np.asarray()` — 避免不必要复制"
+
+    ```python
+    data = [1, 2, 3]
+    arr1 = np.asarray(data)     # 从 list 创建，会复制
+    arr2 = np.asarray(arr1)     # 已是 ndarray，不复制！返回同一对象
+    print(arr1 is arr2)         # True，同一对象
+    ```
+
+> 参考：[NumPy 官方文档 - Array creation](https://numpy.org/doc/stable/reference/routines.array-creation.html)
+
+### 2.5 数据类型与转换
+
+| 类型代码                 | 说明               |
+| -------------------- | ---------------- |
+| `bool` / `?`         | 布尔类型             |
+| `int8` / `i1`        | 有符号 8 位整型（1 字节）  |
+| `int32` / `i4`       | 有符号 32 位整型（4 字节） |
+| `int64` / `i8`       | 有符号 64 位整型（8 字节） |
+| `float32` / `f4`     | 单精度浮点            |
+| `float64` / `f8`     | 双精度浮点（默认）        |
+| `complex64` / `c8`   | 复数（两个 32 位浮点）    |
+| `complex128` / `c16` | 复数（两个 64 位浮点）    |
+
+```python
+# 创建时指定类型
+arr = np.array([1, 2, 3], dtype=np.float64)     # [1. 2. 3.]
+
+# astype() 类型转换
+arr = np.array([1.2, 2.5, 4.8])
+arr.astype(np.int64)         # [1, 2, 4]  截断取整
+arr.astype("i8")             # 支持类型代码字符串
+```
+
+> 参考：[NumPy 官方文档 - Data types](https://numpy.org/doc/stable/user/basics.types.html)
+
 ---
 
 ## 三、数组属性
@@ -163,6 +216,44 @@ arr[(arr > 2) & (arr < 5)]  # [3, 4]
 arr[arr > 3] = 0      # 大于 3 的置零
 np.where(arr > 3, 1, 0)  # 大于 3 返回 1，否则返回 0
 ```
+
+### 4.4 视图（View）与副本（Copy）
+
+视图与原数组共享内存，修改视图会影响原数组；副本拥有独立内存，互不影响。
+
+=== "视图（View）"
+
+    切片操作返回的是**视图**，修改视图会影响原数组。
+
+    ```python
+    arr = np.array([[1, 2, 3], [4, 5, 6]])
+    view = arr[:, :2]        # 切片返回视图
+    view[0, 0] = 99
+    print(arr)               # [[99, 2, 3], [4, 5, 6]] 原数组被修改
+    ```
+
+=== "副本（Copy）"
+
+    显式调用 `.copy()` 得到**副本**，修改副本不会影响原数组。
+
+    ```python
+    arr = np.array([[1, 2, 3], [4, 5, 6]])
+    copy = arr[:, :2].copy() # 调用 copy() 得到副本
+    copy[0, 0] = 99
+    print(arr)               # [[1, 2, 3], [4, 5, 6]] 原数组不变
+    ```
+
+**常见操作返回视图还是副本：**
+
+| 操作 | 返回类型 |
+|------|---------|
+| `arr[:]` 切片 | 视图 |
+| `.reshape()` | 视图 |
+| `.T` / `.transpose()` | 视图 |
+| `.ravel()` | 尽量返回视图 |
+| `.flatten()` | 副本 |
+| `.astype()` | 副本 |
+| `.copy()` | 副本 |
 
 ---
 
@@ -282,7 +373,22 @@ arr.cumsum()           # 累积和
 arr.cumprod()          # 累积乘积
 ```
 
+!!! tip "axis 参数理解"
+    `axis` 指定统计计算沿哪个轴进行：
+
+    - **`axis=0`**：沿垂直方向（跨行计算），对**列**做统计 → 结果中行的维度消失
+    - **`axis=1`**：沿水平方向（跨列计算），对**行**做统计 → 结果中列的维度消失
+
+    可以这样记忆：**`axis=0` 压扁行，`axis=1` 压扁列**。
+
 ### 6.3 广播机制
+
+广播（Broadcasting）允许不同形状的数组之间进行元素级运算，是 NumPy 的核心机制之一。
+
+!!! tip "广播三规则"
+    1. **维度补 1**：维度数不同时，小维度数组的形状在最左边补 1
+    2. **沿 1 扩展**：维度不匹配时，沿大小为 1 的维度复制扩展
+    3. **报错条件**：维度不匹配且没有任何维度为 1，抛出 `ValueError`
 
 ```python
 # 数组与标量
@@ -297,6 +403,8 @@ a + b                  # 广播加法
 c = np.array([[10], [20]])            # (2, 1)
 a + c                  # 广播加法
 ```
+
+> 参考：[NumPy 官方文档 - Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html)
 
 ---
 

@@ -3,18 +3,18 @@
   "title": "Create first chapter of blog content",
   "titleGenerationStatus": "success",
   "createdAt": 1780061428265,
-  "updatedAt": 1780071759541,
-  "lastResponseAt": 1780071759541,
+  "updatedAt": 1780651888924,
+  "lastResponseAt": 1780651888924,
   "sessionId": "06299349-8968-4773-8b3a-cac2c22c1661",
   "sdkSessionId": "06299349-8968-4773-8b3a-cac2c22c1661",
   "currentNote": "others/01_理财学习/理财基本概念.md",
   "usage": {
     "model": "haiku",
-    "inputTokens": 81,
+    "inputTokens": 367,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 110336,
+    "cacheReadInputTokens": 73728,
     "contextWindow": 200000,
-    "contextTokens": 110417,
-    "percentage": 55
+    "contextTokens": 74095,
+    "percentage": 37
   }
 }

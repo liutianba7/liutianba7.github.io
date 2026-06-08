@@ -243,7 +243,7 @@ psql -U root -d study_db -c "SELECT current_database();"
 | `\di`           | 列出索引              | `SHOW INDEX FROM`             |
 | `\dn`           | 列出所有 Schema       | 无                             |
 | `\du`           | 列出所有角色/用户         | `SELECT User FROM mysql.user` |
-| `\dv`           | 列出视图              | 无                             |
+| `dv`           | 列出视图              | 无                             |
 | `\df`           | 列出函数/存储过程         | `SHOW FUNCTION STATUS`        |
 | `\x`            | 切换扩展显示（行→列模式）     | 无                             |
 | `\timing`       | 显示 SQL 执行耗时       | 无                             |
@@ -2105,13 +2105,13 @@ CREATE UNIQUE INDEX idx_file_md5 ON cloud_files (file_md5);
 
 这是 PostgreSQL 和 MySQL（InnoDB）在索引底层**最本质的区别**：
 
-| 特性 | PostgreSQL B-Tree | MySQL InnoDB B+Tree |
-|------|------------------|-------------------|
-| **数据存放** | 叶子节点存 **CTID**（行指针），再通过 CTID 回表 | 叶子节点存 **完整行数据**（聚簇索引） |
-| **聚簇性** | ❌ 非聚簇索引，表和索引分开存储 | ✅ 聚簇索引，数据和索引在一起 |
-| **回表次数** | 每次走索引都要回表查堆表 | 聚簇索引无需回表，二级索引需回表 |
-| **叶子节点链表** | ❌ 无链表，不支持区间直接跳转 | ✅ 叶子节点有双向链表，区间扫描极快 |
-| **页大小** | 8KB（默认） | 16KB（默认） |
+| 特性         | PostgreSQL B-Tree               | MySQL InnoDB B+Tree   |
+| ---------- | ------------------------------- | --------------------- |
+| **数据存放**   | 叶子节点存 **CTID**（行指针），再通过 CTID 回表 | 叶子节点存 **完整行数据**（聚簇索引） |
+| **聚簇性**    | ❌ 非聚簇索引，表和索引分开存储                | ✅ 聚簇索引，数据和索引在一起       |
+| **回表次数**   | 每次走索引都要回表查堆表                    | 聚簇索引无需回表，二级索引需回表      |
+| **叶子节点链表** | ❌ 无链表，不支持区间直接跳转                 | ✅ 叶子节点有双向链表，区间扫描极快    |
+| **页大小**    | 8KB（默认）                         | 16KB（默认）              |
 
 ```text
 PostgreSQL B-Tree                    MySQL InnoDB B+Tree
@@ -2141,11 +2141,11 @@ PostgreSQL B-Tree                    MySQL InnoDB B+Tree
 
 天下没有免费的午餐，索引会带来三项开销：
 
-| 代价 | 说明 |
-|------|------|
-| **磁盘空间** | 索引是一棵树，需要额外存储。一个 10GB 的表建满索引可能翻到 30GB |
+| 代价       | 说明                                                 |
+| -------- | -------------------------------------------------- |
+| **磁盘空间** | 索引是一棵树，需要额外存储。一个 10GB 的表建满索引可能翻到 30GB              |
 | **写入性能** | `INSERT`/`UPDATE`/`DELETE` 时，数据库不但要改数据，还要同步更新每棵索引树 |
-| **维护成本** | 频繁 DML 会产生索引碎片，偶尔需要 `REINDEX` 恢复性能 |
+| **维护成本** | 频繁 DML 会产生索引碎片，偶尔需要 `REINDEX` 恢复性能                 |
 
 ```sql
 -- 查看当前表占用的空间（含索引）
@@ -2165,13 +2165,13 @@ DROP INDEX idx_file_name;
 
 ### 7.4 索引失效的常见场景
 
-| 场景 | 错误写法（走全表扫描） | 正确姿势 |
-|------|----------------------|---------|
-| **模糊查询左模糊** | `WHERE file_name LIKE '%file%'` | 只有 `LIKE 'file%'`（左前缀）能用索引 |
-| **函数包裹字段** | `WHERE UPPER(file_name) = 'FILE.PDF'` | 建**函数索引**：`CREATE INDEX idx_upper ON cloud_files (UPPER(file_name))` |
-| **隐式类型转换** | `WHERE id = '123'`（id 是数字） | 保持类型一致：`WHERE id = 123` |
-| **复合索引跳列** | 索引 `(a, b)`，只查 `WHERE b = 1` | 复合索引必须**从最左侧开始匹配** |
-| **OR 条件** | `WHERE name = 'a' OR age = 20` | 改为 `UNION ALL`，或建两个单列索引 |
+| 场景          | 错误写法（走全表扫描）                           | 正确姿势                                                                 |
+| ----------- | ------------------------------------- | -------------------------------------------------------------------- |
+| **模糊查询左模糊** | `WHERE file_name LIKE '%file%'`       | 只有 `LIKE 'file%'`（左前缀）能用索引                                           |
+| **函数包裹字段**  | `WHERE UPPER(file_name) = 'FILE.PDF'` | 建**函数索引**：`CREATE INDEX idx_upper ON cloud_files (UPPER(file_name))` |
+| **隐式类型转换**  | `WHERE id = '123'`（id 是数字）            | 保持类型一致：`WHERE id = 123`                                              |
+| **复合索引跳列**  | 索引 `(a, b)`，只查 `WHERE b = 1`          | 复合索引必须**从最左侧开始匹配**                                                   |
+| **OR 条件**   | `WHERE name = 'a' OR age = 20`        | 改为 `UNION ALL`，或建两个单列索引                                              |
 
 !!! tip "PostgreSQL 的函数索引（Functional Index）"
     这是 PG 的一个强大特性——可以对**表达式的结果**建立索引，绕过函数包裹导致的索引失效：
@@ -2185,3 +2185,466 @@ DROP INDEX idx_file_name;
     ```
 
     MySQL 需要生成虚拟列再加索引，PG 直接支持函数索引，简洁很多。
+
+---
+
+## 八、事务与锁
+
+> 参考文档：[PostgreSQL 官方文档 — 事务](https://www.postgresql.org/docs/current/tutorial-transactions.html) | [锁](https://www.postgresql.org/docs/current/explicit-locking.html)
+
+---
+
+### 8.1 事务
+
+#### 基本流程
+
+```sql
+-- 准备数据
+CREATE TABLE accounts (username TEXT PRIMARY KEY, balance DECIMAL(10,2));
+CREATE TABLE members  (username TEXT PRIMARY KEY, expire_date DATE);
+INSERT INTO accounts VALUES ('小红', 150.00);
+INSERT INTO members  VALUES ('小红', '2026-01-01');
+
+-- 事务：扣钱 + 加会员，要么全做，要么全不做
+BEGIN;
+UPDATE accounts SET balance = balance - 100 WHERE username = '小红';
+UPDATE members  SET expire_date = expire_date + INTERVAL '1 year' WHERE username = '小红';
+COMMIT;  -- 确认无误，写入硬盘
+
+-- 如果中途出错
+ROLLBACK;  -- 所有操作撤销，像没发生过一样
+```
+
+#### SAVEPOINT（存档点）
+
+```sql
+BEGIN;
+UPDATE accounts SET balance = balance - 100 WHERE username = '小红';
+SAVEPOINT sp1;                                     -- 设个存档点
+UPDATE members SET expire_date = ... WHERE ...;     -- 万一这步错了
+ROLLBACK TO SAVEPOINT sp1;                         -- 回滚到存档点，扣钱还在
+COMMIT;                                             -- 提交
+```
+
+---
+
+### 8.2 锁
+
+在 PostgreSQL 中，锁是确保数据库并发安全（Consistency & Isolation）的核心机制。简单来说，它防止了多个用户同时修改同一条数据而导致的混乱。
+
+#### 8.2.1 表级锁
+
+| 锁模式                | 自动场景                                  | 理解                                                         |
+| ------------------ | ------------------------------------- | ---------------------------------------------------------- |
+| `ACCESS SHARE`     | `SELECT`                              | **看（SELECT）** 是最弱的，基本不挡路（ACCESS SHARE）                     |
+| `ROW EXCLUSIVE`    | `INSERT`/`UPDATE`/`DELETE`            | **改（INSERT/UPDATE/DELETE）** 稍微强一点，能挡住想改结构的人（ROW EXCLUSIVE） |
+| `SHARE`            | 创建索引                                  | **建索引（CREATE INDEX）** 比较强，能挡住想改数据的人（SHARE）。                |
+| `ACCESS EXCLUSIVE` | `ALTER TABLE`/`DROP TABLE`/`TRUNCATE` | 阻塞其他**一切操作（含 SELECT）**                                     |
+
+```sql
+-- 手动锁表（大面积维护时用）
+BEGIN;
+LOCK TABLE my_table IN ACCESS EXCLUSIVE MODE;
+-- 执行维护操作...
+COMMIT;
+```
+
+#### 8.2.2 行级锁
+
+四种行锁按强度递增：
+
+| 锁模式                 | 说明                                                       |
+| ------------------- | -------------------------------------------------------- |
+| `FOR KEY SHARE`     | 最弱，仅防止外键被删除（我是别人的靠山，不能删我）                                |
+| `FOR SHARE`         | 防止行被更新/删除，读不阻塞读                                          |
+| `FOR NO KEY UPDATE` | 比 `FOR UPDATE` 弱，不阻塞 `FOR KEY SHARE`（我改的，不是关键内容，其他人还可以读） |
+| `FOR UPDATE`        | **最强**，锁行以更新，防止并发修改                                      |
+
+```sql
+-- 解决超卖：锁定库存行，别人必须等我处理完
+BEGIN;
+SELECT * FROM products WHERE id = 100 FOR UPDATE;
+UPDATE products SET stock = stock - 1 WHERE id = 100;
+COMMIT;
+
+-- FOR SHARE：我想读，但不让别人改
+BEGIN;
+SELECT * FROM orders WHERE id = 1 FOR SHARE;
+-- 其他事务可以 SELECT，但不能 UPDATE/DELETE 这行
+COMMIT;
+```
+
+!!! tip "`FOR UPDATE` vs `FOR SHARE`"
+
+    - `FOR UPDATE`：排他锁。其他事务的 `SELECT FOR UPDATE`、`UPDATE`、`DELETE` 都会被阻塞
+    - `FOR SHARE`：共享锁。其他事务**可以读**（包括 `SELECT FOR SHARE`），但不能改
+
+#### 8.2.3 建议锁（Advisory Locks，PG 特色）
+
+不锁定表或行，由程序员控制的**逻辑锁**，常用于防重复任务。
+
+```sql
+-- 获取锁（编号 12345）
+SELECT pg_advisory_lock(12345);
+
+-- 执行业务逻辑（如发送邮件、后台定时任务）
+-- ...
+
+-- 释放锁
+SELECT pg_advisory_unlock(12345);
+```
+
+```sql
+-- 另一种方式：只锁一下，锁不到就返回 false，不阻塞
+SELECT pg_try_advisory_lock(12345);  -- true/false
+```
+
+---
+
+### 8.3 锁监控
+
+数据库"卡住"时，查谁在锁谁：
+
+```sql
+SELECT
+    a.pid,
+    a.state,
+    a.query         AS 当前SQL,
+    l.locktype,
+    l.mode,
+    l.granted,
+    a.wait_event_type,
+    a.wait_event
+  FROM pg_locks l
+  JOIN pg_stat_activity a ON l.pid = a.pid
+ WHERE a.pid <> pg_backend_pid()
+ ORDER BY a.state;
+```
+
+---
+
+
+## 九、CTE 与视图
+
+> 参考文档：[PostgreSQL 官方文档 — CTE](https://www.postgresql.org/docs/current/queries-with.html) | [视图](https://www.postgresql.org/docs/current/sql-createview.html)
+
+---
+
+### 9.1 CTE（公用表表达式）
+
+CTE 可以把嵌套到"太平洋"的子查询**抽成一个命名的"变量"**，让 SQL 像搭积木一样清晰。
+
+```sql
+-- 没有 CTE：嵌套深到太平洋
+SELECT * FROM (
+    SELECT * FROM (
+        SELECT ...  -- 已经缩进到太平洋了
+    ) AS inner_data
+) AS outer_data;
+```
+
+```sql
+-- 用 CTE：抽成变量，逻辑分层
+WITH user_file_stats AS (
+    -- 第一步：先算每个人的文件总大小
+    SELECT
+        u.username,
+        SUM(f.file_size) AS total_size,
+        COUNT(f.id)      AS file_count
+      FROM users u
+      LEFT JOIN cloud_files f ON u.id = f.user_id
+     GROUP BY u.username
+)
+-- 第二步：直接查这个"变量"
+SELECT * FROM user_file_stats
+ WHERE total_size > 1024 * 1024 * 1024;  -- 筛选超过 1GB 的用户
+```
+
+!!! tip "CTE 的核心价值"
+    不是性能优化，而是**可读性优化**。它让一条复杂 SQL 变成了若干层的`WITH ... SELECT`，每一层只做一件事。也方便递归查询，不过日常场景用得少，遇到时再查文档即可。
+
+---
+
+### 9.2 视图（View）
+
+视图是一张 **"虚拟表"**——不存数据，只存查询语句。每次查视图，它会跑背后的 SQL。
+
+```sql
+-- 1. 创建视图：一次封装，永久受益
+CREATE VIEW v_file_detail_full AS
+SELECT
+    f.id,
+    f.file_name,
+    u.username       AS owner_name,
+    n.node_name      AS storage_location,
+    f.created_at
+  FROM cloud_files f
+  JOIN users u         ON f.user_id = u.id
+  JOIN storage_nodes n ON f.node_id = n.id;
+
+-- 2. 以后查起来就像查单表一样爽
+SELECT * FROM v_file_detail_full WHERE owner_name = 'fengfeng';
+```
+
+#### 视图操作
+
+```sql
+-- 查看所有视图
+\dv
+
+-- 查看视图的定义
+SELECT definition FROM pg_views WHERE viewname = 'v_file_detail_full';
+
+-- 替换/修改视图
+CREATE OR REPLACE VIEW v_file_detail_full AS
+SELECT ...;  -- 新查询
+
+-- 删除视图
+DROP VIEW v_file_detail_full;
+```
+
+!!! warning "物化视图（Materialized View）"
+    普通视图每次查都跑一遍 SQL。如果数据不常变但查询频繁，可以用**物化视图**把结果缓存到磁盘：
+
+    ```sql
+    CREATE MATERIALIZED VIEW mv_user_stats AS
+    SELECT user_id, SUM(file_size) AS total_size FROM cloud_files GROUP BY user_id;
+
+    -- 刷新数据（手动）
+    REFRESH MATERIALIZED VIEW mv_user_stats;
+    ```
+
+---
+
+### 9.3 CTE vs View 怎么选？
+
+| 特性 | CTE（`WITH`） | 视图（`VIEW`） |
+|------|-------------|---------------|
+| **生命周期** | 只在当前 SQL 有效 | **永久**保存在数据库 |
+| **类比** | 局部变量 | 全局公共函数 |
+| **适用场景** | 让这条长查询变好看 | 经常要用的复杂查询、报表 |
+| **权限控制** | 无 | 可以给用户看视图，但不给看原表 |
+
+---
+
+## 十、用户与权限
+
+> 参考文档：[PostgreSQL 官方文档 — 用户与权限](https://www.postgresql.org/docs/current/user-manag.html)
+
+一直用超级管理员裸奔，在生产环境等于"自杀"。正确的做法是：**按职责创建角色，只给最小必要权限**。
+
+---
+
+### 10.1 角色与用户
+
+PostgreSQL 中 **"用户"** 和 **"角色"** 本质上是同一类对象，区别仅在于 `LOGIN` 属性：
+
+| 对象 | 等价于 | 能否登录 |
+|------|--------|---------|
+| `CREATE ROLE` | 组角色 | 默认不能 |
+| `CREATE USER` | 角色 + `LOGIN` | 可以 |
+
+```sql
+-- 创建一个组角色（不能登录）
+CREATE ROLE managers;
+
+-- 创建一个用户（可以登录）
+CREATE USER fengfeng WITH PASSWORD 'fengfeng';
+
+-- 让用户加入组
+GRANT managers TO fengfeng;
+```
+
+```sql
+-- 查看所有角色
+\du
+
+-- 或用 SQL 查
+SELECT rolname AS 角色名,
+       rolcanlogin AS 能否登录,
+       rolsuper AS 是否超级管理员,
+       rolcreatedb AS 能否建库
+  FROM pg_roles
+ WHERE rolname NOT LIKE 'pg_%';
+```
+
+---
+
+### 10.2 只读权限
+
+给前端/数据分析师创建一个**只能查、不能改**的账号：
+
+```sql
+-- 1. 创建用户
+CREATE USER reader_user WITH PASSWORD 'fengfeng';
+
+-- 2. 基础进门权
+GRANT CONNECT ON DATABASE db          TO reader_user;  -- 进入数据库
+GRANT USAGE   ON SCHEMA public        TO reader_user;  -- 进入 schema
+
+-- 3. 核心只读权
+GRANT SELECT ON ALL TABLES    IN SCHEMA public TO reader_user;
+GRANT SELECT ON ALL SEQUENCES IN SCHEMA public TO reader_user;
+
+-- 4. 自动化：以后新建的表也自动给只读
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+   GRANT SELECT ON TABLES TO reader_user;
+```
+
+---
+
+### 10.3 增删改查权限
+
+给后端应用创建一个**完整 CRUD** 的账号：
+
+```sql
+CREATE USER feng_app WITH PASSWORD 'fengfeng';
+
+GRANT CONNECT ON DATABASE fengfeng_db TO feng_app;
+GRANT USAGE   ON SCHEMA public        TO feng_app;
+
+-- 表权限
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO feng_app;
+
+-- 序列权限（必给！否则自增 ID 插入会报错）
+GRANT USAGE, SELECT, UPDATE ON ALL SEQUENCES IN SCHEMA public TO feng_app;
+
+-- 自动化
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+   GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO feng_app;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public
+   GRANT USAGE, SELECT, UPDATE ON SEQUENCES TO feng_app;
+```
+
+!!! tip "序列权限最容易漏"
+    给应用用户赋权时，**`SEQUENCES` 的 `USAGE` 权限**最容易被遗忘。没有它，插入带自增 ID 的表会报错：`permission denied for sequence`。
+
+---
+
+### 10.4 权限回收与删除
+
+```sql
+-- 撤销权限
+REVOKE SELECT ON ALL TABLES IN SCHEMA public FROM reader_user;
+
+-- 从组中移除用户
+REVOKE managers FROM fengfeng;
+
+-- 删除角色/用户
+DROP ROLE reader_user;
+DROP USER fengfeng;  -- DROP USER 是 DROP ROLE 的别名
+```
+
+---
+
+## 十一、备份与恢复
+
+PostgreSQL 提供逻辑备份（`pg_dump` / `pg_dumpall`）和物理备份（文件级拷贝）两种方式。本章聚焦 **逻辑备份**，最常用且跨版本兼容性好。
+
+### 11.1 单库备份
+
+`pg_dump` 是单数据库级别的备份工具，支持多种输出格式。
+
+=== "明文 SQL（默认）"
+
+    ```bash
+    pg_dump -U postgres -d mydb > mydb_20250531.sql
+    ```
+
+    - 输出为可读的 SQL 脚本
+    - 可用 `psql` 直接还原
+    - **不支持并行还原**，适合小库
+
+=== "自定义归档（-Fc）"
+
+    ```bash
+    pg_dump -U postgres -F c -d mydb > mydb_20250531.bak
+    ```
+
+    - 压缩存储，体积最小
+    - 支持 **并行还原** 和 **选择性恢复**（只恢复某张表）
+    - 必须用 `pg_restore` 还原，是生产环境推荐格式
+
+=== "压缩与并行（-j）"
+
+    ```bash
+    # 压缩导出（Linux 管道）
+    pg_dump -U postgres -d mydb | gzip > mydb_20250531.sql.gz
+
+    # 并行导出（仅 -Fd 目录格式支持）
+    pg_dump -U postgres -F d -j 4 -d mydb -f /backup/mydb_dir/
+    ```
+
+    - `-Fd`：目录格式，每个表存为独立文件
+    - `-j 4`：4 线程并行导出
+
+!!! tip "生产建议"
+    生产环境优先使用 **`-Fc` 格式**，灵活度高、支持并行还原，是 DBA 的标准选择。
+
+### 11.2 单库还原
+
+```bash
+-- 方式一：明文 SQL 直接导入
+psql -U postgres -d mydb < mydb_20250531.sql
+
+-- 方式二：自定义归档用 pg_restore
+pg_restore -U postgres -d mydb -c mydb_20250531.bak
+
+-- 方式三：并行还原（提速明显）
+pg_restore -U postgres -d mydb -c -j 4 mydb_20250531.bak
+```
+
+| 参数 | 作用 |
+|------|------|
+| `-c` | 恢复前先删除（DROP）已存在的对象，实现覆盖 |
+| `-C` | 恢复时自动创建数据库（需先连到 `postgres` 库） |
+| `-j N` | N 线程并行还原，仅 `-Fc` / `-Fd` 格式支持 |
+| `-t tbl_name` | 只恢复指定表 |
+
+### 11.3 全实例备份
+
+有时需要备份整个集群的所有数据库（含角色定义、表空间等全局对象），`pg_dump` 只能导单库，此时需要用 `pg_dumpall`。
+
+```bash
+# 全量备份（含角色、表空间、所有数据库）
+pg_dumpall -U postgres > all_databases_20250531.sql
+
+# 还原
+psql -U postgres -f all_databases_20250531.sql postgres
+```
+
+!!! warning "全量备份注意事项"
+    - `pg_dumpall` **只能导出明文 SQL**，不支持 `-Fc`
+    - 还原时需以超级用户身份执行，因为要创建角色和数据库
+    - 如果某个数据库损坏导致还原中断，可改为逐库 `pg_dump` + 单独备份全局对象（`pg_dumpall -g`）
+
+```bash
+# 仅导出全局对象（角色、表空间），不导数据库
+pg_dumpall -U postgres -g > globals.sql
+```
+
+### 11.4 生产安全建议
+
+!!! warning "数据库安全基线"
+    1. **绝不暴露端口**：数据库端口（5432）不允许公网访问，仅内网或跳板机可达
+    2. **复杂密码**：PostgreSQL 用户密码至少 16 位，含大小写 + 数字 + 特殊字符
+    3. **修改 SSH 端口**：将 SSH 默认的 22 端口改为高位端口（如 2222），减少暴力破解风险
+    4. **异地备份**：备份文件定期同步到其他机房或对象存储（如 MinIO、S3），防止物理灾难导致数据全丢
+    5. **SSH 隧道访问**：需要远程维护时，通过 SSH 隧道连接数据库，而非直接开放端口
+
+```bash
+# SSH 隧道示例：本地 5433 转发到远程 5432
+ssh -L 5433:localhost:5432 user@jump-server -p 2222
+# 之后连接本地 5433 即可操作远程数据库
+psql -h localhost -p 5433 -U postgres -d mydb
+```
+
+!!! tip "备份黄金法则"
+    - 定期 **演练恢复流程**——备份没恢复过就等于没备份
+    - 自动化备份脚本配合 crond/systemd timer，每天凌晨执行
+    - 保留最近 7 天 + 每月 1 号的备份快照
+
+---
+
+> **参考文档**：[PostgreSQL Backup Documentation](https://www.postgresql.org/docs/current/backup.html)
