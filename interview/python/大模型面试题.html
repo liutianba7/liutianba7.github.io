@@ -958,7 +958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/02_basic/python基础.md" class="md-nav__link">
+      <a href="../../python/02_basic/python%E5%9F%BA%E7%A1%80.html" class="md-nav__link">
         
   
   
@@ -1108,6 +1108,62 @@
     
   
     Loguru
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/03_others/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%9B%B8%E5%85%B3/numpy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Numpy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/03_others/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%9B%B8%E5%85%B3/pandas.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pandas
   
 
     
@@ -1384,7 +1440,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../python/05_ai/Pytorch.html" class="md-nav__link">
+      <a href="../../python/05_ai/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0.html" class="md-nav__link">
         
   
   
@@ -3535,6 +3591,56 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CC 的记忆机制你了解吗？简单介绍一些？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CC 的记忆机制你了解吗？简单介绍一些？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#claudemd-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一层：启动配置层（CLAUDE.md / Rules）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二层：跨会话持久化记忆（Memory System）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-memory-compaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三层：会话内短期记忆（Session Memory &amp; Compaction）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -5963,6 +6069,56 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#cc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CC 的记忆机制你了解吗？简单介绍一些？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CC 的记忆机制你了解吗？简单介绍一些？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#claudemd-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第一层：启动配置层（CLAUDE.md / Rules）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#memory-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第二层：跨会话持久化记忆（Memory System）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-memory-compaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        第三层：会话内短期记忆（Session Memory &amp; Compaction）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7714,6 +7870,106 @@
 <h3 id="openclaw_1">OpenClaw 原理？ 🚀🚀</h3>
 <p>理解 OpenClaw 主要从两个方面：架构和运行时机制。它的架构主要网关层和运行时层。其中，网关层主要负责多平台接入，会话隔离，Cron 定时调度，记忆刷盘等，而运行时层则是真正干活的地方，它接收来着网关层派发的消息，去组装上下文，调用 LLM，执行工具，返回结果。</p>
 <p>运行时的核心机制就是一个基于 React 的 Agent loop。</p>
+<h3 id="cc">CC 的记忆机制你了解吗？简单介绍一些？</h3>
+<p>Claude Code 的记忆体系设计得非常务实——<strong>没有用向量检索（RAG）</strong>，而是基于本地文件存储 + LLM 语义判断来实现的。按时间维度分三个层次：</p>
+<hr />
+<h4 id="claudemd-rules">第一层：启动配置层（CLAUDE.md / Rules）</h4>
+<p>相当于给 CC 准备的"<strong>入职手册</strong>"，每次会话启动时自动加载到 system_prompt 中。</p>
+<ul>
+<li><strong>CLAUDE.md</strong>：放在项目根目录，记录项目的技术栈、架构约定、代码规范</li>
+<li><strong><code>.claude/rules/</code></strong>：可按场景拆分多个规则文件（如 <code>testing.md</code>、<code>deploy.md</code>）</li>
+<li>支持<strong>全局</strong>（<code>~/.claude/</code>）和<strong>本地</strong>（项目级）两种作用域</li>
+</ul>
+<blockquote>
+<p>定位：<strong>静态、显式、人为维护</strong>。适合团队共享的规范和个人固化的偏好（如"始终用 bun 而不是 npm"）。</p>
+</blockquote>
+<hr />
+<h4 id="memory-system">第二层：跨会话持久化记忆（Memory System）</h4>
+<p>这是 CC 真正能跨对话"记住你"的核心机制。当你告诉它"记住这个项目用 conda 环境"，它会写入本地文件，下次启动时自动加载。</p>
+<p><strong>存储架构：</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>~/.claude/projects/{sha256(cwd)[:12]}/memory/
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>├── MEMORY.md          # 索引文件，上限 200 行
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>├── user_role.md       # 用户画像：数据科学家
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>├── feedback_no_mock.md  # 行为反馈：不要 mock 数据库
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>└── project_deadline.md  # 项目信息：周四合并冻结
+</span></code></pre></div>
+<ul>
+<li>用 <strong>SHA-256</strong> 而不是 <code>hash()</code> 生成路径——因为 Python 3.3 后 <code>hash()</code> 有进程随机化，重启后找不到原目录</li>
+<li>索引和内容分离：<code>MEMORY.md</code> 是目录，<code>*.md</code> 是具体条目（含 YAML frontmatter）</li>
+</ul>
+<p><strong>注入时机：</strong></p>
+<p>REPL[^1] 启动时 <code>_build_system()</code> 读取 MEMORY.md，将所有记忆条目<strong>完整地</strong>注入 system_prompt 的第 10 段。模型在对话中自行判断哪些记忆相关，<strong>不是</strong>由外部 LLM 预筛选的。</p>
+<blockquote>
+<p>关键边界：当前会话自动提取的新记忆<strong>要到下次启动才生效</strong>。定位是跨会话通道，不是实时同步。</p>
+</blockquote>
+<p><strong>四种记忆类型：</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>含义</th>
+<th>例子</th>
+<th>何时使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user</code></td>
+<td>用户角色、领域知识</td>
+<td>"用户是后端工程师"</td>
+<td>调整回答的<strong>角度和深度</strong>，让 CC 知道该用什么语气/领域粒度回应</td>
+</tr>
+<tr>
+<td><code>feedback</code></td>
+<td>纠正/行为规范</td>
+<td>"不要 mock 数据库"</td>
+<td><strong>防止重复犯错</strong>，之前踩过的坑写下来，下次 CC 就不会再犯同类错误</td>
+</tr>
+<tr>
+<td><code>project</code></td>
+<td>工作进展、截止日期</td>
+<td>"周四代码冻结"</td>
+<td><strong>时效性上下文</strong>，写入时尽量用<strong>绝对日期</strong>（如 <code>2026-06-04</code>）而非相对日期，因为 .md 文件跨会话持久化，相对日期几周后就失效了</td>
+</tr>
+<tr>
+<td><code>reference</code></td>
+<td>外部系统链接</td>
+<td>"bug 在 Linear 追踪"</td>
+<td><strong>指向外部信息源</strong>，提示 CC 去对应系统查，而不是凭空猜测</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>这四种分类不只是标签——它们对应了不同的<strong>"何时使用"逻辑</strong>：<code>user</code> 调语气，<code>feedback</code> 纠行为，<code>project</code> 管时效，<code>reference</code> 指方向。各司其职。</p>
+</blockquote>
+<p><strong>两条写入路径：</strong></p>
+<ul>
+<li><strong>显式写入：</strong> 用户说"记住这个"，模型直接用 Write 工具写文件。即时生效</li>
+<li><strong>隐式写入：</strong> 每轮结束后台异步提取（<code>_bg_extract</code>，fire-and-forget，不阻塞 REPL），用低配模型（max_tokens=1024）自动从对话中提取值得保存的信息</li>
+</ul>
+<p><strong>并发控制（Coalescing）：</strong></p>
+<p>用户快速连续输入时，<code>ExtractionCoordinator</code> 用 Coalescing（合并）策略防冲突——已有提取在进行时，只标记"有新消息"，等当前提取完成后再启动下一轮。比 Debounce 更好，因为<strong>保证最终状态一定被处理，不会丢弃任何消息</strong>。</p>
+<hr />
+<h4 id="session-memory-compaction">第三层：会话内短期记忆（Session Memory &amp; Compaction）</h4>
+<p>解决单次长对话中上下文窗口有限的问题：</p>
+<ul>
+<li><strong>Compact（上下文压缩）：</strong> 当对话快要超出上下文上限时，自动将早期对话压缩为摘要，释放 token 空间给后续对话</li>
+<li><strong>Session Memory（后台笔记）：</strong> 对话过程中 CC 在后台维护一份高密度"工作笔记"，触发压缩时优先利用它恢复上下文，保证连贯性</li>
+</ul>
+<blockquote>
+<p><strong>与 Memory 的区别：</strong> Compact 是<strong>短期保活、有损压缩</strong>，会话结束后随 transcript 归档。Memory 是<strong>永久保存、跨会话复用</strong>。前者丢弃"怎么修 bug 的过程"，后者保留"用户偏好方案 A 而非 B 的决策"。</p>
+</blockquote>
+<hr />
+<p><strong>记忆的信任策略：</strong></p>
+<p>CC 对自己的记忆持<strong>悲观信任</strong>态度——记忆指引文件路径时，先用 Read/Glob 验证文件是否存在；提到函数名时，先用 Grep 确认。如果记忆与当前事实冲突，以当前事实为准，并更新或删除过时条目。</p>
+<blockquote>
+<p>简言之：<strong>Session 是日志，回答"上次聊到哪了"；Memory 是笔记，回答"哪些信息值得带到下次对话"。两者完全分离。</strong></p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>参考来源：</strong> Claude Code 源码（<code>cc/memory/</code> 模块），原文「<a href="https://mp.weixin.qq.com/s/aG6l">Claude Code Memory 机制深度拆解</a>」</p>
+</blockquote>
+<p>[^1]: REPL（Read-Eval-Print Loop）：读取-求值-输出循环，指 CC 在终端中持续运行的交互式对话循环。每次用户输入 → 模型处理 → 输出结果 → 等待下一轮输入，如此循环。</p>
 <h2 id="rag">Rag 面试题</h2>
 <h3 id="rag_1">什么是 Rag？ ⭐⭐⭐</h3>
 <p>RAG （Retrieval-Augmented Generation），就是检索增强生成。其实就是给大模型配一个"实时更新的外部知识库" ，在生成答案之前，先去外部知识库里检索相关内容，然后把检索结果和用户的问题一起交给 LLM，让它基于这些上下文来回答。</p>
@@ -7882,29 +8138,29 @@ v_normalized = v / ||v||
 <p>第二种，先上高速公路，在高速上快速开到目标城市附近，再下高速走省道，最后在小街小巷里精细找到目的地。这就是 HNSW 的核心思想——<strong>分层导航</strong>。</p>
 <p>第三种，先把城市划分成多个区（东城、西城、南城、北城），确定目标在哪个区，然后只在那个区里面找。这是 IVF 的思路。</p>
 <p><strong>HNSW 的分层结构图：</strong></p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Layer 2（最上层）：稀疏长距离连接，相当于&quot;高速公路&quot;
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>   A ●──────────────────────● B──────────────● C────────────● E
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>     ╲                      ║                                  ╱
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>      ╲                     ║                                 ╱
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>Layer 1（中间层）：中距离连接，相当于&quot;省道&quot;
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>        ● D ───────────────● F ───────● G ───────────────● H
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>          │╲                 │          │                  │
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>          │  ╲               │          │                  │
-</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>Layer 0（最底层）：稠密短距离连接，相当于&quot;小街小巷&quot;
-</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>          ● I ───● J ─────● K ──● L ──● M ───● N ───● O
-</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>                  │               │             │
-</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>          ● P ───● Q ───● R ─────● S ───● T ───● U
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Layer 2（最上层）：稀疏长距离连接，相当于&quot;高速公路&quot;
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>   A ●──────────────────────● B──────────────● C────────────● E
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>     ╲                      ║                                  ╱
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>      ╲                     ║                                 ╱
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>Layer 1（中间层）：中距离连接，相当于&quot;省道&quot;
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>        ● D ───────────────● F ───────● G ───────────────● H
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>          │╲                 │          │                  │
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>          │  ╲               │          │                  │
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>Layer 0（最底层）：稠密短距离连接，相当于&quot;小街小巷&quot;
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>          ● I ───● J ─────● K ──● L ──● M ───● N ───● O
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>                  │               │             │
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>          ● P ───● Q ───● R ─────● S ───● T ───● U
 </span></code></pre></div>
 <p><strong>检索过程：从上到下，逐层逼近</strong></p>
 <p>假设你要找离 S 点最近的节点，HNSW 是这样走的：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>第 1 步：从 Layer 2 的入口 A 出发
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>         A → B → C（B 离 S 最近，停在这一层，记录 B）
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>第 2 步：下降到 Layer 1，从 B 对应的 F 出发
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>         F → G → H（G 离 S 最近，停在这一层，记录 G）
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>第 3 步：下降到 Layer 0，从 G 对应的 M 出发
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>         M → N → S（S 离目标最近，找到了！）
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>第 1 步：从 Layer 2 的入口 A 出发
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>         A → B → C（B 离 S 最近，停在这一层，记录 B）
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>第 2 步：下降到 Layer 1，从 B 对应的 F 出发
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>         F → G → H（G 离 S 最近，停在这一层，记录 G）
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>第 3 步：下降到 Layer 0，从 G 对应的 M 出发
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>         M → N → S（S 离目标最近，找到了！）
 </span></code></pre></div>
 <p>整个过程只需要走 7 步，而暴力搜索要比较 21 个节点。数据量越大，这个差距越夸张——百万级向量，HNSW 只要走几十步。</p>
 <p><strong>为什么叫"小世界"？</strong></p>
@@ -7973,7 +8229,7 @@ v_normalized = v / ||v||
 <h3 id="rrf">RRF 算法是什么？ ⭐⭐⭐</h3>
 <p>RRF 是一种将多路搜索结果的排名结合起来产生一个统一排名的技术。</p>
 <p><strong>核心思想</strong>：一个文档如果在多个检索方法中都排在靠前的位置，那么它应该在最终的融合排名中获得更高的权重。</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>RRF(d) = Σ 1 / (k + rank(d))
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>RRF(d) = Σ 1 / (k + rank(d))
 </span></code></pre></div>
 <p><code>k</code> 就是一个<strong>平滑系数</strong>：它的作用是<strong>缩小第一名和后面名次的得分差距</strong>，确保即使某路召回的文档很少，排在第一名的得分也不会过分突出，从而让不同数量级的召回结果能在同一水平线上公平竞争。</p>
 <h3 id="hyde">什么是 HYDE？它存在什么问题？</h3>
