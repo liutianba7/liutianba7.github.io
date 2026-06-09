@@ -1447,7 +1447,7 @@
   <span class="md-ellipsis">
     
   
-    PyTorch
+    DeepLearning
   
 
     
@@ -2703,6 +2703,50 @@
     <span class="md-ellipsis">
       
         LeetCode 208. 实现 Trie (前缀树)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-46" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 46. 全排列
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-78" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 78. 子集
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 17. 电话号码的字母组合
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 39. 组合总和
       
     </span>
   </a>
@@ -4949,6 +4993,50 @@
     <span class="md-ellipsis">
       
         LeetCode 208. 实现 Trie (前缀树)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-46" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 46. 全排列
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-78" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 78. 子集
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 17. 电话号码的字母组合
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#leetcode-39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LeetCode 39. 组合总和
       
     </span>
   </a>
@@ -9521,6 +9609,325 @@ a = k \cdot (b + c) - b = (k-1)(b + c) + c
 <ul>
 <li><strong>时间复杂度</strong>：O(L) — 每次操作仅遍历单词长度 L</li>
 <li><strong>空间复杂度</strong>：O(ΣL) — Σ 为所有插入单词的总字符数</li>
+</ul>
+</details>
+<h3 id="leetcode-46">LeetCode 46. 全排列</h3>
+<p><strong>难度</strong>：⭐⭐ 中等 &nbsp;|&nbsp; <strong>标签</strong>：<code>回溯</code> <code>数组</code></p>
+<p><a href="https://leetcode.cn/problems/permutations/">🔗 LeetCode 原题链接</a></p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">核心思路</p>
+<p>回溯（DFS）经典入门题。外层 <code>dfs(u)</code> 遍历的是<strong>每个位置</strong>，内层 <code>for</code> 遍历的是<strong>当前位置可以放哪些数</strong>，通过 <code>used</code> 数组标记已选数字，从而实现不重不漏。</p>
+<ul>
+<li>用一个 <code>used</code> 数组标记哪些元素已被使用</li>
+<li>当 <code>u == n</code> 时，所有位置都已填满，记录当前排列</li>
+</ul>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="55:2"><input checked="checked" id="__tabbed_55_1" name="__tabbed_55" type="radio" /><input id="__tabbed_55_2" name="__tabbed_55" type="radio" /><div class="tabbed-labels"><label for="__tabbed_55_1">Python</label><label for="__tabbed_55_2">Java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-107-1"><a id="__codelineno-107-1" name="__codelineno-107-1" href="#__codelineno-107-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+</span><span id="__span-107-2"><a id="__codelineno-107-2" name="__codelineno-107-2" href="#__codelineno-107-2"></a>
+</span><span id="__span-107-3"><a id="__codelineno-107-3" name="__codelineno-107-3" href="#__codelineno-107-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+</span><span id="__span-107-4"><a id="__codelineno-107-4" name="__codelineno-107-4" href="#__codelineno-107-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">permute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+</span><span id="__span-107-5"><a id="__codelineno-107-5" name="__codelineno-107-5" href="#__codelineno-107-5"></a>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+</span><span id="__span-107-6"><a id="__codelineno-107-6" name="__codelineno-107-6" href="#__codelineno-107-6"></a>        <span class="n">res</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</span><span id="__span-107-7"><a id="__codelineno-107-7" name="__codelineno-107-7" href="#__codelineno-107-7"></a>        <span class="n">used</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+</span><span id="__span-107-8"><a id="__codelineno-107-8" name="__codelineno-107-8" href="#__codelineno-107-8"></a>
+</span><span id="__span-107-9"><a id="__codelineno-107-9" name="__codelineno-107-9" href="#__codelineno-107-9"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">u</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-107-10"><a id="__codelineno-107-10" name="__codelineno-107-10" href="#__codelineno-107-10"></a>            <span class="k">if</span> <span class="n">u</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+</span><span id="__span-107-11"><a id="__codelineno-107-11" name="__codelineno-107-11" href="#__codelineno-107-11"></a>                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span>
+</span><span id="__span-107-12"><a id="__codelineno-107-12" name="__codelineno-107-12" href="#__codelineno-107-12"></a>                <span class="k">return</span>
+</span><span id="__span-107-13"><a id="__codelineno-107-13" name="__codelineno-107-13" href="#__codelineno-107-13"></a>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span id="__span-107-14"><a id="__codelineno-107-14" name="__codelineno-107-14" href="#__codelineno-107-14"></a>                <span class="k">if</span> <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+</span><span id="__span-107-15"><a id="__codelineno-107-15" name="__codelineno-107-15" href="#__codelineno-107-15"></a>                    <span class="k">continue</span>
+</span><span id="__span-107-16"><a id="__codelineno-107-16" name="__codelineno-107-16" href="#__codelineno-107-16"></a>                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-107-17"><a id="__codelineno-107-17" name="__codelineno-107-17" href="#__codelineno-107-17"></a>                <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span id="__span-107-18"><a id="__codelineno-107-18" name="__codelineno-107-18" href="#__codelineno-107-18"></a>                <span class="n">dfs</span><span class="p">(</span><span class="n">u</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-107-19"><a id="__codelineno-107-19" name="__codelineno-107-19" href="#__codelineno-107-19"></a>                <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</span><span id="__span-107-20"><a id="__codelineno-107-20" name="__codelineno-107-20" href="#__codelineno-107-20"></a>                <span class="n">used</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-107-21"><a id="__codelineno-107-21" name="__codelineno-107-21" href="#__codelineno-107-21"></a>
+</span><span id="__span-107-22"><a id="__codelineno-107-22" name="__codelineno-107-22" href="#__codelineno-107-22"></a>        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-107-23"><a id="__codelineno-107-23" name="__codelineno-107-23" href="#__codelineno-107-23"></a>        <span class="k">return</span> <span class="n">res</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-108-1"><a id="__codelineno-108-1" name="__codelineno-108-1" href="#__codelineno-108-1"></a><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-108-2"><a id="__codelineno-108-2" name="__codelineno-108-2" href="#__codelineno-108-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">permute</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-108-3"><a id="__codelineno-108-3" name="__codelineno-108-3" href="#__codelineno-108-3"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+</span><span id="__span-108-4"><a id="__codelineno-108-4" name="__codelineno-108-4" href="#__codelineno-108-4"></a><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-108-5"><a id="__codelineno-108-5" name="__codelineno-108-5" href="#__codelineno-108-5"></a><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-108-6"><a id="__codelineno-108-6" name="__codelineno-108-6" href="#__codelineno-108-6"></a><span class="w">        </span><span class="kt">boolean</span><span class="o">[]</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">boolean</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
+</span><span id="__span-108-7"><a id="__codelineno-108-7" name="__codelineno-108-7" href="#__codelineno-108-7"></a><span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="n">used</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+</span><span id="__span-108-8"><a id="__codelineno-108-8" name="__codelineno-108-8" href="#__codelineno-108-8"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+</span><span id="__span-108-9"><a id="__codelineno-108-9" name="__codelineno-108-9" href="#__codelineno-108-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-108-10"><a id="__codelineno-108-10" name="__codelineno-108-10" href="#__codelineno-108-10"></a>
+</span><span id="__span-108-11"><a id="__codelineno-108-11" name="__codelineno-108-11" href="#__codelineno-108-11"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="kt">boolean</span><span class="o">[]</span><span class="w"> </span><span class="n">used</span><span class="p">,</span>
+</span><span id="__span-108-12"><a id="__codelineno-108-12" name="__codelineno-108-12" href="#__codelineno-108-12"></a><span class="w">                     </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">res</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-108-13"><a id="__codelineno-108-13" name="__codelineno-108-13" href="#__codelineno-108-13"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-108-14"><a id="__codelineno-108-14" name="__codelineno-108-14" href="#__codelineno-108-14"></a><span class="w">            </span><span class="n">res</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">path</span><span class="p">));</span>
+</span><span id="__span-108-15"><a id="__codelineno-108-15" name="__codelineno-108-15" href="#__codelineno-108-15"></a><span class="w">            </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-108-16"><a id="__codelineno-108-16" name="__codelineno-108-16" href="#__codelineno-108-16"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-108-17"><a id="__codelineno-108-17" name="__codelineno-108-17" href="#__codelineno-108-17"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-108-18"><a id="__codelineno-108-18" name="__codelineno-108-18" href="#__codelineno-108-18"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">used</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
+</span><span id="__span-108-19"><a id="__codelineno-108-19" name="__codelineno-108-19" href="#__codelineno-108-19"></a><span class="w">            </span><span class="n">used</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+</span><span id="__span-108-20"><a id="__codelineno-108-20" name="__codelineno-108-20" href="#__codelineno-108-20"></a><span class="w">            </span><span class="n">path</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+</span><span id="__span-108-21"><a id="__codelineno-108-21" name="__codelineno-108-21" href="#__codelineno-108-21"></a><span class="w">            </span><span class="n">dfs</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="n">used</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+</span><span id="__span-108-22"><a id="__codelineno-108-22" name="__codelineno-108-22" href="#__codelineno-108-22"></a><span class="w">            </span><span class="n">path</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-108-23"><a id="__codelineno-108-23" name="__codelineno-108-23" href="#__codelineno-108-23"></a><span class="w">            </span><span class="n">used</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+</span><span id="__span-108-24"><a id="__codelineno-108-24" name="__codelineno-108-24" href="#__codelineno-108-24"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-108-25"><a id="__codelineno-108-25" name="__codelineno-108-25" href="#__codelineno-108-25"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-108-26"><a id="__codelineno-108-26" name="__codelineno-108-26" href="#__codelineno-108-26"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>复杂度分析</summary>
+<ul>
+<li><strong>时间复杂度</strong>：O(n × n!) — 全排列共有 n! 种，每种需 O(n) 复制到结果集</li>
+<li><strong>空间复杂度</strong>：O(n) — 递归栈深度 n，<code>used</code> 数组和 <code>path</code> 各 O(n)</li>
+</ul>
+</details>
+<h3 id="leetcode-78">LeetCode 78. 子集</h3>
+<p><strong>难度</strong>：⭐⭐ 中等 &nbsp;|&nbsp; <strong>标签</strong>：<code>回溯</code> <code>数组</code> <code>位运算</code></p>
+<p><a href="https://leetcode.cn/problems/subsets/">🔗 LeetCode 原题链接</a></p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">核心思路</p>
+<p>每个元素都有两种选择：<strong>选</strong> 或 <strong>不选</strong>，DFS 遍历所有组合即可。</p>
+<ul>
+<li>先选当前元素进入 <code>path</code>，递归下一个位置</li>
+<li>回溯撤销选择（<code>path.pop()</code>），再递归下一个位置（不选）</li>
+<li>当 <code>cur == n</code> 时所有元素处理完毕，记录当前子集</li>
+</ul>
+<p>相比全排列，子集不需要 <code>used</code> 数组 —— 因为每个位置只有「选/不选」两种固定选择，不会重复。</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="56:2"><input checked="checked" id="__tabbed_56_1" name="__tabbed_56" type="radio" /><input id="__tabbed_56_2" name="__tabbed_56" type="radio" /><div class="tabbed-labels"><label for="__tabbed_56_1">Python</label><label for="__tabbed_56_2">Java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-109-1"><a id="__codelineno-109-1" name="__codelineno-109-1" href="#__codelineno-109-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+</span><span id="__span-109-2"><a id="__codelineno-109-2" name="__codelineno-109-2" href="#__codelineno-109-2"></a>
+</span><span id="__span-109-3"><a id="__codelineno-109-3" name="__codelineno-109-3" href="#__codelineno-109-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+</span><span id="__span-109-4"><a id="__codelineno-109-4" name="__codelineno-109-4" href="#__codelineno-109-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">subsets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+</span><span id="__span-109-5"><a id="__codelineno-109-5" name="__codelineno-109-5" href="#__codelineno-109-5"></a>        <span class="n">res</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</span><span id="__span-109-6"><a id="__codelineno-109-6" name="__codelineno-109-6" href="#__codelineno-109-6"></a>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+</span><span id="__span-109-7"><a id="__codelineno-109-7" name="__codelineno-109-7" href="#__codelineno-109-7"></a>
+</span><span id="__span-109-8"><a id="__codelineno-109-8" name="__codelineno-109-8" href="#__codelineno-109-8"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">cur</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-109-9"><a id="__codelineno-109-9" name="__codelineno-109-9" href="#__codelineno-109-9"></a>            <span class="k">if</span> <span class="n">cur</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+</span><span id="__span-109-10"><a id="__codelineno-109-10" name="__codelineno-109-10" href="#__codelineno-109-10"></a>                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span>
+</span><span id="__span-109-11"><a id="__codelineno-109-11" name="__codelineno-109-11" href="#__codelineno-109-11"></a>                <span class="k">return</span>
+</span><span id="__span-109-12"><a id="__codelineno-109-12" name="__codelineno-109-12" href="#__codelineno-109-12"></a>            <span class="c1"># 选当前元素</span>
+</span><span id="__span-109-13"><a id="__codelineno-109-13" name="__codelineno-109-13" href="#__codelineno-109-13"></a>            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">cur</span><span class="p">])</span>
+</span><span id="__span-109-14"><a id="__codelineno-109-14" name="__codelineno-109-14" href="#__codelineno-109-14"></a>            <span class="n">dfs</span><span class="p">(</span><span class="n">cur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-109-15"><a id="__codelineno-109-15" name="__codelineno-109-15" href="#__codelineno-109-15"></a>            <span class="c1"># 不选当前元素</span>
+</span><span id="__span-109-16"><a id="__codelineno-109-16" name="__codelineno-109-16" href="#__codelineno-109-16"></a>            <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</span><span id="__span-109-17"><a id="__codelineno-109-17" name="__codelineno-109-17" href="#__codelineno-109-17"></a>            <span class="n">dfs</span><span class="p">(</span><span class="n">cur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-109-18"><a id="__codelineno-109-18" name="__codelineno-109-18" href="#__codelineno-109-18"></a>
+</span><span id="__span-109-19"><a id="__codelineno-109-19" name="__codelineno-109-19" href="#__codelineno-109-19"></a>        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-109-20"><a id="__codelineno-109-20" name="__codelineno-109-20" href="#__codelineno-109-20"></a>        <span class="k">return</span> <span class="n">res</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-110-1"><a id="__codelineno-110-1" name="__codelineno-110-1" href="#__codelineno-110-1"></a><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-110-2"><a id="__codelineno-110-2" name="__codelineno-110-2" href="#__codelineno-110-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">subsets</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-110-3"><a id="__codelineno-110-3" name="__codelineno-110-3" href="#__codelineno-110-3"></a><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-110-4"><a id="__codelineno-110-4" name="__codelineno-110-4" href="#__codelineno-110-4"></a><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-110-5"><a id="__codelineno-110-5" name="__codelineno-110-5" href="#__codelineno-110-5"></a><span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+</span><span id="__span-110-6"><a id="__codelineno-110-6" name="__codelineno-110-6" href="#__codelineno-110-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+</span><span id="__span-110-7"><a id="__codelineno-110-7" name="__codelineno-110-7" href="#__codelineno-110-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-110-8"><a id="__codelineno-110-8" name="__codelineno-110-8" href="#__codelineno-110-8"></a>
+</span><span id="__span-110-9"><a id="__codelineno-110-9" name="__codelineno-110-9" href="#__codelineno-110-9"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cur</span><span class="p">,</span>
+</span><span id="__span-110-10"><a id="__codelineno-110-10" name="__codelineno-110-10" href="#__codelineno-110-10"></a><span class="w">                     </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">res</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-110-11"><a id="__codelineno-110-11" name="__codelineno-110-11" href="#__codelineno-110-11"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cur</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="na">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-110-12"><a id="__codelineno-110-12" name="__codelineno-110-12" href="#__codelineno-110-12"></a><span class="w">            </span><span class="n">res</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">path</span><span class="p">));</span>
+</span><span id="__span-110-13"><a id="__codelineno-110-13" name="__codelineno-110-13" href="#__codelineno-110-13"></a><span class="w">            </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-110-14"><a id="__codelineno-110-14" name="__codelineno-110-14" href="#__codelineno-110-14"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-110-15"><a id="__codelineno-110-15" name="__codelineno-110-15" href="#__codelineno-110-15"></a><span class="w">        </span><span class="c1">// 选当前元素</span>
+</span><span id="__span-110-16"><a id="__codelineno-110-16" name="__codelineno-110-16" href="#__codelineno-110-16"></a><span class="w">        </span><span class="n">path</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">nums</span><span class="o">[</span><span class="n">cur</span><span class="o">]</span><span class="p">);</span>
+</span><span id="__span-110-17"><a id="__codelineno-110-17" name="__codelineno-110-17" href="#__codelineno-110-17"></a><span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+</span><span id="__span-110-18"><a id="__codelineno-110-18" name="__codelineno-110-18" href="#__codelineno-110-18"></a><span class="w">        </span><span class="c1">// 不选当前元素</span>
+</span><span id="__span-110-19"><a id="__codelineno-110-19" name="__codelineno-110-19" href="#__codelineno-110-19"></a><span class="w">        </span><span class="n">path</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-110-20"><a id="__codelineno-110-20" name="__codelineno-110-20" href="#__codelineno-110-20"></a><span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+</span><span id="__span-110-21"><a id="__codelineno-110-21" name="__codelineno-110-21" href="#__codelineno-110-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-110-22"><a id="__codelineno-110-22" name="__codelineno-110-22" href="#__codelineno-110-22"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>复杂度分析</summary>
+<ul>
+<li><strong>时间复杂度</strong>：O(n × 2ⁿ) — 每个元素选/不选共 2ⁿ 个子集，每个需 O(n) 复制到结果集</li>
+<li><strong>空间复杂度</strong>：O(n) — 递归栈深度 n，<code>path</code> 最多存储 n 个元素</li>
+</ul>
+</details>
+<h3 id="leetcode-17">LeetCode 17. 电话号码的字母组合</h3>
+<p><strong>难度</strong>：⭐⭐ 中等 &nbsp;|&nbsp; <strong>标签</strong>：<code>回溯</code> <code>哈希表</code> <code>字符串</code></p>
+<p><a href="https://leetcode.cn/problems/letter-combinations-of-a-phone-number/">🔗 LeetCode 原题链接</a></p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">核心思路</p>
+<p>和全排列本质相同 —— 每个位置从固定候选项中选择一个字符。</p>
+<ul>
+<li>用哈希表建立数字到字母集合的映射</li>
+<li><code>dfs(cur)</code> 表示正在处理第 <code>cur</code> 个数字</li>
+<li>内层 <code>for</code> 遍历当前数字对应的所有字母，选一个进入下一层</li>
+<li>当 <code>cur == n</code> 时所有数字处理完毕，记录当前组合</li>
+</ul>
+</div>
+<details class="info">
+<summary>边界条件</summary>
+<p>当 <code>digits</code> 为空字符串时，直接返回空列表 <code>[]</code>，而不是 <code>[""]</code>。</p>
+</details>
+<div class="tabbed-set tabbed-alternate" data-tabs="57:2"><input checked="checked" id="__tabbed_57_1" name="__tabbed_57" type="radio" /><input id="__tabbed_57_2" name="__tabbed_57" type="radio" /><div class="tabbed-labels"><label for="__tabbed_57_1">Python</label><label for="__tabbed_57_2">Java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-111-1"><a id="__codelineno-111-1" name="__codelineno-111-1" href="#__codelineno-111-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+</span><span id="__span-111-2"><a id="__codelineno-111-2" name="__codelineno-111-2" href="#__codelineno-111-2"></a>
+</span><span id="__span-111-3"><a id="__codelineno-111-3" name="__codelineno-111-3" href="#__codelineno-111-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+</span><span id="__span-111-4"><a id="__codelineno-111-4" name="__codelineno-111-4" href="#__codelineno-111-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">letterCombinations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">digits</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+</span><span id="__span-111-5"><a id="__codelineno-111-5" name="__codelineno-111-5" href="#__codelineno-111-5"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">digits</span><span class="p">:</span>
+</span><span id="__span-111-6"><a id="__codelineno-111-6" name="__codelineno-111-6" href="#__codelineno-111-6"></a>            <span class="k">return</span> <span class="p">[]</span>
+</span><span id="__span-111-7"><a id="__codelineno-111-7" name="__codelineno-111-7" href="#__codelineno-111-7"></a>
+</span><span id="__span-111-8"><a id="__codelineno-111-8" name="__codelineno-111-8" href="#__codelineno-111-8"></a>        <span class="n">dic</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-111-9"><a id="__codelineno-111-9" name="__codelineno-111-9" href="#__codelineno-111-9"></a>            <span class="s1">&#39;2&#39;</span><span class="p">:</span> <span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span> <span class="s1">&#39;def&#39;</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">:</span> <span class="s1">&#39;ghi&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">:</span> <span class="s1">&#39;jkl&#39;</span><span class="p">,</span>
+</span><span id="__span-111-10"><a id="__codelineno-111-10" name="__codelineno-111-10" href="#__codelineno-111-10"></a>            <span class="s1">&#39;6&#39;</span><span class="p">:</span> <span class="s1">&#39;mno&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">:</span> <span class="s1">&#39;pqrs&#39;</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">:</span> <span class="s1">&#39;tuv&#39;</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">:</span> <span class="s1">&#39;wxyz&#39;</span>
+</span><span id="__span-111-11"><a id="__codelineno-111-11" name="__codelineno-111-11" href="#__codelineno-111-11"></a>        <span class="p">}</span>
+</span><span id="__span-111-12"><a id="__codelineno-111-12" name="__codelineno-111-12" href="#__codelineno-111-12"></a>        <span class="n">res</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</span><span id="__span-111-13"><a id="__codelineno-111-13" name="__codelineno-111-13" href="#__codelineno-111-13"></a>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+</span><span id="__span-111-14"><a id="__codelineno-111-14" name="__codelineno-111-14" href="#__codelineno-111-14"></a>
+</span><span id="__span-111-15"><a id="__codelineno-111-15" name="__codelineno-111-15" href="#__codelineno-111-15"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">cur</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-111-16"><a id="__codelineno-111-16" name="__codelineno-111-16" href="#__codelineno-111-16"></a>            <span class="k">if</span> <span class="n">cur</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
+</span><span id="__span-111-17"><a id="__codelineno-111-17" name="__codelineno-111-17" href="#__codelineno-111-17"></a>                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+</span><span id="__span-111-18"><a id="__codelineno-111-18" name="__codelineno-111-18" href="#__codelineno-111-18"></a>                <span class="k">return</span>
+</span><span id="__span-111-19"><a id="__codelineno-111-19" name="__codelineno-111-19" href="#__codelineno-111-19"></a>            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">dic</span><span class="p">[</span><span class="n">digits</span><span class="p">[</span><span class="n">cur</span><span class="p">]]:</span>
+</span><span id="__span-111-20"><a id="__codelineno-111-20" name="__codelineno-111-20" href="#__codelineno-111-20"></a>                <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</span><span id="__span-111-21"><a id="__codelineno-111-21" name="__codelineno-111-21" href="#__codelineno-111-21"></a>                <span class="n">dfs</span><span class="p">(</span><span class="n">cur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-111-22"><a id="__codelineno-111-22" name="__codelineno-111-22" href="#__codelineno-111-22"></a>                <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</span><span id="__span-111-23"><a id="__codelineno-111-23" name="__codelineno-111-23" href="#__codelineno-111-23"></a>
+</span><span id="__span-111-24"><a id="__codelineno-111-24" name="__codelineno-111-24" href="#__codelineno-111-24"></a>        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-111-25"><a id="__codelineno-111-25" name="__codelineno-111-25" href="#__codelineno-111-25"></a>        <span class="k">return</span> <span class="n">res</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-112-1"><a id="__codelineno-112-1" name="__codelineno-112-1" href="#__codelineno-112-1"></a><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-112-2"><a id="__codelineno-112-2" name="__codelineno-112-2" href="#__codelineno-112-2"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Map</span><span class="p">.</span><span class="na">of</span><span class="p">(</span>
+</span><span id="__span-112-3"><a id="__codelineno-112-3" name="__codelineno-112-3" href="#__codelineno-112-3"></a><span class="w">        </span><span class="sc">&#39;2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;abc&quot;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;def&quot;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;4&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ghi&quot;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;5&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;jkl&quot;</span><span class="p">,</span>
+</span><span id="__span-112-4"><a id="__codelineno-112-4" name="__codelineno-112-4" href="#__codelineno-112-4"></a><span class="w">        </span><span class="sc">&#39;6&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;mno&quot;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;7&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;pqrs&quot;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;8&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tuv&quot;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;9&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;wxyz&quot;</span>
+</span><span id="__span-112-5"><a id="__codelineno-112-5" name="__codelineno-112-5" href="#__codelineno-112-5"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-112-6"><a id="__codelineno-112-6" name="__codelineno-112-6" href="#__codelineno-112-6"></a>
+</span><span id="__span-112-7"><a id="__codelineno-112-7" name="__codelineno-112-7" href="#__codelineno-112-7"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">letterCombinations</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">digits</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-112-8"><a id="__codelineno-112-8" name="__codelineno-112-8" href="#__codelineno-112-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">digits</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">digits</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">of</span><span class="p">();</span>
+</span><span id="__span-112-9"><a id="__codelineno-112-9" name="__codelineno-112-9" href="#__codelineno-112-9"></a><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-112-10"><a id="__codelineno-112-10" name="__codelineno-112-10" href="#__codelineno-112-10"></a><span class="w">        </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">();</span>
+</span><span id="__span-112-11"><a id="__codelineno-112-11" name="__codelineno-112-11" href="#__codelineno-112-11"></a><span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">digits</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+</span><span id="__span-112-12"><a id="__codelineno-112-12" name="__codelineno-112-12" href="#__codelineno-112-12"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+</span><span id="__span-112-13"><a id="__codelineno-112-13" name="__codelineno-112-13" href="#__codelineno-112-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-112-14"><a id="__codelineno-112-14" name="__codelineno-112-14" href="#__codelineno-112-14"></a>
+</span><span id="__span-112-15"><a id="__codelineno-112-15" name="__codelineno-112-15" href="#__codelineno-112-15"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">digits</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cur</span><span class="p">,</span>
+</span><span id="__span-112-16"><a id="__codelineno-112-16" name="__codelineno-112-16" href="#__codelineno-112-16"></a><span class="w">                     </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">res</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-112-17"><a id="__codelineno-112-17" name="__codelineno-112-17" href="#__codelineno-112-17"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cur</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">digits</span><span class="p">.</span><span class="na">length</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-112-18"><a id="__codelineno-112-18" name="__codelineno-112-18" href="#__codelineno-112-18"></a><span class="w">            </span><span class="n">res</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+</span><span id="__span-112-19"><a id="__codelineno-112-19" name="__codelineno-112-19" href="#__codelineno-112-19"></a><span class="w">            </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-112-20"><a id="__codelineno-112-20" name="__codelineno-112-20" href="#__codelineno-112-20"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-112-21"><a id="__codelineno-112-21" name="__codelineno-112-21" href="#__codelineno-112-21"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">letters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MAP</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">digits</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">cur</span><span class="p">));</span>
+</span><span id="__span-112-22"><a id="__codelineno-112-22" name="__codelineno-112-22" href="#__codelineno-112-22"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">letters</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-112-23"><a id="__codelineno-112-23" name="__codelineno-112-23" href="#__codelineno-112-23"></a><span class="w">            </span><span class="n">path</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+</span><span id="__span-112-24"><a id="__codelineno-112-24" name="__codelineno-112-24" href="#__codelineno-112-24"></a><span class="w">            </span><span class="n">dfs</span><span class="p">(</span><span class="n">digits</span><span class="p">,</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+</span><span id="__span-112-25"><a id="__codelineno-112-25" name="__codelineno-112-25" href="#__codelineno-112-25"></a><span class="w">            </span><span class="n">path</span><span class="p">.</span><span class="na">deleteCharAt</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-112-26"><a id="__codelineno-112-26" name="__codelineno-112-26" href="#__codelineno-112-26"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-112-27"><a id="__codelineno-112-27" name="__codelineno-112-27" href="#__codelineno-112-27"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-112-28"><a id="__codelineno-112-28" name="__codelineno-112-28" href="#__codelineno-112-28"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>复杂度分析</summary>
+<ul>
+<li><strong>时间复杂度</strong>：O(4ⁿ × n) — 最坏情况每个数字对应 4 个字母（7/9），共 4ⁿ 种组合，拼接结果 O(n)</li>
+<li><strong>空间复杂度</strong>：O(n) — 递归栈深度 n，<code>path</code> 最多存储 n 个字符</li>
+</ul>
+</details>
+<h3 id="leetcode-39">LeetCode 39. 组合总和</h3>
+<p><strong>难度</strong>：⭐⭐ 中等 &nbsp;|&nbsp; <strong>标签</strong>：<code>回溯</code> <code>数组</code></p>
+<p><a href="https://leetcode.cn/problems/combination-sum/">🔗 LeetCode 原题链接</a></p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">核心思路</p>
+<p>每个数可以<strong>无限重复选取</strong>，关键在递归时控制索引移动：</p>
+<ul>
+<li><strong>选当前数</strong>：<code>total + candidates[cur]</code>，递归时 <code>cur</code> <strong>不移动</strong>（因为可以重复选）</li>
+<li><strong>不选当前数</strong>：<code>cur + 1</code> 跳到下一个数，<code>total</code> 不变</li>
+<li>剪枝：当 <code>total &gt; target</code> 或 <code>cur == n</code> 时提前返回</li>
+</ul>
+<p>与子集不同的是：这里「不选」分支负责跳到下一个元素（因为可以无限选），而非子集中的选完再回溯。</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="58:2"><input checked="checked" id="__tabbed_58_1" name="__tabbed_58" type="radio" /><input id="__tabbed_58_2" name="__tabbed_58" type="radio" /><div class="tabbed-labels"><label for="__tabbed_58_1">Python</label><label for="__tabbed_58_2">Java</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-113-1"><a id="__codelineno-113-1" name="__codelineno-113-1" href="#__codelineno-113-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+</span><span id="__span-113-2"><a id="__codelineno-113-2" name="__codelineno-113-2" href="#__codelineno-113-2"></a>
+</span><span id="__span-113-3"><a id="__codelineno-113-3" name="__codelineno-113-3" href="#__codelineno-113-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
+</span><span id="__span-113-4"><a id="__codelineno-113-4" name="__codelineno-113-4" href="#__codelineno-113-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">combinationSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">candidates</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+</span><span id="__span-113-5"><a id="__codelineno-113-5" name="__codelineno-113-5" href="#__codelineno-113-5"></a>        <span class="n">res</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</span><span id="__span-113-6"><a id="__codelineno-113-6" name="__codelineno-113-6" href="#__codelineno-113-6"></a>        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span>
+</span><span id="__span-113-7"><a id="__codelineno-113-7" name="__codelineno-113-7" href="#__codelineno-113-7"></a>
+</span><span id="__span-113-8"><a id="__codelineno-113-8" name="__codelineno-113-8" href="#__codelineno-113-8"></a>        <span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">cur</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">total</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-113-9"><a id="__codelineno-113-9" name="__codelineno-113-9" href="#__codelineno-113-9"></a>            <span class="k">if</span> <span class="n">total</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+</span><span id="__span-113-10"><a id="__codelineno-113-10" name="__codelineno-113-10" href="#__codelineno-113-10"></a>                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span>
+</span><span id="__span-113-11"><a id="__codelineno-113-11" name="__codelineno-113-11" href="#__codelineno-113-11"></a>                <span class="k">return</span>
+</span><span id="__span-113-12"><a id="__codelineno-113-12" name="__codelineno-113-12" href="#__codelineno-113-12"></a>            <span class="k">if</span> <span class="n">cur</span> <span class="o">==</span> <span class="n">n</span> <span class="ow">or</span> <span class="n">total</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">:</span>
+</span><span id="__span-113-13"><a id="__codelineno-113-13" name="__codelineno-113-13" href="#__codelineno-113-13"></a>                <span class="k">return</span>
+</span><span id="__span-113-14"><a id="__codelineno-113-14" name="__codelineno-113-14" href="#__codelineno-113-14"></a>
+</span><span id="__span-113-15"><a id="__codelineno-113-15" name="__codelineno-113-15" href="#__codelineno-113-15"></a>            <span class="c1"># 选当前数（可以无限重复，cur 不动）</span>
+</span><span id="__span-113-16"><a id="__codelineno-113-16" name="__codelineno-113-16" href="#__codelineno-113-16"></a>            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidates</span><span class="p">[</span><span class="n">cur</span><span class="p">])</span>
+</span><span id="__span-113-17"><a id="__codelineno-113-17" name="__codelineno-113-17" href="#__codelineno-113-17"></a>            <span class="n">dfs</span><span class="p">(</span><span class="n">cur</span><span class="p">,</span> <span class="n">total</span> <span class="o">+</span> <span class="n">candidates</span><span class="p">[</span><span class="n">cur</span><span class="p">])</span>
+</span><span id="__span-113-18"><a id="__codelineno-113-18" name="__codelineno-113-18" href="#__codelineno-113-18"></a>            <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+</span><span id="__span-113-19"><a id="__codelineno-113-19" name="__codelineno-113-19" href="#__codelineno-113-19"></a>
+</span><span id="__span-113-20"><a id="__codelineno-113-20" name="__codelineno-113-20" href="#__codelineno-113-20"></a>            <span class="c1"># 不选当前数，跳到下一个</span>
+</span><span id="__span-113-21"><a id="__codelineno-113-21" name="__codelineno-113-21" href="#__codelineno-113-21"></a>            <span class="n">dfs</span><span class="p">(</span><span class="n">cur</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</span><span id="__span-113-22"><a id="__codelineno-113-22" name="__codelineno-113-22" href="#__codelineno-113-22"></a>
+</span><span id="__span-113-23"><a id="__codelineno-113-23" name="__codelineno-113-23" href="#__codelineno-113-23"></a>        <span class="n">dfs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-113-24"><a id="__codelineno-113-24" name="__codelineno-113-24" href="#__codelineno-113-24"></a>        <span class="k">return</span> <span class="n">res</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-java highlight"><pre><span></span><code><span id="__span-114-1"><a id="__codelineno-114-1" name="__codelineno-114-1" href="#__codelineno-114-1"></a><span class="kd">class</span> <span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-114-2"><a id="__codelineno-114-2" name="__codelineno-114-2" href="#__codelineno-114-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="nf">combinationSum</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">candidates</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-114-3"><a id="__codelineno-114-3" name="__codelineno-114-3" href="#__codelineno-114-3"></a><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-114-4"><a id="__codelineno-114-4" name="__codelineno-114-4" href="#__codelineno-114-4"></a><span class="w">        </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</span><span id="__span-114-5"><a id="__codelineno-114-5" name="__codelineno-114-5" href="#__codelineno-114-5"></a><span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+</span><span id="__span-114-6"><a id="__codelineno-114-6" name="__codelineno-114-6" href="#__codelineno-114-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+</span><span id="__span-114-7"><a id="__codelineno-114-7" name="__codelineno-114-7" href="#__codelineno-114-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-114-8"><a id="__codelineno-114-8" name="__codelineno-114-8" href="#__codelineno-114-8"></a>
+</span><span id="__span-114-9"><a id="__codelineno-114-9" name="__codelineno-114-9" href="#__codelineno-114-9"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">candidates</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">cur</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="p">,</span>
+</span><span id="__span-114-10"><a id="__codelineno-114-10" name="__codelineno-114-10" href="#__codelineno-114-10"></a><span class="w">                     </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">res</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-114-11"><a id="__codelineno-114-11" name="__codelineno-114-11" href="#__codelineno-114-11"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-114-12"><a id="__codelineno-114-12" name="__codelineno-114-12" href="#__codelineno-114-12"></a><span class="w">            </span><span class="n">res</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">path</span><span class="p">));</span>
+</span><span id="__span-114-13"><a id="__codelineno-114-13" name="__codelineno-114-13" href="#__codelineno-114-13"></a><span class="w">            </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-114-14"><a id="__codelineno-114-14" name="__codelineno-114-14" href="#__codelineno-114-14"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-114-15"><a id="__codelineno-114-15" name="__codelineno-114-15" href="#__codelineno-114-15"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cur</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">candidates</span><span class="p">.</span><span class="na">length</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
+</span><span id="__span-114-16"><a id="__codelineno-114-16" name="__codelineno-114-16" href="#__codelineno-114-16"></a>
+</span><span id="__span-114-17"><a id="__codelineno-114-17" name="__codelineno-114-17" href="#__codelineno-114-17"></a><span class="w">        </span><span class="c1">// 选当前数，cur 不移动（可重复选）</span>
+</span><span id="__span-114-18"><a id="__codelineno-114-18" name="__codelineno-114-18" href="#__codelineno-114-18"></a><span class="w">        </span><span class="n">path</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">candidates</span><span class="o">[</span><span class="n">cur</span><span class="o">]</span><span class="p">);</span>
+</span><span id="__span-114-19"><a id="__codelineno-114-19" name="__codelineno-114-19" href="#__codelineno-114-19"></a><span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">cur</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">candidates</span><span class="o">[</span><span class="n">cur</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+</span><span id="__span-114-20"><a id="__codelineno-114-20" name="__codelineno-114-20" href="#__codelineno-114-20"></a><span class="w">        </span><span class="n">path</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-114-21"><a id="__codelineno-114-21" name="__codelineno-114-21" href="#__codelineno-114-21"></a>
+</span><span id="__span-114-22"><a id="__codelineno-114-22" name="__codelineno-114-22" href="#__codelineno-114-22"></a><span class="w">        </span><span class="c1">// 不选当前数，跳到下一个</span>
+</span><span id="__span-114-23"><a id="__codelineno-114-23" name="__codelineno-114-23" href="#__codelineno-114-23"></a><span class="w">        </span><span class="n">dfs</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">cur</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">res</span><span class="p">);</span>
+</span><span id="__span-114-24"><a id="__codelineno-114-24" name="__codelineno-114-24" href="#__codelineno-114-24"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-114-25"><a id="__codelineno-114-25" name="__codelineno-114-25" href="#__codelineno-114-25"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<details class="info">
+<summary>复杂度分析</summary>
+<ul>
+<li><strong>时间复杂度</strong>：O(n^(t/m+1)) — 递归树深度为 target/min(candidates)，每层最多 n 个分支</li>
+<li><strong>空间复杂度</strong>：O(t/m) — 递归栈深度取决于最坏组合次数</li>
 </ul>
 </details>
 
