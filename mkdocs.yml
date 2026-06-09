@@ -34,7 +34,7 @@ nav:
           - LangChain: ./python/05_ai/LangChain.md
           - LangGraph: ./python/05_ai/LangGraph.md
           - DeepAgents: ./python/05_ai/DeepAgents.md
-          - PyTorch: ./python/05_ai/深度学习.md
+          - DeepLearning: ./python/05_ai/深度学习.md
           - NLP: ./python/05_ai/NLP.md
       - AI_Infra:
           - Ollama: ./python/06_aiInfra/Ollama.md

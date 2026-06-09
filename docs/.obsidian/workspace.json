@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "python/03_others/数据分析相关/pandas.md",
+                "file": "python/05_ai/深度学习.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "pandas"
+              "title": "深度学习"
             }
           }
         ]
@@ -53,13 +53,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "python/03_others/数据分析相关/pandas.md",
+                "file": "python/05_ai/深度学习.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "pandas 的大纲"
+              "title": "深度学习 的大纲"
             }
           },
           {
@@ -89,7 +89,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -179,7 +180,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 649.5
+    "width": 449.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -193,11 +194,29 @@
       "bases:新建数据库": false
     }
   },
-  "active": "3d3d576130c78ddc",
+  "active": "69f32e6ebdd24abe",
   "lastOpenFiles": [
+    "python/05_ai/fix_all.py",
+    "python/05_ai/fix_tables.py",
+    "python/05_ai/fix_blanks2.py",
+    "python/05_ai/fix_blanks.py",
+    "original_backup.md",
+    "python/05_ai/pytorch_backup.md",
+    "others/02_blog/wx公众号/daily_summary_template.md",
+    "others/02_blog/wx公众号/day01 总结.md",
+    "others/02_blog/wx公众号/01_三年之约.md",
+    "others/02_blog/template/daily_summary_template.md",
+    "others/02_blog/csdn/深入理解 Java 泛型：从类型擦除到 PECS 原则.md",
+    "others/02_blog/template",
+    "java/01_Java_Core/java 基础.md",
+    "others/02_blog/csdn",
+    "python/05_ai/深度学习.md",
+    "python/05_ai/DeepAgents.md",
+    "code-notes/algorithm/hot100总结.md",
+    "code-notes/algorithm/template.md",
+    "python/03_others/数据分析相关/pandas.md",
     "assets/imgs/python/shufeng/pandas思维导图.png",
     "python/03_others/数据分析相关/numpy.md",
-    "python/03_others/数据分析相关/pandas.md",
     "python/03_others/数据分析相关/Matplotlib.md",
     "_cleanup.py",
     "python/03_others/数据分析相关/pandas.md.tmp.10816.1780886861627",
@@ -206,40 +225,22 @@
     "assets/imgs/python/shufeng/numpy思维导图.png.BlzJNj",
     "assets/imgs/python/shufeng",
     "python/02_basic/python基础.md",
-    "python/05_ai/深度学习.md",
     "assets/imgs/python/pytorch/pytorch01.png",
     "assets/imgs/python/pytorch/deep01.png",
-    "assets/imgs/python/pytorch/deep01.png.WcAHFG",
-    "code-notes/blog/wx公众号/01_三年之约.md",
-    "code-notes/blog/最小 mvp 技术博客的 template.md",
-    "code-notes/blog/wx公众号",
+    "others/02_blog/template/最小 mvp 技术博客的 template.md",
     "每日计划（2026年5月22日，两段小厂实习版本）.md",
     "others/01_理财学习/01_理财基本概念.md",
-    "code-notes/blog",
     "others/01_理财学习/04_估值与买卖策略.md",
     "others/01_理财学习/03_资产配置.md",
     "others/01_理财学习/02_实操入门.md",
     "interview/python/langgraph.md",
     "interview/python/deepLearning.md",
     "interview/python/langchain.md",
-    "interview/python/大模型面试题.md",
-    "interview/python/claude code 源码分析.md",
-    "interview/python/python.md",
-    "db/pgsql.md",
-    "db/pgsql_final.md",
-    "db/pgsql_ch10.md",
-    "db/pgsql_ch9.md",
-    "db/pgsql_fixed.md",
-    "code-notes/algorithm/hot100总结.md",
-    "others/01_理财学习",
-    "others",
-    "interview/面试准备.md",
     "assets/imgs/python/nlp/nlp06_transformer_architecture.png",
     "assets/imgs/python/nlp/nlp_07transformer_architecture.png",
     "assets/imgs/python/nlp/nlp05_encoder_decoder_old.png",
     "assets/imgs/python/nlp/nlp04_gru结构图.png",
     "assets/imgs/python/nlp/nlp03_lstm结构图.png",
-    "assets/imgs/python/nlp/nlp02_rnn结构图.png",
-    "assets/imgs/python/nlp/nlp_01_文本预处理环节.png"
+    "assets/imgs/python/nlp/nlp02_rnn结构图.png"
   ]
 }

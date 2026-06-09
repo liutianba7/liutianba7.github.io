@@ -1640,3 +1640,1033 @@ List<String> syncList = Collections.synchronizedList(new ArrayList<>());
 > - [Collection Interface (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Collection.html)
 > - [Map Interface (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Map.html)
 > - [Collections Utility (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Collections.html)
+
+---
+
+## 六、泛型 {#sec6}
+
+> 泛型（Generics）是 Java 5 引入的最重要特性之一，它实现了 **参数化类型**，使代码可以在编译期进行类型检查，从而消除强制类型转换的隐患。泛型的核心价值在于：**编译期类型安全 + 运行时向后兼容**。
+
+### 6.1 泛型类 / 接口 / 方法 {#sec6-1}
+
+#### 6.1.1 泛型类
+
+在类名后使用 `<T>` 声明类型参数，即可将类定义为泛型类。
+
+```java
+// 定义一个泛型类 —— 类型参数 T 在实例化时确定
+public class Box<T> {
+    private T value;
+
+    public void set(T value) {
+        this.value = value;
+    }
+
+    public T get() {
+        return value;
+    }
+}
+
+// 使用
+Box<String> stringBox = new Box<>();   // Java 7+ 菱形运算符 <>
+stringBox.set("Hello");
+String val = stringBox.get();          // 无需强制转换
+
+Box<Integer> intBox = new Box<>();
+intBox.set(42);
+Integer num = intBox.get();            // 类型安全
+```
+
+!!! tip "菱形运算符 `<>`"
+
+    Java 7 引入了**菱形运算符（Diamond Operator）**，允许在构造器中省略类型参数，由编译器自动推断：
+    ```java
+    // Java 7 之前
+    Box<String> box = new Box<String>();
+    // Java 7+
+    Box<String> box = new Box<>();
+    ```
+
+#### 6.1.2 泛型接口
+
+接口也可以声明类型参数，实现类可以选择**保留**或**确定**泛型。
+
+```java
+// 定义一个泛型接口
+public interface Pair<K, V> {
+    K getKey();
+    V getValue();
+}
+
+// 实现方式一：实现类仍保留泛型
+public class OrderedPair<K, V> implements Pair<K, V> {
+    private K key;
+    private V value;
+
+    public OrderedPair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    @Override
+    public K getKey() { return key; }
+
+    @Override
+    public V getValue() { return value; }
+}
+
+// 实现方式二：实现类确定具体类型
+public class StringPair implements Pair<String, String> {
+    @Override
+    public String getKey() { return "key"; }
+
+    @Override
+    public String getValue() { return "value"; }
+}
+```
+
+#### 6.1.3 泛型方法
+
+泛型方法在 **方法返回值前** 声明类型参数，独立于类上的泛型声明。
+
+=== "基础语法"
+
+    ```java
+    // 将数组转换为 List —— 泛型方法在返回类型前声明 <T>
+    public static <T> List<T> arrayToList(T[] arr) {
+        List<T> list = new ArrayList<>();
+        for (T item : arr) {
+            list.add(item);
+        }
+        return list;
+    }
+
+    // 调用 —— 编译器自动推断类型
+    String[] strs = {"a", "b", "c"};
+    List<String> list = arrayToList(strs);  // 推断 T 为 String
+    ```
+
+=== "有界类型参数"
+
+    ```java
+    // <T extends Number> 限定 T 必须是 Number 或其子类
+    public static <T extends Number> double sumOfNumbers(List<T> list) {
+        double sum = 0;
+        for (T num : list) {
+            sum += num.doubleValue();
+        }
+        return sum;
+    }
+
+    // 使用
+    List<Integer> ints = List.of(1, 2, 3);
+    List<Double> dbs = List.of(1.5, 2.5);
+    System.out.println(sumOfNumbers(ints));  // 6.0
+    System.out.println(sumOfNumbers(dbs));  // 4.0
+    // List<String> strs = List.of("a", "b");
+    // sumOfNumbers(strs);  // ❌ 编译错误
+    ```
+
+=== "多重边界"
+
+    ```java
+    // 多重边界用 & 连接，类必须放在第一位
+    public static <T extends Comparable<T> & Serializable>
+        T max(T a, T b) {
+        return a.compareTo(b) > 0 ? a : b;
+    }
+    ```
+
+#### 6.1.4 类型推断
+
+Java 编译器可以根据上下文推断类型参数，无需显式指定。
+
+```java
+// 类型推断 —— 编译器推断出 T 为 String
+List<String> list = Collections.emptyList();
+// 等价于
+List<String> list = Collections.<String>emptyList();  // 显式指定
+
+// Java 8 目标类型推断 —— 利用目标参数类型推断
+void processList(List<String> list) { }
+processList(Collections.emptyList());  // 推断出 emptyList<String>()
+```
+
+!!! summary "泛型存在的意义"
+
+    | 不用泛型 | 使用泛型 |
+    |---------|---------|
+    | 需要 `Object` 类型，存取都要强制转换 | 类型参数化，编译期检查 |
+    | 运行时可能 `ClassCastException` | 编译器提前发现类型错误 |
+    | 代码可读性差，需额外注释说明预期类型 | 代码自文档化，类型一目了然 |
+
+> **参考链接**：
+>
+> - [Generic Types (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/generics/types.html)
+> - [Generic Methods (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/generics/methods.html)
+> - [Bounded Type Parameters (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/generics/bounded.html)
+> - [Type Inference (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/generics/genTypeInference.html)
+
+---
+
+### 6.2 类型擦除 {#sec6-2}
+
+类型擦除（Type Erasure）是 Java 泛型实现的核心机制：**泛型信息仅在编译期存在，运行期被移除（擦除）为原始类型或边界类型**。
+
+#### 6.2.1 擦除规则
+
+=== "擦除规则"
+
+    1. 若类型参数**无边界**（`<T>`），擦除为 `Object`
+    2. 若类型参数**有上界**（`<T extends Comparable>`），擦除为其左边界
+
+    ```java
+    // 源码
+    public class Box<T> {
+        private T value;
+        public T get() { return value; }
+    }
+
+    // 擦除后 ≈ 等价于
+    public class Box {                  // T → Object
+        private Object value;
+        public Object get() { return value; }
+    }
+    ```
+
+=== "有界擦除"
+
+    ```java
+    // 源码
+    public class NumberBox<T extends Number> {
+        private T value;
+        public double doubleValue() {
+            return value.doubleValue();  // 可调用 Number 的方法
+        }
+    }
+
+    // 擦除后 ≈ 等价于
+    public class NumberBox {
+        private Number value;           // T → Number（左边界）
+        public double doubleValue() {
+            return value.doubleValue();
+        }
+    }
+    ```
+
+#### 6.2.2 桥方法（Bridge Method）
+
+当泛型擦除导致方法签名冲突时，编译器会**自动合成桥方法**，以维持多态。
+
+```java
+// 父类
+public class Parent<T> {
+    public T get() { return null; }
+}
+
+// 子类 —— 指定 T 为 String
+public class Child extends Parent<String> {
+    @Override
+    public String get() { return "hello"; }
+}
+
+// 擦除后 Parent 中的 get() 签名变为 Object get()
+// 为了保持多态，编译器在 Child 中生成桥方法：
+//   public Object get() { return this.get(); }  ← 桥方法，调用 String get()
+```
+
+#### 6.2.3 擦除带来的限制
+
+!!! warning "类型擦除的后果"
+
+    由于运行时类型信息被擦除，以下操作**均不被允许**：
+
+    ```java
+    // ❌ 不能 instanceof 具体泛型类型
+    if (list instanceof ArrayList<String>) { }  // 编译错误
+    if (list instanceof ArrayList<?>) { }        // ✅ 无界通配符可以
+
+    // ❌ 不能 new T()
+    public <T> T create() {
+        return new T();  // 编译错误 —— 运行时不知道 T 是什么
+    }
+
+    // ❌ 不能 new T[]
+    public <T> T[] createArray(int size) {
+        return new T[size];  // 编译错误
+    }
+
+    // ✅ 通过反射绕开
+    public <T> T create(Class<T> clazz) throws Exception {
+        return clazz.getDeclaredConstructor().newInstance();
+    }
+    ```
+
+> **参考链接**：
+>
+> - [Type Erasure (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/generics/erasure.html)
+> - [Bridge Methods (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/generics/bridgeMethods.html)
+> - [Restrictions on Generics (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html)
+
+---
+
+### 6.3 通配符与 PECS 原则 {#sec6-3}
+
+通配符 `?` 用于表示**未知类型**，是泛型灵活性的关键。
+
+#### 6.3.1 三种通配符
+
+| 通配符 | 语法 | 含义 | 类比 |
+|--------|------|------|------|
+| **无界通配符** | `List<?>` | 任何类型的 List | 只读不写 |
+| **上界通配符** | `List<? extends T>` | T 或 T 的子类 | **生产者（Producer）**—— 读取安全 |
+| **下界通配符** | `List<? super T>` | T 或 T 的父类 | **消费者（Consumer）**—— 写入安全 |
+
+=== "无界通配符 `?`"
+
+    ```java
+    // 打印任意类型的 List —— 只读不写
+    public static void printList(List<?> list) {
+        for (Object elem : list) {
+            System.out.println(elem);
+        }
+        // list.add("hello");  // ❌ 编译错误：不能向 ? 添加元素（null 除外）
+    }
+
+    // 适用于不依赖类型参数的方法
+    public static boolean isEmpty(List<?> list) {
+        return list.size() == 0;
+    }
+    ```
+
+=== "上界通配符 `? extends T`"
+
+    ```java
+    // 读取安全，写入受限 —— 上限为 Number
+    public static double sum(List<? extends Number> list) {
+        double sum = 0;
+        for (Number num : list) {  // ✅ 以 Number 读取是安全的
+            sum += num.doubleValue();
+        }
+        // list.add(42);           // ❌ 编译错误：不知道具体类型
+        return sum;
+    }
+
+    // List<? extends Number> 可以指向：
+    List<Integer> ints = List.of(1, 2, 3);
+    List<Double> dbs = List.of(1.0, 2.0);
+    List<Number> nums = List.of(1, 2.0, 3L);
+
+    sum(ints);  // ✅ Integer extends Number
+    sum(dbs);   // ✅ Double extends Number
+    sum(nums);  // ✅ Number 自身
+    ```
+
+=== "下界通配符 `? super T`"
+
+    ```java
+    // 写入安全，读取受限 —— 下限为 Integer
+    public static void addNumbers(List<? super Integer> list) {
+        list.add(1);    // ✅ 可以写入 Integer 及其子类
+        list.add(2);
+        // Integer i = list.get(0);  // ❌ 编译错误：可能存的是 Object
+        Object o = list.get(0);      // ✅ 只能用 Object 读取
+    }
+
+    // List<? super Integer> 可以指向：
+    List<Integer> ints = new ArrayList<>();
+    List<Number> nums = new ArrayList<>();
+    List<Object> objs = new ArrayList<>();
+
+    addNumbers(ints);  // ✅ Integer 是 Integer 的父类
+    addNumbers(nums);  // ✅ Number 是 Integer 的父类
+    addNumbers(objs);  // ✅ Object 是 Integer 的父类
+    ```
+
+#### 6.3.2 PECS 原则
+
+!!! tip "PECS —— Producer Extends, Consumer Super"
+
+    **PECS** 由 Joshua Bloch 在《Effective Java》中提出，是使用通配符的黄金法则：
+
+    - **Producer Extends**：如果你从集合中 **读取（生产）** 数据，用 `? extends T`
+    - **Consumer Super**：如果你向集合中 **写入（消费）** 数据，用 `? super T`
+    - **不读不写**：既不读也不写，直接用 `?`（无界通配符）
+
+```java
+// 典型应用 —— Collections.copy()
+public static <T> void copy(List<? super T> dest, List<? extends T> src) {
+    // src 是生产者  → ? extends T  ← 从中读取安全
+    // dest 是消费者 → ? super T    ← 向其中写入安全
+    for (int i = 0; i < src.size(); i++) {
+        dest.set(i, src.get(i));
+    }
+}
+```
+
+#### 6.3.3 实际应用场景
+
+=== "集合拷贝"
+
+    ```java
+    // 从 src 拷贝到 dest —— src 生产，dest 消费
+    List<Integer> src = List.of(1, 2, 3);
+    List<Number> dest = new ArrayList<>(List.of(0, 0, 0));
+
+    // src 是生产者 → ? extends Number
+    // dest 是消费者 → ? super Integer
+    Collections.copy(dest, src);  // dest → [1, 2, 3]
+    ```
+
+=== "集合填充"
+
+    ```java
+    // 用 obj 填充整个 list —— list 是消费者
+    public static void fill(List<? super Object> list, Object obj) {
+        for (int i = 0; i < list.size(); i++) {
+            list.set(i, obj);
+        }
+    }
+    ```
+
+=== "比较器适配"
+
+    ```java
+    // Collections.max() 的签名
+    // public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
+    //
+    // 含义：coll 中的元素可通过 ? extends T 安全读取
+    //       Comparable 使用 ? super T 作为消费者
+
+    // 实际例子 —— Student 实现了 Comparable<Student>
+    List<Student> students = getStudents();
+    Student top = Collections.max(students);  // ✅ 正常
+
+    // 当有父子类关系时，? super T 发挥作用
+    // class GraduateStudent extends Student implements Comparable<Student>
+    List<GraduateStudent> grads = getGrads();
+    Student best = Collections.max(grads);  // ✅ ? super T 在此生效
+    ```
+
+#### 6.3.4 通配符的局限
+
+```java
+// ❌ 通配符不能用于泛型方法的类型参数声明
+public <?> void method() { }              // 编译错误
+public <T> void method(T arg) { }         // ✅ 正确
+
+// ❌ 不能捕获通配符类型 —— 无法声明 ? 类型的变量
+List<?> list = new ArrayList<String>();
+// ? element = list.get(0);              // 编译错误
+
+// 通过辅助方法捕获通配符
+private <T> void captureHelper(List<T> list) {
+    T elem = list.get(0);  // ✅ 捕获通配符
+}
+
+// 类内部不要出现通配符字段
+// class Foo { private List<?> list; }    // 不推荐
+```
+
+!!! summary "PECS 速记卡"
+
+    ```
+    ┌──────────────────────────────────────────┐
+    │           PECS 原则速记卡                 │
+    ├──────────────────────────────────────────┤
+    │   Producer Extends → 只读（生产数据）      │
+    │   Consumer Super   → 只写（消费数据）      │
+    │                                        │
+    │   例：copy(dest, src)                    │
+    │     dest ← super（写入 dest）             │
+    │     src  ← extends（从 src 读取）          │
+    └──────────────────────────────────────────┘
+    ```
+
+> **参考链接**：
+>
+> - [Wildcards (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/generics/wildcards.html)
+> - [Wildcard Guidelines (PECS)](https://docs.oracle.com/javase/tutorial/java/generics/wildcardGuidelines.html)
+> - [Effective Java 3rd Edition, Item 31: Use bounded wildcards to increase API flexibility](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)
+
+---
+
+### 6.4 泛型数组的限制 {#sec6-4}
+
+#### 6.4.1 为什么不能创建泛型数组？
+
+**核心原因**：数组是**协变**（Covariant）且**运行时持有元素类型信息**（Reified），而泛型是**不变**（Invariant）且**擦除**（Erasure）的。二者在类型系统上存在根本冲突。
+
+```
+// 数组：运行时检查 —— 安全
+// 泛型：编译时检查 —— 运行时擦除
+
+// 数组是协变的
+Object[] arr = new String[10];  // ✅ 编译通过
+arr[0] = 42;                    // ❌ ArrayStoreException（运行时检查）
+
+// 泛型是不变的
+List<Object> list = new ArrayList<String>();  // ❌ 编译错误（类型安全）
+
+// 所以二者不能共存：
+// new List<String>[10] —— 如果允许，数组的运行时类型检查会被擦除绕过
+```
+
+!!! warning "禁止创建泛型数组"
+
+    ```java
+    // ❌ 以下全都编译错误
+    List<String>[] array = new List<String>[10];
+    List<Integer>[] intArr = new List<Integer>[5];
+    E[] elements = new E[10];  // 在泛型类内部
+
+    // ✅ 替代方案一：使用 ArrayList 代替数组
+    List<List<String>> listOfLists = new ArrayList<>();
+
+    // ✅ 替代方案二：使用原始类型再转换（有警告）
+    List<String>[] array = (List<String>[]) new ArrayList[10];  // 有警告
+
+    // ✅ 替代方案三：通过反射创建数组（泛型方法中）
+    @SuppressWarnings("unchecked")
+    public static <T> T[] createArray(Class<T> clazz, int size) {
+        return (T[]) Array.newInstance(clazz, size);
+    }
+    ```
+
+#### 6.4.2 协变、逆变与不变
+
+理解这三种类型关系，是掌握泛型的关键前提。
+
+| 概念 | 英语 | 含义 | 示例 |
+|------|------|------|------|
+| **协变** | Covariance | `Sub` 是 `Parent` 的子类 → `Sub[]` 也是 `Parent[]` 的子类 | `String[]` 是 `Object[]` 的子类 |
+| **逆变** | Contravariance | `Sub` 是 `Parent` 的子类 → `Parent<T>` 是 `Sub<T>` 的子类（反向） | 见下 |
+| **不变** | Invariance | `Sub` 是 `Parent` 的子类，但 `Generic<Sub>` 与 `Generic<Parent>` 无关系 | `List<String>` 与 `List<Object>` 无关 |
+
+```java
+// 数组协变
+String[] strings = new String[10];
+Object[] objects = strings;     // ✅ 数组协变 —— 编译通过
+objects[0] = 42;                // ❌ 运行时 ArrayStoreException
+
+// 泛型不变
+List<String> strList = new ArrayList<>();
+// List<Object> objList = strList;  // ❌ 编译错误 —— 泛型不变
+
+// 用通配符实现协变和逆变
+List<? extends String> covariant  = new ArrayList<String>();  // ✅ 协变
+List<? super String>   contravariant = new ArrayList<Object>();  // ✅ 逆变
+```
+
+#### 6.4.3 可变参数与泛型
+
+Java 中可变参数本质上就是数组，当可变参数的类型是泛型时，编译器会给出警告。
+
+```java
+// 可变参数实际上是数组
+@SafeVarargs  // 抑制堆污染警告
+public static <T> List<T> asList(T... elements) {
+    List<T> list = new ArrayList<>();
+    for (T elem : elements) {
+        list.add(elem);
+    }
+    return list;
+}
+
+// 如果不加 @SafeVarargs，调用处会有警告
+List<String> list = asList("a", "b", "c");
+
+// @SafeVarargs 的使用条件：
+// 1. 方法必须是 final 或 static（Java 8 要求）
+// 2. 方法体不能将数组赋值给不可信来源
+```
+
+#### 6.4.4 堆污染（Heap Pollution）
+
+当参数化类型的变量指向了不是该类型的对象时，就发生了**堆污染**。
+
+```java
+// 堆污染示例
+List<String>[] array = new List[5];  // raw type —— 有警告
+array[0] = new ArrayList<String>();
+array[1] = new ArrayList<Integer>(); // 编译器无法检测
+// 运行时读取
+String s = array[1].get(0);  // ClassCastException 😱
+
+// 如果变量参数和泛型结合，更容易出现堆污染
+public static void dangerous(List<String>... stringLists) {
+    Object[] array = stringLists;                 // 可变参数本质是数组，协变
+    array[0] = List.of(42);                       // 堆污染！
+    String s = stringLists[0].get(0);             // 隐含的 ClassCastException
+}
+```
+
+!!! summary "泛型数组限制要点"
+
+    | 限制 | 原因 | 替代方案 |
+    |------|------|---------|
+    | `new T[]` 不允许 | 运行时类型擦除，无法确定 T | `ArrayList<T>` |
+    | `new List<String>[10]` 不允许 | 数组协变与泛型不变冲突 | `List<List<String>>` |
+    | 可变参数 + 泛型有警告 | 本质是数组 + 泛型 | 用 `@SafeVarargs` 抑制 |
+    | 堆污染风险 | 数组协变绕过泛型检查 | 避免混用数组和泛型 |
+
+> **参考链接**：
+>
+> - [Restrictions on Generics (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html)
+> - [Heap Pollution (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/generics/nonReifiableVarargsType.html)
+> - [Java Language Specification §4.7: Reifiable Types](https://docs.oracle.com/javase/specs/jls/se25/html/jls-4.html#jls-4.7)
+
+---
+
+> **📚 本章参考汇总**
+>
+> - [Java Generics Tutorial (Oracle)](https://docs.oracle.com/javase/tutorial/java/generics/)
+> - [Java Language Specification §4.5: Parameterized Types](https://docs.oracle.com/javase/specs/jls/se25/html/jls-4.html#jls-4.5)
+> - [Effective Java, 3rd Edition — Item 26-33 (泛型章节)](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)
+> - [Generics in Java (Baeldung)](https://www.baeldung.com/java-generics)
+> - [Wildcards in Java (Baeldung)](https://www.baeldung.com/java-generics-pecs)
+
+---
+
+## 七、异常机制 {#sec7}
+
+> 异常处理是 Java 程序中不可或缺的防御机制。Java 通过一套完备的异常体系，将程序运行中的错误与异常进行统一管理，强制开发者编写健壮的容错代码。核心关键词：**未雨绸缪、优雅降级、资源安全释放**。
+
+### 7.1 异常体系结构 {#sec7-1}
+
+Java 的异常体系以 `Throwable` 为根，向下分为两大分支：
+
+```
+Throwable（可抛出的）
+├── Error（错误）—— 不可处理，程序应退出
+│   ├── OutOfMemoryError        ← 内存溢出
+│   ├── StackOverflowError      ← 栈溢出
+│   ├── NoClassDefFoundError    ← 类找不到
+│   └── ...
+└── Exception（异常）—— 可处理
+    ├── RuntimeException（运行时异常）—— 非受检
+    │   ├── NullPointerException          ← 空指针
+    │   ├── ArrayIndexOutOfBoundsException ← 数组越界
+    │   ├── IllegalArgumentException       ← 非法参数
+    │   ├── ClassCastException             ← 类型转换异常
+    │   ├── ArithmeticException            ← 算术异常（如除零）
+    │   └── ...
+    └── 其他 Exception（受检异常）
+        ├── IOException                    ← IO 异常
+        ├── SQLException                   ← SQL 异常
+        ├── ClassNotFoundException         ← 类未找到
+        ├── FileNotFoundException          ← 文件未找到
+        └── ...
+```
+
+!!! note "三大类异常的区别"
+
+    | 类别 | 英文 | 处理要求 | 典型代表 |
+    |------|------|---------|---------|
+    | **Error** | 错误 | ❌ 不应捕获，程序应终止 | `OutOfMemoryError`、`StackOverflowError` |
+    | **Checked Exception** | 受检异常 | ✅ 必须处理（捕获或声明抛出） | `IOException`、`SQLException` |
+    | **RuntimeException** | 运行时异常 | ⚠️ 不强制处理，但建议处理 | `NullPointerException`、`IndexOutOfBoundsException` |
+
+!!! warning "核心原则"
+
+    - **Error**：不要捕获，让程序崩溃并修复代码
+    - **RuntimeException**：通常是程序 bug（如空指针、越界），修复代码而非捕获
+    - **Checked Exception**：可预见的异常（如文件不存在、网络超时），必须处理
+
+> **参考链接**：
+>
+> - [Throwable API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Throwable.html)
+> - [Exception API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Exception.html)
+> - [RuntimeException API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/RuntimeException.html)
+
+---
+
+### 7.2 受检异常 vs 非受检异常 {#sec7-2}
+
+#### 7.2.1 受检异常（Checked Exception）
+
+**必须显式处理**，否则编译不通过。要么 `try-catch`，要么在方法签名上用 `throws` 声明抛出。
+
+```java
+// 方式一：try-catch 处理
+public void readFile(String path) {
+    try {
+        FileInputStream fis = new FileInputStream(path);  // 可能抛出 FileNotFoundException
+        byte[] data = fis.readAllBytes();                 // 可能抛出 IOException
+    } catch (FileNotFoundException e) {
+        System.err.println("文件未找到: " + path);
+    } catch (IOException e) {
+        System.err.println("读取文件失败: " + e.getMessage());
+    }
+}
+
+// 方式二：声明抛出，交给上层处理
+public void readFile(String path) throws IOException {
+    FileInputStream fis = new FileInputStream(path);
+    byte[] data = fis.readAllBytes();
+    // 调用者必须处理 IOException
+}
+```
+
+#### 7.2.2 非受检异常（Unchecked Exception）
+
+包含 `RuntimeException` 及其子类，**编译器不强制处理**。但程序运行时如果发生且未被捕获，会导致线程终止。
+
+```java
+// 编译器不会强制你捕获 —— 但运行时可能崩溃
+String s = null;
+s.length();  // ❌ NullPointerException —— 程序崩溃
+
+// 虽然不强制，但预防性处理是良好的习惯
+if (s != null) {
+    s.length();
+}
+```
+
+#### 7.2.3 异常处理的最佳实践
+
+=== "异常捕获的粒度"
+
+    ```java
+    // ❌ 不好的做法：捕获过于宽泛的异常，吞没错误信息
+    try {
+        // ... 复杂逻辑
+    } catch (Exception e) {
+        // 啥也不做 —— 吞没了异常！
+    }
+
+    // ❌ 不好的做法：一个 catch 包所有
+    try {
+        // ... 复杂逻辑
+    } catch (Throwable t) {
+        // 连 Error 都捕获了，这通常不应该
+    }
+
+    // ✅ 好的做法：精确捕获具体异常
+    try {
+        FileInputStream fis = new FileInputStream(path);
+        byte[] data = fis.readAllBytes();
+    } catch (FileNotFoundException e) {
+        log.error("配置文件不存在，使用默认配置", e);
+    } catch (IOException e) {
+        log.error("读取配置文件失败", e);
+    }
+    ```
+
+=== "异常丢失的陷阱"
+
+    ```java
+    // ❌ 异常丢失：finally 中抛出异常会覆盖 try 中的异常
+    try {
+        throw new RuntimeException("原始异常");
+    } finally {
+        throw new RuntimeException("finally 中的异常");  // 覆盖了上面的异常！
+    }
+
+    // ✅ Java 7+ 的 addSuppressed() 可以保留多个异常
+    // ✅ 更推荐：用 try-with-resources 避免手动 close
+    ```
+
+=== "日志记录"
+
+    ```java
+    // ✅ 正确姿势：记录异常堆栈（不仅仅是 message）
+    try {
+        // ...
+    } catch (IOException e) {
+        log.error("操作失败", e);  // 传入异常对象，记录完整堆栈
+        // log.error("操作失败: " + e.getMessage());  // ❌ 只记录 message，丢失堆栈
+    }
+    ```
+
+!!! tip "异常处理的黄金法则"
+
+    1. **不要吞没异常** —— 空的 `catch` 块是万恶之源
+    2. **不要用异常控制流程** —— 异常的性能开销很大，正常的业务逻辑用 if-else
+    3. **捕获具体类型** —— 不要笼统地 `catch (Exception e)`
+    4. **尽早抛出，延迟捕获** —— 在出错的地方立即抛出，在能处理的地方捕获
+    5. **记录完整堆栈** —— `log.error("msg", e)` 而不是 `log.error(e.getMessage())`
+
+> **参考链接**：
+>
+> - [Unchecked Exceptions — The Controversy (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/essential/exceptions/runtime.html)
+> - [Java Exception Handling (Baeldung)](https://www.baeldung.com/java-exceptions)
+
+---
+
+### 7.3 try-catch-finally 与 try-with-resources {#sec7-3}
+
+#### 7.3.1 传统 try-catch-finally
+
+`finally` 块**无论是否发生异常都会执行**，通常用于释放资源（关闭流、释放锁等）。
+
+```java
+// 传统写法：finally 释放资源
+FileInputStream fis = null;
+try {
+    fis = new FileInputStream("test.txt");
+    // 读取数据...
+} catch (IOException e) {
+    log.error("IO 异常", e);
+} finally {
+    // 无论是否异常，都会执行
+    if (fis != null) {
+        try {
+            fis.close();  // close() 本身也可能抛出异常
+        } catch (IOException e) {
+            log.error("关闭流失败", e);
+        }
+    }
+}
+```
+
+**finally 的两个特殊行为**：
+
+```java
+// 特殊情况一：finally 中 return 会覆盖 try/catch 中的 return
+public static int test() {
+    try {
+        return 1;
+    } finally {
+        return 2;  // 返回值是 2，不是 1！
+    }
+}
+
+// 特殊情况二：System.exit() 会阻止 finally 执行
+try {
+    System.exit(0);  // 直接终止 JVM，finally 不会执行
+} finally {
+    System.out.println("不会执行");  // ❌ 不会输出
+}
+```
+
+#### 7.3.2 try-with-resources（Java 7+）
+
+Java 7 引入了 **try-with-resources** 语句，自动关闭实现了 `AutoCloseable` 接口的资源，代码更简洁、更安全。
+
+=== "基本用法"
+
+    ```java
+    // ✅ try-with-resources：资源自动关闭
+    // 括号中的资源必须实现 AutoCloseable 或 Closeable 接口
+    try (FileInputStream fis = new FileInputStream("test.txt");
+         BufferedReader reader = new BufferedReader(new InputStreamReader(fis))) {
+
+        String line = reader.readLine();
+        System.out.println(line);
+
+    } catch (IOException e) {
+        log.error("读取文件失败", e);
+    }
+    // fis 和 reader 会自动 close()，无需手动处理
+    ```
+
+=== "多个资源的关闭顺序"
+
+    ```java
+    // 多个资源的关闭顺序与创建顺序相反（后创建的先关闭）
+    try (FileOutputStream fos = new FileOutputStream("out.txt");
+         BufferedOutputStream bos = new BufferedOutputStream(fos)) {
+
+        bos.write("Hello".getBytes());
+    }
+    // 关闭顺序：先 bos.close()，再 fos.close()
+    ```
+
+=== "抑制异常"
+
+    ```java
+    // try-with-resources 如果 close() 也抛异常，会被抑制（suppressed）
+    // 原始异常仍然保留，抑制的异常可以通过 getSuppressed() 获取
+    try (CustomResource res = new CustomResource()) {
+        throw new RuntimeException("原始异常");
+    } catch (RuntimeException e) {
+        System.out.println(e.getMessage());           // "原始异常"
+        Throwable[] suppressed = e.getSuppressed();   // 获取被抑制的 close() 异常
+    }
+    ```
+
+#### 7.3.3 finally vs try-with-resources 对比
+
+| 对比维度 | try-catch-finally | try-with-resources |
+|----------|------------------|-------------------|
+| **代码简洁性** | 需要手动 close，嵌套 try-catch | 自动 close，一行搞定 |
+| **安全性** | 容易忘记 close 或异常丢失 | 保证 close 且异常不丢失 |
+| **支持接口** | 任意资源 | `AutoCloseable` / `Closeable` |
+| **引入版本** | JDK 1.0 | JDK 7（Java 9+ 支持 effectively final 变量） |
+
+!!! tip "Java 9 增强"
+
+    Java 9 允许在 try 括号外声明资源变量（必须是 **effectively final**），使代码更灵活：
+
+    ```java
+    // Java 9+：在 try 外声明，try 内使用
+    FileInputStream fis = new FileInputStream("test.txt");
+    BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+    try (fis; reader) {          // 直接在 try 中使用变量名
+        String line = reader.readLine();
+    }
+    ```
+
+> **参考链接**：
+>
+> - [try-with-resources (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html)
+> - [AutoCloseable API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/AutoCloseable.html)
+> - [The try-with-resources Statement (Baeldung)](https://www.baeldung.com/java-try-with-resources)
+
+---
+
+### 7.4 自定义异常 {#sec7-4}
+
+当 JDK 提供的异常类型不足以表达业务语义时，可以自定义异常。
+
+#### 7.4.1 自定义受检异常
+
+```java
+// 继承 Exception 即为受检异常
+public class BusinessException extends Exception {
+
+    private String errorCode;
+
+    public BusinessException(String errorCode, String message) {
+        super(message);
+        this.errorCode = errorCode;
+    }
+
+    public BusinessException(String errorCode, String message, Throwable cause) {
+        super(message, cause);
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+}
+
+// 使用
+public void transfer(String from, String to, double amount)
+        throws BusinessException {
+    if (amount <= 0) {
+        throw new BusinessException("AMOUNT_INVALID", "转账金额必须大于 0");
+    }
+    if (amount > 10000) {
+        throw new BusinessException("EXCEED_LIMIT", "单笔转账不能超过 10000");
+    }
+}
+```
+
+#### 7.4.2 自定义运行时异常
+
+```java
+// 继承 RuntimeException 即为非受检异常
+public class ServiceException extends RuntimeException {
+
+    private int code;
+
+    public ServiceException(int code, String message) {
+        super(message);
+        this.code = code;
+    }
+
+    public ServiceException(int code, String message, Throwable cause) {
+        super(message, cause);
+        this.code = code;
+    }
+
+    public int getCode() {
+        return code;
+    }
+}
+
+// 使用 —— 不需要 throws 声明
+public User getUserById(Long id) {
+    if (id == null) {
+        throw new ServiceException(400, "用户 ID 不能为空");
+    }
+    User user = userMapper.selectById(id);
+    if (user == null) {
+        throw new ServiceException(404, "用户不存在");
+    }
+    return user;
+}
+```
+
+#### 7.4.3 自定义异常的最佳实践
+
+=== "推荐的异常设计"
+
+    ```java
+    // ✅ 推荐：统一异常码 + 消息 + 原始异常
+    public class BizException extends RuntimeException {
+
+        private final int code;
+        private final String msg;
+
+        public BizException(int code, String msg) {
+            super(msg);
+            this.code = code;
+            this.msg = msg;
+        }
+
+        public BizException(int code, String msg, Throwable cause) {
+            super(msg, cause);
+            this.code = code;
+            this.msg = msg;
+        }
+
+        // 只提供 getter，不提供 setter（不可变）
+        public int getCode() { return code; }
+        public String getMsg() { return msg; }
+    }
+    ```
+
+=== "不推荐的设计"
+
+    ```java
+    // ❌ 不推荐：每个业务都创建一个异常类
+    public class UserNotFoundException extends RuntimeException { }
+    public class OrderNotFoundException extends RuntimeException { }
+    public class ProductNotFoundException extends RuntimeException { }
+    // ... 每个异常都要定义一个新类，造成类爆炸
+
+    // ✅ 推荐：统一的业务异常 + 错误码枚举
+    public enum ErrorCode {
+        USER_NOT_FOUND(1001, "用户不存在"),
+        ORDER_NOT_FOUND(1002, "订单不存在"),
+        PRODUCT_NOT_FOUND(1003, "商品不存在");
+
+        private final int code;
+        private final String msg;
+        // 构造器、getter 省略
+    }
+
+    // 使用
+    throw new BizException(ErrorCode.USER_NOT_FOUND.getCode(),
+                           ErrorCode.USER_NOT_FOUND.getMsg());
+    ```
+
+!!! summary "自定义异常的设计原则"
+
+    | 原则 | 说明 |
+    |------|------|
+    | **继承选择** | 希望调用者必须处理 → `Exception`（受检）；希望调用者按需处理 → `RuntimeException`（非受检） |
+    | **包含异常码** | 数字或枚举，方便前端和调用方识别错误类型 |
+    | **包含原始异常** | 构造函数接收 `Throwable cause`，不丢失原始堆栈 |
+    | **避免类爆炸** | 用统一的异常类 + 错误码枚举，而不是每个错误一个异常类 |
+    | **不可变设计** | 异常对象创建后不应修改，不提供 setter |
+
+> **参考链接**：
+>
+> - [Creating Custom Exception Classes (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/essential/exceptions/creating.html)
+> - [Custom Exception in Java (Baeldung)](https://www.baeldung.com/java-new-custom-exception)
+> - [Effective Java 3rd Edition, Item 72: Favor the use of standard exceptions](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)
+
+---
+
+> **📚 本章参考汇总**
+>
+> - [Java Exception Handling Tutorial (Oracle)](https://docs.oracle.com/javase/tutorial/essential/exceptions/)
+> - [Throwable Class (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Throwable.html)
+> - [Java Exception API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Exception.html)
+> - [Effective Java, 3rd Edition — Items 70-77 (异常章节)](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)
+> - [Baeldung: Java Exception Handling](https://www.baeldung.com/java-exceptions)

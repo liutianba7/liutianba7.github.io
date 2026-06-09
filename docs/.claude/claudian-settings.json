@@ -40,7 +40,7 @@
   },
   "permissionMode": "yolo",
   "model": "haiku",
-  "thinkingBudget": "low",
+  "thinkingBudget": "off",
   "enableAutoTitleGeneration": true,
   "titleGenerationModel": "",
   "show1MModel": false,

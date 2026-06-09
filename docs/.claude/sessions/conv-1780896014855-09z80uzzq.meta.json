@@ -1,0 +1,20 @@
+{
+  "id": "conv-1780896014855-09z80uzzq",
+  "title": "Continue organizing interview questions format",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780896014856,
+  "updatedAt": 1780905469811,
+  "lastResponseAt": 1780896417157,
+  "sessionId": "3452a009-95a5-42a2-af3b-827392db6ed0",
+  "sdkSessionId": "3452a009-95a5-42a2-af3b-827392db6ed0",
+  "currentNote": "code-notes/algorithm/hot100总结.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 903,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 42880,
+    "contextWindow": 200000,
+    "contextTokens": 43783,
+    "percentage": 22
+  }
+}

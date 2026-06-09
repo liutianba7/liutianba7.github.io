@@ -1,0 +1,20 @@
+{
+  "id": "conv-1780905697655-33mpw0m9m",
+  "title": "Write Chapter 6 notes in blog format",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780905697656,
+  "updatedAt": 1780911683470,
+  "lastResponseAt": 1780911683470,
+  "sessionId": "1e09807f-8181-4a4d-953a-1c16c1e3170a",
+  "sdkSessionId": "1e09807f-8181-4a4d-953a-1c16c1e3170a",
+  "currentNote": "java/01_Java_Core/java 基础.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 132,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 142464,
+    "contextWindow": 200000,
+    "contextTokens": 142596,
+    "percentage": 71
+  }
+}

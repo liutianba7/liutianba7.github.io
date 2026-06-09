@@ -1,0 +1,20 @@
+{
+  "id": "conv-1780962647355-x9qv1gbch",
+  "title": "撰写 PyTorch Tensor 基础笔记",
+  "titleGenerationStatus": "success",
+  "createdAt": 1780962647355,
+  "updatedAt": 1780996760740,
+  "lastResponseAt": 1780996760740,
+  "sessionId": "3bcb41f4-6cc0-4a32-bd78-c5520f000343",
+  "sdkSessionId": "3bcb41f4-6cc0-4a32-bd78-c5520f000343",
+  "currentNote": "python/05_ai/深度学习.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 140,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 158080,
+    "contextWindow": 200000,
+    "contextTokens": 158220,
+    "percentage": 79
+  }
+}
