@@ -1,0 +1,20 @@
+{
+  "id": "conv-1781010664841-wjb75ji66",
+  "title": "Review and polish blog content",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781010664841,
+  "updatedAt": 1781013205609,
+  "lastResponseAt": 1781010740694,
+  "sessionId": "b9161898-1c14-42e1-8b06-75d0b10b1c65",
+  "sdkSessionId": "b9161898-1c14-42e1-8b06-75d0b10b1c65",
+  "currentNote": "others/02_blog/wx公众号/day02 总结.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 1035,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 22528,
+    "contextWindow": 200000,
+    "contextTokens": 23563,
+    "percentage": 12
+  }
+}

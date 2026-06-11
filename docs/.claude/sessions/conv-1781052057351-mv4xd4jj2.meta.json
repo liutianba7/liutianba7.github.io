@@ -1,0 +1,20 @@
+{
+  "id": "conv-1781052057351-mv4xd4jj2",
+  "title": "Add chain rule note to deep learning notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781052057352,
+  "updatedAt": 1781143882528,
+  "lastResponseAt": 1781143870579,
+  "sessionId": "eb12c53b-ed8a-4ca9-ae23-30e959d67630",
+  "sdkSessionId": "eb12c53b-ed8a-4ca9-ae23-30e959d67630",
+  "currentNote": "python/05_ai/深度学习.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

@@ -2670,3 +2670,597 @@ public User getUserById(Long id) {
 > - [Java Exception API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Exception.html)
 > - [Effective Java, 3rd Edition — Items 70-77 (异常章节)](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)
 > - [Baeldung: Java Exception Handling](https://www.baeldung.com/java-exceptions)
+
+---
+
+## 八、注解与反射 {#sec8}
+
+> 注解（Annotation）和反射（Reflection）是 Java 进阶的核心特性。注解负责"标记"，反射负责"读取与执行"，二者结合构成了 Spring、MyBatis、JUnit 等主流框架的基石。**注解是写在源码上的"标签"，反射是 JVM 在运行期"读标签做事"的超能力**。
+
+### 8.1 注解（Annotation） {#sec8-1}
+
+#### 8.1.1 什么是注解
+
+注解是一种 **元数据**（metadata），用于为代码附加额外的信息，本身不影响程序逻辑，但可以被编译器、工具或运行期通过反射读取。
+
+```java
+// 你可能已经见过的注解
+@Override              // 告诉编译器：这是重写父类方法
+@Deprecated(since = "9") // 告诉调用者：此 API 已过时
+@SuppressWarnings("all") // 告诉编译器：忽略所有警告
+```
+
+!!! note "注解 vs 注释"
+
+    | 维度 | 注释（`//` / `/* */`） | 注解（`@xxx`） |
+    |------|----------------------|----------------|
+    | 作用对象 | 给开发者看的 | 给编译器 / JVM / 框架看的 |
+    | 是否参与编译 | ❌ 编译器丢弃 | ✅ 写入 `.class` 文件 |
+    | 能否反射读取 | ❌ | ✅（`RUNTIME` 保留策略） |
+
+#### 8.1.2 JDK 内置注解速查
+
+| 注解 | 作用 | 引入版本 |
+|------|------|---------|
+| `@Override` | 标记方法是重写父类方法，编译期校验 | JDK 1.5 |
+| `@Deprecated` | 标记 API 已过时，调用时编译器会发出警告 | JDK 1.5 |
+| `@SuppressWarnings` | 抑制编译器警告（如 `"unchecked"`、`"deprecation"`、`"all"`） | JDK 1.5 |
+| `@SafeVarargs` | 抑制可变参数 + 泛型的堆污染警告 | JDK 1.7 |
+| `@FunctionalInterface` | 标记接口是函数式接口（只能有一个抽象方法） | JDK 1.8 |
+| `@Native` | 标记常量引用本地代码 | JDK 1.8 |
+
+```java
+// 综合示例
+@FunctionalInterface       // ✅ 函数式接口必须有且仅有一个抽象方法
+public interface Converter<F, T> {
+    T convert(F from);
+
+    default void log() {}  // default 方法不影响函数式接口判定
+}
+
+@Deprecated(since = "9", forRemoval = true)  // 已过时，建议移除
+public void oldMethod() { }
+
+@SuppressWarnings({"unchecked", "deprecation"})
+List list = new ArrayList();
+```
+
+#### 8.1.3 元注解（Meta-Annotation）
+
+元注解是 **修饰注解的注解**，JDK 提供了 5 个核心元注解。
+
+=== "`@Retention` —— 注解保留到何时"
+
+    ```java
+    @Retention(RetentionPolicy.SOURCE)  // 源码期，编译后丢弃（如 @Override）
+    @Retention(RetentionPolicy.CLASS)   // class 文件期，默认值（但运行期不可见）
+    @Retention(RetentionPolicy.RUNTIME) // 运行期，可通过反射读取
+    ```
+
+    | 策略 | 保留阶段 | 反射可读 | 典型代表 |
+    |------|---------|---------|---------|
+    | `SOURCE` | 源码期 | ❌ | `@Override` |
+    | `CLASS` | class 文件期 | ❌（默认值） | Lombok 的 `@Data` |
+    | `RUNTIME` | 运行期 | ✅ | Spring 的 `@Component` |
+
+=== "`@Target` —— 注解可以贴在哪些位置"
+
+    ```java
+    @Target({ElementType.TYPE, ElementType.METHOD})
+    public @interface MyAnnotation { }
+    ```
+
+    | `ElementType` | 含义 |
+    |---------------|------|
+    | `TYPE` | 类、接口、枚举 |
+    | `FIELD` | 字段 |
+    | `METHOD` | 方法 |
+    | `PARAMETER` | 方法参数 |
+    | `CONSTRUCTOR` | 构造器 |
+    | `LOCAL_VARIABLE` | 局部变量 |
+    | `ANNOTATION_TYPE` | 注解类型 |
+    | `PACKAGE` | 包 |
+    | `TYPE_PARAMETER` | 类型参数（Java 8+，如 `class Box<@NonNull T>`） |
+    | `TYPE_USE` | 类型使用（Java 8+） |
+
+=== "其他三个元注解"
+
+    ```java
+    @Documented   // 注解会被 Javadoc 工具收录到 API 文档中
+    @Inherited    // 注解可被子类继承（仅对 @Target(ElementType.TYPE) 有效）
+    @Repeatable   // Java 8+：允许同一位置重复使用同一注解
+    ```
+
+    ```java
+    // @Repeatable 示例
+    @Repeatable(Roles.class)  // 容器注解
+    public @interface Role {
+        String value();
+    }
+
+    public @interface Roles {
+        Role[] value();
+    }
+
+    // 同一位置可多次使用
+    @Role("admin")
+    @Role("user")
+    public class User { }
+    ```
+
+#### 8.1.4 自定义注解实战
+
+=== "1. 定义注解"
+
+    ```java
+    @Retention(RetentionPolicy.RUNTIME)     // 必须 RUNTIME 才能反射读取
+    @Target(ElementType.METHOD)             // 只能贴在方法上
+    @Documented                              // 收录到 Javadoc
+    public @interface MyCache {
+        String key() default "";             // 注解属性（类似方法）
+        int expireSeconds() default 60;
+    }
+    ```
+
+    注解属性的本质就是**抽象方法**，支持的类型有：
+
+    - 基本类型 / `String` / `enum` / `Class`
+    - 上述类型的数组
+    - 其他注解类型
+
+=== "2. 使用注解"
+
+    ```java
+    public class UserService {
+
+        @MyCache(key = "user:", expireSeconds = 300)
+        public User getUserById(Long id) {
+            // 查询数据库
+            return userMapper.selectById(id);
+        }
+    }
+    ```
+
+=== "3. 反射解析注解"
+
+    ```java
+    // 解析方法上的 @MyCache 注解
+    Method method = UserService.class.getMethod("getUserById", Long.class);
+    MyCache cache = method.getAnnotation(MyCache.class);
+
+    if (cache != null) {
+        String key = cache.key();              // "user:"
+        int expire = cache.expireSeconds();    // 300
+        System.out.println("缓存 key: " + key + ", 过期: " + expire + "s");
+    }
+    ```
+
+!!! tip "注解的两个经典使用模式"
+
+    - **编译期处理**：Lombok 在编译时修改 AST 生成代码（`@Data` 自动生成 getter/setter）
+    - **运行期反射**：Spring 在运行时扫描 `@Component`、`@Autowired` 等注解实现 IoC/DI
+
+> **参考链接**：
+>
+> - [Annotation Types (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/annotations/basics.html)
+> - [Predefined Annotation Types (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/annotations/predefined.html)
+> - [Repeatable Annotations (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/annotations/repeating.html)
+
+---
+
+### 8.2 反射核心 API {#sec8-2}
+
+#### 8.2.1 反射是什么
+
+**反射（Reflection）** 允许程序在 **运行期** 动态获取类的信息（字段、方法、构造器）并操作对象实例，是 Java "超能力" 的代表。
+
+```java
+// 一句话理解反射
+String s = "Hello";
+// 正常写法：编译期就知道 s 是 String
+// 反射写法：运行期才知道 s 是什么类型
+if (s.getClass() == String.class) { ... }
+```
+
+#### 8.2.2 Class 对象的三种获取方式
+
+```java
+// 方式一：类名.class —— 编译期常量，性能最好
+Class<String> c1 = String.class;
+
+// 方式二：getClass() —— 需要有对象实例
+String s = "Hello";
+Class<? extends String> c2 = s.getClass();
+
+// 方式三：Class.forName() —— 类的全限定名（最常用）
+Class<?> c3 = Class.forName("java.lang.String");
+
+// 三种方式获取的是同一个 Class 对象
+System.out.println(c1 == c2);  // true
+System.out.println(c1 == c3);  // true
+```
+
+!!! tip "基本类型 / void / 数组的 Class 对象"
+
+    ```java
+    Class<Integer> c1 = int.class;
+    Class<Void> c2 = void.class;
+    Class<int[]> c3 = int[].class;        // 数组也属于 Class
+    Class<String[]> c4 = String[].class;
+    // ❌ int.class == Integer.class —— false！基本类型与包装类 Class 不同
+    ```
+
+#### 8.2.3 反射三件套
+
+```
+                  java.lang.Class
+                        │
+        ┌───────────────┼───────────────┐
+        ▼               ▼               ▼
+   Constructor       Method           Field
+   (构造器)         (方法)           (字段)
+        │               │               │
+        ▼               ▼               ▼
+  newInstance()   invoke(obj, args)  get/set(obj, value)
+```
+
+=== "获取构造器并创建实例"
+
+    ```java
+    public class User {
+        private String name;
+        public User() { }
+        public User(String name) { this.name = name; }
+    }
+
+    // 反射创建对象
+    Class<User> clazz = User.class;
+
+    // 1. 调用无参构造
+    User u1 = clazz.getDeclaredConstructor().newInstance();
+
+    // 2. 调用有参构造
+    User u2 = clazz.getDeclaredConstructor(String.class).newInstance("Alice");
+
+    // ✅ 简写：Class.newInstance()（已废弃，Java 9 起不推荐）
+    //  推荐使用 clazz.getDeclaredConstructor().newInstance()
+    ```
+
+=== "获取方法并调用"
+
+    ```java
+    Method getName = User.class.getMethod("getName");  // 获取 public 方法
+    String name = (String) getName.invoke(u2);
+    System.out.println(name);  // "Alice"
+
+    // 调用带参数的方法
+    Method setName = User.class.getMethod("setName", String.class);
+    setName.invoke(u1, "Bob");
+    ```
+
+=== "获取字段并读写"
+
+    ```java
+    Field nameField = User.class.getDeclaredField("name");
+    nameField.setAccessible(true);  // ⚠️ 突破 private 限制（破坏封装）
+
+    // 读
+    String name = (String) nameField.get(u2);
+    // 写
+    nameField.set(u1, "Bob");
+    ```
+
+!!! warning "`getXxx` vs `getDeclaredXxx`"
+
+    | 方法 | 范围 |
+    |------|------|
+    | `getMethod(String, Class...)` | **public** 方法，包含继承 |
+    | `getDeclaredMethod(String, Class...)` | **所有** 方法，仅本类（不包含继承） |
+    | `getField(String)` | **public** 字段，包含继承 |
+    | `getDeclaredField(String)` | **所有** 字段，仅本类 |
+    | `getConstructors()` | **public** 构造器 |
+    | `getDeclaredConstructors()` | **所有** 构造器 |
+
+#### 8.2.4 实战：通用对象拷贝工具
+
+```java
+// 用反射实现一个简单的 BeanUtils.copyProperties
+public static void copyProperties(Object source, Object target) throws Exception {
+    Class<?> sourceClass = source.getClass();
+    Class<?> targetClass = target.getClass();
+
+    for (Field sourceField : sourceClass.getDeclaredFields()) {
+        String name = sourceField.getName();
+        try {
+            Field targetField = targetClass.getDeclaredField(name);
+            if (targetField == null) continue;
+
+            sourceField.setAccessible(true);
+            targetField.setAccessible(true);
+
+            // 类型匹配才拷贝
+            if (sourceField.getType() == targetField.getType()) {
+                targetField.set(target, sourceField.get(source));
+            }
+        } catch (NoSuchFieldException e) {
+            // 目标类没有这个字段，跳过
+        }
+    }
+}
+
+// 使用
+User src = new User("Alice", 18);
+User dest = new User();
+copyProperties(src, dest);  // dest 的 name="Alice", age=18
+```
+
+#### 8.2.5 反射的优缺点
+
+| 维度          | 说明                                                  |
+| ----------- | --------------------------------------------------- |
+| ✅ **灵活**    | 动态创建对象、调用方法、读写字段，运行时决定行为                            |
+| ✅ **解耦**    | 框架无需硬编码具体类，配置即可（如 Spring 加载 Bean）                   |
+| ❌ **性能差**   | 反射调用比直接调用慢 10-100 倍（但 `setAccessible(true)` 后差距会缩小） |
+| ❌ **破坏封装**  | `setAccessible(true)` 可访问 `private` 成员，违反 OOP       |
+| ❌ **类型不安全** | 编译期不报错，运行期才能发现错误（如 `NoSuchMethodException`）         |
+| ❌ **复杂度高**  | 代码可读性差，调试困难                                         |
+
+!!! tip "反射的性能优化"
+
+    1. **缓存反射对象**：把 `Class`、`Method`、`Field` 对象缓存到静态变量中，避免重复查找
+    2. **`setAccessible(true)`**：关闭 Java 语言访问检查，性能可提升 4 倍以上
+    3. **避免热路径反射**：性能敏感的代码不要使用反射
+
+#### 8.2.6 反射的典型应用
+
+| 应用 | 用途 |
+|------|------|
+| **Spring IoC** | 扫描 `@Component`，反射调用构造器创建 Bean |
+| **Spring DI** | 读取 `@Autowired`，反射调用 setter / 字段注入 |
+| **MyBatis** | 反射调用 setter 映射查询结果到 POJO |
+| **Jackson / Gson** | 反射读取字段，实现 JSON ↔ Object 互转 |
+| **JDBC** | `Class.forName("com.mysql.cj.jdbc.Driver")` 加载驱动 |
+| **JUnit** | `@Test` 注解 + 反射调用被测试的方法 |
+| **Lombok** | **编译期** 修改 AST，不使用反射（这是反例） |
+
+> **参考链接**：
+>
+> - [Reflection API (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/reflect/)
+> - [Class API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/Class.html)
+> - [Method API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/reflect/Method.html)
+> - [Field API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/reflect/Field.html)
+> - [Constructor API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/reflect/Constructor.html)
+
+---
+
+### 8.3 动态代理 {#sec8-3}
+
+#### 8.3.1 代理模式概念
+
+**代理（Proxy）** 是一种设计模式：在不修改原代码的情况下，通过"中间层"为对象的方法增加额外功能（日志、事务、权限等）。
+
+```
+客户端 → 代理对象 → 真实对象
+                ↓
+            增强逻辑（日志 / 事务 / 权限等）
+```
+
+#### 8.3.2 静态代理 vs 动态代理
+
+=== "静态代理"
+
+    ```java
+    // 1. 接口
+    public interface UserService {
+        void save(User user);
+    }
+
+    // 2. 真实对象
+    public class UserServiceImpl implements UserService {
+        public void save(User user) {
+            System.out.println("保存用户: " + user.getName());
+        }
+    }
+
+    // 3. 静态代理 —— 每个接口都要写一个代理类，类爆炸
+    public class UserServiceStaticProxy implements UserService {
+        private final UserService target;
+
+        public UserServiceStaticProxy(UserService target) {
+            this.target = target;
+        }
+
+        public void save(User user) {
+            System.out.println("【日志】开始保存");  // 增强
+            target.save(user);                          // 真实方法
+            System.out.println("【日志】保存完成");
+        }
+    }
+    ```
+
+    **缺点**：每个接口都要写一个代理类，当接口有 100 个方法时，要写 100 行增强逻辑。
+
+=== "动态代理（核心价值）"
+
+    ```java
+    // 动态代理：一个 InvocationHandler 处理任意接口的任意方法
+    // 代码见下一节 —— 一次性解决所有代理需求
+    ```
+
+!!! summary "静态 vs 动态代理对比"
+
+    | 维度 | 静态代理 | 动态代理 |
+    |------|---------|---------|
+    | **代理类数量** | 一个接口一个代理类 | 一个 InvocationHandler 处理所有接口 |
+    | **代码复用** | 差 | 好 |
+    | **灵活性** | 编译期固定 | 运行时动态生成 |
+    | **底层原理** | 手写代理类 | 反射 + 字节码 |
+
+#### 8.3.3 JDK 动态代理（基于接口）
+
+JDK 自带的 `java.lang.reflect.Proxy` 类可以在运行期 **根据接口动态生成代理对象**，前提是目标对象必须实现接口。
+
+=== "代码示例：通用日志代理"
+
+    ```java
+    // 1. 实现 InvocationHandler —— 编写增强逻辑
+    public class LogInvocationHandler implements InvocationHandler {
+
+        private final Object target;  // 被代理的真实对象
+
+        public LogInvocationHandler(Object target) {
+            this.target = target;
+        }
+
+        @Override
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            // 增强逻辑：方法调用前后记录日志
+            System.out.println("【日志】调用方法: " + method.getName());
+            System.out.println("【日志】参数: " + Arrays.toString(args));
+
+            // 调用真实对象的方法
+            Object result = method.invoke(target, args);
+
+            System.out.println("【日志】返回: " + result);
+            return result;
+        }
+    }
+
+    // 2. 创建代理对象
+    UserService target = new UserServiceImpl();
+    UserService proxy = (UserService) Proxy.newProxyInstance(
+        target.getClass().getClassLoader(),    // 类加载器
+        target.getClass().getInterfaces(),     // 被代理的接口列表
+        new LogInvocationHandler(target)       // 调用处理器
+    );
+
+    // 3. 通过代理对象调用方法 —— 增强逻辑自动生效
+    proxy.save(new User("Alice"));
+    // 输出：
+    // 【日志】调用方法: save
+    // 【日志】参数: [User{name=Alice}]
+    // 保存用户: Alice
+    // 【日志】返回: null
+    ```
+
+    **核心 API**：
+
+    ```java
+    public static Object newProxyInstance(
+        ClassLoader loader,        // 目标对象的类加载器
+        Class<?>[] interfaces,     // 目标对象实现的接口列表
+        InvocationHandler h        // 增强逻辑的调用处理器
+    )
+    ```
+
+!!! warning "JDK 动态代理的局限"
+
+    - **必须实现接口**：没有接口的类无法被 JDK 代理
+    - 只能代理接口中声明的方法，类的特有方法不能代理
+    - 解决方案：使用 **CGLIB**（基于继承的字节码增强）
+
+#### 8.3.4 CGLIB 动态代理（基于继承）
+
+CGLIB 通过 **生成目标类的子类** 来实现代理，因此可以代理 **没有接口的普通类**。Spring AOP 在没有接口时默认使用 CGLIB。
+
+=== "CGLIB 核心思路（伪代码）"
+
+    ```java
+    // 1. MethodInterceptor：拦截器
+    public interface MethodInterceptor {
+        Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy);
+    }
+
+    // 2. 创建代理（需要引入 cglib 依赖）
+    Enhancer enhancer = new Enhancer();
+    enhancer.setSuperclass(UserServiceImpl.class);     // 设置父类
+    enhancer.setCallback(new LogMethodInterceptor());  // 设置回调
+    UserServiceImpl proxy = (UserServiceImpl) enhancer.create();
+    proxy.save(new User("Alice"));
+    ```
+
+!!! note "JDK 代理 vs CGLIB 代理"
+
+    | 维度 | JDK 动态代理 | CGLIB 动态代理 |
+    |------|-------------|---------------|
+    | **原理** | 基于接口（生成实现类） | 基于继承（生成子类） |
+    | **前提条件** | 目标对象必须实现接口 | 目标类不能是 `final` |
+    | **代理对象类型** | 接口类型 | 目标类类型 |
+    | **性能** | JDK 8+ 接近 CGLIB | 略慢（需生成字节码） |
+    | **依赖** | JDK 自带 | 需引入 `cglib` 库（Spring 内置） |
+    | **Spring 默认** | 有接口时使用 | 无接口时使用（Spring 5+ 默认 CGLIB） |
+
+#### 8.3.5 实战：模拟 Spring AOP
+
+```java
+// 用 JDK 动态代理模拟一个简易的"事务管理"
+public class TransactionalHandler implements InvocationHandler {
+
+    private final Object target;
+
+    public TransactionalHandler(Object target) {
+        this.target = target;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        // 只对标了 @Transactional 的方法加事务
+        if (method.isAnnotationPresent(Transactional.class)) {
+            System.out.println("【事务】开始");
+            try {
+                Object result = method.invoke(target, args);
+                System.out.println("【事务】提交");
+                return result;
+            } catch (Exception e) {
+                System.out.println("【事务】回滚");
+                throw e;
+            }
+        }
+        return method.invoke(target, args);
+    }
+}
+
+// 使用
+OrderService orderService = (OrderService) Proxy.newProxyInstance(
+    OrderServiceImpl.class.getClassLoader(),
+    OrderServiceImpl.class.getInterfaces(),
+    new TransactionalHandler(new OrderServiceImpl())
+);
+
+orderService.createOrder(order);  // 自动开启事务
+```
+
+> 这就是 Spring AOP 的核心思路：**注解 + 反射 + 动态代理 = 切面增强**。
+
+#### 8.3.6 注解、反射、动态代理的关系
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                    Spring AOP 实现原理                         │
+├──────────────────────────────────────────────────────────────┤
+│                                                              │
+│   @Transactional                                              │
+│   @Cacheable                  ← 注解（标记行为）              │
+│       │                                                    │
+│       ▼                                                    │
+│   扫描类 / 方法 → 读取注解         ← 反射（获取元数据）        │
+│       │                                                    │
+│       ▼                                                    │
+│   创建代理对象（Proxy/CGLIB）      ← 动态代理（增强逻辑）        │
+│       │                                                    │
+│       ▼                                                    │
+│   方法执行前后插入事务 / 日志 / 权限逻辑                        │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
+
+> **📚 本章参考汇总**
+>
+> - [Java Annotations (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/annotations/)
+> - [Java Reflection (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/reflect/)
+> - [java.lang.reflect API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/reflect/package-summary.html)
+> - [Java Dynamic Proxies (Baeldung)](https://www.baeldung.com/java-dynamic-proxies)
+> - [Spring AOP 官方文档](https://docs.spring.io/spring-framework/reference/core/aop.html)
+> - [Effective Java 3rd Edition, Item 65: Prefer interfaces to reflection](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)
