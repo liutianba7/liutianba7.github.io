@@ -1,0 +1,20 @@
+{
+  "id": "conv-1781232582380-abiz9peae",
+  "title": "Create title for tokenization notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781232582380,
+  "updatedAt": 1781252113332,
+  "lastResponseAt": 1781252113332,
+  "sessionId": "4cf7b39d-570e-4715-b162-3e970ce5e720",
+  "sdkSessionId": "4cf7b39d-570e-4715-b162-3e970ce5e720",
+  "currentNote": "python/05_ai/NLP.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

@@ -3264,3 +3264,736 @@ orderService.createOrder(order);  // 自动开启事务
 > - [Java Dynamic Proxies (Baeldung)](https://www.baeldung.com/java-dynamic-proxies)
 > - [Spring AOP 官方文档](https://docs.spring.io/spring-framework/reference/core/aop.html)
 > - [Effective Java 3rd Edition, Item 65: Prefer interfaces to reflection](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)
+
+---
+
+## 九、I/O 系统 {#sec9}
+
+> Java I/O 是日常开发中"看起来简单、用起来踩坑"的重灾区。本章从体系出发，**按使用场景组织**核心流，每个流都配可运行的实战代码。目标：**读一遍懂概念，看一遍会写代码**。
+
+### 9.1 IO 分类体系 {#sec9-1}
+
+#### 9.1.1 四个维度划分
+
+Java I/O 类库庞大，但可以从 **4 个维度** 来组织：
+
+| 维度 | 分类 | 说明 |
+|------|------|------|
+| **数据单位** | 字节流 vs 字符流 | 操作 `byte` 还是 `char` |
+| **流向** | 输入流 vs 输出流 | 数据从内存**读出**还是**写入** |
+| **角色** | 节点流 vs 处理流 | 直连数据源 vs 包装其他流（装饰器） |
+| **同步性** | BIO vs NIO vs AIO | 同步阻塞 / 同步非阻塞 / 异步非阻塞 |
+
+#### 9.1.2 字节流 vs 字符流（核心区别）
+
+```java
+// 字节流：操作 byte（8 bit）—— 适合二进制文件（图片、视频、音频）
+InputStream  fis = new FileInputStream("photo.jpg");
+OutputStream fos = new FileOutputStream("copy.jpg");
+
+// 字符流：操作 char（16 bit）—— 适合文本文件，自动处理字符编码
+Reader  fr = new FileReader("config.txt");         // 字符 → Unicode（用系统默认编码）
+Writer  fw = new FileWriter("config.txt");         // Unicode → 字符
+```
+
+!!! tip "字符流与字节流的关系"
+
+    **字符流 = 字节流 + 字符编码（Charset）**。字符流内部会自动处理编码转换：
+    ```
+    字符流 = 字节流 + InputStreamReader/OutputStreamWriter + Charset
+    ```
+
+    ```java
+    // FileReader 的等价写法
+    Reader r1 = new FileReader("a.txt");
+    Reader r2 = new InputStreamReader(new FileInputStream("a.txt"), StandardCharsets.UTF_8);
+    // r1 和 r2 行为一致（默认 UTF-8），但 r2 可以显式指定编码
+    ```
+
+#### 9.1.3 节点流 vs 处理流（装饰器模式）
+
+**节点流**：直连数据源（文件、网络、内存、管道）的"**老黄牛**"。
+
+**处理流**：包装其他流，给它"**穿衣服**"加功能，是装饰器模式的经典应用。
+
+```
+            ┌──────────────┐
+            │  BufferedXxx │  ← 处理流（提供缓冲区，提高性能）
+            └──────┬───────┘
+                   │ 包装
+            ┌──────▼───────┐
+            │  FileXxx     │  ← 节点流（直连文件）
+            └──────┬───────┘
+                   │
+              📄 文件
+```
+
+```java
+// 经典组合：缓冲流包装文件流（性能最佳实践）
+try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream("src.txt"));
+     BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("dst.txt"))) {
+    byte[] buf = new byte[8192];
+    int len;
+    while ((len = bis.read(buf)) != -1) {
+        bos.write(buf, 0, len);
+    }
+}
+```
+
+!!! summary "装饰器模式的核心价值"
+
+    - **灵活组合**：可以"嵌套"任意层处理流
+    - **避免类爆炸**：不需要为每种功能组合创建新类
+    - **运行时决定**：根据需求动态包装
+
+    ```
+    文件流 + 缓冲流 = 性能提升
+    文件流 + 数据流 = 读写基本类型
+    文件流 + 对象流 = 读写对象
+    ```
+
+#### 9.1.4 BIO / NIO / AIO（同步性维度）
+
+| 模型 | 全称 | 特点 | 适用场景 |
+|------|------|------|---------|
+| **BIO** | Blocking I/O | 同步阻塞，一个连接一个线程 | 连接数少、架构固定（JDK 1.0） |
+| **NIO** | New I/O (Non-blocking) | 同步非阻塞，多路复用器（Selector） | 高并发、连接数多（JDK 1.4） |
+| **AIO** | Asynchronous I/O | 异步非阻塞，回调通知 | 高并发长耗时操作（JDK 1.7） |
+
+!!! note "本章只讲 BIO"
+
+    本章聚焦于 BIO 的核心流 API，NIO 和 AIO 在 Netty / JUC 章节中展开。
+
+#### 9.1.5 Java IO 整体体系
+
+```
+                          java.io
+                            │
+        ┌───────────────────┼───────────────────┐
+        ▼                                       ▼
+   InputStream/OutputStream                Reader/Writer
+     （字节流 8-bit）                       （字符流 16-bit）
+        │                                       │
+   ┌────┴────┐                            ┌────┴────┐
+   ▼         ▼                            ▼         ▼
+  文件流    数组流                        文件流    字符数组流
+ FileXxx   ByteArrayXxx                 FileXxx   CharArrayXxx
+   │         │                            │         │
+   └────┬────┘                            └────┬────┘
+        │                                      │
+   ┌────┴────────────┐                  ┌──────┴────────┐
+   ▼                 ▼                  ▼               ▼
+ 缓冲流           转换流              缓冲流          转换流
+BufferedXxx    InputStreamReader   BufferedXxx   OutputStreamWriter
+   │
+   ├────────────┬────────────┐
+   ▼            ▼            ▼
+ 数据流      对象流       打印流
+DataXxx   ObjectXxx   PrintXxx
+```
+
+> **参考链接**：
+>
+> - [java.io API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/package-summary.html)
+> - [Basic I/O (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/essential/io/index.html)
+
+---
+
+### 9.2 核心流详解 {#sec9-2}
+
+#### 9.2.1 文件流（最基础）
+
+=== "字节文件流"
+
+    ```java
+    // 读 —— FileInputStream
+    try (InputStream in = new FileInputStream("src.bin")) {
+        int data;
+        while ((data = in.read()) != -1) {  // 一次读一个字节
+            System.out.print(data + " ");
+        }
+    }
+
+    // 写 —— FileOutputStream
+    try (OutputStream out = new FileOutputStream("dst.bin")) {
+        out.write(65);    // 写入 'A'
+        out.write(66);    // 写入 'B'
+    }
+    ```
+
+=== "字符文件流"
+
+    ```java
+    // 读 —— FileReader
+    try (Reader reader = new FileReader("config.txt")) {
+        char[] buf = new char[1024];
+        int len;
+        while ((len = reader.read(buf)) != -1) {
+            System.out.print(new String(buf, 0, len));
+        }
+    }
+
+    // 写 —— FileWriter
+    try (Writer writer = new FileWriter("output.txt")) {
+        writer.write("Hello, World!\n");
+        writer.write("你好，世界！");
+    }
+    ```
+
+!!! warning "FileWriter 默认不是追加模式"
+
+    ```java
+    // ❌ 每次 new 都会清空原文件
+    new FileWriter("a.txt").close();
+    new FileWriter("a.txt").close();  // 文件被清空两次
+
+    // ✅ 追加模式
+    new FileWriter("a.txt", true);   // 第二个参数 append = true
+    ```
+
+#### 9.2.2 缓冲流（性能神器）
+
+**没有缓冲流时，IO 是"读一个字节就发一次系统调用"，性能极差。**
+
+=== "字节缓冲流"
+
+    ```java
+    // ✅ 推荐：始终用缓冲流包装节点流
+    try (BufferedInputStream bis = new BufferedInputStream(
+                new FileInputStream("src.bin"));
+         BufferedOutputStream bos = new BufferedOutputStream(
+                new FileOutputStream("dst.bin"))) {
+
+        byte[] buf = new byte[8192];  // 8KB 缓冲区
+        int len;
+        while ((len = bis.read(buf)) != -1) {
+            bos.write(buf, 0, len);
+        }
+    }
+    // 默认缓冲区大小：8KB（8192）
+    // 自定义：new BufferedInputStream(in, 64 * 1024);  // 64KB
+    ```
+
+=== "字符缓冲流的独门方法"
+
+    ```java
+    // BufferedReader 提供 readLine() 方法 —— 按行读取
+    try (BufferedReader br = new BufferedReader(
+                new FileReader("config.txt"));
+         BufferedWriter bw = new BufferedWriter(
+                new FileWriter("output.txt"))) {
+
+        String line;
+        while ((line = br.readLine()) != null) {  // ✅ 一行一行读
+            System.out.println(line);
+            bw.write(line);
+            bw.newLine();  // ✅ 写入换行（跨平台）
+        }
+    }
+    ```
+
+!!! tip "为什么缓冲流能提升性能？"
+
+    | 流类型 | 系统调用次数（1MB 文件） | 耗时 |
+    |--------|------------------------|------|
+    | **裸 FileInputStream** | 1,048,576 次（每次 1 字节） | ~5000ms |
+    | **BufferedInputStream** | 128 次（每次 8KB） | ~50ms |
+
+    性能差距通常在 **50-100 倍** 以上！**所以生产代码几乎一定要用缓冲流**。
+
+#### 9.2.3 转换流（字节 ↔ 字符）
+
+**核心作用**：解决字符编码问题（尤其是中文乱码）。
+
+```java
+// ❌ 错误示范：用 FileReader 读取 GBK 编码的文件（默认 UTF-8）会乱码
+Reader r = new FileReader("gbk.txt");  // 乱码！
+
+// ✅ 正确姿势：明确指定编码
+Reader r = new InputStreamReader(
+    new FileInputStream("gbk.txt"),
+    Charset.forName("GBK")             // 显式指定 GBK
+);
+
+// ✅ 写到 UTF-8 文件
+Writer w = new OutputStreamWriter(
+    new FileOutputStream("utf8.txt"),
+    StandardCharsets.UTF_8
+);
+```
+
+!!! summary "编码处理黄金法则"
+
+    - **永远不要依赖平台默认编码** —— 显式指定 `Charset`
+    - **文件用什么编码存，就用什么编码读** —— 否则乱码
+    - **跨平台/跨语言传输**：优先使用 **UTF-8**（事实标准）
+
+#### 9.2.4 数据流（读写基本类型）
+
+`DataInputStream` / `DataOutputStream` 可以直接读写 **基本类型和 String**，而不必关心字节细节。
+
+```java
+// 写入
+try (DataOutputStream dos = new DataOutputStream(
+        new BufferedOutputStream(new FileOutputStream("data.bin")))) {
+    dos.writeInt(42);
+    dos.writeDouble(3.14);
+    dos.writeBoolean(true);
+    dos.writeUTF("Hello");
+}
+
+// 读取 —— 必须按写入顺序读
+try (DataInputStream dis = new DataInputStream(
+        new BufferedInputStream(new FileInputStream("data.bin")))) {
+    int i = dis.readInt();          // 42
+    double d = dis.readDouble();    // 3.14
+    boolean b = dis.readBoolean();  // true
+    String s = dis.readUTF();       // "Hello"
+}
+```
+
+> **应用场景**：网络传输二进制协议、自定义文件格式、JDK 源码 `ObjectOutputStream` 内部就用它。
+
+#### 9.2.5 打印流（最常用输出）
+
+```java
+// System.out 本质就是 PrintStream
+PrintStream out = System.out;
+out.println("Hello");  // 这就是 println 的实现
+
+// 重定向 System.out 到文件（debug 神技）
+try {
+    System.setOut(new PrintStream(new FileOutputStream("log.txt")));
+    System.out.println("这会写到文件里");
+} finally {
+    System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));  // 恢复
+}
+```
+
+**`PrintStream` vs `PrintWriter` 对比**：
+
+| 维度 | `PrintStream` | `PrintWriter` |
+|------|--------------|--------------|
+| 处理单位 | 字节 | 字符 |
+| 自动 flush | ✅（println 时） | ❌（需手动） |
+| 异常处理 | 不抛 IOException（吞掉） | 可抛 IOException |
+| 使用场景 | `System.out`、日志二进制 | HTTP 响应、文本日志 |
+
+!!! tip "最佳实践：日志输出用 PrintWriter"
+
+    ```java
+    try (PrintWriter pw = new PrintWriter(
+            new BufferedWriter(new FileWriter("app.log")))) {
+        pw.println("2026-06-09 INFO: 应用启动");
+        pw.printf("User %s logged in at %d%n", "Alice", System.currentTimeMillis());
+    }
+    ```
+
+#### 9.2.6 综合实战：文件复制 4 种方式性能对比
+
+```java
+public class FileCopyBenchmark {
+
+    public static void main(String[] args) throws IOException {
+        String src = "large-file.bin";
+        String dst = "copy.bin";
+
+        // 方式一：单字节拷贝（最慢，演示用）
+        long t1 = copyByByte(src, dst + ".1");
+        System.out.println("单字节: " + t1 + "ms");
+
+        // 方式二：字节数组拷贝
+        long t2 = copyByArray(src, dst + ".2");
+        System.out.println("字节数组: " + t2 + "ms");
+
+        // 方式三：缓冲流拷贝
+        long t3 = copyByBuffered(src, dst + ".3");
+        System.out.println("缓冲流: " + t3 + "ms");
+
+        // 方式四：NIO（最快）
+        long t4 = copyByNIO(src, dst + ".4");
+        System.out.println("NIO: " + t4 + "ms");
+    }
+
+    static long copyByByte(String src, String dst) throws IOException {
+        long start = System.currentTimeMillis();
+        try (InputStream in = new FileInputStream(src);
+             OutputStream out = new FileOutputStream(dst)) {
+            int b;
+            while ((b = in.read()) != -1) out.write(b);
+        }
+        return System.currentTimeMillis() - start;
+    }
+
+    static long copyByArray(String src, String dst) throws IOException {
+        long start = System.currentTimeMillis();
+        try (InputStream in = new FileInputStream(src);
+             OutputStream out = new FileOutputStream(dst)) {
+            byte[] buf = new byte[8192];
+            int len;
+            while ((len = in.read(buf)) != -1) out.write(buf, 0, len);
+        }
+        return System.currentTimeMillis() - start;
+    }
+
+    static long copyByBuffered(String src, String dst) throws IOException {
+        long start = System.currentTimeMillis();
+        try (InputStream in = new BufferedInputStream(new FileInputStream(src));
+             OutputStream out = new BufferedOutputStream(new FileOutputStream(dst))) {
+            byte[] buf = new byte[8192];
+            int len;
+            while ((len = in.read(buf)) != -1) out.write(buf, 0, len);
+        }
+        return System.currentTimeMillis() - start;
+    }
+
+    static long copyByNIO(String src, String dst) throws IOException {
+        long start = System.currentTimeMillis();
+        try (FileChannel in = FileChannel.open(Path.of(src));
+             FileChannel out = FileChannel.open(Path.of(dst), StandardOpenOption.WRITE)) {
+            in.transferTo(0, in.size(), out);  // 零拷贝
+        }
+        return System.currentTimeMillis() - start;
+    }
+}
+```
+
+!!! summary "性能排序（典型结果）"
+
+    ```
+    NIO transferTo (零拷贝)    ⚡⚡⚡⚡⚡
+    BufferedInputStream        ⚡⚡⚡⚡
+    字节数组                   ⚡⚡
+    单字节 (FileInputStream)   ⚡
+    ```
+
+    实际差距：100MB 文件，NIO 50ms，单字节可能 30 秒。
+
+---
+
+### 9.3 对象序列化 {#sec9-3}
+
+#### 9.3.1 什么是序列化
+
+**序列化（Serialization）**：把内存中的 Java 对象**转换为字节序列**（写到文件 / 网络传输）。
+**反序列化（Deserialization）**：把字节序列**恢复为 Java 对象**。
+
+```
+   ┌────────┐  serialize   ┌────────┐
+   │  User  │ ──────────▶  │ bytes  │  → 文件 / 网络
+   │  对象   │ ◀──────────  │        │
+   └────────┘  deserialize └────────┘
+```
+
+#### 9.3.2 Serializable 基础
+
+```java
+// 1. 实现 Serializable 接口（标记接口，无方法）
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;  // ✅ 推荐显式声明
+
+    private String name;
+    private int age;
+    private transient String password;  // 不参与序列化
+
+    // 构造器、getter/setter 省略
+}
+
+// 2. 序列化
+try (ObjectOutputStream oos = new ObjectOutputStream(
+        new FileOutputStream("user.dat"))) {
+    User user = new User("Alice", 18, "secret");
+    oos.writeObject(user);
+}
+
+// 3. 反序列化
+try (ObjectInputStream ois = new ObjectInputStream(
+        new FileInputStream("user.dat"))) {
+    User user = (User) ois.readObject();
+    System.out.println(user.getName());         // "Alice"
+    System.out.println(user.getPassword());     // null （transient 字段）
+}
+```
+
+#### 9.3.3 serialVersionUID 的作用
+
+`serialVersionUID` 是类的"**版本指纹**"，用于反序列化时的**兼容性检查**。
+
+```java
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;  // ← 版本号
+    private String name;
+    private int age;
+}
+```
+
+**反序列化时**：
+- 如果 UID 匹配 → 正常反序列化
+- 如果 UID 不匹配 → 抛 `InvalidClassException`
+
+!!! warning "没有 serialVersionUID 会怎样？"
+
+    ```java
+    // 没有显式声明 UID，编译器会"警告"：
+    // The serializable class User does not declare a static final serialVersionUID
+
+    // 而且每次编译都会自动生成一个新 UID（基于类结构），
+    // 类结构一改，反序列化就失败！
+    ```
+
+!!! tip "最佳实践"
+
+    - **永远显式声明 `serialVersionUID`**
+    - **保持兼容**：不要修改 UID，只在改类结构时让它变化
+    - **跨版本兼容**：新增字段用 `transient` 或提供默认值
+
+#### 9.3.4 transient 关键字
+
+`transient` 标记的字段**不参与序列化**。
+
+```java
+public class User implements Serializable {
+    private String name;
+    private transient String password;  // 密码不会被序列化
+    private transient Logger logger;    // 日志对象通常不序列化
+    private transient ThreadLocal<?> tl; // ThreadLocal 不能序列化
+}
+```
+
+!!! summary "应该用 transient 的字段"
+
+    | 字段类型 | 是否 transient | 原因 |
+    |---------|--------------|------|
+    | 密码、密钥、Token | ✅ 必须 | 安全 |
+    | 缓存、连接（Connection、Socket） | ✅ 必须 | 不可序列化 |
+    | Logger、ThreadLocal | ✅ 必须 | 不可序列化 |
+    | 业务核心数据 | ❌ 不要 | 需要持久化 |
+
+#### 9.3.5 自定义序列化（高级）
+
+==="writeObject / readObject" 自动调用"
+
+    ```java
+    public class User implements Serializable {
+        private String name;
+        private transient String password;  // 默认是 null
+
+        // 序列化时自动调用 —— 自定义序列化逻辑
+        private void writeObject(ObjectOutputStream oos) throws IOException {
+            oos.defaultWriteObject();       // 序列化非 transient 字段
+            // 加密后写入密码
+            oos.writeObject(encrypt(password));
+        }
+
+        // 反序列化时自动调用
+        private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+            ois.defaultReadObject();         // 读取非 transient 字段
+            // 解密
+            this.password = decrypt((String) ois.readObject());
+        }
+
+        private String encrypt(String s) { return "ENC(" + s + ")"; }
+        private String decrypt(String s) { return s.substring(4, s.length() - 1); }
+    }
+    ```
+
+==="readResolve 解决单例破"
+
+    ```java
+    public class Singleton implements Serializable {
+        private static final Singleton INSTANCE = new Singleton();
+
+        // 反序列化时如果发现 readResolve，会调用它返回真正的实例
+        private Object readResolve() {
+            return INSTANCE;  // 始终返回单例对象
+        }
+    }
+    ```
+
+#### 9.3.6 Serializable vs Externalizable
+
+| 维度 | `Serializable` | `Externalizable` |
+|------|---------------|------------------|
+| **性质** | 标记接口 | 普通接口（有方法） |
+| **序列化内容** | 自动序列化所有非 transient 字段 | 完全自定义 |
+| **必须有无参构造** | ❌ 不需要 | ✅ 需要（反序列化用） |
+| **性能** | 略慢（反射） | 略快（手动控制） |
+| **使用频率** | ⭐⭐⭐⭐⭐ 99% 场景 | ⭐ 几乎不用 |
+
+```java
+// Externalizable 示例
+public class User implements Externalizable {
+    private String name;
+    private int age;
+
+    public User() { }  // 必须有 public 无参构造
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(name);
+        out.writeInt(age);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        this.name = (String) in.readObject();
+        this.age = in.readInt();
+    }
+}
+```
+
+#### 9.3.7 序列化的常见坑
+
+=== "父类未实现 Serializable"
+
+    ```java
+    // 父类没实现 Serializable
+    public class Animal {
+        protected int id;
+    }
+
+    // 子类实现了，但反序列化时 id 会丢失
+    public class Dog extends Animal implements Serializable {
+        private String name;
+    }
+
+    // 解决 1：父类也实现 Serializable
+    // 解决 2：父类提供无参构造（反序列化时反射调用）
+    ```
+
+=== "静态字段不参与序列化"
+
+    ```java
+    public class Counter implements Serializable {
+        public static int count = 0;  // 静态字段属于类，不属于对象
+    }
+    // 序列化只保存对象实例状态，不保存类变量
+    ```
+
+=== "敏感字段必须 transient"
+
+    ```java
+    // ❌ 直接序列化 password —— 写入文件后明文可见
+    public class User implements Serializable {
+        private String password;  // 灾难！
+    }
+
+    // ✅ 显式标记 transient + 自定义加密（见 9.3.5）
+    public class User implements Serializable {
+        private transient String password;
+    }
+    ```
+
+=== "循环引用"
+
+    ```java
+    // Java 序列化自动处理循环引用（用句柄编号）
+    public class Node implements Serializable {
+        private String value;
+        private Node next;  // 自引用
+    }
+    // ✅ 反序列化后引用关系保持完整
+    ```
+
+#### 9.3.8 实战：完整序列化 Demo
+
+```java
+// 1. 定义可序列化的用户类
+public class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private Long id;
+    private String name;
+    private transient String password;  // 敏感字段
+    private List<String> roles;          // 集合也可以序列化
+
+    public User(Long id, String name, String password, List<String> roles) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    // 自定义序列化：密码加密
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+        oos.writeObject(encrypt(password));
+    }
+
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        this.password = decrypt((String) ois.readObject());
+    }
+
+    private String encrypt(String s) { return s == null ? null : "ENC[" + s + "]"; }
+    private String decrypt(String s) { return s == null ? null : s.substring(4, s.length() - 1); }
+
+    @Override
+    public String toString() {
+        return "User{id=" + id + ", name='" + name + "', password='" + password + "', roles=" + roles + "}";
+    }
+}
+
+// 2. 序列化工具方法
+public class SerializationUtil {
+    public static void serialize(Object obj, String file) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new BufferedOutputStream(new FileOutputStream(file)))) {
+            oos.writeObject(obj);
+        }
+    }
+
+    public static <T> T deserialize(String file) throws IOException, ClassNotFoundException {
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new BufferedInputStream(new FileInputStream(file)))) {
+            return (T) ois.readObject();
+        }
+    }
+}
+
+// 3. 测试
+public static void main(String[] args) throws Exception {
+    User user = new User(1L, "Alice", "secret123", List.of("admin", "user"));
+    System.out.println("原始对象: " + user);
+
+    SerializationUtil.serialize(user, "user.dat");
+
+    User deserialized = SerializationUtil.deserialize("user.dat");
+    System.out.println("反序列化: " + deserialized);
+    // 输出：
+    // 原始对象:   User{id=1, name='Alice', password='secret123', roles=[admin, user]}
+    // 反序列化:   User{id=1, name='Alice', password='secret123', roles=[admin, user]}
+    // ✅ 密码被加密存储 + 正确解密还原
+}
+```
+
+#### 9.3.9 IO 选型速查表
+
+| 需求 | 推荐流 |
+|------|--------|
+| 读 / 写二进制文件 | `FileInputStream` / `FileOutputStream` |
+| 读 / 写文本文件（按字节） | `FileInputStream` + `InputStreamReader` |
+| 读 / 写文本文件（按字符） | `FileReader` / `FileWriter` |
+| **性能优化** | + `BufferedInputStream` / `BufferedReader` |
+| 处理中文编码 | `InputStreamReader(FileInputStream, "UTF-8")` |
+| 读写基本类型 | `DataInputStream` / `DataOutputStream` |
+| 读写对象 | `ObjectInputStream` / `ObjectOutputStream` |
+| 格式化输出 | `PrintStream` / `PrintWriter` |
+| 文件复制（大文件） | `BufferedInputStream` 或 NIO `FileChannel.transferTo` |
+
+> **参考链接**：
+>
+> - [Object Serialization (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/jndi/objects/serial.html)
+> - [Serializable API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/Serializable.html)
+> - [ObjectOutputStream API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/ObjectOutputStream.html)
+> - [ObjectInputStream API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/ObjectInputStream.html)
+> - [Java Serialization (Baeldung)](https://www.baeldung.com/java-serialization)
+
+---
+
+> **📚 本章参考汇总**
+>
+> - [Java Basic I/O Tutorial (Oracle)](https://docs.oracle.com/javase/tutorial/essential/io/)
+> - [java.io Package Summary (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/package-summary.html)
+> - [Java Object Serialization Specification](https://docs.oracle.com/en/java/javase/25/docs/specs/serialization/index.html)
+> - [Effective Java, 3rd Edition — Items 85-90 (序列化章节)](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)

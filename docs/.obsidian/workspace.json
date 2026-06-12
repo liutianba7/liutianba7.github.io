@@ -4,24 +4,37 @@
     "type": "split",
     "children": [
       {
-        "id": "8ec65d4106131d2d",
+        "id": "d5491b07eb6bc45c",
         "type": "tabs",
         "children": [
           {
-            "id": "6ebe946f017caadc",
+            "id": "a2124b4431b8c51a",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "assets/imgs/python/nlp/nlp07_onehot.png"
+              },
+              "icon": "lucide-image",
+              "title": "nlp07_onehot"
+            }
+          },
+          {
+            "id": "0210d04bc1acaac1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "python/05_ai/深度学习.md",
+                "file": "python/05_ai/NLP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "深度学习"
+              "title": "NLP"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -53,13 +66,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "python/05_ai/深度学习.md",
+                "file": "python/05_ai/NLP.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "深度学习 的大纲"
+              "title": "NLP 的大纲"
             }
           },
           {
@@ -194,53 +207,53 @@
       "bases:新建数据库": false
     }
   },
-  "active": "6ebe946f017caadc",
+  "active": "0210d04bc1acaac1",
   "lastOpenFiles": [
-    "interview/java/java基础.md",
-    "python/05_ai/深度学习.md",
-    "java/01_Java_Core/java 基础.md",
-    "java/01_Java_Core/juc.md",
-    "linux/basic.md",
-    "others/02_blog/template/daily_summary_template.md",
-    "others/02_blog/素材/每日一句.md",
-    "others/02_blog/素材/封面规则.md",
-    "others/02_blog/每日总结（原始稿子）/day03.md",
-    "others/02_blog/每日总结（原始稿子）/01_三年之约.md",
-    "others/02_blog/素材",
-    "others/02_blog/csdn/java/Java 反射：从入门到精通，一篇打通你的任督二脉.md",
-    "others/02_blog/csdn/java/反射.md",
-    "others/02_blog/csdn/java/反射",
-    "others/02_blog/csdn/java/Java 异常处理完全指南：从异常体系到最佳实践.md",
-    "others/02_blog/csdn/java/深入理解 Java 泛型：从类型擦除到 PECS 原则.md",
-    "others/02_blog/每日总结（原始稿子）/day02 总结.md",
-    "others/02_blog/每日总结（原始稿子）/day02 总结（优化版）.md",
-    "python/05_ai/DeepAgents.md",
-    "others/02_blog/csdn/python/快速入门PyTorch.md",
-    "original_backup.md",
-    "others/02_blog/csdn/python/pytorch 专栏",
-    "others/02_blog/csdn/python",
-    "others/02_blog/csdn/java",
-    "assets/imgs/python/pytorch/pytorch_计算图.png",
+    "python/05_ai/verify.py",
+    "python/05_ai/do_edit2.py",
+    "python/05_ai/do_edit.py",
+    "python/05_ai/count_newlines.py",
+    "assets/imgs/python/nlp/nlp10_skip_gram.png",
+    "assets/imgs/python/nlp/nlp10_skip_gram.png.JSXVzT",
+    "assets/imgs/python/nlp/nlp09_cbow.png",
     "python/05_ai/NLP.md",
-    "others/02_blog/素材",
-    "others/02_blog/每日总结（原始稿子）/day01 总结.md",
-    "python/05_ai/fix_all.py",
-    "python/05_ai/fix_tables.py",
-    "python/05_ai/fix_blanks2.py",
-    "python/05_ai/fix_blanks.py",
-    "python/05_ai/pytorch_backup.md",
+    "assets/imgs/python/nlp/nlp09_cbow.png.lyFhPH",
+    "assets/imgs/python/nlp/nlp08_word2vec.png",
+    "assets/imgs/python/nlp/nlp08_word2vec.png.anGFmy",
+    "assets/imgs/python/nlp/nlp07_onehot.png",
+    "python/05_ai/NLP-v2.md",
+    "assets/imgs/python/nlp/one-hot.png",
+    "assets/imgs/python/nlp/one-hot.png.UhLvdM",
+    "others/01_理财学习/01_理财基本概念.md",
+    "others/01_理财学习/04_估值与买卖策略.md",
+    "others/01_理财学习/03_资产配置.md",
+    "others/01_理财学习/02_实操入门.md",
+    "others/02_blog/csdn/python/从零玩转PyTorch训练：自动微分、优化器与正则化全解析.md",
+    "others/02_blog/素材/每日一句.md",
+    "others/02_blog/素材/各种素材.md",
+    "others/02_blog/每日总结（原始稿子）/day04.md",
+    "others/02_blog/每日总结（原始稿子）/day03.md",
+    "python/05_ai/深度学习.md",
+    "python/05_ai/DeepAgents.md",
+    "python/05_ai/LangChain.md",
+    "others/02_blog/csdn/python/快速入门PyTorch.md",
+    "others/02_blog/csdn/java/Java I-O 实战指南：从文件复制到对象序列化，一篇搞定.md",
+    "java/01_Java_Core/java 基础.md",
     "others/02_blog/每日总结（原始稿子）/daily_summary_template.md",
     "code-notes/algorithm/hot100总结.md",
     "code-notes/algorithm/template.md",
-    "python/03_others/数据分析相关/pandas.md",
+    "interview/java/java基础.md",
+    "java/01_Java_Core/juc.md",
+    "linux/basic.md",
+    "others/02_blog/template/daily_summary_template.md",
+    "others/02_blog/每日总结（原始稿子）/01_三年之约.md",
+    "others/02_blog/素材",
+    "others/02_blog/csdn/java/反射",
+    "others/02_blog/csdn/python/pytorch 专栏",
+    "assets/imgs/python/pytorch/pytorch_计算图.png",
     "assets/imgs/python/shufeng/pandas思维导图.png",
     "assets/imgs/python/shufeng/numpy思维导图.png",
     "assets/imgs/python/pytorch/pytorch01.png",
-    "assets/imgs/python/pytorch/deep01.png",
-    "assets/imgs/python/nlp/nlp06_transformer_architecture.png",
-    "assets/imgs/python/nlp/nlp_07transformer_architecture.png",
-    "assets/imgs/python/nlp/nlp05_encoder_decoder_old.png",
-    "assets/imgs/python/nlp/nlp04_gru结构图.png",
-    "assets/imgs/python/nlp/nlp03_lstm结构图.png"
+    "assets/imgs/python/pytorch/deep01.png"
   ]
 }
