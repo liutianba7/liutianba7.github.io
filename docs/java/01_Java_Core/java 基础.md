@@ -3997,3 +3997,749 @@ public static void main(String[] args) throws Exception {
 > - [java.io Package Summary (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/io/package-summary.html)
 > - [Java Object Serialization Specification](https://docs.oracle.com/en/java/javase/25/docs/specs/serialization/index.html)
 > - [Effective Java, 3rd Edition — Items 85-90 (序列化章节)](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)
+
+---
+
+## 十、Lambda 与 Stream {#sec10}
+
+> Java 8 开启了**函数式编程**的大门，Lambda + Stream API 让代码从"啰嗦"变"优雅"。本章按"函数式接口 → Lambda → 方法引用 → Stream → Optional"层层递进，**学完后你能把 100 行代码压缩到 10 行**。
+
+### 10.1 函数式接口 {#sec10-1}
+
+#### 10.1.1 什么是函数式接口
+
+**函数式接口（Functional Interface）**：**有且仅有一个抽象方法**的接口。Lambda 表达式的本质就是"函数式接口的实现对象"。
+
+```java
+// 标记注解，编译器会校验"是否真的是函数式接口"
+@FunctionalInterface
+public interface MyFunction {
+    int apply(int a, int b);
+    // default / static 方法不影响"只有一个抽象方法"判定
+    default void log() {}
+    static void info() {}
+}
+```
+
+!!! note "判定标准"
+
+    - 抽象方法**有且仅有 1 个**
+    - `default` 方法、`static` 方法、`Object` 类的方法（如 `equals`、`toString`）**不计入**
+
+#### 10.1.2 四大核心函数式接口（必须背）
+
+```
+                    函数式接口
+                         │
+        ┌────────────────┼────────────────┐
+        ▼                ▼                ▼
+   Function<T,R>    Consumer<T>     Supplier<T>    Predicate<T>
+     输入→输出       输入→无输出     无输入→输出    输入→boolean
+```
+
+| 接口                   | 方法                  | 输入  | 输出      | 用途            |
+| -------------------- | ------------------- | --- | ------- | ------------- |
+| **`Function<T, R>`** | `R apply(T t)`      | T   | R       | 数据转换（map）     |
+| **`Consumer<T>`**    | `void accept(T t)`  | T   | 无       | 消费数据（forEach） |
+| **`Supplier<T>`**    | `T get()`           | 无   | T       | 生产数据（工厂）      |
+| **`Predicate<T>`**   | `boolean test(T t)` | T   | boolean | 条件判断（filter）  |
+
+```java
+// 1. Function：转换
+Function<String, Integer> lengthFunc = s -> s.length();
+System.out.println(lengthFunc.apply("Hello"));  // 5
+
+// 2. Consumer：消费
+Consumer<String> printer = s -> System.out.println("打印: " + s);
+printer.accept("Hello");  // 打印: Hello
+
+// 3. Supplier：生产
+Supplier<Double> random = () -> Math.random();
+System.out.println(random.get());  // 0.7234...
+
+// 4. Predicate：判断
+Predicate<Integer> isPositive = n -> n > 0;
+System.out.println(isPositive.test(5));   // true
+System.out.println(isPositive.test(-3));  // false
+```
+
+#### 10.1.3 其他常用函数式接口
+
+| 接口                    | 签名                          | 用途                    |
+| --------------------- | --------------------------- | --------------------- |
+| `Runnable`            | `void run()`                | 无参无返回（如线程任务）          |
+| `Callable<V>`         | `V call() throws Exception` | 有返回值的任务，可抛异常          |
+| `Comparator<T>`       | `int compare(T o1, T o2)`   | 排序                    |
+| `BiFunction<T, U, R>` | `R apply(T t, U u)`         | 两个输入的 Function        |
+| `UnaryOperator<T>`    | `T apply(T t)`              | 输入输出同类型（Function 子接口） |
+| `BinaryOperator<T>`   | `T apply(T t1, T t2)`       | 相同类型的 BiFunction      |
+
+> **参考链接**：
+>
+> - [java.util.function Package (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/function/package-summary.html)
+> - [FunctionalInterface Annotation (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/FunctionalInterface.html)
+
+---
+
+### 10.2 Lambda 表达式 {#sec10-2}
+
+#### 10.2.1 演进对比
+
+Lambda 不是新概念，**它只是"匿名内部类"的语法糖**。
+
+```java
+// 1️⃣ 传统写法：匿名内部类（5 行）
+Runnable r1 = new Runnable() {
+    @Override
+    public void run() {
+        System.out.println("Hello");
+    }
+};
+
+// 2️⃣ Lambda：去掉方法名和方法修饰符（1 行）
+Runnable r2 = () -> System.out.println("Hello");
+
+// 3️⃣ 进一步简化（方法引用）
+Runnable r3 = System.out::println;  // 注意：这不是 () -> println("Hello")
+```
+
+#### 10.2.2 Lambda 语法 6 种组合
+
+Lambda 由 **参数列表 + 箭头 + 方法体** 三部分组成：
+
+```
+(参数) -> { 方法体 }
+```
+
+=== "1. 无参 + 单行"
+
+    ```java
+    Runnable r = () -> System.out.println("Hello");
+    ```
+
+=== "2. 无参 + 多行"
+
+    ```java
+    Runnable r = () -> {
+        System.out.println("Hello");
+        System.out.println("World");
+    };
+    ```
+
+=== "3. 单参 + 单行"
+
+    ```java
+    Consumer<String> c = s -> System.out.println(s);
+    ```
+
+=== "4. 单参 + 多行（带类型）"
+
+    ```java
+    Consumer<String> c = (String s) -> {
+        System.out.println(s);
+    };
+    ```
+
+=== "5. 多参 + 单行"
+
+    ```java
+    Comparator<Integer> cmp = (a, b) -> a - b;
+    BiFunction<Integer, Integer, Integer> add = (a, b) -> a + b;
+    ```
+
+=== "6. 多参 + 多行"
+
+    ```java
+    Comparator<Integer> cmp = (a, b) -> {
+        if (a > b) return 1;
+        else if (a < b) return -1;
+        return 0;
+    };
+    ```
+
+!!! tip "语法糖规则"
+
+    - **类型可省略**（编译器自动推断）
+    - **单参数可省略括号**（多参必须有）
+    - **单行方法体可省略 `{}` 和 `return`**（多行必须有）
+    - **空括号不能省略**（无参时必须写 `()`）
+
+#### 10.2.3 变量捕获
+
+Lambda 可以访问外部**局部变量**，但必须是 **final** 或 **effectively final**（即虽然没声明 final，但值没有变过）。
+
+```java
+int factor = 2;  // ✅ effectively final（只赋值一次）
+
+// ✅ 合法：Lambda 捕获了外部变量
+Function<Integer, Integer> multiplier = n -> n * factor;
+
+// ❌ 编译错误：factor 改变后不再是 effectively final
+// factor = 3;
+// multiplier = n -> n * factor;  // Variable used in lambda should be final or effectively final
+```
+
+!!! warning "为什么 Lambda 不能修改局部变量？"
+
+    - 局部变量在**栈**上，方法结束就销毁
+    - Lambda 可能在另一个线程执行，如果允许修改，**线程安全**无法保证
+    - 所以 Java 强制要求"等效 final"
+
+#### 10.2.4 Lambda vs 匿名内部类
+
+| 维度          | 匿名内部类          | Lambda               |
+| ----------- | -------------- | -------------------- |
+| **this 指向** | 匿名类自身          | 外部类                  |
+| **编译产物**    | 单独 `.class` 文件 | 字节码用 `invokedynamic` |
+| **可抛异常**    | 不受限            | 只能抛函数式接口允许的异常        |
+| **作用域**     | 引入新的作用域        | 与外部相同                |
+
+```java
+public class ThisDemo {
+    private String name = "Outer";
+
+    public void test() {
+        // 匿名内部类：this 指向匿名类对象
+        Runnable r1 = new Runnable() {
+            private String name = "Inner";
+            @Override
+            public void run() {
+                System.out.println(this.name);  // "Inner"
+            }
+        };
+
+        // Lambda：this 指向外部类
+        Runnable r2 = () -> System.out.println(this.name);  // "Outer"
+    }
+}
+```
+
+> **参考链接**：
+>
+> - [Lambda Expressions (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)
+> - [Variable Capture in Lambda (Baeldung)](https://www.baeldung.com/java-lambda-effectively-final)
+
+---
+
+### 10.3 方法引用 {#sec10-3}
+
+**方法引用 = Lambda 的语法糖**。当 Lambda 体只是"调用一个已有的方法"时，可以直接简写。
+
+#### 10.3.1 四种方法引用
+
+| 类型           | 语法                    | 等价 Lambda                                   |
+| ------------ | --------------------- | ------------------------------------------- |
+| **静态方法引用**   | `Class::staticMethod` | `(x) -> Class.staticMethod(x)`              |
+| **实例方法引用**   | `instance::method`    | `(x) -> instance.method(x)`                 |
+| **任意对象方法引用** | `Class::method`       | `(x, y) -> x.method(y)`                     |
+| **构造器引用**    | `Class::new`          | `() -> new Class()` / `(x) -> new Class(x)` |
+
+#### 10.3.2 实战示例
+
+=== "1. 静态方法引用"
+
+    ```java
+    // Lambda
+    Function<String, Integer> parse1 = s -> Integer.parseInt(s);
+    // 方法引用
+    Function<String, Integer> parse2 = Integer::parseInt;
+
+    parse2.apply("42");  // 42
+    ```
+
+=== "2. 实例方法引用"
+
+    ```java
+    String prefix = "Hello, ";
+    // Lambda
+    Function<String, String> greet1 = s -> prefix.concat(s);
+    // 方法引用
+    Function<String, String> greet2 = prefix::concat;
+
+    greet2.apply("World");  // "Hello, World"
+    ```
+
+=== "3. 任意对象方法引用（最常用）"
+
+    ```java
+    // 关键理解：第一个参数是方法的"调用者"，后面是"参数"
+    // Lambda
+    BiPredicate<String, String> eq1 = (a, b) -> a.equals(b);
+    // 方法引用
+    BiPredicate<String, String> eq2 = String::equals;
+
+    // 数组排序常用
+    String[] names = {"Bob", "Alice", "Charlie"};
+    Arrays.sort(names, String::compareTo);  // 字典序排序
+    ```
+
+=== "4. 构造器引用"
+
+    ```java
+    // 无参构造
+    Supplier<ArrayList<String>> listSupplier1 = () -> new ArrayList<>();
+    Supplier<ArrayList<String>> listSupplier2 = ArrayList::new;
+
+    // 带参构造
+    Function<String, User> userFactory1 = name -> new User(name);
+    Function<String, User> userFactory2 = User::new;
+    ```
+
+!!! tip "什么时候用方法引用？"
+
+    - **能用就用** —— 更简洁
+    - 不能用时退回 Lambda —— 比如方法体里有额外逻辑
+    - 注意 `String::equals` 和 `s -> s.equals(x)` 的细微差别（参数位置不同）
+
+> **参考链接**：
+>
+> - [Method References (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html)
+> - [Java Method References (Baeldung)](https://www.baeldung.com/java-method-references)
+
+---
+
+### 10.4 Stream API {#sec10-4}
+
+#### 10.4.1 Stream 是什么
+
+> **Stream 不是数据结构，是数据流通道**。它不存储数据，而是"管道"——把数据从一端传到另一端，在管道里完成各种加工。
+
+```
+数据源 → 中间操作链（lazy） → 终端操作（eager）→ 结果
+        filter
+        ↓
+        map
+        ↓
+        sorted
+        ↓
+        collect
+```
+
+#### 10.4.2 创建流
+
+=== "1. 从集合创建"
+
+    ```java
+    List<String> list = List.of("a", "b", "c");
+    Stream<String> s1 = list.stream();              // 串行流
+    Stream<String> s2 = list.parallelStream();      // 并行流
+    ```
+
+=== "2. 从数组创建"
+
+    ```java
+    String[] arr = {"a", "b", "c"};
+    Stream<String> s = Arrays.stream(arr);
+    Stream<Integer> nums = Stream.of(1, 2, 3, 4, 5);
+    ```
+
+=== "3. 无限流（慎用）"
+
+    ```java
+    // generate：接受 Supplier
+    Stream<Double> randoms = Stream.generate(Math::random).limit(100);
+
+    // iterate：接受 seed + 迭代函数（Java 9+ 可带 Predicate 终止）
+    Stream<Integer> seq = Stream.iterate(0, n -> n + 2).limit(10);  // 0,2,4,6,...,18
+    ```
+
+=== "4. 数值流（避免装箱）"
+
+    ```java
+    IntStream intStream = IntStream.rangeClosed(1, 100);   // 1~100
+    LongStream longStream = LongStream.range(1, 1_000_000);  // 1~999999
+    DoubleStream doubleStream = new Random().doubles(10);   // 10 个随机 double
+    ```
+
+#### 10.4.3 中间操作 vs 终端操作
+
+| 类别       | 特点                       | 常见方法                                                                    |
+| -------- | ------------------------ | ----------------------------------------------------------------------- |
+| **中间操作** | 懒执行，返回新 Stream，可链式调用     | `filter`、`map`、`flatMap`、`sorted`、`distinct`、`limit`、`skip`、`peek`      |
+| **终端操作** | 触发整个流水线执行，返回**非 Stream** | `forEach`、`collect`、`reduce`、`count`、`anyMatch`、`findFirst`、`min`/`max` |
+
+!!! warning "中间操作是懒加载的"
+
+    ```java
+    // 没有终端操作时，中间操作不会执行！
+    list.stream()
+        .filter(s -> { System.out.println("filter: " + s); return true; })
+        .map(s -> { System.out.println("map: " + s); return s; });
+    // 输出为空！没有终端操作，整个流水线根本不会跑
+    ```
+
+#### 10.4.4 核心中间操作
+
+=== "`filter` —— 过滤"
+
+    ```java
+    List<String> result = list.stream()
+        .filter(s -> s.length() > 3)        // 留下长度 > 3 的
+        .collect(Collectors.toList());
+    ```
+
+=== "`map` —— 元素转换"
+
+    ```java
+    // Function<T, R>：把 T 转成 R
+    List<Integer> lengths = list.stream()
+        .map(String::length)                // String → Integer
+        .collect(Collectors.toList());
+    ```
+
+=== "`flatMap` —— 扁平化"
+
+    ```java
+    // 一对多映射：把 Stream<List<T>> 压平为 Stream<T>
+    List<List<String>> nested = List.of(
+        List.of("a", "b"),
+        List.of("c", "d"),
+        List.of("e")
+    );
+    List<String> flat = nested.stream()
+        .flatMap(Collection::stream)        // 关键：把每个 List 变成 Stream
+        .collect(Collectors.toList());
+    // ["a", "b", "c", "d", "e"]
+    ```
+
+=== "`distinct` / `sorted` / `limit` / `skip`"
+
+    ```java
+    list.stream()
+        .distinct()                          // 去重
+        .sorted()                            // 自然排序
+        .limit(10)                           // 只取前 10 个
+        .skip(5)                             // 跳过前 5 个
+        .forEach(System.out::println);
+    ```
+
+=== "`peek` —— 调试用（重要）"
+
+    ```java
+    // 唯一能"看"到中间过程的方法
+    list.stream()
+        .filter(s -> s.length() > 3)
+        .peek(s -> System.out.println("after filter: " + s))  // 👀 调试神器
+        .map(String::toUpperCase)
+        .peek(s -> System.out.println("after map: " + s))
+        .forEach(System.out::println);
+    ```
+
+#### 10.4.5 核心终端操作
+
+=== "`collect` —— 收集结果（最常用）"
+
+    ```java
+    // 1. 转 List / Set / Map
+    List<String> list = stream.collect(Collectors.toList());
+    Set<String> set = stream.collect(Collectors.toSet());
+    Map<String, Integer> map = stream.collect(Collectors.toMap(String::length, s -> s));
+
+    // 2. 拼接字符串
+    String joined = stream.collect(Collectors.joining(", "));  // "a, b, c"
+
+    // 3. 分组（极常用！）
+    Map<Department, List<Employee>> byDept = employees.stream()
+        .collect(Collectors.groupingBy(Employee::getDepartment));
+
+    // 4. 分区（二分：true 一组，false 一组）
+    Map<Boolean, List<Integer>> partition = numbers.stream()
+        .collect(Collectors.partitioningBy(n -> n % 2 == 0));
+    // 偶数一组，奇数一组
+
+    // 5. 统计
+    IntSummaryStatistics stats = employees.stream()
+        .collect(Collectors.summarizingInt(Employee::getSalary));
+    // 包含 count / sum / min / average / max
+    ```
+
+=== "`reduce` —— 归约"
+
+    ```java
+    // 1. 求和（初始值为 0）
+    int sum = numbers.stream().reduce(0, Integer::sum);
+
+    // 2. 求最大值
+    Optional<Integer> max = numbers.stream().reduce(Integer::max);
+
+    // 3. 字符串拼接
+    String concat = Stream.of("a", "b", "c").reduce("", String::concat);
+    ```
+
+=== "`match` / `find` / `count`"
+
+    ```java
+    // 匹配
+    boolean anyMatch = stream.anyMatch(s -> s.startsWith("A"));    // 任一匹配
+    boolean allMatch = stream.allMatch(s -> s.length() > 0);        // 全部匹配
+    boolean noneMatch = stream.noneMatch(s -> s.isEmpty());        // 全不匹配
+
+    // 查找
+    Optional<String> first = stream.findFirst();  // 第一个
+    Optional<String> any = stream.findAny();      // 任一个（并行流下高效）
+
+    // 统计
+    long count = stream.count();
+    ```
+
+#### 10.4.6 实战场景集锦
+
+=== "场景 1：过滤 + 转换 + 收集"
+
+    ```java
+    List<String> names = employees.stream()
+        .filter(e -> e.getSalary() > 10000)              // 过滤：薪资 > 1w
+        .map(Employee::getName)                            // 转换：取姓名
+        .sorted()                                          // 排序
+        .limit(10)                                         // Top 10
+        .collect(Collectors.toList());
+    ```
+
+=== "场景 2：多级分组 + 聚合"
+
+    ```java
+    // 按部门分组，再按薪资等级分组，统计每组人数
+    Map<String, Map<String, Long>> result = employees.stream()
+        .collect(Collectors.groupingBy(
+            Employee::getDepartment,                       // 第一级：按部门
+            Collectors.groupingBy(                         // 第二级：按薪资等级
+                e -> e.getSalary() > 10000 ? "高" : "低",
+                Collectors.counting()
+            )
+        ));
+    ```
+
+=== "场景 3：数值流求平均（避免装箱）"
+
+    ```java
+    // ❌ 每次都要把 int 装箱成 Integer
+    double avg1 = employees.stream()
+        .mapToInt(e -> e.getSalary())  // IntStream，高效
+        .average()
+        .orElse(0);
+
+    // ❌ 错误做法：用 Stream<Integer> 求平均要先转 int 流
+    double avg2 = employees.stream()
+        .collect(Collectors.averagingInt(Employee::getSalary));
+    // ✅ 但 averagingInt 内部已经用了 IntStream，性能 OK
+    ```
+
+=== "场景 4：字符串统计"
+
+    ```java
+    // 统计每个单词出现的次数
+    Map<String, Long> wordCount = sentence.stream()
+        .flatMap(s -> Arrays.stream(s.split(" ")))
+        .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+    ```
+
+#### 10.4.7 串行流 vs 并行流
+
+```java
+// 串行流：单线程
+list.stream().filter(...).count();
+
+// 并行流：ForkJoinPool 线程池（默认 CPU 核数）
+list.parallelStream().filter(...).count();
+
+// 强制转换
+list.stream().parallel().filter(...).count();
+```
+
+!!! warning "并行流的 4 大陷阱"
+
+    1. **线程安全问题**：流中**禁止修改共享状态**
+       ```java
+       List<Integer> result = new ArrayList<>();
+       list.parallelStream().forEach(result::add);  // ❌ 线程不安全
+       list.parallelStream().forEach(result::add);  // ✅ 应使用 collect
+       ```
+
+    2. **顺序敏感的操作不要并行**（如 `findFirst`、`limit`）
+
+    3. **数据量小时不要并行**（并行有线程切换开销）
+
+    4. **底层数据结构影响性能**：
+       - `ArrayList`、`数组` → 拆分容易 ✅
+       - `LinkedList` → 拆分困难 ❌
+       - `HashSet`、`TreeSet` → 中等
+
+!!! tip "何时使用并行流？"
+
+    ✅ **满足所有条件**才用：
+    - 数据量大（一般 > 10000）
+    - 每个元素的处理逻辑复杂
+    - 数据源易于拆分（`ArrayList` / `数组`）
+    - 操作没有共享可变状态
+
+> **参考链接**：
+>
+> - [java.util.stream Package (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/stream/package-summary.html)
+> - [Aggregate Operations (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/collections/streams/index.html)
+> - [Stream API 完整指南 (Baeldung)](https://www.baeldung.com/java-8-streams)
+
+---
+
+### 10.5 Optional 类 {#sec10-5}
+
+#### 10.5.1 为什么用 Optional
+
+> **NPE（NullPointerException）** 是 Java 开发的头号公敌。Optional 把"无值"显式化，从**被动崩溃**变为**主动处理**。
+
+```java
+// ❌ 传统写法：不知道什么时候会 NPE
+String city = user.getAddress().getCity().toUpperCase();
+
+// ✅ Optional 链式调用：每一层都有"无值"的优雅处理
+String city = Optional.ofNullable(user)
+    .map(User::getAddress)
+    .map(Address::getCity)
+    .map(String::toUpperCase)
+    .orElse("UNKNOWN");
+```
+
+#### 10.5.2 创建 Optional
+
+| 方法                             | 说明           | 适用场景         |
+| ------------------------------ | ------------ | ------------ |
+| `Optional.of(T value)`         | 包装非 null 值   | 确信值不为 null   |
+| `Optional.ofNullable(T value)` | 允许为 null     | 不知道值是否为 null |
+| `Optional.empty()`             | 创建空 Optional | 默认返回         |
+
+```java
+// ❌ of(null) 会抛 NPE
+Optional<String> o1 = Optional.of(null);  // NullPointerException
+
+// ✅ ofNullable(null) 返回 empty
+Optional<String> o2 = Optional.ofNullable(null);  // Optional.empty
+
+// ✅ empty() 显式空
+Optional<String> o3 = Optional.empty();
+```
+
+#### 10.5.3 核心方法
+
+=== "存在性检查"
+
+    ```java
+    Optional<String> opt = Optional.of("Hello");
+
+    // isPresent / isEmpty
+    opt.isPresent();  // true（Java 11+）
+    opt.isEmpty();    // false（Java 11+）
+
+    // ifPresent：存在则消费
+    opt.ifPresent(s -> System.out.println(s));
+
+    // ifPresentOrElse：存在/不存在分别处理（Java 9+）
+    opt.ifPresentOrElse(
+        s -> System.out.println("Value: " + s),
+        () -> System.out.println("No value")
+    );
+    ```
+
+=== "获取值"
+
+    ```java
+    // ❌ get()：不推荐，没有值时会抛 NoSuchElementException
+    String v1 = opt.get();
+
+    // ✅ orElse：有值返回值，无值返回默认值
+    String v2 = opt.orElse("default");
+
+    // ✅ orElseGet：有值返回值，无值调用 Supplier（懒执行）
+    String v3 = opt.orElseGet(() -> computeDefault());
+
+    // ✅ orElseThrow：无值抛指定异常
+    String v4 = opt.orElseThrow(() -> new IllegalArgumentException("没有值！"));
+    ```
+
+=== "链式转换"
+
+    ```java
+    // map：值转换
+    Optional<Integer> len = opt.map(String::length);
+
+    // flatMap：避免 Optional<Optional<T>> 嵌套
+    Optional<String> city = userOpt
+        .flatMap(User::getAddressOpt)        // 返回 Optional<Address>
+        .flatMap(Address::getCityOpt);        // 返回 Optional<String>
+
+    // filter：过滤
+    Optional<String> result = opt.filter(s -> s.length() > 3);
+    ```
+
+#### 10.5.4 Optional 实战案例
+
+```java
+// 案例 1：链式处理嵌套对象
+public String getUserCity(Long userId) {
+    return Optional.ofNullable(userId)
+        .flatMap(id -> userRepository.findById(id))      // Optional<User>
+        .map(User::getAddress)                            // Optional<Address>
+        .map(Address::getCity)                            // Optional<String>
+        .filter(city -> !city.isEmpty())
+        .orElse("未知城市");
+}
+
+// 案例 2：方法返回值
+// ✅ 推荐：可能返回 null 的方法返回 Optional
+public Optional<User> findByName(String name) {
+    User user = userRepository.selectByName(name);
+    return Optional.ofNullable(user);
+}
+
+// 调用方处理
+findByName("Alice")
+    .ifPresent(System.out::println);
+```
+
+#### 10.5.5 Optional 反模式
+
+!!! warning "这些用法都是错的！"
+
+    ```java
+    // ❌ 1. 不要用 Optional 包装集合
+    Optional<List<String>> list;  // 应该是 List<String>，空集合比 null 安全
+
+    // ❌ 2. 不要用作字段类型
+    public class User {
+        private Optional<String> name;  // 不推荐，影响序列化
+    }
+
+    // ❌ 3. 不要用作方法参数
+    public void setName(Optional<String> name) { }  // 失去强类型约束
+
+    // ❌ 4. 不要用 isPresent() + get() 的组合
+    if (opt.isPresent()) {
+        return opt.get();
+    }
+    // ✅ 应该直接用 orElse / orElseGet
+    return opt.orElse("default");
+    ```
+
+!!! summary "Optional 使用准则"
+
+    | ✅ 推荐 | ❌ 不推荐 |
+    |---------|----------|
+    | 方法返回值 | 字段类型 |
+    | 链式调用 | 集合类型 |
+    | 替代多层 null 检查 | `isPresent() + get()` 组合 |
+
+> **参考链接**：
+>
+> - [Optional API (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Optional.html)
+> - [Optional in Java (Baeldung)](https://www.baeldung.com/java-optional)
+> - [Java 8 Optional: What's the Point? (Stuart Marks)](https://www.oracle.com/technical-resources/articles/java/java8-optional.html)
+
+---
+
+> **📚 本章参考汇总**
+>
+> - [Lambda Expressions (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)
+> - [Method References (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html)
+> - [Aggregate Operations (Stream) (Oracle Tutorial)](https://docs.oracle.com/javase/tutorial/collections/streams/index.html)
+> - [java.util.function Package (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/function/package-summary.html)
+> - [java.util.stream Package (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/stream/package-summary.html)
+> - [java.util.Optional (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Optional.html)
+> - [Effective Java, 3rd Edition — Items 42-50 (Lambda/Stream/Optional 章节)](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)

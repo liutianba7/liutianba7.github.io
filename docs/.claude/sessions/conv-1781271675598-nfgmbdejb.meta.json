@@ -1,0 +1,20 @@
+{
+  "id": "conv-1781271675598-nfgmbdejb",
+  "title": "Write Python NLP intro blog",
+  "titleGenerationStatus": "success",
+  "createdAt": 1781271675599,
+  "updatedAt": 1781316983880,
+  "lastResponseAt": 1781316983880,
+  "sessionId": "3ec39ff1-30a0-4cbc-a6bf-60baf4d3417b",
+  "sdkSessionId": "3ec39ff1-30a0-4cbc-a6bf-60baf4d3417b",
+  "currentNote": "python/05_ai/NLP.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}
