@@ -4,33 +4,35 @@
     "type": "split",
     "children": [
       {
-        "id": "f9b48905d12695b6",
+        "id": "0b1ca7954ee78afa",
         "type": "tabs",
         "children": [
           {
-            "id": "13c868b05218a691",
+            "id": "5d86ab6f28a7d54b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "others/02_blog/每日总结（原始稿子）/day06.md",
+                "file": "code-notes/algorithm/hot100总结.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "day06"
+              "title": "hot100总结"
             }
           },
           {
-            "id": "131a45e8ab5f7ce8",
+            "id": "e93107874caee32f",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "assets/imgs/python/nlp/nlp02_rnn结构图.png"
+                "file": "others/02_blog/csdn/python/预训练三剑客：BERT、GPT与T5架构对比与实战【NLP系列第五篇】.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "nlp02_rnn结构图"
+              "icon": "lucide-file",
+              "title": "预训练三剑客：BERT、GPT与T5架构对比与实战【NLP系列第五篇】"
             }
           }
         ],
@@ -66,13 +68,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "assets/imgs/python/nlp/nlp02_rnn结构图.png",
+                "file": "others/02_blog/csdn/python/预训练三剑客：BERT、GPT与T5架构对比与实战【NLP系列第五篇】.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "nlp02_rnn结构图 的大纲"
+              "title": "预训练三剑客：BERT、GPT与T5架构对比与实战【NLP系列第五篇】 的大纲"
             }
           },
           {
@@ -102,7 +104,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -206,53 +209,52 @@
       "bases:新建数据库": false
     }
   },
-  "active": "131a45e8ab5f7ce8",
+  "active": "97902ed32e7e6f5a",
   "lastOpenFiles": [
-    "others/02_blog/每日总结（原始稿子）/day06.md",
-    "others/02_blog/每日总结（原始稿子）/daily_summary_template.md",
-    "others/02_blog/每日总结（原始稿子）/day04.md",
+    "others/02_blog/每日总结（原始稿子）/day13.md",
     "code-notes/algorithm/hot100总结.md",
     "code-notes/algorithm/template.md",
     "python/05_ai/NLP.md",
-    "assets/imgs/python/nlp/nlp04_gru整体结构图.png",
-    "assets/imgs/python/nlp/PixPin_2026-06-13_10-26-59.png",
-    "assets/imgs/python/nlp/PixPin_2026-06-13_10-26-59.png.hkltkB",
-    "assets/imgs/python/nlp/PixPin_2026-06-13_10-25-57.png",
-    "assets/imgs/python/nlp/PixPin_2026-06-13_10-25-57.png.dWzZEo",
-    "assets/imgs/python/nlp/nlp03_lstm整体结构图.png",
-    "assets/imgs/python/nlp/nlp.png",
-    "assets/imgs/python/nlp/nlp.png.PFOHcU",
-    "assets/imgs/python/nlp/nlp02_rnn结构图 (2).png",
-    "assets/imgs/python/nlp/nlp_rnn结构图.png",
-    "assets/imgs/python/nlp/nlp_rnn结构图.png.dTrDQd",
-    "assets/imgs/python/nlp/nlp02_rnn结构图.png",
-    "java/02_Frameworks/ssm.md",
-    "java/02_Frameworks/springboot.md",
-    "assets/imgs/python/nlp/nlp08_word2vec.png",
+    "assets/imgs/python/nlp/nlp46_hugging_face_hub.png",
+    "assets/imgs/python/nlp/PixPin_2026-06-27_15-23-24.png",
+    "assets/imgs/python/nlp/PixPin_2026-06-27_15-23-24.png.oDWcbV",
+    "others/02_blog/每日总结（原始稿子）/daily_summary_template.md",
+    "others/02_blog/每日总结（原始稿子）/01_三年之约.md",
+    "others/02_blog/每日总结（原始稿子）/day12.md",
+    "nul",
     "others/02_blog/素材/每日一句.md",
-    "assets/imgs/python/nlp/nlp10_skip_gram.png",
-    "others/02_blog/csdn/python/从零玩转NLP：分词、文本表示与Word2Vec实战.md",
+    "python/06_aiInfra/LLMFinetune.md",
     "others/02_blog/素材/各种素材.md",
-    "python/05_ai/DeepAgents.md",
-    "others/02_blog/csdn/python/从零玩转PyTorch训练：自动微分、优化器与正则化全解析.md",
-    "others/02_blog/csdn/python/从零玩转NLP：分词、文本表示与Word2Vec实战.md.tmp.25760.1781273368167",
-    "others/02_blog/csdn/java/Java Lambda + Stream：让你的代码从 100 行变 10 行.md",
-    "others/02_blog/csdn/java/Java I-O 实战指南：从文件复制到对象序列化，一篇搞定.md",
-    "java/01_Java_Core/java 基础.md",
-    "python/05_ai/verify.py",
-    "python/05_ai/do_edit2.py",
-    "python/05_ai/do_edit.py",
-    "python/05_ai/count_newlines.py",
-    "assets/imgs/python/nlp/nlp10_skip_gram.png.JSXVzT",
-    "python/05_ai/NLP-v2.md",
-    "others/01_理财学习/01_理财基本概念.md",
-    "others/01_理财学习/04_估值与买卖策略.md",
-    "others/01_理财学习/03_资产配置.md",
-    "others/01_理财学习/02_实操入门.md",
-    "others/02_blog/每日总结（原始稿子）/day03.md",
+    "others/02_blog/template/2eea32805e91128d0df88fd5910ae42d.jpg",
+    "others/02_blog/每日总结（原始稿子）/day11.md",
+    "others/02_blog/template/Pasted image 20260618181942.png",
+    "others/02_blog/template/Pasted image 20260618181938.png",
+    "others/temp",
+    "others/temp/8e31996f36fc345e0c2e82a06dcbee07.jpg",
+    "others/temp/fbe76bc84dbf491befb4796e68697574.jpg",
+    "others/temp/f5a75b868a3cfa288ae88c89cd76b9e6.jpg",
+    "others/temp/0752ca9d1495d1d23f86cbe0306cdb59 1.jpg",
+    "others/temp/0752ca9d1495d1d23f86cbe0306cdb59.jpg",
+    "others/02_blog/每日总结（原始稿子）/day09.md",
+    "others/02_blog/csdn/python/预训练三剑客：BERT、GPT与T5架构对比与实战【NLP系列第五篇】.md",
+    "others/02_blog/每日总结（原始稿子）/day07.md",
+    "others/02_blog/每日总结（原始稿子）/day08.md",
+    "assets/imgs/python/nlp/nlp45_t5预训练.png.ZjlBhu",
+    "python/05_ai/NLP.md.tmp.5284.1781618160475",
+    "assets/imgs/python/nlp/PixPin_2026-06-16_21-54-00.png.gVdXsu",
+    "assets/imgs/python/nlp/PixPin_2026-06-16_21-50-35.png.XtmqBj",
+    "assets/imgs/python/nlp/PixPin_2026-06-16_21-45-25.png.fgrikg",
+    "assets/imgs/python/nlp/PixPin_2026-06-16_17-37-01.png.XTdtqZ",
+    "assets/imgs/python/nlp/PixPin_2026-06-16_17-32-50.png.VpOZJU",
     "python/05_ai/深度学习.md",
-    "python/05_ai/LangChain.md",
-    "others/02_blog/csdn/python/快速入门PyTorch.md",
-    "interview/java/java基础.md"
+    "python/05_ai/预训练模型.md",
+    "python/05_ai/LangGraph.md",
+    "python/05_ai/langchainBack.md",
+    "python/05_ai/DeepAgents.md",
+    "others/02_blog/csdn/python/彻底搞懂Transformer：架构、原理与PyTorch实战【NLP系列第四篇】.md",
+    "python/06_aiInfra/Ollama.md",
+    "others/02_blog/csdn/java/Java 8 到 21 进化史：这 6 个新特性让我代码量减半.md",
+    "others/02_blog/csdn/python/让模型学会“回头看”：Seq2Seq 与 Attention 机制的通俗图解与代码实战【NLP系列第三篇】.md",
+    "others/02_blog/csdn/python/从零玩转 NLP：分词、文本表示与 Word2Vec 实战【NLP系列第一篇】.md"
   ]
 }

@@ -63,11 +63,12 @@
     - [10.3 方法引用](#sec10-3)
     - [10.4 Stream API](#sec10-4)
     - [10.5 Optional 类](#sec10-5)
-- [十一、Java 新特性纵览](#sec11)
-    - [11.1 Java 8](#sec11-1)
-    - [11.2 Java 9 ~ 11](#sec11-2)
-    - [11.3 Java 14 ~ 17 LTS](#sec11-3)
-    - [11.4 Java 21 LTS](#sec11-4)
+- [十一、Java 新特性实战指南](#sec11)
+    - [11.1 代码更简洁 —— 语法糖篇](#sec11-1)
+    - [11.2 数据结构更优雅 —— Record & 密封类](#sec11-2)
+    - [11.3 并发编程新纪元 —— 虚拟线程](#sec11-3)
+    - [11.4 工具与模块化](#sec11-4)
+    - [11.5 总结 —— 版本路线图与优先级](#sec11-5)
 
 ---
 
@@ -4743,3 +4744,608 @@ findByName("Alice")
 > - [java.util.stream Package (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/stream/package-summary.html)
 > - [java.util.Optional (Java 25)](https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/util/Optional.html)
 > - [Effective Java, 3rd Edition — Items 42-50 (Lambda/Stream/Optional 章节)](https://www.oreilly.com/library/view/effective-java-3rd/9780134686097/)
+
+---
+
+## 十一、Java 新特性实战指南 {#sec11}
+
+> Java 从 9 到 21 经历了多个 LTS 版本（8 → 11 → 17 → 21），带来了海量新特性。本章**不按版本号罗列**，而是按"解决什么问题"组织——学完你能在**合适的场景用上合适的特性**。
+
+### 11.1 代码更简洁 —— 语法糖篇 {#sec11-1}
+
+#### 11.1.1 `var` 局部类型推断（Java 10）
+
+**痛点**：泛型类型声明重复冗长。
+
+```java
+// ❌ 传统：类型声明重复
+Map<String, List<User>> userMap = new HashMap<String, List<User>>();
+// 即使用了菱形运算符，变量类型还是得写
+Map<String, List<User>> userMap = new HashMap<>();
+
+// ✅ var：编译器自动推断类型
+var userMap = new HashMap<String, List<User>>();
+var list = List.of(1, 2, 3);               // 推断为 List<Integer>
+var entry = Map.entry("key", "value");      // 推断为 Map.Entry<String, String>
+```
+
+!!! warning "var 的使用限制"
+
+    ```java
+    // ❌ 必须初始化
+    var x;  // 编译错误：Cannot infer type
+
+    // ❌ 不能用于字段 / 方法参数 / 返回类型
+    public var method(var param) { return var x; }  // 全部错误
+
+    // ✅ 只能用于局部变量和 for 循环的索引
+    for (var i = 0; i < 10; i++) { }
+    for (var entry : map.entrySet()) { }
+
+    // ❌ 不能用于多变量声明
+    var a = 1, b = 2;  // 编译错误
+    ```
+
+#### 11.1.2 Switch 表达式（Java 14 预览 → 17 稳定）
+
+**痛点**：传统 switch 啰嗦、默认穿透（break 容易忘）、不是表达式（不能赋值）。
+
+=== "传统 switch 语句"
+
+    ```java
+    // ❌ 啰嗦 + 易忘 break
+    String result;
+    switch (day) {
+        case MONDAY:
+        case FRIDAY:
+            result = "工作";
+            break;
+        case SUNDAY:
+            result = "休息";
+            break;
+        default:
+            result = "未知";
+    }
+    ```
+
+=== "Arrow 语法（Java 14+）"
+
+    ```java
+    // ✅ 箭头写法：简洁 + 无穿透 + 可赋值
+    String result = switch (day) {
+        case MONDAY, FRIDAY -> "工作";
+        case SUNDAY -> "休息";
+        default -> "未知";
+    };
+    ```
+
+=== "Yield 语法（多行）"
+
+    ```java
+    // ✅ 多行逻辑用 yield 返回
+    String result = switch (score) {
+        case 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100 -> "优秀";
+        case 80, 81, 82, 83, 84, 85, 86, 87, 88, 89 -> "良好";
+        case 60, 61, 62, 63, 64, 65, 66, 67, 68, 69 -> {
+            var msg = "及格，需要努力";
+            log.warn(msg);
+            yield msg;  // yield 返回值，区别于 return
+        }
+        default -> "不及格";
+    };
+    ```
+
+!!! summary "Switch 表达式 vs Switch 语句"
+
+    | 维度 | 传统 switch | Switch 表达式 |
+    |------|-----------|--------------|
+    | 语法 | `case: break` | `case ->` / `yield` |
+    | 穿透 | 默认穿透（易漏 break） | 无穿透 |
+    | 是否表达式 | ❌ 不能赋值 | ✅ 可以赋值 |
+    | 穷举性 | 不需要 | 需要覆盖所有情况（或用 default） |
+
+#### 11.1.3 文本块 Text Block（Java 13 预览 → 15 稳定）
+
+**痛点**：多行字符串的拼接和转义噩梦。
+
+```java
+// ❌ 传统：拼接 + 转义
+String json = "{\n" +
+    "  \"name\": \"Alice\",\n" +
+    "  \"age\": 18,\n" +
+    "  \"roles\": [\"admin\", \"user\"]\n" +
+    "}";
+
+// ✅ Text Block：三引号包裹，保留格式
+String json = """
+    {
+      "name": "Alice",
+      "age": 18,
+      "roles": ["admin", "user"]
+    }
+    """;
+
+// SQL、HTML、正则同样适用
+String sql = """
+    SELECT u.name, u.age
+    FROM users u
+    WHERE u.age > 18
+    ORDER BY u.name
+    """;
+```
+
+!!! tip "Text Block 三大规则"
+
+    - 开始三引号后必须**换行**
+    - 缩进由**最左非空行**决定（编译器自动去除公共缩进）
+    - 末尾三引号位置决定**结尾是否有换行**
+
+    ```java
+    // 相当于 "Hello\n"
+    String s1 = """
+        Hello
+        """;
+
+    // 相当于 "Hello"
+    String s2 = """
+        Hello""";
+    ```
+
+#### 11.1.4 不可变集合工厂方法（Java 9）
+
+**痛点**：`Arrays.asList()` 返回的 List 可修改，且 size 固定。
+
+```java
+// ❌ Arrays.asList() 的坑
+List<String> list = Arrays.asList("a", "b", "c");
+list.add("d");  // ❌ UnsupportedOperationException（固定大小）
+
+// ✅ 工厂方法：真正的不可变集合
+List<String> list = List.of("a", "b", "c");        // 不可变，可包含 null
+Set<String> set = Set.of("a", "b", "c");            // 不可变，无重复
+Map<String, Integer> map = Map.of("a", 1, "b", 2);  // 不可变
+
+// 不可变的意义：线程安全 + 防御性编程
+```
+
+> **参考链接**：
+>
+> - [`var` Local Variable Type Inference (Oracle)](https://docs.oracle.com/en/java/javase/17/language/local-variable-type-inference.html)
+> - [Switch Expressions (Oracle)](https://docs.oracle.com/en/java/javase/17/language/switch-expressions.html)
+> - [Text Blocks (Oracle)](https://docs.oracle.com/en/java/javase/17/text-blocks/index.html)
+> - [Immutable Collections (Java 9)](https://docs.oracle.com/en/java/javase/17/core/creating-immutable-lists-sets-and-maps.html)
+
+---
+
+### 11.2 数据结构更优雅 —— Record & 密封类 {#sec11-2}
+
+#### 11.2.1 `record` 数据类（Java 14 预览 → 16 稳定）
+
+**痛点**：POJO 样板代码——手写构造器、getter、equals、hashCode、toString。
+
+```java
+// ❌ 传统 POJO：50 行样板代码
+public class User {
+    private final String name;
+    private final int age;
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    public String getName() { return name; }
+    public int getAge() { return age; }
+    // equals / hashCode / toString 也要手写...
+}
+
+// ✅ record：一行搞定全部
+public record User(String name, int age) { }
+// 自动生成：全参构造器、accessor（name() 而非 getName()）、equals、hashCode、toString
+```
+
+=== "record 的使用"
+
+    ```java
+    // 实例化与普通类一样
+    var user = new User("Alice", 18);
+
+    // 自动生成的 accessor（注意不是 getName()）
+    System.out.println(user.name());  // "Alice"
+    System.out.println(user.age());   // 18
+
+    // 自动生成的 toString
+    System.out.println(user);         // User[name=Alice, age=18]
+
+    // 自动生成的 equals / hashCode
+    var user2 = new User("Alice", 18);
+    System.out.println(user.equals(user2));  // true
+    ```
+
+=== "自定义构造器"
+
+    ```java
+    // 可以在 record 中添加构造器验证
+    public record User(String name, int age) {
+        // 紧凑构造器（compact constructor）—— 没有参数列表
+        public User {
+            if (age < 0) {
+                throw new IllegalArgumentException("年龄不能为负: " + age);
+            }
+            // 不需要写 this.name = name; —— 自动赋值
+        }
+
+        // 可以添加额外方法
+        public boolean isAdult() {
+            return age >= 18;
+        }
+    }
+    ```
+
+!!! summary "record 的使用限制"
+
+    - **隐式 final**：不能被继承
+    - **所有字段都是 private final**：不可变
+    - **不能声明实例字段**（只能声明 static 字段）
+    - **适用于**：DTO、VO、值对象、参数对象
+
+#### 11.2.2 `sealed` 密封类（Java 15 预览 → 17 稳定）
+
+**痛点**：不受控制的继承 —— 任何人都可以继承你的类。
+
+```java
+// sealed：明确指定可继承的子类列表
+public sealed class Shape
+    permits Circle, Rectangle, Triangle { }
+
+// 许可的子类必须是 final、sealed 或 non-sealed
+public final class Circle extends Shape { }          // 不能再被继承
+public sealed class Rectangle extends Shape
+    permits Square { }                                // 进一步密封
+public non-sealed class Triangle extends Shape { }   // 放开了继承
+
+// 未在 permits 中列出的类：❌ 编译错误
+// public class Hexagon extends Shape { }  // 不允许！
+```
+
+密封类 + 模式匹配的结合，是 Java 17+ 最强的代码简化利器：
+
+```java
+// sealed + switch 模式匹配（Java 21 稳定）
+public String area(Shape shape) {
+    return switch (shape) {
+        case Circle c -> "πr² = " + c.radius();
+        case Rectangle r -> "ab = " + r.width() * r.height();
+        case Triangle t -> "½ah = " + 0.5 * t.base() * t.height();
+        // 不需要 default 分支了！编译器知道 Shape 只有这 3 个子类
+    };
+}
+```
+
+#### 11.2.3 Pattern Matching（Java 16+）
+
+**痛点**：先 `instanceof` 判断类型，再强转。
+
+=== "instanceof 模式匹配（Java 16）"
+
+    ```java
+    // ❌ 传统：instanceof + 强制转换
+    if (obj instanceof String) {
+        String s = (String) obj;
+        System.out.println(s.length());
+    }
+
+    // ✅ 模式匹配：声明即使用
+    if (obj instanceof String s) {
+        System.out.println(s.length());  // s 已自动转型
+    }
+    ```
+
+=== "switch 模式匹配（Java 21 稳定）"
+
+    ```java
+    // Java 21：switch 直接匹配类型 + 条件过滤
+    public String handle(Object obj) {
+        return switch (obj) {
+            case null -> "null";                          // null 分支！
+            case String s when s.length() > 5 -> "长字符串: " + s;
+            case String s -> "短字符串: " + s;
+            case Integer i when i < 0 -> "负数: " + i;
+            case Integer i -> "正数: " + i;
+            case int[] arr -> "数组, 长度: " + arr.length;
+            default -> "未知类型";
+        };
+    }
+    ```
+
+> **参考链接**：
+>
+> - [`record` (Oracle)](https://docs.oracle.com/en/java/javase/17/language/records.html)
+> - [Sealed Classes (Oracle)](https://docs.oracle.com/en/java/javase/17/language/sealed-classes-and-interfaces.html)
+> - [Pattern Matching (Oracle)](https://docs.oracle.com/en/java/javase/21/language/pattern-matching-switch-expressions-and-statements.html)
+
+---
+
+### 11.3 并发编程新纪元 —— 虚拟线程 {#sec11-3}
+
+#### 11.3.1 虚拟线程（Virtual Thread, Java 21）
+
+**核心痛点**：传统线程（平台线程）是操作系统线程，**创建成本高**、**内存占用大**。一个线程默认 1MB 栈，10 万线程 JVM 直接跪了。
+
+```java
+// ❌ 平台线程池的局限
+ExecutorService executor = Executors.newFixedThreadPool(200);
+// 如果同时有 1 万个请求，2000 个要排队等待线程释放
+
+// ✅ 虚拟线程：百万级线程，每个只需几 KB
+ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
+// 可以同时启动 10 万个任务，每个任务"不吃不喝不排队"
+```
+
+!!! tip "虚拟线程的设计哲学"
+
+    **一个平台线程可以承载成千上万个虚拟线程**。当虚拟线程执行 IO 操作（如文件读写、网络请求）时，它"自愿"让出平台线程，让其他虚拟线程执行。IO 完成后重新调度。
+
+    ```
+    线程模型演进：
+    ┌──────────┐    ┌──────────┐    ┌──────────────────┐
+    │ 1:1 模型  │→→→│ M:N 模型  │→→→│ 虚拟线程直接交    │
+    │ 平台线程= │    │ 用户级线程│    │ 给操作系统调度    │
+    │ OS 线程   │    │ Green线程│    │      (Java 21)    │
+    └──────────┘    └──────────┘    └──────────────────┘
+    ```
+
+=== "创建虚拟线程（4 种方式）"
+
+    ```java
+    // 方式一：Thread.ofVirtual()
+    Thread vThread = Thread.ofVirtual()
+        .name("my-vt")
+        .start(() -> System.out.println("Hello from virtual thread!"));
+
+    // 方式二：Executors.newVirtualThreadPerTaskExecutor()
+    try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        for (int i = 0; i < 100_000; i++) {
+            executor.submit(() -> {
+                Thread.sleep(1000);  // IO 操作——不阻塞平台线程！
+                return "done";
+            });
+        }
+    }
+
+    // 方式三：Thread.startVirtualThread()
+    Thread.startVirtualThread(() -> System.out.println("Hello"));
+
+    // 方式四：检查是否虚拟线程
+    System.out.println(vThread.isVirtual());  // true
+    ```
+
+=== "虚拟线程 vs 平台线程对比"
+
+    ```java
+    import java.util.stream.IntStream;
+
+    public class VirtualThreadDemo {
+        public static void main(String[] args) throws Exception {
+            // 平台线程：1 万个就 OOM 了
+            // var executor = Executors.newFixedThreadPool(10_000);
+            // 虚拟线程：100 万个也没问题
+            var executor = Executors.newVirtualThreadPerTaskExecutor();
+
+            long start = System.currentTimeMillis();
+            IntStream.range(0, 100_000).forEach(i ->
+                executor.submit(() -> {
+                    Thread.sleep(1000);  // 模拟 IO
+                    return i;
+                })
+            );
+            executor.close();  // 等待所有任务完成
+            System.out.println("耗时: " + (System.currentTimeMillis() - start) + "ms");
+            // 输出：耗时约 1000ms（不是 100_000 秒！因为虚拟线程让出了平台线程）
+        }
+    }
+    ```
+
+!!! warning "虚拟线程的使用限制"
+
+    - **不要**池化虚拟线程（每次创建开销极低，池化反而浪费）
+    - **不要**用 `ThreadLocal` 持有重量级对象（虚拟线程数量多，内存开销大）
+    - **不要**用 `synchronized` 加锁（用 `ReentrantLock` 替代，避免固定）
+    - **可以**和 `CompletableFuture`、`Spring WebFlux` 等异步框架共存
+
+#### 11.3.2 结构化并发（StructuredTaskScope, Java 21）
+
+**痛点**：`CompletableFuture` 管理多个并发任务时，取消一个兄弟任务要手动处理。
+
+```java
+// ✅ 结构化并发：自动管理任务生命周期
+try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
+    Future<String> user = scope.fork(() -> fetchUser());
+    Future<Order> order = scope.fork(() -> fetchOrder());
+    Future<Address> addr = scope.fork(() -> fetchAddress());
+
+    scope.join();              // 等待所有任务完成
+    scope.throwIfFailed();     // 任一失败则所有任务都被取消
+
+    return new Response(user.resultNow(), order.resultNow(), addr.resultNow());
+}
+// 自动处理：全部完成返回 / 任一失败取消所有 / 超时清理
+```
+
+#### 11.3.3 ScopedValue（Java 21）
+
+**痛点**：`ThreadLocal` 在线程池中透传困难，易内存泄漏。
+
+```java
+// ScopedValue：替代 ThreadLocal 的新方案
+public class RequestContext {
+    private static final ScopedValue<String> REQUEST_ID = ScopedValue.newInstance();
+
+    // 在入口处绑定
+    public void handleRequest(String requestId) {
+        ScopedValue.where(REQUEST_ID, requestId)
+            .run(() -> process());
+    }
+
+    private void process() {
+        // 内部任意方法都能读取
+        System.out.println(REQUEST_ID.get());  // 自动透传
+        subProcess();
+    }
+}
+```
+
+> **参考链接**：
+>
+> - [Virtual Threads (JEP 444)](https://openjdk.org/jeps/444)
+> - [StructuredTaskScope (JEP 453)](https://openjdk.org/jeps/453)
+> - [ScopedValue (JEP 429)](https://openjdk.org/jeps/429)
+
+---
+
+### 11.4 工具与模块化 {#sec11-4}
+
+#### 11.4.1 JShell（Java 9）
+
+**交互式 REPL**：快速验证代码片段，无需创建类。
+
+```shell
+# 直接在终端运行
+$ jshell
+jshell> var list = List.of(1, 2, 3)
+list ==> [1, 2, 3]
+
+jshell> list.stream().map(x -> x * 2).toList()
+$2 ==> [2, 4, 6]
+
+jshell> /exit
+```
+
+#### 11.4.2 JPMS 模块系统（Java 9）
+
+**核心目标**：强封装，解决 jar hell 和内部 API 泄露。
+
+```java
+// module-info.java —— 模块声明文件
+module com.example.myapp {
+    requires java.sql;                        // 依赖模块
+    requires transitive java.logging;         // 传递依赖
+
+    exports com.example.myapp.api;            // 对外公开的包
+    exports com.example.myapp.dto;
+
+    opens com.example.myapp.model;            // 允许反射访问
+
+    provides com.example.spi.ServiceLoader
+        with com.example.myapp.MyService;     // SPI 提供者
+}
+```
+
+#### 11.4.3 HttpClient（Java 11）
+
+**痛点**：`HttpURLConnection` API 老旧，用起来麻烦。
+
+```java
+// ✅ HttpClient：支持 HTTP/2、响应式、链式 API
+var client = HttpClient.newHttpClient();
+var request = HttpRequest.newBuilder()
+    .uri(URI.create("https://api.github.com/users/octocat"))
+    .header("Accept", "application/json")
+    .GET()
+    .build();
+
+// 同步请求
+HttpResponse<String> response = client.send(request,
+    HttpResponse.BodyHandlers.ofString());
+System.out.println(response.statusCode());   // 200
+System.out.println(response.body());         // JSON
+
+// 异步请求
+client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+    .thenApply(HttpResponse::body)
+    .thenAccept(System.out::println);
+```
+
+#### 11.4.4 `Optional` 增强（Java 9 ~ 11）
+
+| 方法 | 版本 | 说明 |
+|------|------|------|
+| `ifPresentOrElse(consumer, runnable)` | Java 9 | 有值消费，无值执行兜底 |
+| `or(supplier)` | Java 9 | 无值时返回另一个 Optional |
+| `stream()` | Java 9 | Optional → Stream（用于 flatMap） |
+| `isEmpty()` | Java 11 | 判断是否为空（isPresent 的反函数） |
+
+```java
+// ifPresentOrElse：存在 / 不存在分别处理
+opt.ifPresentOrElse(
+    v -> log.info("Value: " + v),       // 有值
+    () -> log.warn("No value!")         // 无值
+);
+
+// stream()：Optional 转 Stream，方便 flatMap
+Optional<String> optional = Optional.of("hello");
+optional.stream()
+    .map(String::toUpperCase)
+    .forEach(System.out::println);  // "HELLO"
+```
+
+> **参考链接**：
+>
+> - [Java Module System (Oracle)](https://www.oracle.com/corporate/features/understanding-java-9-modules.html)
+> - [HttpClient (Java 11)](https://docs.oracle.com/en/java/javase/17/core/http-client.html)
+> - [Optional Enhancements (Java 9)](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html)
+
+---
+
+### 11.5 总结 —— 版本路线图与优先级 {#sec11-5}
+
+#### 学习优先级速查表
+
+| 学习优先级 | 特性 | 版本 | 一句话 |
+|-----------|------|------|--------|
+| ⭐⭐⭐⭐⭐ | Lambda / Stream / Optional | **8** | **日常必用**，详见第十章 |
+| ⭐⭐⭐⭐⭐ | `var` / `record` / Switch 表达式 | 10~17 | **日常必用**，早学早享受 |
+| ⭐⭐⭐⭐ | 不可变集合 `.of()` / Text Block | 9~15 | **随时可用**，减少 bug |
+| ⭐⭐⭐⭐ | `HttpClient` / `instanceof` 模式匹配 | 11~16 | **替代老旧 API** |
+| ⭐⭐⭐⭐ | **虚拟线程** / 结构化并发 | 21 | **高并发首选**，大规模 IO 场景 |
+| ⭐⭐⭐ | 密封类 / `switch` 模式匹配 | 17~21 | **特定领域利器**（领域建模） |
+| ⭐⭐ | JPMS / ScopedValue | 9~21 | **框架/中间件使用** |
+| ⭐ | JShell | 9 | 学习辅助，探索性编程 |
+
+#### 版本升级建议
+
+```
+        迁移路径（绿色 = LTS，虚线 = 可选）
+      ┌────────────────────────────────────┐
+      │                                      │
+  Java 8  ────→  Java 11  ────→  Java 17  ────→  Java 21
+   LTS                LTS                LTS                LTS
+  (2025-03 EOL)   (2026-09 EOL)      (现支持)            (最新)
+      │                                      │
+      └──────────────────────────────────────┘
+              推荐：跳过 11，直接 8→17→21
+```
+
+!!! tip "给你的升级建议"
+
+    - **还在用 Java 8 ？** → 建议直接跳到 **Java 17**（8→11 收益不大，8→17 质的飞跃）
+    - **已经 Java 11 ？** → 建议升级到 **Java 21**（虚拟线程太香了）
+    - **追求稳定** → 选 **Java 17 LTS**，支持到 2029+
+    - **拥抱新特性** → 选 **Java 21 LTS**，支持到 2031+
+
+> **参考链接**：
+>
+> - [Java Version Overview (Wikipedia)](https://en.wikipedia.org/wiki/Java_version_history)
+> - [Java LTS Releases (Oracle)](https://www.oracle.com/java/technologies/java-se-support-roadmap.html)
+> - [OpenJDK JEP Index](https://openjdk.org/jeps/)
+
+---
+
+> **📚 本章参考汇总**
+>
+> - [Java 17 新特性 (Oracle)](https://docs.oracle.com/en/java/javase/17/language/)
+> - [Java 21 新特性 (Oracle)](https://docs.oracle.com/en/java/javase/21/language/)
+> - [OpenJDK JEP Index](https://openjdk.org/jeps/)
+
+---
+
+> ✅ **全书完！** 从 Java 基础语法到 JVM 底层，从集合框架到新特性，你已经完成了《Java 基础》的系统学习。**理论有了，后面就靠多写代码了**。
