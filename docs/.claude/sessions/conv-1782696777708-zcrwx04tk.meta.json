@@ -1,0 +1,20 @@
+{
+  "id": "conv-1782696777708-zcrwx04tk",
+  "title": "Learn Python time processing libraries",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782696777708,
+  "updatedAt": 1782698742588,
+  "lastResponseAt": 1782696942367,
+  "sessionId": "830f12c4-647a-4899-8b69-cc53a9663dbb",
+  "sdkSessionId": "830f12c4-647a-4899-8b69-cc53a9663dbb",
+  "currentNote": "python/02_basic/python标准库.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 1709,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 51968,
+    "contextWindow": 200000,
+    "contextTokens": 53677,
+    "percentage": 27
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "conv-1782692637933-tpsdvjxv1",
+  "title": "Plan improve asyncio notes with event loop deep...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782692637934,
+  "updatedAt": 1782696760584,
+  "lastResponseAt": 1782693079073,
+  "sessionId": "4de88f4a-87a6-4917-bfae-29ea67c3b176",
+  "sdkSessionId": "4de88f4a-87a6-4917-bfae-29ea67c3b176",
+  "currentNote": "python/02_basic/python标准库.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 85,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 48128,
+    "contextWindow": 200000,
+    "contextTokens": 48213,
+    "percentage": 24
+  }
+}

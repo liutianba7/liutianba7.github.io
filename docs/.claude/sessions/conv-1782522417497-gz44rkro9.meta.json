@@ -3,18 +3,18 @@
   "title": "Explain pretrained model base classes and details",
   "titleGenerationStatus": "success",
   "createdAt": 1782522417498,
-  "updatedAt": 1782544696287,
-  "lastResponseAt": 1782544696287,
+  "updatedAt": 1782723081043,
+  "lastResponseAt": 1782723081043,
   "sessionId": "7f80cff2-5b92-4dc7-ab48-f14a3107c8b9",
   "sdkSessionId": "7f80cff2-5b92-4dc7-ab48-f14a3107c8b9",
   "currentNote": "python/05_ai/NLP.md",
   "usage": {
     "model": "haiku",
-    "inputTokens": 0,
+    "inputTokens": 126,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 87424,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 87550,
+    "percentage": 44
   }
 }

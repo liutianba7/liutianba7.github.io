@@ -3,18 +3,18 @@
   "title": "Explain Python DFS pruning solution for LeetCod...",
   "titleGenerationStatus": "success",
   "createdAt": 1781157170108,
-  "updatedAt": 1782550004746,
-  "lastResponseAt": 1782550004746,
+  "updatedAt": 1782721895236,
+  "lastResponseAt": 1782721895236,
   "sessionId": "dae3cbf9-a081-45b4-8748-96a17b7da1ad",
   "sdkSessionId": "dae3cbf9-a081-45b4-8748-96a17b7da1ad",
   "currentNote": "code-notes/algorithm/hot100总结.md",
   "usage": {
     "model": "haiku",
-    "inputTokens": 0,
+    "inputTokens": 69,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 164992,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 165061,
+    "percentage": 83
   }
 }

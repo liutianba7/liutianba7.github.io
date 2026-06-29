@@ -1523,7 +1523,7 @@ mybatis.configuration.aggressive-lazy-loading=false
 
 ##### 4.4 `<trim>` 实现 `<where>` 的功能
 
-`<trim>` 是更灵活的标签，可以自定义前后缀处理。当<trim>标签不为空，就会在这个sql片段前添加一个前缀 prefix 以及后缀 suffix, 同时如果这个sql片段以指定的前缀开始，就覆盖为空串。
+`<trim>` 是更灵活的标签，可以自定义前后缀处理。当</trim>标签不为空，就会在这个sql片段前添加一个前缀 prefix 以及后缀 suffix, 同时如果这个sql片段以指定的前缀开始，就覆盖为空串。
 
 ```xml
 <trim prefix="前缀" prefixOverrides="要去除的前缀字符串"
@@ -1546,6 +1546,7 @@ mybatis.configuration.aggressive-lazy-loading=false
         </if>
     </trim>
 </select>
+
 ```
 
 - `prefix="WHERE"`：如果有内容，加 `WHERE` 前缀
@@ -1597,7 +1598,6 @@ mybatis.configuration.aggressive-lazy-loading=false
 <p align='center'>
     <img src="../../assets/imgs/spring/spring17.png" alt="image-20251031092737559" style="zoom:50%;" />
 </p>
-
 
 
 ######  1. foreach实现批量查询 

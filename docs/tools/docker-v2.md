@@ -733,12 +733,14 @@ networks:
 docker run -d --name mysql \
   -p 3306:3306 \
   -v mysql_data:/var/lib/mysql \
-  -v mysql_conf:/etc/mysql \
   -e MYSQL_ROOT_PASSWORD=root123 \
-  mysql:8.0.30
-
-# 进入容器（设置编码避免中文乱码）
-docker exec -it -e LANG=C.UTF-8 mysql bash
+  mysql:8.0.30 \
+  --character-set-server=utf8mb4 \
+  --collation-server=utf8mb4_general_ci
+  
+  
+# 进入容器
+docker exec -it mysql bash
 ```
 
 ### 8.2 Redis

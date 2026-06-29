@@ -3821,7 +3821,6 @@ dataset_dict = load_from_disk("./data/processed")
 ``` python
 # csv
 train_dataset.to_csv("./data/processed/train.csv")
-
 # json
 train_dataset.to_json("./data/processed/train.json")
 ```
@@ -3833,7 +3832,6 @@ from datasets import load_dataset
 
 # 加载 CSV
 dataset_dict = load_dataset("csv", data_files="./data/processed/train.csv")
-
 # 加载 JSON
 dataset_dict = load_dataset("json", data_files="./data/processed/train.json")
 ```
