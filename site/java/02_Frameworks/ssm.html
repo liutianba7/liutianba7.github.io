@@ -8341,7 +8341,7 @@
 </span><span id="__span-52-15"><a id="__codelineno-52-15" name="__codelineno-52-15" href="#__codelineno-52-15"></a><span class="nt">&lt;/update&gt;</span>
 </span></code></pre></div>
 <h5 id="44-trim-where">4.4 <code>&lt;trim&gt;</code> 实现 <code>&lt;where&gt;</code> 的功能</h5>
-<p><code>&lt;trim&gt;</code> 是更灵活的标签，可以自定义前后缀处理。当<trim>标签不为空，就会在这个sql片段前添加一个前缀 prefix 以及后缀 suffix, 同时如果这个sql片段以指定的前缀开始，就覆盖为空串。</p>
+<p><code>&lt;trim&gt;</code> 是更灵活的标签，可以自定义前后缀处理。当</trim>标签不为空，就会在这个sql片段前添加一个前缀 prefix 以及后缀 suffix, 同时如果这个sql片段以指定的前缀开始，就覆盖为空串。</p>
 <div class="language-xml highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="nt">&lt;trim</span><span class="w"> </span><span class="na">prefix=</span><span class="s">&quot;前缀&quot;</span><span class="w"> </span><span class="na">prefixOverrides=</span><span class="s">&quot;要去除的前缀字符串&quot;</span>
 </span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="w">      </span><span class="na">suffix=</span><span class="s">&quot;后缀&quot;</span><span class="w"> </span><span class="na">suffixOverrides=</span><span class="s">&quot;要去除的后缀字符串&quot;</span><span class="nt">&gt;</span>
 </span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="w">    </span>SQL<span class="w"> </span>片段

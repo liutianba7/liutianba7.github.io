@@ -36,6 +36,7 @@ nav:
           - DeepAgents: ./python/05_ai/DeepAgents.md
           - DeepLearning: ./python/05_ai/深度学习.md
           - NLP: ./python/05_ai/NLP.md
+          - LLM: ./python/05_ai/LLM.md
       - AI_Infra:
           - Ollama: ./python/06_aiInfra/Ollama.md
           - LLMFinetune: ./python/06_aiInfra/LLMFinetune.md

@@ -21,7 +21,7 @@
     
     
       
-        <title>2026.06.27 总结 - LiuTianBa7 's Blog</title>
+        <title>2026.06.28 总结 - LiuTianBa7 's Blog</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#20260627" class="md-skip">
+        <a href="#20260628" class="md-skip">
           跳转至
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2026.06.27 总结
+              2026.06.28 总结
             
           </span>
         </div>
@@ -3775,10 +3775,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#temppasted-image-20260628155313png" class="md-nav__link">
     <span class="md-ellipsis">
       
-        💪 健身
+        ![[../../temp/Pasted image 20260628155313.png]]
       
     </span>
   </a>
@@ -3786,7 +3786,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
         🌙 晚上
@@ -3797,7 +3797,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
         💭 碎碎念
@@ -3827,53 +3827,61 @@
   
 
 
-<h1 id="20260627">2026.06.27 总结</h1>
-<p>上周有点事情，去医院待了一周，昨天刚出来，hhh，每日记录恢复更新，但是这1-2个月每天可能无法健身了，所以我打算晚上播播游戏什么的。</p>
+<h1 id="20260628">2026.06.28 总结</h1>
+<hr />
+<p>今天录取通知书回来啦，hhh！
+![[../../temp/37aa999e5af8b365b1b94931b6bd38ae.jpg]]</p>
 <h2 id="_1">📚 学习</h2>
 <h3 id="_2">🌤️ 上午</h3>
-<p>上午主要是了解了 hugging facd 生态，如何通过 hugging face 快速加载预训练模型（AutoModel、AutoModelForxxx.from_pretrained()），如何加载和使用分词器 Tokenizer、Datasets。</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># 加载模型  </span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;google-bert/bert-base-chinese&#39;</span><span class="p">)</span>  
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="c1"># 加载tokenizer  </span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s1">&#39;google-bert/bert-base-chinese&#39;</span><span class="p">)</span>
+<p>今天上午写了一个小案例：文本分类任务，主要目的还是感受如何通过 hugging face 方便的使用一些预训练模型，如下，BERT 部分直接用 hugging face 提供的，我只是在最后加了一个分类头。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>  
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>  
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="c1"># BERT 层  </span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">bert</span><span class="p">:</span><span class="n">BertModel</span> <span class="o">=</span> <span class="n">AutoModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">BASE_MODEL</span><span class="p">,</span> <span class="n">add_pooling_layer</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="c1"># 分类层  </span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">cls</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bert</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># 加载数据集</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>  
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="c1"># 如果是在线数据集，直接给数据集名字即可</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">ds</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s1">&#39;../data/train.tsv&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="p">,</span> <span class="n">token_type_ids</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>  
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="c1"># 先走 bert 层，传入的参数就是 ids, attention_mask, token_type_ids, labels    </span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bert</span><span class="p">(</span>  
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>            <span class="n">input_ids</span><span class="o">=</span><span class="n">input_ids</span><span class="p">,</span>  
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>            <span class="n">attention_mask</span><span class="o">=</span><span class="n">attention_mask</span><span class="p">,</span>  
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>            <span class="n">token_type_ids</span><span class="o">=</span><span class="n">token_type_ids</span><span class="p">,</span>  
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>            <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>  
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="p">)</span>  
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="c1"># 然后获取最后一层的 pooler        </span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="n">pooler_output</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">pooler_output</span> <span class="c1"># [batch_size, 768]  </span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>        <span class="c1"># 获取分类结果  </span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cls</span><span class="p">(</span><span class="n">pooler_output</span><span class="p">)</span> <span class="c1"># [batch_size, 1]  </span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>        <span class="c1"># 返回(batch_size, )  </span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>        <span class="k">return</span> <span class="n">out</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </span></code></pre></div>
 <h3 id="_3">☀️ 下午</h3>
-<p>写几道算法题：</p>
+<p>三点开始学习：先刷几道算法题醒醒脑吧，然后之后下午就打算复习后端技术了，先好好把 java 后端复习了，然后考虑简单学学 go 后端。</p>
+<p>算法题：</p>
 <ul>
-<li>leetcode70. 爬楼梯：dp入门题</li>
-<li>leetcodd118. 杨辉三角：简单的递推，一行一行来生成即可</li>
-<li>leetcode198. 打家劫舍：简单的状态机 dp，分析完状态，基于不同的状态，写转移方程即可</li>
-<li>leetcode279. 完全平方数：建模为完全背包问题即可</li>
-<li>leetcode322. 零钱兑换：和 279 思路完全一致</li>
+<li>Leetcode 139. 单词拆分：非常简单的线性dp，f[i] 表示 1-i 可以被拼出来，然后计算 f[i] 即可。</li>
+<li>LeetCode 300. 最长递增子序列：直接写贪心解法，非常经典</li>
+<li>LeetCode 152. 乘积最大子数组：线性dp，需要注意的是不仅要维护一个最大值，还要最小值，因为num可能为负数</li>
+<li>LeetCode 416. 分割等和子集：建模为 <strong>01 背包问题</strong>：能否选出一些数，使其总和恰好为 <code>target = sum(nums) / 2</code>。</li>
+<li>LeetCode 32. 最长有效括号：DP，<code>f[i]</code> 表示以 <code>s[i]</code> 结尾的最长有效括号子串长度。只关心 <code>s[i] == ')'</code> 的情况。</li>
+<li>LeetCode 62. 不同路径：简单二维 DP，<code>f[i][j]</code> 表示到达 <code>(i, j)</code> 的不同路径数。</li>
+<li>LeetCode 64. 最小路径和：和 62 相同模板，只是求和变为取最小值：<code>f[i][j] = min(f[i-1][j], f[i][j-1]) + grid[i][j]</code>。</li>
 </ul>
-<p>然后产出博客，玩游戏。</p>
-<hr />
-<h2 id="_4">💪 健身</h2>
-<p><strong>今日训练</strong></p>
-<p>今天主练三大部位：</p>
-<ul>
-<li><strong>胸</strong>（胸大肌）</li>
-<li><strong>肩的前中束</strong>（三角肌前束、中束）</li>
-<li><strong>肱三头肌</strong></li>
-</ul>
-<hr />
-<h2 id="_5">🌙 晚上</h2>
+<h2 id="temppasted-image-20260628155313png">![[../../temp/Pasted image 20260628155313.png]]</h2>
+<h2 id="_4">🌙 晚上</h2>
 <p><strong>晚间总结</strong></p>
 <ul>
 <li>✅ 完成一篇技术博客</li>
 <li>✅ 完成今日总结</li>
-<li>🚶 出门剪头发</li>
 </ul>
 <hr />
-<h2 id="_6">💭 碎碎念</h2>
+<h2 id="_5">💭 碎碎念</h2>
 <p><strong>今日感悟</strong></p>
 
 

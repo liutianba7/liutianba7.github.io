@@ -1,0 +1,20 @@
+{
+  "id": "conv-1782805945113-5gxxmulz6",
+  "title": "Explain sinusoidal positional encoding",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782805945114,
+  "updatedAt": 1782808773377,
+  "lastResponseAt": 1782808773377,
+  "sessionId": "08764916-9712-41c2-857a-4ac9bcf0ccf8",
+  "sdkSessionId": "08764916-9712-41c2-857a-4ac9bcf0ccf8",
+  "currentNote": "python/05_ai/LLM.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 108,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 65408,
+    "contextWindow": 200000,
+    "contextTokens": 65516,
+    "percentage": 33
+  }
+}
