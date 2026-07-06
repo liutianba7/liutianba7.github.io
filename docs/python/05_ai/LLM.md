@@ -2797,3 +2797,66 @@ model = PeftModel.from_pretrained(base_model, "path/to/adapters")
 model = model.merge_and_unload()
 ```
 
+#### [Bitsandbytes](https://huggingface.co/docs/bitsandbytes/index)
+
+##### Bitandbytes 概述
+
+**bitsandbytes** 通过 k 位量化技术为 PyTorch 提供了易于访问的大型语言模型。bitsandbytes 提供了三个主要特性，可显著降低推理和训练的内存消耗：
+
+- 8 位优化器采用分块量化技术，以极小的内存成本保持 32 位性能。
+- LLM.int8() 或 8 位量化方法仅需一半的内存即可实现大型语言模型推理，且性能丝毫不减。该方法基于向量级量化，将大多数特征量化为 8 位，并使用 16 位矩阵乘法单独处理异常值。
+- QLoRA 或 4 位量化技术能够利用多种节省内存的技术进行大型语言模型训练，且不会影响性能。该方法将模型量化为 4 位，并插入一小组可训练的低秩自适应 (LoRA) 权重以进行训练。
+
+##### Bitsandbytes 使用方法
+
+>这部分目前主要介绍如何 Bitsandbytes 如何集成到 PEFT、TRL 中，实现 Qlora，但是 Bitsandbytes 的单独使用，暂不介绍，可以参考：[bitsandbytes](https://huggingface.co/docs/bitsandbytes/index)
+
+bitsandbytes 在去与 PEFT 集成，实现 QLORA，通常做如下几步：
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/32_QLORA实现流程.png'>
+</p>
+
+1、构建量化配置示例
+
+``` python
+bnb_config = BitsAndBytesConfig(  
+    load_in_4bit=True,                      # 启用 4bit 训练  
+    bnb_4bit_use_double_quant=True,         # 启用双重量化  
+    bnb_4bit_quant_type='nf4',     # 量化类型  
+    bnb_4bit_compute_dtype=torch.bfloat16   # 计算数据类型  
+)
+```
+
+2、加载模型时，传入量化对象
+
+``` python
+model = AutoModelForCausalLM.from_pretrained(  
+    'Qwen/Qwen3-0.6B',  
+    quantization_config=bnb_config # 传入量化配置对象  
+)
+```
+
+3、量化模型预处理
+
+``` python
+from peft import prepare_model_for_kbit_training
+model = prepare_model_for_kbit_training(
+	model, 
+	use_gradient_checkpointing=True # 注意⭐⭐：在Qlora中，配置是否启用gradient_checkpointing 不是在 xxxConfig，而是在这里
+	)
+```
+
+4、 后续过程与 Lora 一致了，创建 **LoraConfig**，然后使用 get_peft_model 创建模型，然后创建 Trainer
+
+``` python
+lora_config = LoraConfig(  
+    r=16,  
+    lora_alpha=32,  
+    lora_dropout=0.05,  
+    target_modules=['q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'down_proj', 'up_proj'],  
+    task_type='CAUSAL_LM'  
+)  
+peft_model = get_peft_model(model, lora_config)
+```
+
+####

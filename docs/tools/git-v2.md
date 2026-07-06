@@ -29,28 +29,17 @@ Git 是一个**分布式版本控制系统**，用于跟踪文件的变更历史
 
 ### 1.2 Git vs SVN
 
-| 对比项 | Git（分布式） | SVN（集中式） |
-|--------|---------------|---------------|
-| 仓库结构 | 每个开发者有完整仓库 | 仅中央服务器有完整仓库 |
-| 离线工作 | 支持 | 不支持 |
-| 分支操作 | 轻量、快速 | 较重、较慢 |
-| 提交方式 | 先提交到本地，再推送 | 直接提交到中央服务器 |
-| 性能 | 本地操作快 | 依赖网络速度 |
+<p align='center'>
+	<img src='../assets/imgs/tools/git/git与svn区别.png'>
+</p>
 
 ---
 
 ## 二、Git 核心概念
 
-**git 到底在管理什么**：Git 管理的不是文件，而是**提交（Commit）**。每一次提交都会生成一个 **Commit 对象**。
-
-**Commit** 对象：每个 Commit 都保存：当前所有文件的快照（Snapshot）、作者、时间等元数据。
-
-什么是 **Branch**：分支本质上只是指向某个 Commit 的指针。所以，分支的创建就是创建了一个指针，切换分支，本质上就是将 Head 指向了特定的指针。
-
-什么是 **Head** 呢：它是一个特殊的指针，指明当前在哪个分支工作。
-
-Merge 做了什么：Merge 的本质是：找到共同祖先 → 比较双方修改 → 生成一个新的 Merge Commit，并让当前分支指向它。
-
+<p align='center'>
+    <img src="../assets/imgs/tools/git/git核心概念.png" alt="git工作区域" style="zoom:80%;" />
+</p>
 
 ### 2.1 工作区域划分
 
@@ -65,14 +54,12 @@ Merge 做了什么：Merge 的本质是：找到共同祖先 → 比较双方修
 | **本地仓库（Repository）** | 使用 `git commit` 后提交的位置，存储版本历史 |
 | **远程仓库（Remote）** | 如 GitHub、GitLab，用于团队协作共享代码 |
 
-**文件状态流转**：
 
-```
-工作区 → git add → 暂存区 → git commit → 本地仓库 → git push → 远程仓库
-         ↑                    ↑                      ↑
-     Untracked            Staged                Committed
-     Modified             Unstaged              Pushed
-```
+**文件状态流转**如下图：
+
+<p align='center'>
+    <img src="../assets/imgs/tools/git/git文件状态流转图.png" alt="git工作区域" style="zoom:80%;" />
+</p>
 
 ### 2.2 文件状态
 
@@ -86,8 +73,9 @@ Merge 做了什么：Merge 的本质是：找到共同祖先 → 比较双方修
 
 ### 2.3 分支概念
 
+> 注意，head 是指向分支指针的一个指针，下图有错误，但是不影响 branch 概念的介绍！
 <p align='center'>
-    <img src="../assets/imgs/tools/git/git2.png" alt="git分支" style="zoom: 80%;" />
+    <img src="../assets/imgs/tools/git/分支概念图解.png" alt="git分支" style="zoom: 80%;" />
 </p>
 
 <p align='center'>
@@ -99,6 +87,7 @@ Merge 做了什么：Merge 的本质是：找到共同祖先 → 比较双方修
 **HEAD 指针**：指向当前所在分支的最新提交。
 
 **分支优势**：
+
 - 并行开发：多人同时开发不同功能
 - 功能隔离：新功能开发不影响主分支
 - 安全实验：失败的实验分支可随时删除
@@ -143,12 +132,12 @@ git clone git@github.com:user/repo.git  # SSH方式
 
 ### 3.2 基础操作
 
-| 命令 | 说明 | 示例 |
-|------|------|------|
-| `git add` | 添加文件到暂存区 | `git add file.txt` |
-| `git status` | 查看文件状态 | `git status` |
-| `git commit` | 提交到本地仓库 | `git commit -m "message"` |
-| `git rm` | 删除文件 | `git rm file.txt` |
+| 命令           | 说明       | 示例                        |
+| ------------ | -------- | ------------------------- |
+| `git add`    | 添加文件到暂存区 | `git add file.txt`        |
+| `git status` | 查看文件状态   | `git status`              |
+| `git commit` | 提交到本地仓库  | `git commit -m "message"` |
+| `git rm`     | 删除文件     | `git rm file.txt`         |
 
 **将暂存区文件全部删除**
 ```python
@@ -354,12 +343,9 @@ git branch -m old-name new-name
 
 ### 3.6 远程仓库操作
 
-| 命令 | 说明 | 示例 |
-|------|------|------|
-| `git remote` | 管理远程仓库 | `git remote -v` |
-| `git push` | 推送到远程 | `git push origin main` |
-| `git pull` | 拉取远程更新 | `git pull origin main` |
-| `git fetch` | 获取远程更新（不合并） | `git fetch origin` |
+<p align='center'>
+	<img src='../assets/imgs/tools/git/push_pull_remote_fetch讲解图.png'>
+</p>
 
 **关联远程仓库**：
 
@@ -489,12 +475,10 @@ git push origin --delete v1.0  # 删除远程标签
 
 ### 4.1 分支合并
 
-**合并方式**：
-
-| 方式 | 说明 | 适用场景 |
-|------|------|----------|
-| `git merge` | 创建合并提交，保留分支历史 | 公共分支、团队协作 |
-| `git rebase` | 变基，线性历史，无合并提交 | 个人分支、清理历史 |
+**合并方式**：注意，下图 main -> 只是说明当前分支是 main 分支，而不是说当前 main 分支指针指向 A，图稍微有些不严谨，但是无伤大雅。
+<p align='center'>
+	<img src='../assets/imgs/tools/git/merge_rebase图解.png'>
+</p>
 
 **merge 合并**：
 
@@ -616,12 +600,9 @@ Host gitee.com
 
 **推送拉取流程图**：
 
-```
-本地仓库 ────── git push ──────→ 远程仓库
-    │                                │
-    │                                │
-git pull ←────────────────────── git fetch + merge
-```
+ <p>
+	 <img src='../assets/imgs/tools/git/push_pull图示.png'>
+ </p>
 
 **fetch vs pull**：
 
@@ -796,18 +777,17 @@ git restore --source=<commit> <file>  # 从指定提交恢复
 ### 7.1 Git Flow
 
 <p align='center'>
-    <img src="https://nvie.com/img/git-model@2x.png" alt="Git Flow" style="zoom:50%;" />
+    <img src="../assets/imgs/tools/git/gitflow.png" alt="Git Flow" style="zoom:50%;" />
 </p>
-
 **分支结构**：
 
-| 分支 | 说明 | 生命周期 |
-|------|------|----------|
-| `main` | 生产环境，仅接受 merge | 永久 |
-| `develop` | 开发主分支 | 永久 |
-| `feature/*` | 功能开发分支 | 临时，完成后合并到 develop |
-| `release/*` | 发布准备分支 | 临时，完成后合并到 main 和 develop |
-| `hotfix/*` | 紧急修复分支 | 临时，完成后合并到 main 和 develop |
+| 分支          | 说明             | 生命周期                     |
+| ----------- | -------------- | ------------------------ |
+| `main`      | 生产环境，仅接受 merge | 永久                       |
+| `develop`   | 开发主分支          | 永久                       |
+| `feature/*` | 功能开发分支         | 临时，完成后合并到 develop        |
+| `release/*` | 发布准备分支         | 临时，完成后合并到 main 和 develop |
+| `hotfix/*`  | 紧急修复分支         | 临时，完成后合并到 main 和 develop |
 
 **适用场景**：有明确发布周期的项目。
 
@@ -815,9 +795,9 @@ git restore --source=<commit> <file>  # 从指定提交恢复
 
 **简化流程**：
 
-```
-main ────→ 创建 feature 分支 ────→ 开发 ────→ Pull Request ────→ Code Review ────→ 合并到 main
-```
+<p align='center'>
+    <img src="../assets/imgs/tools/git/github_flow.png" alt="Git Flow" style="zoom:50%;" />
+</p>
 
 **特点**：
 
