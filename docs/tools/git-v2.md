@@ -109,11 +109,11 @@ Merge 做了什么：Merge 的本质是：找到共同祖先 → 比较双方修
 
 ### 3.1 配置与初始化
 
-| 命令 | 说明 | 示例 |
-|------|------|------|
+| 命令           | 说明     | 示例                                     |
+| ------------ | ------ | -------------------------------------- |
 | `git config` | 配置用户信息 | `git config --global user.name "name"` |
-| `git init` | 初始化仓库 | `git init` |
-| `git clone` | 克隆远程仓库 | `git clone <url>` |
+| `git init`   | 初始化仓库  | `git init`                             |
+| `git clone`  | 克隆远程仓库 | `git clone <url>`                      |
 
 **配置用户信息**：
 
