@@ -4163,11 +4163,7 @@
 <hr />
 <h2 id="3-fastapi">3. 核心体系：FastAPI 的请求生命周期</h2>
 <p>理解 FastAPI 的最好方式，是跟踪一个请求从进入到返回的全过程。下图展示了这个生命周期：</p>
-<blockquote>
-<p><strong>【这里建议配图：FastAPI 请求生命周期架构图】</strong>
-图示内容：客户端请求 → ASGI Server (Uvicorn) → Middleware 链 → 路由匹配 → 依赖注入 → 参数解析与校验（Pydantic） → 路径操作函数执行 → 响应处理（response_model 过滤） → 返回响应
-可以用我笔记中的 ASCII 架构图直接生成一张更美观的流程图。</p>
-</blockquote>
+<p>![[../../../../../assets/imgs/python/fastApi/fastapi04_生命周期.png]]</p>
 <p>在这个生命周期中，核心知识点分布在五个层面，下面逐一拆解。</p>
 <h3 id="31">3.1 路由与参数体系</h3>
 <p>FastAPI 的路由定义非常直观：<code>@app.get()</code>、<code>@app.post()</code> 等装饰器绑定 URL 路径和 HTTP 方法。参数从哪里来，由函数签名中的类型和默认值决定：</p>
@@ -4343,10 +4339,6 @@
 </span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>        <span class="p">}</span>
 </span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    <span class="p">)</span>
 </span></code></pre></div>
-<blockquote>
-<p><strong>【这里建议配图：SSE 与 WebSocket 的对比图】</strong>
-一张简单的对比图，说明 SSE 是单向（服务端→客户端）、基于 HTTP、浏览器自动重连；WebSocket 是双向、独立协议、需手动处理重连。</p>
-</blockquote>
 <h3 id="34">3.4 异常处理</h3>
 <p>FastAPI 的异常处理遵循"<strong>即抛即停</strong>"原则：<code>raise HTTPException</code> 后，当前请求立即终止，返回指定的状态码和错误信息。</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTTPException</span>

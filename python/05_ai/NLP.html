@@ -3388,7 +3388,7 @@
   <a href="#4map" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4）编码数据：.map()（核心重点）
+        4）编码数据：.map()（核心重点）⭐⭐⭐
       
     </span>
   </a>
@@ -7608,7 +7608,7 @@
   <a href="#4map" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4）编码数据：.map()（核心重点）
+        4）编码数据：.map()（核心重点）⭐⭐⭐
       
     </span>
   </a>
@@ -10348,6 +10348,9 @@ Attention(Q,K,V) = softmax\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 <h3 id="hugging-face">Hugging Face 介绍</h3>
 <p><a href="https://huggingface.co/models"><code>Hugging Face</code></a> 是一家提供开源 AI 工具和平台的公司，致力于简化预训练模型的使用，加速机器学习项目的开发与落地。</p>
 <p>最初以 <code>Transformers</code> 库闻名，该库极大地降低了使用 <code>BERT</code>、<code>GPT</code>、<code>T5</code> 等模型的门槛。如今，<code>Hugging Face</code> 已发展成为一个完整的 AI 开发生态系统，支持自然语言处理、计算机视觉、语音处理、多模态任务等多个领域。</p>
+<p align='center'>
+    <img src='../../assets/imgs/python/nlp/nlp47_hugging_face生态图.png'>
+</p>
 <h3 id="hugging-face_1">Hugging Face 构成</h3>
 <p><code>Hugging Face</code> 的生态系统主要由两个核心部分组成：</p>
 <h4 id="hugging-face-hub">Hugging Face Hub</h4>
@@ -11297,8 +11300,12 @@ Attention(Q,K,V) = softmax\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 </span></code></pre></div>
 <p>设置 <code>seed</code> 可以让每次切分结果<strong>一致</strong>，方便对比实验。</p>
 </div>
-<h6 id="4map">4）编码数据：.map()（核心重点）</h6>
-<p><a href="https://huggingface.co/docs/datasets/main_classes/dataset#datasets.Dataset.map"><code>.map()</code></a> 是 <code>datasets</code> 中<strong>最核心</strong>的预处理入口，它<strong>把任意函数</strong>应用到数据集中的每一条样本（或每一批样本），常用于<strong>文本编码（配合 tokenizer）</strong>和<strong>字段转换</strong>。</p>
+<h6 id="4map">4）编码数据：.map()（核心重点）⭐⭐⭐</h6>
+<p><a href="https://huggingface.co/docs/datasets/main_classes/dataset#datasets.Dataset.map"><code>.map()</code></a> 是 <code>datasets</code> 中<strong>最核心</strong>的预处理入口，它<strong>把任意函数</strong>应用到数据集中的每一条样本（或
+每一批样本），常用于<strong>文本编码（配合 tokenizer）和字段转换</strong>。</p>
+<blockquote>
+<p>注意，无论开不开 batch，传入的数据都是一个 dict，开了 <code>batch</code>，原先键对应的值就变成了一个list，这个list里边有这一批数据的值，同理，返回的时候，也应该返回dict！</p>
+</blockquote>
 <p><strong>基本语法</strong>：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-121-1"><a id="__codelineno-121-1" name="__codelineno-121-1" href="#__codelineno-121-1"></a><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">remove_columns</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </span></code></pre></div>
@@ -11346,14 +11353,6 @@ Attention(Q,K,V) = softmax\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 </span><span id="__span-122-18"><a id="__codelineno-122-18" name="__codelineno-122-18" href="#__codelineno-122-18"></a><span class="n">test_dataset</span> <span class="o">=</span> <span class="n">test_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></code></pre></div>
 <p>编码后，原始的 <code>Dataset</code> 会<strong>新增 <code>input_ids</code> 和 <code>attention_mask</code> 字段</strong>，可以直接喂给模型训练。</p>
-<div class="admonition tip">
-<p class="admonition-title"><code>batched=True</code> 为什么快几十倍？</p>
-<p><code>batched=False</code> 时，每条样本都要单独调一次 <code>tokenizer()</code>，Python 函数调用 + GPU 启动开销巨大；<code>batched=True</code> 时，函数一次收到一个<strong>样本列表</strong>，<code>tokenizer</code> 内部会<strong>一次性把整批文本切词 + 转 ID + padding</strong>，充分利用向量化计算。</p>
-<p>实测在 10 万条文本上，<code>batched=True</code> 比 <code>batched=False</code> <strong>快 20~50 倍</strong>。<strong>只要函数能改造成支持批处理，就一定开 <code>batched=True</code></strong>。</p>
-<p>如果你的函数确实<strong>只能处理单条</strong>（比如要做很重的逐条解析），可以<strong>配合 <code>num_proc</code> 开启多进程</strong>：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-123-1"><a id="__codelineno-123-1" name="__codelineno-123-1" href="#__codelineno-123-1"></a><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenize</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_proc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-</span></code></pre></div>
-</div>
 <h5 id="_46">保存数据集</h5>
 <p>处理完的数据建议<strong>保存到本地</strong>，下次训练直接读，省去重复预处理的开销。<code>datasets</code> 提供 3 种保存方式，<strong>按使用频率排序</strong>：</p>
 <table>
@@ -11395,25 +11394,25 @@ Attention(Q,K,V) = softmax\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 <h6 id="arrow">Arrow 格式（推荐）</h6>
 <p><a href="https://huggingface.co/docs/datasets/loading#save">Arrow</a> 格式是 Hugging Face 官方推荐的数据持久化方式，<strong>既支持单个 <code>Dataset</code> 也支持 <code>DatasetDict</code></strong>，且读写都是<strong>零拷贝</strong>、<strong>速度极快</strong>。</p>
 <p><strong>保存</strong>：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-124-1"><a id="__codelineno-124-1" name="__codelineno-124-1" href="#__codelineno-124-1"></a><span class="n">dataset_dict</span><span class="o">.</span><span class="n">save_to_disk</span><span class="p">(</span><span class="s2">&quot;./data/processed&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-123-1"><a id="__codelineno-123-1" name="__codelineno-123-1" href="#__codelineno-123-1"></a><span class="n">dataset_dict</span><span class="o">.</span><span class="n">save_to_disk</span><span class="p">(</span><span class="s2">&quot;./data/processed&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>保存后的目录结构：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-125-1"><a id="__codelineno-125-1" name="__codelineno-125-1" href="#__codelineno-125-1"></a>processed/
-</span><span id="__span-125-2"><a id="__codelineno-125-2" name="__codelineno-125-2" href="#__codelineno-125-2"></a>├── dataset_dict.json
-</span><span id="__span-125-3"><a id="__codelineno-125-3" name="__codelineno-125-3" href="#__codelineno-125-3"></a>├── test/
-</span><span id="__span-125-4"><a id="__codelineno-125-4" name="__codelineno-125-4" href="#__codelineno-125-4"></a>│   ├── data-00000-of-00001.arrow
-</span><span id="__span-125-5"><a id="__codelineno-125-5" name="__codelineno-125-5" href="#__codelineno-125-5"></a>│   ├── dataset_info.json
-</span><span id="__span-125-6"><a id="__codelineno-125-6" name="__codelineno-125-6" href="#__codelineno-125-6"></a>│   └── state.json
-</span><span id="__span-125-7"><a id="__codelineno-125-7" name="__codelineno-125-7" href="#__codelineno-125-7"></a>└── train/
-</span><span id="__span-125-8"><a id="__codelineno-125-8" name="__codelineno-125-8" href="#__codelineno-125-8"></a>    ├── data-00000-of-00001.arrow
-</span><span id="__span-125-9"><a id="__codelineno-125-9" name="__codelineno-125-9" href="#__codelineno-125-9"></a>    ├── dataset_info.json
-</span><span id="__span-125-10"><a id="__codelineno-125-10" name="__codelineno-125-10" href="#__codelineno-125-10"></a>    └── state.json
+<div class="language-text highlight"><pre><span></span><code><span id="__span-124-1"><a id="__codelineno-124-1" name="__codelineno-124-1" href="#__codelineno-124-1"></a>processed/
+</span><span id="__span-124-2"><a id="__codelineno-124-2" name="__codelineno-124-2" href="#__codelineno-124-2"></a>├── dataset_dict.json
+</span><span id="__span-124-3"><a id="__codelineno-124-3" name="__codelineno-124-3" href="#__codelineno-124-3"></a>├── test/
+</span><span id="__span-124-4"><a id="__codelineno-124-4" name="__codelineno-124-4" href="#__codelineno-124-4"></a>│   ├── data-00000-of-00001.arrow
+</span><span id="__span-124-5"><a id="__codelineno-124-5" name="__codelineno-124-5" href="#__codelineno-124-5"></a>│   ├── dataset_info.json
+</span><span id="__span-124-6"><a id="__codelineno-124-6" name="__codelineno-124-6" href="#__codelineno-124-6"></a>│   └── state.json
+</span><span id="__span-124-7"><a id="__codelineno-124-7" name="__codelineno-124-7" href="#__codelineno-124-7"></a>└── train/
+</span><span id="__span-124-8"><a id="__codelineno-124-8" name="__codelineno-124-8" href="#__codelineno-124-8"></a>    ├── data-00000-of-00001.arrow
+</span><span id="__span-124-9"><a id="__codelineno-124-9" name="__codelineno-124-9" href="#__codelineno-124-9"></a>    ├── dataset_info.json
+</span><span id="__span-124-10"><a id="__codelineno-124-10" name="__codelineno-124-10" href="#__codelineno-124-10"></a>    └── state.json
 </span></code></pre></div>
 <p>每个 split（train / test）都会<strong>单独保存一个 Arrow 文件</strong>和元信息。</p>
 <p><strong>加载</strong>：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-126-1"><a id="__codelineno-126-1" name="__codelineno-126-1" href="#__codelineno-126-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_disk</span>
-</span><span id="__span-126-2"><a id="__codelineno-126-2" name="__codelineno-126-2" href="#__codelineno-126-2"></a>
-</span><span id="__span-126-3"><a id="__codelineno-126-3" name="__codelineno-126-3" href="#__codelineno-126-3"></a><span class="n">dataset_dict</span> <span class="o">=</span> <span class="n">load_from_disk</span><span class="p">(</span><span class="s2">&quot;./data/processed&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-125-1"><a id="__codelineno-125-1" name="__codelineno-125-1" href="#__codelineno-125-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_disk</span>
+</span><span id="__span-125-2"><a id="__codelineno-125-2" name="__codelineno-125-2" href="#__codelineno-125-2"></a>
+</span><span id="__span-125-3"><a id="__codelineno-125-3" name="__codelineno-125-3" href="#__codelineno-125-3"></a><span class="n">dataset_dict</span> <span class="o">=</span> <span class="n">load_from_disk</span><span class="p">(</span><span class="s2">&quot;./data/processed&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <div class="admonition tip">
 <p class="admonition-title">什么时候选 Arrow？</p>
@@ -11427,27 +11426,27 @@ Attention(Q,K,V) = softmax\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 <p>如果想把数据导出为<strong>通用格式</strong>（给不装 <code>datasets</code> 的同事看、用 pandas 分析、或者入仓到 BI 工具），可以用 <code>.to_csv()</code> 或 <code>.to_json()</code>。</p>
 <p><strong>注意</strong>：这两种方法<strong>仅适用于单个 <code>Dataset</code>，不支持 <code>DatasetDict</code></strong>。</p>
 <p><strong>保存</strong>：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-127-1"><a id="__codelineno-127-1" name="__codelineno-127-1" href="#__codelineno-127-1"></a><span class="c1"># csv</span>
-</span><span id="__span-127-2"><a id="__codelineno-127-2" name="__codelineno-127-2" href="#__codelineno-127-2"></a><span class="n">train_dataset</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;./data/processed/train.csv&quot;</span><span class="p">)</span>
-</span><span id="__span-127-3"><a id="__codelineno-127-3" name="__codelineno-127-3" href="#__codelineno-127-3"></a><span class="c1"># json</span>
-</span><span id="__span-127-4"><a id="__codelineno-127-4" name="__codelineno-127-4" href="#__codelineno-127-4"></a><span class="n">train_dataset</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s2">&quot;./data/processed/train.json&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-126-1"><a id="__codelineno-126-1" name="__codelineno-126-1" href="#__codelineno-126-1"></a><span class="c1"># csv</span>
+</span><span id="__span-126-2"><a id="__codelineno-126-2" name="__codelineno-126-2" href="#__codelineno-126-2"></a><span class="n">train_dataset</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;./data/processed/train.csv&quot;</span><span class="p">)</span>
+</span><span id="__span-126-3"><a id="__codelineno-126-3" name="__codelineno-126-3" href="#__codelineno-126-3"></a><span class="c1"># json</span>
+</span><span id="__span-126-4"><a id="__codelineno-126-4" name="__codelineno-126-4" href="#__codelineno-126-4"></a><span class="n">train_dataset</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s2">&quot;./data/processed/train.json&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p><strong>加载</strong>：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-128-1"><a id="__codelineno-128-1" name="__codelineno-128-1" href="#__codelineno-128-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
-</span><span id="__span-128-2"><a id="__codelineno-128-2" name="__codelineno-128-2" href="#__codelineno-128-2"></a>
-</span><span id="__span-128-3"><a id="__codelineno-128-3" name="__codelineno-128-3" href="#__codelineno-128-3"></a><span class="c1"># 加载 CSV</span>
-</span><span id="__span-128-4"><a id="__codelineno-128-4" name="__codelineno-128-4" href="#__codelineno-128-4"></a><span class="n">dataset_dict</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;./data/processed/train.csv&quot;</span><span class="p">)</span>
-</span><span id="__span-128-5"><a id="__codelineno-128-5" name="__codelineno-128-5" href="#__codelineno-128-5"></a><span class="c1"># 加载 JSON</span>
-</span><span id="__span-128-6"><a id="__codelineno-128-6" name="__codelineno-128-6" href="#__codelineno-128-6"></a><span class="n">dataset_dict</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;./data/processed/train.json&quot;</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-127-1"><a id="__codelineno-127-1" name="__codelineno-127-1" href="#__codelineno-127-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+</span><span id="__span-127-2"><a id="__codelineno-127-2" name="__codelineno-127-2" href="#__codelineno-127-2"></a>
+</span><span id="__span-127-3"><a id="__codelineno-127-3" name="__codelineno-127-3" href="#__codelineno-127-3"></a><span class="c1"># 加载 CSV</span>
+</span><span id="__span-127-4"><a id="__codelineno-127-4" name="__codelineno-127-4" href="#__codelineno-127-4"></a><span class="n">dataset_dict</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;./data/processed/train.csv&quot;</span><span class="p">)</span>
+</span><span id="__span-127-5"><a id="__codelineno-127-5" name="__codelineno-127-5" href="#__codelineno-127-5"></a><span class="c1"># 加载 JSON</span>
+</span><span id="__span-127-6"><a id="__codelineno-127-6" name="__codelineno-127-6" href="#__codelineno-127-6"></a><span class="n">dataset_dict</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;./data/processed/train.json&quot;</span><span class="p">)</span>
 </span></code></pre></div>
 <p>加载后<strong>返回完整的 <code>DatasetDict</code></strong>，可直接用于训练 / 评估。</p>
 <h5 id="dataloader">集成 DataLoader</h5>
 <p>经过预处理的 <code>datasets.Dataset</code> 可以<strong>直接和 PyTorch 的 <code>DataLoader</code> 配合使用</strong>。虽然 <code>datasets.Dataset</code> <strong>并没有</strong>继承 <code>torch.utils.data.Dataset</code>，但因为它<strong>实现了 <code>__len__()</code> 和 <code>__getitem__()</code> 这两个核心协议</strong>，<code>DataLoader</code> 就能正确识别它并按 batch 迭代。</p>
 <p>在丢给 <code>DataLoader</code> 之前，需要用 <a href="https://huggingface.co/docs/datasets/main_classes/dataset#datasets.Dataset.set_format"><code>.set_format()</code></a> <strong>把指定字段转成 PyTorch 张量</strong>，否则模型拿到的就是 list / Arrow array，跑不动：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-129-1"><a id="__codelineno-129-1" name="__codelineno-129-1" href="#__codelineno-129-1"></a><span class="n">train_dataset</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span>
-</span><span id="__span-129-2"><a id="__codelineno-129-2" name="__codelineno-129-2" href="#__codelineno-129-2"></a>    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span>                                    <span class="c1"># 输出为 PyTorch 张量</span>
-</span><span id="__span-129-3"><a id="__codelineno-129-3" name="__codelineno-129-3" href="#__codelineno-129-3"></a>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">,</span> <span class="s2">&quot;attention_mask&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="c1"># 需要转 tensor 的字段</span>
-</span><span id="__span-129-4"><a id="__codelineno-129-4" name="__codelineno-129-4" href="#__codelineno-129-4"></a><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-128-1"><a id="__codelineno-128-1" name="__codelineno-128-1" href="#__codelineno-128-1"></a><span class="n">train_dataset</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span>
+</span><span id="__span-128-2"><a id="__codelineno-128-2" name="__codelineno-128-2" href="#__codelineno-128-2"></a>    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span>                                    <span class="c1"># 输出为 PyTorch 张量</span>
+</span><span id="__span-128-3"><a id="__codelineno-128-3" name="__codelineno-128-3" href="#__codelineno-128-3"></a>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">,</span> <span class="s2">&quot;attention_mask&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="c1"># 需要转 tensor 的字段</span>
+</span><span id="__span-128-4"><a id="__codelineno-128-4" name="__codelineno-128-4" href="#__codelineno-128-4"></a><span class="p">)</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title"><code>.set_format()</code> 的 3 个注意事项</p>
@@ -11458,14 +11457,14 @@ Attention(Q,K,V) = softmax\left(\frac{QK^T}{\sqrt{d_k}}\right)V
 </ol>
 </div>
 <p>设置好格式后，就能像普通 PyTorch 数据集一样造 <code>DataLoader</code> 了：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-130-1"><a id="__codelineno-130-1" name="__codelineno-130-1" href="#__codelineno-130-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span>
-</span><span id="__span-130-2"><a id="__codelineno-130-2" name="__codelineno-130-2" href="#__codelineno-130-2"></a>
-</span><span id="__span-130-3"><a id="__codelineno-130-3" name="__codelineno-130-3" href="#__codelineno-130-3"></a><span class="c1"># 训练集 DataLoader</span>
-</span><span id="__span-130-4"><a id="__codelineno-130-4" name="__codelineno-130-4" href="#__codelineno-130-4"></a><span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-129-1"><a id="__codelineno-129-1" name="__codelineno-129-1" href="#__codelineno-129-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span>
+</span><span id="__span-129-2"><a id="__codelineno-129-2" name="__codelineno-129-2" href="#__codelineno-129-2"></a>
+</span><span id="__span-129-3"><a id="__codelineno-129-3" name="__codelineno-129-3" href="#__codelineno-129-3"></a><span class="c1"># 训练集 DataLoader</span>
+</span><span id="__span-129-4"><a id="__codelineno-129-4" name="__codelineno-129-4" href="#__codelineno-129-4"></a><span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span></code></pre></div>
 <p>一个 batch 的样本长这样：</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-131-1"><a id="__codelineno-131-1" name="__codelineno-131-1" href="#__codelineno-131-1"></a><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">))</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-</span><span id="__span-131-2"><a id="__codelineno-131-2" name="__codelineno-131-2" href="#__codelineno-131-2"></a><span class="c1"># dict_keys([&#39;input_ids&#39;, &#39;attention_mask&#39;, &#39;label&#39;])</span>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-130-1"><a id="__codelineno-130-1" name="__codelineno-130-1" href="#__codelineno-130-1"></a><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">train_dataloader</span><span class="p">))</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</span><span id="__span-130-2"><a id="__codelineno-130-2" name="__codelineno-130-2" href="#__codelineno-130-2"></a><span class="c1"># dict_keys([&#39;input_ids&#39;, &#39;attention_mask&#39;, &#39;label&#39;])</span>
 </span></code></pre></div>
 <p>每个 value 都是形状为 <code>(batch_size, seq_len)</code> 的 <code>torch.Tensor</code>，<strong>可以直接喂给 <code>model(**batch)</code></strong>。</p>
 <div class="admonition tip">
