@@ -1,0 +1,20 @@
+{
+  "id": "conv-1783241458322-p69fit8nr",
+  "title": "撰写基于Python与AI笔记前两章的CSDN技术博客",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783241458322,
+  "updatedAt": 1783283807390,
+  "lastResponseAt": 1783242850646,
+  "sessionId": "c44e67e8-a5cd-444e-8031-dc1953967e92",
+  "sdkSessionId": "c44e67e8-a5cd-444e-8031-dc1953967e92",
+  "currentNote": "python/05_ai/LLM.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

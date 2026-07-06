@@ -1,0 +1,20 @@
+{
+  "id": "conv-1783309505071-by857535r",
+  "title": "Explain SFT key training parameters and optimiz...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783309505072,
+  "updatedAt": 1783320100229,
+  "lastResponseAt": 1783320100229,
+  "sessionId": "c4c000dc-41de-4877-846f-48fee0a4d5fa",
+  "sdkSessionId": "c4c000dc-41de-4877-846f-48fee0a4d5fa",
+  "currentNote": "python/05_ai/LLM.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

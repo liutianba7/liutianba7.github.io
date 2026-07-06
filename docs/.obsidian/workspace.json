@@ -4,21 +4,49 @@
     "type": "split",
     "children": [
       {
-        "id": "1afb8ff43201a92c",
+        "id": "db2212969f3f9876",
         "type": "tabs",
         "children": [
           {
-            "id": "2377a43976dcaa8f",
+            "id": "839ebd2eec161902",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "others/02_blog/每日总结（原始稿子）/day15.md",
+                "file": "python/05_ai/LLM.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "day15"
+              "title": "LLM"
+            }
+          },
+          {
+            "id": "a9271a7efe53a88b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "others/02_blog/每日总结（原始稿子）/2026.07.06.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "2026.07.06"
+            }
+          },
+          {
+            "id": "b7a1f25cad0e9de3",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "python/05_ai/NLP.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "NLP"
             }
           }
         ]
@@ -53,13 +81,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "others/02_blog/每日总结（原始稿子）/day15.md",
+                "file": "python/05_ai/LLM.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "day15 的大纲"
+              "title": "LLM 的大纲"
             }
           },
           {
@@ -89,7 +117,8 @@
               "title": "书签"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -193,52 +222,52 @@
       "bases:新建数据库": false
     }
   },
-  "active": "2377a43976dcaa8f",
+  "active": "839ebd2eec161902",
   "lastOpenFiles": [
+    "others/02_blog/每日总结（原始稿子）/2026.07.06.md",
     "python/05_ai/LLM.md",
-    "others/02_blog/每日总结（原始稿子）/day15.md",
-    "others/02_blog/template/Pasted image 20260630165150.png",
-    "others/02_blog/每日总结（原始稿子）/daily_summary_template.md",
-    "others/02_blog/每日总结（原始稿子）/day14.md",
-    "assets/imgs/python/llm/11_moe工作流程.png",
-    "assets/imgs/python/llm/11_moe工作六点.png",
-    "assets/imgs/python/llm/11_moe工作力促.png",
-    "assets/imgs/python/llm/PixPin_2026-06-30_16-33-04.png",
-    "assets/imgs/python/llm/10_moe整体结构.png",
-    "assets/imgs/python/llm/10_moe整体·节后.png",
-    "assets/imgs/python/llm/PixPin_2026-06-30_16-31-26.png",
-    "assets/imgs/python/llm/PixPin_2026-06-30_16-31-26.png.jrocYj",
-    "assets/imgs/python/llm/09_gelu与传统单路激活函数.png",
-    "assets/imgs/python/llm/PixPin_2026-06-30_16-26-06.png",
-    "assets/imgs/python/llm/PixPin_2026-06-30_16-26-06.png.AAjglc",
-    "assets/imgs/python/llm/PixPin_2026-06-30_16-05-27.png.DXFtSL",
-    "assets/imgs/python/llm/PixPin_2026-06-30_15-46-06.png.ZIqkDI",
-    "assets/imgs/python/llm/PixPin_2026-06-30_15-40-06.png.hBydNw",
-    "assets/imgs/python/llm/PixPin_2026-06-30_15-32-46.png.telgDk",
-    "assets/imgs/python/llm/PixPin_2026-06-30_15-30-37.png.WarwCD",
-    "others/02_blog/素材/各种素材.md",
-    "python/04_web/fastapi-v2.md",
-    "others/02_blog/csdn/python/后端/FastAPI 基础篇：类型注解驱动的 Python API 开发体验.md",
-    "[深度学习知识体系.md",
-    "others/02_blog/csdn/python/后端",
-    "others/02_blog/csdn/python/人工智能",
-    "assets/imgs/python/llm/04.png.GwzRTi",
     "python/05_ai/NLP.md",
-    "backup/pytorch_backup.md",
-    "others/02_blog/csdn/python/人工智能/预训练三剑客：BERT、GPT与T5架构对比与实战【NLP系列第五篇】.md",
-    "python/05_ai/LangChain.md",
-    "python/05_ai/深度学习.md",
-    "python/05_ai/深度学习知识体系.md",
+    "assets/imgs/python/llm/31_peft库介绍.png",
+    "assets/imgs/python/llm/PixPin_2026-07-06_15-48-25.png",
+    "assets/imgs/python/llm/PixPin_2026-07-06_15-48-25.png.ZHGpAQ",
+    "others/02_blog/每日总结（原始稿子）/0daily_summary_template.md",
+    "others/02_blog/每日总结（原始稿子）/2026.07.05.md",
+    "others/02_blog/每日总结（原始稿子）/01_三年之约.md",
+    "others/02_blog/每日总结（原始稿子）/day18.md",
+    "assets/imgs/python/llm/30_TRL数据格式概览.png",
+    "assets/imgs/python/llm/PixPin_2026-07-06_08-18-33.png",
+    "assets/imgs/python/nlp/PixPin_2026-07-06_08-18-33.png",
+    "assets/imgs/python/nlp/PixPin_2026-07-06_08-18-33.png.MZIDhG",
+    "python/06_aiInfra/LLMFinetune.md",
+    "assets/imgs/python/nlp/nlp47_hugging_face生态图.png",
+    "assets/imgs/python/nlp/PixPin_2026-07-06_08-02-44.png",
+    "assets/imgs/python/nlp/PixPin_2026-07-06_08-02-44.png.wOxntF",
+    "assets/imgs/python/llm/29_微调库生态图.png",
+    "assets/imgs/python/llm/PixPin_2026-07-06_07-46-52.png",
+    "assets/imgs/python/llm/28_分页优化原理.png",
+    "assets/imgs/python/llm/PixPin_2026-07-06_05-47-00.png.PMNfPa",
+    "assets/imgs/python/llm/PixPin_2026-07-06_05-22-32.png.gNIFmr",
+    "others/02_blog/csdn/python/后端/FastAPI 数据库篇：SQLAlchemy 2.0 异步 ORM 从概念到 CRUD 实战.md",
     "others/02_blog/素材/每日一句.md",
-    "others/02_blog/csdn/python/人工智能/Hugging Face Transformers 实战：从模型加载到微调的完整生态拆解【NLP系列第六篇】.md",
-    "others/02_blog/template/daily_summary_template.md",
-    "code-notes/algorithm/hot100总结.md",
-    "others/02_blog/每日总结（原始稿子）/day13.md",
-    "code-notes/algorithm/leetcode287_content.md",
-    "code-notes/algorithm/leetcode31_content.md",
-    "code-notes/algorithm/leetcode75_content.md",
-    "code-notes/algorithm/leetcode169_content.md",
-    "code-notes/algorithm/leetcode136_content.md",
-    "code-notes/algorithm/leetcode72_content.md"
+    "others/02_blog/csdn/python/人工智能/LLM进化史-从GPT1到ChatGPT再到现代LLM.md",
+    "others/02_blog/素材/各种素材.md",
+    "python/05_ai/深度学习.md",
+    "python/06_aiInfra/Ollama.md",
+    "assets/imgs/python/llm/PixPin_2026-07-05_16-39-14.png.GcBMlB",
+    "assets/imgs/python/llm/PixPin_2026-07-05_16-03-19.png.YxEjmq",
+    "tools/git-v2.md",
+    "tools/git.md",
+    "python/05_ai/DeepAgents.md",
+    "others/02_blog/每日总结（原始稿子）/day17.md",
+    "assets/imgs/python/llm/PixPin_2026-07-03_10-08-10.png.HBbSJc",
+    "python/04_web/fastapi-v2.md",
+    "assets/imgs/python/llm/PixPin_2026-07-02_15-52-32.png.oZEWbz",
+    "assets/imgs/python/llm/PixPin_2026-07-02_15-51-25.png.Ukmqrr",
+    "others/02_blog/每日总结（原始稿子）/day16.md",
+    "others/02_blog/csdn/python/后端/FastAPI 高级篇：中间件、安全认证与生产级工程实践.md",
+    "others/02_blog/csdn/python/后端/FastAPI 基础篇：类型注解驱动的 Python API 开发体验.md",
+    "others/02_blog/每日总结（原始稿子）/day15.md",
+    "others/02_blog/每日总结（原始稿子）/day14.md",
+    "[深度学习知识体系.md"
   ]
 }

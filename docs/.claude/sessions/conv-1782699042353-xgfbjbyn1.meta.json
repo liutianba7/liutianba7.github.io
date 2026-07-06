@@ -3,18 +3,18 @@
   "title": "Provide advice on building conceptual knowledge...",
   "titleGenerationStatus": "success",
   "createdAt": 1782699042354,
-  "updatedAt": 1782804401507,
-  "lastResponseAt": 1782804401507,
+  "updatedAt": 1782984644260,
+  "lastResponseAt": 1782984644260,
   "sessionId": "2f941939-8dc3-49f9-9d4f-c10fc43300bf",
   "sdkSessionId": "2f941939-8dc3-49f9-9d4f-c10fc43300bf",
   "currentNote": "python/04_web/fastapi-v2.md",
   "usage": {
     "model": "haiku",
-    "inputTokens": 58,
+    "inputTokens": 0,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 113408,
+    "cacheReadInputTokens": 0,
     "contextWindow": 200000,
-    "contextTokens": 113466,
-    "percentage": 57
+    "contextTokens": 0,
+    "percentage": 0
   }
 }
