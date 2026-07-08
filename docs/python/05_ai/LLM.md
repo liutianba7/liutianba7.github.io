@@ -993,19 +993,16 @@ class GroupedQueryAttention(nn.Module):
 
 下面基于上述 Qwen3 简
 化代码，逐层剖析 KV Cache 的实现细节。
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/bc_kvcache分析图.png'>
+</p>
 
 ##### 1. 数据结构
 
 KV Cache 是一个**字典**，以层索引为键，值为对应层的 K/V 张量元组：
-
-```
-cache = {
-    0: (keys_layer0, values_layer0),   # shape: (b, n_kv_groups, total_len, head_dim)
-    1: (keys_layer1, values_layer1),
-    ...
-    L: (keys_layerL, values_layerL),
-}
-```
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/bc_kv_cache结构图.png'>
+</p>
 
 每一层的 K/V 形状为 `(batch_size, num_kv_groups, total_seq_len, head_dim)`。由于采用 **GQA**，缓存的是分组数 `num_kv_groups` 而非头数 `num_heads`，这是 KV Cache 内存缩减的关键。
 
@@ -1116,42 +1113,10 @@ def reset_kv_cache(self):
 - **外部调用方**（推理主循环）负责维护 cache 字典的生命周期——在 `reset_kv_cache()` 后将 cache 置为 `None` 或重新创建空字典
 - **内存释放**：Python 的 GC 会在 cache 字典不再被引用时自动回收
 
-##### 8. 完整数据流总结
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     KV Cache 完整数据流                            │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  初始状态: cache = {} (空字典), current_pos = 0                   │
-│                                                                  │
-│  第 1 步 (Prefill - 处理输入 prompt):                              │
-│    forward(prompt_ids, cache=None)                               │
-│    ├─ 各层生成全部 prompt token 的 K/V                            │
-│    ├─ cache 被填充为: {layer0: (K0,V0), layer1: (K1,V1), ...}     │
-│    └─ current_pos = prompt_len                                   │
-│                                                                  │
-│  第 2 步 (Decode - 生成第 1 个 token):                            │
-│    forward(token_id, cache=cache)                                │
-│    ├─ pos_start = prompt_len, pos_end = prompt_len + 1           │
-│    ├─ 各层生成当前 token 的 keys_new / values_new                │
-│    ├─ torch.cat → 拼接到历史缓存后                               │
-│    └─ current_pos = prompt_len + 1                               │
-│                                                                  │
-│  第 3 步 (Decode - 生成第 2 个 token):                            │
-│    forward(token_id, cache=cache)                                │
-│    ├─ pos_start = prompt_len + 1, pos_end = prompt_len + 2      │
-│    ├─ 同上: 计算 → 拼接 → 更新缓存                               │
-│    └─ current_pos = prompt_len + 2                               │
-│                                                                  │
-│  如此循环，直至生成结束                                           │
-│                                                                  │
-│  结束: reset_kv_cache() → current_pos = 0                        │
-└─────────────────────────────────────────────────────────────────┘
-```
-
 
 ## LLM 微调
+
+>[代码参考仓库](https://github.com/JxKim/0119_finetune)
 
 微调指在一个已经**预训练好**，或者已有通用能力的大模型基础上，继续用特定数据训练它的参数，让它**适配**某个任务、风格、领域或偏好。微调是将通用大语言模型（Large Language Model, LLM）适配至特定任务的关键技术手段。可以说，微调能够：
 
@@ -1208,7 +1173,6 @@ def reset_kv_cache(self):
 - **验证维度**：训练损失下降、验证集指标、样例推理结果、实际任务效果
 - **评估重点**：泛化能力、稳定性、可用性
 - **价值**：发现过拟合、指令跟随能力不足、回答质量不稳定等问题，为后续优化提供依据
-
 
 
 
@@ -2476,6 +2440,11 @@ SFTConfig(
 )
 ```
 
+特别的，对于参数：gradient_checkpointing，后面提到的 PEFT、Unsloth 都可以去配置，所以给出此图来讲清楚它们的关联： 
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/35_三种开启gradient_checkpoint的区别.png'>
+</p>
+
 !!! tip "OOM 排查顺序"
 
     1. 减小 `per_device_train_batch_size`（8 → 4 → 2 → 1）
@@ -2496,7 +2465,6 @@ SFTConfig(
     默认会对整条输入（system + user + assistant）都算 loss，模型会"作弊"背诵固定 prompt。开启后只对 assistant 部分算 loss，能避免 loss 虚低、与推理目标对齐。在 trl 0.20.0+ 中是首选写法，取代了旧版 `DataCollatorForCompletionOnlyLM`。
 
 > 关于 SFT 中"**怎么算 Loss**"的原理细节，可以回看前面 `### 2. SFT 的损失函数` 一节；关于 chat template 的设计与不计算输入 token 损失的图解，回看 `### 3. Chat Template 与 SFT`。
-
 
 ###### SFTTrainer
 
@@ -2842,7 +2810,9 @@ model = AutoModelForCausalLM.from_pretrained(
 from peft import prepare_model_for_kbit_training
 model = prepare_model_for_kbit_training(
 	model, 
-	use_gradient_checkpointing=True # 注意⭐⭐：在Qlora中，配置是否启用gradient_checkpointing 不是在 xxxConfig，而是在这里
+	# 注意⭐⭐：在Qlora中，配置是否启用gradient_checkpointing 不是在 xxxConfig，而是在这里
+	use_gradient_checkpointing=True 
+	
 	)
 ```
 
@@ -2859,4 +2829,466 @@ lora_config = LoraConfig(
 peft_model = get_peft_model(model, lora_config)
 ```
 
-####
+#### Unsloth
+
+##### Unsloth 概述
+
+[Unsloth](https://unsloth.ai/docs#features) 是一个面向本地硬件的开源大模型训练与运行框架，主打更快训练、显存占用更低，同时保持对 Hugging Face 工作流的兼容；它不仅能做微调，还覆盖推理、评测和部署。
+
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/33_Unsloth技术图解.png'>
+</p>
+##### Unsloth 安装与导入
+
+**pip 安装**
+
+```
+pip install unsloth
+```
+
+**uv 安装**
+
+```
+uv add unsloth
+```
+
+其实这部分我重点想讲述的是 **unsloth** 的导入，因为 **unsloth** 不仅对 **pytorch** 做了优化，还要对 `transformer`、`trl`、`peft` 等库去做优化，所以，unsloth 要在这些库之前导入，但是 `windows` 不支持 `triton` 库，所以下面代码会报错，可以跑到 `windows` 下的 `wsl`。
+
+``` python
+from unsloth import FastLanguageModel  
+from trl.trainer.sft_trainer import SFTTrainer, SFTConfig  
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig  
+from peft import get_peft_model, LoraConfig
+```
+
+##### Unsloth 的使用
+
+Unsloth 有两种使用方式，要么通过图形化，要么通过 Unsloth Core，也就是代码，如下图，这里重点介绍第二种方式，具体可参考：[unsloth_integration](https://huggingface.co/docs/trl/unsloth_integration)
+
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/34_unsloth使用方式.png'>
+</p>
+
+首先，通过 `FastLanguageModel.from_pretrained` 方法，来加载 `model` 和 `tokenizer`：
+``` python
+model, tokenizer = FastLanguageModel.from_pretrained(  
+    model_name='Qwen3.0xxx',     # 这里写模型名称，可以是本地，也可以是模型仓库名称  
+    load_in_4bit=True,           # 启用 4bit 训练  
+    # 如果加载的是本地模型，要配合下面的参数  
+    use_exact_model_name=True,  
+    local_files_only=True,  
+)
+```
+
+之后，如果开启了量化，和 hugging 的 TRL 库类似，需要将 PETF 应用到模型上：
+``` python
+peft_model = FastLanguageModel.get_peft_model(  
+    model,  
+    r=32,  
+    target_modules=["q_proj", "k_proj", "v_proj", "o_proj",  
+                    "gate_proj", "up_proj", "down_proj"],  
+    lora_alpha=64,  
+    lora_dropout=0.05  
+    # 在微调配置这里开始梯度积累
+    use_gradient_checkpointing=True,
+)
+```
+
+对于使用 `Unsloth` 微调，需要手动对文本调用 apply_chat_template？把消息列表转换为字符串。也就是从 Convosational 转为 Standard，但理论 SFTTrainer 会自动为 messages 应用 `apply_chat_template`，你 Unsloth 后面走的也是 SFTTrainer，不太理解课里为什么要在这里手动转，不过转了以后 SFTTrainer 发现已经是 text 字段了，就不会 `apply_chat_template` 了。
+
+``` python
+def convert_data(batch:dict):  
+    # 遍历每一个数据  
+    temp = [] # 对这批处理完后，返回的是一个字典{messages:[{messages:[]},{}, {}]}  
+    # print(f'{batch=}')    for conversation in batch['conversation']:  
+        # print(f'{conversation=}')  
+        messages = []  
+        for turn in conversation:  
+            messages.append({  
+                'role': 'user',  
+                'content': turn['human']  
+            })  
+            messages.append({  
+                'role': 'assistant',  
+                'content': turn['assistant']  
+            })  
+		# 将 messages 转为一个字符串 ⭐⭐⭐ 
+        text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False)  
+        temp.append(text)  
+  
+    return {'text': temp}
+```
+
+后面就与 TRL 生态一致了，只需要构建 SFTConfig 对象，然后再去构建  SFTTrain 对象，即可完成 Unsloth 的微调
+
+``` python
+sft_config = SFTConfig(  
+    # 训练规模相关  
+    num_train_epochs=3,  
+    per_device_train_batch_size=3,  
+    gradient_accumulation_steps=4,  
+    max_steps=1000,  
+  
+    # 训练可视化相关  
+    logging_strategy='steps',  
+    logging_steps=100,  
+    report_to='tensorboard',  
+  
+    # 训练优化相关  
+    bf16=True,  
+  
+    # 模型保存和评估相关  
+    save_strategy='steps',  
+    save_steps=100,  
+    save_total_limit=3,  
+    eval_strategy='steps',  
+    eval_steps=100,  
+    output_dir='model/QWen3-0.6B-Unsloth',  
+    metric_for_best_model='eval_loss',  
+    greater_is_better=False,  
+    load_best_model_at_end=True,  
+  
+    # 学习率相关  
+    learning_rate=1e-5 * 10,  
+    lr_scheduler_type='cosine',  
+)  
+  
+trainer = SFTTrainer(  
+    model=peft_model,  
+    args=sft_config,  
+    train_dataset=train_ds,  
+    eval_dataset=test_ds,  
+    processing_class=tokenizer,  
+)
+
+# 这个是 Unsloth 提供的一个训练优化函数。
+trainer = train_on_responses_only(  
+    trainer=trainer,  
+    instruction_part="<|im_start|>user\n",  
+    response_part="<|im_start|>assistant\n"  
+)
+
+# 保存LoRA适配器
+trainer.save_model("./model/Qwen3-8B-SFT-unsloth")
+
+# 保存合并模型（Unsloth 提供的方法，本质上就是将 adapter 权重与模型原始权重合并了）
+model.save_pretrained_merged("./model/Qwen3-8B-SFT-unsloth-merged", tokenizer, save_method="merged_16bit")
+
+# 等价于：
+# Load base model
+base_model = AutoModelForCausalLM.from_pretrained("Qwen/Qwen2-0.5B")
+# Load PEFT adapters
+model = PeftModel.from_pretrained(base_model, "path/to/adapters")
+# Optionally merge adapters into base model for faster inference
+model = model.merge_and_unload()
+```
+
+
+#### Accelerate 
+
+> 笔记只介绍如何通过 Accelerate 库轻松的实现 通过 TRL 实现的训练脚本的分布式训练，而 Accelerate 如何集成到 Pytorch 中，以及它的具体文档，参考 [accelerate](https://huggingface.co/docs/accelerate/index)，不同分布式训练的配置文件，参考[config_yaml_templates](https://github.com/huggingface/accelerate/tree/main/examples/config_yaml_templates)
+##### Accelerate 概述
+
+Accelerate 是一个库，只需添加四行代码，即可让同一段 PyTorch 代码在任何分布式配置上运行！简而言之，它让**大规模训练和推理**变得简单、高效且灵活。
+
+默认的并行方式是数据并行，但是 Accelerate 集成了 DeepSpeed（Zero实现框架）等，可以选择 ZeRo 等其他并行方式。
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/36_accelerate原理.png'>
+</p>
+
+``` python
+from accelerate import Accelerator
+
+# 1. 初始化 Accelerator（它会自动读取默认的 config 文件）
+accelerator = Accelerator()
+
+# 2. 获取正确的当前设备（取代原先的 item.to('cuda')）
+device = accelerator.device
+
+# 3. 把所有核心组件扔进 prepare
+# 这一步会自动处理：模型多卡复制、DataParallel、DDP 的 Sampler 包装、优化器适配
+model, optimizer, train_dataloader, lr_scheduler = accelerator.prepare(
+    model, optimizer, train_dataloader, lr_scheduler
+)
+
+for batch in train_dataloader:
+    optimizer.zero_grad()
+    
+    # 注意：此时 batch 内的数据可以通过 accelerator.prepare 自动放置，
+    # 或者手动采用：inputs = batch_data.to(device)
+    outputs = model(inputs)
+    loss = loss_function(outputs, targets)
+    
+    # 4. 替换原有的 loss.backward()，接管混合精度和多卡梯度同步
+    accelerator.backward(loss)
+    
+    optimizer.step()
+    lr_scheduler.step()
+```
+
+##### [Accelerate 与 TRL 集成](https://huggingface.co/docs/trl/distributing_training)
+
+因为 `Transformers Trainer` 天然集成 `Accelerate`，所以在使用 `TRL` 的 `SFTTrainer` 进行训练时，可以通过 accelerate launch 的方式启动分布式训练。命令如下所示：
+
+``` shell
+accelerate launch --config-file xxx.yaml train.py
+```
+
+其中， config 配置文件通过一个交互式脚本获得：
+
+``` shell
+accelerate config
+```
+
+##### Accelerate 配置讲解
+
+在传统的 `PyTorch DDP`（分布式数据并行）中，**每个显卡上都必须完整复制一份模型参数、优化器状态和梯度**。随着模型参数量变大，显存很容易撑爆（OOM）。
+
+Hugging Face `accelerate` 集成的 **DeepSpeed ZeRO（Zero Redundancy Optimizer）** 技术就是为了解决这个问题。它的核心思想是：**“空间换时间”，把模型状态（优化器状态、梯度、参数）分片（Shard）存储到不同的显卡上**，在需要前向/反向传播时再通过集合通信临时拼接起来。
+
+``` python
+# Accelerate + DeepSpeed 基础计算环境配置
+compute_environment: LOCAL_MACHINE      # 计算环境：LOCAL_MACHINE (本地机器/机房集群) 或 AWS
+distributed_type: DEERSPEED             # 分布式训练类型：这里指定使用 DEEPSPEED
+num_machines: 1                         # 参与训练的机器（节点）总数，单机填 1
+machine_rank: 0                         # 当前机器的 Rank 编号（单机固定为 0，多机时第一台为 0, 第二台为 1...）
+
+# 硬件与进程分配（非常关键）
+gpu_ids: all                            # 使用哪些 GPU。可以填 "all" 自动使用全部，或指定 "0,1,2,3"
+num_processes: 8                        # 总进程数：在数据并行中，通常【严格等于你的 GPU 总张数】。比如 8 卡就填 8
+
+# 混合精度配置
+mixed_precision: bf16                   # 混合精度类型：可选 no (FP32) / fp16 / bf16
+downcast_bf16: 'no'                     # 是否将常规数据转换为 bf16（通常保持 'no'）
+
+# DeepSpeed 专属插件核心配置区
+deepspeed_config:
+  # 1. 核心的 ZeRO 阶段选择
+  zero_stage: 3                         # 核心参数！ZeRO 级别选择：
+
+
+  # 2. 梯度累积与裁剪
+  gradient_accumulation_steps: 2        # 梯度累积步数
+  gradient_clipping: 1.0                # 梯度裁剪阈值：防止梯度爆炸，通常设为 1.0
+
+  # 3. 内存/显存卸载（Offload）策略 —— 拯救小显存的终极绝招
+  offload_optimizer_device: cpu         # 优化器状态卸载：可选 cpu / nvme / none       offload_param_device: none            # 模型参数卸载：可选 cpu / nvme / none。
+
+  # 4. 显存优化与通信
+  zero3_init_flag: true                 # 仅在 Stage 3 生效。是否在构建模型时就进行分布式初始化。
+  zero3_save_16bit_model: true          # 训练结束后，是否直接将 Stage 3 切碎的权重合并并保存为单份普通的 16bit 模型文件
+
+  # 5. 自动配置接管（由 Accelerate 自动从 Python 代码中捕获，保持 auto 即可）
+  auto_configure: true                  # 是否让 Accelerate 自动填充其余 DeepSpeed 参数
+  train_batch_size: auto                # 训练 Batch Size：设为 auto，Accelerate 会自动根据你在 DataLoader 设定的 size * GPU数 计算
+  train_micro_batch_size_per_gpu: auto  # 单卡前向传播的 Batch Size：自动获取你的 DataLoader.batch_size
+
+# 其他边缘配置项
+main_training_function: main            # 你的 Python 训练脚本中的主函数入口名称，默认是 main
+rdzv_backend: static                    # 多机多卡通信的汇合点后端（单机保持 static 即可）
+same_network: true                      # 多机时是否在同一个局域网内
+use_cpu: false                          # 是否强制使用 CPU 训练（大模型千万别开）
+```
+
+#### LLaMa-Factory
+
+LLaMA-Factory 是一个简单易用且高效的大型语言模型训练与微调平台。通过 LLaMA-Factory，可以在无需编写任何代码的前提下，在本地完成上百种预训练模型的微调。
+
+##### [LLama-Factory 安装与使用](https://llamafactory.readthedocs.io/en/latest/getting_started/installation.html#llama-factory)
+
+>在云服务器上，有代理，就配置代理，没有代理，如果管官方加速，就用官方加速，没有官方加速，直接手动下载，然后上传上去也行。
+
+
+``` python
+git clone --depth 1 https://github.com/hiyouga/LLaMA-Factory.git
+cd LLaMA-Factory
+pip install -e .
+pip install -r requirements/metrics.txt
+```
+
+auto-dl 官方加速，没什么用..
+
+``` shell
+# 开启代理加速
+source /etc/network_turbo
+
+# 取消代理加速
+unset http_proxy && unset https_proxy
+```
+
+之后，就可以启动 `LLama-Factory` 了
+
+``` shell
+llamafactory-cli webui
+# 后台启动
+nohup llamafactory-cli webui >llama_factory.log 2>&1 &
+```
+
+如果使用云服务器，又想通过 127.0.0.1 访问，则需要配置 ssh 
+``` shell
+ssh -CNg -L 7860:127.0.0.1:7860 云服务器ip地址 -p 云服务器端口号
+```
+
+之后，就可以通过图形化界面去进行模型的微调了，具体可以参考：[LLama SFT](https://llamafactory.readthedocs.io/en/latest/getting_started/sft.html)
+##### [LLama 数据格式](https://llamafactory.readthedocs.io/en/latest/getting_started/data_preparation.html)
+
+目前，LLama-Factory 支持 [Alpaca](https://llamafactory.readthedocs.io/en/latest/getting_started/data_preparation.html#alpaca) 格式和 [ShareGPT](https://llamafactory.readthedocs.io/en/latest/getting_started/data_preparation.html#sharegpt) 格式的数据集。 [dataset_info.json 文件](https://github.com/hiyouga/LLaMA-Factory/blob/main/data/dataset_info.json/)包含所有预处理过的**本地数据集**和**在线数据集** 。如果您想使用自定义数据集，则**必须**将数据集的定义及其内容添加到 `dataset_info.json` 文件中。
+
+
+## LLM 部署与评测
+
+### VLLM
+#### VLLM 概述
+
+vLLM 是一个面向大语言模型推理的高性能推理框架，专为大规模并发请求优化，底层基于Pytorch 构建。
+
+#### [VLLM 安装](https://docs.vllm.ai/en/latest/#installation)
+
+> vllm 需要在 linux 环境部署，我在本地 wsl 跑通这个流程即可
+
+``` python
+# 官方推荐（我wsl挂梯子，都下不下来这个自动选的 torch）
+uv pip install vllm --torch-backend=auto
+
+# 实际直接下载，就不会报网络错误了
+uv pip install vllm 
+
+# 国内镜像源
+uv pip install vllm -i https://pypi.tuna.tsinghua.edu.cn/simple
+```
+
+#### VLLM 部署模型
+
+具体可参考：[online-serving](https://docs.vllm.ai/en/latest/getting_started/quickstart/#online-serving)
+
+``` shell
+# 前台运行
+vllm serve ./Qwen3-8B --served-model-name Qwen3-8B --max-model-len 32K
+
+# 后台运行
+nohup vllm serve /root/autodl-tmp/models/Qwen3-8B --served-model-name Qwen3-8B --max-model-len 32K >vllm.log 2>&1 &
+```
+
+充满波折的部署之路啊，我天，折腾我一下午，遇到了这些问题，首先是 `RuntimeError: UVA is not available`，这个问题在 github 上有人问，然后作者告诉了[解决方案](https://github.com/vllm-project/vllm/issues/47387)，也就是改一下这个变量：
+
+``` shell
+VLLM_WSL2_ENABLE_PIN_MEMORY=1 vllm serve
+```
+
+然后，又报错找不到 gcc，我的 wsl2 确实是干净的 ubantu 系统，所以确实没有，执行下面命令安装：
+
+``` shell
+sudo apt install build-essential
+```
+
+然后，又报了 nvcc 相关的错误，我的 wsl 子系统也确实没有下载 CUDA Toolkit 工具包，这个东西在我们使用 pytorch 代码的时候确实不需要，因为 PyTorch wheel 自带 CUDA runtime，但是对于 vllm 来说，好像需要，[下载教程](https://blog.csdn.net/jiay2/article/details/159731985)
+
+``` shell
+# 下载CUDA 13.0本地安装包
+wget https://developer.download.nvidia.com/compute/cuda/13.0.1/local_installers/cuda-repo-ubuntu2404-13-0-local_13.0.1-580.82.07-1_amd64.deb
+
+# 安装本地仓库包
+sudo dpkg -i cuda-repo-ubuntu2404-13-0-local_13.0.1-580.82.07-1_amd64.deb
+
+# 复制GPG密钥
+sudo cp /var/cuda-repo-ubuntu2404-13-0-local/cuda-*-keyring.gpg /usr/share/keyrings/
+
+# 更新APT源列表并安装
+sudo apt-get update 
+sudo apt-get -y install cuda-toolkit-13-0
+```
+
+下载完成后，配置环境变量：
+
+``` shell
+# 编辑
+nano ~/.bashrc
+# 在文件末尾加入
+export CUDA_HOME=/usr/local/cuda-13.0  
+export PATH=$CUDA_HOME/bin:$PATH
+# 激活
+source ~/.bashrc
+```
+
+历经千辛万苦，终于成功了，下次我他妈绝对租云服务器跑了，太nm折腾了，不过也学到了一些东西，最起码我知道 vllm 想跑起来，必须得有真正的 cuda toolkit，pytorch 自带的运行时环境不行。
+
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/37_vllm部署成功截图.png'>
+</p>
+
+### 推理框架
+
+#### 推理框架是什么？
+
+推理框架是专门用于部署和运行大型语言模型（LLM）的系统软件。它通过针对性的架构设计和底层优化，将训练好的模型转化为能够高效处理**海量并发请求的线上服务**。与原生深度学习框架相比，专用推理框架能够显著降低内存占用、提升吞吐量并减少延迟，尤其适合对响应速度要求高的生产环境。
+
+#### 推理框架解决的问题
+
+- 当多个生成请求同时到来时，如何高效调度推理任务，保证服务稳定运行？
+- 在长上下文与高并发场景下，如何更高效地管理显存，尤其是 KV Cache？
+- 如何提升推理系统的整体性能，包括吞吐量、时延以及 GPU 利用率？
+#### PagedAttention
+
+在传统的 `KV-Cache` 机制下，给用户分配的显存空间通常是连续的，所以会出现 "**显存碎片**" 问题，可能会导致当前显存剩余空间大于所需空间，但是却没有一段连续的空间能够满足，这与操作系统中内存采用连续储存，会出现 "**内存碎片**" 一致，而操作系统通过 “**分页机制**” 解决了内存碎片问题，`PagedAttention` 借鉴了它的思想：
+
+`PagedAttention` 会预先申请一块K-V cache显存池，同时，它会将当前显存池划分为大小相同，固定的 `block`, 同时，`Block Manager` 负责 `block` 的配分与回收，这样，每个请求对应的 `K-V Cache` 在显存中就不再是连续的了。
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/38_pageattention分析.png'>
+</p>
+
+此外，当多个请求有相同的前缀的时候，那这些前缀对应的 K-V 是相同，`PagedAttention` 下，这些请求可以复用同一个 `block`，如下图所示：
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/39_paged_at_前缀缓存.png'>
+</p>
+#### 调度器与连续批处理
+
+大语言模型服务通常需要同时处理大量用户请求，这些请求会不断到来，每个请求的 Prompt 长度、生成长度以及执行进度都不同。如果让每个请求独占 GPU，不仅 GPU 利用率很低，而且无法支持高并发。
+
+Scheduler 与 Continuous 机制如下图：
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/39_推理框架调度器机制.png'>
+</p>
+
+可以概括为下面几个部分：
+
+- **Waiting Queue**：存放尚未开始执行的新请求。
+- **Running Queue**：存放已经完成 Prefill、正在 Decode 的请求
+- **KV Cache Pool**：保存所有请求的 KV Cache，由 Block Manager 管理分配和回收。
+- **Scheduler**：决定每轮 Step 执行哪些请求，并协调 GPU 资源。
+- **Continuous Batching**：每轮重新组织 Batch，请求可以动态加入、退出或继续执行。
+
+#### 其他优化方案
+
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/43_其他优化方案整体图解.png'>
+</p>
+
+1、**FlashAttention**：FlashAttention 的核心思路不是改变注意力机制本身，而是**换一种更高效的计算方式**：该方式尽量减少中间结果的保存，尽量减少显存读写，从而让 GPU 更连续、更高效地完成整段计算。
+
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/40_flashattention图解.png'>
+</p>
+
+2、**Tensor parallel**：Tensor parallel 是推理框架中常见的模型并行策略。它通过将 Transformer 层中的大矩阵计算切分到多张 GPU 上执行，使每张 GPU 只保存和计算部分权重，从而降低单卡显存压力，并利用多卡算力加速推理。
+
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/41_tensor_parallel.png'>
+</p>
+
+3、**CUDA Graph**：在传统 CUDA 执行模型中，CPU 需要逐个发起 kernel launch。虽然 kernel launch 通常是异步的，但在大模型推理中，尤其是 decode 阶段，每一步都会重复执行大量相似的 GPU kernel，频繁的 CPU 调度和 kernel launch 会带来额外开销。
+
+CUDA Graph 会将一组固定形状、固定执行路径的 CUDA 操作捕获成一张计算图，后续推理时可以直接 **重放** 整张图，而不需要 CPU 每次逐个提交 kernel。这样可以减少 CPU 端调度和 kernel launch 开销，提高 GPU 执行的连续性，尤其适合 decode 这种形状相对稳定、重复执行的场景。
+
+<p align='center'>
+	<img src='../../assets/imgs/python/llm/42_cuda_graph.png'>
+</p>
+
+### [EvalScope](https://evalscope.readthedocs.io/zh-cn/v1.6.1/get_started/introduction.html)
+
+这部分知识直接参考官方文档即可。
+
+
+> 2027.07.08，llm 完结撒花，收获颇多，在之前学微调的时候，很多东西真的不清楚为什么这样，但是有了nlp，深度学习，llm 基础知识的前提下，就知道了为什么模型的输入 input_ids 是什么样子，输出是什么样子，怎么处理 chatModel 的输入输出等等。
+
+
+

@@ -1,0 +1,20 @@
+{
+  "id": "conv-1783469172185-cjqw82dhz",
+  "title": "Analyze opportunities to replace text with diag...",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783469172185,
+  "updatedAt": 1783469207928,
+  "lastResponseAt": 1783469207928,
+  "sessionId": "26170e1a-35b7-47fe-ba32-8f972b944193",
+  "sdkSessionId": "26170e1a-35b7-47fe-ba32-8f972b944193",
+  "currentNote": "tools/docker-v2.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

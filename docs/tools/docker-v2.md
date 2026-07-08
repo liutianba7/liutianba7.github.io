@@ -13,41 +13,32 @@
 - [九、常见问题与排查](#九常见问题与排查)
 
 ---
-
+<p align='center'>
+    <img src="../assets/imgs/tools/docker/笔记概览.png" />
+</p>
 ## 一、Docker 概述与架构
 
 ### 1.1 什么是 Docker
 
 <p align='center'>
-    <img src="../assets/imgs/tools/docker/docker介绍.png" alt="docker架构" />
+    <img src="../assets/imgs/tools/docker/docker介绍.png" />
 </p>
 
 ### 1.2 Docker vs 传统虚拟机
 
-| 对比项 | Docker 容器 | 传统虚拟机 |
-|--------|-------------|------------|
-| 启动时间 | 秒级 | 分钟级 |
-| 资源占用 | MB 级 | GB 级 |
-| 性能 | 接近原生 | 有损耗 |
-| 隔离级别 | 进程级 | 操作系统级 |
-| 操作系统 | 共享宿主机内核 | 独立内核 |
-
+<p align='center'>
+    <img src="../assets/imgs/tools/docker/docker与传统虚拟机对比.png" />
+</p>
 ### 1.3 Docker 架构
 
-<p align='center'>
+<p align='center' style='zoom:70%'>
     <img src="../assets/imgs/tools/docker/docker1.png" alt="docker架构" />
 </p>
 
 **核心组件**：
-
-| 组件 | 说明 |
-|------|------|
-| **镜像（Image）** | 只读模板，包含运行应用所需的所有内容（代码、运行时、库、配置） |
-| **容器（Container）** | 镜像的运行实例，是一个隔离的进程 |
-| **仓库（Registry）** | 存储和分发镜像的地方，如 Docker Hub、私有仓库 |
-| **Docker Daemon** | 守护进程，负责构建、运行、分发容器 |
-| **Docker Client** | 客户端，通过 CLI 或 API 与 Daemon 交互 |
-
+<p align='center' style='zoom:70%'>
+    <img src="../assets/imgs/tools/docker/docker核心组件.png"/>
+</p>
 **镜像与容器的关系**：类比面向对象编程，镜像 = 类，容器 = 对象实例。
 
 ---
@@ -219,6 +210,9 @@ systemctl restart docker
 ## 三、核心命令速查
 
 镜像由多层组成，层是公用的，下载其他镜像时可复用已下载的层。
+<p align='center'>
+    <img src="../assets/imgs/tools/docker/常见命令速查.png" />
+</p>
 
 ### 3.1 镜像命令
 
@@ -377,10 +371,16 @@ docker version
 
 ## 四、Docker 数据管理
 
+
+<p align='center'>
+    <img src="../assets/imgs/tools/docker/docker数据管理.png" />
+</p>
 ### 4.1 数据卷（Volume）
 
 **概念**：Docker 管理的持久化存储，数据存于 `/var/lib/docker/volumes/`，与容器生命周期解耦。
-
+<p align='center' style='zoom:70%'>
+    <img src="../assets/imgs/tools/docker/数据卷挂载.png" />
+</p>
 **特点**：
 
 - Docker 自动管理，删除容器时数据卷不会自动删除
@@ -405,6 +405,9 @@ docker run -d --name redis -v mydata:/data redis:7.0.15
 ### 4.2 目录挂载（Bind Mount）
 
 **概念**：将宿主机特定目录直接挂载到容器，开发者可控路径。
+<p align='center' style='zoom:70%'>
+    <img src="../assets/imgs/tools/docker/docker目录挂载.png" />
+</p>
 
 ```bash
 docker run -d --name redis -v /root/redis-data:/data redis:7.0.15
@@ -424,20 +427,10 @@ docker run -d --name redis -v /root/redis-data:/data redis:7.0.15
 docker run -d --privileged=true -v /host/path:/container/path nginx
 ```
 
-### 4.3 数据卷 vs 目录挂载对比
-
-| 对比项 | 数据卷（Volume） | 目录挂载（Bind Mount） |
-|--------|------------------|------------------------|
-| 存储位置 | Docker 管理 `/var/lib/docker/volumes/` | 用户指定任意路径 |
-| Docker 管理 | 是 | 否 |
-| 跨主机移植 | 容易 | 困难 |
-| 性能 | 好 | 好 |
-| 适用场景 | 生产环境、持久化数据 | 开发环境、配置文件 |
-
-### 4.4 容器数据备份与迁移
+### 4.3 数据卷 vs 目录挂载对比 AND 容器数据备份与迁移
 
 <p align='center'>
-    <img src="../assets/imgs/tools/docker/docker2.png" alt="docker备份迁移" style="zoom:68%"/>
+    <img src="../assets/imgs/tools/docker/数据卷与目录挂载+数据备份与迁移.png" />
 </p>
 
 **步骤**：
@@ -461,14 +454,9 @@ docker run -d --name redis02 myredis:v1
 ## 五、Docker 网络
 
 ### 5.1 网络类型
-
-| 类型 | 说明 | 适用场景 |
-|------|------|----------|
-| **bridge** | 默认网络，容器间可通过 IP 互通 | 单机多容器通信 |
-| **host** | 容器直接使用宿主机网络，无隔离 | 性能要求高、无需隔离 |
-| **none** | 无网络，完全隔离 | 安全要求高的容器 |
-| **自定义网络** | 用户创建，容器可通过名称互访 | 微服务架构、服务发现 |
-
+<p align='center'>
+    <img src="../assets/imgs/tools/docker/docker网络模式讲解.png" />
+</p>
 ### 5.2 创建自定义网络
 
 ```bash
@@ -502,6 +490,9 @@ docker run -d --name web --network none nginx
 ---
 
 ## 六、Dockerfile 与镜像构建
+<p align='center'>
+    <img src="../assets/imgs/tools/docker/dockerfile与镜像构建.png" />
+</p>
 
 ### 6.1 Dockerfile 概念
 
@@ -509,6 +500,9 @@ Dockerfile 是一个文本文件，包含一系列指令，用于自动构建 Do
 
 **构建流程**：Docker 按**顺序执行**每条指令，每条指令生成一个**镜像层（Layer）**。
 
+<p align='center' style='zoom:60%'>
+    <img src="../assets/imgs/tools/docker/dockerfile概念.png" />
+</p>
 ### 6.2 常用指令详解
 
 | 指令 | 作用 | 示例 |
@@ -993,31 +987,3 @@ docker exec -it container sh           # 精简镜像可能只有 sh
 ```
 
 ---
-
-## 面试高频考点
-
-### 1. Docker 核心概念
-
-**镜像 vs 容器**：镜像是静态模板（类似类），容器是运行实例（类似对象）。
-
-**Docker vs 虚拟机**：容器共享宿主机内核，启动快、资源占用少；虚拟机独立内核，隔离性强。
-
-### 2. Dockerfile 指令
-
-**CMD vs ENTRYPOINT**：CMD 可被覆盖，ENTRYPOINT 作为主命令不易覆盖，常组合使用。
-
-**COPY vs ADD**：COPY 仅复制，ADD 会自动解压 tar 包。
-
-### 3. 数据持久化
-
-**数据卷 vs 目录挂载**：数据卷 Docker 管理、易于移植；目录挂载用户管理、适合开发环境。
-
-### 4. 网络
-
-**自定义网络优势**：容器可通过名称互访，适合微服务架构。
-
-### 5. 镜像优化
-
-**减少层数**：合并 RUN 命令，减少镜像层。
-
-**多阶段构建**：编译与运行分离，减小最终镜像体积。

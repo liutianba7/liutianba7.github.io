@@ -303,8 +303,6 @@ LangChain 一定是未来的潮流！
 
 ### LangChain 安装
 
-
-
 ```python
 pip install langchain langchain-community langchain-ollama dashscope chromadb
 ```
@@ -332,7 +330,7 @@ LangChain 将模型主要划分为两大类：**LLMs** 和 **Chat Models**。
 
 - **输入/输出**：接受一个 **String**（字符串），返回一个 **String**
 - **特点**：它们本质上是文本补全器（Text Completion）
-- **适用场景**：简单的文本生成、老版本的 GPT-3 模型
+- **适用场景**：简单的文本生成、老版本的 GPT-3 模型 
 
 ```python
 from langchain_openai import OpenAI
@@ -643,19 +641,19 @@ model_compatible = ChatOpenAI(
 
 LangChain 为所有 Chat Model 提供了**统一的调用接口**：
 
-| 方法          | 返回类型                            | 适用场景 | 特点                |
-| ----------- | ------------------------------- | ---- | ----------------- |
-| `invoke()`  | `AIMessage`                     | 单次请求 | 最常用，同步阻塞          |
-| `stream()`  | `Iterator[AIMessageChunk]`      | 实时输出 | 打字机效果，逐字返回        |
-| `batch()`   | `List[AIMessage]`               | 批量处理 | 内部并行，提高吞吐         |
-| `ainvoke()` | `AIMessage`                     | 异步单次 | 非阻塞，需 await       |
-| `astream()` | `AsyncIterator[AIMessageChunk]` | 异步流式 | 返回异步生成器，无需 await  |
+| 方法          | 返回类型                            | 适用场景 | 特点               |
+| ----------- | ------------------------------- | ---- | ---------------- |
+| `invoke()`  | `AIMessage`                     | 单次请求 | 最常用，同步阻塞         |
+| `stream()`  | `Iterator[AIMessageChunk]`      | 实时输出 | 打字机效果，逐字返回       |
+| `batch()`   | `List[AIMessage]`               | 批量处理 | 内部并行，提高吞吐        |
+| `ainvoke()` | `AIMessage`                     | 异步单次 | 非阻塞，需 await      |
+| `astream()` | `AsyncIterator[AIMessageChunk]` | 异步流式 | 返回异步生成器，无需 await |
 
 **注意点** ⭐⭐⭐ 
 
 ainvoke() - 返回协程对象，所以需要通过 await 来挂起当前协程并执行 ainvoke 返回的协程对象
 
-astream() - 返回异步迭代器，所以我们不需要在 astream() 前去写 await，对于异常生成器，我们的处理方式是 async for 
+astream() - 返回异步迭代器，所以我们不需要在 astream() 前去写 await，对于异步生成器，我们的处理方式是 async for 
 
 ---
 

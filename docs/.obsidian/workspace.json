@@ -8,17 +8,17 @@
         "type": "tabs",
         "children": [
           {
-            "id": "9b5aeb5654e620ff",
+            "id": "b598d1358264cc8f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "python/05_ai/LLM.md",
+                "file": "tools/docker-v2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "LLM"
+              "title": "docker-v2"
             }
           }
         ]
@@ -53,13 +53,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "python/05_ai/LLM.md",
+                "file": "tools/docker-v2.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "LLM 的大纲"
+              "title": "docker-v2 的大纲"
             }
           },
           {
@@ -94,7 +94,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 298.5
   },
   "right": {
     "id": "7c5e86e03a5a36ba",
@@ -180,7 +180,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 449.5
+    "width": 449.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -194,53 +195,53 @@
       "bases:新建数据库": false
     }
   },
-  "active": "9b5aeb5654e620ff",
+  "active": "b598d1358264cc8f",
   "lastOpenFiles": [
-    "assets/imgs/python/llm/32_QLORA实现流程.png",
-    "assets/imgs/python/llm/PixPin_2026-07-07_05-48-41.png",
+    "assets/imgs/tools/docker/笔记概览.png",
+    "assets/imgs/tools/docker/笔记概览.png.rpVoUb",
+    "assets/imgs/tools/docker/dockerfile概念.png",
+    "assets/imgs/tools/docker/PixPin_2026-07-08_09-30-53.png",
+    "assets/imgs/tools/docker/PixPin_2026-07-08_09-30-53.png.ooCoLf",
+    "assets/imgs/tools/docker/dockerfile与镜像构建.png",
+    "assets/imgs/tools/docker/ChatGPT Image 2026年7月8日 09_29_44.png",
+    "assets/imgs/tools/docker/docker网络模式讲解.png",
+    "assets/imgs/tools/docker/ChatGPT Image 2026年7月8日 09_16_49.png",
+    "assets/imgs/tools/docker/数据卷与目录挂载+数据备份与迁移.png",
+    "assets/imgs/tools/docker/数据卷与目录挂载+数据备份与权益.png",
+    "assets/imgs/tools/docker/PixPin_2026-07-08_08-51-34.png",
+    "assets/imgs/tools/docker/PixPin_2026-07-08_08-51-34.png.iQfZOQ",
+    "assets/imgs/tools/docker/PixPin_2026-07-08_08-50-11.png",
+    "assets/imgs/tools/docker/PixPin_2026-07-08_08-50-11.png.QRInQz",
+    "assets/imgs/tools/docker/数据卷与目录挂载.png.IOFOXq",
+    "assets/imgs/tools/docker/docker目录挂载.png.iWpVVF",
+    "assets/imgs/tools/docker/数据卷挂载.png.gTRJyC",
+    "assets/imgs/tools/docker/docker数据卷.png.zOKxpI",
+    "python/05_ai/LLM.md",
+    "python/05_ai/LangChain.md",
+    "assets/imgs/python/llm/PixPin_2026-07-08_07-36-51.png.ourBOA",
+    "assets/imgs/python/llm/xx.png.qnWxuY",
+    "python/05_ai/深度学习.md",
+    "python/05_ai/LangGraph.md",
+    "python/05_ai/NLP.md",
+    "python/05_ai/langchainBack.md",
+    "python/05_ai/DeepAgents.md",
     "tools/docker-v2.md",
     "tools/git-v2.md",
-    "assets/imgs/tools/docker/docker介绍.png",
-    "assets/imgs/tools/docker/docker介绍.png.mckaCz",
-    "assets/imgs/tools/git/github_flow.png",
-    "assets/imgs/tools/git/github_flow.png.qEsGjU",
-    "assets/imgs/tools/git/gitflow.png",
-    "assets/imgs/tools/git/gitflow.png.InpXwn",
-    "assets/imgs/tools/git/分支概念图解.png",
-    "assets/imgs/tools/git/分支概念图解.png.zuwJBU",
-    "assets/imgs/tools/git/分支概念图解.png.QUYbKr",
-    "assets/imgs/tools/git/merge_rebase图解.png",
-    "assets/imgs/tools/git/merge_rebase图解.png.gIdJdL",
-    "assets/imgs/tools/git/push_pull_remote_fetch讲解图.png",
-    "assets/imgs/tools/git/push_pull图示.png",
-    "assets/imgs/tools/git/push_pull图示.png.beyWEf",
-    "assets/imgs/tools/git/git核心概念.png",
-    "assets/imgs/tools/git/git文件状态流转图.png",
-    "assets/imgs/tools/git/git文件状态流转图.png.adFHTk",
-    "assets/imgs/tools/git/PixPin_2026-07-06_22-24-15.png.yPVgYe",
-    "others/02_blog/csdn/python/人工智能/LLM进化史-从GPT1到ChatGPT再到现代LLM.md",
+    "tools/docker.md",
+    "others/02_blog/每日总结（原始稿子）/2026.07.07.md",
+    "python/06_aiInfra/LLMFinetune.md",
+    "python/06_aiInfra/Ollama.md",
     "others/02_blog/每日总结（原始稿子）/2026.07.06.md",
-    "python/05_ai/LLM.md",
-    "python/05_ai/NLP.md",
-    "assets/imgs/python/llm/PixPin_2026-07-06_15-48-25.png.ZHGpAQ",
-    "others/02_blog/每日总结（原始稿子）/0daily_summary_template.md",
     "others/02_blog/每日总结（原始稿子）/2026.07.05.md",
+    "others/02_blog/每日总结（原始稿子）/0daily_summary_template.md",
+    "python/01_env/uv.md",
+    "others/02_blog/csdn/python/人工智能/LLM进化史-从GPT1到ChatGPT再到现代LLM.md",
     "others/02_blog/每日总结（原始稿子）/01_三年之约.md",
     "others/02_blog/每日总结（原始稿子）/day18.md",
-    "python/06_aiInfra/LLMFinetune.md",
     "others/02_blog/csdn/python/后端/FastAPI 数据库篇：SQLAlchemy 2.0 异步 ORM 从概念到 CRUD 实战.md",
     "others/02_blog/素材/每日一句.md",
     "others/02_blog/素材/各种素材.md",
-    "python/05_ai/深度学习.md",
-    "python/06_aiInfra/Ollama.md",
     "tools/git.md",
-    "python/05_ai/DeepAgents.md",
-    "others/02_blog/每日总结（原始稿子）/day17.md",
-    "python/04_web/fastapi-v2.md",
-    "others/02_blog/每日总结（原始稿子）/day16.md",
-    "others/02_blog/csdn/python/后端/FastAPI 高级篇：中间件、安全认证与生产级工程实践.md",
-    "others/02_blog/csdn/python/后端/FastAPI 基础篇：类型注解驱动的 Python API 开发体验.md",
-    "others/02_blog/每日总结（原始稿子）/day15.md",
-    "others/02_blog/每日总结（原始稿子）/day14.md"
+    "others/02_blog/每日总结（原始稿子）/day17.md"
   ]
 }
