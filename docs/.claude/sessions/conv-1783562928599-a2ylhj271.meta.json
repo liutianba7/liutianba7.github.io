@@ -1,0 +1,20 @@
+{
+  "id": "conv-1783562928599-a2ylhj271",
+  "title": "Write RL value function chapter notes",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783562928600,
+  "updatedAt": 1783563095825,
+  "lastResponseAt": 1783563095825,
+  "sessionId": "1579238d-b31d-43c7-ab93-dd0374395ceb",
+  "sdkSessionId": "1579238d-b31d-43c7-ab93-dd0374395ceb",
+  "currentNote": "python/05_ai/Reinforcement Learning.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

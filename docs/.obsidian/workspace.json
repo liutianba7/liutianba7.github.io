@@ -8,17 +8,31 @@
         "type": "tabs",
         "children": [
           {
-            "id": "b598d1358264cc8f",
+            "id": "010c4a078e5a67f8",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "tools/docker-v2.md",
+                "file": "python/05_ai/07_Reinforcement_Learning.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "docker-v2"
+              "title": "07_Reinforcement_Learning"
+            }
+          },
+          {
+            "id": "d984270f7d2e8a91",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "python/03_others/数据分析相关/matplotlib.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "matplotlib"
             }
           }
         ]
@@ -53,13 +67,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "tools/docker-v2.md",
+                "file": "python/05_ai/07_Reinforcement_Learning.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "docker-v2 的大纲"
+              "title": "07_Reinforcement_Learning 的大纲"
             }
           },
           {
@@ -180,8 +194,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 449.5,
-    "collapsed": true
+    "width": 449.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -195,53 +208,53 @@
       "bases:新建数据库": false
     }
   },
-  "active": "b598d1358264cc8f",
+  "active": "010c4a078e5a67f8",
   "lastOpenFiles": [
-    "assets/imgs/tools/docker/笔记概览.png",
-    "assets/imgs/tools/docker/笔记概览.png.rpVoUb",
-    "assets/imgs/tools/docker/dockerfile概念.png",
-    "assets/imgs/tools/docker/PixPin_2026-07-08_09-30-53.png",
-    "assets/imgs/tools/docker/PixPin_2026-07-08_09-30-53.png.ooCoLf",
-    "assets/imgs/tools/docker/dockerfile与镜像构建.png",
-    "assets/imgs/tools/docker/ChatGPT Image 2026年7月8日 09_29_44.png",
-    "assets/imgs/tools/docker/docker网络模式讲解.png",
-    "assets/imgs/tools/docker/ChatGPT Image 2026年7月8日 09_16_49.png",
-    "assets/imgs/tools/docker/数据卷与目录挂载+数据备份与迁移.png",
-    "assets/imgs/tools/docker/数据卷与目录挂载+数据备份与权益.png",
-    "assets/imgs/tools/docker/PixPin_2026-07-08_08-51-34.png",
-    "assets/imgs/tools/docker/PixPin_2026-07-08_08-51-34.png.iQfZOQ",
-    "assets/imgs/tools/docker/PixPin_2026-07-08_08-50-11.png",
-    "assets/imgs/tools/docker/PixPin_2026-07-08_08-50-11.png.QRInQz",
-    "assets/imgs/tools/docker/数据卷与目录挂载.png.IOFOXq",
-    "assets/imgs/tools/docker/docker目录挂载.png.iWpVVF",
-    "assets/imgs/tools/docker/数据卷挂载.png.gTRJyC",
-    "assets/imgs/tools/docker/docker数据卷.png.zOKxpI",
+    "python/03_others/数据分析相关/matplotlib.md",
+    "python/05_ai/07_Reinforcement_Learning.md",
+    "python/05_ai/Reinforcement Learning.md",
+    "python/05_ai/07_RL.md",
+    "python/05_ai/06_LLM.md",
+    "python/05_ai/05_DeepAgents.md",
+    "python/05_ai/04_LangGraph.md",
+    "python/05_ai/03_LangChain.md",
+    "python/05_ai/02_NLP.md",
+    "python/05_ai/01_DeepLearning.md",
+    "python/03_others/数据分析相关/matplotlib.md.tmp.27864.c551e4648b2f",
+    "assets/imgs/python/rl/13_价值函数再强化学习中的应用.png",
+    "assets/imgs/python/rl/PixPin_2026-07-09_13-51-36.png",
+    "assets/imgs/python/rl/PixPin_2026-07-09_13-51-36.png.BbvGeR",
+    "assets/imgs/python/rl/12_优势函数的定义.png",
+    "assets/imgs/python/rl/PixPin_2026-07-09_13-48-56.png",
+    "assets/imgs/python/rl/PixPin_2026-07-09_13-48-56.png.WWyBHC",
+    "assets/imgs/python/rl/11.最优价值函数v，q.png",
+    "assets/imgs/python/rl/PixPin_2026-07-09_13-47-01.png",
+    "assets/imgs/python/rl/PixPin_2026-07-09_13-47-01.png.OTkXCH",
+    "assets/imgs/python/rl/10_V与Q的关系.png",
+    "assets/imgs/python/rl/PixPin_2026-07-09_11-25-11.png",
+    "assets/imgs/python/rl/PixPin_2026-07-09_11-25-11.png.gUdctX",
+    "assets/imgs/python/rl/09_贝尔曼方程备份图.png",
+    "assets/imgs/python/rl/09_贝尔曼方程状态图.png",
+    "assets/imgs/python/rl/PixPin_2026-07-09_11-22-54.png.wXxQMo",
+    "assets/imgs/python/rl/PixPin_2026-07-09_11-13-58.png.CPFdTZ",
+    "assets/imgs/python/rl/PixPin_2026-07-09_10-42-47.png.dEipUT",
+    "assets/imgs/python/rl/PixPin_2026-07-09_10-37-33.png.WiYSfj",
+    "assets/imgs/python/rl/PixPin_2026-07-09_10-29-06.png.DufVvs",
+    "others/02_blog/每日总结（原始稿子）/2026.07.08.md",
+    "linux/wsl.md",
+    "linux/basic-v2.md",
     "python/05_ai/LLM.md",
+    "others/02_blog/每日总结（原始稿子）/0daily_summary_template.md",
+    "tools/docker-v2.md",
     "python/05_ai/LangChain.md",
-    "assets/imgs/python/llm/PixPin_2026-07-08_07-36-51.png.ourBOA",
-    "assets/imgs/python/llm/xx.png.qnWxuY",
     "python/05_ai/深度学习.md",
     "python/05_ai/LangGraph.md",
     "python/05_ai/NLP.md",
     "python/05_ai/langchainBack.md",
     "python/05_ai/DeepAgents.md",
-    "tools/docker-v2.md",
     "tools/git-v2.md",
     "tools/docker.md",
     "others/02_blog/每日总结（原始稿子）/2026.07.07.md",
-    "python/06_aiInfra/LLMFinetune.md",
-    "python/06_aiInfra/Ollama.md",
-    "others/02_blog/每日总结（原始稿子）/2026.07.06.md",
-    "others/02_blog/每日总结（原始稿子）/2026.07.05.md",
-    "others/02_blog/每日总结（原始稿子）/0daily_summary_template.md",
-    "python/01_env/uv.md",
-    "others/02_blog/csdn/python/人工智能/LLM进化史-从GPT1到ChatGPT再到现代LLM.md",
-    "others/02_blog/每日总结（原始稿子）/01_三年之约.md",
-    "others/02_blog/每日总结（原始稿子）/day18.md",
-    "others/02_blog/csdn/python/后端/FastAPI 数据库篇：SQLAlchemy 2.0 异步 ORM 从概念到 CRUD 实战.md",
-    "others/02_blog/素材/每日一句.md",
-    "others/02_blog/素材/各种素材.md",
-    "tools/git.md",
-    "others/02_blog/每日总结（原始稿子）/day17.md"
+    "python/06_aiInfra/LLMFinetune.md"
   ]
 }

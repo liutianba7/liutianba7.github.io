@@ -27,19 +27,21 @@ nav:
           - Loguru: ./python/03_others/loguru.md
           - Numpy: ./python/03_others/数据分析相关/numpy.md
           - Pandas: ./python/03_others/数据分析相关/pandas.md
+          - Matplotlib: ./python/03_others/数据分析相关/matplotlib.md
       - Web:
-          - Fastapi: ./python/04_web/fastapi.md
-          - Fastapi-v2: ./python/04_web/fastapi-v2.md
+          # - Fastapi: ./python/04_web/fastapi.md
+          - Fastapi: ./python/04_web/fastapi-v2.md
       - AI:
-          - LangChain: ./python/05_ai/LangChain.md
-          - LangGraph: ./python/05_ai/LangGraph.md
-          - DeepAgents: ./python/05_ai/DeepAgents.md
-          - DeepLearning: ./python/05_ai/深度学习.md
-          - NLP: ./python/05_ai/NLP.md
-          - LLM: ./python/05_ai/LLM.md
+          - 01_DeepLearning: ./python/05_ai/01_DeepLearning.md
+          - 02_NLP: ./python/05_ai/02_NLP.md
+          - 03_LangChain: ./python/05_ai/03_LangChain.md
+          - 04_LangGraph: ./python/05_ai/04_LangGraph.md
+          - 05_DeepAgents: ./python/05_ai/05_DeepAgents.md
+          - 06_LLM: ./python/05_ai/06_LLM.md
+          - 07_Reinforcement_Learning: ./python/05_ai/07_Reinforcement_Learning.md
       - AI_Infra:
           - Ollama: ./python/06_aiInfra/Ollama.md
-          - LLMFinetune: ./python/06_aiInfra/LLMFinetune.md
+          # - LLMFinetune: ./python/06_aiInfra/LLMFinetune.md
 
   - Frontend:
       - Js: ./frontend/js.md
@@ -86,28 +88,29 @@ nav:
 #  - Journal:
 #      - test: ./journal/test.md
   - Tools:
-      - Git: ./tools/git.md
-      - Git-v2: ./tools/git-v2.md
-      - Docker: ./tools/docker-v2.md
-      - Vibe-Coding:
-          - ClaudeCode: ./tools/vibe-coding/claudecode.md
-          - OpenSpec: ./tools/vibe-coding/openspec.md
+      # - Git: ./tools/git.md
+      - 01_Git: ./tools/git-v2.md
+      - 02_Docker: ./tools/docker-v2.md
+      #- Vibe-Coding:
+          #- ClaudeCode: ./tools/vibe-coding/claudecode.md
+          #- OpenSpec: ./tools/vibe-coding/openspec.md
       # - docker-v2: ./tools/docker-v2.md
 
   - DB:
     # - Mysql 基础: ./db/mysql基础.md
-    - Mysql 基础: ./db/mysql基础-v2.md
+    - 01_Mysql 基础: ./db/mysql基础-v2.md
     # - Mysql 高级: ./db/mysql高级.md
-    - Mysql 高级: ./db/mysql高级-v2.md
+    - 02_Mysql 高级: ./db/mysql高级-v2.md
 
-    - Mongodb: ./db/mongodb-v2.md
-    - PgSql: ./db/pgsql.md
+    - 03_Mongodb: ./db/mongodb-v2.md
+    - 04_PgSql: ./db/pgsql.md
     # - Redis: ./db/redis.md
-    - Redis: ./db/redis-v2.md
-    - Minio: ./db/minio.md
+    - 05_Redis: ./db/redis-v2.md
+    - 06_Minio: ./db/minio.md
 
   - Linux:
-      - Basic: ./linux/basic.md
+      - 01_Basic: ./linux/basic.md
+      - 02_Wsl: ./linux/wsl.md
   - Computer-Science:
       - network:
           - Http: ./computer-science/network/Http.md

@@ -6744,7 +6744,7 @@
 <ul>
 <li><strong>输入/输出</strong>：接受一个 <strong>String</strong>（字符串），返回一个 <strong>String</strong></li>
 <li><strong>特点</strong>：它们本质上是文本补全器（Text Completion）</li>
-<li><strong>适用场景</strong>：简单的文本生成、老版本的 GPT-3 模型</li>
+<li><strong>适用场景</strong>：简单的文本生成、老版本的 GPT-3 模型 </li>
 </ul>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">langchain_openai</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenAI</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
@@ -7140,7 +7140,7 @@
 </table>
 <p><strong>注意点</strong> ⭐⭐⭐ </p>
 <p>ainvoke() - 返回协程对象，所以需要通过 await 来挂起当前协程并执行 ainvoke 返回的协程对象</p>
-<p>astream() - 返回异步迭代器，所以我们不需要在 astream() 前去写 await，对于异常生成器，我们的处理方式是 async for </p>
+<p>astream() - 返回异步迭代器，所以我们不需要在 astream() 前去写 await，对于异步生成器，我们的处理方式是 async for </p>
 <hr />
 <h4 id="invoke">invoke() 单次调用（最常用）</h4>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># 元组形式：(role, content)</span>
