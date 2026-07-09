@@ -47,15 +47,8 @@ plt.rcParams['axes.unicode_minus'] = False     # 正常显示负号
 - **Axes（坐标系 / 子图）**：一个具体的**绘图区域**，包含 x 轴、y 轴、标题、图例等。**一张 Figure 里可以有多个 Axes**（即多个子图）。**注意：Axes 不是"轴"，是"一个完整的图"**——这是最容易搞混的点。
 - **Axis（坐标轴）**：具体的 x 轴或 y 轴那一根线，管刻度、标签、范围。
 
-<!-- 配图建议
-主题：Matplotlib 三层结构 Figure/Axes/Axis
-概念：Figure 是画布，Axes 是画布上的一个子图（含坐标系），Axis 是子图里的一根坐标轴
-类型：层次图
-建议路径：assets/imgs/python/matplotlib/01_figure_axes_axis.png
--->
-
 <p align='center'>
-    <img src='' alt='Figure、Axes、Axis 三层结构示意'>
+    <img src='../../../assets/imgs/python/others/matplotlib/01_matplotlib_core.png' alt='Figure、Axes、Axis 三层结构示意'>
 </p>
 
 说白了：你在 Figure 这张大画纸上，划分出一个或多个 Axes（每个 Axes 是一张独立的图），每个 Axes 里有 Axis（坐标轴）和你画的曲线/柱子/点。
@@ -292,16 +285,9 @@ fig.tight_layout()   # 自动调整子图间距，避免标题重叠
 plt.show()
 ```
 
-<!-- 配图建议
-主题：subplots 2x2 网格子图布局
-概念：一个 Figure 通过 subplots 划分成 2x2 网格，每个格子是一个独立的 Axes
-类型：布局示意图
-建议路径：assets/imgs/python/matplotlib/02_subplots_grid.png
--->
 <p align='center'>
-    <img src='' alt='2x2 subplots 网格布局'>
+    <img src='../../../assets/imgs/python/others/matplotlib/02_subplots_grid.png' alt='2x2 subplots 网格布局'>
 </p>
-
 !!! tip "只有一行/一列时"
     - `plt.subplots(1, 3)` 返回的 `axes` 是**一维数组**，用 `axes[0]`、`axes[1]`、`axes[2]`
     - `plt.subplots(2, 3)` 返回**二维数组**，用 `axes[0, 0]` 这种下标
