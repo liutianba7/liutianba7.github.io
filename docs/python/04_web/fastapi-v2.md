@@ -34,46 +34,9 @@ FastAPI 是一个**现代、高性能**的 Python Web 框架，专用于构建 *
 
 FastAPI 的核心特性都可以追溯到**同一个根**——类型注解：
 
-```
-                   ┌── 自动类型校验（路径参数、查询参数...）
-                   │
-    Python 类型注解 ──┼── 自动 JSON 序列化/反序列化（Pydantic）
-                   │
-                   ├── 自动 API 文档（Swagger + ReDoc）
-                   │
-                   ├── 自动请求/响应模型过滤
-                   │
-                   └── 自动依赖注入（Depends）
-```
-
-| # | 特性 | 一句话概括 |
-|---|------|-----------|
-| 1 | **高性能** | 基于 Starlette + ASGI，性能与 Node.js/Go 相当 |
-| 2 | **自动文档** | Swagger UI + ReDoc 开箱即用，零配置 |
-| 3 | **类型驱动校验** | `id: int` = 自动校验 + 转换 + 文档，无需手写验证代码 |
-| 4 | **依赖注入** | `Depends()` 让公共逻辑（数据库、认证）一次编写，随处复用 |
-| 5 | **响应模型** | `response_model` 自动过滤敏感字段，安全优雅 |
-| 6 | **异步原生** | `async/await` 原生支持，轻松处理高并发 IO 场景 |
-
-### 0.4 FastAPI vs Flask vs Django
-
-| 维度 | FastAPI | Flask | Django |
-|------|---------|-------|--------|
-| **定位** | API 微服务框架 | 极简微框架 | 全栈大而全 |
-| **性能** | ASGI 异步，高吞吐 | WSGI 同步，较低 | ASGI 可选，较重 |
-| **自动文档** | 原生 Swagger + ReDoc | 需 flasgger | 需 DRF + drf-spectacular |
-| **数据校验** | 原生 Pydantic | 需 marshmallow | DRF Serializer |
-| **异步支持** | 原生 async | 需额外配置 | 部分支持 |
-| **学习曲线** | 中低 | 低 | 高 |
-| **适合场景** | API、微服务、实时应用 | 小型应用、原型 | 大型全栈项目 |
-| **社区生态** | 快速增长 | 成熟丰富 | 极其成熟 |
-
-!!! tip "如何选择？"
-    - 写 **纯 API**（前后端分离、微服务）→ **FastAPI**，效率最高
-    - 写 **小型单体应用**（少量页面 + API）→ **Flask**，简单灵活
-    - 写 **大型全栈项目**（后台管理系统、内容平台）→ **Django**，开箱即用
-
-
+<p>
+	<img src='../../assets/imgs/python/fastApi/fastapi_核心特性与对比.png'>
+</p>
 ---
 
 ## 1. 快速入门
@@ -1747,40 +1710,9 @@ SQLAlchemy 2.0 引入了全新的异步 ORM 支持，配合 FastAPI 可以构建
 
 SQLAlchemy 之所以需要这么多依赖，是因为它位于一个**四层架构**的中间：
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                   你的 Python 代码                        │
-│  (模型定义、查询语句、业务逻辑)                           │
-└──────────────────────┬──────────────────────────────────┘
-                       │
-                       ▼
-┌─────────────────────────────────────────────────────────┐
-│   SQLAlchemy ORM / Core                                 │
-│   ┌─────────────────────────────────────────────────┐   │
-│   │  SQL 表达式语言 (SQL Expression Language)        │   │
-│   │  将 Python 代码编译成 SQL 字符串                  │   │
-│   │  如: select(User).where(User.id == 1)            │   │
-│   │      → "SELECT * FROM users WHERE id = ?"        │   │
-│   └─────────────────────────────────────────────────┘   │
-└──────────────────────┬──────────────────────────────────┘
-                       │
-                       ▼
-┌─────────────────────────────────────────────────────────┐
-│   数据库驱动 (DBAPI Driver)                              │
-│   ┌─────────────────────────────────────────────────┐   │
-│   │  负责网络通信：把 SQL 字符串发给数据库，取回结果    │   │
-│   │  同步驱动: pymysql, psycopg2, sqlite3           │   │
-│   │  异步驱动: aiomysql, asyncpg, aiosqlite         │   │
-│   └─────────────────────────────────────────────────┘   │
-└──────────────────────┬──────────────────────────────────┘
-                       │
-                       ▼
-┌─────────────────────────────────────────────────────────┐
-│                   数据库服务器                            │
-│   MySQL / PostgreSQL / SQLite ...                       │
-│   解析 SQL，执行查询，返回结果集                          │
-└─────────────────────────────────────────────────────────┘
-```
+<p align='center'>
+	<img src='../../assets/imgs/python/fastApi/fastapi05_sqlalchemy架构图.png'>
+</p>
 
 !!! note "SQLAlchemy 不直接连接数据库"
     SQLAlchemy 是一个 **SQL 工具包**，它只负责生成 SQL 语句（第一层到第二层）。真正和数据库服务器**建立网络连接、发送 SQL、接收结果**的，是第三层的**数据库驱动**。没有驱动，SQLAlchemy 就无法与数据库通信。
@@ -1838,6 +1770,10 @@ sqlalchemy[asyncio]
 
 Session 是 SQLAlchemy ORM 中最核心、也最容易被误解的概念。（Session = “把 Python 对象变成数据库操作的中间管理器”）
 
+<p align='center'>
+	<img src='../../assets/imgs/python/fastApi/session.png'>
+</p>
+
 !!! tip "一句话理解 Session"
     **Session 不是数据库连接，是你的"工作区（Workspace）"。**
 
@@ -1868,21 +1804,10 @@ async with AsyncSessionLocal() as session:
 
 **Session vs Connection vs Engine 的关系**：
 
-```
-Engine（连接工厂 + 连接池）
-  │
-  ├── 按需创建 → Connection（数据库 TCP 连接）
-  │                   │
-  │                   └── 被 Session 内部使用，事务结束后释放
-  │
-  └── 由 async_sessionmaker 封装 → AsyncSessionLocal（会话工厂）
-                                      │
-                                      └── 创建 → Session（你的工作区）
-                                                    │
-                                                    ├── 内部持有 Connection（需要时）
-                                                    ├── 管理对象状态（Identity Map）
-                                                    └── 控制事务（commit / rollback）
-```
+<p align='center'>
+	<img src='../../assets/imgs/python/fastApi/fastapi06_engine_session的关系.png'>
+</p>
+
 
 !!! note "Session 的生命周期"
     ```
@@ -1925,25 +1850,15 @@ pip install aiosqlite     # SQLite
 
 **Engine** 是 SQLAlchemy 应用的**核心对象**，它是连接数据库的"总入口"。每个 SQLAlchemy 应用都需要一个 Engine。
 
+<p align='center'>
+	<img src='../../assets/imgs/python/fastApi/engine.png'>
+</p>
+
 !!! tip "Engine 的两大职责"
     1. **连接工厂**：根据配置创建数据库连接
     2. **连接池**：管理和复用数据库连接，避免频繁创建/销毁
 
 Engine 通常是**全局单例**，整个应用生命周期只创建一次。
-
-```
-┌─────────────────────────────────────────────────┐
-│                    Engine                        │
-│  ┌──────────────┐      ┌─────────────────────┐  │
-│  │ 连接工厂      │ ──→  │     Connection Pool │  │
-│  │ (create)     │      │  ┌───┬───┬───┬───┐  │  │
-│  └──────────────┘      │  │ c │ c │ c │ c │  │  │
-│                        │  └───┴───┴───┴───┘  │  │
-│                        └─────────────────────┘  │
-└─────────────────────────────────────────────────┘
-                              ↓
-                         数据库
-```
 
 #### 懒加载（Lazy Initialization）
 

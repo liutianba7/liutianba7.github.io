@@ -37,7 +37,7 @@ $$
 \tau = (S_0, A_0, R_0, S_1, A_1, R_1, S_2, A_2, R_2, \dots)
 $$
 
-## RL 马尔可夫决策过程 ⭐⭐⭐
+## RL 马尔可夫决策过程 
 
 ### 一、为什么需要 MDP
 
@@ -127,7 +127,7 @@ $$
 
 ---
 
- ### 五、奖励函数 R
+### 五、奖励函数 R
 
 **$R$ 告诉智能体"什么算好、什么算坏"**。常见形式：
 
@@ -157,6 +157,7 @@ $$
 - 复杂环境（围棋、LunarLander）下 $\pi$ 通常用神经网络拟合——这就是深度强化学习
 
 > 注：策略的完整定义见 [[07_Reinforcement_Learning#RL 基本概念]]。
+
 ---
 
 ### 七、MDP 框架下的轨迹
@@ -175,7 +176,7 @@ $$
 | $A_t$ | 智能体按 $\pi(a \mid s)$ 采样 |
 | $S_{t+1}, R_{t+1}$ | 环境按 $p(s', r \mid s, a)$ 采样 |
 
-**一条轨迹的联合概率**可以写成（仅展示，不要求背）：
+**一条轨迹的联合概率**可以写成：
 
 $$
 p(\tau) = p(s_0) \prod_{t=0}^{T-1} \pi(a_t \mid s_t) \cdot p(s_{t+1}, r_{t+1} \mid s_t, a_t)
@@ -225,13 +226,11 @@ $$
 
 ### 一、为什么需要价值函数
 
-上一节我们把环境形式化成了 **MDP**——五元组 $(S, A, P, R, \gamma)$ 完整描述了游戏规则。但拿到规则还不够，**要回答的核心问题是：给定一个策略，怎么算它"有多好"？**
+价值函数要回答的核心问题是：**给定一个策略，怎么算它"有多好"？**
 
 更具体一点：智能体站在状态 $s$，每一步拿到的奖励 $R_t$ 只是"眼前的蝇头小利"，**它不能直接告诉智能体"在状态 $s$ 我该不该行动"、"在状态 $s$ 该做哪个动作 $a$"**。
 
 于是需要一个东西来**算账**——把"未来能拿到的总奖励"做一个期望估计，**压缩成一个数字**，写在状态/动作头上。这个东西就是**价值函数（Value Function）**。
-
-一句话：**价值函数回答"长远来看，这个状态（或者这个状态-动作对）值多少钱"**。所有 RL 算法——从 Q-learning 到 PPO——背后都在算这个数。
 
 <p align='center' style='zoom:100%'>
 	<img src='../../assets/imgs/python/rl/03_补充_为什么出现价值函数.png'>
@@ -456,4 +455,293 @@ $$
     - [Spinning Up — Key Concepts in RL](https://spinningup.openai.com/en/latest/spinningup/rl_intro.html)（OpenAI 的 RL 入门）
     - [[Reinforcement Learning]] 中其他章节（MDP、策略梯度等）
 
+## RL 策略梯度法
 
+### 原始策略梯度法
+
+>**原始梯度策略法**尽管无法保证我们的优化目标 $J(\theta)$ 在每次更新后稳定上升，但是它的出现也解决了几个核心问题：**优化目标是什么**，**优化目标的梯度**怎么去计算等，又因为**优化目标的梯度**是一个期望，**这个期望**怎么去近似的得到
+#### 一、问题的设定：策略是一个神经网络
+
+在 RL 里，我们唯一能"动"的就是**策略**。环境动力学 $P$、奖励函数 $R$，都不是我们能改的。剩下能改的，就是 $\pi$。
+
+<p align='center'>
+    <img src='../../assets/imgs/python/rl/15_策略函数是一个神经网络_修改版.png' alt='策略神经网络：4 维状态 → softmax 输出动作概率'>
+</p>
+
+现代做法：**把策略建模成一个神经网络** $\pi_\theta(a|s)$，$\theta$ 是网络的所有权重。倒立摆例子：
+
+- 输入 $s$：4 维（推车位置、速度、木杆角度、角速度）
+- 输出：2 个动作的概率，softmax 归一化（比如 [0.7, 0.3]）
+
+**这里要分清两个角色**：
+
+- $\pi_\theta(a|s)$：**随机性策略**——给状态，输出"采到每个动作的概率"
+- 真正执行的动作 $\sim \pi_\theta$：从分布里**采样**出来（贪心 argmax 不是 RL 的玩法）
+
+一句话：**策略网络不直接给动作，而是给动作的概率分布；真正跑游戏时按分布采样**。
+
+---
+
+#### 二、目标函数 J(θ) ⭐⭐⭐
+
+策略网络 $\pi_\theta$ 有了，那"策略好不好"怎么衡量？
+
+**目标函数** $J(\theta)$ 给出答案：
+
+$$
+J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}\left[ G(\tau) \right]
+$$
+
+其中：
+
+- $\tau = (S_0, A_0, R_0, S_1, A_1, R_1, \dots)$：一条轨迹
+- $G(\tau) = \sum_{t=0}^{T} \gamma^t R_t$：整条轨迹的带折扣的累计回报
+- 下标 $\tau \sim \pi_\theta$：轨迹是用当前策略**采出来**的
+
+**读法**：$J(\theta)$ = 在策略 $\pi_\theta$ 下采样很多条轨迹，每条算一个 $G(\tau)$，求平均——这就是这个策略"平均能拿多少分"。
+
+> **两个常被忽略的细节**：
+> 
+> 1. **$J(\theta)$ 是关于 $\theta$ 的函数**——一旦 $\theta$ 变了，整个轨迹分布就变了
+> 2. 我们的目标：**$\arg\max_\theta J(\theta)$**——找一组参数让平均回报最大
+
+---
+
+#### 三、策略梯度定理 ⭐⭐⭐
+
+目标有了：$\max_\theta J(\theta)$。最自然的办法——**梯度上升**。
+
+##### 3.1 难点：J(θ) 没法直接求导
+
+直接对 $J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}[G(\tau)]$ 求 $\nabla_\theta$ 会卡住： 
+
+$$
+\nabla_\theta J(\theta) = \nabla_\theta \sum_\tau \Pr(\tau; \theta) \cdot G(\tau)
+$$
+
+这里 $\Pr(\tau; \theta)$ 是轨迹出现的概率（前面 MDP 章节讲过，$p(\tau) = p(s_0) \prod \pi_\theta \cdot p$），它**通过策略间接依赖 $\theta$**。直接对求和里的概率求导数学上能写，但实践上没法高效算。
+
+**最朴素的想法**：让"出现过的、回报高的轨迹"的概率上升。但怎么"上升"——这是 log 技巧登场的地方。
+
+##### 3.2 log 梯度技巧：一行讲透
+
+对一个概率分布 $p_\theta(x)$：
+
+$$
+\nabla_\theta \log p_\theta(x) = \frac{\nabla_\theta p_\theta(x)}{p_\theta(x)}
+$$
+
+##### 3.3 定理陈述
+
+把 log 技巧套到轨迹上，经过几步推导（见下方折叠框），得到**策略梯度定理**：
+
+$$
+\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \sum_{t=0}^{T} G(\tau) \cdot \nabla_\theta \log \pi_\theta(A_t \mid S_t) \right]
+$$
+
+
+??? note "推导细节（点击展开）" 
+
+	$$
+	\begin{align*} \nabla_\theta J(\theta) &= \nabla_\theta \mathbb{E}_{\tau \sim \pi_\theta}[G(\tau)] \\ &= \nabla_\theta \sum_{\tau} \Pr(\tau|\theta)G(\tau) & (\text{展开期望值}) \\ &= \sum_{\tau} \nabla_\theta (\Pr(\tau|\theta)G(\tau)) & (\text{将 } \nabla_\theta \text{ 移动到 } \sum \text{ 中}) \\ &= \sum_{\tau} \{ G(\tau)\nabla_\theta \Pr(\tau|\theta) + \Pr(\tau|\theta)\nabla_\theta G(\tau) \} & (\text{积的微分}) \\ &= \sum_{\tau} G(\tau)\nabla_\theta \Pr(\tau|\theta) & (\nabla_\theta G(\tau) \text{ 永远为 } 0) \\ &= \sum_{\tau} G(\tau)\Pr(\tau|\theta) \frac{\nabla_\theta \Pr(\tau|\theta)}{\Pr(\tau|\theta)} & (\text{乘以 } \frac{\Pr(\tau|\theta)}{\Pr(\tau|\theta)}) \\ &= \sum_{\tau} G(\tau)\Pr(\tau|\theta) \nabla_\theta \log \Pr(\tau|\theta) & (\text{log 梯度技巧}) \\ &= \mathbb{E}_{\tau \sim \pi_\theta}[G(\tau) \nabla_\theta \log \Pr(\tau|\theta)] \end{align*}
+	$$
+
+##### 3.4 直觉：让好的动作概率上升
+
+公式 $\nabla_\theta J = \mathbb{E}[G(\tau) \cdot \nabla_\theta \log \pi_\theta(a|s)]$ 看似抽象，翻译成人话：
+
+<p align='center'>
+    <img src='../../assets/imgs/python/rl/16_策略梯度法本质.png' alt='G(τ) 大小决定动作概率升降方向'>
+</p>
+
+- **$G(\tau) > 0$（好轨迹）**：$\nabla_\theta \log \pi(a|s)$ 沿"让 $\pi(a|s)$ 变大"的方向走——**这条轨迹里出现过的动作概率会上升**
+- **$G(\tau) < 0$（差轨迹）**：方向反转——**这些动作概率会下降**
+- **$G(\tau) = 0$（普通）**：梯度为零，不更新
+
+> **一句话**：策略梯度的本质——**让"产生过高回报的动作"概率上升，让"产生过低回报的动作"概率下降**。$G(\tau)$ 既是放大器也是惩罚器。
+ 
+---
+
+#### 四、蒙特卡洛近似：采一条轨迹 ⭐⭐
+
+策略梯度定理是个**期望**——这个期望大部分情况下没法直接算。怎么办？
+ 
+**大数定律**：采 $n$ 条轨迹，把每条轨迹的项加起来取平均。
+
+$$
+\nabla_\theta J(\theta) \approx \frac{1}{n} \sum_{i=1}^{n} \sum_{t=0}^{T} G(\tau^{(i)}) \cdot \nabla_\theta \log \pi_\theta(A_t^{(i)} \mid S_t^{(i)})
+$$
+
+**最朴素版本：$n=1$**——采一条轨迹就更新一次：
+
+$$
+\nabla_\theta J(\theta) \approx \sum_{t=0}^{T} G(\tau) \cdot \nabla_\theta \log \pi_\theta(A_t \mid S_t)
+$$
+
+<p align='center'>
+    <img src='../../assets/imgs/python/rl/17_一条轨迹的策略梯度计算.png' alt='一条轨迹的策略梯度计算数据流'>
+</p>
+
+这就是**原始策略梯度法**的全部数学——**采一条轨迹、算出 $G(\tau)$、对 $\log \pi$ 加权求和、更新参数**。
+
+> **为什么这里用 $G(\tau)$ 而不是 $G_t$**：朴素版偷了个懒——**所有时间步共用同一个 $G(\tau)$**。理论上更精细的做法是用 $G_t = \sum_{k \geq t} \gamma^{k-t} R_k$（"从这个动作之后能拿多少分"），但那是下一节 REINFORCE 的事。这一节先接受这个简化。
+
+---
+
+#### 五、代码实现（PyTorch 版本）
+
+理论落地到代码就 4 块：
+
+##### 5.1 策略网络
+
+```python
+# 策略神经网络的定义  
+class Policy(nn.Module):  
+    def __init__(self):  
+        super().__init__()  
+        self.l1 = nn.Linear(4, 128) # 推车环境中，状态是一个四维向量  
+        self.l2 = nn.Linear(128, 2) # 输出两个动作，左转和右转  
+  
+    # x是一个带batch的张量: [batch_size, dim]  
+    def forward(self, x):  
+        x = F.relu(self.l1(x))  
+        x = F.softmax(self.l2(x), dim=-1)
+        return x
+```
+
+##### 5.2 定义 Agent
+
+```python
+class Agent:  
+    def __init__(self):  
+        self.gamma = 0.9 # 折扣因子  
+        self.lr = 0.0002 # 学习率  
+        self.action_size = 2 # 动作空间  
+  
+        self.pi = Policy(self.action_size) # 当前 Agent 的大脑：策略网络  
+        self.optimizer = torch.optim.Adam(self.pi.parameters(), lr=self.lr)  
+  
+    # 输入环境状态，输出动作  
+  
+    def get_action(self, state):  
+        # state 是一个一维张量，所以传入 pi 之前，添加批次维度  
+        probs = self.pi(state.unsqueeze(0)).squeeze(0)  # [action_size, ]  
+        # 根据动作的概率创建一个概率分布  
+        m =  Categorical(probs)  
+  
+        # 采样得到概率分布 𝜋𝜃(𝑎𝑡|𝑠𝑡)  
+        action = m.sample()  
+        
+        # 返回一个元组（动作，动作概率分布）  
+        return action, probs
+        
+    
+    # 采集一条轨迹的详细数据  
+	def collect_trajectory(self, env):  
+	    state = env.reset()  
+	    states, actions, rewards = [], [], []  
+	    done = False  
+	  
+	    while not done:  
+	        action, _ = self.get_action(state)  
+	        next_state, reward, done, _ = env.step(action)  
+	  
+	        states.append(state) # s_t  
+	        actions.append(action) # a_t  
+	        rewards.append(reward) # r_t  
+	        state = next_state # s_{t+1}  
+	  
+	        rewards.append(reward)  
+	  
+		return states, actions, rewards
+```
+
+##### 5.3 更新策略
+
+```python
+class Agent:
+	#...（接5.2代码）
+	# 更新策略  
+	def update(self, trajectory):  
+	    states, actions, rewards = trajectory  
+	  
+	    # 逆序计算 G(r)    
+	    G = 0  
+	    for r in rewards[::-1]:  
+	        G = r + self.gamma * G  
+	  
+	    # 计算策略网络的损失函数  
+	    loss = 0  
+	    for s, a in zip(states, actions):  
+	        probs = self.pi(torch.tensor(s).unsqueeze(0)).squeeze(0)  
+	        log_probs = torch.log(probs[a])  
+	        loss += -log_probs * G  
+	        # 下面是并行版本，也就是多了批次信息  
+	        # states = torch.tensor(states)  
+	        # actions = torch.tensor(actions).view(-1, 1)        
+	        # log_probs = torch.log(self.pi(states).gather(1, actions))        
+	        # loss = -torch.sum(log_probs) * G  
+	        
+	    # 优化策略网络  
+	    self.optimizer.zero_grad()  
+	    loss.backward()  
+	    self.optimizer.step()
+		
+```
+
+##### 5.4 训练循环
+
+```python
+import gym  
+  
+env = gym.make('CartPole-v0')  
+agent = Agent()  
+return_list = []  
+episode_list = []  
+  
+for i_episode in range(1000):  
+    # 采集一条轨迹  
+    trajectory = agent.collect_trajectory(env)  
+    reward_list = trajectory[2]  
+    return_list.append(sum(reward_list))  
+    episode_list.append(i_episode)  
+    # 更新策略  
+    agent.update(trajectory)  
+  
+    if i_episode % 100 == 0:  
+        print("回合:{}, 总奖励:{:.1f}".format(i_episode, sum(reward_list)))
+```
+
+!!! tip "代码与公式的对应"
+    - `policy(s)`：$\pi_\theta(\cdot|s)$
+    - `probs[0, a]`：$\pi_\theta(A_t \mid S_t)$
+    - `loss = -log_prob * G`：恰好是 $-G(\tau) \log \pi_\theta(A_t|S_t)$，对 `loss` 做梯度下降 = 对 $J$ 做梯度上升
+
+---
+#### 六、原始梯度策略法的局限
+
+原始策略梯度**能跑通**——倒立摆 1000-3000 个 episode 就能学会平衡。但是它无法保证我们的优化目标 $J(\theta)$ 稳定上升，主要有 3 个明显问题：
+
+!!! warning "G(τ) 噪声极大"
+    $G(\tau)$ 来自**整条轨迹**的实际回报——它把"运气"也算进去了。
+
+    **例子**：同样一个"向左推"，第一次正好避开了悬崖拿了 +200，第二次运气差掉进悬崖拿了 -50。两次更新的方向**完全相反**——但策略可能根本没变。
+
+    直觉上：**$G(\tau)$ 的大波动会让更新方向抖得很厉害**，训练曲线剧烈震荡。
+
+!!! warning "所有时间步共用同一个 G(τ)"
+    朴素版里，整条轨迹所有 $t$ 用的都是同一个 $G(\tau)$——但**动作的好坏应该用"它之后的回报"来评价，不是整条轨迹的回报**。
+
+    一个在 $t=199$ 的动作好不好，跟 $t=0$ 的动作好不好是两件事——但朴素版把它们的"分数"标成同一个 $G(\tau)$。
+
+!!! warning "G(τ) 太大太小都会崩"
+    - $G(\tau) = +1000$：梯度步长 $\alpha \cdot G \cdot \nabla\log\pi$ 巨大，参数可能飞出合理范围
+    - $G(\tau) = -1000$：反方向一步飞出去
+    - 极端情况：策略崩溃——**刚学会的策略被一次极端奖励彻底打乱**
+
+!!! note "三个问题的共同根源"
+    三个问题其实是一回事——**$G(\tau)$ 本身方差太大**。
+
+    下一节我们要做的核心改动只有一件：**给 $G(\tau)$ 减方差**。最经典的做法就是**加 baseline**——把 $G(\tau)$ 减去一个跟状态有关、跟动作无关的"基线分数"。数学上无偏、方差大降。带着这个钩子，进入 REINFORCE 和带基线的 REINFORCE。
+
+ 

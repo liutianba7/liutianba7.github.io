@@ -17,7 +17,7 @@ nav:
   - Python:
       - Env:
           - Conda: ./python/01_env/conda.md
-          - Uv: ./python/01_env/uv.md
+          - Uv: ./python/01_env/uv-深入.md
           - Jupyter: ./python/01_env/jupyter.md
       - Basic:
           - PythonBasic: ./python/02_basic/python基础.md
@@ -33,6 +33,7 @@ nav:
           - Fastapi: ./python/04_web/fastapi-v2.md
       - AI:
           - 01_DeepLearning: ./python/05_ai/01_DeepLearning.md
+          # - 01_DeepLearning_v2: ./python/05_ai/01_DeepLearning-v2.md
           - 02_NLP: ./python/05_ai/02_NLP.md
           - 03_LangChain: ./python/05_ai/03_LangChain.md
           - 04_LangGraph: ./python/05_ai/04_LangGraph.md
@@ -109,7 +110,7 @@ nav:
     - 06_Minio: ./db/minio.md
 
   - Linux:
-      - 01_Basic: ./linux/basic.md
+      - 01_Basic: ./linux/basic-v2.md
       - 02_Wsl: ./linux/wsl.md
   - Computer-Science:
       - network:

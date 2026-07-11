@@ -8,20 +8,35 @@
         "type": "tabs",
         "children": [
           {
-            "id": "790187441eb4e780",
+            "id": "f9a270e8607491b2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "others/02_blog/每日总结（原始稿子）/2026.07.09.md",
+                "file": "python/05_ai/07_Reinforcement_Learning.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2026.07.09"
+              "title": "07_Reinforcement_Learning"
+            }
+          },
+          {
+            "id": "33ff68c8ddaf3ee2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "python/02_basic/python基础.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "python基础"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -53,13 +68,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "others/02_blog/每日总结（原始稿子）/2026.07.09.md",
+                "file": "python/02_basic/python基础.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "2026.07.09 的大纲"
+              "title": "python基础 的大纲"
             }
           },
           {
@@ -94,7 +109,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 298.5
+    "width": 296.50614166259766
   },
   "right": {
     "id": "7c5e86e03a5a36ba",
@@ -195,92 +210,53 @@
       "bases:新建数据库": false
     }
   },
-  "floating": {
-    "id": "6f5af79e351455e6",
-    "type": "floating",
-    "children": [
-      {
-        "id": "5d3954d1619cb5ac",
-        "type": "window",
-        "children": [
-          {
-            "id": "14b1d03ca1e896ff",
-            "type": "tabs",
-            "children": [
-              {
-                "id": "f9a270e8607491b2",
-                "type": "leaf",
-                "state": {
-                  "type": "markdown",
-                  "state": {
-                    "file": "python/05_ai/07_Reinforcement_Learning.md",
-                    "mode": "source",
-                    "source": false
-                  },
-                  "icon": "lucide-file",
-                  "title": "07_Reinforcement_Learning"
-                }
-              }
-            ]
-          }
-        ],
-        "direction": "vertical",
-        "x": 0,
-        "y": 0,
-        "width": 1024,
-        "height": 1152,
-        "maximize": false,
-        "zoom": -0.5
-      }
-    ]
-  },
-  "active": "790187441eb4e780",
+  "active": "97902ed32e7e6f5a",
   "lastOpenFiles": [
-    "python/05_ai/07_Reinforcement_Learning.md",
-    "others/02_blog/每日总结（原始稿子）/2026.07.09.md",
+    "python/02_basic/python标准库.md",
+    "python/05_ai/01_DeepLearning.md",
+    "python/04_web/fastapi-v2.md",
+    "assets/imgs/python/fastApi/engine.png",
+    "assets/imgs/python/fastApi/engine.png.jmvIYP",
+    "assets/imgs/python/fastApi/session.png",
+    "assets/imgs/python/fastApi/session.png.ozpOQR",
+    "python/04_web/fastapi.md",
+    "python/05_ai/02_NLP.md",
+    "python/02_basic/python基础.md",
+    "others/02_blog/每日总结（原始稿子）/2026.07.10.md",
     "others/02_blog/每日总结（原始稿子）/2026.07.05.md",
     "others/02_blog/每日总结（原始稿子）/01_三年之约.md",
+    "assets/imgs/python/pytorch/pytorch_计算图.png",
+    "assets/imgs/python/pytorch/pytorch_计算图1.png",
+    "assets/imgs/python/pytorch/pytorch_计算图 _x.png",
+    "assets/imgs/python/pytorch/pytorch_计算图 (2).png",
+    "assets/imgs/python/pytorch/ChatGPT Image 2026年7月10日 17_07_32.png",
+    "assets/imgs/python/pytorch/训练阶段的三个过程.png",
+    "assets/imgs/python/pytorch/训练阶段的三个过程.png.hDBfJt",
+    "assets/imgs/python/pytorch/反向传播算法.png",
+    "assets/imgs/python/pytorch/反向传播算法.png.BOnOgf",
+    "assets/imgs/python/pytorch/链式法则总览.png",
+    "python/05_ai/07_Reinforcement_Learning.md",
+    "others/02_blog/每日总结（原始稿子）/2026.07.09.md",
     "others/02_blog/每日总结（原始稿子）/0daily_summary_template.md",
+    "assets/imgs/python/pytorch/常见激活函数xx.png.ixvHru",
+    "python/05_ai/未命名.canvas",
+    "assets/imgs/python/pytorch/激活函数.png.LKUPhm",
+    "assets/imgs/python/pytorch/PixPin_2026-07-10_14-25-48.png.uAZjsA",
+    "assets/imgs/python/pytorch/常见激活函数.png.HDdDSc",
+    "assets/imgs/python/pytorch/神经网络的构成.png.hCHldC",
+    "assets/imgs/python/pytorch/深度学习与机器学习的对比.png.YzdfbH",
+    "python/05_ai/01_DeepLearning-v2.md",
+    "linux/basic-v2.md",
+    "python/05_ai/06_LLM.md",
+    "python/01_env/uv-深入.md",
+    "python/01_env/uv.md",
+    "python/01_env/conda.md",
+    "python/01_env/jupyter.md",
+    "others/02_blog/csdn/python/人工智能/LLM进化史-从GPT1到ChatGPT再到现代LLM.md",
     "others/01_理财学习/04_估值与买卖策略.md",
     "others/01_理财学习/03_资产配置.md",
     "others/01_理财学习/02_实操入门.md",
     "others/01_理财学习/01_理财基本概念.md",
-    "others/02_blog/每日总结（原始稿子）/2026.07.08.md",
-    "Reinforcement Learning.md",
-    "assets/imgs/python/rl/14_MDP五元组结构图.png",
-    "assets/imgs/python/rl/14_.png",
-    "assets/imgs/python/rl/ChatGPT Image 2026年7月9日 15_34_57.png",
-    "python/03_others/数据分析相关/matplotlib.md",
-    "assets/imgs/python/others/matplotlib/01_matplotlib_core.png",
-    "assets/imgs/python/others/matplotlib/02_subplots_grid.png",
-    "assets/imgs/python/others/matplotlib/ChatGPT Image 2026年7月9日 15_25_42.png",
-    "assets/imgs/python/others/matplotlib/matplotlib心智模型.png",
-    "assets/imgs/python/others/matplotlib/ChatGPT Image 2026年7月9日 15_20_50.png",
-    "assets/imgs/python/others/matplotlib",
-    "assets/imgs/python/others/新建文件夹",
-    "assets/imgs/python/others",
-    "assets/imgs/python/新建文件夹",
-    "python/05_ai/Reinforcement Learning.md",
-    "python/05_ai/07_RL.md",
-    "python/05_ai/06_LLM.md",
-    "python/05_ai/05_DeepAgents.md",
-    "python/05_ai/04_LangGraph.md",
-    "python/05_ai/03_LangChain.md",
-    "python/05_ai/02_NLP.md",
-    "python/05_ai/01_DeepLearning.md",
-    "python/03_others/数据分析相关/matplotlib.md.tmp.27864.c551e4648b2f",
-    "assets/imgs/python/rl/13_价值函数再强化学习中的应用.png",
-    "assets/imgs/python/rl/PixPin_2026-07-09_13-51-36.png",
-    "assets/imgs/python/rl/PixPin_2026-07-09_13-51-36.png.BbvGeR",
-    "assets/imgs/python/rl/PixPin_2026-07-09_13-48-56.png.WWyBHC",
-    "assets/imgs/python/rl/PixPin_2026-07-09_13-47-01.png.OTkXCH",
-    "assets/imgs/python/rl/PixPin_2026-07-09_11-25-11.png.gUdctX",
-    "assets/imgs/python/rl/PixPin_2026-07-09_11-22-54.png.wXxQMo",
-    "linux/wsl.md",
-    "linux/basic-v2.md",
-    "python/05_ai/LLM.md",
-    "tools/docker-v2.md",
-    "python/05_ai/LangChain.md",
-    "python/05_ai/深度学习.md"
+    "others/02_blog/每日总结（原始稿子）/2026.07.08.md"
   ]
 }
