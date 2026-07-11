@@ -400,7 +400,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../linux/basic.html" class="md-tabs__link">
+        <a href="../../linux/basic-v2.html" class="md-tabs__link">
           
   
   
@@ -851,7 +851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../01_env/uv.html" class="md-nav__link">
+      <a href="../01_env/uv-%E6%B7%B1%E5%85%A5.html" class="md-nav__link">
         
   
   
@@ -1603,12 +1603,12 @@
   <a href="#rl_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        RL 马尔可夫决策过程 ⭐⭐⭐
+        RL 马尔可夫决策过程
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="RL 马尔可夫决策过程 ⭐⭐⭐">
+    <nav class="md-nav" aria-label="RL 马尔可夫决策过程">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1717,6 +1717,23 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、奖励函数 R
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、奖励函数 R">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#51-rl" class="md-nav__link">
     <span class="md-ellipsis">
@@ -1743,23 +1760,6 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#07_reinforcement_learningrl" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        &gt; 注：策略的完整定义见 [[07_Reinforcement_Learning#RL 基本概念]]。
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="&gt; 注：策略的完整定义见 [[07_Reinforcement_Learning#RL 基本概念]]。">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#mdp_2" class="md-nav__link">
@@ -2019,6 +2019,206 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rl_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RL 策略梯度法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RL 策略梯度法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        原始策略梯度法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="原始策略梯度法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、问题的设定：策略是一个神经网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#j" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、目标函数 J(θ) ⭐⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、策略梯度定理 ⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、策略梯度定理 ⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-j" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 难点：J(θ) 没法直接求导
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 log 梯度技巧：一行讲透
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 定理陈述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 直觉：让好的动作概率上升
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、蒙特卡洛近似：采一条轨迹 ⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、代码实现（PyTorch 版本）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、代码实现（PyTorch 版本）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 策略网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 定义 Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 更新策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 训练循环
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、原始梯度策略法的局限
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -3807,7 +4007,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../linux/basic.html" class="md-nav__link">
+      <a href="../../linux/basic-v2.html" class="md-nav__link">
         
   
   
@@ -4159,12 +4359,12 @@
   <a href="#rl_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        RL 马尔可夫决策过程 ⭐⭐⭐
+        RL 马尔可夫决策过程
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="RL 马尔可夫决策过程 ⭐⭐⭐">
+    <nav class="md-nav" aria-label="RL 马尔可夫决策过程">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -4273,6 +4473,23 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、奖励函数 R
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、奖励函数 R">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#51-rl" class="md-nav__link">
     <span class="md-ellipsis">
@@ -4299,23 +4516,6 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#07_reinforcement_learningrl" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        &gt; 注：策略的完整定义见 [[07_Reinforcement_Learning#RL 基本概念]]。
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="&gt; 注：策略的完整定义见 [[07_Reinforcement_Learning#RL 基本概念]]。">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#mdp_2" class="md-nav__link">
@@ -4583,6 +4783,206 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#rl_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RL 策略梯度法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RL 策略梯度法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        原始策略梯度法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="原始策略梯度法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、问题的设定：策略是一个神经网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#j" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、目标函数 J(θ) ⭐⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、策略梯度定理 ⭐⭐⭐
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="三、策略梯度定理 ⭐⭐⭐">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-j" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 难点：J(θ) 没法直接求导
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 log 梯度技巧：一行讲透
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 定理陈述
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 直觉：让好的动作概率上升
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、蒙特卡洛近似：采一条轨迹 ⭐⭐
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pytorch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、代码实现（PyTorch 版本）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、代码实现（PyTorch 版本）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 策略网络
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 定义 Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 更新策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 训练循环
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        六、原始梯度策略法的局限
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4634,7 +5034,7 @@
 <div class="arithmatex">\[
 \tau = (S_0, A_0, R_0, S_1, A_1, R_1, S_2, A_2, R_2, \dots)
 \]</div>
-<h2 id="rl_1">RL 马尔可夫决策过程 ⭐⭐⭐</h2>
+<h2 id="rl_1">RL 马尔可夫决策过程</h2>
 <h3 id="mdp">一、为什么需要 MDP</h3>
 <p>RL 第一节画的是<strong>流程图</strong>——智能体选动作、环境给奖励、再选动作……这个图形象但不严谨。要精确地谈"价值函数"、"最优策略"，必须先把"环境"<strong>形式化</strong>成一个数学对象。</p>
 <p><strong>MDP（Markov Decision Process，马尔可夫决策过程</strong>）就是 RL 的数学底座——所有价值函数、Q-learning、PPO 都站在它上面。一句话：<strong>没有 MDP 这个形式化框架，价值函数根本无从定义</strong>——后面会看到，Bellman 方程里那个 <span class="arithmatex">\(p(s', r \mid s, a)\)</span> 就是 MDP 五元组里的 <span class="arithmatex">\(P\)</span>。</p>
@@ -4697,7 +5097,7 @@ r(s, a) = \mathbb{E}[R_{t+1} \mid s, a] = \sum_{s', r} r \cdot p(s', r \mid s, a
 <p>后续价值函数章节中所有 <span class="arithmatex">\(p(s', r \mid s, a)\)</span> 都指这个量。</p>
 </blockquote>
 <hr />
-<p>### 五、奖励函数 R</p>
+<h3 id="r">五、奖励函数 R</h3>
 <p><strong><span class="arithmatex">\(R\)</span> 告诉智能体"什么算好、什么算坏"</strong>。常见形式：</p>
 <ul>
 <li><span class="arithmatex">\(R(s, a, s')\)</span>：在 <span class="arithmatex">\(s\)</span> 做 <span class="arithmatex">\(a\)</span> 到 <span class="arithmatex">\(s'\)</span>，拿多少分</li>
@@ -4722,7 +5122,10 @@ r(s, a) = \mathbb{E}[R_{t+1} \mid s, a] = \sum_{s', r} r \cdot p(s', r \mid s, a
 <li><strong>随机性策略</strong>：<span class="arithmatex">\(\pi(a \mid s)\)</span>——状态确定、动作是概率分布</li>
 <li>复杂环境（围棋、LunarLander）下 <span class="arithmatex">\(\pi\)</span> 通常用神经网络拟合——这就是深度强化学习</li>
 </ul>
-<h2 id="07_reinforcement_learningrl">&gt; 注：策略的完整定义见 [[07_Reinforcement_Learning#RL 基本概念]]。</h2>
+<blockquote>
+<p>注：策略的完整定义见 [[07_Reinforcement_Learning#RL 基本概念]]。</p>
+</blockquote>
+<hr />
 <h3 id="mdp_2">七、MDP 框架下的轨迹</h3>
 <p>把五元组装起来，一条完整轨迹是：</p>
 <div class="arithmatex">\[
@@ -4751,7 +5154,7 @@ r(s, a) = \mathbb{E}[R_{t+1} \mid s, a] = \sum_{s', r} r \cdot p(s', r \mid s, a
 </tr>
 </tbody>
 </table>
-<p><strong>一条轨迹的联合概率</strong>可以写成（仅展示，不要求背）：</p>
+<p><strong>一条轨迹的联合概率</strong>可以写成：</p>
 <div class="arithmatex">\[
 p(\tau) = p(s_0) \prod_{t=0}^{T-1} \pi(a_t \mid s_t) \cdot p(s_{t+1}, r_{t+1} \mid s_t, a_t)
 \]</div>
@@ -4815,10 +5218,9 @@ p(\tau) = p(s_0) \prod_{t=0}^{T-1} \pi(a_t \mid s_t) \cdot p(s_{t+1}, r_{t+1} \m
 <hr />
 <h2 id="rl_2">RL 价值函数 ⭐⭐⭐</h2>
 <h3 id="_2">一、为什么需要价值函数</h3>
-<p>上一节我们把环境形式化成了 <strong>MDP</strong>——五元组 <span class="arithmatex">\((S, A, P, R, \gamma)\)</span> 完整描述了游戏规则。但拿到规则还不够，<strong>要回答的核心问题是：给定一个策略，怎么算它"有多好"？</strong></p>
+<p>价值函数要回答的核心问题是：<strong>给定一个策略，怎么算它"有多好"？</strong></p>
 <p>更具体一点：智能体站在状态 <span class="arithmatex">\(s\)</span>，每一步拿到的奖励 <span class="arithmatex">\(R_t\)</span> 只是"眼前的蝇头小利"，<strong>它不能直接告诉智能体"在状态 <span class="arithmatex">\(s\)</span> 我该不该行动"、"在状态 <span class="arithmatex">\(s\)</span> 该做哪个动作 <span class="arithmatex">\(a\)</span>"</strong>。</p>
 <p>于是需要一个东西来<strong>算账</strong>——把"未来能拿到的总奖励"做一个期望估计，<strong>压缩成一个数字</strong>，写在状态/动作头上。这个东西就是<strong>价值函数（Value Function）</strong>。</p>
-<p>一句话：<strong>价值函数回答"长远来看，这个状态（或者这个状态-动作对）值多少钱"</strong>。所有 RL 算法——从 Q-learning 到 PPO——背后都在算这个数。</p>
 <p align='center' style='zoom:100%'>
     <img src='../../assets/imgs/python/rl/03_补充_为什么出现价值函数.png'>
 </p>
@@ -5001,6 +5403,253 @@ A_\pi(s, a) = Q_\pi(s, a) - V_\pi(s)
 <li><a href="https://spinningup.openai.com/en/latest/spinningup/rl_intro.html">Spinning Up — Key Concepts in RL</a>（OpenAI 的 RL 入门）</li>
 <li>[[Reinforcement Learning]] 中其他章节（MDP、策略梯度等）</li>
 </ul>
+</div>
+<h2 id="rl_3">RL 策略梯度法</h2>
+<h3 id="_4">原始策略梯度法</h3>
+<blockquote>
+<p><strong>原始梯度策略法</strong>尽管无法保证我们的优化目标 <span class="arithmatex">\(J(\theta)\)</span> 在每次更新后稳定上升，但是它的出现也解决了几个核心问题：<strong>优化目标是什么</strong>，<strong>优化目标的梯度</strong>怎么去计算等，又因为<strong>优化目标的梯度</strong>是一个期望，<strong>这个期望</strong>怎么去近似的得到</p>
+</blockquote>
+<h4 id="_5">一、问题的设定：策略是一个神经网络</h4>
+<p>在 RL 里，我们唯一能"动"的就是<strong>策略</strong>。环境动力学 <span class="arithmatex">\(P\)</span>、奖励函数 <span class="arithmatex">\(R\)</span>，都不是我们能改的。剩下能改的，就是 <span class="arithmatex">\(\pi\)</span>。</p>
+<p align='center'>
+    <img src='../../assets/imgs/python/rl/15_策略函数是一个神经网络_修改版.png' alt='策略神经网络：4 维状态 → softmax 输出动作概率'>
+</p>
+
+<p>现代做法：<strong>把策略建模成一个神经网络</strong> <span class="arithmatex">\(\pi_\theta(a|s)\)</span>，<span class="arithmatex">\(\theta\)</span> 是网络的所有权重。倒立摆例子：</p>
+<ul>
+<li>输入 <span class="arithmatex">\(s\)</span>：4 维（推车位置、速度、木杆角度、角速度）</li>
+<li>输出：2 个动作的概率，softmax 归一化（比如 [0.7, 0.3]）</li>
+</ul>
+<p><strong>这里要分清两个角色</strong>：</p>
+<ul>
+<li><span class="arithmatex">\(\pi_\theta(a|s)\)</span>：<strong>随机性策略</strong>——给状态，输出"采到每个动作的概率"</li>
+<li>真正执行的动作 <span class="arithmatex">\(\sim \pi_\theta\)</span>：从分布里<strong>采样</strong>出来（贪心 argmax 不是 RL 的玩法）</li>
+</ul>
+<p>一句话：<strong>策略网络不直接给动作，而是给动作的概率分布；真正跑游戏时按分布采样</strong>。</p>
+<hr />
+<h4 id="j">二、目标函数 J(θ) ⭐⭐⭐</h4>
+<p>策略网络 <span class="arithmatex">\(\pi_\theta\)</span> 有了，那"策略好不好"怎么衡量？</p>
+<p><strong>目标函数</strong> <span class="arithmatex">\(J(\theta)\)</span> 给出答案：</p>
+<div class="arithmatex">\[
+J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}\left[ G(\tau) \right]
+\]</div>
+<p>其中：</p>
+<ul>
+<li><span class="arithmatex">\(\tau = (S_0, A_0, R_0, S_1, A_1, R_1, \dots)\)</span>：一条轨迹</li>
+<li><span class="arithmatex">\(G(\tau) = \sum_{t=0}^{T} \gamma^t R_t\)</span>：整条轨迹的带折扣的累计回报</li>
+<li>下标 <span class="arithmatex">\(\tau \sim \pi_\theta\)</span>：轨迹是用当前策略<strong>采出来</strong>的</li>
+</ul>
+<p><strong>读法</strong>：<span class="arithmatex">\(J(\theta)\)</span> = 在策略 <span class="arithmatex">\(\pi_\theta\)</span> 下采样很多条轨迹，每条算一个 <span class="arithmatex">\(G(\tau)\)</span>，求平均——这就是这个策略"平均能拿多少分"。</p>
+<blockquote>
+<p><strong>两个常被忽略的细节</strong>：</p>
+<ol>
+<li><strong><span class="arithmatex">\(J(\theta)\)</span> 是关于 <span class="arithmatex">\(\theta\)</span> 的函数</strong>——一旦 <span class="arithmatex">\(\theta\)</span> 变了，整个轨迹分布就变了</li>
+<li>我们的目标：<strong><span class="arithmatex">\(\arg\max_\theta J(\theta)\)</span></strong>——找一组参数让平均回报最大</li>
+</ol>
+</blockquote>
+<hr />
+<h4 id="_6">三、策略梯度定理 ⭐⭐⭐</h4>
+<p>目标有了：<span class="arithmatex">\(\max_\theta J(\theta)\)</span>。最自然的办法——<strong>梯度上升</strong>。</p>
+<h5 id="31-j">3.1 难点：J(θ) 没法直接求导</h5>
+<p>直接对 <span class="arithmatex">\(J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}[G(\tau)]\)</span> 求 <span class="arithmatex">\(\nabla_\theta\)</span> 会卡住： </p>
+<div class="arithmatex">\[
+\nabla_\theta J(\theta) = \nabla_\theta \sum_\tau \Pr(\tau; \theta) \cdot G(\tau)
+\]</div>
+<p>这里 <span class="arithmatex">\(\Pr(\tau; \theta)\)</span> 是轨迹出现的概率（前面 MDP 章节讲过，<span class="arithmatex">\(p(\tau) = p(s_0) \prod \pi_\theta \cdot p\)</span>），它<strong>通过策略间接依赖 <span class="arithmatex">\(\theta\)</span></strong>。直接对求和里的概率求导数学上能写，但实践上没法高效算。</p>
+<p><strong>最朴素的想法</strong>：让"出现过的、回报高的轨迹"的概率上升。但怎么"上升"——这是 log 技巧登场的地方。</p>
+<h5 id="32-log">3.2 log 梯度技巧：一行讲透</h5>
+<p>对一个概率分布 <span class="arithmatex">\(p_\theta(x)\)</span>：</p>
+<div class="arithmatex">\[
+\nabla_\theta \log p_\theta(x) = \frac{\nabla_\theta p_\theta(x)}{p_\theta(x)}
+\]</div>
+<h5 id="33">3.3 定理陈述</h5>
+<p>把 log 技巧套到轨迹上，经过几步推导（见下方折叠框），得到<strong>策略梯度定理</strong>：</p>
+<div class="arithmatex">\[
+\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}\left[ \sum_{t=0}^{T} G(\tau) \cdot \nabla_\theta \log \pi_\theta(A_t \mid S_t) \right]
+\]</div>
+<details class="note">
+<summary>推导细节（点击展开）</summary>
+<div class="arithmatex">\[
+\begin{align*} \nabla_\theta J(\theta) &amp;= \nabla_\theta \mathbb{E}_{\tau \sim \pi_\theta}[G(\tau)] \\ &amp;= \nabla_\theta \sum_{\tau} \Pr(\tau|\theta)G(\tau) &amp; (\text{展开期望值}) \\ &amp;= \sum_{\tau} \nabla_\theta (\Pr(\tau|\theta)G(\tau)) &amp; (\text{将 } \nabla_\theta \text{ 移动到 } \sum \text{ 中}) \\ &amp;= \sum_{\tau} \{ G(\tau)\nabla_\theta \Pr(\tau|\theta) + \Pr(\tau|\theta)\nabla_\theta G(\tau) \} &amp; (\text{积的微分}) \\ &amp;= \sum_{\tau} G(\tau)\nabla_\theta \Pr(\tau|\theta) &amp; (\nabla_\theta G(\tau) \text{ 永远为 } 0) \\ &amp;= \sum_{\tau} G(\tau)\Pr(\tau|\theta) \frac{\nabla_\theta \Pr(\tau|\theta)}{\Pr(\tau|\theta)} &amp; (\text{乘以 } \frac{\Pr(\tau|\theta)}{\Pr(\tau|\theta)}) \\ &amp;= \sum_{\tau} G(\tau)\Pr(\tau|\theta) \nabla_\theta \log \Pr(\tau|\theta) &amp; (\text{log 梯度技巧}) \\ &amp;= \mathbb{E}_{\tau \sim \pi_\theta}[G(\tau) \nabla_\theta \log \Pr(\tau|\theta)] \end{align*}
+\]</div>
+</details>
+<h5 id="34">3.4 直觉：让好的动作概率上升</h5>
+<p>公式 <span class="arithmatex">\(\nabla_\theta J = \mathbb{E}[G(\tau) \cdot \nabla_\theta \log \pi_\theta(a|s)]\)</span> 看似抽象，翻译成人话：</p>
+<p align='center'>
+    <img src='../../assets/imgs/python/rl/16_策略梯度法本质.png' alt='G(τ) 大小决定动作概率升降方向'>
+</p>
+
+<ul>
+<li><strong><span class="arithmatex">\(G(\tau) &gt; 0\)</span>（好轨迹）</strong>：<span class="arithmatex">\(\nabla_\theta \log \pi(a|s)\)</span> 沿"让 <span class="arithmatex">\(\pi(a|s)\)</span> 变大"的方向走——<strong>这条轨迹里出现过的动作概率会上升</strong></li>
+<li><strong><span class="arithmatex">\(G(\tau) &lt; 0\)</span>（差轨迹）</strong>：方向反转——<strong>这些动作概率会下降</strong></li>
+<li><strong><span class="arithmatex">\(G(\tau) = 0\)</span>（普通）</strong>：梯度为零，不更新</li>
+</ul>
+<blockquote>
+<p><strong>一句话</strong>：策略梯度的本质——<strong>让"产生过高回报的动作"概率上升，让"产生过低回报的动作"概率下降</strong>。<span class="arithmatex">\(G(\tau)\)</span> 既是放大器也是惩罚器。</p>
+</blockquote>
+<hr />
+<h4 id="_7">四、蒙特卡洛近似：采一条轨迹 ⭐⭐</h4>
+<p>策略梯度定理是个<strong>期望</strong>——这个期望大部分情况下没法直接算。怎么办？</p>
+<p><strong>大数定律</strong>：采 <span class="arithmatex">\(n\)</span> 条轨迹，把每条轨迹的项加起来取平均。</p>
+<div class="arithmatex">\[
+\nabla_\theta J(\theta) \approx \frac{1}{n} \sum_{i=1}^{n} \sum_{t=0}^{T} G(\tau^{(i)}) \cdot \nabla_\theta \log \pi_\theta(A_t^{(i)} \mid S_t^{(i)})
+\]</div>
+<p><strong>最朴素版本：<span class="arithmatex">\(n=1\)</span></strong>——采一条轨迹就更新一次：</p>
+<div class="arithmatex">\[
+\nabla_\theta J(\theta) \approx \sum_{t=0}^{T} G(\tau) \cdot \nabla_\theta \log \pi_\theta(A_t \mid S_t)
+\]</div>
+<p align='center'>
+    <img src='../../assets/imgs/python/rl/17_一条轨迹的策略梯度计算.png' alt='一条轨迹的策略梯度计算数据流'>
+</p>
+
+<p>这就是<strong>原始策略梯度法</strong>的全部数学——<strong>采一条轨迹、算出 <span class="arithmatex">\(G(\tau)\)</span>、对 <span class="arithmatex">\(\log \pi\)</span> 加权求和、更新参数</strong>。</p>
+<blockquote>
+<p><strong>为什么这里用 <span class="arithmatex">\(G(\tau)\)</span> 而不是 <span class="arithmatex">\(G_t\)</span></strong>：朴素版偷了个懒——<strong>所有时间步共用同一个 <span class="arithmatex">\(G(\tau)\)</span></strong>。理论上更精细的做法是用 <span class="arithmatex">\(G_t = \sum_{k \geq t} \gamma^{k-t} R_k\)</span>（"从这个动作之后能拿多少分"），但那是下一节 REINFORCE 的事。这一节先接受这个简化。</p>
+</blockquote>
+<hr />
+<h4 id="pytorch">五、代码实现（PyTorch 版本）</h4>
+<p>理论落地到代码就 4 块：</p>
+<h5 id="51">5.1 策略网络</h5>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 策略神经网络的定义  </span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Policy</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>  
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>  
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">l1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span> <span class="c1"># 推车环境中，状态是一个四维向量  </span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">l2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># 输出两个动作，左转和右转  </span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="c1"># x是一个带batch的张量: [batch_size, dim]  </span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>  
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">l1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">l2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="k">return</span> <span class="n">x</span>
+</span></code></pre></div>
+<h5 id="52-agent">5.2 定义 Agent</h5>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Agent</span><span class="p">:</span>  
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.9</span> <span class="c1"># 折扣因子  </span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="mf">0.0002</span> <span class="c1"># 学习率  </span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">action_size</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1"># 动作空间  </span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">pi</span> <span class="o">=</span> <span class="n">Policy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action_size</span><span class="p">)</span> <span class="c1"># 当前 Agent 的大脑：策略网络  </span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="p">)</span>  
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="c1"># 输入环境状态，输出动作  </span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>  
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>        <span class="c1"># state 是一个一维张量，所以传入 pi 之前，添加批次维度  </span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>        <span class="n">probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># [action_size, ]  </span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>        <span class="c1"># 根据动作的概率创建一个概率分布  </span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="n">m</span> <span class="o">=</span>  <span class="n">Categorical</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>  
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="c1"># 采样得到概率分布 𝜋𝜃(𝑎𝑡|𝑠𝑡)  </span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>        <span class="n">action</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>  
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="c1"># 返回一个元组（动作，动作概率分布）  </span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="k">return</span> <span class="n">action</span><span class="p">,</span> <span class="n">probs</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="c1"># 采集一条轨迹的详细数据  </span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">collect_trajectory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>  
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="n">state</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>  
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>        <span class="n">states</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">rewards</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>  
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>        <span class="n">done</span> <span class="o">=</span> <span class="kc">False</span>  
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>  
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>            <span class="n">action</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_action</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>  
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>            <span class="n">next_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>  
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>            <span class="n">states</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="c1"># s_t  </span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>            <span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="c1"># a_t  </span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>            <span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span> <span class="c1"># r_t  </span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>            <span class="n">state</span> <span class="o">=</span> <span class="n">next_state</span> <span class="c1"># s_{t+1}  </span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>            <span class="n">rewards</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reward</span><span class="p">)</span>  
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>        <span class="k">return</span> <span class="n">states</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">rewards</span>
+</span></code></pre></div>
+<h5 id="53">5.3 更新策略</h5>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Agent</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="c1">#...（接5.2代码）</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="c1"># 更新策略  </span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">trajectory</span><span class="p">):</span>  
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        <span class="n">states</span><span class="p">,</span> <span class="n">actions</span><span class="p">,</span> <span class="n">rewards</span> <span class="o">=</span> <span class="n">trajectory</span>  
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="c1"># 逆序计算 G(r)    </span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        <span class="n">G</span> <span class="o">=</span> <span class="mi">0</span>  
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rewards</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>  
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            <span class="n">G</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gamma</span> <span class="o">*</span> <span class="n">G</span>  
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>        <span class="c1"># 计算策略网络的损失函数  </span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="n">loss</span> <span class="o">=</span> <span class="mi">0</span>  
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="n">actions</span><span class="p">):</span>  
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>            <span class="n">probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>            <span class="n">log_probs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">probs</span><span class="p">[</span><span class="n">a</span><span class="p">])</span>  
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>            <span class="n">loss</span> <span class="o">+=</span> <span class="o">-</span><span class="n">log_probs</span> <span class="o">*</span> <span class="n">G</span>  
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>            <span class="c1"># 下面是并行版本，也就是多了批次信息  </span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>            <span class="c1"># states = torch.tensor(states)  </span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>            <span class="c1"># actions = torch.tensor(actions).view(-1, 1)        </span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>            <span class="c1"># log_probs = torch.log(self.pi(states).gather(1, actions))        </span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>            <span class="c1"># loss = -torch.sum(log_probs) * G  </span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>        <span class="c1"># 优化策略网络  </span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>  
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>  
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span></code></pre></div>
+<h5 id="54">5.4 训练循环</h5>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">gym</span>  
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;CartPole-v0&#39;</span><span class="p">)</span>  
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">()</span>  
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">return_list</span> <span class="o">=</span> <span class="p">[]</span>  
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">episode_list</span> <span class="o">=</span> <span class="p">[]</span>  
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">for</span> <span class="n">i_episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>  
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="c1"># 采集一条轨迹  </span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">collect_trajectory</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>  
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="n">reward_list</span> <span class="o">=</span> <span class="n">trajectory</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="n">return_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">reward_list</span><span class="p">))</span>  
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="n">episode_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i_episode</span><span class="p">)</span>  
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="c1"># 更新策略  </span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="n">agent</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">trajectory</span><span class="p">)</span>  
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>    <span class="k">if</span> <span class="n">i_episode</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;回合:</span><span class="si">{}</span><span class="s2">, 总奖励:</span><span class="si">{:.1f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i_episode</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">reward_list</span><span class="p">)))</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">代码与公式的对应</p>
+<ul>
+<li><code>policy(s)</code>：<span class="arithmatex">\(\pi_\theta(\cdot|s)\)</span></li>
+<li><code>probs[0, a]</code>：<span class="arithmatex">\(\pi_\theta(A_t \mid S_t)\)</span></li>
+<li><code>loss = -log_prob * G</code>：恰好是 <span class="arithmatex">\(-G(\tau) \log \pi_\theta(A_t|S_t)\)</span>，对 <code>loss</code> 做梯度下降 = 对 <span class="arithmatex">\(J\)</span> 做梯度上升</li>
+</ul>
+</div>
+<hr />
+<h4 id="_8">六、原始梯度策略法的局限</h4>
+<p>原始策略梯度<strong>能跑通</strong>——倒立摆 1000-3000 个 episode 就能学会平衡。但是它无法保证我们的优化目标 <span class="arithmatex">\(J(\theta)\)</span> 稳定上升，主要有 3 个明显问题：</p>
+<div class="admonition warning">
+<p class="admonition-title">G(τ) 噪声极大</p>
+<p><span class="arithmatex">\(G(\tau)\)</span> 来自<strong>整条轨迹</strong>的实际回报——它把"运气"也算进去了。</p>
+<p><strong>例子</strong>：同样一个"向左推"，第一次正好避开了悬崖拿了 +200，第二次运气差掉进悬崖拿了 -50。两次更新的方向<strong>完全相反</strong>——但策略可能根本没变。</p>
+<p>直觉上：<strong><span class="arithmatex">\(G(\tau)\)</span> 的大波动会让更新方向抖得很厉害</strong>，训练曲线剧烈震荡。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">所有时间步共用同一个 G(τ)</p>
+<p>朴素版里，整条轨迹所有 <span class="arithmatex">\(t\)</span> 用的都是同一个 <span class="arithmatex">\(G(\tau)\)</span>——但<strong>动作的好坏应该用"它之后的回报"来评价，不是整条轨迹的回报</strong>。</p>
+<p>一个在 <span class="arithmatex">\(t=199\)</span> 的动作好不好，跟 <span class="arithmatex">\(t=0\)</span> 的动作好不好是两件事——但朴素版把它们的"分数"标成同一个 <span class="arithmatex">\(G(\tau)\)</span>。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">G(τ) 太大太小都会崩</p>
+<ul>
+<li><span class="arithmatex">\(G(\tau) = +1000\)</span>：梯度步长 <span class="arithmatex">\(\alpha \cdot G \cdot \nabla\log\pi\)</span> 巨大，参数可能飞出合理范围</li>
+<li><span class="arithmatex">\(G(\tau) = -1000\)</span>：反方向一步飞出去</li>
+<li>极端情况：策略崩溃——<strong>刚学会的策略被一次极端奖励彻底打乱</strong></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">三个问题的共同根源</p>
+<p>三个问题其实是一回事——<strong><span class="arithmatex">\(G(\tau)\)</span> 本身方差太大</strong>。</p>
+<p>下一节我们要做的核心改动只有一件：<strong>给 <span class="arithmatex">\(G(\tau)\)</span> 减方差</strong>。最经典的做法就是<strong>加 baseline</strong>——把 <span class="arithmatex">\(G(\tau)\)</span> 减去一个跟状态有关、跟动作无关的"基线分数"。数学上无偏、方差大降。带着这个钩子，进入 REINFORCE 和带基线的 REINFORCE。</p>
 </div>
 
 
