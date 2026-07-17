@@ -9852,7 +9852,7 @@ W = W_0 + \frac{a}{r}AB
     <img src='../../assets/imgs/python/llm/34_unsloth使用方式.png'>
 </p>
 
-<p>首先，通过 <code>FastLanguageModel.from_pretrained</code> 方法，来加载 <code>model</code> 和 <code>tokenizer</code>：
+<p>首先，通过 <code>FastLanguageModel.from_pretrained</code> 方法，来加载 <code>model</code> 和 <code>tokenizer</code>：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">FastLanguageModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>  
 </span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a>    <span class="n">model_name</span><span class="o">=</span><span class="s1">&#39;Qwen3.0xxx&#39;</span><span class="p">,</span>     <span class="c1"># 这里写模型名称，可以是本地，也可以是模型仓库名称  </span>
 </span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a>    <span class="n">load_in_4bit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>           <span class="c1"># 启用 4bit 训练  </span>
@@ -9860,8 +9860,8 @@ W = W_0 + \frac{a}{r}AB
 </span><span id="__span-56-5"><a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a>    <span class="n">use_exact_model_name</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  
 </span><span id="__span-56-6"><a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a>    <span class="n">local_files_only</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  
 </span><span id="__span-56-7"><a id="__codelineno-56-7" name="__codelineno-56-7" href="#__codelineno-56-7"></a><span class="p">)</span>
-</span></code></pre></div></p>
-<p>之后，如果开启了量化，和 hugging 的 TRL 库类似，需要将 PETF 应用到模型上：
+</span></code></pre></div>
+<p>之后，如果开启了量化，和 hugging 的 TRL 库类似，需要将 PETF 应用到模型上：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="n">peft_model</span> <span class="o">=</span> <span class="n">FastLanguageModel</span><span class="o">.</span><span class="n">get_peft_model</span><span class="p">(</span>  
 </span><span id="__span-57-2"><a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>    <span class="n">model</span><span class="p">,</span>  
 </span><span id="__span-57-3"><a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a>    <span class="n">r</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>  
@@ -9872,28 +9872,29 @@ W = W_0 + \frac{a}{r}AB
 </span><span id="__span-57-8"><a id="__codelineno-57-8" name="__codelineno-57-8" href="#__codelineno-57-8"></a>    <span class="c1"># 在微调配置这里开始梯度积累</span>
 </span><span id="__span-57-9"><a id="__codelineno-57-9" name="__codelineno-57-9" href="#__codelineno-57-9"></a>    <span class="n">use_gradient_checkpointing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 </span><span id="__span-57-10"><a id="__codelineno-57-10" name="__codelineno-57-10" href="#__codelineno-57-10"></a><span class="p">)</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <p>对于使用 <code>Unsloth</code> 微调，需要手动对文本调用 apply_chat_template？把消息列表转换为字符串。也就是从 Convosational 转为 Standard，但理论 SFTTrainer 会自动为 messages 应用 <code>apply_chat_template</code>，你 Unsloth 后面走的也是 SFTTrainer，不太理解课里为什么要在这里手动转，不过转了以后 SFTTrainer 发现已经是 text 字段了，就不会 <code>apply_chat_template</code> 了。</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">convert_data</span><span class="p">(</span><span class="n">batch</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>  
 </span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>    <span class="c1"># 遍历每一个数据  </span>
 </span><span id="__span-58-3"><a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a>    <span class="n">temp</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># 对这批处理完后，返回的是一个字典{messages:[{messages:[]},{}, {}]}  </span>
-</span><span id="__span-58-4"><a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a>    <span class="c1"># print(f&#39;{batch=}&#39;)    for conversation in batch[&#39;conversation&#39;]:  </span>
-</span><span id="__span-58-5"><a id="__codelineno-58-5" name="__codelineno-58-5" href="#__codelineno-58-5"></a>        <span class="c1"># print(f&#39;{conversation=}&#39;)  </span>
-</span><span id="__span-58-6"><a id="__codelineno-58-6" name="__codelineno-58-6" href="#__codelineno-58-6"></a>        <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>  
-</span><span id="__span-58-7"><a id="__codelineno-58-7" name="__codelineno-58-7" href="#__codelineno-58-7"></a>        <span class="k">for</span> <span class="n">turn</span> <span class="ow">in</span> <span class="n">conversation</span><span class="p">:</span>  
-</span><span id="__span-58-8"><a id="__codelineno-58-8" name="__codelineno-58-8" href="#__codelineno-58-8"></a>            <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>  
-</span><span id="__span-58-9"><a id="__codelineno-58-9" name="__codelineno-58-9" href="#__codelineno-58-9"></a>                <span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>  
-</span><span id="__span-58-10"><a id="__codelineno-58-10" name="__codelineno-58-10" href="#__codelineno-58-10"></a>                <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">turn</span><span class="p">[</span><span class="s1">&#39;human&#39;</span><span class="p">]</span>  
-</span><span id="__span-58-11"><a id="__codelineno-58-11" name="__codelineno-58-11" href="#__codelineno-58-11"></a>            <span class="p">})</span>  
-</span><span id="__span-58-12"><a id="__codelineno-58-12" name="__codelineno-58-12" href="#__codelineno-58-12"></a>            <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>  
-</span><span id="__span-58-13"><a id="__codelineno-58-13" name="__codelineno-58-13" href="#__codelineno-58-13"></a>                <span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;assistant&#39;</span><span class="p">,</span>  
-</span><span id="__span-58-14"><a id="__codelineno-58-14" name="__codelineno-58-14" href="#__codelineno-58-14"></a>                <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">turn</span><span class="p">[</span><span class="s1">&#39;assistant&#39;</span><span class="p">]</span>  
-</span><span id="__span-58-15"><a id="__codelineno-58-15" name="__codelineno-58-15" href="#__codelineno-58-15"></a>            <span class="p">})</span>  
-</span><span id="__span-58-16"><a id="__codelineno-58-16" name="__codelineno-58-16" href="#__codelineno-58-16"></a>        <span class="c1"># 将 messages 转为一个字符串 ⭐⭐⭐ </span>
-</span><span id="__span-58-17"><a id="__codelineno-58-17" name="__codelineno-58-17" href="#__codelineno-58-17"></a>        <span class="n">text</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">apply_chat_template</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">add_generation_prompt</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
-</span><span id="__span-58-18"><a id="__codelineno-58-18" name="__codelineno-58-18" href="#__codelineno-58-18"></a>        <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>  
-</span><span id="__span-58-19"><a id="__codelineno-58-19" name="__codelineno-58-19" href="#__codelineno-58-19"></a>
-</span><span id="__span-58-20"><a id="__codelineno-58-20" name="__codelineno-58-20" href="#__codelineno-58-20"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">temp</span><span class="p">}</span>
+</span><span id="__span-58-4"><a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a>    <span class="c1"># print(f&#39;{batch=}&#39;)    </span>
+</span><span id="__span-58-5"><a id="__codelineno-58-5" name="__codelineno-58-5" href="#__codelineno-58-5"></a>    <span class="k">for</span> <span class="n">conversation</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">[</span><span class="s1">&#39;conversation&#39;</span><span class="p">]:</span>  
+</span><span id="__span-58-6"><a id="__codelineno-58-6" name="__codelineno-58-6" href="#__codelineno-58-6"></a>        <span class="c1"># print(f&#39;{conversation=}&#39;)  </span>
+</span><span id="__span-58-7"><a id="__codelineno-58-7" name="__codelineno-58-7" href="#__codelineno-58-7"></a>        <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>  
+</span><span id="__span-58-8"><a id="__codelineno-58-8" name="__codelineno-58-8" href="#__codelineno-58-8"></a>        <span class="k">for</span> <span class="n">turn</span> <span class="ow">in</span> <span class="n">conversation</span><span class="p">:</span>  
+</span><span id="__span-58-9"><a id="__codelineno-58-9" name="__codelineno-58-9" href="#__codelineno-58-9"></a>            <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>  
+</span><span id="__span-58-10"><a id="__codelineno-58-10" name="__codelineno-58-10" href="#__codelineno-58-10"></a>                <span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>  
+</span><span id="__span-58-11"><a id="__codelineno-58-11" name="__codelineno-58-11" href="#__codelineno-58-11"></a>                <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">turn</span><span class="p">[</span><span class="s1">&#39;human&#39;</span><span class="p">]</span>  
+</span><span id="__span-58-12"><a id="__codelineno-58-12" name="__codelineno-58-12" href="#__codelineno-58-12"></a>            <span class="p">})</span>  
+</span><span id="__span-58-13"><a id="__codelineno-58-13" name="__codelineno-58-13" href="#__codelineno-58-13"></a>            <span class="n">messages</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>  
+</span><span id="__span-58-14"><a id="__codelineno-58-14" name="__codelineno-58-14" href="#__codelineno-58-14"></a>                <span class="s1">&#39;role&#39;</span><span class="p">:</span> <span class="s1">&#39;assistant&#39;</span><span class="p">,</span>  
+</span><span id="__span-58-15"><a id="__codelineno-58-15" name="__codelineno-58-15" href="#__codelineno-58-15"></a>                <span class="s1">&#39;content&#39;</span><span class="p">:</span> <span class="n">turn</span><span class="p">[</span><span class="s1">&#39;assistant&#39;</span><span class="p">]</span>  
+</span><span id="__span-58-16"><a id="__codelineno-58-16" name="__codelineno-58-16" href="#__codelineno-58-16"></a>            <span class="p">})</span>  
+</span><span id="__span-58-17"><a id="__codelineno-58-17" name="__codelineno-58-17" href="#__codelineno-58-17"></a>        <span class="c1"># 将 messages 转为一个字符串 ⭐⭐⭐ </span>
+</span><span id="__span-58-18"><a id="__codelineno-58-18" name="__codelineno-58-18" href="#__codelineno-58-18"></a>        <span class="n">text</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">apply_chat_template</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">tokenize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">add_generation_prompt</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  
+</span><span id="__span-58-19"><a id="__codelineno-58-19" name="__codelineno-58-19" href="#__codelineno-58-19"></a>        <span class="n">temp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>  
+</span><span id="__span-58-20"><a id="__codelineno-58-20" name="__codelineno-58-20" href="#__codelineno-58-20"></a>
+</span><span id="__span-58-21"><a id="__codelineno-58-21" name="__codelineno-58-21" href="#__codelineno-58-21"></a>    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">temp</span><span class="p">}</span>
 </span></code></pre></div>
 <p>后面就与 TRL 生态一致了，只需要构建 SFTConfig 对象，然后再去构建  SFTTrain 对象，即可完成 Unsloth 的微调</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="n">sft_config</span> <span class="o">=</span> <span class="n">SFTConfig</span><span class="p">(</span>  
@@ -10194,7 +10195,7 @@ W = W_0 + \frac{a}{r}AB
 <h3 id="evalscope"><a href="https://evalscope.readthedocs.io/zh-cn/v1.6.1/get_started/introduction.html">EvalScope</a></h3>
 <p>这部分知识直接参考官方文档即可。</p>
 <blockquote>
-<p>2027.07.08，llm 完结撒花，收获颇多，在之前学微调的时候，很多东西真的不清楚为什么这样，但是有了nlp，深度学习，llm 基础知识的前提下，就知道了为什么模型的输入 input_ids 是什么样子，输出是什么样子，怎么处理 chatModel 的输入输出等等。</p>
+<p>2026.07.08，llm 完结撒花，收获颇多，在之前学微调的时候，很多东西真的不清楚为什么这样，但是有了nlp，深度学习，llm 基础知识的前提下，就知道了为什么模型的输入 input_ids 是什么样子，输出是什么样子，怎么处理 chatModel 的输入输出等等。</p>
 </blockquote>
 
 

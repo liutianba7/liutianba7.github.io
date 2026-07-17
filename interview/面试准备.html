@@ -3671,17 +3671,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. 简单介绍一下你的上段实习主要做了什么？
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3704,188 +3693,17 @@
 
 <h1 id="_1">面试准备</h1>
 <h3 id="1">1. 自我介绍</h3>
-<p>“面试官您好。我叫<strong>刘强</strong>，来自内蒙古乌兰察布市。目前是<strong>内蒙古工业大学</strong>软件工程专业的大四学生。下面，我会从三个方面来介绍自己：</p>
-<p>首先是学业情况，在过去的三年半中，我的GPA 是 <strong>4.82</strong>，年级排名第一。此外，我也获得了不少荣誉奖励，基于此，在去年9月份我顺利推免至<strong>东南大学</strong>。</p>
-<p>"其次是我的技能介绍，我目前主要构建了以Python和 java 为核心的知识体系。</p>
+<p>“面试官您好。我叫<strong>刘强</strong>，来自内蒙古乌兰察布市。下面，我会从三个方面来介绍自己：</p>
+<p>首先是学业情况，在我的本科生涯，我的GPA是 <strong>4.82</strong>，年级排名第一。此外，我也获得了不少荣誉奖励，基于此，在去年9月份我顺利推免至<strong>东南大学</strong>。</p>
+<p>其次是我的技能介绍，我目前主要构建了以 Python和 java 为核心的知识体系。目前主要掌握后端，Agent开发和大模型算法相关知识。</p>
 <p><strong>在 Python 方面</strong>，我深入掌握了python基础以及生成器、装饰器、上下文管理器和协程异步编程等高级特性，并且熟悉 FastAPI 框架。</p>
 <p>其次，<strong>Agent 开发是我的核心优势</strong>。我熟练掌握 LangChain 和 LangGraph 框架，熟悉 RAG 全流程，同时也熟悉 Tool Calling、MCP 协议、skills以及常见的 Agent 范式，并能熟练使用 Milvus、Chroma、qdrant 等向量数据库。</p>
-<p><strong>此外，我也熟练掌握了 MySQL、Redis、RabbitMQ 以及 Elasticsearch 等常用基础设施，并能熟练使用 Docker 和 Git 进行项目部署与日常开发。</strong></p>
-<p><strong>同时</strong>，我也具备 Java 后端开发能力，熟练掌握 Java 基础、Java 集合、JUC 等，并能熟练运用 Spring、Spring Boot、Spring Cloud 等框架进行开发。</p>
-<p>最后来说说我的获奖情况，我在过去两年连续获得国家奖学金，此外，我也参与了不少算法比赛，在 2024 年和 2025 年的ccpc省赛中，分别获得<strong>全省第三名和第四名</strong>的好成绩，连续两年拿下省赛金奖。</p>
+<p>在掌握 Agent 开发的前提下，我还系统的学习了深度学习，Transformer、现代 LLM 架构、微调等理论知识，也熟悉 Pytorch 框架和 Hugging face 生态。</p>
+<p><strong>此外，我也掌握了 MySQL、Redis、RabbitMQ 以 等常用基础设施，并能熟练使用 Docker 和 Git 进行项目部署与日常开发。</strong></p>
 <p>以上就是我的个人介绍，谢谢。</p>
 <h3 id="2">2. 简单介绍一下声动万全项目？</h3>
 <p>好的, 面试官, <strong>声动万券</strong>是一个类似于喜马拉雅听书的音频内容平台。 平台连接了创作者和消费者。 创作者可以发布专辑、上传音频并灵活配置售卖模式（整本或分集）；消费者则可以进行专辑的全站检索、音频的试听、订阅整本专辑或者是购买当前专辑的某些声音。 我们服务端结合腾讯云内容安全服务, 提供了专辑与声音的在线审核功能。除此之外，平台还基于 LangChain + LangGraph 搭建了一个智能助手，它能够查询数据库、进行网络搜索等。</p>
 <p>该项目具体的技术栈和我负责的内容在简历上以及写了, 我就不过多说明了.</p>
-<h3 id="3">3. 简单介绍一下你的上段实习主要做了什么？</h3>
-<p>好的，面试官。上段实习我在医疗 MDT 项目组担任 Agent 工程师，核心工作就是<strong>从零搭建 RAG 知识库的全链路</strong>，主要分为<strong>导入流水线</strong>和<strong>查询流程</strong>两块：</p>
-<p><strong>第一是导入流水线</strong>。基于 LangGraph 的 StateGraph 设计了 6 个节点的自动化处理流程。用户上传 PDF 或 MD 文件后，自动经过解析、图片处理、文档切分、实体识别、向量化，最后入库 Milvus。因为是图架构，后续如果要支持 Word 或 Excel，只需要在图中新增对应节点就行，扩展性很好。</p>
-<p><strong>第二是查询流程</strong>。搭建了初步的 RAG 检索链路，采用了<strong>三路召回策略</strong>（向量检索 + HyDE 假设文档 + MCP 网络搜索）来提升短查询的召回率，再通过<strong>两阶段排序</strong>（RRF 融合打分 + BGE-Reranker 重排 + 动态截断）保证相关性，最终由大模型生成回答。</p>
-<h1 id="_2">投递记录</h1>
-<blockquote>
-<p>📊 总计 <strong>12</strong> 家 | 📌 投递中 <strong>12</strong> | ✅ 笔试 <strong>0</strong> | 🎯 面试 <strong>0</strong> | 🎉 offer <strong>0</strong> | 💔 拒信 <strong>0</strong></p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align: center;"></th>
-<th style="text-align: left;">公司</th>
-<th style="text-align: left;">岗位</th>
-<th style="text-align: left;">投递时间</th>
-<th style="text-align: left;">状态</th>
-<th style="text-align: left;">备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: center;">1</td>
-<td style="text-align: left;">万物云</td>
-<td style="text-align: left;">深圳-AI应用研究员（实习生）</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">2</td>
-<td style="text-align: left;">复宏汉霖</td>
-<td style="text-align: left;">AI实习生-早期研发(J18878)</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">3</td>
-<td style="text-align: left;">复宏汉霖</td>
-<td style="text-align: left;">AI实习生-工艺开发与分析(J18856)</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">4</td>
-<td style="text-align: left;">复宏汉霖</td>
-<td style="text-align: left;">AI实习生-大模型应用与AI工程师(J18879)</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">5</td>
-<td style="text-align: left;">睿创微纳</td>
-<td style="text-align: left;">AI应用实习生</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">6</td>
-<td style="text-align: left;">荣耀</td>
-<td style="text-align: left;">AI应用开发工程师</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">7</td>
-<td style="text-align: left;">阅文集团</td>
-<td style="text-align: left;">实习生-Java开发实习生</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">8</td>
-<td style="text-align: left;">阅文集团</td>
-<td style="text-align: left;">实习生-Java研发实习生（新红袖）</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">9</td>
-<td style="text-align: left;">小红书</td>
-<td style="text-align: left;">Product Engineer-产品工程师（AI与全栈方向）</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">10</td>
-<td style="text-align: left;">网易</td>
-<td style="text-align: left;">LLM/VLM研究型 Agent 实习生</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">11</td>
-<td style="text-align: left;">博世</td>
-<td style="text-align: left;">AI Agent学员（智驾数据挖掘与管理方向）_XC</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr>
-<td style="text-align: center;">12</td>
-<td style="text-align: left;">同程</td>
-<td style="text-align: left;">算法实习生-北京/成都（27届）</td>
-<td style="text-align: left;">2026.04.28</td>
-<td style="text-align: left;">📌 投递中</td>
-<td style="text-align: left;"></td>
-</tr>
-</tbody>
-</table>
-<h2 id="_3">状态图例</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align: left;">阶段</th>
-<th style="text-align: center;">图标</th>
-<th style="text-align: left;">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">投递中</td>
-<td style="text-align: center;">📌</td>
-<td style="text-align: left;">已投递，等待回复</td>
-</tr>
-<tr>
-<td style="text-align: left;">笔试</td>
-<td style="text-align: center;">✍️</td>
-<td style="text-align: left;">已收到笔试邀请</td>
-</tr>
-<tr>
-<td style="text-align: left;">一面</td>
-<td style="text-align: center;">📞</td>
-<td style="text-align: left;">进行中 / 已完成</td>
-</tr>
-<tr>
-<td style="text-align: left;">二面</td>
-<td style="text-align: center;">💻</td>
-<td style="text-align: left;">进行中 / 已完成</td>
-</tr>
-<tr>
-<td style="text-align: left;">三面/HR面</td>
-<td style="text-align: center;">🤝</td>
-<td style="text-align: left;">进行中 / 已完成</td>
-</tr>
-<tr>
-<td style="text-align: left;">Offer</td>
-<td style="text-align: center;">🎉</td>
-<td style="text-align: left;">已拿到offer</td>
-</tr>
-<tr>
-<td style="text-align: left;">拒信</td>
-<td style="text-align: center;">💔</td>
-<td style="text-align: left;">感谢参与</td>
-</tr>
-<tr>
-<td style="text-align: left;">池子</td>
-<td style="text-align: center;">⏳</td>
-<td style="text-align: left;">进入候选池</td>
-</tr>
-</tbody>
-</table>
 
 
 
