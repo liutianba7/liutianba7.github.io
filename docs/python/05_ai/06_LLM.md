@@ -2870,6 +2870,7 @@ Unsloth 有两种使用方式，要么通过图形化，要么通过 Unsloth Cor
 </p>
 
 首先，通过 `FastLanguageModel.from_pretrained` 方法，来加载 `model` 和 `tokenizer`：
+
 ``` python
 model, tokenizer = FastLanguageModel.from_pretrained(  
     model_name='Qwen3.0xxx',     # 这里写模型名称，可以是本地，也可以是模型仓库名称  
@@ -2881,6 +2882,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
 ```
 
 之后，如果开启了量化，和 hugging 的 TRL 库类似，需要将 PETF 应用到模型上：
+
 ``` python
 peft_model = FastLanguageModel.get_peft_model(  
     model,  
@@ -2900,7 +2902,8 @@ peft_model = FastLanguageModel.get_peft_model(
 def convert_data(batch:dict):  
     # 遍历每一个数据  
     temp = [] # 对这批处理完后，返回的是一个字典{messages:[{messages:[]},{}, {}]}  
-    # print(f'{batch=}')    for conversation in batch['conversation']:  
+    # print(f'{batch=}')    
+    for conversation in batch['conversation']:  
         # print(f'{conversation=}')  
         messages = []  
         for turn in conversation:  
@@ -3288,7 +3291,7 @@ CUDA Graph 会将一组固定形状、固定执行路径的 CUDA 操作捕获成
 这部分知识直接参考官方文档即可。
 
 
-> 2027.07.08，llm 完结撒花，收获颇多，在之前学微调的时候，很多东西真的不清楚为什么这样，但是有了nlp，深度学习，llm 基础知识的前提下，就知道了为什么模型的输入 input_ids 是什么样子，输出是什么样子，怎么处理 chatModel 的输入输出等等。
+> 2026.07.08，llm 完结撒花，收获颇多，在之前学微调的时候，很多东西真的不清楚为什么这样，但是有了nlp，深度学习，llm 基础知识的前提下，就知道了为什么模型的输入 input_ids 是什么样子，输出是什么样子，怎么处理 chatModel 的输入输出等等。
 
 
 

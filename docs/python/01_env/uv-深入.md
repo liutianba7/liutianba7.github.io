@@ -10,19 +10,6 @@
 
 一个成熟的 Python 项目，往往同时依赖下面这一堆工具，各管一段：
 
-| 工具 | 干什么 | 类比 |
-| --- | --- | --- |
-| `pyenv` | 管理**多个 Python 版本**（3.10、3.11、3.12 并存） | 管"用哪个 JDK" |
-| `virtualenv` / `venv` | 为每个项目创建**隔离的环境** | 项目文件夹的一亩三分地 |
-| `pip` | 从 PyPI **安装包**到当前环境 | `npm install` |
-| `pip-tools` | 把 `requirements.in` **锁定**成带版本号的 `requirements.txt` | `package-lock.json` |
-| `pipx` | 安装**全局命令行工具**（black、ruff），但不污染当前环境 | `npm i -g` |
-| `poetry` / `pdm` | 现代化项目管理（`pyproject.toml` + lock） | 前端的 `pnpm` |
-
-说白了，Python 的历史包袱就是——**每个工具只解决一段问题**，你想搭一套完整流水线，得把它们串起来，学习成本高、还经常互相打架。
-
-Node.js 的 `npm`、Rust 的 `cargo`、Go 的 `go mod`——**人家一个工具就把这些事全做了**。Python 一直没这样的东西，直到 uv 出现。
-
 <p align='center'>
     <img src='../../assets/imgs/python/uv/001_为什么会有uv.png' alt='uv 一图替代六个工具'>
 </p>
@@ -33,20 +20,14 @@ Node.js 的 `npm`、Rust 的 `cargo`、Go 的 `go mod`——**人家一个工具
 1. **快**——依赖解析和安装比 pip 快 10–100 倍（Rust + 并行 + 全局硬链接缓存）
 2. **一站式**——上面表格里那六个工具的活，`uv` 全干了
 
-!!! info "为什么快得离谱"
-    - 用 Rust 写的核心，天生比 Python 快
-    - 依赖解析用的是 **PubGrub 算法**（Dart 的 pub、Rust 的 cargo 也用它），一次性算出全局最优解，不像 pip 那样逐个装逐个回溯
-    - 全局缓存 + 硬链接，同一个包在 100 个项目里只占一份磁盘
 
 ---
 
 ## 二、心智模型：uv 的两级架构 ⭐⭐⭐
 
-这一节是理解 uv 的关键。**只要建立起这个模型，后面所有命令都不需要死记。**
-
 ### 2.1 全局层：Python 解释器"种子仓库"
 
-uv 会在**你的用户目录下**维护一个 Python 解释器仓库（Windows 上默认在 `C:\Users\<你>\AppData\Roaming\uv\python\`，可以用 `UV_PYTHON_INSTALL_DIR` 改）。
+uv 会在**用户目录下**维护一个 Python 解释器仓库（Windows 上默认在 `C:\Users\<你>\AppData\Roaming\uv\python\`，可以用 `UV_PYTHON_INSTALL_DIR` 改）。
 
 ```bash
 uv python install 3.11   # 下载一个 3.11 的解释器进仓库
@@ -60,21 +41,9 @@ uv python list --only-installed   # 看仓库里有啥
 
 每个项目根目录下的 `.venv` 文件夹，就是这个项目的**独立沙盒**：
 
-- **来源**：从全局的"种子"复制/链接过来一个解释器
-- **归属**：只属于当前项目
-- **命运**：删项目文件夹时，`.venv` 跟着一起消失，不留任何痕迹
 <p align='center'>
 	<img src='../../assets/imgs/python/uv/01_uv项目层.png'>
 </p>
-
-这和 Conda 的哲学**完全相反**：
-
-| 维度   | Conda（全家桶式）                | uv（项目隔离式）                                         |
-| ---- | -------------------------- | ------------------------------------------------- |
-| 环境存哪 | 集中在 `anaconda/envs/<名字>` 下 | 项目根目录的 `.venv`，无需起名                               |
-| 激活方式 | `conda activate my_env`    | PyCharm/VSCode 自动识别，或 `source .venv/bin/activate` |
-| 迁移   | 导出 yml、重新 create           | 删掉 `.venv` 重建只要 1 秒                               |
-| 清理   | 忘记删的环境越积越多                 | 删项目 = 删环境                                         |
 
 一句话：**Conda 是"环境跟着人走"，uv 是"环境跟着项目走"**。后者更符合现代软件工程直觉——就像 `node_modules`、`target/`、`vendor/` 一样，环境就应该躺在项目里，跟着项目一起被 `.gitignore`。
 
@@ -82,40 +51,9 @@ uv python list --only-installed   # 看仓库里有啥
 
 `uv init` 之后，项目里会多出这四个东西，缺一不可：
 
-<!-- 配图建议
-主题：uv 项目的四份档案及其协作关系
-概念：pyproject.toml（声明）→ uv.lock（快照）→ .venv（实体）↔ .python-version（版本钉子）
-类型：架构图（四个方块 + 箭头说明它们如何互相驱动）
-建议路径：assets/imgs/python/uv/02_uv项目四要素.png
--->
 <p align='center'>
     <img src='../../assets/imgs/python/uv/02_uv项目四要素.png' alt='uv 项目的四份档案：pyproject.toml、uv.lock、.venv、.python-version'>
 </p>
-
-| 文件/目录 | 类比 | 作用 | 提交到 Git？ |
-| --- | --- | --- | --- |
-| `pyproject.toml` | `package.json` | 项目元信息 + **你直接依赖了哪些包**（宽松范围） | ✅ 必须 |
-| `uv.lock` | `package-lock.json` | **精确到 commit** 的完整依赖树快照（含传递依赖） | ✅ 必须 |
-| `.venv/` | `node_modules/` | 真实的解释器和已安装的包 | ❌ `.gitignore` 掉 |
-| `.python-version` | `.nvmrc` | 钉住这个项目该用哪个 Python 版本 | ✅ 建议提交 |
-
-**它们的驱动关系**：
-
-```
-你敲 uv add xxx
-    ↓
-更新 pyproject.toml（记你的意图：我要 xxx）
-    ↓
-重算依赖树，写入 uv.lock（记快照：所有直接+间接依赖锁到具体版本）
-    ↓
-按 uv.lock 把包装进 .venv（落地：真的把文件放好）
-```
-
-别人拉到你的代码 → `uv sync` → uv 读 `uv.lock` → 一模一样地重建 `.venv`。**"在我机器上能跑"这个问题，从根上被消掉了。**
-
-!!! tip "为什么 lock 文件是重要的"
-    没有 lock，`requests>=2.0` 今天装成 2.31、明天可能装成 2.32；某个传递依赖的小版本变化就可能让线上炸掉。lock 文件锁死所有版本（含传递依赖）到具体 commit，才叫"可重现构建"。
-
 ---
 
 ## 三、依赖管理：`uv add` vs `uv pip install` ⭐⭐⭐
@@ -183,17 +121,9 @@ uv 内置了两套**平行**的依赖管理命令：
 - **构建文档的 CI job**：明明只需要 mkdocs，却要装整个项目的运行时依赖
 
 **依赖分组**就是给这些包分门别类装进不同袋子，用哪个装哪个。
-
-<!-- 配图建议
-主题：uv 依赖分组的心智模型
-概念：main 主袋子 + 多个可选袋子（dev / test / docs），不同场景组合使用
-类型：结构图（一个主袋子 + 若干挂在旁边的可选袋子，箭头表示"生产装 main"、"CI 测试装 main+test"、"本地开发装全部"）
-建议路径：assets/imgs/python/uv/03_uv依赖分组.png
--->
 <p align='center'>
-    <img src='' alt='uv 依赖分组：main 主袋子 + 多个可选组'>
+    <img src='../../assets/imgs/python/uv/03_uv依赖分组.png' alt='uv 依赖分组：main 主袋子 + 多个可选组'>
 </p>
-
 #### 1. 分组在 `pyproject.toml` 里长这样
 
 ```toml

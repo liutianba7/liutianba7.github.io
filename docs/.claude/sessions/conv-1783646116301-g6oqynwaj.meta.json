@@ -3,18 +3,18 @@
   "title": "Explain policy gradient method approach",
   "titleGenerationStatus": "success",
   "createdAt": 1783646116301,
-  "updatedAt": 1783653945557,
-  "lastResponseAt": 1783653945557,
+  "updatedAt": 1783913920942,
+  "lastResponseAt": 1783913836266,
   "sessionId": "961707cf-5975-4782-b26f-1d6bc1479f13",
   "sdkSessionId": "961707cf-5975-4782-b26f-1d6bc1479f13",
   "currentNote": "python/05_ai/07_Reinforcement_Learning.md",
   "usage": {
     "model": "haiku",
-    "inputTokens": 0,
+    "inputTokens": 683,
     "cacheCreationInputTokens": 0,
-    "cacheReadInputTokens": 0,
+    "cacheReadInputTokens": 109568,
     "contextWindow": 200000,
-    "contextTokens": 0,
-    "percentage": 0
+    "contextTokens": 110251,
+    "percentage": 55
   }
 }

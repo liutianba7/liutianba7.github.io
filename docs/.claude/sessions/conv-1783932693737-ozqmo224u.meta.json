@@ -1,0 +1,20 @@
+{
+  "id": "conv-1783932693737-ozqmo224u",
+  "title": "Document KL divergence definitions",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783932693737,
+  "updatedAt": 1784078392709,
+  "lastResponseAt": 1784078392709,
+  "sessionId": "cf9b1c71-468c-4118-95a9-928ed7db0486",
+  "sdkSessionId": "cf9b1c71-468c-4118-95a9-928ed7db0486",
+  "currentNote": "python/05_ai/07_Reinforcement_Learning.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 264,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 104576,
+    "contextWindow": 200000,
+    "contextTokens": 104840,
+    "percentage": 52
+  }
+}

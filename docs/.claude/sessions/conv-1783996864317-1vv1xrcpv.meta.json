@@ -1,0 +1,20 @@
+{
+  "id": "conv-1783996864317-1vv1xrcpv",
+  "title": "Explain assistant identity",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783996864317,
+  "updatedAt": 1783996878997,
+  "lastResponseAt": 1783996872577,
+  "sessionId": "da9094a6-3a79-4d35-8458-6a96161e9096",
+  "sdkSessionId": "da9094a6-3a79-4d35-8458-6a96161e9096",
+  "currentNote": "python/05_ai/07_Reinforcement_Learning.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 0,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 0,
+    "contextWindow": 200000,
+    "contextTokens": 0,
+    "percentage": 0
+  }
+}

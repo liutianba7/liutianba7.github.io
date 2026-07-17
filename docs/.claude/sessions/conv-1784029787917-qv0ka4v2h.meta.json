@@ -1,0 +1,20 @@
+{
+  "id": "conv-1784029787917-qv0ka4v2h",
+  "title": "Polish interview self-introduction",
+  "titleGenerationStatus": "success",
+  "createdAt": 1784029787917,
+  "updatedAt": 1784029819704,
+  "lastResponseAt": 1784029819704,
+  "sessionId": "a223c06d-59de-4e51-acb9-1d1e9a87459c",
+  "sdkSessionId": "a223c06d-59de-4e51-acb9-1d1e9a87459c",
+  "currentNote": "interview/面试准备.md",
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 1057,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 21504,
+    "contextWindow": 200000,
+    "contextTokens": 22561,
+    "percentage": 11
+  }
+}
